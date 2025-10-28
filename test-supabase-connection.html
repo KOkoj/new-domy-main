@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supabase Connection Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    <div id="status">Testing connection...</div>
+    <button onclick="testSignup()">Test Signup</button>
+    <div id="result"></div>
+
+    <script>
+        const SUPABASE_URL = 'https://oixdctetbbghorgppxss.supabase.com'
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9peGRjdGV0YmJnaG9yZ3BweHNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg4OTE1MzksImV4cCI6MjA3NDQ2NzUzOX0.zVk16CQT0tYeoPUKa0h0JeVaI_UmEPwmfTNBJmuvO6M'
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+        
+        async function testConnection() {
+            const status = document.getElementById('status')
+            try {
+                // Just test if we can reach Supabase
+                const { data, error } = await supabase.auth.getSession()
+                if (error) {
+                    status.innerHTML = `<span style="color: red;">❌ Error: ${error.message}</span>`
+                } else {
+                    status.innerHTML = `<span style="color: green;">✅ Connected to Supabase!</span>`
+                }
+            } catch (err) {
+                status.innerHTML = `<span style="color: red;">❌ Connection failed: ${err.message}</span>`
+            }
+        }
+        
+        async function testSignup() {
+            const result = document.getElementById('result')
+            result.innerHTML = 'Testing signup...'
+            
+            const randomEmail = `test${Date.now()}@example.com`
+            
+            try {
+                const { data, error } = await supabase.auth.signUp({
+                    email: randomEmail,
+                    password: 'password123'
+                })
+                
+                if (error) {
+                    result.innerHTML = `<span style="color: red;">❌ Signup Error: ${error.message}</span>`
+                } else {
+                    result.innerHTML = `<span style="color: green;">✅ Signup works! Email: ${randomEmail}</span>`
+                }
+            } catch (err) {
+                result.innerHTML = `<span style="color: red;">❌ Failed: ${err.message}</span>`
+            }
+        }
+        
+        testConnection()
+    </script>
+</body>
+</html>
+

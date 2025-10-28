@@ -1,0 +1,43 @@
+# Vercel Build Exclusions
+# These files/folders don't need to be uploaded to Vercel
+
+# Dependencies
+node_modules
+
+# Testing
+tests
+*.test.js
+*.spec.js
+
+# Python test files
+*.py
+__pycache__
+
+# SQL setup files (run these in Supabase, not needed in deployment)
+*.sql
+
+# Documentation
+*.md
+!README.md
+
+# Development files
+.env.local
+.env*.local
+*.log
+
+# Docker files (not needed for Vercel)
+Dockerfile
+Dockerfile.dev
+docker-compose.yml
+
+# Development scripts
+setup-local-development.bat
+setup-local-development.sh
+
+# Test files
+test-*.js
+test-*.html
+backend_test*.py
+sanity_test.py
+extended_backend_test.py
+

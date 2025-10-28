@@ -1,0 +1,497 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 120 35% 25%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 120 35% 75%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+@layer base {
+  /* Sora font for headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sora), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 600;
+  }
+  
+  /* Manrope font for body text and all other elements */
+  body, p, div, span, a, button, input, select, textarea {
+    font-family: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Ensure all text elements use Manrope unless specifically overridden */
+  *, *::before, *::after {
+    font-family: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  /* Override for headings to use Sora */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sora), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  }
+  
+  /* Ensure specific elements use the correct fonts */
+  p, div, span, a, button, input, select, textarea, label {
+    font-family: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  }
+}
+
+/* Leaflet CSS */
+@import 'leaflet/dist/leaflet.css';
+
+/* Custom scrollbar for sidebar */
+.sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Property card hover effects */
+.property-card {
+  transition: all 0.3s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Custom checkbox styling for dark background */
+.checkbox-white {
+  --tw-ring-offset-shadow: 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+/* Loading states */
+.loading-skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+/* Map container styling */
+.leaflet-container {
+  font-family: inherit;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+}
+
+/* Custom map markers */
+.custom-marker {
+  background: #3e6343;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none;
+  }
+}
+
+/* Animation for property cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Slow bounce animation for scroll indicator */
+@keyframes slowBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
+}
+
+.slow-bounce {
+  animation: slowBounce 2s ease-in-out infinite;
+}
+
+/* Fade in animation for loading screen */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Character-by-character fade in animation for hero title */
+@keyframes charFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-char-fade-in {
+  animation: charFadeIn 0.3s ease-out forwards;
+}
+
+/* Keyword pop animation */
+@keyframes keywordPop {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-keyword-pop {
+  animation: keywordPop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Scroll-triggered animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: none !important;
+}
+
+/* Slide from left */
+.animate-on-scroll.slide-left {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.animate-on-scroll.slide-left.animate-in {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: none !important;
+}
+
+/* Slide from right */
+.animate-on-scroll.slide-right {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.animate-on-scroll.slide-right.animate-in {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: none !important;
+}
+
+/* Scale in */
+.animate-on-scroll.scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.animate-on-scroll.scale-in.animate-in {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: none !important;
+}
+
+/* Fade in only */
+.animate-on-scroll.fade-in-only {
+  opacity: 0;
+  transform: none;
+}
+
+.animate-on-scroll.fade-in-only.animate-in {
+  opacity: 1 !important;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: none !important;
+}
+
+/* Staggered children animation */
+.animate-on-scroll.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-on-scroll.stagger-children.animate-in > * {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-on-scroll.stagger-children.animate-in > *:nth-child(1) { animation-delay: 0.1s; }
+.animate-on-scroll.stagger-children.animate-in > *:nth-child(2) { animation-delay: 0.2s; }
+.animate-on-scroll.stagger-children.animate-in > *:nth-child(3) { animation-delay: 0.3s; }
+.animate-on-scroll.stagger-children.animate-in > *:nth-child(4) { animation-delay: 0.4s; }
+.animate-on-scroll.stagger-children.animate-in > *:nth-child(5) { animation-delay: 0.5s; }
+.animate-on-scroll.stagger-children.animate-in > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Custom select styling */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+/* Hide default number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Badge variations */
+.badge-sea {
+  @apply bg-blue-500 text-white;
+}
+
+.badge-mountain {
+  @apply bg-gray-600 text-white;
+}
+
+/* Price level dots */
+.price-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0 2px;
+}
+
+.price-dot.active {
+  background-color: #3e6343;
+}
+
+.price-dot.inactive {
+  background-color: #d1d5db;
+}
+
+/* Smooth transitions */
+/* Removed global transition - was causing animation bugs */
+/* Use specific transitions on elements that need them instead */
+
+button:hover, .hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Focus styles for accessibility */
+button:focus, input:focus, select:focus {
+  outline: 2px solid #3e6343;
+  outline-offset: 2px;
+}
+
+/* Font utility classes */
+.font-sora {
+  font-family: var(--font-sora), sans-serif;
+}
+
+.font-manrope {
+  font-family: var(--font-manrope), sans-serif;
+}
+
+/* Ensure proper font loading and fallbacks */
+html {
+  font-family: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Debug font loading - remove in production */
+body::before {
+  content: "Font Debug: Manrope=" attr(data-font-manrope) " Sora=" attr(data-font-sora);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  z-index: 9999;
+  display: none; /* Set to block for debugging */
+}
+
+/* Custom border color for home page - applies to all borders and outlines with opacity */
+.home-page-custom-border *:not(.card):not([data-testid*="card"]) {
+  border-color: rgba(199, 137, 91, 0.6) !important;
+}
+
+.home-page-custom-border *:focus {
+  outline-color: rgba(199, 137, 91, 0.8) !important;
+  --tw-ring-color: rgba(199, 137, 91, 0.8) !important;
+}
+
+/* More specific targeting for common border elements (excluding cards) */
+.home-page-custom-border .border:not(.card):not([data-testid*="card"]),
+.home-page-custom-border [class*="border-"]:not(.card):not([data-testid*="card"]),
+.home-page-custom-border button,
+.home-page-custom-border input,
+.home-page-custom-border select {
+  border-color: rgba(199, 137, 91, 0.6) !important;
+}
+
+/* EXCEPTION: Exclude only the properties page filter sidebar from custom border styling */
+.home-page-custom-border .w-80.flex-shrink-0,
+.home-page-custom-border .w-80.flex-shrink-0 *:not(button):not(input):not(select):not(textarea):not([role="button"]) {
+  border-color: inherit !important;
+}
+
+/* Remove borders from all cards on home page */
+.home-page-custom-border .card,
+.home-page-custom-border [data-testid*="card"],
+.home-page-custom-border [class*="property-card"],
+.home-page-custom-border [data-testid="property-card"],
+.home-page-custom-border [data-testid="region-blog-card"],
+.home-page-custom-border [data-testid="property-type-blog-card"],
+.home-page-custom-border [data-testid*="success"],
+.home-page-custom-border .bg-white.rounded-xl {
+  border: none !important;
+  border-color: transparent !important;
+}
+
+/* Remove borders from all cards globally - applies to all pages */
+/* Target all Card components and card-like elements */
+.card,
+[data-testid*="card"],
+[class*="property-card"] {
+  border: none !important;
+  border-color: transparent !important;
+}
+
+/* Target success story cards and other white rounded cards */
+.bg-white.rounded-xl,
+.bg-white.rounded-2xl,
+.bg-white.rounded-xl.overflow-hidden.shadow-lg {
+  border: none !important;
+  border-color: transparent !important;
+}
+
+/* Target premium club dark cards */
+.bg-slate-800,
+.bg-slate-900,
+.bg-slate-900\/50 {
+  border: none !important;
+  border-color: transparent !important;
+}
+
+.home-page-custom-border .badge {
+  border-color: rgba(199, 137, 91, 0.5) !important;
+}
+
+.home-page-custom-border button:focus,
+.home-page-custom-border input:focus,
+.home-page-custom-border select:focus {
+  outline-color: rgba(199, 137, 91, 0.8) !important;
+  --tw-ring-color: rgba(199, 137, 91, 0.8) !important;
+  box-shadow: 0 0 0 2px rgba(199, 137, 91, 0.6) !important;
+}
