@@ -1218,26 +1218,24 @@ export default function HomePage() {
     console.log(`Currency changed to: ${newCurrency}`)
   }
 
-  const handleAuth = async (type) => {
-    if (type === 'login') {
-      const email = prompt('Enter your email:')
-      const password = prompt('Enter your password:')
-      
-      if (email && password) {
-        const { error } = await supabase.auth.signInWithPassword({ email, password })
-        if (error) {
-          alert('Login failed: ' + error.message)
-        } else {
-          window.location.reload()
-        }
-      }
-    } else {
-      const { error } = await supabase.auth.signOut()
-      if (!error) {
-        setUser(null)
-        setFavorites(new Set())
-      }
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut()
+    if (!error) {
+      setUser(null)
+      setFavorites(new Set())
     }
+  }
+
+  const handleLoginClick = () => {
+    // Scroll to top where the Navigation component is
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Wait for scroll, then trigger the login button in Navigation
+    setTimeout(() => {
+      const loginButton = document.querySelector('[data-testid="login-button"]')
+      if (loginButton) {
+        loginButton.click()
+      }
+    }, 500)
   }
 
   return (
@@ -1365,7 +1363,7 @@ export default function HomePage() {
               {user ? (
                 <Button 
                   variant="outline" 
-                  onClick={() => handleAuth('logout')}
+                  onClick={handleLogout}
                   className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-200 rounded-full px-6 py-4 text-base font-medium"
                   data-testid="logout-button"
                   data-user-authenticated="true"
@@ -1375,18 +1373,18 @@ export default function HomePage() {
               ) : (
                 <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20">
                   <button
-                    onClick={() => handleAuth('login')}
+                    onClick={handleLoginClick}
                     className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                    data-testid="login-button"
+                    data-testid="homepage-login-button"
                     data-user-authenticated="false"
                   >
                     {language === 'cs' ? 'Přihlásit' : t('nav.login', language)}
                   </button>
                   <span className="text-white/40 mx-1">/</span>
                   <button
-                    onClick={() => handleAuth('register')}
+                    onClick={handleLoginClick}
                     className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                    data-testid="register-button"
+                    data-testid="homepage-register-button"
                     data-user-authenticated="false"
                   >
                     {language === 'cs' ? 'Registrovat' : (language === 'it' ? 'Registrati' : 'Register')}
