@@ -3,6 +3,9 @@ import { supabase } from '../../../lib/supabase.js'
 import { client } from '../../../lib/sanity.js'
 import { FEATURED_PROPERTIES_QUERY, ALL_PROPERTIES_QUERY, PROPERTY_BY_SLUG_QUERY } from '../../../lib/sanity.js'
 
+// Force dynamic rendering - don't pre-render this route during build
+export const dynamic = 'force-dynamic'
+
 // Handle all API routes
 export async function GET(request, { params }) {
   const { path } = params
