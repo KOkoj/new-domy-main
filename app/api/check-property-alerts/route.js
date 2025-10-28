@@ -3,6 +3,8 @@ import { supabase } from '@/lib/supabase';
 import { client } from '@/lib/sanity';
 import emailService from '@/lib/emailService';
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(request) {
   try {
     

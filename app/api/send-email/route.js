@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import emailService from '@/lib/emailService';
 import { supabase } from '@/lib/supabase';
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(request) {
   try {
     const { emailType, data } = await request.json();
