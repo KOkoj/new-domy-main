@@ -5,6 +5,7 @@ import { FEATURED_PROPERTIES_QUERY, ALL_PROPERTIES_QUERY, PROPERTY_BY_SLUG_QUERY
 
 // Force dynamic rendering - don't pre-render this route during build
 export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
 
 // Handle all API routes
 export async function GET(request, { params }) {
@@ -13,6 +14,10 @@ export async function GET(request, { params }) {
   const searchParams = url.searchParams
 
   try {
+    // Check if Supabase is configured
+    if (!supabase && path && (path[0] === 'favorites' || path[0] === 'saved-searches' || path[0] === 'inquiries')) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
+    }
     // Properties endpoints
     if (!path || path.length === 0 || (path.length === 1 && path[0] === 'properties')) {
       // Get all properties with optional filtering
