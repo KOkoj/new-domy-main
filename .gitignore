@@ -65,3 +65,7 @@ temp/
 # Database
 *.sqlite
 *.db
+
+# Large media files (too big for GitHub)
+public/14439242_3840_2160_24fps.mp4
+*.mp4
