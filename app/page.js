@@ -14,6 +14,7 @@ import { DualRangeSlider } from '@/components/ui/dual-range-slider'
 import ImageReveal from '@/components/ui/image-tiles'
 import { GlareCard } from '@/components/ui/premium-card'
 import BackgroundImageTransition from '@/components/BackgroundImageTransition'
+import AuthModal from '@/components/AuthModal'
 import { supabase } from '../lib/supabase'
 import { t } from '../lib/translations'
 import { SAMPLE_PROPERTIES } from '../lib/sample-data'
@@ -598,6 +599,9 @@ export default function HomePage() {
   // Loading state
   const [isLoading, setIsLoading] = useState(true)
   const [startAnimations, setStartAnimations] = useState(false)
+  
+  // Auth modal state
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
 
   useEffect(() => {
     // Load saved language preference
@@ -1226,16 +1230,10 @@ export default function HomePage() {
     }
   }
 
-  const handleLoginClick = () => {
-    // Scroll to top where the Navigation component is
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-    // Wait for scroll, then trigger the login button in Navigation
-    setTimeout(() => {
-      const loginButton = document.querySelector('[data-testid="login-button"]')
-      if (loginButton) {
-        loginButton.click()
-      }
-    }, 500)
+  const handleAuthSuccess = (authUser) => {
+    setUser(authUser)
+    setIsAuthModalOpen(false)
+    loadFavorites()
   }
 
   return (
@@ -1373,7 +1371,7 @@ export default function HomePage() {
               ) : (
                 <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20">
                   <button
-                    onClick={handleLoginClick}
+                    onClick={() => setIsAuthModalOpen(true)}
                     className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
                     data-testid="homepage-login-button"
                     data-user-authenticated="false"
@@ -1382,7 +1380,7 @@ export default function HomePage() {
                   </button>
                   <span className="text-white/40 mx-1">/</span>
                   <button
-                    onClick={handleLoginClick}
+                    onClick={() => setIsAuthModalOpen(true)}
                     className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
                     data-testid="homepage-register-button"
                     data-user-authenticated="false"
@@ -3506,6 +3504,13 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
+      
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onAuthSuccess={handleAuthSuccess}
+      />
     </div>
   )
 }
