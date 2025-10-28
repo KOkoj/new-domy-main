@@ -66,9 +66,12 @@ export const GlareCard = ({
       style={{
         ...containerStyle,
         perspective: '600px',
-        contain: 'layout style'
+        contain: 'layout style',
+        transitionDuration: 'var(--duration)',
+        transitionTimingFunction: 'var(--easing)',
+        transitionDelay: 'var(--delay)'
       }}
-      className="relative isolate transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] will-change-transform w-[380px] h-[480px] cursor-pointer"
+      className="relative isolate transition-transform w-[380px] h-[480px] cursor-pointer"
       ref={refElement}
       onClick={onClick}
       onPointerMove={(event) => {
@@ -119,10 +122,13 @@ export const GlareCard = ({
       }}
     >
       <div 
-        className="h-full grid will-change-transform origin-center transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] rounded-[var(--radius)] border border-slate-800 hover:[--opacity:0.6] hover:[--duration:200ms] hover:[--easing:linear] hover:filter-none overflow-hidden shadow-2xl shadow-slate-900/50"
+        className="h-full grid will-change-transform origin-center transition-transform rounded-[var(--radius)] border border-slate-800 hover:[--opacity:0.6] hover:[--duration:200ms] hover:[--easing:linear] hover:filter-none overflow-hidden shadow-2xl shadow-slate-900/50"
         style={{
           transform: `rotateY(var(--r-x)) rotateX(var(--r-y))`,
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1)'
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1)',
+          transitionDuration: 'var(--duration)',
+          transitionTimingFunction: 'var(--easing)',
+          transitionDelay: 'var(--delay)'
         }}
       >
         <div 
@@ -137,11 +143,14 @@ export const GlareCard = ({
           </div>
         </div>
         <div 
-          className="w-full h-full absolute inset-0 mix-blend-soft-light opacity-[var(--opacity)] transition-opacity duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] will-change-background"
+          className="w-full h-full absolute inset-0 mix-blend-soft-light opacity-[var(--opacity)] transition-opacity will-change-background"
           style={{
             clipPath: 'inset(0 0 1px 0 round var(--radius))',
             gridArea: '1/1',
-            background: 'radial-gradient(farthest-corner circle at var(--m-x) var(--m-y), rgba(255,255,255,0.8) 10%, rgba(255,255,255,0.65) 20%, rgba(255,255,255,0) 90%)'
+            background: 'radial-gradient(farthest-corner circle at var(--m-x) var(--m-y), rgba(255,255,255,0.8) 10%, rgba(255,255,255,0.65) 20%, rgba(255,255,255,0) 90%)',
+            transitionDuration: 'var(--duration)',
+            transitionTimingFunction: 'var(--easing)',
+            transitionDelay: 'var(--delay)'
           }}
         />
         <div

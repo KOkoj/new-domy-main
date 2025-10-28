@@ -22,7 +22,7 @@ import {
   Grid,
   List,
   ChevronRight,
-  Compare
+  GitCompare
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
 import Link from 'next/link'
@@ -213,7 +213,7 @@ export default function FavoritesManagement() {
                   : 'bg-white/80 text-gray-600 hover:bg-white'
               }`}
             >
-              <Compare className="h-4 w-4" />
+              <GitCompare className="h-4 w-4" />
             </button>
           </div>
           
