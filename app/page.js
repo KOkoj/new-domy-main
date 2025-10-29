@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Lenis from 'lenis'
-import { Heart, Search, MapPin, ChevronRight, ChevronDown, Eye, Bed, Bath, Square, Car, Phone, Crown, Gem, Target, Shield, Check } from 'lucide-react'
+import { Heart, Search, MapPin, ChevronRight, ChevronDown, Eye, Bed, Bath, Square, Car, Phone, Crown, Gem, Target, Shield, Check, Scale, Globe, Lock, XCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
@@ -313,7 +313,8 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
         {/* Enhanced CTA button - always at bottom */}
         <div className="pt-4 mt-auto" data-testid="property-footer">
           <Button 
-            className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border-0 text-base"
+            className="w-full text-white font-semibold py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border-0 text-base"
+            style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
             data-testid="view-details-button"
             data-property-id={property._id}
           >
@@ -457,7 +458,7 @@ function PropertyOfTheDay({ property, language, currency }) {
           
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-6">
-            <Button className="flex-1 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group">
+            <Button className="flex-1 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
               <Eye className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform duration-200" />
               {t('property.viewFullDetails', language)}
             </Button>
@@ -602,6 +603,9 @@ export default function HomePage() {
   
   // Auth modal state
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  
+  // Popup bar state
+  const [isPopupBarVisible, setIsPopupBarVisible] = useState(true)
 
   useEffect(() => {
     // Load saved language preference
@@ -615,6 +619,12 @@ export default function HomePage() {
     const savedCurrency = localStorage.getItem('preferred-currency')
     if (savedCurrency) {
       setCurrency(savedCurrency)
+    }
+    
+    // Check if popup bar was dismissed
+    const popupDismissed = localStorage.getItem('premium-club-popup-dismissed')
+    if (popupDismissed === 'true') {
+      setIsPopupBarVisible(false)
     }
   }, [])
 
@@ -1394,6 +1404,43 @@ export default function HomePage() {
         </div>
       </nav>
 
+      {/* Premium Club Popup Bar */}
+      {isPopupBarVisible && (
+        <div 
+          className="fixed left-0 right-0 z-40 shadow-lg backdrop-blur-md transition-all duration-300"
+          style={{ 
+            background: 'linear-gradient(to right, rgba(199, 137, 91, 0.9), rgba(153, 105, 69, 0.9))',
+            top: '88px'
+          }}
+        >
+          <div className="container mx-auto px-4 py-2">
+            <div className="flex items-center justify-center relative">
+              <Link 
+                href="/club" 
+                className="flex items-center gap-3 group hover:opacity-90 transition-opacity"
+              >
+                <Crown className="h-5 w-5 text-white" />
+                <span className="text-white font-semibold text-sm md:text-base whitespace-nowrap">
+                  {language === 'cs' ? 'Premium Club - Zaregistrujte se zdarma nyní' :
+                   language === 'it' ? 'Club Premium - Registrati gratuitamente ora' :
+                   'Premium Club - Register for Free Now'}
+                </span>
+              </Link>
+              <button
+                onClick={() => {
+                  setIsPopupBarVisible(false)
+                  localStorage.setItem('premium-club-popup-dismissed', 'true')
+                }}
+                className="absolute right-0 p-1 hover:bg-white/20 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+                aria-label="Close popup"
+              >
+                <XCircle className="h-5 w-5 text-white" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section 
         className="relative h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 shadow-inner flex items-center justify-center" 
@@ -1646,6 +1693,71 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+            
+            {/* Trust Indicators - Subtle & Elegant */}
+            <div 
+              className={`transition-all duration-700 ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              style={{
+                maxWidth: '50rem',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: '4rem',
+                transitionDelay: startAnimations ? '2.9s' : '0s'
+              }}
+            >
+              <div className="flex flex-wrap justify-center items-center gap-4 px-4">
+                {/* Legal Partner */}
+                <div className="flex items-center gap-2 rounded-lg px-4 py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
+                  <Scale className="h-4 w-4 text-white group-hover:text-white transition-colors" />
+                  <div className="flex flex-col">
+                    <span className="text-xs font-semibold text-white leading-tight">
+                      {language === 'cs' ? 'Právní Partner' :
+                       language === 'it' ? 'Partner Legale' :
+                       'Legal Partner'}
+                    </span>
+                    <span className="text-[10px] text-white/90 leading-tight">
+                      {language === 'cs' ? 'Certifikovaní Právníci' :
+                       language === 'it' ? 'Avvocati Certificati' :
+                       'Certified Lawyers'}
+                    </span>
+                  </div>
+                </div>
+                
+                {/* Tour Partner */}
+                <div className="flex items-center gap-2 rounded-lg px-4 py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
+                  <Globe className="h-4 w-4 text-white group-hover:text-white transition-colors" />
+                  <div className="flex flex-col">
+                    <span className="text-xs font-semibold text-white leading-tight">
+                      {language === 'cs' ? 'Turistický Partner' :
+                       language === 'it' ? 'Partner Turistico' :
+                       'Tour Partner'}
+                    </span>
+                    <span className="text-[10px] text-white/90 leading-tight">
+                      {language === 'cs' ? 'Místní Zkušenosti' :
+                       language === 'it' ? 'Esperienza Locale' :
+                       'Local Experience'}
+                    </span>
+                  </div>
+                </div>
+                
+                {/* Data Privacy */}
+                <div className="flex items-center gap-2 rounded-lg px-4 py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
+                  <Lock className="h-4 w-4 text-white group-hover:text-white transition-colors" />
+                  <div className="flex flex-col">
+                    <span className="text-xs font-semibold text-white leading-tight">
+                      {language === 'cs' ? 'Soukromí Dát' :
+                       language === 'it' ? 'Privacy dei Dati' :
+                       'Data Privacy'}
+                    </span>
+                    <span className="text-[10px] text-white/90 leading-tight">
+                      {language === 'cs' ? 'Soulad s GDPR' :
+                       language === 'it' ? 'Conforme al GDPR' :
+                       'GDPR Compliant'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1657,10 +1769,14 @@ export default function HomePage() {
             {/* Left Side - Text Content */}
             <div className="space-y-6 animate-on-scroll slide-left">
                 <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-                  Nejsme realitní kancelář.
+                  {language === 'cs' ? 'Nejsme realitní kancelář.' :
+                   language === 'it' ? 'Non siamo un\'agenzia immobiliare.' :
+                   'We\'re Not a Real Estate Agency.'}
                 </h2>
                 <p className="text-xl text-gray-700 leading-relaxed">
-                Nevlastníme žádné nemovitosti a nesnažíme se nic „prodat". Jsme váš osobní průvodce celým procesem – cílem je najít domov, který skutečně sedí vám.
+                  {language === 'cs' ? 'Nevlastníme žádné nemovitosti a nesnažíme se nic „prodat". Jsme váš osobní průvodce celým procesem – cílem je najít domov, který skutečně sedí vám. Námi vybrané nemovitosti' :
+                   language === 'it' ? 'Non possediamo proprietà e non cerchiamo di "vendere" nulla. Siamo la tua guida personale attraverso l\'intero processo – l\'obiettivo è trovare una casa che si adatti davvero a te. Le proprietà che selezioniamo' :
+                   'We don\'t own any properties and we\'re not trying to "sell" anything. We\'re your personal guide through the entire process – the goal is to find a home that truly fits you. The properties we select'}
               </p>
               <div className="pt-4">
                   <Link href="/process">
@@ -1893,8 +2009,8 @@ export default function HomePage() {
             </p>
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 font-semibold py-4 px-8 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-              style={{ color: '#c48759' }}
+              className="font-semibold py-4 px-8 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-white"
+              style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
             >
               {language === 'cs' ? 'Připojit se zdarma' :
                language === 'it' ? 'Unisciti gratuitamente' :
@@ -2452,7 +2568,7 @@ export default function HomePage() {
       </section>
 
         {/* How It Works Section */}
-        <section className="py-20 bg-gradient-to-br from-slate-50 via-[#f7f4ed] to-blue-50/30">
+        <section className="py-20 bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
@@ -2470,7 +2586,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Step 1 */}
               <div className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-r from-slate-700 to-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                   <span className="text-2xl font-bold text-white">1</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
@@ -2487,7 +2603,7 @@ export default function HomePage() {
 
             {/* Step 2 */}
               <div className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                   <span className="text-2xl font-bold text-white">2</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
@@ -2504,7 +2620,7 @@ export default function HomePage() {
 
             {/* Step 3 */}
               <div className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-r from-emerald-600 to-emerald-800 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                   <span className="text-2xl font-bold text-white">3</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
@@ -2521,7 +2637,7 @@ export default function HomePage() {
 
             {/* Step 4 */}
               <div className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-r from-amber-600 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                   <span className="text-2xl font-bold text-white">4</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
@@ -2539,7 +2655,7 @@ export default function HomePage() {
 
           <div className="text-center">
             <Link href="/process">
-              <button className="bg-gradient-to-r from-white to-gray-100 hover:from-gray-100 hover:to-gray-200 text-slate-700 font-semibold py-4 px-8 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+              <button className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-8 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
                 {language === 'cs' ? 'Zobrazit celý proces' :
                  language === 'it' ? 'Visualizza il processo completo' :
                  'View Full Process'}
@@ -3053,7 +3169,7 @@ export default function HomePage() {
       </section>
 
         {/* FAQ Section */}
-        <section className="py-20 bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
+        <section className="py-20 bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
@@ -3232,7 +3348,7 @@ export default function HomePage() {
                  language === 'it' ? 'Partecipa al Webinar' :
                  'Join the Webinar'}
               </button>
-              <button className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg">
+              <button className="text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                 {language === 'cs' ? 'Rezervovat Hovor' :
                  language === 'it' ? 'Prenota una Chiamata' :
                  'Book a Call'}
@@ -3311,7 +3427,7 @@ export default function HomePage() {
                     </span>
                   </li>
                 </ul>
-                <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg">
+                <button className="w-full text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                   {language === 'cs' ? 'Rezervovat Hovor' :
                    language === 'it' ? 'Prenota una Chiamata' :
                    'Book a Call'}

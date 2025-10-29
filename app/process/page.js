@@ -895,7 +895,7 @@ export default function ProcessPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/contact">
-                    <Button size="lg" className="bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg">
+                    <Button size="lg" className="text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                       <Phone className="h-5 w-5 mr-2" />
                       {language === 'cs' ? 'Naplánovat konzultaci' :
                        language === 'it' ? 'Pianifica consultazione' :

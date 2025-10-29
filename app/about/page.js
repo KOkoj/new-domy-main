@@ -551,7 +551,7 @@ export default function AboutPage() {
                    'Contact us today for a free consultation about your Italian property dreams. We\'re here to guide you every step of the way.'}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg">
+                  <Button size="lg" className="text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                   <Phone className="h-4 w-4 mr-2" />
                     {language === 'cs' ? 'Naplánovat konzultaci' : 
                      language === 'it' ? 'Pianifica consultazione' : 

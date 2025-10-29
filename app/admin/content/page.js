@@ -23,63 +23,62 @@ import {
   DollarSign,
   Bed,
   Bath,
-  Square
+  Square,
+  Loader2,
+  AlertCircle,
+  CheckCircle
 } from 'lucide-react'
-
-// Sample data that matches our current property structure
-const SAMPLE_PROPERTIES = [
-  {
-    _id: '1',
-    title: { en: 'Luxury Villa with Lake Como Views', it: 'Villa di Lusso con Vista sul Lago di Como' },
-    slug: { current: 'luxury-villa-lake-como' },
-    propertyType: 'villa',
-    price: { amount: 2500000, currency: 'EUR' },
-    specifications: { bedrooms: 4, bathrooms: 3, squareFootage: 350 },
-    location: { city: { name: { en: 'Como', it: 'Como' } } },
-    status: 'available',
-    featured: true
-  },
-  {
-    _id: '2',
-    title: { en: 'Tuscan Farmhouse with Vineyards', it: 'Casa Colonica Toscana con Vigneti' },
-    slug: { current: 'tuscan-farmhouse-vineyards' },
-    propertyType: 'house',
-    price: { amount: 1200000, currency: 'EUR' },
-    specifications: { bedrooms: 3, bathrooms: 2, squareFootage: 280 },
-    location: { city: { name: { en: 'Tuscany', it: 'Toscana' } } },
-    status: 'available',
-    featured: true
-  }
-]
-
-const SAMPLE_REGIONS = [
-  {
-    _id: '1',
-    name: { en: 'Tuscany', it: 'Toscana' },
-    country: 'Italy',
-    propertyCount: 1250,
-    averagePrice: 850000
-  },
-  {
-    _id: '2',
-    name: { en: 'Lake Como', it: 'Lago di Como' },
-    country: 'Italy',
-    propertyCount: 340,
-    averagePrice: 2100000
-  }
-]
 
 export default function ContentManagement() {
   const [activeTab, setActiveTab] = useState('properties')
-  const [properties, setProperties] = useState(SAMPLE_PROPERTIES)
-  const [regions, setRegions] = useState(SAMPLE_REGIONS)
+  const [properties, setProperties] = useState([])
+  const [regions, setRegions] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
   const [editingItem, setEditingItem] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(null)
+  const [sanityConfigured, setSanityConfigured] = useState(true)
+
+  useEffect(() => {
+    loadContent()
+  }, [activeTab])
+
+  const loadContent = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      const type = activeTab === 'properties' ? 'properties' : 'regions'
+      const response = await fetch(`/api/content?type=${type}`)
+      const result = await response.json()
+
+      if (!response.ok) {
+        if (result.error === 'Sanity CMS not configured') {
+          setSanityConfigured(false)
+        }
+        throw new Error(result.error || 'Failed to load content')
+      }
+
+      if (activeTab === 'properties') {
+        setProperties(result.properties || [])
+      } else {
+        setRegions(result.regions || [])
+      }
+    } catch (err) {
+      console.error('Error loading content:', err)
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const formatPrice = (price) => {
+    if (!price || !price.amount) return 'N/A'
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: price.currency,
+      currency: price.currency || 'EUR',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     }).format(price.amount)
@@ -90,27 +89,103 @@ export default function ContentManagement() {
     setIsModalOpen(true)
   }
 
-  const handleSaveProperty = () => {
-    if (editingItem._id === 'new') {
-      // Add new property
-      const newProperty = {
-        ...editingItem,
-        _id: Date.now().toString()
-      }
-      setProperties(prev => [newProperty, ...prev])
-    } else {
-      // Update existing property
-      setProperties(prev => prev.map(p => 
-        p._id === editingItem._id ? editingItem : p
-      ))
+  const handleSaveProperty = async () => {
+    if (!sanityConfigured) {
+      setError('Sanity CMS is not configured. Please add Sanity credentials to your environment variables.')
+      return
     }
-    setIsModalOpen(false)
-    setEditingItem(null)
+
+    setSaving(true)
+    setError(null)
+    setSuccess(null)
+
+    try {
+      if (editingItem._id === 'new') {
+        // Create new property
+        const response = await fetch('/api/content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'property',
+            data: {
+              title: editingItem.title,
+              propertyType: editingItem.propertyType,
+              price: editingItem.price,
+              specifications: editingItem.specifications,
+              status: editingItem.status,
+              featured: editingItem.featured,
+              description: editingItem.description || { en: '', it: '' }
+            }
+          })
+        })
+
+        const result = await response.json()
+        if (!response.ok) throw new Error(result.error || 'Failed to create property')
+
+        setSuccess('Property created successfully!')
+        setIsModalOpen(false)
+        setEditingItem(null)
+        await loadContent()
+      } else {
+        // Update existing property
+        const response = await fetch('/api/content', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'property',
+            id: editingItem._id,
+            data: {
+              title: editingItem.title,
+              propertyType: editingItem.propertyType,
+              price: editingItem.price,
+              specifications: editingItem.specifications,
+              status: editingItem.status,
+              featured: editingItem.featured,
+              description: editingItem.description
+            }
+          })
+        })
+
+        const result = await response.json()
+        if (!response.ok) throw new Error(result.error || 'Failed to update property')
+
+        setSuccess('Property updated successfully!')
+        setIsModalOpen(false)
+        setEditingItem(null)
+        await loadContent()
+      }
+    } catch (err) {
+      console.error('Error saving property:', err)
+      setError(err.message)
+    } finally {
+      setSaving(false)
+    }
   }
 
-  const handleDeleteProperty = (propertyId) => {
-    if (confirm('Are you sure you want to delete this property?')) {
-      setProperties(prev => prev.filter(p => p._id !== propertyId))
+  const handleDeleteProperty = async (propertyId) => {
+    if (!confirm('Are you sure you want to delete this property? This action cannot be undone.')) {
+      return
+    }
+
+    if (!sanityConfigured) {
+      setError('Sanity CMS is not configured.')
+      return
+    }
+
+    try {
+      setError(null)
+      const response = await fetch(`/api/content?type=property&id=${propertyId}`, {
+        method: 'DELETE'
+      })
+
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || 'Failed to delete property')
+
+      setSuccess('Property deleted successfully!')
+      await loadContent()
+    } catch (err) {
+      console.error('Error deleting property:', err)
+      setError(err.message)
     }
   }
 
@@ -124,7 +199,8 @@ export default function ContentManagement() {
       specifications: { bedrooms: 0, bathrooms: 0, squareFootage: 0 },
       location: { city: { name: { en: '', it: '' } } },
       status: 'available',
-      featured: false
+      featured: false,
+      description: { en: '', it: '' }
     })
     setIsModalOpen(true)
   }
@@ -139,14 +215,51 @@ export default function ContentManagement() {
         </div>
       </div>
 
-      {/* Demo Alert */}
-      <Alert>
-        <Settings className="h-4 w-4" />
-        <AlertDescription>
-          <strong>Demo Mode:</strong> This is a demonstration of content management features. 
-          In production, this would connect to your Sanity CMS for real content management.
-        </AlertDescription>
-      </Alert>
+      {/* Status Alerts */}
+      {!sanityConfigured && (
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>
+            <strong>Sanity CMS Not Configured:</strong> Please add your Sanity project credentials 
+            (NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET) to your environment variables to enable content management.
+            You can still view content if it's already in Sanity, but create/edit/delete operations won't work.
+          </AlertDescription>
+        </Alert>
+      )}
+
+      {error && (
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>
+            <strong>Error:</strong> {error}
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="ml-2"
+              onClick={() => setError(null)}
+            >
+              <X className="h-3 w-3" />
+            </Button>
+          </AlertDescription>
+        </Alert>
+      )}
+
+      {success && (
+        <Alert>
+          <CheckCircle className="h-4 w-4" />
+          <AlertDescription>
+            {success}
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="ml-2"
+              onClick={() => setSuccess(null)}
+            >
+              <X className="h-3 w-3" />
+            </Button>
+          </AlertDescription>
+        </Alert>
+      )}
 
       {/* Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -195,53 +308,94 @@ export default function ContentManagement() {
               <CardTitle>All Properties</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <div className="space-y-6">
-                {properties.map((property) => (
-                  <div key={property._id} className="flex items-center justify-between p-6 border rounded-lg hover:bg-gray-50 transition-colors">
-                    <div className="flex items-center space-x-6">
-                      <div className="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Home className="h-8 w-8 text-gray-600" />
+              {loading ? (
+                <div className="flex items-center justify-center py-12">
+                  <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                  <span className="ml-3 text-gray-600">Loading properties...</span>
+                </div>
+              ) : properties.length > 0 ? (
+                <div className="space-y-6">
+                  {properties.map((property) => (
+                    <div key={property._id} className="flex items-center justify-between p-6 border rounded-lg hover:bg-gray-50 transition-colors">
+                      <div className="flex items-center space-x-6">
+                        <div className="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Home className="h-8 w-8 text-gray-600" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-3 mb-2">
+                            <h3 className="font-semibold text-gray-900 text-lg">
+                              {property.title?.en || property.title?.it || 'Untitled Property'}
+                            </h3>
+                            {property.featured && (
+                              <Badge className="bg-yellow-500 hover:bg-yellow-600">Featured</Badge>
+                            )}
+                            <Badge variant="secondary" className="capitalize">{property.propertyType}</Badge>
+                            <Badge variant="outline" className="capitalize">{property.status || 'available'}</Badge>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                            {property.location?.city?.name?.en && (
+                              <span className="flex items-center">
+                                <MapPin className="h-4 w-4 mr-1" />
+                                {property.location.city.name.en}
+                              </span>
+                            )}
+                            <span className="flex items-center font-medium text-blue-600">
+                              <DollarSign className="h-4 w-4 mr-1" />
+                              {formatPrice(property.price)}
+                            </span>
+                            {property.specifications?.bedrooms !== undefined && (
+                              <span className="flex items-center">
+                                <Bed className="h-4 w-4 mr-1" />
+                                {property.specifications.bedrooms} beds
+                              </span>
+                            )}
+                            {property.specifications?.bathrooms !== undefined && (
+                              <span className="flex items-center">
+                                <Bath className="h-4 w-4 mr-1" />
+                                {property.specifications.bathrooms} baths
+                              </span>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <h3 className="font-semibold text-gray-900 text-lg">{property.title.en}</h3>
-                          {property.featured && (
-                            <Badge className="bg-yellow-500 hover:bg-yellow-600">Featured</Badge>
-                          )}
-                          <Badge variant="secondary" className="capitalize">{property.propertyType}</Badge>
-                          <Badge variant="outline" className="capitalize">{property.status}</Badge>
-                        </div>
-                        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
-                          <span className="flex items-center">
-                            <MapPin className="h-4 w-4 mr-1" />
-                            {property.location.city.name.en}
-                          </span>
-                          <span className="flex items-center font-medium text-blue-600">
-                            <DollarSign className="h-4 w-4 mr-1" />
-                            {formatPrice(property.price)}
-                          </span>
-                          <span className="flex items-center">
-                            <Bed className="h-4 w-4 mr-1" />
-                            {property.specifications.bedrooms} beds
-                          </span>
-                          <span className="flex items-center">
-                            <Bath className="h-4 w-4 mr-1" />
-                            {property.specifications.bathrooms} baths
-                          </span>
-                        </div>
+                      <div className="flex items-center space-x-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => handleEditProperty(property)}
+                          disabled={!sanityConfigured}
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => handleDeleteProperty(property._id)}
+                          disabled={!sanityConfigured}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Button variant="outline" size="sm" onClick={() => handleEditProperty(property)}>
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button variant="outline" size="sm" onClick={() => handleDeleteProperty(property._id)}>
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <Home className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">No properties found</h3>
+                  <p className="text-gray-600 mb-4">
+                    {sanityConfigured 
+                      ? 'Get started by adding your first property.'
+                      : 'Configure Sanity CMS to manage properties.'}
+                  </p>
+                  {sanityConfigured && (
+                    <Button onClick={createNewProperty}>
+                      <Plus className="h-4 w-4 mr-2" />
+                      Add First Property
+                    </Button>
+                  )}
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
@@ -250,7 +404,7 @@ export default function ContentManagement() {
         <TabsContent value="regions" className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold">Region Management</h2>
-            <Button>
+            <Button disabled={!sanityConfigured}>
               <Plus className="h-4 w-4 mr-2" />
               Add Region
             </Button>
@@ -261,33 +415,51 @@ export default function ContentManagement() {
               <CardTitle>All Regions</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                {regions.map((region) => (
-                  <div key={region._id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
-                        <MapPin className="h-6 w-6 text-gray-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-gray-900">{region.name.en}</h3>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600 mt-1">
-                          <span>{region.country}</span>
-                          <span>{region.propertyCount} properties</span>
-                          <span>Avg: {formatPrice({ amount: region.averagePrice, currency: 'EUR' })}</span>
+              {loading ? (
+                <div className="flex items-center justify-center py-12">
+                  <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                  <span className="ml-3 text-gray-600">Loading regions...</span>
+                </div>
+              ) : regions.length > 0 ? (
+                <div className="space-y-4">
+                  {regions.map((region) => (
+                    <div key={region._id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+                      <div className="flex items-center space-x-4">
+                        <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+                          <MapPin className="h-6 w-6 text-gray-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-gray-900">
+                            {region.name?.en || region.name?.it || 'Unnamed Region'}
+                          </h3>
+                          <div className="flex items-center space-x-4 text-sm text-gray-600 mt-1">
+                            <span>{region.country || 'Italy'}</span>
+                            <span>{region.propertyCount || 0} properties</span>
+                          </div>
                         </div>
                       </div>
+                      <div className="flex items-center space-x-2">
+                        <Button variant="outline" size="sm" disabled={!sanityConfigured}>
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm" disabled={!sanityConfigured}>
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Button variant="outline" size="sm">
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">No regions found</h3>
+                  <p className="text-gray-600">
+                    {sanityConfigured 
+                      ? 'Regions will appear here once they are added to Sanity CMS.'
+                      : 'Configure Sanity CMS to manage regions.'}
+                  </p>
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
@@ -493,9 +665,21 @@ export default function ContentManagement() {
                 <Button variant="outline" onClick={() => setIsModalOpen(false)}>
                   Cancel
                 </Button>
-                <Button onClick={handleSaveProperty}>
-                  <Save className="h-4 w-4 mr-2" />
-                  Save Property
+                <Button 
+                  onClick={handleSaveProperty}
+                  disabled={saving || !sanityConfigured}
+                >
+                  {saving ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Saving...
+                    </>
+                  ) : (
+                    <>
+                      <Save className="h-4 w-4 mr-2" />
+                      Save Property
+                    </>
+                  )}
                 </Button>
               </div>
             </div>

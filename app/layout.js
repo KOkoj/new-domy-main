@@ -23,21 +23,15 @@ export const metadata = {
   title: 'Domy v Itálii - Italian Properties for Czech Buyers',
   description: 'Find your dream property in Italy. Luxury villas, apartments, and farmhouses across Italy\'s most beautiful regions.',
   keywords: 'Italian properties, real estate Italy, villas Italy, apartments Italy, property investment',
-  icons: {
-    icon: '/favicon.ico',
-  },
-}
-
-export const viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 5,
-  minimumScale: 1,
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${manrope.variable} ${sora.variable} font-sans`}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body className="antialiased">
         {children}
       </body>

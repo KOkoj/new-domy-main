@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Menu, X, User } from 'lucide-react'
+import { Menu, X, User, XCircle, Crown, Settings } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import AuthModal from './AuthModal'
 
@@ -13,6 +13,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [language, setLanguage] = useState('en')
+  const [isPopupBarVisible, setIsPopupBarVisible] = useState(true)
 
   useEffect(() => {
     // Load saved language preference
@@ -20,6 +21,12 @@ export default function Navigation() {
     if (savedLanguage) {
       setLanguage(savedLanguage)
       document.documentElement.lang = savedLanguage
+    }
+    
+    // Check if popup bar was dismissed
+    const popupDismissed = localStorage.getItem('premium-club-popup-dismissed')
+    if (popupDismissed === 'true') {
+      setIsPopupBarVisible(false)
     }
   }, [])
 
@@ -58,7 +65,13 @@ export default function Navigation() {
     localStorage.setItem('preferred-language', newLanguage)
   }
 
+  const handleClosePopup = () => {
+    setIsPopupBarVisible(false)
+    localStorage.setItem('premium-club-popup-dismissed', 'true')
+  }
+
   return (
+    <>
     <nav className="shadow-sm overflow-visible" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)' }} data-testid="navigation-component">
       <div className="container mx-auto px-4 pt-4 pb-2 overflow-visible" data-testid="nav-container">
         <div className="flex items-center justify-between" data-testid="nav-content">
@@ -145,6 +158,16 @@ export default function Navigation() {
                     {user.user_metadata?.name || user.email}
                   </span>
                 </div>
+                <Link href="/admin">
+                  <Button 
+                    variant="outline" 
+                    className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-200 rounded-full px-4 py-2 text-sm font-medium flex items-center gap-2"
+                    data-testid="admin-link"
+                  >
+                    <Settings className="h-4 w-4" />
+                    Admin
+                  </Button>
+                </Link>
                 <Button 
                   variant="outline" 
                   onClick={handleLogout} 
@@ -240,5 +263,40 @@ export default function Navigation() {
         onAuthSuccess={handleAuthSuccess}
       />
     </nav>
+    
+    {/* Premium Club Popup Bar */}
+    {isPopupBarVisible && (
+      <div 
+        className="fixed left-0 right-0 z-40 shadow-lg backdrop-blur-md transition-all duration-300"
+        style={{ 
+          background: 'linear-gradient(to right, rgba(199, 137, 91, 0.9), rgba(153, 105, 69, 0.9))',
+          top: '80px'
+        }}
+      >
+        <div className="container mx-auto px-4 py-2">
+          <div className="flex items-center justify-center relative">
+            <Link 
+              href="/club" 
+              className="flex items-center gap-3 group hover:opacity-90 transition-opacity"
+            >
+              <Crown className="h-5 w-5 text-white" />
+              <span className="text-white font-semibold text-sm md:text-base whitespace-nowrap">
+                {language === 'cs' ? 'Premium Club - Zaregistrujte se zdarma nyní' :
+                 language === 'it' ? 'Club Premium - Registrati gratuitamente ora' :
+                 'Premium Club - Register for Free Now'}
+              </span>
+            </Link>
+            <button
+              onClick={handleClosePopup}
+              className="absolute right-0 p-1 hover:bg-white/20 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+              aria-label="Close popup"
+            >
+              <XCircle className="h-5 w-5 text-white" />
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   )
 }

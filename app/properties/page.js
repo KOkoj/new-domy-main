@@ -358,6 +358,11 @@ export default function PropertiesPage() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [language, setLanguage] = useState('cs');
   const [currency, setCurrency] = useState('EUR');
+  
+  // Properties state
+  const [properties, setProperties] = useState([]);
+  const [loadingProperties, setLoadingProperties] = useState(true);
+  const [useSanity, setUseSanity] = useState(false);
 
   // Authentication effects
   useEffect(() => {
@@ -382,6 +387,63 @@ export default function PropertiesPage() {
       document.documentElement.lang = savedLanguage;
     }
   }, []);
+
+  // Load properties from Sanity API
+  useEffect(() => {
+    loadProperties();
+  }, []);
+
+  const loadProperties = async () => {
+    try {
+      setLoadingProperties(true);
+      // Try to fetch from Sanity API
+      const response = await fetch('/api/properties');
+      
+      if (response.ok) {
+        const sanityProperties = await response.json();
+        
+        if (sanityProperties && Array.isArray(sanityProperties) && sanityProperties.length > 0) {
+          // Transform Sanity data to match our property card format
+          const transformedProperties = sanityProperties.map((prop, index) => ({
+            id: prop._id || `sanity-${index}`,
+            title: prop.title?.en || prop.title?.it || prop.title || 'Untitled Property',
+            type: prop.propertyType ? prop.propertyType.charAt(0).toUpperCase() + prop.propertyType.slice(1) : 'Property',
+            region: prop.location?.city?.region?.name?.en || prop.location?.city?.name?.it || prop.location?.city?.name || 'Italy',
+            price: prop.price?.amount || 0,
+            rooms: prop.specifications?.bedrooms || 0,
+            bathrooms: prop.specifications?.bathrooms || 0,
+            area: prop.specifications?.squareFootage || 0,
+            image: prop.images?.[0]?.asset?.url || prop.images?.[0] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
+            location: prop.location?.coordinates 
+              ? [prop.location.coordinates.lat || prop.location.coordinates[1], prop.location.coordinates.lng || prop.location.coordinates[0]]
+              : [42.8333, 12.8333],
+            views: 0,
+            terrain: 'mountains',
+            amenities: prop.amenities?.map(a => a.name?.en?.toLowerCase().replace(/\s+/g, '_')) || [],
+            description: prop.description?.en || prop.description?.it || prop.description || '',
+            slug: prop.slug?.current || prop.slug || '',
+            sanityId: prop._id
+          }));
+
+          setProperties(transformedProperties);
+          setUseSanity(true);
+          setLoadingProperties(false);
+          return;
+        }
+      }
+      
+      // Fallback to sample data if Sanity fails or returns no properties
+      setProperties(sampleProperties);
+      setUseSanity(false);
+    } catch (error) {
+      console.log('Sanity API not available or not configured, using sample data:', error);
+      // Fallback to sample data on error
+      setProperties(sampleProperties);
+      setUseSanity(false);
+    } finally {
+      setLoadingProperties(false);
+    }
+  };
 
   // Check for region parameter in URL
   useEffect(() => {
@@ -445,7 +507,8 @@ export default function PropertiesPage() {
 
   // Filter properties
   const filteredProperties = useMemo(() => {
-    return sampleProperties.filter(property => {
+    const propsToFilter = properties.length > 0 ? properties : sampleProperties;
+    return propsToFilter.filter(property => {
       if (filters.search && !property.title.toLowerCase().includes(filters.search.toLowerCase())) {
         return false;
       }
@@ -511,6 +574,13 @@ export default function PropertiesPage() {
 
   const handleCardClick = (property) => {
     setSelectedProperty(property);
+    // Navigate to property detail page if slug is available
+    if (property.slug) {
+      window.location.href = `/properties/${property.slug}`;
+    } else if (property.sanityId) {
+      // For Sanity properties, try to use slug or _id
+      window.location.href = `/properties/${property.slug || property.sanityId}`;
+    }
   };
 
   return (
@@ -930,6 +1000,13 @@ export default function PropertiesPage() {
                   onClick={() => handleCardClick(property)}
                   />
               ))}
+              
+              {loadingProperties && (
+                <div className="col-span-full text-center py-20">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-700 mx-auto mb-4"></div>
+                  <p className="text-gray-600">Načítám nemovitosti...</p>
+                </div>
+              )}
 
               {sortedProperties.length === 0 && (
                   <div className="col-span-full text-center py-20 bg-white rounded-2xl border border-gray-200 shadow-lg">

@@ -254,29 +254,83 @@ function InquiryForm({ propertyId, propertyTitle }) {
 
 export default function PropertyDetailPage({ params }) {
   const [property, setProperty] = useState(null)
+  const [loading, setLoading] = useState(true)
   const [isFavorited, setIsFavorited] = useState(false)
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    // Get property by slug
-    const slug = params.slug
-    const foundProperty = SAMPLE_PROPERTIES[slug]
-    if (foundProperty) {
-      setProperty(foundProperty)
-    }
-
+    loadProperty()
+    
     // Check if user is authenticated
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
       setUser(user)
-      
-      if (user && foundProperty) {
-        // Check if property is favorited
-        checkFavoriteStatus(foundProperty._id)
-      }
     }
     checkUser()
   }, [params.slug])
+
+  const loadProperty = async () => {
+    try {
+      setLoading(true)
+      const slug = params.slug
+      
+      // Try to fetch from Sanity API first
+      try {
+        const response = await fetch(`/api/properties/${slug}`)
+        if (response.ok) {
+          const sanityProperty = await response.json()
+          
+          // Transform Sanity property to match expected format
+          const transformedProperty = {
+            _id: sanityProperty._id,
+            title: sanityProperty.title,
+            slug: sanityProperty.slug,
+            propertyType: sanityProperty.propertyType,
+            price: sanityProperty.price,
+            description: sanityProperty.description,
+            specifications: sanityProperty.specifications,
+            location: sanityProperty.location,
+            images: sanityProperty.images?.map(img => img.asset?.url || img) || [],
+            amenities: sanityProperty.amenities || [],
+            developer: sanityProperty.developer,
+            status: sanityProperty.status || 'available',
+            featured: sanityProperty.featured || false
+          }
+          
+          setProperty(transformedProperty)
+          
+          // Check favorite status if user is logged in
+          if (user) {
+            checkFavoriteStatus(transformedProperty._id)
+          }
+          
+          setLoading(false)
+          return
+        }
+      } catch (apiError) {
+        console.log('Sanity API not available, trying sample data:', apiError)
+      }
+      
+      // Fallback to sample data
+      const foundProperty = SAMPLE_PROPERTIES[slug]
+      if (foundProperty) {
+        setProperty(foundProperty)
+        if (user) {
+          checkFavoriteStatus(foundProperty._id)
+        }
+      }
+    } catch (error) {
+      console.error('Error loading property:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (user && property) {
+      checkFavoriteStatus(property._id)
+    }
+  }, [user, property])
 
   const checkFavoriteStatus = async (propertyId) => {
     try {
@@ -319,6 +373,17 @@ export default function PropertyDetailPage({ params }) {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     }).format(price.amount)
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading property...</p>
+        </div>
+      </div>
+    )
   }
 
   if (!property) {
@@ -374,10 +439,16 @@ export default function PropertyDetailPage({ params }) {
                       {property.status}
                     </Badge>
                   </div>
-                  <h1 className="text-3xl font-bold mb-2">{property.title.en}</h1>
+                  <h1 className="text-3xl font-bold mb-2">
+                    {property.title?.en || property.title?.it || property.title || 'Untitled Property'}
+                  </h1>
                   <div className="flex items-center text-gray-600">
                     <MapPin className="h-4 w-4 mr-1" />
-                    {property.location.address.en}
+                    {property.location?.address?.en || 
+                     property.location?.city?.name?.en || 
+                     property.location?.city?.name?.it || 
+                     property.location?.address || 
+                     'Location not specified'}
                   </div>
                 </div>
                 <div className="text-right">
@@ -399,7 +470,10 @@ export default function PropertyDetailPage({ params }) {
             </div>
 
             {/* Image Gallery */}
-            <ImageGallery images={property.images} title={property.title.en} />
+            <ImageGallery 
+              images={property.images || []} 
+              title={property.title?.en || property.title?.it || property.title || 'Property'} 
+            />
 
             {/* Property Details */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -433,7 +507,9 @@ export default function PropertyDetailPage({ params }) {
                 <CardTitle>Description</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 leading-relaxed">{property.description.en}</p>
+                <p className="text-gray-700 leading-relaxed">
+                  {property.description?.en || property.description?.it || property.description || 'No description available.'}
+                </p>
               </CardContent>
             </Card>
 
