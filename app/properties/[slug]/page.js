@@ -290,7 +290,13 @@ export default function PropertyDetailPage({ params }) {
             description: sanityProperty.description,
             specifications: sanityProperty.specifications,
             location: sanityProperty.location,
-            images: sanityProperty.images?.map(img => img.asset?.url || img) || [],
+            images: sanityProperty.images?.map(img => {
+              // Handle different image structures
+              if (typeof img === 'string') return img
+              if (img.url) return img.url
+              if (img.asset?.url) return img.asset.url
+              return null
+            }).filter(Boolean) || [],
             amenities: sanityProperty.amenities || [],
             developer: sanityProperty.developer,
             status: sanityProperty.status || 'available',

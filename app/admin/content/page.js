@@ -94,7 +94,19 @@ export default function ContentManagement() {
   }
 
   const handleEditProperty = (property) => {
-    setEditingItem({ ...property })
+    // Ensure all fields have proper defaults for editing
+    setEditingItem({
+      ...property,
+      images: property.images || [],
+      mainImage: property.mainImage ?? null,
+      seoTitle: property.seoTitle || { en: '', it: '' },
+      seoDescription: property.seoDescription || { en: '', it: '' },
+      keywords: property.keywords || [],
+      publishAt: property.publishAt || null,
+      scheduledPublish: property.scheduledPublish || false,
+      description: property.description || { en: '', it: '' }
+    })
+    setKeywordInput('')
     setIsModalOpen(true)
   }
 
@@ -934,39 +946,39 @@ export default function ContentManagement() {
 
               {/* Description Tab */}
               <TabsContent value="description" className="space-y-4 mt-4">
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Description (English)</label>
-                  <Textarea
-                    value={editingItem.description.en}
-                    onChange={(e) => setEditingItem(prev => ({
-                      ...prev,
-                      description: { ...prev.description, en: e.target.value }
-                    }))}
-                    rows={8}
-                    placeholder="Enter a detailed description of the property in English..."
-                    className="resize-y"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">
-                    {editingItem.description.en.length} characters
-                  </p>
-                </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Description (English)</label>
+                    <Textarea
+                      value={editingItem.description?.en || ''}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        description: { ...(prev.description || {}), en: e.target.value }
+                      }))}
+                      rows={8}
+                      placeholder="Enter a detailed description of the property in English..."
+                      className="resize-y"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      {(editingItem.description?.en || '').length} characters
+                    </p>
+                  </div>
 
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Description (Italian)</label>
-                  <Textarea
-                    value={editingItem.description.it}
-                    onChange={(e) => setEditingItem(prev => ({
-                      ...prev,
-                      description: { ...prev.description, it: e.target.value }
-                    }))}
-                    rows={8}
-                    placeholder="Inserisci una descrizione dettagliata della proprietà in italiano..."
-                    className="resize-y"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">
-                    {editingItem.description.it.length} characters
-                  </p>
-                </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Description (Italian)</label>
+                    <Textarea
+                      value={editingItem.description?.it || ''}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        description: { ...(prev.description || {}), it: e.target.value }
+                      }))}
+                      rows={8}
+                      placeholder="Inserisci una descrizione dettagliata della proprietà in italiano..."
+                      className="resize-y"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      {(editingItem.description?.it || '').length} characters
+                    </p>
+                  </div>
               </TabsContent>
 
               {/* SEO & Publishing Tab */}
@@ -984,7 +996,7 @@ export default function ContentManagement() {
                         value={editingItem.seoTitle?.en || ''}
                         onChange={(e) => setEditingItem(prev => ({
                           ...prev,
-                          seoTitle: { ...prev.seoTitle, en: e.target.value }
+                          seoTitle: { ...(prev.seoTitle || {}), en: e.target.value }
                         }))}
                         placeholder="Luxury Villa in Tuscany | Buy Italian Property"
                         maxLength={60}
@@ -999,7 +1011,7 @@ export default function ContentManagement() {
                         value={editingItem.seoTitle?.it || ''}
                         onChange={(e) => setEditingItem(prev => ({
                           ...prev,
-                          seoTitle: { ...prev.seoTitle, it: e.target.value }
+                          seoTitle: { ...(prev.seoTitle || {}), it: e.target.value }
                         }))}
                         placeholder="Villa di Lusso in Toscana | Acquista Proprietà Italiana"
                         maxLength={60}
@@ -1017,7 +1029,7 @@ export default function ContentManagement() {
                         value={editingItem.seoDescription?.en || ''}
                         onChange={(e) => setEditingItem(prev => ({
                           ...prev,
-                          seoDescription: { ...prev.seoDescription, en: e.target.value }
+                          seoDescription: { ...(prev.seoDescription || {}), en: e.target.value }
                         }))}
                         rows={3}
                         placeholder="Stunning luxury villa in the heart of Tuscany with panoramic views..."
@@ -1033,7 +1045,7 @@ export default function ContentManagement() {
                         value={editingItem.seoDescription?.it || ''}
                         onChange={(e) => setEditingItem(prev => ({
                           ...prev,
-                          seoDescription: { ...prev.seoDescription, it: e.target.value }
+                          seoDescription: { ...(prev.seoDescription || {}), it: e.target.value }
                         }))}
                         rows={3}
                         placeholder="Splendida villa di lusso nel cuore della Toscana con vista panoramica..."
