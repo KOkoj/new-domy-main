@@ -63,6 +63,9 @@ export default function Navigation() {
     console.log(`Language changed to: ${newLanguage}`)
     document.documentElement.lang = newLanguage
     localStorage.setItem('preferred-language', newLanguage)
+    
+    // Dispatch custom event for pages to listen to
+    window.dispatchEvent(new CustomEvent('languageChange', { detail: newLanguage }))
   }
 
   const handleClosePopup = () => {

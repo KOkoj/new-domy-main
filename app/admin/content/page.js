@@ -32,7 +32,8 @@ import {
   Star,
   Calendar,
   Tag,
-  ExternalLink
+  ExternalLink,
+  Languages
 } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
@@ -49,6 +50,7 @@ export default function ContentManagement() {
   const [sanityConfigured, setSanityConfigured] = useState(true)
   const [uploadingImage, setUploadingImage] = useState(false)
   const [keywordInput, setKeywordInput] = useState('')
+  const [translating, setTranslating] = useState({})
 
   useEffect(() => {
     loadContent()
@@ -97,14 +99,15 @@ export default function ContentManagement() {
     // Ensure all fields have proper defaults for editing
     setEditingItem({
       ...property,
+      title: { en: '', cs: '', it: '', ...property.title },
       images: property.images || [],
       mainImage: property.mainImage ?? null,
-      seoTitle: property.seoTitle || { en: '', it: '' },
-      seoDescription: property.seoDescription || { en: '', it: '' },
+      seoTitle: { en: '', cs: '', it: '', ...(property.seoTitle || {}) },
+      seoDescription: { en: '', cs: '', it: '', ...(property.seoDescription || {}) },
       keywords: property.keywords || [],
       publishAt: property.publishAt || null,
       scheduledPublish: property.scheduledPublish || false,
-      description: property.description || { en: '', it: '' }
+      description: { en: '', cs: '', it: '', ...(property.description || {}) }
     })
     setKeywordInput('')
     setIsModalOpen(true)
@@ -198,6 +201,72 @@ export default function ContentManagement() {
       ...prev,
       keywords: prev.keywords.filter((_, i) => i !== index)
     }))
+  }
+
+  const handleTranslate = async (field, sourceLang, targetLang) => {
+    const translationKey = `${field}-${targetLang}`
+    setTranslating(prev => ({ ...prev, [translationKey]: true }))
+
+    try {
+      // Get source text based on field type
+      let sourceText = ''
+      let context = ''
+      
+      if (field === 'title') {
+        sourceText = editingItem.title[sourceLang]
+        context = 'Property title'
+      } else if (field === 'description') {
+        sourceText = editingItem.description[sourceLang]
+        context = 'Property description'
+      } else if (field === 'seoTitle') {
+        sourceText = editingItem.seoTitle[sourceLang]
+        context = 'SEO page title'
+      } else if (field === 'seoDescription') {
+        sourceText = editingItem.seoDescription[sourceLang]
+        context = 'SEO meta description'
+      }
+
+      if (!sourceText) {
+        setError(`No ${sourceLang.toUpperCase()} text to translate`)
+        setTranslating(prev => ({ ...prev, [translationKey]: false }))
+        return
+      }
+
+      const response = await fetch('/api/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text: sourceText,
+          sourceLang,
+          targetLang,
+          context
+        })
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Translation failed')
+      }
+
+      const { translatedText } = await response.json()
+
+      // Update the appropriate field
+      setEditingItem(prev => ({
+        ...prev,
+        [field]: {
+          ...prev[field],
+          [targetLang]: translatedText
+        }
+      }))
+
+      setSuccess(`Translated to ${targetLang.toUpperCase()} successfully!`)
+      setTimeout(() => setSuccess(null), 3000)
+    } catch (err) {
+      console.error('Translation error:', err)
+      setError(err.message || 'Translation failed. Make sure OPENAI_API_KEY is configured.')
+    } finally {
+      setTranslating(prev => ({ ...prev, [translationKey]: false }))
+    }
   }
 
   const handleSaveProperty = async () => {
@@ -329,19 +398,19 @@ export default function ContentManagement() {
   const createNewProperty = () => {
     setEditingItem({
       _id: 'new',
-      title: { en: '', it: '' },
+      title: { en: '', cs: '', it: '' },
       slug: { current: '' },
       propertyType: 'villa',
       price: { amount: 0, currency: 'EUR' },
       specifications: { bedrooms: 0, bathrooms: 0, squareFootage: 0 },
-      location: { city: { name: { en: '', it: '' } } },
+      location: { city: { name: { en: '', cs: '', it: '' } } },
       status: 'available',
       featured: false,
-      description: { en: '', it: '' },
+      description: { en: '', cs: '', it: '' },
       images: [],
       mainImage: null,
-      seoTitle: { en: '', it: '' },
-      seoDescription: { en: '', it: '' },
+      seoTitle: { en: '', cs: '', it: '' },
+      seoDescription: { en: '', cs: '', it: '' },
       keywords: [],
       publishAt: null,
       scheduledPublish: false
@@ -691,7 +760,7 @@ export default function ContentManagement() {
 
               {/* Basic Info Tab */}
               <TabsContent value="basic" className="space-y-4 mt-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <div>
                     <label className="text-sm font-medium mb-1 block">Title (English) *</label>
                     <Input
@@ -701,6 +770,17 @@ export default function ContentManagement() {
                         title: { ...prev.title, en: e.target.value }
                       }))}
                       placeholder="Luxury Villa in Tuscany"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Title (Czech)</label>
+                    <Input
+                      value={editingItem.title.cs || ''}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        title: { ...prev.title, cs: e.target.value }
+                      }))}
+                      placeholder="Luxusní vila v Toskánsku"
                     />
                   </div>
                   <div>
@@ -946,6 +1026,13 @@ export default function ContentManagement() {
 
               {/* Description Tab */}
               <TabsContent value="description" className="space-y-4 mt-4">
+                  <Alert className="mb-4">
+                    <Languages className="h-4 w-4" />
+                    <AlertDescription>
+                      <strong>AI Translation:</strong> Fill in the English description, then use the translate buttons to automatically translate to Czech and Italian using OpenAI.
+                    </AlertDescription>
+                  </Alert>
+
                   <div>
                     <label className="text-sm font-medium mb-1 block">Description (English)</label>
                     <Textarea
@@ -954,7 +1041,7 @@ export default function ContentManagement() {
                         ...prev,
                         description: { ...(prev.description || {}), en: e.target.value }
                       }))}
-                      rows={8}
+                      rows={6}
                       placeholder="Enter a detailed description of the property in English..."
                       className="resize-y"
                     />
@@ -964,14 +1051,75 @@ export default function ContentManagement() {
                   </div>
 
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Description (Italian)</label>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-sm font-medium block">Description (Czech)</label>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleTranslate('description', 'en', 'cs')}
+                        disabled={!editingItem.description?.en || translating['description-cs']}
+                        className="h-7"
+                      >
+                        {translating['description-cs'] ? (
+                          <>
+                            <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+                            Translating...
+                          </>
+                        ) : (
+                          <>
+                            <Languages className="h-3 w-3 mr-1" />
+                            Translate from EN
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                    <Textarea
+                      value={editingItem.description?.cs || ''}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        description: { ...(prev.description || {}), cs: e.target.value }
+                      }))}
+                      rows={6}
+                      placeholder="Zadejte podrobný popis nemovitosti v češtině..."
+                      className="resize-y"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      {(editingItem.description?.cs || '').length} characters
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-sm font-medium block">Description (Italian)</label>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleTranslate('description', 'en', 'it')}
+                        disabled={!editingItem.description?.en || translating['description-it']}
+                        className="h-7"
+                      >
+                        {translating['description-it'] ? (
+                          <>
+                            <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+                            Translating...
+                          </>
+                        ) : (
+                          <>
+                            <Languages className="h-3 w-3 mr-1" />
+                            Translate from EN
+                          </>
+                        )}
+                      </Button>
+                    </div>
                     <Textarea
                       value={editingItem.description?.it || ''}
                       onChange={(e) => setEditingItem(prev => ({
                         ...prev,
                         description: { ...(prev.description || {}), it: e.target.value }
                       }))}
-                      rows={8}
+                      rows={6}
                       placeholder="Inserisci una descrizione dettagliata della proprietà in italiano..."
                       className="resize-y"
                     />
@@ -989,7 +1137,7 @@ export default function ContentManagement() {
                     SEO Settings
                   </h3>
                   
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-3 gap-4">
                     <div>
                       <label className="text-sm font-medium mb-1 block">SEO Title (English)</label>
                       <Input
@@ -1003,6 +1151,21 @@ export default function ContentManagement() {
                       />
                       <p className="text-xs text-gray-500 mt-1">
                         {(editingItem.seoTitle?.en || '').length}/60 characters (optimal: 50-60)
+                      </p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-1 block">SEO Title (Czech)</label>
+                      <Input
+                        value={editingItem.seoTitle?.cs || ''}
+                        onChange={(e) => setEditingItem(prev => ({
+                          ...prev,
+                          seoTitle: { ...(prev.seoTitle || {}), cs: e.target.value }
+                        }))}
+                        placeholder="Luxusní vila v Toskánsku | Koupit italskou nemovitost"
+                        maxLength={60}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        {(editingItem.seoTitle?.cs || '').length}/60 characters
                       </p>
                     </div>
                     <div>
@@ -1022,7 +1185,7 @@ export default function ContentManagement() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-3 gap-4">
                     <div>
                       <label className="text-sm font-medium mb-1 block">Meta Description (English)</label>
                       <Textarea
@@ -1037,6 +1200,22 @@ export default function ContentManagement() {
                       />
                       <p className="text-xs text-gray-500 mt-1">
                         {(editingItem.seoDescription?.en || '').length}/160 characters (optimal: 150-160)
+                      </p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-1 block">Meta Description (Czech)</label>
+                      <Textarea
+                        value={editingItem.seoDescription?.cs || ''}
+                        onChange={(e) => setEditingItem(prev => ({
+                          ...prev,
+                          seoDescription: { ...(prev.seoDescription || {}), cs: e.target.value }
+                        }))}
+                        rows={3}
+                        placeholder="Úžasná luxusní vila v srdci Toskánska s panoramatickým výhledem..."
+                        maxLength={160}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        {(editingItem.seoDescription?.cs || '').length}/160 characters
                       </p>
                     </div>
                     <div>
