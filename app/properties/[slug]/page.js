@@ -260,7 +260,7 @@ export default function PropertyDetailPage({ params }) {
 
   useEffect(() => {
     loadProperty()
-    
+
     // Check if user is authenticated
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()

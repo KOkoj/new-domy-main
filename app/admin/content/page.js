@@ -100,7 +100,7 @@ export default function ContentManagement() {
     setSuccess(null)
 
     try {
-      if (editingItem._id === 'new') {
+    if (editingItem._id === 'new') {
         // Create new property
         const response = await fetch('/api/content', {
           method: 'POST',
@@ -120,14 +120,20 @@ export default function ContentManagement() {
         })
 
         const result = await response.json()
-        if (!response.ok) throw new Error(result.error || 'Failed to create property')
+        if (!response.ok) {
+          // Show detailed error message if available
+          const errorMessage = result.details 
+            ? `${result.error}: ${result.details}${result.hint ? ` (${result.hint})` : ''}`
+            : result.error || 'Failed to create property'
+          throw new Error(errorMessage)
+        }
 
         setSuccess('Property created successfully!')
         setIsModalOpen(false)
         setEditingItem(null)
         await loadContent()
-      } else {
-        // Update existing property
+    } else {
+      // Update existing property
         const response = await fetch('/api/content', {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
@@ -147,11 +153,17 @@ export default function ContentManagement() {
         })
 
         const result = await response.json()
-        if (!response.ok) throw new Error(result.error || 'Failed to update property')
+        if (!response.ok) {
+          // Show detailed error message if available
+          const errorMessage = result.details 
+            ? `${result.error}: ${result.details}${result.hint ? ` (${result.hint})` : ''}`
+            : result.error || 'Failed to update property'
+          throw new Error(errorMessage)
+    }
 
         setSuccess('Property updated successfully!')
-        setIsModalOpen(false)
-        setEditingItem(null)
+    setIsModalOpen(false)
+    setEditingItem(null)
         await loadContent()
       }
     } catch (err) {
@@ -245,9 +257,9 @@ export default function ContentManagement() {
       )}
 
       {success && (
-        <Alert>
+      <Alert>
           <CheckCircle className="h-4 w-4" />
-          <AlertDescription>
+        <AlertDescription>
             {success}
             <Button 
               variant="ghost" 
@@ -257,8 +269,8 @@ export default function ContentManagement() {
             >
               <X className="h-3 w-3" />
             </Button>
-          </AlertDescription>
-        </Alert>
+        </AlertDescription>
+      </Alert>
       )}
 
       {/* Content Tabs */}
@@ -314,71 +326,71 @@ export default function ContentManagement() {
                   <span className="ml-3 text-gray-600">Loading properties...</span>
                 </div>
               ) : properties.length > 0 ? (
-                <div className="space-y-6">
-                  {properties.map((property) => (
-                    <div key={property._id} className="flex items-center justify-between p-6 border rounded-lg hover:bg-gray-50 transition-colors">
-                      <div className="flex items-center space-x-6">
-                        <div className="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <Home className="h-8 w-8 text-gray-600" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-3 mb-2">
+              <div className="space-y-6">
+                {properties.map((property) => (
+                  <div key={property._id} className="flex items-center justify-between p-6 border rounded-lg hover:bg-gray-50 transition-colors">
+                    <div className="flex items-center space-x-6">
+                      <div className="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Home className="h-8 w-8 text-gray-600" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-2">
                             <h3 className="font-semibold text-gray-900 text-lg">
                               {property.title?.en || property.title?.it || 'Untitled Property'}
                             </h3>
-                            {property.featured && (
-                              <Badge className="bg-yellow-500 hover:bg-yellow-600">Featured</Badge>
-                            )}
-                            <Badge variant="secondary" className="capitalize">{property.propertyType}</Badge>
+                          {property.featured && (
+                            <Badge className="bg-yellow-500 hover:bg-yellow-600">Featured</Badge>
+                          )}
+                          <Badge variant="secondary" className="capitalize">{property.propertyType}</Badge>
                             <Badge variant="outline" className="capitalize">{property.status || 'available'}</Badge>
-                          </div>
-                          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                        </div>
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
                             {property.location?.city?.name?.en && (
-                              <span className="flex items-center">
-                                <MapPin className="h-4 w-4 mr-1" />
-                                {property.location.city.name.en}
-                              </span>
+                          <span className="flex items-center">
+                            <MapPin className="h-4 w-4 mr-1" />
+                            {property.location.city.name.en}
+                          </span>
                             )}
-                            <span className="flex items-center font-medium text-blue-600">
-                              <DollarSign className="h-4 w-4 mr-1" />
-                              {formatPrice(property.price)}
-                            </span>
+                          <span className="flex items-center font-medium text-blue-600">
+                            <DollarSign className="h-4 w-4 mr-1" />
+                            {formatPrice(property.price)}
+                          </span>
                             {property.specifications?.bedrooms !== undefined && (
-                              <span className="flex items-center">
-                                <Bed className="h-4 w-4 mr-1" />
-                                {property.specifications.bedrooms} beds
-                              </span>
+                          <span className="flex items-center">
+                            <Bed className="h-4 w-4 mr-1" />
+                            {property.specifications.bedrooms} beds
+                          </span>
                             )}
                             {property.specifications?.bathrooms !== undefined && (
-                              <span className="flex items-center">
-                                <Bath className="h-4 w-4 mr-1" />
-                                {property.specifications.bathrooms} baths
-                              </span>
+                          <span className="flex items-center">
+                            <Bath className="h-4 w-4 mr-1" />
+                            {property.specifications.bathrooms} baths
+                          </span>
                             )}
-                          </div>
                         </div>
                       </div>
-                      <div className="flex items-center space-x-2">
+                    </div>
+                    <div className="flex items-center space-x-2">
                         <Button 
                           variant="outline" 
                           size="sm" 
                           onClick={() => handleEditProperty(property)}
                           disabled={!sanityConfigured}
                         >
-                          <Edit className="h-4 w-4" />
-                        </Button>
+                        <Edit className="h-4 w-4" />
+                      </Button>
                         <Button 
                           variant="outline" 
                           size="sm" 
                           onClick={() => handleDeleteProperty(property._id)}
                           disabled={!sanityConfigured}
                         >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
+              </div>
               ) : (
                 <div className="text-center py-12">
                   <Home className="h-12 w-12 text-gray-400 mx-auto mb-4" />
@@ -421,34 +433,34 @@ export default function ContentManagement() {
                   <span className="ml-3 text-gray-600">Loading regions...</span>
                 </div>
               ) : regions.length > 0 ? (
-                <div className="space-y-4">
-                  {regions.map((region) => (
-                    <div key={region._id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
-                      <div className="flex items-center space-x-4">
-                        <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
-                          <MapPin className="h-6 w-6 text-gray-600" />
-                        </div>
-                        <div>
+              <div className="space-y-4">
+                {regions.map((region) => (
+                  <div key={region._id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+                        <MapPin className="h-6 w-6 text-gray-600" />
+                      </div>
+                      <div>
                           <h3 className="font-medium text-gray-900">
                             {region.name?.en || region.name?.it || 'Unnamed Region'}
                           </h3>
-                          <div className="flex items-center space-x-4 text-sm text-gray-600 mt-1">
+                        <div className="flex items-center space-x-4 text-sm text-gray-600 mt-1">
                             <span>{region.country || 'Italy'}</span>
                             <span>{region.propertyCount || 0} properties</span>
-                          </div>
                         </div>
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <Button variant="outline" size="sm" disabled={!sanityConfigured}>
-                          <Edit className="h-4 w-4" />
-                        </Button>
-                        <Button variant="outline" size="sm" disabled={!sanityConfigured}>
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
                     </div>
-                  ))}
-                </div>
+                    <div className="flex items-center space-x-2">
+                        <Button variant="outline" size="sm" disabled={!sanityConfigured}>
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                        <Button variant="outline" size="sm" disabled={!sanityConfigured}>
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
               ) : (
                 <div className="text-center py-12">
                   <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
@@ -676,8 +688,8 @@ export default function ContentManagement() {
                     </>
                   ) : (
                     <>
-                      <Save className="h-4 w-4 mr-2" />
-                      Save Property
+                  <Save className="h-4 w-4 mr-2" />
+                  Save Property
                     </>
                   )}
                 </Button>

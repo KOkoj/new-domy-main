@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { client } from '@/lib/sanity'
+import { client, writeClient } from '@/lib/sanity'
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -114,14 +114,27 @@ export async function POST(request) {
         description: data.description || { en: '', it: '' }
       }
 
-      const result = await client.create(document)
+      // Use writeClient for mutations (requires API token)
+      if (!process.env.SANITY_API_TOKEN) {
+        return NextResponse.json({ 
+          error: 'Sanity API token not configured. Write operations require SANITY_API_TOKEN.' 
+        }, { status: 503 })
+      }
+
+      const result = await writeClient.create(document)
       return NextResponse.json({ success: true, property: result })
     }
 
     return NextResponse.json({ error: 'Invalid type or missing data' }, { status: 400 })
   } catch (error) {
     console.error('Error creating content:', error)
-    return NextResponse.json({ error: 'Failed to create content' }, { status: 500 })
+    // Return more detailed error message for debugging
+    return NextResponse.json({ 
+      error: 'Failed to create content',
+      details: error?.message || null,
+      sanityError: error?.response?.body || error?.response || null,
+      hint: 'Ensure SANITY_API_TOKEN is set on Vercel (Production), token has Editor role, and dataset/project IDs match'
+    }, { status: 500 })
   }
 }
 
@@ -159,7 +172,14 @@ export async function PUT(request) {
         }
       }
 
-      const result = await client
+      // Use writeClient for mutations (requires API token)
+      if (!process.env.SANITY_API_TOKEN) {
+        return NextResponse.json({ 
+          error: 'Sanity API token not configured. Write operations require SANITY_API_TOKEN.' 
+        }, { status: 503 })
+      }
+
+      const result = await writeClient
         .patch(id)
         .set(updateData)
         .commit()
@@ -186,7 +206,14 @@ export async function DELETE(request) {
     const id = url.searchParams.get('id')
 
     if (type === 'property' && id) {
-      await client.delete(id)
+      // Use writeClient for mutations (requires API token)
+      if (!process.env.SANITY_API_TOKEN) {
+        return NextResponse.json({ 
+          error: 'Sanity API token not configured. Write operations require SANITY_API_TOKEN.' 
+        }, { status: 503 })
+      }
+
+      await writeClient.delete(id)
       return NextResponse.json({ success: true })
     }
 

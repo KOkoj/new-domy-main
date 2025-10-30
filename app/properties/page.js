@@ -358,7 +358,7 @@ export default function PropertiesPage() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [language, setLanguage] = useState('cs');
   const [currency, setCurrency] = useState('EUR');
-  
+
   // Properties state
   const [properties, setProperties] = useState([]);
   const [loadingProperties, setLoadingProperties] = useState(true);
