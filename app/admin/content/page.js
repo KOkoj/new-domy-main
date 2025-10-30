@@ -26,8 +26,14 @@ import {
   Square,
   Loader2,
   AlertCircle,
-  CheckCircle
+  CheckCircle,
+  Upload,
+  Star,
+  Calendar,
+  Tag,
+  ExternalLink
 } from 'lucide-react'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 export default function ContentManagement() {
   const [activeTab, setActiveTab] = useState('properties')
@@ -40,6 +46,8 @@ export default function ContentManagement() {
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
   const [sanityConfigured, setSanityConfigured] = useState(true)
+  const [uploadingImage, setUploadingImage] = useState(false)
+  const [keywordInput, setKeywordInput] = useState('')
 
   useEffect(() => {
     loadContent()
@@ -89,6 +97,96 @@ export default function ContentManagement() {
     setIsModalOpen(true)
   }
 
+  const handleImageUpload = async (e) => {
+    const files = e.target.files
+    if (!files || files.length === 0) return
+
+    setUploadingImage(true)
+    try {
+      const uploadedImages = []
+      
+      for (let i = 0; i < files.length; i++) {
+        const formData = new FormData()
+        formData.append('file', files[i])
+
+        const response = await fetch('/api/upload-image', {
+          method: 'POST',
+          body: formData
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to upload image')
+        }
+
+        const result = await response.json()
+        uploadedImages.push({
+          _type: 'image',
+          asset: {
+            _type: 'reference',
+            _ref: result.asset._id
+          },
+          url: result.asset.url
+        })
+      }
+
+      setEditingItem(prev => ({
+        ...prev,
+        images: [...(prev.images || []), ...uploadedImages],
+        // Set first uploaded image as main if no main image is set
+        mainImage: prev.mainImage || (uploadedImages.length > 0 ? 0 : null)
+      }))
+    } catch (err) {
+      setError('Failed to upload images: ' + err.message)
+    } finally {
+      setUploadingImage(false)
+    }
+  }
+
+  const handleRemoveImage = (index) => {
+    setEditingItem(prev => {
+      const newImages = [...prev.images]
+      newImages.splice(index, 1)
+      
+      // Adjust main image index if needed
+      let newMainImage = prev.mainImage
+      if (prev.mainImage === index) {
+        newMainImage = newImages.length > 0 ? 0 : null
+      } else if (prev.mainImage > index) {
+        newMainImage = prev.mainImage - 1
+      }
+
+      return {
+        ...prev,
+        images: newImages,
+        mainImage: newMainImage
+      }
+    })
+  }
+
+  const handleSetMainImage = (index) => {
+    setEditingItem(prev => ({
+      ...prev,
+      mainImage: index
+    }))
+  }
+
+  const handleAddKeyword = () => {
+    if (!keywordInput.trim()) return
+    
+    setEditingItem(prev => ({
+      ...prev,
+      keywords: [...(prev.keywords || []), keywordInput.trim()]
+    }))
+    setKeywordInput('')
+  }
+
+  const handleRemoveKeyword = (index) => {
+    setEditingItem(prev => ({
+      ...prev,
+      keywords: prev.keywords.filter((_, i) => i !== index)
+    }))
+  }
+
   const handleSaveProperty = async () => {
     if (!sanityConfigured) {
       setError('Sanity CMS is not configured. Please add Sanity credentials to your environment variables.')
@@ -114,7 +212,14 @@ export default function ContentManagement() {
               specifications: editingItem.specifications,
               status: editingItem.status,
               featured: editingItem.featured,
-              description: editingItem.description || { en: '', it: '' }
+              description: editingItem.description || { en: '', it: '' },
+              images: editingItem.images || [],
+              mainImage: editingItem.mainImage,
+              seoTitle: editingItem.seoTitle || { en: '', it: '' },
+              seoDescription: editingItem.seoDescription || { en: '', it: '' },
+              keywords: editingItem.keywords || [],
+              publishAt: editingItem.publishAt || null,
+              scheduledPublish: editingItem.scheduledPublish || false
             }
           })
         })
@@ -147,7 +252,14 @@ export default function ContentManagement() {
               specifications: editingItem.specifications,
               status: editingItem.status,
               featured: editingItem.featured,
-              description: editingItem.description
+              description: editingItem.description,
+              images: editingItem.images,
+              mainImage: editingItem.mainImage,
+              seoTitle: editingItem.seoTitle,
+              seoDescription: editingItem.seoDescription,
+              keywords: editingItem.keywords,
+              publishAt: editingItem.publishAt,
+              scheduledPublish: editingItem.scheduledPublish
             }
           })
         })
@@ -212,8 +324,16 @@ export default function ContentManagement() {
       location: { city: { name: { en: '', it: '' } } },
       status: 'available',
       featured: false,
-      description: { en: '', it: '' }
+      description: { en: '', it: '' },
+      images: [],
+      mainImage: null,
+      seoTitle: { en: '', it: '' },
+      seoDescription: { en: '', it: '' },
+      keywords: [],
+      publishAt: null,
+      scheduledPublish: false
     })
+    setKeywordInput('')
     setIsModalOpen(true)
   }
 
@@ -371,6 +491,16 @@ export default function ContentManagement() {
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
+                        {property.slug?.current && (
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => window.open(`/properties/${property.slug.current}`, '_blank')}
+                            title="View property detail page"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                          </Button>
+                        )}
                         <Button 
                           variant="outline" 
                           size="sm" 
@@ -531,150 +661,473 @@ export default function ContentManagement() {
 
       {/* Property Edit Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>
+            <DialogTitle className="text-2xl">
               {editingItem?._id === 'new' ? 'Add New Property' : 'Edit Property'}
             </DialogTitle>
           </DialogHeader>
           {editingItem && (
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Title (English)</label>
-                  <Input
-                    value={editingItem.title.en}
-                    onChange={(e) => setEditingItem(prev => ({
-                      ...prev,
-                      title: { ...prev.title, en: e.target.value }
-                    }))}
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Title (Italian)</label>
-                  <Input
-                    value={editingItem.title.it}
-                    onChange={(e) => setEditingItem(prev => ({
-                      ...prev,
-                      title: { ...prev.title, it: e.target.value }
-                    }))}
-                  />
-                </div>
-              </div>
+            <Tabs defaultValue="basic" className="w-full">
+              <TabsList className="grid w-full grid-cols-4">
+                <TabsTrigger value="basic">Basic Info</TabsTrigger>
+                <TabsTrigger value="images">Images</TabsTrigger>
+                <TabsTrigger value="description">Description</TabsTrigger>
+                <TabsTrigger value="seo">SEO & Publishing</TabsTrigger>
+              </TabsList>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Property Type</label>
-                  <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                    value={editingItem.propertyType}
-                    onChange={(e) => setEditingItem(prev => ({
-                      ...prev,
-                      propertyType: e.target.value
-                    }))}
-                  >
-                    <option value="villa">Villa</option>
-                    <option value="house">House</option>
-                    <option value="apartment">Apartment</option>
-                    <option value="commercial">Commercial</option>
-                  </select>
+              {/* Basic Info Tab */}
+              <TabsContent value="basic" className="space-y-4 mt-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Title (English) *</label>
+                    <Input
+                      value={editingItem.title.en}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        title: { ...prev.title, en: e.target.value }
+                      }))}
+                      placeholder="Luxury Villa in Tuscany"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Title (Italian)</label>
+                    <Input
+                      value={editingItem.title.it}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        title: { ...prev.title, it: e.target.value }
+                      }))}
+                      placeholder="Villa di Lusso in Toscana"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Status</label>
-                  <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                    value={editingItem.status}
-                    onChange={(e) => setEditingItem(prev => ({
-                      ...prev,
-                      status: e.target.value
-                    }))}
-                  >
-                    <option value="available">Available</option>
-                    <option value="reserved">Reserved</option>
-                    <option value="sold">Sold</option>
-                  </select>
-                </div>
-              </div>
 
-              <div className="grid grid-cols-4 gap-4">
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Price (EUR)</label>
-                  <Input
-                    type="number"
-                    value={editingItem.price.amount}
-                    onChange={(e) => setEditingItem(prev => ({
-                      ...prev,
-                      price: { ...prev.price, amount: parseInt(e.target.value) || 0 }
-                    }))}
-                  />
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Property Type *</label>
+                    <Select
+                      value={editingItem.propertyType}
+                      onValueChange={(value) => setEditingItem(prev => ({
+                        ...prev,
+                        propertyType: value
+                      }))}
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="villa">Villa</SelectItem>
+                        <SelectItem value="house">House</SelectItem>
+                        <SelectItem value="apartment">Apartment</SelectItem>
+                        <SelectItem value="farmhouse">Farmhouse</SelectItem>
+                        <SelectItem value="castle">Castle</SelectItem>
+                        <SelectItem value="commercial">Commercial</SelectItem>
+                        <SelectItem value="land">Land</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Status *</label>
+                    <Select
+                      value={editingItem.status}
+                      onValueChange={(value) => setEditingItem(prev => ({
+                        ...prev,
+                        status: value
+                      }))}
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="available">Available</SelectItem>
+                        <SelectItem value="reserved">Reserved</SelectItem>
+                        <SelectItem value="sold">Sold</SelectItem>
+                        <SelectItem value="draft">Draft</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Bedrooms</label>
-                  <Input
-                    type="number"
-                    value={editingItem.specifications.bedrooms}
-                    onChange={(e) => setEditingItem(prev => ({
-                      ...prev,
-                      specifications: { ...prev.specifications, bedrooms: parseInt(e.target.value) || 0 }
-                    }))}
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Bathrooms</label>
-                  <Input
-                    type="number"
-                    value={editingItem.specifications.bathrooms}
-                    onChange={(e) => setEditingItem(prev => ({
-                      ...prev,
-                      specifications: { ...prev.specifications, bathrooms: parseInt(e.target.value) || 0 }
-                    }))}
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Area (m²)</label>
-                  <Input
-                    type="number"
-                    value={editingItem.specifications.squareFootage}
-                    onChange={(e) => setEditingItem(prev => ({
-                      ...prev,
-                      specifications: { ...prev.specifications, squareFootage: parseInt(e.target.value) || 0 }
-                    }))}
-                  />
-                </div>
-              </div>
 
-              <div>
-                <label className="text-sm font-medium mb-1 block">City</label>
-                <Input
-                  value={editingItem.location.city.name.en}
-                  onChange={(e) => setEditingItem(prev => ({
-                    ...prev,
-                    location: {
-                      ...prev.location,
-                      city: {
-                        ...prev.location.city,
-                        name: { ...prev.location.city.name, en: e.target.value }
+                <div className="grid grid-cols-4 gap-4">
+                  <div className="col-span-1">
+                    <label className="text-sm font-medium mb-1 block">Price (EUR) *</label>
+                    <Input
+                      type="number"
+                      value={editingItem.price.amount}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        price: { ...prev.price, amount: parseInt(e.target.value) || 0 }
+                      }))}
+                      placeholder="500000"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Bedrooms</label>
+                    <Input
+                      type="number"
+                      value={editingItem.specifications.bedrooms}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        specifications: { ...prev.specifications, bedrooms: parseInt(e.target.value) || 0 }
+                      }))}
+                      placeholder="3"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Bathrooms</label>
+                    <Input
+                      type="number"
+                      value={editingItem.specifications.bathrooms}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        specifications: { ...prev.specifications, bathrooms: parseInt(e.target.value) || 0 }
+                      }))}
+                      placeholder="2"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Area (m²)</label>
+                    <Input
+                      type="number"
+                      value={editingItem.specifications.squareFootage}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        specifications: { ...prev.specifications, squareFootage: parseInt(e.target.value) || 0 }
+                      }))}
+                      placeholder="250"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium mb-1 block">City (English)</label>
+                  <Input
+                    value={editingItem.location.city.name.en}
+                    onChange={(e) => setEditingItem(prev => ({
+                      ...prev,
+                      location: {
+                        ...prev.location,
+                        city: {
+                          ...prev.location.city,
+                          name: { ...prev.location.city.name, en: e.target.value }
+                        }
                       }
-                    }
-                  }))}
-                />
-              </div>
+                    }))}
+                    placeholder="Florence, Tuscany"
+                  />
+                </div>
 
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id="featured"
-                  checked={editingItem.featured}
-                  onChange={(e) => setEditingItem(prev => ({
-                    ...prev,
-                    featured: e.target.checked
-                  }))}
-                />
-                <label htmlFor="featured" className="text-sm font-medium">Featured Property</label>
-              </div>
+                <div className="flex items-center space-x-2 pt-2">
+                  <input
+                    type="checkbox"
+                    id="featured"
+                    checked={editingItem.featured}
+                    onChange={(e) => setEditingItem(prev => ({
+                      ...prev,
+                      featured: e.target.checked
+                    }))}
+                    className="w-4 h-4"
+                  />
+                  <label htmlFor="featured" className="text-sm font-medium flex items-center">
+                    <Star className="h-4 w-4 mr-1 text-yellow-500" />
+                    Featured Property (appears on homepage)
+                  </label>
+                </div>
+              </TabsContent>
 
-              <div className="flex justify-end space-x-2 pt-4">
-                <Button variant="outline" onClick={() => setIsModalOpen(false)}>
+              {/* Images Tab */}
+              <TabsContent value="images" className="space-y-4 mt-4">
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Property Images</label>
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <input
+                      type="file"
+                      id="image-upload"
+                      multiple
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
+                      disabled={uploadingImage}
+                    />
+                    <label
+                      htmlFor="image-upload"
+                      className="cursor-pointer flex flex-col items-center"
+                    >
+                      {uploadingImage ? (
+                        <>
+                          <Loader2 className="h-12 w-12 text-blue-600 animate-spin mb-2" />
+                          <p className="text-sm text-gray-600">Uploading images...</p>
+                        </>
+                      ) : (
+                        <>
+                          <Upload className="h-12 w-12 text-gray-400 mb-2" />
+                          <p className="text-sm text-gray-600">
+                            Click to upload images or drag and drop
+                          </p>
+                          <p className="text-xs text-gray-500 mt-1">
+                            PNG, JPG, GIF up to 10MB each
+                          </p>
+                        </>
+                      )}
+                    </label>
+                  </div>
+                </div>
+
+                {editingItem.images && editingItem.images.length > 0 && (
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">
+                      Uploaded Images ({editingItem.images.length})
+                    </label>
+                    <p className="text-xs text-gray-600 mb-3">
+                      Click the star icon to set the main image that will appear first
+                    </p>
+                    <div className="grid grid-cols-3 gap-4">
+                      {editingItem.images.map((image, index) => (
+                        <div
+                          key={index}
+                          className={`relative group border-2 rounded-lg overflow-hidden ${
+                            editingItem.mainImage === index
+                              ? 'border-yellow-500 shadow-lg'
+                              : 'border-gray-200'
+                          }`}
+                        >
+                          <img
+                            src={image.url || image.asset?.url}
+                            alt={`Property ${index + 1}`}
+                            className="w-full h-32 object-cover"
+                          />
+                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all flex items-center justify-center space-x-2">
+                            <Button
+                              size="sm"
+                              variant="secondary"
+                              onClick={() => handleSetMainImage(index)}
+                              className="opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <Star
+                                className={`h-4 w-4 ${
+                                  editingItem.mainImage === index ? 'fill-yellow-500 text-yellow-500' : ''
+                                }`}
+                              />
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="destructive"
+                              onClick={() => handleRemoveImage(index)}
+                              className="opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                          {editingItem.mainImage === index && (
+                            <Badge className="absolute top-2 left-2 bg-yellow-500">
+                              Main Image
+                            </Badge>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </TabsContent>
+
+              {/* Description Tab */}
+              <TabsContent value="description" className="space-y-4 mt-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Description (English)</label>
+                  <Textarea
+                    value={editingItem.description.en}
+                    onChange={(e) => setEditingItem(prev => ({
+                      ...prev,
+                      description: { ...prev.description, en: e.target.value }
+                    }))}
+                    rows={8}
+                    placeholder="Enter a detailed description of the property in English..."
+                    className="resize-y"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    {editingItem.description.en.length} characters
+                  </p>
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Description (Italian)</label>
+                  <Textarea
+                    value={editingItem.description.it}
+                    onChange={(e) => setEditingItem(prev => ({
+                      ...prev,
+                      description: { ...prev.description, it: e.target.value }
+                    }))}
+                    rows={8}
+                    placeholder="Inserisci una descrizione dettagliata della proprietà in italiano..."
+                    className="resize-y"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    {editingItem.description.it.length} characters
+                  </p>
+                </div>
+              </TabsContent>
+
+              {/* SEO & Publishing Tab */}
+              <TabsContent value="seo" className="space-y-6 mt-4">
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold flex items-center">
+                    <Tag className="h-5 w-5 mr-2" />
+                    SEO Settings
+                  </h3>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium mb-1 block">SEO Title (English)</label>
+                      <Input
+                        value={editingItem.seoTitle?.en || ''}
+                        onChange={(e) => setEditingItem(prev => ({
+                          ...prev,
+                          seoTitle: { ...prev.seoTitle, en: e.target.value }
+                        }))}
+                        placeholder="Luxury Villa in Tuscany | Buy Italian Property"
+                        maxLength={60}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        {(editingItem.seoTitle?.en || '').length}/60 characters (optimal: 50-60)
+                      </p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-1 block">SEO Title (Italian)</label>
+                      <Input
+                        value={editingItem.seoTitle?.it || ''}
+                        onChange={(e) => setEditingItem(prev => ({
+                          ...prev,
+                          seoTitle: { ...prev.seoTitle, it: e.target.value }
+                        }))}
+                        placeholder="Villa di Lusso in Toscana | Acquista Proprietà Italiana"
+                        maxLength={60}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        {(editingItem.seoTitle?.it || '').length}/60 characters
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium mb-1 block">Meta Description (English)</label>
+                      <Textarea
+                        value={editingItem.seoDescription?.en || ''}
+                        onChange={(e) => setEditingItem(prev => ({
+                          ...prev,
+                          seoDescription: { ...prev.seoDescription, en: e.target.value }
+                        }))}
+                        rows={3}
+                        placeholder="Stunning luxury villa in the heart of Tuscany with panoramic views..."
+                        maxLength={160}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        {(editingItem.seoDescription?.en || '').length}/160 characters (optimal: 150-160)
+                      </p>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-1 block">Meta Description (Italian)</label>
+                      <Textarea
+                        value={editingItem.seoDescription?.it || ''}
+                        onChange={(e) => setEditingItem(prev => ({
+                          ...prev,
+                          seoDescription: { ...prev.seoDescription, it: e.target.value }
+                        }))}
+                        rows={3}
+                        placeholder="Splendida villa di lusso nel cuore della Toscana con vista panoramica..."
+                        maxLength={160}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        {(editingItem.seoDescription?.it || '').length}/160 characters
+                      </p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Keywords</label>
+                    <div className="flex gap-2 mb-2">
+                      <Input
+                        value={keywordInput}
+                        onChange={(e) => setKeywordInput(e.target.value)}
+                        onKeyPress={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault()
+                            handleAddKeyword()
+                          }
+                        }}
+                        placeholder="Enter keyword and press Enter"
+                      />
+                      <Button type="button" onClick={handleAddKeyword} variant="secondary">
+                        <Plus className="h-4 w-4 mr-1" />
+                        Add
+                      </Button>
+                    </div>
+                    {editingItem.keywords && editingItem.keywords.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {editingItem.keywords.map((keyword, index) => (
+                          <Badge key={index} variant="secondary" className="px-3 py-1">
+                            {keyword}
+                            <button
+                              onClick={() => handleRemoveKeyword(index)}
+                              className="ml-2 hover:text-red-500"
+                            >
+                              <X className="h-3 w-3" />
+                            </button>
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold flex items-center">
+                    <Calendar className="h-5 w-5 mr-2" />
+                    Publishing Schedule
+                  </h3>
+                  
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id="scheduledPublish"
+                      checked={editingItem.scheduledPublish || false}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        scheduledPublish: e.target.checked
+                      }))}
+                      className="w-4 h-4"
+                    />
+                    <label htmlFor="scheduledPublish" className="text-sm font-medium">
+                      Schedule publication date
+                    </label>
+                  </div>
+
+                  {editingItem.scheduledPublish && (
+                    <div>
+                      <label className="text-sm font-medium mb-1 block">Publish Date & Time</label>
+                      <Input
+                        type="datetime-local"
+                        value={editingItem.publishAt || ''}
+                        onChange={(e) => setEditingItem(prev => ({
+                          ...prev,
+                          publishAt: e.target.value
+                        }))}
+                        className="max-w-md"
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Property will be automatically published at this date and time
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </TabsContent>
+
+              {/* Action Buttons */}
+              <div className="flex justify-end space-x-2 pt-6 border-t mt-6">
+                <Button variant="outline" onClick={() => setIsModalOpen(false)} disabled={saving}>
                   Cancel
                 </Button>
                 <Button 
@@ -688,13 +1141,13 @@ export default function ContentManagement() {
                     </>
                   ) : (
                     <>
-                  <Save className="h-4 w-4 mr-2" />
-                  Save Property
+                      <Save className="h-4 w-4 mr-2" />
+                      {editingItem._id === 'new' ? 'Create Property' : 'Save Changes'}
                     </>
                   )}
                 </Button>
               </div>
-            </div>
+            </Tabs>
           )}
         </DialogContent>
       </Dialog>
