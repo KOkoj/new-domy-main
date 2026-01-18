@@ -250,24 +250,76 @@ export default function IntakeForm() {
     setMessage({ type: '', text: '' })
 
     try {
-      // TODO: Save to database
-      // For now, just save to profile preferences
-      const { error } = await supabase
+      // 1. Update Profile (Name, Phone) - non-blocking for intake form
+      const { error: profileError } = await supabase
         .from('profiles')
         .update({
           name: formData.fullName,
           phone: formData.phone,
-          preferences: {
-            propertyTypes: formData.propertyTypes,
-            preferredRegions: formData.preferredRegions,
-            budgetRange: formData.budgetRange,
-            timeline: formData.timeline
-          },
           updatedAt: new Date().toISOString()
         })
         .eq('id', user.id)
 
-      if (error) throw error
+      if (profileError) {
+        console.warn('Profile update failed (non-critical):', profileError)
+      }
+
+      // 2. Save Intake Form
+      const { error: intakeError } = await supabase
+        .from('client_intake_forms')
+        .upsert({
+          user_id: user.id,
+          full_name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          nationality: formData.nationality,
+          current_location: formData.currentLocation,
+          property_types: formData.propertyTypes,
+          preferred_regions: formData.preferredRegions,
+          budget_range: formData.budgetRange,
+          min_bedrooms: parseInt(formData.minBedrooms) || 0,
+          min_bathrooms: parseInt(formData.minBathrooms) || 0,
+          min_square_meters: parseInt(formData.minSquareMeters) || 0,
+          timeline: formData.timeline,
+          purchase_reason: formData.purchaseReason,
+          financing_needed: formData.financingNeeded,
+          additional_requirements: formData.additionalRequirements,
+          lifestyle_preferences: formData.lifestylePreferences,
+          how_did_you_hear: formData.howDidYouHear,
+          additional_notes: formData.additionalNotes,
+          // Store extras in extra_data
+          extra_data: {
+             maxDistanceFromSea: formData.maxDistanceFromSea,
+             maxDistanceFromAirport: formData.maxDistanceFromAirport,
+             maxDistanceFromCity: formData.maxDistanceFromCity,
+             preferredProximity: formData.preferredProximity,
+             propertyAge: formData.propertyAge,
+             propertyCondition: formData.propertyCondition,
+             renovationWillingness: formData.renovationWillingness,
+             landSize: formData.landSize,
+             climatePreference: formData.climatePreference,
+             touristAreaPreference: formData.touristAreaPreference
+          },
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'user_id' })
+
+      if (intakeError) {
+        // Fallback: If client_intake_forms doesn't exist, try saving to profiles.preferences as originally intended
+        // This handles the case where the user hasn't run the SQL migration yet
+        console.warn('Client intake form save failed, trying fallback to profiles...', intakeError)
+        
+        const { error: fallbackError } = await supabase
+          .from('profiles')
+          .update({
+            preferences: {
+              ...formData,
+              updatedAt: new Date().toISOString()
+            }
+          })
+          .eq('id', user.id)
+          
+        if (fallbackError) throw fallbackError
+      }
 
       setMessage({ 
         type: 'success', 
@@ -280,7 +332,7 @@ export default function IntakeForm() {
       console.error('Error saving form:', error)
       setMessage({ 
         type: 'error', 
-        text: 'Failed to save your information. Please try again.' 
+        text: 'Failed to save your information. Please ensure your account is fully set up.' 
       })
     } finally {
       setSaving(false)
