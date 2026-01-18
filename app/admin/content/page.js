@@ -550,7 +550,7 @@ export default function ContentManagement() {
                             {property.location?.city?.name?.en && (
                           <span className="flex items-center">
                             <MapPin className="h-4 w-4 mr-1" />
-                            {property.location.city.name.en}
+                            {property.location?.city?.name?.en}
                           </span>
                             )}
                           <span className="flex items-center font-medium text-blue-600">
@@ -896,14 +896,14 @@ export default function ContentManagement() {
                 <div>
                   <label className="text-sm font-medium mb-1 block">City (English)</label>
                   <Input
-                    value={editingItem.location.city.name.en}
+                    value={editingItem.location?.city?.name?.en || ''}
                     onChange={(e) => setEditingItem(prev => ({
                       ...prev,
                       location: {
                         ...prev.location,
                         city: {
-                          ...prev.location.city,
-                          name: { ...prev.location.city.name, en: e.target.value }
+                          ...prev.location?.city,
+                          name: { ...prev.location?.city?.name, en: e.target.value }
                         }
                       }
                     }))}

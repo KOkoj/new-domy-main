@@ -17,7 +17,7 @@ import BackgroundImageTransition from '@/components/BackgroundImageTransition'
 import AuthModal from '@/components/AuthModal'
 import { supabase } from '../lib/supabase'
 import { t } from '../lib/translations'
-import { SAMPLE_PROPERTIES } from '../lib/sample-data'
+import { CURRENCY_RATES, CURRENCY_SYMBOLS, formatPrice as formatPriceUtil } from '../lib/currency'
 
 // Property of the Day Data
 const PROPERTY_OF_THE_DAY = {
@@ -93,12 +93,6 @@ const PROPERTY_OF_THE_DAY = {
   }
 }
 
-// Currency conversion rates (in a real app, these would come from an API)
-const CURRENCY_RATES = {
-  EUR: 1,
-  CZK: 24.15
-}
-
 // Italian regions for location dropdown
 const ITALIAN_REGIONS = [
   'Abruzzo', 'Basilicata', 'Calabria', 'Campania', 'Emilia-Romagna',
@@ -106,11 +100,6 @@ const ITALIAN_REGIONS = [
   'Molise', 'Piemonte', 'Puglia', 'Sardegna', 'Sicilia', 'Toscana',
   'Trentino-Alto Adige', 'Umbria', 'Valle d\'Aosta', 'Veneto'
 ]
-
-const CURRENCY_SYMBOLS = {
-  EUR: '€',
-  CZK: 'Kč'
-}
 
 // Custom Dropdown Component
 function CustomDropdown({ value, options, onChange, placeholder, className = "", testId }) {
@@ -175,23 +164,7 @@ function CustomDropdown({ value, options, onChange, placeholder, className = "",
 
 function PropertyCard({ property, onFavorite, isFavorited, language, currency }) {
   const formatPrice = (price) => {
-    // Convert price to selected currency
-    const eurAmount = price.currency === 'EUR' ? price.amount : price.amount / CURRENCY_RATES[price.currency]
-    const convertedAmount = eurAmount * CURRENCY_RATES[currency]
-    
-    // Map language codes to locale codes for currency formatting
-    const localeMap = {
-      'en': 'en-US',
-      'cs': 'cs-CZ', 
-      'it': 'it-IT'
-    }
-    
-    return new Intl.NumberFormat(localeMap[language] || 'en-US', {
-      style: 'currency',
-      currency: currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(convertedAmount)
+    return formatPriceUtil(price, currency, language)
   }
 
   const handleFavoriteClick = (e) => {
@@ -210,7 +183,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
     >
       <div className="relative overflow-hidden" data-testid="property-image-container">
         <img 
-          src={property.images[0]} 
+          src={property.images?.[0] || '/placeholder-property.jpg'} 
           alt={property.title.en}
           className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           data-testid="property-image"
@@ -288,8 +261,8 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
               <div className="p-1 bg-slate-100 rounded-lg mr-2 group-hover:bg-slate-200 transition-colors duration-300">
                 <MapPin className="h-4 w-4 text-slate-600 group-hover:text-slate-700 transition-colors duration-300" />
               </div>
-              <span className="font-medium" data-testid="property-city">{property.location.city.name?.[language] || property.location.city.name?.en}</span>
-              <span data-testid="property-region">, {property.location.city.region.name?.[language] || property.location.city.region.name?.en}</span>
+              <span className="font-medium" data-testid="property-city">{property.location?.city?.name?.[language] || property.location?.city?.name?.en}</span>
+              <span data-testid="property-region">, {property.location?.city?.region?.name?.[language] || property.location?.city?.region?.name?.en}</span>
             </div>
           </div>
           
@@ -329,25 +302,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
 
 function PropertyOfTheDay({ property, language, currency }) {
   const formatPrice = (price) => {
-    const eurAmount = price.currency === 'EUR' ? price.amount : price.amount / CURRENCY_RATES[price.currency]
-    const convertedAmount = eurAmount * CURRENCY_RATES[currency]
-    
-    // Map language codes to locale codes for currency formatting
-    const localeMap = {
-      'en': 'en-US',
-      'cs': 'cs-CZ', 
-      'it': 'it-IT'
-    }
-    
-    // Get currency symbol based on selected currency
-    const currencySymbol = currency === 'EUR' ? '€' : (currency === 'CZK' ? 'Kč' : '€')
-    
-    return new Intl.NumberFormat(localeMap[language] || 'en-US', {
-      style: 'currency',
-      currency: currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(convertedAmount)
+    return formatPriceUtil(price, currency, language)
   }
 
   return (
@@ -357,7 +312,7 @@ function PropertyOfTheDay({ property, language, currency }) {
         <div className="relative group overflow-hidden h-full">
           <div className="relative h-full min-h-[400px]">
             <img 
-              src={property.images[0]} 
+              src={property.images?.[0] || '/placeholder-property.jpg'} 
               alt={property.title[language] || property.title.en}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               data-testid="property-of-day-image"
@@ -571,7 +526,7 @@ function SearchFilters({ filters, onFilterChange, language }) {
 }
 
 export default function HomePage() {
-  const [properties, setProperties] = useState(SAMPLE_PROPERTIES)
+  const [properties, setProperties] = useState([])
   
   // Background images for hero section
   const heroBackgroundImages = [
@@ -580,7 +535,7 @@ export default function HomePage() {
     { src: "/hero bg/pexels-maegan-white-363530-981686.jpg", alt: "Beautiful Italian landscape" },
     { src: "/hero bg/pexels-pixabay-51947.jpg", alt: "Italian countryside view" }
   ]
-  const [filteredProperties, setFilteredProperties] = useState(SAMPLE_PROPERTIES)
+  const [filteredProperties, setFilteredProperties] = useState([])
   const [favorites, setFavorites] = useState(new Set())
   const [filters, setFilters] = useState({})
   const [user, setUser] = useState(null)
@@ -626,7 +581,26 @@ export default function HomePage() {
     if (popupDismissed === 'true') {
       setIsPopupBarVisible(false)
     }
+
+    // Load properties from Sanity API
+    loadProperties()
   }, [])
+
+  const loadProperties = async () => {
+    try {
+      const response = await fetch('/api/properties')
+      if (response.ok) {
+        const sanityProperties = await response.json()
+        if (sanityProperties && Array.isArray(sanityProperties) && sanityProperties.length > 0) {
+          setProperties(sanityProperties)
+          setFilteredProperties(sanityProperties)
+        }
+      }
+    } catch (error) {
+      console.log('Could not load properties from Sanity:', error)
+      // Properties will remain empty array if fetch fails
+    }
+  }
 
   // Initialize Lenis smooth scroll
   useEffect(() => {
@@ -1099,7 +1073,7 @@ export default function HomePage() {
   useEffect(() => {
     if (selectedRegion) {
       const regionProps = properties.filter(property => 
-        property.location.city.region.name.en === selectedRegion.name
+        property.location?.city?.region?.name?.en === selectedRegion.name
       )
       // Ensure we always have at least 3 properties by filling with other properties
       const minProperties = 3
@@ -1138,7 +1112,7 @@ export default function HomePage() {
       const query = searchQuery.toLowerCase()
       filtered = filtered.filter(p => 
         p.title.en.toLowerCase().includes(query) ||
-        p.location.city.name.en.toLowerCase().includes(query) ||
+        p.location?.city?.name?.en?.toLowerCase().includes(query) ||
         p.description.en.toLowerCase().includes(query)
       )
     }
@@ -1150,7 +1124,7 @@ export default function HomePage() {
     if (filters.location) {
       const location = filters.location.toLowerCase()
       filtered = filtered.filter(p => 
-        p.location.city.name.en.toLowerCase().includes(location)
+        p.location?.city?.name?.en?.toLowerCase().includes(location)
       )
     }
     

@@ -120,7 +120,7 @@ export default function InquiriesManagement() {
       filtered = filtered.filter(inquiry => 
         inquiry.property.title.en.toLowerCase().includes(searchTerm.toLowerCase()) ||
         inquiry.message.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        inquiry.property.location.city.name.en.toLowerCase().includes(searchTerm.toLowerCase())
+        inquiry.property.location?.city?.name?.en?.toLowerCase().includes(searchTerm.toLowerCase())
       )
     }
 
@@ -274,7 +274,7 @@ export default function InquiriesManagement() {
                         <div className="flex items-center space-x-4 text-sm text-gray-600">
                           <span className="flex items-center">
                             <Home className="h-3 w-3 mr-1" />
-                            {inquiry.property.location.city.name.en}
+                            {inquiry.property.location?.city?.name?.en}
                           </span>
                           <span className="flex items-center font-medium text-blue-600">
                             {formatPrice(inquiry.property.price)}
@@ -328,7 +328,7 @@ export default function InquiriesManagement() {
                                 />
                                 <div>
                                   <h4 className="font-semibold">{selectedInquiry.property.title.en}</h4>
-                                  <p className="text-sm text-gray-600">{selectedInquiry.property.location.city.name.en}</p>
+                                  <p className="text-sm text-gray-600">{selectedInquiry.property.location?.city?.name?.en}</p>
                                   <p className="text-sm font-medium text-blue-600">
                                     {formatPrice(selectedInquiry.property.price)}
                                   </p>

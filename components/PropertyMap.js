@@ -45,78 +45,66 @@ const PropertyMap = ({
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           }).addTo(mapInstanceRef.current);
 
-          // Add property markers
-          updateMarkers();
+          // One-time initial render of markers so they appear immediately
+          // This clears any existing and draws based on current properties
+          if (mapInstanceRef.current) {
+            // Clear existing markers
+            markersRef.current.forEach(marker => {
+              mapInstanceRef.current.removeLayer(marker);
+            });
+            markersRef.current = [];
+
+            properties.forEach(property => {
+              const isSelected = selectedProperty?.id === property.id;
+
+              const width = isSelected ? 56 : 46;
+              const height = isSelected ? 72 : 60;
+              const fill = isSelected ? '#ef4444' : '#3E6343';
+              const stroke = '#ffffff';
+
+              const icon = L.divIcon({
+                className: 'custom-marker',
+                html: `
+                  <svg width="${width}" height="${height}" viewBox="0 0 46 60" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+                    <path d="M23 60C23 60 46 37.5 46 23C46 10.2975 35.7025 0 23 0C10.2975 0 0 10.2975 0 23C0 37.5 23 60 23 60Z" fill="${fill}" stroke="${stroke}" stroke-width="3" />
+                    <circle cx="23" cy="23" r="12" fill="rgba(255,255,255,0.15)" />
+                    <text x="23" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff" style="paint-order: stroke; stroke: rgba(0,0,0,0.25); stroke-width: 1px;">
+                      €${Math.round(property.price / 1000)}k
+                    </text>
+                  </svg>
+                `,
+                iconSize: [width, height],
+                iconAnchor: [Math.round(width / 2), height]
+              });
+
+              const marker = L.marker(property.location, { icon })
+                .addTo(mapInstanceRef.current);
+
+              const popupContent = `
+                <div style="min-width: 200px;">
+                  <img src="${property.image}" alt="${property.title}" 
+                       style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
+                  <h4 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 600;">${property.title}</h4>
+                  <p style="margin: 0 0 8px 0; font-size: 12px; color: #666; line-height: 1.3;">${property.description}</p>
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-weight: bold; color: #059669; font-size: 14px;">€${property.price.toLocaleString()}</span>
+                    <span style="color: #666; font-size: 12px;">${property.area}m²</span>
+                  </div>
+                </div>
+              `;
+
+              marker.bindPopup(popupContent);
+              marker.on('click', () => {
+                onPropertyClick(property);
+              });
+
+              markersRef.current.push(marker);
+            });
+          }
         }
       } catch (error) {
         console.error('Error loading map:', error);
       }
-    };
-
-    const updateMarkers = () => {
-      if (!mapInstanceRef.current || !L) return;
-
-      // Clear existing markers
-      markersRef.current.forEach(marker => {
-        mapInstanceRef.current.removeLayer(marker);
-      });
-      markersRef.current = [];
-
-      // Add new markers
-      properties.forEach(property => {
-        const isSelected = selectedProperty?.id === property.id;
-        
-        // Create custom icon for selected/unselected state
-        const icon = L.divIcon({
-          className: 'custom-marker',
-          html: `
-            <div style="
-              background: ${isSelected ? '#ef4444' : '#3E6343'};
-              width: ${isSelected ? '20px' : '16px'};
-              height: ${isSelected ? '20px' : '16px'};
-              border-radius: 50%;
-              border: 2px solid white;
-              box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              color: white;
-              font-size: 10px;
-              font-weight: bold;
-            ">
-              €${Math.round(property.price / 1000)}k
-            </div>
-          `,
-          iconSize: [isSelected ? 24 : 20, isSelected ? 24 : 20],
-          iconAnchor: [isSelected ? 12 : 10, isSelected ? 12 : 10]
-        });
-
-        const marker = L.marker(property.location, { icon })
-          .addTo(mapInstanceRef.current);
-
-        // Add popup
-        const popupContent = `
-          <div style="min-width: 200px;">
-            <img src="${property.image}" alt="${property.title}" 
-                 style="width: 100%; height: 100px; object-fit: cover; border-radius: 4px; margin-bottom: 8px;">
-            <h4 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 600;">${property.title}</h4>
-            <p style="margin: 0 0 8px 0; font-size: 12px; color: #666; line-height: 1.3;">${property.description}</p>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-weight: bold; color: #059669; font-size: 14px;">€${property.price.toLocaleString()}</span>
-              <span style="color: #666; font-size: 12px;">${property.area}m²</span>
-            </div>
-          </div>
-        `;
-        
-        marker.bindPopup(popupContent);
-
-        // Handle marker click
-        marker.on('click', () => {
-          onPropertyClick(property);
-        });
-
-        markersRef.current.push(marker);
-      });
     };
 
     // Initialize map
@@ -147,29 +135,25 @@ const PropertyMap = ({
         // Add new markers
         properties.forEach(property => {
           const isSelected = selectedProperty?.id === property.id;
-          
+
+          const width = isSelected ? 56 : 46;
+          const height = isSelected ? 72 : 60;
+          const fill = isSelected ? '#ef4444' : '#3E6343';
+          const stroke = '#ffffff';
+
           const icon = L.divIcon({
             className: 'custom-marker',
             html: `
-              <div style="
-                background: ${isSelected ? '#ef4444' : '#3E6343'};
-                width: ${isSelected ? '20px' : '16px'};
-                height: ${isSelected ? '20px' : '16px'};
-                border-radius: 50%;
-                border: 2px solid white;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-                font-size: 10px;
-                font-weight: bold;
-              ">
-                €${Math.round(property.price / 1000)}k
-              </div>
+              <svg width="${width}" height="${height}" viewBox="0 0 46 60" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+                <path d="M23 60C23 60 46 37.5 46 23C46 10.2975 35.7025 0 23 0C10.2975 0 0 10.2975 0 23C0 37.5 23 60 23 60Z" fill="${fill}" stroke="${stroke}" stroke-width="3" />
+                <circle cx="23" cy="23" r="12" fill="rgba(255,255,255,0.15)" />
+                <text x="23" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff" style="paint-order: stroke; stroke: rgba(0,0,0,0.25); stroke-width: 1px;">
+                  €${Math.round(property.price / 1000)}k
+                </text>
+              </svg>
             `,
-            iconSize: [isSelected ? 24 : 20, isSelected ? 24 : 20],
-            iconAnchor: [isSelected ? 12 : 10, isSelected ? 12 : 10]
+            iconSize: [width, height],
+            iconAnchor: [Math.round(width / 2), height]
           });
 
           const marker = L.marker(property.location, { icon })

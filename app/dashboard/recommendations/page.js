@@ -26,6 +26,7 @@ import {
   ChevronRight
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 import Link from 'next/link'
 
 // Enhanced sample recommendations with AI-like matching
@@ -141,9 +142,18 @@ export default function PropertyRecommendations() {
   const [feedbackGiven, setFeedbackGiven] = useState(new Set())
   const [filterType, setFilterType] = useState('all')
   const [minMatchScore, setMinMatchScore] = useState(0)
+  const [language, setLanguage] = useState('en')
+  const [currency, setCurrency] = useState('EUR')
 
   useEffect(() => {
     loadUserData()
+    
+    // Load saved preferences
+    const savedLanguage = localStorage.getItem('preferred-language')
+    if (savedLanguage) setLanguage(savedLanguage)
+    
+    const savedCurrency = localStorage.getItem('preferred-currency')
+    if (savedCurrency) setCurrency(savedCurrency)
   }, [])
 
   useEffect(() => {
@@ -237,12 +247,7 @@ export default function PropertyRecommendations() {
   }
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: price.currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price.amount)
+    return formatPriceUtil(price, currency, language)
   }
 
   const getMatchScoreColor = (score) => {
@@ -367,7 +372,7 @@ export default function PropertyRecommendations() {
                       <div className="flex items-center space-x-4 text-gray-600 mb-2">
                         <span className="flex items-center">
                           <MapPin className="h-4 w-4 mr-1" />
-                          {property.location.city.name.en}
+                          {property.location?.city?.name?.en}
                         </span>
                         <Badge variant="secondary" className="capitalize">
                           {property.propertyType}

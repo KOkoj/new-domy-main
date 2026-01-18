@@ -282,7 +282,7 @@ export default function DashboardOverview() {
                     <div className="flex items-center space-x-3 text-xs text-gray-600">
                       <span className="flex items-center">
                         <MapPin className="h-3 w-3 mr-1" />
-                        {property.location.city.name.en}
+                        {property.location?.city?.name?.en}
                       </span>
                       <span className="flex items-center font-medium text-blue-600">
                         <DollarSign className="h-3 w-3 mr-1" />

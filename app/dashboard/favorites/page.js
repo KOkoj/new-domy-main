@@ -25,6 +25,7 @@ import {
   GitCompare
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 import Link from 'next/link'
 
 // Sample property data based on our existing properties
@@ -77,9 +78,18 @@ export default function FavoritesManagement() {
   const [viewMode, setViewMode] = useState('grid')
   const [selectedProperties, setSelectedProperties] = useState(new Set())
   const [user, setUser] = useState(null)
+  const [language, setLanguage] = useState('en')
+  const [currency, setCurrency] = useState('EUR')
 
   useEffect(() => {
     loadFavorites()
+    
+    // Load saved preferences
+    const savedLanguage = localStorage.getItem('preferred-language')
+    if (savedLanguage) setLanguage(savedLanguage)
+    
+    const savedCurrency = localStorage.getItem('preferred-currency')
+    if (savedCurrency) setCurrency(savedCurrency)
   }, [])
 
   useEffect(() => {
@@ -130,7 +140,7 @@ export default function FavoritesManagement() {
     if (searchTerm) {
       filtered = filtered.filter(fav => 
         fav.property.title.en.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        fav.property.location.city.name.en.toLowerCase().includes(searchTerm.toLowerCase())
+        fav.property.location?.city?.name?.en?.toLowerCase().includes(searchTerm.toLowerCase())
       )
     }
 
@@ -182,12 +192,7 @@ export default function FavoritesManagement() {
   }
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: price.currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price.amount)
+    return formatPriceUtil(price, currency, language)
   }
 
   const PropertyCard = ({ favorite, isGrid = true }) => {
@@ -223,7 +228,7 @@ export default function FavoritesManagement() {
                 <h3 className="font-semibold text-lg line-clamp-1">{property.title.en}</h3>
                 <div className="flex items-center text-gray-600 text-sm mt-1">
                   <MapPin className="h-3 w-3 mr-1" />
-                  {property.location.city.name.en}
+                  {property.location?.city?.name?.en}
                 </div>
               </div>
               <div className="text-right">

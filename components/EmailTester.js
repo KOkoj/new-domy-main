@@ -3,520 +3,498 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Send, Sparkles } from 'lucide-react';
-import { toast } from "sonner";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Mail, Send, Sparkles, Clock, CheckCircle, XCircle, Loader2 } from 'lucide-react';
 
 export default function EmailTester() {
+  const [testEmail, setTestEmail] = useState('test@example.com');
+  const [testName, setTestName] = useState('Test User');
   const [loading, setLoading] = useState({});
-  const [generatedContent, setGeneratedContent] = useState({
-    subjectLine: '',
-    emailContent: '',
-    propertyDescription: ''
-  });
-  
-  const [propertyData, setPropertyData] = useState({
-    propertyType: 'villa',
-    bedrooms: '3',
-    bathrooms: '2',
-    squareFeet: '150',
-    location: 'Tuscany',
-    features: 'Swimming pool, Garden, Terrace, Mountain view',
-    targetAudience: 'International buyers looking for vacation homes',
-    price: '450000'
-  });
-  
-  const [emailData, setEmailData] = useState({
-    recipientName: 'Marco Rossi',
-    recipientEmail: 'test@example.com',
-    emailType: 'property-listing',
-    additionalContext: 'This is a premium property in a sought-after location',
-    tone: 'professional'
-  });
+  const [responses, setResponses] = useState({});
 
-  const handlePropertyChange = (e) => {
-    const { name, value } = e.target;
-    setPropertyData(prev => ({ ...prev, [name]: value }));
-  };
+  /**
+   * Test Welcome Email
+   */
+  const testWelcomeEmail = async () => {
+    setLoading({ ...loading, welcome: true });
+    setResponses({ ...responses, welcome: null });
 
-  const handleEmailChange = (e) => {
-    const { name, value } = e.target;
-    setEmailData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const generatePropertyDescription = async () => {
-    setLoading(prev => ({ ...prev, property: true }));
     try {
-      const response = await fetch('/api/generate-property-description', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...propertyData,
-          features: propertyData.features.split(',').map(f => f.trim()).filter(f => f)
-        })
-      });
-      
-      const data = await response.json();
-      if (response.ok) {
-        setGeneratedContent(prev => ({
-          ...prev,
-          propertyDescription: data.propertyDescription
-        }));
-        toast.success('Property description generated!');
-      } else {
-        throw new Error(data.error);
-      }
-    } catch (error) {
-      console.error('Error generating property description:', error);
-      toast.error('Failed to generate property description');
-    } finally {
-      setLoading(prev => ({ ...prev, property: false }));
-    }
-  };
-
-  const generateEmailContent = async () => {
-    if (!generatedContent.propertyDescription) {
-      toast.error('Please generate a property description first');
-      return;
-    }
-    
-    setLoading(prev => ({ ...prev, email: true }));
-    try {
-      // Generate subject line
-      const subjectResponse = await fetch('/api/generate-subject', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...emailData,
-          propertyDetails: generatedContent.propertyDescription
-        })
-      });
-      
-      const subjectData = await subjectResponse.json();
-      
-      // Generate email content
-      const contentResponse = await fetch('/api/generate-email-content', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...emailData,
-          propertyDetails: generatedContent.propertyDescription
-        })
-      });
-      
-      const contentData = await contentResponse.json();
-      
-      if (subjectResponse.ok && contentResponse.ok) {
-        setGeneratedContent(prev => ({
-          ...prev,
-          subjectLine: subjectData.subjectLine,
-          emailContent: contentData.emailContent
-        }));
-        toast.success('Email content generated!');
-      } else {
-        throw new Error('Failed to generate email content');
-      }
-    } catch (error) {
-      console.error('Error generating email:', error);
-      toast.error('Failed to generate email content');
-    } finally {
-      setLoading(prev => ({ ...prev, email: false }));
-    }
-  };
-
-  const sendTestEmail = async (emailType) => {
-    setLoading(prev => ({ ...prev, send: true }));
-    try {
-      let emailTypeData;
-      
-      switch (emailType) {
-        case 'welcome':
-          emailTypeData = {
-            emailType: 'welcome',
-            data: {
-              userEmail: emailData.recipientEmail,
-              userName: emailData.recipientName
-            }
-          };
-          break;
-        case 'property-alert':
-          emailTypeData = {
-            emailType: 'property-alert',
-            data: {
-              userEmail: emailData.recipientEmail,
-              userName: emailData.recipientName,
-              properties: [{ title: `${propertyData.propertyType} in ${propertyData.location}` }],
-              searchCriteria: {
-                type: propertyData.propertyType,
-                city: propertyData.location,
-                priceMax: propertyData.price
-              }
-            }
-          };
-          break;
-        case 'inquiry-confirmation':
-          emailTypeData = {
-            emailType: 'inquiry-confirmation',
-            data: {
-              userEmail: emailData.recipientEmail,
-              userName: emailData.recipientName,
-              propertyTitle: `${propertyData.propertyType} in ${propertyData.location}`,
-              inquiryMessage: 'I am interested in this beautiful property. Please send me more information.'
-            }
-          };
-          break;
-        default:
-          throw new Error('Invalid email type');
-      }
-      
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(emailTypeData)
+        body: JSON.stringify({
+          emailType: 'welcome',
+          data: {
+            userEmail: testEmail,
+            userName: testName
+          }
+        })
       });
+
+      const data = await response.json();
       
       if (response.ok) {
-        toast.success(`Test ${emailType} email sent successfully!`);
+        setResponses({ 
+          ...responses, 
+          welcome: { 
+            success: true, 
+            message: data.message || 'Welcome email sent successfully!',
+            aiUsed: data.aiUsed
+          } 
+        });
       } else {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to send email');
+        throw new Error(data.error || 'Failed to send email');
       }
     } catch (error) {
-      console.error('Error sending test email:', error);
-      toast.error(`Failed to send test ${emailType} email: ${error.message}`);
+      setResponses({ 
+        ...responses, 
+        welcome: { 
+          success: false, 
+          message: error.message 
+        } 
+      });
     } finally {
-      setLoading(prev => ({ ...prev, send: false }));
+      setLoading({ ...loading, welcome: false });
     }
   };
 
+  /**
+   * Test Inquiry Confirmation Email
+   */
+  const testInquiryEmail = async () => {
+    setLoading({ ...loading, inquiry: true });
+    setResponses({ ...responses, inquiry: null });
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          emailType: 'inquiry-confirmation',
+          data: {
+            userEmail: testEmail,
+            userName: testName,
+            propertyTitle: 'Luxury Villa in Tuscany',
+            inquiryMessage: 'I am very interested in this beautiful property. Could you provide more details about the location and availability?'
+          }
+        })
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        setResponses({ 
+          ...responses, 
+          inquiry: { 
+            success: true, 
+            message: data.message || 'Inquiry confirmation sent successfully!',
+            aiUsed: data.aiUsed
+          } 
+        });
+      } else {
+        throw new Error(data.error || 'Failed to send email');
+      }
+    } catch (error) {
+      setResponses({ 
+        ...responses, 
+        inquiry: { 
+          success: false, 
+          message: error.message 
+        } 
+      });
+    } finally {
+      setLoading({ ...loading, inquiry: false });
+    }
+  };
+
+  /**
+   * Test Property Alert Email
+   */
+  const testPropertyAlert = async () => {
+    setLoading({ ...loading, alert: true });
+    setResponses({ ...responses, alert: null });
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          emailType: 'property-alert',
+          data: {
+            userEmail: testEmail,
+            userName: testName,
+            properties: [
+              { title: 'Modern Villa in Florence' },
+              { title: 'Charming Apartment in Rome' },
+              { title: 'Rustic Farmhouse in Tuscany' }
+            ],
+            searchCriteria: {
+              type: 'villa',
+              city: 'Tuscany',
+              priceMin: 200000,
+              priceMax: 500000,
+              bedrooms: 3
+            }
+          }
+        })
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        setResponses({ 
+          ...responses, 
+          alert: { 
+            success: true, 
+            message: data.message || 'Property alert sent successfully!',
+            aiUsed: data.aiUsed
+          } 
+        });
+      } else {
+        throw new Error(data.error || 'Failed to send email');
+      }
+    } catch (error) {
+      setResponses({ 
+        ...responses, 
+        alert: { 
+          success: false, 
+          message: error.message 
+        } 
+      });
+    } finally {
+      setLoading({ ...loading, alert: false });
+    }
+  };
+
+  /**
+   * Trigger Cron Job (Property Alerts)
+   */
+  const triggerCronJob = async () => {
+    setLoading({ ...loading, cron: true });
+    setResponses({ ...responses, cron: null });
+
+    try {
+      const response = await fetch('/api/cron/alerts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        setResponses({ 
+          ...responses, 
+          cron: { 
+            success: true, 
+            message: `Cron job completed: ${data.emailsSent} emails sent, ${data.searchesProcessed} searches processed`,
+            details: data
+          } 
+        });
+      } else {
+        throw new Error(data.error || 'Cron job failed');
+      }
+    } catch (error) {
+      setResponses({ 
+        ...responses, 
+        cron: { 
+          success: false, 
+          message: error.message 
+        } 
+      });
+    } finally {
+      setLoading({ ...loading, cron: false });
+    }
+  };
+
+  const renderResponse = (type) => {
+    const response = responses[type];
+    if (!response) return null;
+
+    return (
+      <Alert className={response.success ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50'}>
+        <div className="flex items-start">
+          {response.success ? (
+            <CheckCircle className="h-5 w-5 text-green-600 mr-2 mt-0.5" />
+          ) : (
+            <XCircle className="h-5 w-5 text-red-600 mr-2 mt-0.5" />
+          )}
+          <AlertDescription className="flex-1">
+            <div className="font-medium mb-1">
+              {response.success ? 'Success!' : 'Error'}
+            </div>
+            <div className="text-sm">{response.message}</div>
+            {response.aiUsed !== undefined && (
+              <div className="mt-2">
+                <Badge variant={response.aiUsed ? "default" : "secondary"} className="text-xs">
+                  {response.aiUsed ? (
+                    <>
+                      <Sparkles className="h-3 w-3 mr-1" />
+                      AI-Generated Content
+                    </>
+                  ) : (
+                    'Static Template'
+                  )}
+                </Badge>
+              </div>
+            )}
+            {response.details && (
+              <details className="mt-2 text-xs">
+                <summary className="cursor-pointer hover:underline">View details</summary>
+                <pre className="mt-2 p-2 bg-white rounded border overflow-auto max-h-40">
+                  {JSON.stringify(response.details, null, 2)}
+                </pre>
+              </details>
+            )}
+          </AlertDescription>
+        </div>
+      </Alert>
+    );
+  };
+
   return (
-    <div className="container mx-auto p-4 max-w-6xl">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold mb-2 flex items-center space-x-2">
-          <Mail className="h-8 w-8 text-blue-600" />
-          <span>Email Notification System</span>
-        </h1>
-        <p className="text-muted-foreground">
-          Test and preview AI-generated email content for Italian property notifications
-        </p>
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-2">
+            <Mail className="h-8 w-8 text-blue-600" />
+            <span>Email Testing - Concierge Edition</span>
+          </h1>
+          <p className="text-gray-600 mt-1">
+            Test AI-powered email notifications with warm, context-aware content
+          </p>
+        </div>
       </div>
 
-      <Tabs defaultValue="property" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="property">Property Details</TabsTrigger>
-          <TabsTrigger value="email">Email Settings</TabsTrigger>
-          <TabsTrigger value="preview">Preview</TabsTrigger>
-          <TabsTrigger value="send">Send Test</TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="property" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Property Information</CardTitle>
-              <CardDescription>Enter details about the Italian property</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label>Property Type</Label>
-                  <Select value={propertyData.propertyType} onValueChange={(value) => setPropertyData(prev => ({ ...prev, propertyType: value }))}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="apartment">Apartment</SelectItem>
-                      <SelectItem value="villa">Villa</SelectItem>
-                      <SelectItem value="house">House</SelectItem>
-                      <SelectItem value="farmhouse">Farmhouse</SelectItem>
-                      <SelectItem value="penthouse">Penthouse</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div>
-                  <Label>Location</Label>
-                  <Input
-                    name="location"
-                    value={propertyData.location}
-                    onChange={handlePropertyChange}
-                    placeholder="e.g. Tuscany, Amalfi Coast, Lake Como"
-                  />
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-3 gap-4">
-                <div>
-                  <Label>Bedrooms</Label>
-                  <Input
-                    name="bedrooms"
-                    type="number"
-                    value={propertyData.bedrooms}
-                    onChange={handlePropertyChange}
-                  />
-                </div>
-                <div>
-                  <Label>Bathrooms</Label>
-                  <Input
-                    name="bathrooms"
-                    type="number"
-                    value={propertyData.bathrooms}
-                    onChange={handlePropertyChange}
-                  />
-                </div>
-                <div>
-                  <Label>Size (m²)</Label>
-                  <Input
-                    name="squareFeet"
-                    type="number"
-                    value={propertyData.squareFeet}
-                    onChange={handlePropertyChange}
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <Label>Price (€)</Label>
-                <Input
-                  name="price"
-                  type="number"
-                  value={propertyData.price}
-                  onChange={handlePropertyChange}
-                  placeholder="450000"
-                />
-              </div>
-              
-              <div>
-                <Label>Features (comma-separated)</Label>
-                <Textarea
-                  name="features"
-                  value={propertyData.features}
-                  onChange={handlePropertyChange}
-                  placeholder="Swimming pool, Garden, Terrace, Sea view"
-                  rows={3}
-                />
-              </div>
-              
-              <div>
-                <Label>Target Audience</Label>
-                <Input
-                  name="targetAudience"
-                  value={propertyData.targetAudience}
-                  onChange={handlePropertyChange}
-                  placeholder="International buyers, families, retirees"
-                />
-              </div>
-              
-              <Button 
-                onClick={generatePropertyDescription} 
-                disabled={loading.property}
-                className="w-full"
-              >
-                <Sparkles className="h-4 w-4 mr-2" />
-                {loading.property ? 'Generating...' : 'Generate Property Description'}
-              </Button>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        
-        <TabsContent value="email" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Email Configuration</CardTitle>
-              <CardDescription>Set up email recipient and content preferences</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label>Recipient Name</Label>
-                  <Input
-                    name="recipientName"
-                    value={emailData.recipientName}
-                    onChange={handleEmailChange}
-                    placeholder="Marco Rossi"
-                  />
-                </div>
-                
-                <div>
-                  <Label>Recipient Email</Label>
-                  <Input
-                    name="recipientEmail"
-                    type="email"
-                    value={emailData.recipientEmail}
-                    onChange={handleEmailChange}
-                    placeholder="test@example.com"
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <Label>Email Type</Label>
-                <Select value={emailData.emailType} onValueChange={(value) => setEmailData(prev => ({ ...prev, emailType: value }))}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="property-listing">Property Listing</SelectItem>
-                    <SelectItem value="property-alert">Property Alert</SelectItem>
-                    <SelectItem value="price-change">Price Change</SelectItem>
-                    <SelectItem value="new-listing">New Listing</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div>
-                <Label>Tone</Label>
-                <Select value={emailData.tone} onValueChange={(value) => setEmailData(prev => ({ ...prev, tone: value }))}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="professional">Professional</SelectItem>
-                    <SelectItem value="friendly">Friendly</SelectItem>
-                    <SelectItem value="urgent">Urgent</SelectItem>
-                    <SelectItem value="luxury">Luxury</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div>
-                <Label>Additional Context</Label>
-                <Textarea
-                  name="additionalContext"
-                  value={emailData.additionalContext}
-                  onChange={handleEmailChange}
-                  placeholder="Special offers, market insights, urgency factors..."
-                  rows={3}
-                />
-              </div>
-              
-              <Button 
-                onClick={generateEmailContent} 
-                disabled={loading.email || !generatedContent.propertyDescription}
-                className="w-full"
-              >
-                <Sparkles className="h-4 w-4 mr-2" />
-                {loading.email ? 'Generating...' : 'Generate Email Content'}
-              </Button>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        
-        <TabsContent value="preview" className="space-y-4">
-          <div className="grid gap-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Property Description</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {generatedContent.propertyDescription ? (
-                  <div className="p-4 bg-muted rounded-lg whitespace-pre-line">
-                    {generatedContent.propertyDescription}
-                  </div>
-                ) : (
-                  <div className="p-4 bg-muted rounded-lg text-center text-muted-foreground">
-                    No property description generated yet
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <CardTitle>Email Subject Line</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {generatedContent.subjectLine ? (
-                  <div className="p-4 bg-muted rounded-lg">
-                    {generatedContent.subjectLine}
-                  </div>
-                ) : (
-                  <div className="p-4 bg-muted rounded-lg text-center text-muted-foreground">
-                    No subject line generated yet
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <CardTitle>Email Content</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {generatedContent.emailContent ? (
-                  <div className="p-4 bg-muted rounded-lg whitespace-pre-line">
-                    {generatedContent.emailContent}
-                  </div>
-                ) : (
-                  <div className="p-4 bg-muted rounded-lg text-center text-muted-foreground">
-                    No email content generated yet
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+      {/* Configuration Status */}
+      <Card>
+        <CardHeader>
+          <CardTitle>System Status</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+            <span className="text-sm font-medium">SendGrid Email Service</span>
+            <Badge variant={process.env.NEXT_PUBLIC_SENDGRID_CONFIGURED === 'true' ? 'default' : 'secondary'}>
+              {process.env.NEXT_PUBLIC_SENDGRID_CONFIGURED === 'true' ? 'Configured' : 'Not Configured'}
+            </Badge>
           </div>
-        </TabsContent>
-        
-        <TabsContent value="send" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Send Test Emails</CardTitle>
-              <CardDescription>
-                Test different email notification types. 
-                <Badge variant="secondary" className="ml-2">
-                  {process.env.SENDGRID_API_KEY === 'placeholder_will_be_added_later' ? 'Simulation Mode' : 'Live Mode'}
-                </Badge>
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-3">
-                <Button 
-                  onClick={() => sendTestEmail('welcome')}
-                  disabled={loading.send}
-                  variant="outline"
-                  className="justify-start"
-                >
-                  <Mail className="h-4 w-4 mr-2" />
+          <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+            <span className="text-sm font-medium">Google Gemini AI Content Generation</span>
+            <Badge variant={process.env.NEXT_PUBLIC_GEMINI_CONFIGURED === 'true' ? 'default' : 'secondary'}>
+              {process.env.NEXT_PUBLIC_GEMINI_CONFIGURED === 'true' ? 'Configured' : 'Not Configured'}
+            </Badge>
+          </div>
+          <Alert className="mt-4">
+            <AlertDescription className="text-sm">
+              {process.env.NEXT_PUBLIC_SENDGRID_CONFIGURED !== 'true' && process.env.NEXT_PUBLIC_GEMINI_CONFIGURED !== 'true' ? (
+                <>
+                  <strong>Demo Mode:</strong> Both SendGrid and Gemini are not configured. 
+                  Emails will be logged to console with static templates.
+                </>
+              ) : process.env.NEXT_PUBLIC_SENDGRID_CONFIGURED !== 'true' ? (
+                <>
+                  <strong>Simulation Mode:</strong> SendGrid not configured. 
+                  Emails will be logged to console but not actually sent.
+                </>
+              ) : process.env.NEXT_PUBLIC_GEMINI_CONFIGURED !== 'true' ? (
+                <>
+                  <strong>Static Mode:</strong> Gemini not configured. 
+                  Emails will use static templates instead of AI-generated content.
+                </>
+              ) : (
+                <>
+                  <strong>Live Mode:</strong> Both services configured. 
+                  Emails will be sent with AI-generated content (powered by Google Gemini).
+                </>
+              )}
+            </AlertDescription>
+          </Alert>
+        </CardContent>
+      </Card>
+
+      {/* Test Configuration */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Test Configuration</CardTitle>
+          <CardDescription>Configure recipient details for test emails</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label htmlFor="testEmail">Test Email Address</Label>
+            <Input
+              id="testEmail"
+              type="email"
+              value={testEmail}
+              onChange={(e) => setTestEmail(e.target.value)}
+              placeholder="test@example.com"
+              className="mt-1"
+            />
+          </div>
+          <div>
+            <Label htmlFor="testName">Test User Name</Label>
+            <Input
+              id="testName"
+              value={testName}
+              onChange={(e) => setTestName(e.target.value)}
+              placeholder="Test User"
+              className="mt-1"
+            />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Email Tests */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Welcome Email */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Mail className="h-5 w-5 mr-2 text-blue-600" />
+              Welcome Email
+            </CardTitle>
+            <CardDescription>
+              Test the welcome email sent to new users
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Button 
+              onClick={testWelcomeEmail}
+              disabled={loading.welcome}
+              className="w-full"
+            >
+              {loading.welcome ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Send className="h-4 w-4 mr-2" />
                   Send Welcome Email
-                </Button>
-                
-                <Button 
-                  onClick={() => sendTestEmail('property-alert')}
-                  disabled={loading.send}
-                  variant="outline"
-                  className="justify-start"
-                >
+                </>
+              )}
+            </Button>
+            {renderResponse('welcome')}
+          </CardContent>
+        </Card>
+
+        {/* Inquiry Confirmation */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Mail className="h-5 w-5 mr-2 text-green-600" />
+              Inquiry Confirmation
+            </CardTitle>
+            <CardDescription>
+              Test inquiry confirmation email
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Button 
+              onClick={testInquiryEmail}
+              disabled={loading.inquiry}
+              className="w-full"
+            >
+              {loading.inquiry ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Send className="h-4 w-4 mr-2" />
+                  Send Inquiry Confirmation
+                </>
+              )}
+            </Button>
+            {renderResponse('inquiry')}
+          </CardContent>
+        </Card>
+
+        {/* Property Alert */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Sparkles className="h-5 w-5 mr-2 text-purple-600" />
+              Property Alert
+            </CardTitle>
+            <CardDescription>
+              Test property match alert email
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Button 
+              onClick={testPropertyAlert}
+              disabled={loading.alert}
+              className="w-full"
+            >
+              {loading.alert ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
                   <Send className="h-4 w-4 mr-2" />
                   Send Property Alert
-                </Button>
-                
-                <Button 
-                  onClick={() => sendTestEmail('inquiry-confirmation')}
-                  disabled={loading.send}
-                  variant="outline"
-                  className="justify-start"
-                >
-                  <Mail className="h-4 w-4 mr-2" />
-                  Send Inquiry Confirmation
-                </Button>
-              </div>
-              
-              <div className="p-4 bg-blue-50 rounded-lg">
-                <p className="text-sm text-blue-800">
-                  <strong>Note:</strong> Test emails will be sent to <code>{emailData.recipientEmail}</code>
-                  {process.env.SENDGRID_API_KEY === 'placeholder_will_be_added_later' && 
-                    '. Currently in simulation mode - emails won\'t actually be sent until SendGrid is configured.'
-                  }
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+                </>
+              )}
+            </Button>
+            {renderResponse('alert')}
+          </CardContent>
+        </Card>
+
+        {/* Cron Job Trigger */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Clock className="h-5 w-5 mr-2 text-orange-600" />
+              Trigger Property Alerts (Cron)
+            </CardTitle>
+            <CardDescription>
+              Manually trigger the automated alert system
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Button 
+              onClick={triggerCronJob}
+              disabled={loading.cron}
+              className="w-full"
+              variant="secondary"
+            >
+              {loading.cron ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Running...
+                </>
+              ) : (
+                <>
+                  <Clock className="h-4 w-4 mr-2" />
+                  Run Cron Job
+                </>
+              )}
+            </Button>
+            {renderResponse('cron')}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Information */}
+      <Alert>
+        <AlertDescription>
+          <strong>How it works:</strong>
+          <ul className="list-disc list-inside mt-2 space-y-1 text-sm">
+            <li>If Google Gemini is configured, emails use AI-generated warm, context-aware content (FREE!)</li>
+            <li>If Gemini is not available, falls back to professional static templates</li>
+            <li>If SendGrid is not configured, emails are logged to console instead of being sent</li>
+            <li>The Cron Job checks all saved searches and sends alerts to matching users</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
     </div>
   );
 }

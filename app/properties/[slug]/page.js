@@ -11,113 +11,7 @@ import { Separator } from '@/components/ui/separator'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import Link from 'next/link'
 import { supabase } from '../../../lib/supabase'
-
-const SAMPLE_PROPERTIES = {
-  'luxury-villa-lake-como': {
-    _id: '1',
-    title: { en: 'Luxury Villa with Lake Como Views', it: 'Villa di Lusso con Vista sul Lago di Como' },
-    slug: { current: 'luxury-villa-lake-como' },
-    propertyType: 'villa',
-    price: { amount: 2500000, currency: 'EUR' },
-    description: { 
-      en: 'This stunning lakefront villa offers panoramic views of Lake Como and the surrounding Alps. Built in the 18th century and completely renovated in 2020, it combines historical charm with modern luxury. The property features elegant interiors with original frescoes, private gardens extending to the lake, and direct water access with a private dock. Perfect for those seeking tranquility and sophistication in one of Italy\'s most prestigious locations.',
-      it: 'Questa splendida villa fronte lago offre viste panoramiche sul Lago di Como e sulle Alpi circostanti.' 
-    },
-    specifications: { 
-      bedrooms: 4, 
-      bathrooms: 3, 
-      squareFootage: 350,
-      yearBuilt: 1750,
-      renovated: 2020,
-      lotSize: 2000,
-      parking: 2
-    },
-    location: {
-      city: {
-        name: { en: 'Como', it: 'Como' },
-        region: { name: { en: 'Lombardy', it: 'Lombardia' }, country: 'Italy' }
-      },
-      address: { en: 'Via del Lago 123, Como, Italy' },
-      coordinates: { lat: 45.8081, lng: 9.0852 }
-    },
-    images: [
-      '/house_como.jpg',
-      '/house_como.jpg',
-      '/house_como.jpg',
-      '/house_como.jpg'
-    ],
-    amenities: [
-      { name: { en: 'Private Dock' }, category: 'exterior' },
-      { name: { en: 'Garden' }, category: 'exterior' },
-      { name: { en: 'Swimming Pool' }, category: 'exterior' },
-      { name: { en: 'Fireplace' }, category: 'interior' },
-      { name: { en: 'Wine Cellar' }, category: 'interior' },
-      { name: { en: 'Modern Kitchen' }, category: 'interior' },
-      { name: { en: 'Air Conditioning' }, category: 'interior' },
-      { name: { en: 'WiFi' }, category: 'services' }
-    ],
-    developer: {
-      name: 'Como Luxury Properties',
-      contact: {
-        email: 'info@comoluxury.it',
-        phone: '+39 031 123 4567',
-        website: 'https://comoluxury.it'
-      }
-    },
-    status: 'available',
-    featured: true
-  },
-  'tuscan-farmhouse-vineyards': {
-    _id: '2',
-    title: { en: 'Tuscan Farmhouse with Vineyards', it: 'Casa Colonica Toscana con Vigneti' },
-    slug: { current: 'tuscan-farmhouse-vineyards' },
-    propertyType: 'house',
-    price: { amount: 1200000, currency: 'EUR' },
-    description: { 
-      en: 'Authentic Tuscan farmhouse surrounded by rolling hills and vineyards. This beautifully restored 16th-century property offers the perfect blend of rustic charm and modern comfort. Set on 5 hectares of land including productive vineyards, olive groves, and traditional Italian gardens. The property includes original stone walls, terracotta floors, and wooden beam ceilings throughout.',
-      it: 'Autentica casa colonica toscana circondata da colline e vigneti.' 
-    },
-    specifications: { 
-      bedrooms: 3, 
-      bathrooms: 2, 
-      squareFootage: 280,
-      yearBuilt: 1580,
-      renovated: 2018,
-      lotSize: 50000,
-      parking: 3
-    },
-    location: {
-      city: {
-        name: { en: 'Chianti', it: 'Chianti' },
-        region: { name: { en: 'Tuscany', it: 'Toscana' }, country: 'Italy' }
-      },
-      address: { en: 'Via dei Vigneti 45, Chianti, Tuscany' },
-      coordinates: { lat: 43.4643, lng: 11.2558 }
-    },
-    images: [
-      '/house_tuscany_vineyards.jpg',
-      '/house_tuscany_vineyards.jpg',
-      '/house_tuscany_vineyards.jpg'
-    ],
-    amenities: [
-      { name: { en: 'Vineyard' }, category: 'exterior' },
-      { name: { en: 'Olive Grove' }, category: 'exterior' },
-      { name: { en: 'Stone Terrace' }, category: 'exterior' },
-      { name: { en: 'Traditional Oven' }, category: 'interior' },
-      { name: { en: 'Wine Cellar' }, category: 'interior' },
-      { name: { en: 'Exposed Beams' }, category: 'interior' }
-    ],
-    developer: {
-      name: 'Tuscany Heritage Properties',
-      contact: {
-        email: 'info@tuscanyheritage.it',
-        phone: '+39 055 987 6543'
-      }
-    },
-    status: 'available',
-    featured: true
-  }
-}
+import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 
 function ImageGallery({ images, title }) {
   const [selectedImage, setSelectedImage] = useState(0)
@@ -281,6 +175,7 @@ export default function PropertyDetailPage({ params }) {
   const [isFavorited, setIsFavorited] = useState(false)
   const [user, setUser] = useState(null)
   const [language, setLanguage] = useState('en')
+  const [currency, setCurrency] = useState('EUR')
 
   useEffect(() => {
     loadProperty()
@@ -292,6 +187,12 @@ export default function PropertyDetailPage({ params }) {
       document.documentElement.lang = savedLanguage
     }
 
+    // Load saved currency preference
+    const savedCurrency = localStorage.getItem('preferred-currency')
+    if (savedCurrency) {
+      setCurrency(savedCurrency)
+    }
+
     // Check if user is authenticated
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
@@ -299,7 +200,7 @@ export default function PropertyDetailPage({ params }) {
     }
     checkUser()
 
-    // Listen for language changes from Navigation component
+    // Listen for language and currency changes from Navigation component
     const handleLanguageChange = (e) => {
       setLanguage(e.detail)
       document.documentElement.lang = e.detail
@@ -308,6 +209,9 @@ export default function PropertyDetailPage({ params }) {
     const handleStorageChange = (e) => {
       if (e.key === 'preferred-language' && e.newValue) {
         setLanguage(e.newValue)
+      }
+      if (e.key === 'preferred-currency' && e.newValue) {
+        setCurrency(e.newValue)
       }
     }
     
@@ -365,17 +269,10 @@ export default function PropertyDetailPage({ params }) {
           return
         }
       } catch (apiError) {
-        console.log('Sanity API not available, trying sample data:', apiError)
+        console.log('Sanity API not available:', apiError)
       }
       
-      // Fallback to sample data
-      const foundProperty = SAMPLE_PROPERTIES[slug]
-      if (foundProperty) {
-        setProperty(foundProperty)
-        if (user) {
-          checkFavoriteStatus(foundProperty._id)
-        }
-      }
+      // Property not found - setProperty remains null
     } catch (error) {
       console.error('Error loading property:', error)
     } finally {
@@ -424,12 +321,12 @@ export default function PropertyDetailPage({ params }) {
   }
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: price.currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price.amount)
+    return formatPriceUtil(price, currency, language)
+  }
+
+  const handleCurrencyChange = (newCurrency) => {
+    setCurrency(newCurrency)
+    localStorage.setItem('preferred-currency', newCurrency)
   }
 
   // Helper function to get localized text
@@ -560,6 +457,33 @@ export default function PropertyDetailPage({ params }) {
                   }`}
                 >
                   IT
+                </button>
+              </div>
+
+              {/* Currency Separator */}
+              <div className="w-px h-6 bg-gray-300 opacity-30"></div>
+
+              {/* Currency Buttons */}
+              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
+                <button
+                  onClick={() => handleCurrencyChange('EUR')}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
+                    currency === 'EUR' 
+                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
+                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
+                  }`}
+                >
+                  EUR
+                </button>
+                <button
+                  onClick={() => handleCurrencyChange('CZK')}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
+                    currency === 'CZK' 
+                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
+                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
+                  }`}
+                >
+                  CZK
                 </button>
               </div>
 

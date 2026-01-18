@@ -29,7 +29,8 @@ import {
   List,
   SlidersHorizontal,
   Heart,
-  ChevronRight
+  ChevronRight,
+  Check
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -40,18 +41,11 @@ import { supabase } from '../../lib/supabase';
 import AuthModal from '../../components/AuthModal';
 import RegionBanner from '../../components/RegionBanner';
 import { t } from '../../lib/translations';
+import { CURRENCY_RATES, CURRENCY_SYMBOLS, formatPriceCompact } from '../../lib/currency';
 
-// Format price with compact symbols (k, M)
-const formatPrice = (price) => {
-  if (price >= 1000000) {
-    const millions = price / 1000000
-    return `€${millions.toFixed(millions % 1 === 0 ? 0 : 2)}M`
-  } else if (price >= 1000) {
-    const thousands = price / 1000
-    return `€${thousands.toFixed(thousands % 1 === 0 ? 0 : 1)}k`
-  } else {
-    return `€${Math.round(price)}`
-  }
+// Format price with compact symbols (k, M) using shared currency utility
+const formatPrice = (price, currency = 'EUR') => {
+  return formatPriceCompact(price, currency)
 }
 
 // PropertyCard component matching homepage design
@@ -115,7 +109,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
               data-testid="property-price"
               data-price={property.price}
             >
-              {formatPrice(property.price)}
+              {formatPrice(property.price, currency)}
             </span>
           </div>
         </div>
@@ -177,106 +171,6 @@ const MapComponent = dynamic(() => import('../../components/PropertyMap'), {
   ),
   ssr: false
 });
-
-// Sample property data with precise Italian coordinates
-const sampleProperties = [
-  {
-    id: 1,
-    title: "Luxusní vila v Toskánsku",
-    type: "Villa",
-    region: "Tuscany",
-    price: 450000,
-    rooms: 4,
-    bathrooms: 3,
-    area: 250,
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop",
-    location: [43.7711, 11.2486],
-    views: 234,
-    terrain: "mountains",
-    amenities: ["pool", "garden", "parking", "terrace"],
-    description: "Krásná vila s bazénem a výhledem na toskánské kopce"
-  },
-  {
-    id: 2,
-    title: "Moderní byt v Benátkách",
-    type: "Apartment", 
-    region: "Veneto",
-    price: 320000,
-    rooms: 2,
-    bathrooms: 1,
-    area: 85,
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&h=300&fit=crop",
-    location: [45.4408, 12.3155],
-    views: 187,
-    terrain: "sea",
-    amenities: ["balcony", "aircon"],
-    description: "Stylový byt v historickém centru Benátek"
-  },
-  {
-    id: 3,
-    title: "Rodinný dům s terasou v Kampánii",
-    type: "House",
-    region: "Campania", 
-    price: 280000,
-    rooms: 3,
-    bathrooms: 2,
-    area: 120,
-    image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=300&fit=crop",
-    location: [40.8518, 14.2681],
-    views: 156,
-    terrain: "sea",
-    amenities: ["terrace", "garden", "parking"],
-    description: "Prostorný dům s terasou blízko pobřeží"
-  },
-  {
-    id: 4,
-    title: "Horská chata v Piemontu",
-    type: "House",
-    region: "Piedmont",
-    price: 195000,
-    rooms: 2,
-    bathrooms: 1,
-    area: 75,
-    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop",
-    location: [45.0703, 7.6869],
-    views: 98,
-    terrain: "mountains",
-    amenities: ["fireplace", "garden"],
-    description: "Útulná chata v alpském prostředí"
-  },
-  {
-    id: 5,
-    title: "Penthouse v Miláně",
-    type: "Apartment",
-    region: "Lombardy",
-    price: 850000,
-    rooms: 4,
-    bathrooms: 3,
-    area: 180,
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop",
-    location: [45.4642, 9.1900],
-    views: 412,
-    terrain: "city",
-    amenities: ["terrace", "aircon", "parking"],
-    description: "Luxusní penthouse v centru Milána"
-  },
-  {
-    id: 6,
-    title: "Pobřežní vila v Ligúrii", 
-    type: "Villa",
-    region: "Liguria",
-    price: 650000,
-    rooms: 5,
-    bathrooms: 4,
-    area: 300,
-    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=300&fit=crop",
-    location: [44.1056, 9.5130],
-    views: 289,
-    terrain: "sea",
-    amenities: ["pool", "sea_view", "garden", "terrace"],
-    description: "Exkluzivní vila s výhledem na Středozemní moře"
-  }
-];
 
 // Italian regions data
 const italianRegions = {
@@ -363,6 +257,12 @@ export default function PropertiesPage() {
   const [properties, setProperties] = useState([]);
   const [loadingProperties, setLoadingProperties] = useState(true);
   const [useSanity, setUseSanity] = useState(false);
+  
+  // Pagination state
+  const [displayedCount, setDisplayedCount] = useState(12); // Show 12 properties initially
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const ITEMS_PER_PAGE = 9; // Load 9 more each time
 
   // Authentication effects
   useEffect(() => {
@@ -386,7 +286,28 @@ export default function PropertiesPage() {
       setLanguage(savedLanguage);
       document.documentElement.lang = savedLanguage;
     }
+    
+    const savedCurrency = localStorage.getItem('preferred-currency');
+    if (savedCurrency) {
+      setCurrency(savedCurrency);
+    }
   }, []);
+
+  // Scroll detection for "Back to Top" button
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 800);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Reset displayed count when filters change
+  useEffect(() => {
+    setDisplayedCount(12);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [filters, sortBy]);
 
   // Load properties from Sanity API
   useEffect(() => {
@@ -432,13 +353,13 @@ export default function PropertiesPage() {
         }
       }
       
-      // Fallback to sample data if Sanity fails or returns no properties
-      setProperties(sampleProperties);
+      // If Sanity fails or returns no properties, leave empty
+      setProperties([]);
       setUseSanity(false);
     } catch (error) {
-      console.log('Sanity API not available or not configured, using sample data:', error);
-      // Fallback to sample data on error
-      setProperties(sampleProperties);
+      console.log('Sanity API not available or not configured:', error);
+      // Properties will remain empty if fetch fails
+      setProperties([]);
       setUseSanity(false);
     } finally {
       setLoadingProperties(false);
@@ -498,6 +419,22 @@ export default function PropertiesPage() {
     localStorage.setItem('preferred-currency', newCurrency);
   };
 
+  // Load more properties
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+    
+    // Simulate loading delay for smooth UX
+    setTimeout(() => {
+      setDisplayedCount(prev => prev + ITEMS_PER_PAGE);
+      setIsLoadingMore(false);
+    }, 600);
+  };
+
+  // Scroll to top smoothly
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   // Update map center when selected property changes
   useEffect(() => {
     if (selectedProperty) {
@@ -507,8 +444,7 @@ export default function PropertiesPage() {
 
   // Filter properties
   const filteredProperties = useMemo(() => {
-    const propsToFilter = properties.length > 0 ? properties : sampleProperties;
-    return propsToFilter.filter(property => {
+    return properties.filter(property => {
       if (filters.search && !property.title.toLowerCase().includes(filters.search.toLowerCase())) {
         return false;
       }
@@ -550,6 +486,14 @@ export default function PropertiesPage() {
         return sorted.sort((a, b) => b.id - a.id);
     }
   }, [filteredProperties, sortBy]);
+
+  // Get displayed properties (for pagination)
+  const displayedProperties = useMemo(() => {
+    return sortedProperties.slice(0, displayedCount);
+  }, [sortedProperties, displayedCount]);
+
+  // Check if there are more properties to load
+  const hasMoreProperties = sortedProperties.length > displayedCount;
 
   const clearFilters = () => {
     setFilters({
@@ -986,7 +930,7 @@ export default function PropertiesPage() {
 
               {/* Properties Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sortedProperties.map(property => (
+              {displayedProperties.map(property => (
                   <PropertyCard
                   key={property.id} 
                     property={property}
@@ -1001,6 +945,17 @@ export default function PropertiesPage() {
                   />
               ))}
               
+              {/* Loading More Skeleton */}
+              {isLoadingMore && (
+                <>
+                  {[...Array(ITEMS_PER_PAGE)].map((_, index) => (
+                    <div key={`skeleton-${index}`} className="animate-pulse">
+                      <div className="bg-gray-200 rounded-2xl h-96"></div>
+                    </div>
+                  ))}
+                </>
+              )}
+              
               {loadingProperties && (
                 <div className="col-span-full text-center py-20">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-700 mx-auto mb-4"></div>
@@ -1008,7 +963,7 @@ export default function PropertiesPage() {
                 </div>
               )}
 
-              {sortedProperties.length === 0 && (
+              {sortedProperties.length === 0 && !loadingProperties && (
                   <div className="col-span-full text-center py-20 bg-white rounded-2xl border border-gray-200 shadow-lg">
                     <MapPin className="h-16 w-16 mx-auto mb-4 text-slate-300" />
                     <p className="font-bold text-xl text-gray-900 mb-2">Žádné nemovitosti nenalezeny</p>
@@ -1024,10 +979,71 @@ export default function PropertiesPage() {
                 </div>
               )}
             </div>
+
+            {/* Load More Section */}
+            {!loadingProperties && sortedProperties.length > 0 && (
+              <div className="mt-12 text-center space-y-6">
+                {/* Results Counter */}
+                <div className="text-gray-600 text-sm font-medium">
+                  {language === 'cs' ? 'Zobrazeno' : language === 'it' ? 'Visualizzato' : 'Showing'}{' '}
+                  <span className="text-slate-800 font-bold">{displayedProperties.length}</span>{' '}
+                  {language === 'cs' ? 'z' : language === 'it' ? 'di' : 'of'}{' '}
+                  <span className="text-slate-800 font-bold">{sortedProperties.length}</span>{' '}
+                  {language === 'cs' ? 'nemovitostí' : language === 'it' ? 'proprietà' : 'properties'}
+                </div>
+
+                {/* Load More Button */}
+                {hasMoreProperties && (
+                  <Button
+                    onClick={handleLoadMore}
+                    disabled={isLoadingMore}
+                    className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  >
+                    {isLoadingMore ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                        {language === 'cs' ? 'Načítám další nemovitosti...' : language === 'it' ? 'Caricamento...' : 'Loading more properties...'}
+                      </>
+                    ) : (
+                      <>
+                        <ChevronRight className="h-5 w-5 mr-2 rotate-90" />
+                        {language === 'cs' 
+                          ? `Načíst další (${Math.min(ITEMS_PER_PAGE, sortedProperties.length - displayedCount)} nemovitostí)` 
+                          : language === 'it' 
+                          ? `Carica altri (${Math.min(ITEMS_PER_PAGE, sortedProperties.length - displayedCount)} proprietà)` 
+                          : `Load More (${Math.min(ITEMS_PER_PAGE, sortedProperties.length - displayedCount)} properties)`
+                        }
+                      </>
+                    )}
+                  </Button>
+                )}
+
+                {/* All Loaded Message */}
+                {!hasMoreProperties && sortedProperties.length > 12 && (
+                  <div className="text-center py-8">
+                    <div className="inline-flex items-center px-6 py-3 bg-slate-100 rounded-full text-slate-700 font-medium">
+                      <Check className="h-5 w-5 mr-2 text-slate-600" />
+                      {language === 'cs' ? 'Zobrazeny všechny nemovitosti' : language === 'it' ? 'Tutte le proprietà visualizzate' : 'All properties displayed'}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
       </div>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-40 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 active:scale-95 group"
+          aria-label="Back to top"
+        >
+          <ChevronRight className="h-6 w-6 -rotate-90 group-hover:-translate-y-1 transition-transform duration-300" />
+        </button>
+      )}
       
       {/* Auth Modal */}
       <AuthModal 
