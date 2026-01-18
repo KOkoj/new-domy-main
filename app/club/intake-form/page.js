@@ -329,10 +329,10 @@ export default function IntakeForm() {
       // Scroll to top to show message
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
-      console.error('Error saving form:', error)
+      console.error('Error saving form full details:', JSON.stringify(error, null, 2))
       setMessage({ 
         type: 'error', 
-        text: 'Failed to save your information. Please ensure your account is fully set up.' 
+        text: `Failed to save: ${error.message || error.code || 'Unknown error'}. Check console for details.` 
       })
     } finally {
       setSaving(false)
