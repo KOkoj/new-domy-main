@@ -215,7 +215,57 @@ export default function IntakeForm() {
       
       setUser(user)
       
-      // Pre-fill with user profile data
+      // 1. Try to load from client_intake_forms first (primary source)
+      const { data: intakeForm, error: intakeError } = await supabase
+        .from('client_intake_forms')
+        .select('*')
+        .eq('user_id', user.id)
+        .single()
+
+      if (intakeForm) {
+        // Map database fields back to form state
+        setFormData(prev => ({
+          ...prev,
+          fullName: intakeForm.full_name || '',
+          email: intakeForm.email || '',
+          phone: intakeForm.phone || '',
+          nationality: intakeForm.nationality || '',
+          currentLocation: intakeForm.current_location || '',
+          
+          propertyTypes: intakeForm.property_types || [],
+          preferredRegions: intakeForm.preferred_regions || [],
+          budgetRange: intakeForm.budget_range || '',
+          minBedrooms: intakeForm.min_bedrooms?.toString() || '',
+          minBathrooms: intakeForm.min_bathrooms?.toString() || '',
+          minSquareMeters: intakeForm.min_square_meters?.toString() || '',
+          
+          timeline: intakeForm.timeline || '',
+          purchaseReason: intakeForm.purchase_reason || '',
+          financingNeeded: intakeForm.financing_needed || '',
+          additionalRequirements: intakeForm.additional_requirements || '',
+          
+          mustHaveFeatures: intakeForm.must_have_features || [],
+          lifestylePreferences: intakeForm.lifestyle_preferences || '',
+          
+          howDidYouHear: intakeForm.how_did_you_hear || '',
+          additionalNotes: intakeForm.additional_notes || '',
+          
+          // Map extra_data fields if they exist
+          maxDistanceFromSea: intakeForm.extra_data?.maxDistanceFromSea || '',
+          maxDistanceFromAirport: intakeForm.extra_data?.maxDistanceFromAirport || '',
+          maxDistanceFromCity: intakeForm.extra_data?.maxDistanceFromCity || '',
+          preferredProximity: intakeForm.extra_data?.preferredProximity || [],
+          propertyAge: intakeForm.extra_data?.propertyAge || '',
+          propertyCondition: intakeForm.extra_data?.propertyCondition || '',
+          renovationWillingness: intakeForm.extra_data?.renovationWillingness || '',
+          landSize: intakeForm.extra_data?.landSize || '',
+          climatePreference: intakeForm.extra_data?.climatePreference || '',
+          touristAreaPreference: intakeForm.extra_data?.touristAreaPreference || ''
+        }))
+        return // Successfully loaded from primary source
+      }
+
+      // 2. Fallback: Load from profiles if no intake form exists yet
       const { data: profile } = await supabase
         .from('profiles')
         .select('*')
@@ -223,20 +273,23 @@ export default function IntakeForm() {
         .single()
 
       if (profile) {
+        // Check if there are legacy preferences saved in the profile
+        const legacyPrefs = profile.preferences || {}
+        
         setFormData(prev => ({
           ...prev,
           fullName: profile.name || '',
           email: user.email || '',
-          phone: profile.phone || ''
+          phone: profile.phone || '',
+          
+          // Try to map any existing preferences found in profile
+          propertyTypes: legacyPrefs.propertyTypes || [],
+          preferredRegions: legacyPrefs.preferredRegions || [],
+          budgetRange: legacyPrefs.budgetRange || '',
+          timeline: legacyPrefs.timeline || '',
+          // ... map other legacy fields if they existed ...
         }))
       }
-
-      // TODO: Load existing intake form data if available
-      // const { data: intakeForm } = await supabase
-      //   .from('client_intake_forms')
-      //   .select('*')
-      //   .eq('user_id', user.id)
-      //   .single()
       
     } catch (error) {
       console.error('Error loading form data:', error)
