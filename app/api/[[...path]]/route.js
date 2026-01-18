@@ -1,11 +1,50 @@
 import { NextResponse } from 'next/server'
-import { supabase } from '../../../lib/supabase.js'
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
 import { client } from '../../../lib/sanity.js'
 import { FEATURED_PROPERTIES_QUERY, ALL_PROPERTIES_QUERY, PROPERTY_BY_SLUG_QUERY } from '../../../lib/sanity.js'
 
 // Force dynamic rendering - don't pre-render this route during build
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
+
+function getSupabaseClient() {
+  const cookieStore = cookies()
+  
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return null
+  }
+
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    {
+      cookies: {
+        get(name) {
+          return cookieStore.get(name)?.value
+        },
+        set(name, value, options) {
+          try {
+            cookieStore.set({ name, value, ...options })
+          } catch (error) {
+            // The `set` method was called from a Server Component.
+            // This can be ignored if you have middleware refreshing
+            // user sessions.
+          }
+        },
+        remove(name, options) {
+          try {
+            cookieStore.set({ name, value: '', ...options })
+          } catch (error) {
+            // The `delete` method was called from a Server Component.
+            // This can be ignored if you have middleware refreshing
+            // user sessions.
+          }
+        },
+      },
+    }
+  )
+}
 
 // Handle all API routes
 export async function GET(request, { params }) {
@@ -14,6 +53,8 @@ export async function GET(request, { params }) {
   const searchParams = url.searchParams
 
   try {
+    const supabase = getSupabaseClient()
+
     // Check if Supabase is configured
     if (!supabase && path && (path[0] === 'favorites' || path[0] === 'saved-searches' || path[0] === 'inquiries')) {
       return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
@@ -34,7 +75,9 @@ export async function GET(request, { params }) {
         query = FEATURED_PROPERTIES_QUERY
       }
 
+      console.log('Fetching properties from Sanity with query:', query)
       const properties = await client.fetch(query)
+      console.log(`Fetched ${properties.length} properties from Sanity`)
       
       // Apply additional filters if needed
       let filteredProperties = properties
@@ -153,8 +196,12 @@ export async function POST(request, { params }) {
   const body = await request.json()
 
   try {
+    const supabase = getSupabaseClient()
+
     // Toggle favorite
     if (path[0] === 'favorites' && path[1] === 'toggle') {
+      if (!supabase) return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
+      
       const { data: { user } } = await supabase.auth.getUser()
       
       if (!user) {
@@ -200,6 +247,8 @@ export async function POST(request, { params }) {
 
     // Save search
     if (path[0] === 'saved-searches') {
+      if (!supabase) return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
+      
       const { data: { user } } = await supabase.auth.getUser()
       
       if (!user) {
@@ -223,6 +272,8 @@ export async function POST(request, { params }) {
 
     // Submit inquiry
     if (path[0] === 'inquiries') {
+      if (!supabase) return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
+      
       const { listingId, name, email, message, propertyTitle } = body
       
       // Get user if authenticated
@@ -289,7 +340,11 @@ export async function DELETE(request, { params }) {
   const id = url.searchParams.get('id')
 
   try {
+    const supabase = getSupabaseClient()
+
     if (path[0] === 'saved-searches' && id) {
+      if (!supabase) return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
+      
       const { data: { user } } = await supabase.auth.getUser()
       
       if (!user) {

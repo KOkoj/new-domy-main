@@ -56,14 +56,30 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
     onFavorite(property.id)
   }
 
+  // Construct the href with slug safeguard
+  const propertyHref = property.slug?.current 
+    ? `/properties/${property.slug.current}` 
+    : property.slug 
+    ? `/properties/${property.slug}` 
+    : property.sanityId 
+    ? `/properties/${property.sanityId}`
+    : '#'
+
   return (
     <Card 
-      className="group cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-100 shadow-lg bg-white rounded-2xl flex flex-col h-full hover:border-slate-200/50"
+      className="group relative cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-100 shadow-lg bg-white rounded-2xl flex flex-col h-full hover:border-slate-200/50"
       data-testid="property-card"
       data-property-id={property.id}
       data-property-type={property.type}
-      onClick={onClick}
     >
+      <Link 
+        href={propertyHref}
+        className="absolute inset-0 z-10"
+        data-testid="property-card-link"
+      >
+        <span className="sr-only">View property details</span>
+      </Link>
+
       <div className="relative overflow-hidden" data-testid="property-image-container">
         <img 
           src={property.image} 
@@ -76,9 +92,9 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
         <div className="absolute inset-0 bg-gradient-to-t from-slate-800/30 via-transparent to-transparent group-hover:from-slate-800/40 transition-all duration-300" />
         
         {/* Top badges and favorite button */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
+        <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20">
           <Badge 
-            className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-3 py-1.5 text-xs font-medium shadow-lg rounded-lg capitalize backdrop-blur-sm border border-white/20 group-hover:shadow-xl"
+            className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-3 py-1.5 text-xs font-medium shadow-lg rounded-lg capitalize backdrop-blur-sm border border-white/20 group-hover:shadow-xl pointer-events-none"
             data-testid="property-type-badge"
           >
             {property.type}
@@ -145,14 +161,12 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
         
         {/* Enhanced CTA button - always at bottom */}
         <div className="pt-4 mt-auto" data-testid="property-footer">
-          <Button 
-            className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border-0 text-sm"
-            data-testid="view-details-button"
-            data-property-id={property.id}
+          <div 
+            className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border-0 text-sm flex items-center justify-center cursor-pointer"
           >
             <span data-testid="view-details-text">Zobrazit detail</span>
             <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-          </Button>
+          </div>
         </div>
       </CardContent>
     </Card>
@@ -941,7 +955,6 @@ export default function PropertiesPage() {
                     isFavorited={false} // You can implement favorite state management
                     language={language}
                     currency={currency}
-                  onClick={() => handleCardClick(property)}
                   />
               ))}
               

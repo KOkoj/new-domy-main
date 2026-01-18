@@ -18,6 +18,7 @@ import AuthModal from '@/components/AuthModal'
 import { supabase } from '../lib/supabase'
 import { t } from '../lib/translations'
 import { CURRENCY_RATES, CURRENCY_SYMBOLS, formatPrice as formatPriceUtil } from '../lib/currency'
+import { urlForImage } from '../lib/sanity'
 
 // Property of the Day Data
 const PROPERTY_OF_THE_DAY = {
@@ -173,18 +174,33 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
     onFavorite(property._id)
   }
 
+  // Construct the href with slug safeguard
+  const propertyHref = property.slug?.current 
+    ? `/properties/${property.slug.current}` 
+    : property.slug 
+    ? `/properties/${property.slug}` 
+    : '#'
+
   return (
     <Card 
-      className="group cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-100 shadow-lg bg-white rounded-2xl flex flex-col h-full hover:border-blue-200/50"
+      className="group relative cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-100 shadow-lg bg-white rounded-2xl flex flex-col h-full hover:border-blue-200/50"
       data-testid="property-card"
       data-property-id={property._id}
       data-property-type={property.propertyType}
       data-property-featured={property.featured}
     >
+      <Link 
+        href={propertyHref}
+        className="absolute inset-0 z-10"
+        data-testid="property-card-link"
+      >
+        <span className="sr-only">View property details</span>
+      </Link>
+
       <div className="relative overflow-hidden" data-testid="property-image-container">
         <img 
-          src={property.images?.[0] || '/placeholder-property.jpg'} 
-          alt={property.title.en}
+          src={(typeof property.images?.[0] === 'string' ? property.images[0] : property.images?.[0]?.url) || '/placeholder-property.jpg'} 
+          alt={typeof property.title === 'object' ? (property.title?.[language] || property.title?.en) : property.title}
           className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           data-testid="property-image"
         />
@@ -194,9 +210,9 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
         
         {/* Featured badge - subtle top center */}
         {property.featured && (
-          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-20">
             <Badge 
-              className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-3 py-1.5 text-xs font-medium shadow-lg rounded-lg backdrop-blur-sm border border-white/20"
+              className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-3 py-1.5 text-xs font-medium shadow-lg rounded-lg backdrop-blur-sm border border-white/20 pointer-events-none"
               data-testid="featured-badge"
             >
               ⭐ {t('property.featured', language)}
@@ -205,30 +221,30 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
         )}
 
         {/* Top badges and favorite button */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
+        <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20">
           <Badge 
-            className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-3 py-1.5 text-xs font-medium shadow-lg rounded-lg capitalize backdrop-blur-sm border border-white/20 group-hover:shadow-xl"
+            className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-3 py-1.5 text-xs font-medium shadow-lg rounded-lg capitalize backdrop-blur-sm border border-white/20 group-hover:shadow-xl pointer-events-none"
             data-testid="property-type-badge"
           >
             {property.propertyType}
           </Badge>
           
-        <Button
-          variant="ghost"
-          size="icon"
-            className={`p-2.5 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg backdrop-blur-sm border border-white/20 ${
+          <Button
+            variant="ghost"
+            size="icon"
+            className={`p-2.5 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg backdrop-blur-sm border border-white/20 relative z-30 ${
               isFavorited 
                 ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white hover:shadow-red-500/25' 
                 : 'bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:shadow-slate-500/25'
             }`}
-          onClick={handleFavoriteClick}
+            onClick={handleFavoriteClick}
             data-testid="favorite-button"
             data-property-id={property._id}
             data-favorited={isFavorited}
-        >
+          >
             <Heart className={`h-4 w-4 ${isFavorited ? 'fill-current' : ''}`} />
-        </Button>
-      </div>
+          </Button>
+        </div>
         
         {/* Price overlay */}
         <div className="absolute bottom-4 left-4">
@@ -236,10 +252,10 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
             <span 
               className="text-2xl font-bold text-white"
               data-testid="property-price"
-              data-price={property.price.amount}
-              data-currency={property.price.currency}
+              data-price={typeof property.price === 'object' ? property.price.amount : property.price}
+              data-currency={typeof property.price === 'object' ? property.price.currency : 'EUR'}
             >
-            {formatPrice(property.price)}
+            {formatPrice(typeof property.price === 'number' ? { amount: property.price, currency: 'EUR' } : property.price)}
           </span>
         </div>
         </div>
@@ -254,7 +270,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
               className="font-bold text-lg leading-tight line-clamp-2 group-hover:text-slate-800 transition-colors duration-300 group-hover:tracking-wide"
               data-testid="property-title"
             >
-              {property.title?.[language] || property.title?.en || 'Property Title'}
+              {typeof property.title === 'object' ? (property.title?.[language] || property.title?.en || 'Property Title') : (property.title || 'Property Title')}
             </h3>
             
             <div className="flex items-center text-gray-500 text-base group-hover:text-gray-600 transition-colors duration-300" data-testid="property-location">
@@ -285,15 +301,13 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
         
         {/* Enhanced CTA button - always at bottom */}
         <div className="pt-4 mt-auto" data-testid="property-footer">
-          <Button 
-            className="w-full text-white font-semibold py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border-0 text-base"
+          <div 
+            className="w-full text-white font-semibold py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border-0 text-base flex items-center justify-center cursor-pointer"
             style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
-            data-testid="view-details-button"
-            data-property-id={property._id}
           >
             <span data-testid="view-details-text">{t('property.viewDetails', language)}</span>
             <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-          </Button>
+          </div>
         </div>
       </CardContent>
     </Card>
@@ -312,7 +326,7 @@ function PropertyOfTheDay({ property, language, currency }) {
         <div className="relative group overflow-hidden h-full">
           <div className="relative h-full min-h-[400px]">
             <img 
-              src={property.images?.[0] || '/placeholder-property.jpg'} 
+              src={(typeof property.images?.[0] === 'string' ? property.images[0] : property.images?.[0]?.url) || '/placeholder-property.jpg'}  
               alt={property.title[language] || property.title.en}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               data-testid="property-of-day-image"
@@ -588,13 +602,19 @@ export default function HomePage() {
 
   const loadProperties = async () => {
     try {
+      console.log('Fetching properties in Homepage...')
       const response = await fetch('/api/properties')
       if (response.ok) {
         const sanityProperties = await response.json()
+        console.log('Homepage received properties:', sanityProperties?.length || 0)
         if (sanityProperties && Array.isArray(sanityProperties) && sanityProperties.length > 0) {
           setProperties(sanityProperties)
           setFilteredProperties(sanityProperties)
+        } else {
+          console.warn('Homepage received empty or invalid properties list')
         }
+      } else {
+        console.error('Homepage fetch failed:', response.status, response.statusText)
       }
     } catch (error) {
       console.log('Could not load properties from Sanity:', error)
@@ -1072,9 +1092,12 @@ export default function HomePage() {
   // TEMPORARY: Hardcoded to always show 7 properties for full rows during development
   useEffect(() => {
     if (selectedRegion) {
-      const regionProps = properties.filter(property => 
-        property.location?.city?.region?.name?.en === selectedRegion.name
-      )
+      const regionProps = properties.filter(property => {
+        const regionName = property.location?.city?.region?.name
+        // Handle both localized object and string name
+        const nameToCheck = typeof regionName === 'object' ? regionName?.en : regionName
+        return nameToCheck === selectedRegion.name
+      })
       // Ensure we always have at least 3 properties by filling with other properties
       const minProperties = 3
       if (regionProps.length < minProperties) {
@@ -1110,11 +1133,17 @@ export default function HomePage() {
     
     if (searchQuery) {
       const query = searchQuery.toLowerCase()
-      filtered = filtered.filter(p => 
-        p.title.en.toLowerCase().includes(query) ||
-        p.location?.city?.name?.en?.toLowerCase().includes(query) ||
-        p.description.en.toLowerCase().includes(query)
-      )
+      filtered = filtered.filter(p => {
+        const titleEn = typeof p.title === 'object' ? p.title.en : p.title
+        const cityName = typeof p.location?.city?.name === 'object' ? p.location?.city?.name?.en : p.location?.city?.name
+        const descEn = typeof p.description === 'object' ? p.description.en : p.description
+
+        return (
+          titleEn?.toLowerCase().includes(query) ||
+          cityName?.toLowerCase().includes(query) ||
+          descEn?.toLowerCase().includes(query)
+        )
+      })
     }
     
     if (filters.type) {

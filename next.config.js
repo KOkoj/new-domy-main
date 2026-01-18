@@ -3,6 +3,18 @@ const nextConfig = {
   // Vercel handles builds automatically
   images: {
     unoptimized: true, // Set to false to enable Vercel's image optimization
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '**',
+      },
+    ],
   },
   experimental: {
     // Remove if not using Server Components
