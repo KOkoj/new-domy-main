@@ -7,6 +7,9 @@ import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { 
+  FileText,
+  Video,
+  File,
   Users, 
   Search, 
   Filter, 
@@ -76,8 +79,36 @@ export default function UserManagement() {
         userStatsData[user.id] = {
           favorites: favoritesCount || 0,
           savedSearches: searchesCount || 0,
-          inquiries: inquiriesCount || 0
+          inquiries: inquiriesCount || 0,
+          forms: 0,
+          webinars: 0,
+          documents: 0
         }
+        
+        // Get intake forms count
+        const { count: formsCount } = await supabase
+          .from('client_intake_forms')
+          .select('*', { count: 'exact', head: true })
+          .eq('user_id', user.id)
+          
+        if (formsCount) userStatsData[user.id].forms = formsCount
+
+        // Get webinar registrations count
+        const { count: webinarsCount } = await supabase
+          .from('webinar_registrations')
+          .select('*', { count: 'exact', head: true })
+          .eq('user_id', user.id)
+          
+        if (webinarsCount) userStatsData[user.id].webinars = webinarsCount
+        
+        // Get document access count
+        const { count: docsCount } = await supabase
+          .from('document_access_logs')
+          .select('*', { count: 'exact', head: true })
+          .eq('user_id', user.id)
+          
+        if (docsCount) userStatsData[user.id].documents = docsCount
+
       }
 
       setUsers(profiles || [])
@@ -130,8 +161,8 @@ export default function UserManagement() {
   }
 
   const getUserActivity = (userId) => {
-    const stats = userStats[userId] || { favorites: 0, savedSearches: 0, inquiries: 0 }
-    return stats.favorites + stats.savedSearches + stats.inquiries
+    const stats = userStats[userId] || { favorites: 0, savedSearches: 0, inquiries: 0, forms: 0, webinars: 0, documents: 0 }
+    return stats.favorites + stats.savedSearches + stats.inquiries + stats.forms + stats.webinars + stats.documents
   }
 
   if (loading) {
@@ -293,6 +324,20 @@ export default function UserManagement() {
                             <span className="font-medium">{stats.inquiries}</span>
                           </div>
                           <div className="text-xs text-gray-500">Inquiries</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="flex items-center text-orange-600">
+                            <FileText className="h-3 w-3 mr-1" />
+                            <span className="font-medium">{stats.forms}</span>
+                          </div>
+                          <div className="text-xs text-gray-500">Forms</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="flex items-center text-blue-500">
+                            <File className="h-3 w-3 mr-1" />
+                            <span className="font-medium">{stats.documents}</span>
+                          </div>
+                          <div className="text-xs text-gray-500">Docs</div>
                         </div>
                       </div>
                       

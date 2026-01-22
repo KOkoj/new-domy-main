@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { 
+  FileText,
   Users, 
   MessageSquare, 
   BarChart3, 
@@ -38,6 +39,18 @@ const adminMenuItems = [
     href: '/admin/inquiries',
     icon: MessageSquare,
     description: 'View and respond to inquiries'
+  },
+  {
+    title: 'Intake Forms',
+    href: '/admin/intake-forms',
+    icon: FileText,
+    description: 'Client requirements'
+  },
+  {
+    title: 'Documents',
+    href: '/admin/documents',
+    icon: FileText,
+    description: 'Manage premium documents'
   },
   {
     title: 'Content',

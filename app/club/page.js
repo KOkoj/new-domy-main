@@ -23,63 +23,6 @@ import { supabase } from '../../lib/supabase'
 import { t } from '../../lib/translations'
 import Link from 'next/link'
 
-const UPCOMING_WEBINARS = [
-  {
-    id: 1,
-    title: 'Italian Property Market Trends 2025',
-    date: '2025-10-15',
-    time: '14:00 CET',
-    duration: '90 minutes',
-    speaker: 'Maria Rossi',
-    status: 'upcoming'
-  },
-  {
-    id: 2,
-    title: 'Tax Benefits for Foreign Property Owners',
-    date: '2025-10-22',
-    time: '16:00 CET',
-    duration: '60 minutes',
-    speaker: 'Giovanni Bianchi',
-    status: 'upcoming'
-  },
-  {
-    id: 3,
-    title: 'Restoration & Renovation Guide',
-    date: '2025-10-29',
-    time: '15:00 CET',
-    duration: '75 minutes',
-    speaker: 'Alessandra Conti',
-    status: 'upcoming'
-  }
-]
-
-const RECENT_ACTIVITIES = [
-  {
-    id: 1,
-    type: 'document',
-    title: 'Purchase Agreement Template',
-    action: 'New document available',
-    date: '2 days ago',
-    icon: FileText
-  },
-  {
-    id: 2,
-    type: 'webinar',
-    title: 'Legal Framework Webinar',
-    action: 'Recording now available',
-    date: '5 days ago',
-    icon: Video
-  },
-  {
-    id: 3,
-    type: 'message',
-    title: 'Concierge Response',
-    action: 'New message received',
-    date: '1 week ago',
-    icon: MessageCircle
-  }
-]
-
 export default function ClubOverview() {
   const [stats, setStats] = useState({
     completedWebinars: 0,
@@ -91,6 +34,8 @@ export default function ClubOverview() {
   const [user, setUser] = useState(null)
   const [profile, setProfile] = useState(null)
   const [language, setLanguage] = useState('en')
+  const [upcomingWebinars, setUpcomingWebinars] = useState([])
+  const [recentActivities, setRecentActivities] = useState([])
 
   useEffect(() => {
     loadClubData()
@@ -141,19 +86,87 @@ export default function ClubOverview() {
 
       setProfile(profile)
 
-      // TODO: Load actual stats from database
-      // For now, using placeholder data
+      // 1. Stats Calculation
       const membershipDays = profile?.createdAt 
         ? Math.floor((new Date() - new Date(profile.createdAt)) / (1000 * 60 * 60 * 24))
         : 0
 
+      // Count webinars attended/registered
+      const { count: webinarCount } = await supabase
+        .from('webinar_registrations')
+        .select('*', { count: 'exact', head: true })
+        .eq('user_id', user.id)
+        .eq('status', 'attended')
+
+      // Count documents accessed
+      const { count: docCount } = await supabase
+        .from('document_access_logs')
+        .select('*', { count: 'exact', head: true })
+        .eq('user_id', user.id)
+
+      // Count open tickets
+      const { count: ticketCount } = await supabase
+        .from('concierge_tickets')
+        .select('*', { count: 'exact', head: true })
+        .eq('user_id', user.id)
+        .neq('status', 'closed')
+
       setStats({
-        completedWebinars: 3,
-        documentsAccessed: 12,
-        conciergeTickets: 2,
+        completedWebinars: webinarCount || 0,
+        documentsAccessed: docCount || 0,
+        conciergeTickets: ticketCount || 0,
         membershipDays,
         loading: false
       })
+
+      // 2. Fetch Upcoming Webinars
+      const { data: webinars } = await supabase
+        .from('webinars')
+        .select('*')
+        .eq('status', 'upcoming')
+        .order('date', { ascending: true })
+        .limit(3)
+
+      setUpcomingWebinars(webinars || [])
+
+      // 3. Fetch Recent Activities (Logs)
+      // Combine document logs and webinar registrations
+      const { data: docLogs } = await supabase
+        .from('document_access_logs')
+        .select('*, premium_documents(name)')
+        .eq('user_id', user.id)
+        .order('accessed_at', { ascending: false })
+        .limit(3)
+
+      const { data: webinarLogs } = await supabase
+        .from('webinar_registrations')
+        .select('*, webinars(title)')
+        .eq('user_id', user.id)
+        .order('registered_at', { ascending: false })
+        .limit(3)
+
+      // Normalize and merge
+      const activities = [
+        ...(docLogs || []).map(log => ({
+          id: `doc-${log.id}`,
+          type: 'document',
+          title: log.premium_documents?.name || 'Document',
+          action: log.action === 'download' ? 'Downloaded document' : 'Viewed document',
+          date: log.accessed_at,
+          icon: FileText
+        })),
+        ...(webinarLogs || []).map(log => ({
+          id: `web-${log.id}`,
+          type: 'webinar',
+          title: log.webinars?.title || 'Webinar',
+          action: `Registered for webinar`,
+          date: log.registered_at,
+          icon: Video
+        }))
+      ].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5)
+
+      setRecentActivities(activities)
+
     } catch (error) {
       console.error('Error loading club data:', error)
       setStats(prev => ({ ...prev, loading: false }))
@@ -167,6 +180,17 @@ export default function ClubOverview() {
       day: 'numeric',
       year: 'numeric'
     })
+  }
+  
+  const formatTimeAgo = (dateString) => {
+    const date = new Date(dateString)
+    const now = new Date()
+    const diffInSeconds = Math.floor((now - date) / 1000)
+    
+    if (diffInSeconds < 60) return 'Just now'
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`
+    return `${Math.floor(diffInSeconds / 86400)}d ago`
   }
 
   if (stats.loading) {
@@ -211,7 +235,7 @@ export default function ClubOverview() {
                 <p className="text-3xl font-bold text-white mt-2" data-testid="dashboard-stat-webinars-value">{stats.completedWebinars}</p>
                 <p className="text-sm text-copper-400 mt-1 flex items-center" data-testid="dashboard-stat-webinars-trend">
                   <TrendingUp className="h-3 w-3 mr-1" />
-                  +2 this month
+                  Lifetime
                 </p>
               </div>
               <div className="p-3 rounded-full bg-copper-400/10" data-testid="dashboard-stat-webinars-icon">
@@ -271,7 +295,7 @@ export default function ClubOverview() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6" data-testid="dashboard-main-grid">
         {/* Upcoming Webinars - Takes 2 columns */}
         <div className="lg:col-span-2" data-testid="dashboard-webinars-section">
-          <Card className="bg-slate-800 border-copper-400/20">
+          <Card className="bg-slate-800 border-copper-400/20 h-full">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="flex items-center space-x-2 text-white" data-testid="dashboard-webinars-title">
                 <Calendar className="h-5 w-5 text-copper-400" />
@@ -285,31 +309,38 @@ export default function ClubOverview() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4" data-testid="dashboard-webinars-list">
-                {UPCOMING_WEBINARS.map((webinar) => (
-                  <div key={webinar.id} className="p-4 bg-slate-900/50 border border-copper-400/10 rounded-lg hover:border-copper-400/30 transition-all cursor-pointer" data-testid={`dashboard-webinar-${webinar.id}`}>
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <h4 className="font-semibold text-white mb-2" data-testid={`dashboard-webinar-${webinar.id}-title`}>{webinar.title}</h4>
-                        <div className="flex items-center space-x-4 text-sm text-gray-400">
-                          <span className="flex items-center">
-                            <Calendar className="h-4 w-4 mr-1" />
-                            {formatDate(webinar.date)}
-                          </span>
-                          <span className="flex items-center">
-                            <Clock className="h-4 w-4 mr-1" />
-                            {webinar.time}
-                          </span>
+                {upcomingWebinars.length > 0 ? (
+                  upcomingWebinars.map((webinar) => (
+                    <div key={webinar.id} className="p-4 bg-slate-900/50 border border-copper-400/10 rounded-lg hover:border-copper-400/30 transition-all cursor-pointer" data-testid={`dashboard-webinar-${webinar.id}`}>
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-white mb-2" data-testid={`dashboard-webinar-${webinar.id}-title`}>{webinar.title}</h4>
+                          <div className="flex items-center space-x-4 text-sm text-gray-400">
+                            <span className="flex items-center">
+                              <Calendar className="h-4 w-4 mr-1" />
+                              {formatDate(webinar.date)}
+                            </span>
+                            <span className="flex items-center">
+                              <Clock className="h-4 w-4 mr-1" />
+                              {webinar.time}
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-500 mt-2">
+                            Speaker: {webinar.speaker_name} • Duration: {webinar.duration}
+                          </p>
                         </div>
-                        <p className="text-sm text-gray-500 mt-2">
-                          Speaker: {webinar.speaker} • Duration: {webinar.duration}
-                        </p>
+                        <Button size="sm" className="bg-copper-600 hover:bg-copper-700" data-testid={`dashboard-webinar-${webinar.id}-register`}>
+                          {t('club.register', language)}
+                        </Button>
                       </div>
-                      <Button size="sm" className="bg-copper-600 hover:bg-copper-700" data-testid={`dashboard-webinar-${webinar.id}-register`}>
-                        {t('club.register', language)}
-                      </Button>
                     </div>
+                  ))
+                ) : (
+                  <div className="text-center py-8">
+                    <Calendar className="h-10 w-10 text-gray-600 mx-auto mb-2" />
+                    <p className="text-gray-400">No upcoming webinars scheduled.</p>
                   </div>
-                ))}
+                )}
               </div>
             </CardContent>
           </Card>
@@ -317,7 +348,7 @@ export default function ClubOverview() {
 
         {/* Recent Activity */}
         <div data-testid="dashboard-activity-section">
-          <Card className="bg-slate-800 border-copper-400/20">
+          <Card className="bg-slate-800 border-copper-400/20 h-full">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2 text-white" data-testid="dashboard-activity-title">
                 <Sparkles className="h-5 w-5 text-copper-400" />
@@ -326,21 +357,28 @@ export default function ClubOverview() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4" data-testid="dashboard-activity-list">
-                {RECENT_ACTIVITIES.map((activity) => {
-                  const Icon = activity.icon
-                  return (
-                    <div key={activity.id} className="flex items-start space-x-3 p-3 bg-slate-900/50 rounded-lg" data-testid={`dashboard-activity-${activity.id}`}>
-                      <div className="p-2 rounded-full bg-copper-400/10">
-                        <Icon className="h-4 w-4 text-copper-400" />
+                {recentActivities.length > 0 ? (
+                  recentActivities.map((activity) => {
+                    const Icon = activity.icon
+                    return (
+                      <div key={activity.id} className="flex items-start space-x-3 p-3 bg-slate-900/50 rounded-lg" data-testid={`dashboard-activity-${activity.id}`}>
+                        <div className="p-2 rounded-full bg-copper-400/10">
+                          <Icon className="h-4 w-4 text-copper-400" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-white" data-testid={`dashboard-activity-${activity.id}-title`}>{activity.title}</p>
+                          <p className="text-xs text-gray-400 mt-1">{activity.action}</p>
+                          <p className="text-xs text-gray-500 mt-1">{formatTimeAgo(activity.date)}</p>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-white" data-testid={`dashboard-activity-${activity.id}-title`}>{activity.title}</p>
-                        <p className="text-xs text-gray-400 mt-1">{activity.action}</p>
-                        <p className="text-xs text-gray-500 mt-1">{activity.date}</p>
-                      </div>
-                    </div>
-                  )
-                })}
+                    )
+                  })
+                ) : (
+                  <div className="text-center py-8">
+                    <Sparkles className="h-10 w-10 text-gray-600 mx-auto mb-2" />
+                    <p className="text-gray-400">No recent activity.</p>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -404,4 +442,3 @@ export default function ClubOverview() {
     </div>
   )
 }
-

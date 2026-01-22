@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useState, useEffect } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
@@ -15,110 +15,86 @@ import {
   FileSpreadsheet,
   FileImage,
   Eye,
-  Share2,
   Clock
 } from 'lucide-react'
-
-const DOCUMENTS = [
-  {
-    id: 1,
-    name: 'Purchase Agreement Template',
-    type: 'PDF',
-    category: 'Legal Documents',
-    size: '2.4 MB',
-    uploadedAt: '2025-09-20',
-    icon: FileText,
-    description: 'Standard Italian property purchase agreement template'
-  },
-  {
-    id: 2,
-    name: 'Tax Guide for Foreign Buyers',
-    type: 'PDF',
-    category: 'Tax Documents',
-    size: '1.8 MB',
-    uploadedAt: '2025-09-18',
-    icon: FileText,
-    description: 'Comprehensive tax guide for international property buyers'
-  },
-  {
-    id: 3,
-    name: 'Property Inspection Checklist',
-    type: 'XLSX',
-    category: 'Inspection',
-    size: '245 KB',
-    uploadedAt: '2025-09-15',
-    icon: FileSpreadsheet,
-    description: 'Detailed checklist for property inspections'
-  },
-  {
-    id: 4,
-    name: 'Renovation Permit Application',
-    type: 'PDF',
-    category: 'Legal Documents',
-    size: '890 KB',
-    uploadedAt: '2025-09-10',
-    icon: FileCheck,
-    description: 'Template for renovation permit applications'
-  },
-  {
-    id: 5,
-    name: 'Italian Property Market Report Q3 2025',
-    type: 'PDF',
-    category: 'Market Reports',
-    size: '5.2 MB',
-    uploadedAt: '2025-09-05',
-    icon: FileText,
-    description: 'Quarterly market analysis and trends'
-  },
-  {
-    id: 6,
-    name: 'Mortgage Application Guide',
-    type: 'PDF',
-    category: 'Financing',
-    size: '1.5 MB',
-    uploadedAt: '2025-08-28',
-    icon: FileText,
-    description: 'Step-by-step mortgage application process'
-  },
-  {
-    id: 7,
-    name: 'Regional Investment Comparison',
-    type: 'XLSX',
-    category: 'Market Reports',
-    size: '456 KB',
-    uploadedAt: '2025-08-20',
-    icon: FileSpreadsheet,
-    description: 'Comparative analysis of Italian regions for investment'
-  },
-  {
-    id: 8,
-    name: 'Property Insurance Overview',
-    type: 'PDF',
-    category: 'Insurance',
-    size: '1.1 MB',
-    uploadedAt: '2025-08-15',
-    icon: FileText,
-    description: 'Guide to property insurance in Italy'
-  }
-]
-
-const CATEGORIES = [
-  'All Documents',
-  'Legal Documents',
-  'Tax Documents',
-  'Financing',
-  'Market Reports',
-  'Inspection',
-  'Insurance'
-]
+import { supabase } from '../../lib/supabase'
 
 export default function DocumentsPage() {
+  const [documents, setDocuments] = useState([])
+  const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All Documents')
+  const [categories, setCategories] = useState(['All Documents'])
 
-  const filteredDocuments = DOCUMENTS.filter(doc => {
+  useEffect(() => {
+    loadDocuments()
+  }, [])
+
+  const loadDocuments = async () => {
+    try {
+      setLoading(true)
+      const { data, error } = await supabase
+        .from('premium_documents')
+        .select('*')
+        .order('uploaded_at', { ascending: false })
+
+      if (error) {
+        console.error('Error loading documents:', error)
+      } else {
+        setDocuments(data || [])
+        
+        // Extract unique categories
+        const uniqueCategories = ['All Documents', ...new Set((data || []).map(d => d.category))]
+        setCategories(uniqueCategories)
+      }
+    } catch (error) {
+      console.error('Error loading documents:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleDownload = async (doc) => {
+    // Log access
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        await supabase.from('document_access_logs').insert({
+          document_id: doc.id,
+          user_id: user.id,
+          action: 'download'
+        })
+      }
+    } catch (err) {
+      console.error('Error logging access:', err)
+    }
+
+    // Open URL
+    window.open(doc.file_url, '_blank')
+  }
+
+  const handlePreview = async (doc) => {
+    // Log access
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        await supabase.from('document_access_logs').insert({
+          document_id: doc.id,
+          user_id: user.id,
+          action: 'preview'
+        })
+      }
+    } catch (err) {
+      console.error('Error logging access:', err)
+    }
+    
+    // For now, preview is same as download/open
+    window.open(doc.file_url, '_blank')
+  }
+
+  const filteredDocuments = documents.filter(doc => {
     const matchesSearch = doc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         doc.description.toLowerCase().includes(searchQuery.toLowerCase())
+                         doc.description?.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesCategory = selectedCategory === 'All Documents' || doc.category === selectedCategory
     return matchesSearch && matchesCategory
   })
@@ -132,14 +108,12 @@ export default function DocumentsPage() {
     })
   }
 
-  const handleDownload = (doc) => {
-    // TODO: Implement actual download
-    alert(`Downloading ${doc.name}...`)
-  }
-
-  const handlePreview = (doc) => {
-    // TODO: Implement document preview
-    alert(`Opening preview for ${doc.name}...`)
+  const getFileIcon = (type) => {
+    if (['PDF'].includes(type)) return FileText
+    if (['XLS', 'XLSX', 'CSV'].includes(type)) return FileSpreadsheet
+    if (['JPG', 'JPEG', 'PNG', 'WEBP'].includes(type)) return FileImage
+    if (['DOC', 'DOCX'].includes(type)) return FileText
+    return File
   }
 
   return (
@@ -170,7 +144,7 @@ export default function DocumentsPage() {
               />
             </div>
             <div className="flex gap-2 overflow-x-auto pb-2 lg:pb-0" data-testid="documents-category-filters">
-              {CATEGORIES.map((category) => (
+              {categories.map((category) => (
                 <Button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
@@ -198,7 +172,7 @@ export default function DocumentsPage() {
             <div className="flex items-center justify-between" data-testid="documents-stat-total-layout">
               <div data-testid="documents-stat-total-info">
                 <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-total-label">Total Documents</p>
-                <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-total-value">{DOCUMENTS.length}</p>
+                <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-total-value">{documents.length}</p>
               </div>
               <div className="p-3 rounded-full bg-copper-400/10" data-testid="documents-stat-total-icon">
                 <FileText className="h-6 w-6 text-copper-400" />
@@ -212,7 +186,7 @@ export default function DocumentsPage() {
             <div className="flex items-center justify-between" data-testid="documents-stat-categories-layout">
               <div data-testid="documents-stat-categories-info">
                 <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-categories-label">Categories</p>
-                <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-categories-value">{CATEGORIES.length - 1}</p>
+                <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-categories-value">{Math.max(0, categories.length - 1)}</p>
               </div>
               <div className="p-3 rounded-full bg-blue-400/10" data-testid="documents-stat-categories-icon">
                 <Folder className="h-6 w-6 text-blue-400" />
@@ -225,11 +199,17 @@ export default function DocumentsPage() {
           <CardContent className="p-6" data-testid="documents-stat-downloads-content">
             <div className="flex items-center justify-between" data-testid="documents-stat-downloads-layout">
               <div data-testid="documents-stat-downloads-info">
-                <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-downloads-label">Downloads</p>
-                <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-downloads-value">47</p>
+                <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-downloads-label">New This Month</p>
+                <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-downloads-value">
+                  {documents.filter(d => {
+                    const date = new Date(d.uploaded_at)
+                    const now = new Date()
+                    return date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear()
+                  }).length}
+                </p>
               </div>
               <div className="p-3 rounded-full bg-green-400/10" data-testid="documents-stat-downloads-icon">
-                <Download className="h-6 w-6 text-green-400" />
+                <Clock className="h-6 w-6 text-green-400" />
               </div>
             </div>
           </CardContent>
@@ -238,9 +218,13 @@ export default function DocumentsPage() {
 
       {/* Documents List */}
       <div className="space-y-3" data-testid="documents-list">
-        {filteredDocuments.length > 0 ? (
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-copper-400 mx-auto"></div>
+          </div>
+        ) : filteredDocuments.length > 0 ? (
           filteredDocuments.map((doc) => {
-            const Icon = doc.icon
+            const Icon = getFileIcon(doc.file_type)
             return (
               <Card key={doc.id} className="bg-slate-800 border-copper-400/20 hover:border-copper-400/50 transition-all" data-testid={`document-${doc.id}`}>
                 <CardContent className="p-6" data-testid={`document-${doc.id}-content`}>
@@ -258,11 +242,11 @@ export default function DocumentsPage() {
                         <Badge variant="outline" className="border-copper-400/30 text-copper-400" data-testid={`document-${doc.id}-category`}>
                           {doc.category}
                         </Badge>
-                        <span data-testid={`document-${doc.id}-type`}>{doc.type}</span>
-                        <span data-testid={`document-${doc.id}-size`}>{doc.size}</span>
+                        <span data-testid={`document-${doc.id}-type`}>{doc.file_type}</span>
+                        <span data-testid={`document-${doc.id}-size`}>{doc.file_size}</span>
                         <span className="flex items-center" data-testid={`document-${doc.id}-date`}>
                           <Clock className="h-3 w-3 mr-1" data-testid={`document-${doc.id}-date-icon`} />
-                          {formatDate(doc.uploadedAt)}
+                          {formatDate(doc.uploaded_at)}
                         </span>
                       </div>
                     </div>
@@ -306,4 +290,3 @@ export default function DocumentsPage() {
     </div>
   )
 }
-
