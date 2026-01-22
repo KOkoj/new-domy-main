@@ -17,7 +17,7 @@ import {
   Eye,
   Clock
 } from 'lucide-react'
-import { supabase } from '../../lib/supabase'
+import { supabase } from '../../../lib/supabase'
 
 export default function DocumentsPage() {
   const [documents, setDocuments] = useState([])
