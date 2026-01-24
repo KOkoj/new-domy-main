@@ -24,6 +24,8 @@ import {
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
 
+const STORAGE_BUCKET = 'documents'
+
 export default function DocumentManagement() {
   const [documents, setDocuments] = useState([])
   const [loading, setLoading] = useState(true)
@@ -85,13 +87,30 @@ export default function DocumentManagement() {
 
     setIsUploading(true)
     try {
-      // 1. In a real app, upload file to Storage Bucket here
-      // const { data: fileData, error: uploadError } = await supabase.storage
-      //   .from('documents')
-      //   .upload(`premium/${Date.now()}_${newDoc.file.name}`, newDoc.file)
-      
-      // For demo/prototype, we'll simulate a URL
-      const fakeUrl = `https://example.com/documents/${newDoc.file.name}`
+      if (!supabase) {
+        throw new Error('Supabase is not configured')
+      }
+
+      const safeFileName = newDoc.file.name.replace(/\s+/g, '-')
+      const storagePath = `premium/${Date.now()}_${safeFileName}`
+
+      const { error: uploadError } = await supabase.storage
+        .from(STORAGE_BUCKET)
+        .upload(storagePath, newDoc.file, {
+          cacheControl: '3600',
+          upsert: false,
+          contentType: newDoc.file.type || undefined
+        })
+
+      if (uploadError) {
+        throw uploadError
+      }
+
+      const { data: publicUrlData } = supabase.storage
+        .from(STORAGE_BUCKET)
+        .getPublicUrl(storagePath)
+
+      const fileUrl = publicUrlData?.publicUrl || storagePath
       const fileSize = `${(newDoc.file.size / 1024 / 1024).toFixed(2)} MB`
       const fileType = newDoc.file.name.split('.').pop().toUpperCase()
 
@@ -102,7 +121,7 @@ export default function DocumentManagement() {
           name: newDoc.name,
           description: newDoc.description,
           category: newDoc.category,
-          file_url: fakeUrl,
+          file_url: fileUrl,
           file_size: fileSize,
           file_type: fileType,
           is_public: false, // Default to premium only

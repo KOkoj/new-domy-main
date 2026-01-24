@@ -61,6 +61,8 @@ DROP POLICY IF EXISTS "Users can update own saved searches" ON saved_searches;
 DROP POLICY IF EXISTS "Users can delete own saved searches" ON saved_searches;
 DROP POLICY IF EXISTS "Anyone can insert inquiries" ON inquiries;
 DROP POLICY IF EXISTS "Users can view own inquiries" ON inquiries;
+DROP POLICY IF EXISTS "Admins can view all inquiries" ON inquiries;
+DROP POLICY IF EXISTS "Admins can update inquiries" ON inquiries;
 
 -- Create RLS policies
 
@@ -83,6 +85,24 @@ CREATE POLICY "Users can delete own saved searches" ON saved_searches FOR DELETE
 -- Inquiries policies (anyone can insert, only authenticated users can view their own)
 CREATE POLICY "Anyone can insert inquiries" ON inquiries FOR INSERT WITH CHECK (true);
 CREATE POLICY "Users can view own inquiries" ON inquiries FOR SELECT USING (auth.uid() = "userId" OR "userId" IS NULL);
+CREATE POLICY "Admins can view all inquiries" ON inquiries
+  FOR SELECT
+  USING (
+    EXISTS (
+      SELECT 1 FROM profiles
+      WHERE profiles.id = auth.uid()
+      AND profiles.role = 'admin'
+    )
+  );
+CREATE POLICY "Admins can update inquiries" ON inquiries
+  FOR UPDATE
+  USING (
+    EXISTS (
+      SELECT 1 FROM profiles
+      WHERE profiles.id = auth.uid()
+      AND profiles.role = 'admin'
+    )
+  );
 
 -- Create indexes for performance
 CREATE INDEX IF NOT EXISTS idx_favorites_user_id ON favorites("userId");

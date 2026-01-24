@@ -19,6 +19,8 @@ import {
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
 
+const STORAGE_BUCKET = 'documents'
+
 export default function DocumentsPage() {
   const [documents, setDocuments] = useState([])
   const [loading, setLoading] = useState(true)
@@ -54,42 +56,81 @@ export default function DocumentsPage() {
     }
   }
 
+  const resolveDocumentUrl = async (doc) => {
+    if (!doc?.file_url) return null
+
+    if (doc.file_url.includes('example.com')) {
+      return null
+    }
+
+    if (doc.file_url.startsWith('http://') || doc.file_url.startsWith('https://')) {
+      return doc.file_url
+    }
+
+    if (!supabase) return null
+
+    const { data, error } = await supabase.storage
+      .from(STORAGE_BUCKET)
+      .createSignedUrl(doc.file_url, 60 * 60)
+
+    if (error) {
+      console.error('Error creating signed URL:', error)
+      return null
+    }
+
+    return data?.signedUrl || null
+  }
+
+  const openDocument = async (doc) => {
+    const url = await resolveDocumentUrl(doc)
+    if (!url) {
+      alert('Document link is unavailable. Please contact support or re-upload the file.')
+      return
+    }
+
+    window.open(url, '_blank')
+  }
+
   const handleDownload = async (doc) => {
     // Log access
     try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user) {
-        await supabase.from('document_access_logs').insert({
-          document_id: doc.id,
-          user_id: user.id,
-          action: 'download'
-        })
+      if (supabase) {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (user) {
+          await supabase.from('document_access_logs').insert({
+            document_id: doc.id,
+            user_id: user.id,
+            action: 'download'
+          })
+        }
       }
     } catch (err) {
       console.error('Error logging access:', err)
     }
 
     // Open URL
-    window.open(doc.file_url, '_blank')
+    await openDocument(doc)
   }
 
   const handlePreview = async (doc) => {
     // Log access
     try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user) {
-        await supabase.from('document_access_logs').insert({
-          document_id: doc.id,
-          user_id: user.id,
-          action: 'preview'
-        })
+      if (supabase) {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (user) {
+          await supabase.from('document_access_logs').insert({
+            document_id: doc.id,
+            user_id: user.id,
+            action: 'preview'
+          })
+        }
       }
     } catch (err) {
       console.error('Error logging access:', err)
     }
     
     // For now, preview is same as download/open
-    window.open(doc.file_url, '_blank')
+    await openDocument(doc)
   }
 
   const filteredDocuments = documents.filter(doc => {
