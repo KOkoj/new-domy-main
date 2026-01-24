@@ -274,17 +274,19 @@ export async function POST(request, { params }) {
     if (path[0] === 'inquiries') {
       if (!supabase) return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
       
-      const { listingId, name, email, message, propertyTitle } = body
+      const { listingId, name, email, message, propertyTitle, phone, type = 'property' } = body
       
       // Get user if authenticated
       const { data: { user } } = await supabase.auth.getUser()
       
       const inquiryData = {
-        listingId,
+        listingId: listingId || null,
         name,
         email,
         message,
-        userId: user?.id || null
+        userId: user?.id || null,
+        phone: phone || null,
+        type
       }
 
       const { data, error } = await supabase

@@ -76,7 +76,7 @@ export default function InquiryManagement() {
         inquiry.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         inquiry.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
         inquiry.message.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        inquiry.listingId.toLowerCase().includes(searchTerm.toLowerCase())
+        (inquiry.listingId && inquiry.listingId.toLowerCase().includes(searchTerm.toLowerCase()))
       )
     }
 
@@ -265,7 +265,7 @@ export default function InquiryManagement() {
                         </span>
                         <span className="flex items-center">
                           <Home className="h-3 w-3 mr-1" />
-                          Property: {inquiry.listingId}
+                          {inquiry.listingId ? `Property: ${inquiry.listingId}` : 'General Inquiry'}
                         </span>
                         <span className="flex items-center">
                           <Calendar className="h-3 w-3 mr-1" />
@@ -304,7 +304,8 @@ export default function InquiryManagement() {
                                 <h4 className="font-medium mb-2">Original Inquiry</h4>
                                 <div className="space-y-2 text-sm">
                                   <p><strong>From:</strong> {selectedInquiry.name} ({selectedInquiry.email})</p>
-                                  <p><strong>Property:</strong> {selectedInquiry.listingId}</p>
+                                  <p><strong>Type:</strong> {selectedInquiry.listingId ? `Property: ${selectedInquiry.listingId}` : 'General Inquiry'}</p>
+                                  {selectedInquiry.phone && <p><strong>Phone:</strong> {selectedInquiry.phone}</p>}
                                   <p><strong>Date:</strong> {new Date(selectedInquiry.createdAt).toLocaleString()}</p>
                                   <p><strong>Message:</strong></p>
                                   <p className="bg-white p-3 rounded border">{selectedInquiry.message}</p>

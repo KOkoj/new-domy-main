@@ -158,9 +158,21 @@ export default function ContactPage() {
     setIsSubmitting(true)
     setSubmitStatus(null)
 
-    // Simulate form submission (replace with actual API call)
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      const response = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          type: 'general',
+          propertyTitle: 'General Contact Inquiry'
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to send message')
+      }
+
       setSubmitStatus('success')
       setFormData({
         name: '',
@@ -170,6 +182,7 @@ export default function ContactPage() {
         message: ''
       })
     } catch (error) {
+      console.error('Error sending message:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
