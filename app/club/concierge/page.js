@@ -79,7 +79,7 @@ export default function ConciergePage() {
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [message, setMessage] = useState({ type: '', text: '' })
-  const [tickets, setTickets] = useState(SAMPLE_TICKETS)
+  const [tickets, setTickets] = useState([])
 
   const [newTicket, setNewTicket] = useState({
     subject: '',
@@ -100,8 +100,40 @@ export default function ConciergePage() {
       
       setUser(user)
 
-      // TODO: Load user's tickets from database
-      // For now using sample data
+      // Load user's tickets (inquiries of type 'concierge')
+      const { data, error } = await supabase
+        .from('inquiries')
+        .select('*')
+        .eq('userId', user.id)
+        .eq('type', 'concierge')
+        .order('createdAt', { ascending: false })
+
+      if (error) {
+        console.error('Error fetching tickets:', error)
+        return
+      }
+
+      const realTickets = (data || []).map(inquiry => {
+        // Parse metadata from message if possible, or provide defaults
+        const lines = inquiry.message.split('\n')
+        const subject = lines.find(l => l.startsWith('Subject: '))?.substring(9) || 'Concierge Request'
+        const category = lines.find(l => l.startsWith('Category: '))?.substring(10) || 'General'
+        const priority = lines.find(l => l.startsWith('Priority: '))?.substring(10) || 'medium'
+        
+        return {
+          id: inquiry.id,
+          subject,
+          category,
+          status: inquiry.responded ? 'resolved' : 'open',
+          priority: priority.toLowerCase(),
+          createdAt: inquiry.createdAt,
+          lastUpdate: inquiry.createdAt,
+          messages: 1, // Placeholder
+          description: inquiry.message
+        }
+      })
+
+      setTickets(realTickets)
     } catch (error) {
       console.error('Error loading concierge data:', error)
     } finally {
@@ -121,17 +153,27 @@ export default function ConciergePage() {
         return
       }
 
-      // TODO: Save ticket to database
-      const newTicketData = {
-        id: tickets.length + 1,
-        ...newTicket,
-        status: 'open',
-        createdAt: new Date().toISOString().split('T')[0],
-        lastUpdate: new Date().toISOString().split('T')[0],
-        messages: 1
+      if (!user) {
+        setMessage({ type: 'error', text: 'You must be logged in to submit a request.' })
+        setSubmitting(false)
+        return
       }
 
-      setTickets(prev => [newTicketData, ...prev])
+      // Structure the message with metadata
+      const fullMessage = `Subject: ${newTicket.subject}\nCategory: ${newTicket.category}\nPriority: ${newTicket.priority}\nContact Method: ${newTicket.contactMethod}\n\n${newTicket.description}`
+
+      const { error } = await supabase.from('inquiries').insert({
+        userId: user.id,
+        name: user.user_metadata?.name || user.email?.split('@')[0] || 'Club Member',
+        email: user.email,
+        listingId: 'Concierge Request',
+        type: 'concierge',
+        message: fullMessage,
+        phone: null 
+      })
+
+      if (error) throw error
+
       setMessage({ 
         type: 'success', 
         text: 'Your request has been submitted! Our team will respond within 24 hours.' 
@@ -146,11 +188,14 @@ export default function ConciergePage() {
         contactMethod: 'email'
       })
 
+      // Reload tickets
+      loadConciergeData()
+
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
       console.error('Error submitting ticket:', error)
-      setMessage({ type: 'error', text: 'Failed to submit request. Please try again.' })
+      setMessage({ type: 'error', text: 'Failed to submit request: ' + error.message })
     } finally {
       setSubmitting(false)
     }
