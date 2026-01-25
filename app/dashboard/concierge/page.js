@@ -75,6 +75,13 @@ const PRIORITY_LEVELS = [
   { value: 'high', label: 'High', color: 'text-red-400' }
 ]
 
+// Light mode colors
+const cardClass = "bg-white border-gray-200"
+const textPrimary = "text-gray-900"
+const textSecondary = "text-gray-500"
+const bgIcon = "bg-slate-100"
+const inputClass = "bg-white border-gray-200 text-gray-900"
+
 export default function ConciergePage() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -263,46 +270,46 @@ export default function ConciergePage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-white flex items-center space-x-3">
-          <MessageCircle className="h-8 w-8 text-copper-400" />
+        <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3">
+          <MessageCircle className="h-8 w-8 text-copper-600" />
           <span>{t('club.conciergePage.title', language)}</span>
         </h1>
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-600 mt-2">
           {t('club.conciergePage.subtitle', language)}
         </p>
       </div>
 
       {/* Contact Options */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="bg-slate-800 border-copper-400/20">
+        <Card className="bg-white border-gray-200">
           <CardContent className="p-6 text-center">
-            <div className="w-12 h-12 bg-copper-400/10 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Phone className="h-6 w-6 text-copper-400" />
+            <div className="w-12 h-12 bg-copper-50 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Phone className="h-6 w-6 text-copper-600" />
             </div>
-            <h3 className="font-semibold text-white mb-1">{t('club.conciergePage.callUs', language)}</h3>
-            <p className="text-sm text-gray-400 mb-3">{t('club.conciergePage.callHours', language)}</p>
-            <p className="text-copper-400 font-medium">{t('club.conciergePage.phone', language)}</p>
+            <h3 className="font-semibold text-gray-900 mb-1">{t('club.conciergePage.callUs', language)}</h3>
+            <p className="text-sm text-gray-500 mb-3">{t('club.conciergePage.callHours', language)}</p>
+            <p className="text-copper-600 font-medium">{t('club.conciergePage.phone', language)}</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800 border-copper-400/20">
+        <Card className="bg-white border-gray-200">
           <CardContent className="p-6 text-center">
-            <div className="w-12 h-12 bg-blue-400/10 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Mail className="h-6 w-6 text-blue-400" />
+            <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Mail className="h-6 w-6 text-blue-600" />
             </div>
-            <h3 className="font-semibold text-white mb-1">{t('club.conciergePage.emailUs', language)}</h3>
-            <p className="text-sm text-gray-400 mb-3">{t('club.conciergePage.emailResponse', language)}</p>
-            <p className="text-blue-400 font-medium">{t('club.conciergePage.email', language)}</p>
+            <h3 className="font-semibold text-gray-900 mb-1">{t('club.conciergePage.emailUs', language)}</h3>
+            <p className="text-sm text-gray-500 mb-3">{t('club.conciergePage.emailResponse', language)}</p>
+            <p className="text-blue-600 font-medium">{t('club.conciergePage.email', language)}</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800 border-copper-400/20">
+        <Card className="bg-white border-gray-200">
           <CardContent className="p-6 text-center">
-            <div className="w-12 h-12 bg-green-400/10 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Calendar className="h-6 w-6 text-green-400" />
+            <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Calendar className="h-6 w-6 text-green-600" />
             </div>
-            <h3 className="font-semibold text-white mb-1">{t('club.conciergePage.bookCall', language)}</h3>
-            <p className="text-sm text-gray-400 mb-3">{t('club.conciergePage.bookDescription', language)}</p>
+            <h3 className="font-semibold text-gray-900 mb-1">{t('club.conciergePage.bookCall', language)}</h3>
+            <p className="text-sm text-gray-500 mb-3">{t('club.conciergePage.bookDescription', language)}</p>
             <Button size="sm" className="bg-green-600 hover:bg-green-700">
               {t('club.conciergePage.scheduleNow', language)}
             </Button>
@@ -327,46 +334,46 @@ export default function ConciergePage() {
 
       {/* Tabs */}
       <Tabs defaultValue="new" className="w-full">
-        <TabsList className="bg-slate-800 border border-copper-400/20">
-          <TabsTrigger value="new" className="data-[state=active]:bg-copper-600">
+        <TabsList className="bg-white border-gray-200">
+          <TabsTrigger value="new" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700">
             {t('club.conciergePage.newRequest', language)}
           </TabsTrigger>
-          <TabsTrigger value="tickets" className="data-[state=active]:bg-copper-600">
+          <TabsTrigger value="tickets" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700">
             {t('club.conciergePage.myTickets', language)} ({tickets.length})
           </TabsTrigger>
         </TabsList>
 
         {/* New Request Tab */}
         <TabsContent value="new" className="mt-6">
-          <Card className="bg-slate-800 border-copper-400/20">
+          <Card className="bg-white border-gray-200">
             <CardHeader>
-              <CardTitle className="flex items-center space-x-2 text-white">
-                <Sparkles className="h-5 w-5 text-copper-400" />
+              <CardTitle className="flex items-center space-x-2 text-gray-900">
+                <Sparkles className="h-5 w-5 text-copper-600" />
                 <span>{t('club.conciergePage.submitRequest', language)}</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmitTicket} className="space-y-4">
                 <div>
-                  <Label htmlFor="subject" className="text-gray-300">{t('club.conciergePage.subject', language)} *</Label>
+                  <Label htmlFor="subject" className="text-gray-700">{t('club.conciergePage.subject', language)} *</Label>
                   <Input
                     id="subject"
                     value={newTicket.subject}
                     onChange={(e) => setNewTicket(prev => ({ ...prev, subject: e.target.value }))}
                     placeholder={t('club.conciergePage.subjectPlaceholder', language)}
-                    className="bg-slate-900 border-copper-400/20 text-white"
+                    className="bg-white border-gray-200 text-gray-900"
                     required
                   />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="category" className="text-gray-300">{t('club.conciergePage.category', language)} *</Label>
+                    <Label htmlFor="category" className="text-gray-700">{t('club.conciergePage.category', language)} *</Label>
                     <select
                       id="category"
                       value={newTicket.category}
                       onChange={(e) => setNewTicket(prev => ({ ...prev, category: e.target.value }))}
-                      className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
+                      className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                       required
                     >
                       <option value="">{t('club.conciergePage.selectCategory', language)}</option>
@@ -377,12 +384,12 @@ export default function ConciergePage() {
                   </div>
 
                   <div>
-                    <Label htmlFor="priority" className="text-gray-300">{t('club.conciergePage.priority', language)}</Label>
+                    <Label htmlFor="priority" className="text-gray-700">{t('club.conciergePage.priority', language)}</Label>
                     <select
                       id="priority"
                       value={newTicket.priority}
                       onChange={(e) => setNewTicket(prev => ({ ...prev, priority: e.target.value }))}
-                      className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
+                      className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                     >
                       {PRIORITY_LEVELS.map((priority) => (
                         <option key={priority.value} value={priority.value}>
@@ -394,20 +401,20 @@ export default function ConciergePage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="description" className="text-gray-300">{t('club.conciergePage.description', language)} *</Label>
+                  <Label htmlFor="description" className="text-gray-700">{t('club.conciergePage.description', language)} *</Label>
                   <Textarea
                     id="description"
                     value={newTicket.description}
                     onChange={(e) => setNewTicket(prev => ({ ...prev, description: e.target.value }))}
                     placeholder={t('club.conciergePage.descriptionPlaceholder', language)}
                     rows={6}
-                    className="bg-slate-900 border-copper-400/20 text-white"
+                    className="bg-white border-gray-200 text-gray-900"
                     required
                   />
                 </div>
 
                 <div>
-                  <Label className="text-gray-300">{t('club.conciergePage.contactMethod', language)}</Label>
+                  <Label className="text-gray-700">{t('club.conciergePage.contactMethod', language)}</Label>
                   <div className="flex gap-4 mt-2">
                     <label className="flex items-center space-x-2 cursor-pointer">
                       <input
@@ -418,7 +425,7 @@ export default function ConciergePage() {
                         onChange={(e) => setNewTicket(prev => ({ ...prev, contactMethod: e.target.value }))}
                         className="text-copper-600 focus:ring-copper-600"
                       />
-                      <span className="text-gray-300">{t('club.conciergePage.emailOption', language)}</span>
+                      <span className="text-gray-700">{t('club.conciergePage.emailOption', language)}</span>
                     </label>
                     <label className="flex items-center space-x-2 cursor-pointer">
                       <input
@@ -429,7 +436,7 @@ export default function ConciergePage() {
                         onChange={(e) => setNewTicket(prev => ({ ...prev, contactMethod: e.target.value }))}
                         className="text-copper-600 focus:ring-copper-600"
                       />
-                      <span className="text-gray-300">{t('club.conciergePage.phoneOption', language)}</span>
+                      <span className="text-gray-700">{t('club.conciergePage.phoneOption', language)}</span>
                     </label>
                   </div>
                 </div>
@@ -451,18 +458,18 @@ export default function ConciergePage() {
         <TabsContent value="tickets" className="mt-6 space-y-4">
           {tickets.length > 0 ? (
             tickets.map((ticket) => (
-              <Card key={ticket.id} className="bg-slate-800 border-copper-400/20 hover:border-copper-400/50 transition-all cursor-pointer">
+              <Card key={ticket.id} className="bg-white border-gray-200 hover:shadow-md transition-all cursor-pointer">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-lg font-semibold text-white">{ticket.subject}</h3>
+                        <h3 className="text-lg font-semibold text-gray-900">{ticket.subject}</h3>
                         <Badge className={getStatusBadge(ticket.status)}>
                           {ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1)}
                         </Badge>
                       </div>
                       
-                      <div className="flex items-center gap-4 text-sm text-gray-400 mb-3">
+                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
                         <span className="flex items-center">
                           <User className="h-4 w-4 mr-1" />
                           {ticket.category}
@@ -478,10 +485,10 @@ export default function ConciergePage() {
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <Badge variant="outline" className="border-copper-400/30 text-copper-400 text-xs">
+                        <Badge variant="outline" className="border-copper-200 text-copper-600 text-xs">
                           {t('club.conciergePage.priority', language)}: {ticket.priority}
                         </Badge>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-gray-400">
                           {t('club.conciergePage.lastUpdate', language)}: {formatDate(ticket.lastUpdate)}
                         </span>
                       </div>
@@ -495,10 +502,10 @@ export default function ConciergePage() {
               </Card>
             ))
           ) : (
-            <Card className="bg-slate-800 border-copper-400/20">
+            <Card className="bg-white border-gray-200">
               <CardContent className="p-12 text-center">
-                <MessageCircle className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-400">{t('club.conciergePage.noTickets', language)}</p>
+                <MessageCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <p className="text-gray-600">{t('club.conciergePage.noTickets', language)}</p>
                 <p className="text-sm text-gray-500 mt-2">{t('club.conciergePage.noTicketsDescription', language)}</p>
               </CardContent>
             </Card>

@@ -26,6 +26,12 @@ import {
 
 const videoCategories = ['All', 'Market Insights', 'Property Tours', 'Renovation', 'Lifestyle', 'Guides', 'Case Studies']
 
+// Light mode colors
+const cardClass = "bg-white border-gray-200"
+const textPrimary = "text-gray-900"
+const textSecondary = "text-gray-500"
+const inputClass = "bg-white border-gray-200 text-gray-900"
+
 export default function ContentPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedVideoCategory, setSelectedVideoCategory] = useState('All')
@@ -161,71 +167,71 @@ export default function ContentPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-white flex items-center space-x-3">
-          <Video className="h-8 w-8 text-copper-400" />
+        <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3">
+          <Video className="h-8 w-8 text-copper-600" />
           <span>{t('club.contentPage.title', language)}</span>
         </h1>
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-600 mt-2">
           {t('club.contentPage.subtitle', language)}
         </p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-slate-800 border-copper-400/20">
+        <Card className="bg-white border-gray-200">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-400">{t('club.contentPage.videos', language)}</p>
-                <p className="text-3xl font-bold text-white mt-2">{content.videos.length}</p>
+                <p className="text-sm font-medium text-gray-500">{t('club.contentPage.videos', language)}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">{content.videos.length}</p>
               </div>
-              <div className="p-3 rounded-full bg-copper-400/10">
-                <Video className="h-6 w-6 text-copper-400" />
+              <div className="p-3 rounded-full bg-copper-50">
+                <Video className="h-6 w-6 text-copper-600" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800 border-copper-400/20">
+        <Card className="bg-white border-gray-200">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-400">{t('club.contentPage.guides', language)}</p>
-                <p className="text-3xl font-bold text-white mt-2">{content.guides.length}</p>
+                <p className="text-sm font-medium text-gray-500">{t('club.contentPage.guides', language)}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">{content.guides.length}</p>
               </div>
-              <div className="p-3 rounded-full bg-blue-400/10">
-                <BookOpen className="h-6 w-6 text-blue-400" />
+              <div className="p-3 rounded-full bg-blue-50">
+                <BookOpen className="h-6 w-6 text-blue-600" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800 border-copper-400/20">
+        <Card className="bg-white border-gray-200">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-400">{t('club.contentPage.articles', language)}</p>
-                <p className="text-3xl font-bold text-white mt-2">{content.articles.length}</p>
+                <p className="text-sm font-medium text-gray-500">{t('club.contentPage.articles', language)}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">{content.articles.length}</p>
               </div>
-              <div className="p-3 rounded-full bg-green-400/10">
-                <FileText className="h-6 w-6 text-green-400" />
+              <div className="p-3 rounded-full bg-green-50">
+                <FileText className="h-6 w-6 text-green-600" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800 border-copper-400/20">
+        <Card className="bg-white border-gray-200">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-400">{t('club.contentPage.totalViews', language)}</p>
-                <p className="text-3xl font-bold text-white mt-2">
+                <p className="text-sm font-medium text-gray-500">{t('club.contentPage.totalViews', language)}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">
                   {/* Calculate total views */}
                   {[...content.videos, ...content.articles].reduce((acc, item) => acc + (item.view_count || 0), 0)}
                 </p>
               </div>
-              <div className="p-3 rounded-full bg-purple-400/10">
-                <Eye className="h-6 w-6 text-purple-400" />
+              <div className="p-3 rounded-full bg-purple-50">
+                <Eye className="h-6 w-6 text-purple-600" />
               </div>
             </div>
           </CardContent>
@@ -233,7 +239,7 @@ export default function ContentPage() {
       </div>
 
       {/* Search */}
-      <Card className="bg-slate-800 border-copper-400/20">
+      <Card className="bg-white border-gray-200">
         <CardContent className="p-6">
           <div className="relative">
             <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
@@ -241,7 +247,7 @@ export default function ContentPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t('club.contentPage.searchPlaceholder', language)}
-              className="pl-10 bg-slate-900 border-copper-400/20 text-white"
+              className="pl-10 bg-white border-gray-200 text-gray-900"
             />
           </div>
         </CardContent>
@@ -249,16 +255,16 @@ export default function ContentPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="videos" className="w-full">
-        <TabsList className="bg-slate-800 border border-copper-400/20">
-          <TabsTrigger value="videos" className="data-[state=active]:bg-copper-600">
+        <TabsList className="bg-white border-gray-200">
+          <TabsTrigger value="videos" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700">
             <Video className="h-4 w-4 mr-2" />
             {t('club.contentPage.videos', language)}
           </TabsTrigger>
-          <TabsTrigger value="guides" className="data-[state=active]:bg-copper-600">
+          <TabsTrigger value="guides" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700">
             <BookOpen className="h-4 w-4 mr-2" />
             {t('club.contentPage.guides', language)}
           </TabsTrigger>
-          <TabsTrigger value="articles" className="data-[state=active]:bg-copper-600">
+          <TabsTrigger value="articles" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700">
             <FileText className="h-4 w-4 mr-2" />
             {t('club.contentPage.articles', language)}
           </TabsTrigger>
@@ -277,7 +283,7 @@ export default function ContentPage() {
                 className={`whitespace-nowrap ${
                   selectedVideoCategory === category
                     ? 'bg-copper-600 text-white border-copper-600'
-                    : 'bg-transparent border-copper-400/20 text-gray-300 hover:bg-copper-400/10'
+                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
                 }`}
               >
                 {category === 'All' ? t('club.contentPage.all', language) : category}
@@ -290,7 +296,7 @@ export default function ContentPage() {
             {filteredVideos.map((video) => (
               <Card 
                 key={video.id} 
-                className="bg-slate-800 border-copper-400/20 hover:border-copper-400/50 transition-all overflow-hidden group cursor-pointer"
+                className="bg-white border-gray-200 hover:shadow-md transition-all overflow-hidden group cursor-pointer"
                 onClick={() => handleOpenItem(video)}
               >
                 <div className="relative h-48 overflow-hidden">
@@ -300,7 +306,7 @@ export default function ContentPage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                   />
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="h-16 w-16 text-copper-400" />
+                    <Play className="h-16 w-16 text-white" />
                   </div>
                   <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs text-white">
                     {video.duration}
@@ -310,9 +316,9 @@ export default function ContentPage() {
                   </Badge>
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-white mb-2">{video.title}</h3>
-                  <p className="text-sm text-gray-400 mb-4 line-clamp-2">{video.description}</p>
-                  <div className="flex items-center justify-between text-xs text-gray-500">
+                  <h3 className="font-semibold text-gray-900 mb-2">{video.title}</h3>
+                  <p className="text-sm text-gray-500 mb-4 line-clamp-2">{video.description}</p>
+                  <div className="flex items-center justify-between text-xs text-gray-400">
                     <span className="flex items-center">
                       <Eye className="h-3 w-3 mr-1" />
                       {video.view_count || 0} {t('club.contentPage.views', language)}
@@ -325,8 +331,8 @@ export default function ContentPage() {
           </div>
           ) : (
             <div className="text-center py-12">
-              <Video className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-              <p className="text-gray-400">{t('club.contentPage.noVideos', language)}</p>
+              <Video className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-500">{t('club.contentPage.noVideos', language)}</p>
             </div>
           )}
         </TabsContent>
@@ -337,19 +343,19 @@ export default function ContentPage() {
             content.guides.map((guide) => {
             const Icon = guide.icon || BookOpen
             return (
-              <Card key={guide.id} className="bg-slate-800 border-copper-400/20 hover:border-copper-400/50 transition-all">
+              <Card key={guide.id} className="bg-white border-gray-200 hover:shadow-md transition-all">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-copper-400/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon className="h-8 w-8 text-copper-400" />
+                    <div className="w-16 h-16 bg-copper-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon className="h-8 w-8 text-copper-600" />
                     </div>
                     <div className="flex-1">
-                      <Badge className="bg-copper-600/20 text-copper-400 border-copper-400/30 mb-2">
+                      <Badge className="bg-copper-50 text-copper-700 border-copper-200 mb-2">
                         {guide.category}
                       </Badge>
-                      <h3 className="text-lg font-semibold text-white mb-1">{guide.title}</h3>
-                      <p className="text-sm text-gray-400 mb-3">{guide.description}</p>
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-1">{guide.title}</h3>
+                      <p className="text-sm text-gray-500 mb-3">{guide.description}</p>
+                      <div className="flex items-center gap-4 text-xs text-gray-400">
                         <span>{guide.pages} {t('club.contentPage.pages', language)}</span>
                         <span className="flex items-center">
                           <Download className="h-3 w-3 mr-1" />
@@ -359,7 +365,7 @@ export default function ContentPage() {
                       </div>
                     </div>
                     <Button 
-                      className="bg-copper-600 hover:bg-copper-700"
+                      className="bg-copper-600 hover:bg-copper-700 text-white"
                       onClick={() => handleOpenItem(guide)}
                     >
                       <Download className="h-4 w-4 mr-2" />
@@ -371,8 +377,8 @@ export default function ContentPage() {
             )
           })) : (
             <div className="text-center py-12">
-              <BookOpen className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-              <p className="text-gray-400">{t('club.contentPage.noGuides', language)}</p>
+              <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-500">{t('club.contentPage.noGuides', language)}</p>
             </div>
           )}
         </TabsContent>
@@ -383,17 +389,17 @@ export default function ContentPage() {
             content.articles.map((article) => (
             <Card 
               key={article.id} 
-              className="bg-slate-800 border-copper-400/20 hover:border-copper-400/50 transition-all cursor-pointer"
+              className="bg-white border-gray-200 hover:shadow-md transition-all cursor-pointer"
               onClick={() => handleOpenItem(article)}
             >
               <CardContent className="p-6">
-                <Badge className="bg-blue-600/20 text-blue-400 border-blue-400/30 mb-3">
+                <Badge className="bg-blue-50 text-blue-700 border-blue-200 mb-3">
                   {article.category}
                 </Badge>
-                <h3 className="text-xl font-semibold text-white mb-2">{article.title}</h3>
-                <p className="text-gray-400 mb-4 line-clamp-3">{article.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{article.title}</h3>
+                <p className="text-gray-500 mb-4 line-clamp-3">{article.description}</p>
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4 text-sm text-gray-500">
+                  <div className="flex items-center gap-4 text-sm text-gray-400">
                     <span>{article.author}</span>
                     <span className="flex items-center">
                       <Clock className="h-3 w-3 mr-1" />
@@ -405,7 +411,7 @@ export default function ContentPage() {
                     </span>
                     <span>{formatDate(article.published_at)}</span>
                   </div>
-                  <Button variant="outline" size="sm" className="bg-transparent border-copper-400/20 text-copper-400 hover:bg-copper-400/10">
+                  <Button variant="outline" size="sm" className="bg-white border-gray-200 text-gray-600 hover:bg-gray-50">
                     {t('club.contentPage.readArticle', language)} →
                   </Button>
                 </div>
@@ -414,8 +420,8 @@ export default function ContentPage() {
           ))
           ) : (
             <div className="text-center py-12">
-              <FileText className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-              <p className="text-gray-400">{t('club.contentPage.noArticles', language)}</p>
+              <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-500">{t('club.contentPage.noArticles', language)}</p>
             </div>
           )}
         </TabsContent>
@@ -423,7 +429,7 @@ export default function ContentPage() {
 
       {/* Content Viewer Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-4xl bg-slate-900 border-copper-400/20 text-white max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl bg-white text-gray-900 max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold">{viewingItem?.title}</DialogTitle>
           </DialogHeader>
@@ -443,10 +449,10 @@ export default function ContentPage() {
                       allowFullScreen
                     ></iframe>
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-slate-800">
-                      <p className="text-gray-400">
+                    <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                      <p className="text-gray-500">
                         {viewingItem.content_url ? (
-                          <a href={viewingItem.content_url} target="_blank" rel="noreferrer" className="text-copper-400 hover:underline">
+                          <a href={viewingItem.content_url} target="_blank" rel="noreferrer" className="text-copper-600 hover:underline">
                             Watch Video (External Link)
                           </a>
                         ) : 'No video URL provided'}
@@ -454,7 +460,7 @@ export default function ContentPage() {
                     </div>
                   )}
                 </div>
-                <div className="prose prose-invert max-w-none">
+                <div className="prose max-w-none text-gray-600">
                   <p>{viewingItem.description}</p>
                 </div>
               </div>
@@ -462,7 +468,7 @@ export default function ContentPage() {
 
             {viewingItem?.content_type === 'article' && (
               <div className="space-y-6">
-                <div className="flex items-center gap-4 text-sm text-gray-400 border-b border-gray-800 pb-4">
+                <div className="flex items-center gap-4 text-sm text-gray-500 border-b border-gray-200 pb-4">
                   <span className="flex items-center"><Clock className="h-4 w-4 mr-1" /> {viewingItem.read_time}</span>
                   <span>|</span>
                   <span>{viewingItem.author}</span>
@@ -470,19 +476,19 @@ export default function ContentPage() {
                   <span>{formatDate(viewingItem.published_at)}</span>
                 </div>
                 
-                <div className="prose prose-invert max-w-none">
+                <div className="prose max-w-none text-gray-600">
                   {/* If content_url is a link, show button to open it. If it's text, show it. */}
                   {viewingItem.content_url && viewingItem.content_url.startsWith('http') ? (
                     <div className="text-center py-8">
-                       <p className="mb-4 text-gray-300">{viewingItem.description}</p>
-                       <Button asChild className="bg-copper-600 hover:bg-copper-700">
+                       <p className="mb-4 text-gray-600">{viewingItem.description}</p>
+                       <Button asChild className="bg-copper-600 hover:bg-copper-700 text-white">
                          <a href={viewingItem.content_url} target="_blank" rel="noreferrer">
                            Read Full Article <Eye className="ml-2 h-4 w-4" />
                          </a>
                        </Button>
                     </div>
                   ) : (
-                    <div className="whitespace-pre-wrap text-gray-300">
+                    <div className="whitespace-pre-wrap text-gray-600">
                       {viewingItem.description}
                       {/* Placeholder for actual article body if we had a separate column */}
                     </div>

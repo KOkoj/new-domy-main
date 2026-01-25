@@ -136,6 +136,12 @@ const PAST_WEBINARS = [
   }
 ]
 
+// Light mode colors
+const cardClass = "bg-white border-gray-200"
+const textPrimary = "text-gray-900"
+const textSecondary = "text-gray-500"
+const badgeClass = "bg-copper-50 text-copper-700 border-copper-200"
+
 export default function WebinarsPage() {
   const [user, setUser] = useState(null)
   const [registrations, setRegistrations] = useState([])
@@ -309,22 +315,22 @@ END:VCALENDAR`
     <div className="space-y-6" data-testid="webinars-container">
       {/* Header */}
       <div data-testid="webinars-header">
-        <h1 className="text-3xl font-bold text-white flex items-center space-x-3" data-testid="webinars-title">
-          <Calendar className="h-8 w-8 text-copper-400" data-testid="webinars-title-icon" />
+        <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3" data-testid="webinars-title">
+          <Calendar className="h-8 w-8 text-copper-600" data-testid="webinars-title-icon" />
           <span data-testid="webinars-title-text">{t('club.webinarsPage.title', language)}</span>
         </h1>
-        <p className="text-gray-400 mt-2" data-testid="webinars-subtitle">
+        <p className="text-gray-600 mt-2" data-testid="webinars-subtitle">
           {t('club.webinarsPage.subtitle', language)}
         </p>
       </div>
 
       {/* Tabs */}
       <Tabs defaultValue="upcoming" className="w-full" data-testid="webinars-tabs">
-        <TabsList className="bg-slate-800 border border-copper-400/20" data-testid="webinars-tabs-list">
-          <TabsTrigger value="upcoming" className="data-[state=active]:bg-copper-600" data-testid="webinars-tab-upcoming">
+        <TabsList className="bg-white border-gray-200" data-testid="webinars-tabs-list">
+          <TabsTrigger value="upcoming" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700" data-testid="webinars-tab-upcoming">
             {t('club.webinarsPage.upcomingWebinars', language)}
           </TabsTrigger>
-          <TabsTrigger value="past" className="data-[state=active]:bg-copper-600" data-testid="webinars-tab-past">
+          <TabsTrigger value="past" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700" data-testid="webinars-tab-past">
             {t('club.webinarsPage.pastRecordings', language)}
           </TabsTrigger>
         </TabsList>
@@ -336,12 +342,12 @@ END:VCALENDAR`
             const isRegistered = registrations.includes(webinar.id)
             
             return (
-              <Card key={webinar.id} className="bg-slate-800 border-copper-400/20" data-testid={`webinar-upcoming-${webinar.id}`}>
+              <Card key={webinar.id} className="bg-white border-gray-200" data-testid={`webinar-upcoming-${webinar.id}`}>
                 <CardContent className="p-6" data-testid={`webinar-upcoming-${webinar.id}-content`}>
                   <div className="flex flex-col lg:flex-row gap-6" data-testid={`webinar-upcoming-${webinar.id}-layout`}>
                     {/* Date Badge */}
                     <div className="flex-shrink-0" data-testid={`webinar-upcoming-${webinar.id}-date-container`}>
-                      <div className="w-24 h-24 bg-gradient-to-br from-copper-400 to-copper-600 rounded-lg flex flex-col items-center justify-center text-slate-900" data-testid={`webinar-upcoming-${webinar.id}-date-badge`}>
+                      <div className="w-24 h-24 bg-gradient-to-br from-copper-500 to-copper-700 rounded-lg flex flex-col items-center justify-center text-white" data-testid={`webinar-upcoming-${webinar.id}-date-badge`}>
                         <div className="text-xs font-semibold uppercase" data-testid={`webinar-upcoming-${webinar.id}-date-month`}>
                           {new Date(webinar.date).toLocaleDateString('en-US', { month: 'short' })}
                         </div>
@@ -355,15 +361,15 @@ END:VCALENDAR`
                     <div className="flex-1" data-testid={`webinar-upcoming-${webinar.id}-content-area`}>
                       <div className="flex items-start justify-between mb-3" data-testid={`webinar-upcoming-${webinar.id}-header`}>
                         <div data-testid={`webinar-upcoming-${webinar.id}-info`}>
-                          <Badge className="bg-copper-600/20 text-copper-400 border-copper-400/30 mb-2" data-testid={`webinar-upcoming-${webinar.id}-category`}>
+                          <Badge className="bg-copper-50 text-copper-700 border-copper-200 mb-2" data-testid={`webinar-upcoming-${webinar.id}-category`}>
                             {webinar.category}
                           </Badge>
-                          <h3 className="text-xl font-bold text-white mb-2" data-testid={`webinar-upcoming-${webinar.id}-title`}>{webinar.title}</h3>
-                          <p className="text-gray-400 text-sm" data-testid={`webinar-upcoming-${webinar.id}-description`}>{webinar.description}</p>
+                          <h3 className="text-xl font-bold text-gray-900 mb-2" data-testid={`webinar-upcoming-${webinar.id}-title`}>{webinar.title}</h3>
+                          <p className="text-gray-600 text-sm" data-testid={`webinar-upcoming-${webinar.id}-description`}>{webinar.description}</p>
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-4" data-testid={`webinar-upcoming-${webinar.id}-details`}>
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4" data-testid={`webinar-upcoming-${webinar.id}-details`}>
                         <span className="flex items-center" data-testid={`webinar-upcoming-${webinar.id}-date-info`}>
                           <Calendar className="h-4 w-4 mr-1" data-testid={`webinar-upcoming-${webinar.id}-date-icon`} />
                           {formatDate(webinar.date)}
@@ -384,12 +390,12 @@ END:VCALENDAR`
 
                       <div className="flex items-center justify-between" data-testid={`webinar-upcoming-${webinar.id}-footer`}>
                         <div className="flex items-center space-x-3" data-testid={`webinar-upcoming-${webinar.id}-speaker`}>
-                          <div className="w-10 h-10 bg-gradient-to-br from-copper-400 to-copper-600 rounded-full flex items-center justify-center text-slate-900 font-bold" data-testid={`webinar-upcoming-${webinar.id}-speaker-avatar`}>
+                          <div className="w-10 h-10 bg-gradient-to-br from-copper-500 to-copper-700 rounded-full flex items-center justify-center text-white font-bold" data-testid={`webinar-upcoming-${webinar.id}-speaker-avatar`}>
                             {webinar.speaker.name.charAt(0)}
                           </div>
                           <div data-testid={`webinar-upcoming-${webinar.id}-speaker-info`}>
-                            <p className="text-white text-sm font-medium" data-testid={`webinar-upcoming-${webinar.id}-speaker-name`}>{webinar.speaker.name}</p>
-                            <p className="text-gray-400 text-xs" data-testid={`webinar-upcoming-${webinar.id}-speaker-title`}>{webinar.speaker.title}</p>
+                            <p className="text-gray-900 text-sm font-medium" data-testid={`webinar-upcoming-${webinar.id}-speaker-name`}>{webinar.speaker.name}</p>
+                            <p className="text-gray-500 text-xs" data-testid={`webinar-upcoming-${webinar.id}-speaker-title`}>{webinar.speaker.title}</p>
                           </div>
                         </div>
 
@@ -400,7 +406,7 @@ END:VCALENDAR`
                                 variant="outline"
                                 size="sm"
                                 onClick={() => addToCalendar(webinar)}
-                                className="bg-transparent border-copper-400/20 text-copper-400 hover:bg-copper-400/10"
+                                className="bg-white border-copper-200 text-copper-600 hover:bg-copper-50"
                                 data-testid={`webinar-upcoming-${webinar.id}-add-calendar`}
                               >
                                 <CalendarPlus className="h-4 w-4 mr-2" data-testid={`webinar-upcoming-${webinar.id}-add-calendar-icon`} />
@@ -410,7 +416,7 @@ END:VCALENDAR`
                                 variant="outline"
                                 size="sm"
                                 onClick={() => handleUnregister(webinar.id)}
-                                className="bg-transparent border-red-400/20 text-red-400 hover:bg-red-400/10"
+                                className="bg-white border-red-200 text-red-600 hover:bg-red-50"
                                 data-testid={`webinar-upcoming-${webinar.id}-cancel`}
                               >
                                 {t('club.webinarsPage.cancel', language)}
@@ -420,7 +426,7 @@ END:VCALENDAR`
                           {!isRegistered && (
                             <Button
                               onClick={() => handleRegister(webinar.id)}
-                              className="bg-copper-600 hover:bg-copper-700"
+                              className="bg-copper-600 hover:bg-copper-700 text-white"
                               data-testid={`webinar-upcoming-${webinar.id}-register`}
                             >
                               <CheckCircle className="h-4 w-4 mr-2" data-testid={`webinar-upcoming-${webinar.id}-register-icon`} />
@@ -431,8 +437,8 @@ END:VCALENDAR`
                       </div>
 
                       {isRegistered && (
-                        <div className="mt-4 p-3 bg-green-900/20 border border-green-600/30 rounded-lg" data-testid={`webinar-upcoming-${webinar.id}-registered-status`}>
-                          <p className="text-green-400 text-sm flex items-center" data-testid={`webinar-upcoming-${webinar.id}-registered-message`}>
+                        <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg" data-testid={`webinar-upcoming-${webinar.id}-registered-status`}>
+                          <p className="text-green-700 text-sm flex items-center" data-testid={`webinar-upcoming-${webinar.id}-registered-message`}>
                             <CheckCircle className="h-4 w-4 mr-2" data-testid={`webinar-upcoming-${webinar.id}-registered-icon`} />
                             {t('club.webinarsPage.registered', language)}
                           </p>
@@ -444,10 +450,10 @@ END:VCALENDAR`
               </Card>
             )
           })          ) : (
-            <Card className="bg-slate-800 border-copper-400/20">
+            <Card className="bg-white border-gray-200">
               <CardContent className="p-12 text-center">
-                <Calendar className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-400">{t('club.webinarsPage.noUpcoming', language)}</p>
+                <Calendar className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <p className="text-gray-600">{t('club.webinarsPage.noUpcoming', language)}</p>
                 <p className="text-sm text-gray-500 mt-2">{t('club.webinarsPage.noUpcomingDescription', language)}</p>
               </CardContent>
             </Card>
@@ -458,13 +464,13 @@ END:VCALENDAR`
         <TabsContent value="past" className="space-y-4 mt-6" data-testid="webinars-past-content">
           {pastWebinars.length > 0 ? (
             pastWebinars.map((webinar) => (
-            <Card key={webinar.id} className="bg-slate-800 border-copper-400/20" data-testid={`webinar-past-${webinar.id}`}>
+            <Card key={webinar.id} className="bg-white border-gray-200" data-testid={`webinar-past-${webinar.id}`}>
               <CardContent className="p-6" data-testid={`webinar-past-${webinar.id}-content`}>
                 <div className="flex flex-col lg:flex-row gap-6" data-testid={`webinar-past-${webinar.id}-layout`}>
                   {/* Video Thumbnail */}
                   <div className="flex-shrink-0" data-testid={`webinar-past-${webinar.id}-thumbnail-container`}>
-                    <div className="w-48 h-28 bg-gradient-to-br from-slate-700 to-slate-900 rounded-lg flex items-center justify-center relative overflow-hidden group cursor-pointer" data-testid={`webinar-past-${webinar.id}-thumbnail`}>
-                      <Play className="h-12 w-12 text-copper-400 group-hover:scale-110 transition-transform" data-testid={`webinar-past-${webinar.id}-play-icon`} />
+                    <div className="w-48 h-28 bg-gray-100 rounded-lg flex items-center justify-center relative overflow-hidden group cursor-pointer" data-testid={`webinar-past-${webinar.id}-thumbnail`}>
+                      <Play className="h-12 w-12 text-copper-600 group-hover:scale-110 transition-transform" data-testid={`webinar-past-${webinar.id}-play-icon`} />
                       <div className="absolute bottom-2 right-2 bg-black/70 px-2 py-1 rounded text-xs text-white" data-testid={`webinar-past-${webinar.id}-duration-badge`}>
                         {webinar.duration}
                       </div>
@@ -475,15 +481,15 @@ END:VCALENDAR`
                   <div className="flex-1" data-testid={`webinar-past-${webinar.id}-content-area`}>
                     <div className="flex items-start justify-between mb-3" data-testid={`webinar-past-${webinar.id}-header`}>
                       <div data-testid={`webinar-past-${webinar.id}-info`}>
-                        <Badge className="bg-slate-700 text-gray-300 border-slate-600 mb-2" data-testid={`webinar-past-${webinar.id}-category`}>
+                        <Badge className="bg-gray-100 text-gray-700 border-gray-200 mb-2" data-testid={`webinar-past-${webinar.id}-category`}>
                           {webinar.category}
                         </Badge>
-                        <h3 className="text-xl font-bold text-white mb-2" data-testid={`webinar-past-${webinar.id}-title`}>{webinar.title}</h3>
-                        <p className="text-gray-400 text-sm" data-testid={`webinar-past-${webinar.id}-description`}>{webinar.description}</p>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2" data-testid={`webinar-past-${webinar.id}-title`}>{webinar.title}</h3>
+                        <p className="text-gray-600 text-sm" data-testid={`webinar-past-${webinar.id}-description`}>{webinar.description}</p>
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-4" data-testid={`webinar-past-${webinar.id}-details`}>
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4" data-testid={`webinar-past-${webinar.id}-details`}>
                       <span className="flex items-center" data-testid={`webinar-past-${webinar.id}-date-info`}>
                         <Calendar className="h-4 w-4 mr-1" data-testid={`webinar-past-${webinar.id}-date-icon`} />
                         {formatDate(webinar.date)}
@@ -496,12 +502,12 @@ END:VCALENDAR`
 
                     <div className="flex items-center justify-between" data-testid={`webinar-past-${webinar.id}-footer`}>
                       <div className="flex items-center space-x-3" data-testid={`webinar-past-${webinar.id}-speaker`}>
-                        <div className="w-10 h-10 bg-gradient-to-br from-copper-400 to-copper-600 rounded-full flex items-center justify-center text-slate-900 font-bold" data-testid={`webinar-past-${webinar.id}-speaker-avatar`}>
+                        <div className="w-10 h-10 bg-gradient-to-br from-copper-500 to-copper-700 rounded-full flex items-center justify-center text-white font-bold" data-testid={`webinar-past-${webinar.id}-speaker-avatar`}>
                           {webinar.speaker.name.charAt(0)}
                         </div>
                         <div data-testid={`webinar-past-${webinar.id}-speaker-info`}>
-                          <p className="text-white text-sm font-medium" data-testid={`webinar-past-${webinar.id}-speaker-name`}>{webinar.speaker.name}</p>
-                          <p className="text-gray-400 text-xs" data-testid={`webinar-past-${webinar.id}-speaker-title`}>{webinar.speaker.title}</p>
+                          <p className="text-gray-900 text-sm font-medium" data-testid={`webinar-past-${webinar.id}-speaker-name`}>{webinar.speaker.name}</p>
+                          <p className="text-gray-500 text-xs" data-testid={`webinar-past-${webinar.id}-speaker-title`}>{webinar.speaker.title}</p>
                         </div>
                       </div>
 
@@ -509,14 +515,14 @@ END:VCALENDAR`
                         <Button
                           variant="outline"
                           size="sm"
-                          className="bg-transparent border-copper-400/20 text-copper-400 hover:bg-copper-400/10"
+                          className="bg-white border-copper-200 text-copper-600 hover:bg-copper-50"
                           data-testid={`webinar-past-${webinar.id}-download`}
                         >
                           <Download className="h-4 w-4 mr-2" data-testid={`webinar-past-${webinar.id}-download-icon`} />
                           {t('club.webinarsPage.download', language)}
                         </Button>
                         <Button
-                          className="bg-copper-600 hover:bg-copper-700"
+                          className="bg-copper-600 hover:bg-copper-700 text-white"
                           data-testid={`webinar-past-${webinar.id}-watch`}
                         >
                           <Play className="h-4 w-4 mr-2" data-testid={`webinar-past-${webinar.id}-watch-icon`} />
@@ -530,10 +536,10 @@ END:VCALENDAR`
             </Card>
           ))
           ) : (
-            <Card className="bg-slate-800 border-copper-400/20">
+            <Card className="bg-white border-gray-200">
               <CardContent className="p-12 text-center">
-                <Video className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-400">{t('club.webinarsPage.noPast', language)}</p>
+                <Video className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <p className="text-gray-600">{t('club.webinarsPage.noPast', language)}</p>
               </CardContent>
             </Card>
           )}

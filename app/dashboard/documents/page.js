@@ -22,6 +22,12 @@ import { t } from '../../../lib/translations'
 
 const STORAGE_BUCKET = 'documents'
 
+// Light mode colors
+const cardClass = "bg-white border-gray-200"
+const textPrimary = "text-gray-900"
+const textSecondary = "text-gray-500"
+const inputClass = "bg-white border-gray-200 text-gray-900"
+
 export default function DocumentsPage() {
   const [documents, setDocuments] = useState([])
   const [loading, setLoading] = useState(true)
@@ -183,17 +189,17 @@ export default function DocumentsPage() {
     <div className="space-y-6" data-testid="documents-container">
       {/* Header */}
       <div data-testid="documents-header">
-        <h1 className="text-3xl font-bold text-white flex items-center space-x-3" data-testid="documents-title">
-          <Folder className="h-8 w-8 text-copper-400" data-testid="documents-title-icon" />
+        <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3" data-testid="documents-title">
+          <Folder className="h-8 w-8 text-copper-600" data-testid="documents-title-icon" />
           <span data-testid="documents-title-text">{t('club.documentsPage.title', language)}</span>
         </h1>
-        <p className="text-gray-400 mt-2" data-testid="documents-subtitle">
+        <p className="text-gray-600 mt-2" data-testid="documents-subtitle">
           {t('club.documentsPage.subtitle', language)}
         </p>
       </div>
 
       {/* Search and Filters */}
-      <Card className="bg-slate-800 border-copper-400/20" data-testid="documents-search-card">
+      <Card className="bg-white border-gray-200" data-testid="documents-search-card">
         <CardContent className="p-6" data-testid="documents-search-content">
           <div className="flex flex-col lg:flex-row gap-4" data-testid="documents-search-layout">
             <div className="flex-1 relative" data-testid="documents-search-field">
@@ -202,7 +208,7 @@ export default function DocumentsPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t('club.documentsPage.searchPlaceholder', language)}
-                className="pl-10 bg-slate-900 border-copper-400/20 text-white"
+                className="pl-10 bg-white border-gray-200 text-gray-900"
                 data-testid="documents-search-input"
               />
             </div>
@@ -216,7 +222,7 @@ export default function DocumentsPage() {
                   className={`whitespace-nowrap ${
                     selectedCategory === category
                       ? 'bg-copper-600 text-white border-copper-600'
-                      : 'bg-transparent border-copper-400/20 text-gray-300 hover:bg-copper-400/10'
+                      : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
                   }`}
                   data-testid={`documents-category-${category.toLowerCase().replace(/\s+/g, '-')}`}
                 >
@@ -230,40 +236,40 @@ export default function DocumentsPage() {
 
       {/* Document Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4" data-testid="documents-stats-grid">
-        <Card className="bg-slate-800 border-copper-400/20" data-testid="documents-stat-total">
+        <Card className="bg-white border-gray-200" data-testid="documents-stat-total">
           <CardContent className="p-6" data-testid="documents-stat-total-content">
             <div className="flex items-center justify-between" data-testid="documents-stat-total-layout">
               <div data-testid="documents-stat-total-info">
-                <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-total-label">{t('club.documentsPage.totalDocuments', language)}</p>
-                <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-total-value">{documents.length}</p>
+                <p className="text-sm font-medium text-gray-500" data-testid="documents-stat-total-label">{t('club.documentsPage.totalDocuments', language)}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2" data-testid="documents-stat-total-value">{documents.length}</p>
               </div>
-              <div className="p-3 rounded-full bg-copper-400/10" data-testid="documents-stat-total-icon">
-                <FileText className="h-6 w-6 text-copper-400" />
+              <div className="p-3 rounded-full bg-copper-50" data-testid="documents-stat-total-icon">
+                <FileText className="h-6 w-6 text-copper-600" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800 border-copper-400/20" data-testid="documents-stat-categories">
+        <Card className="bg-white border-gray-200" data-testid="documents-stat-categories">
           <CardContent className="p-6" data-testid="documents-stat-categories-content">
             <div className="flex items-center justify-between" data-testid="documents-stat-categories-layout">
               <div data-testid="documents-stat-categories-info">
-                <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-categories-label">{t('club.documentsPage.categories', language)}</p>
-                <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-categories-value">{Math.max(0, categories.length - 1)}</p>
+                <p className="text-sm font-medium text-gray-500" data-testid="documents-stat-categories-label">{t('club.documentsPage.categories', language)}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2" data-testid="documents-stat-categories-value">{Math.max(0, categories.length - 1)}</p>
               </div>
-              <div className="p-3 rounded-full bg-blue-400/10" data-testid="documents-stat-categories-icon">
-                <Folder className="h-6 w-6 text-blue-400" />
+              <div className="p-3 rounded-full bg-blue-50" data-testid="documents-stat-categories-icon">
+                <Folder className="h-6 w-6 text-blue-600" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800 border-copper-400/20" data-testid="documents-stat-downloads">
+        <Card className="bg-white border-gray-200" data-testid="documents-stat-downloads">
           <CardContent className="p-6" data-testid="documents-stat-downloads-content">
             <div className="flex items-center justify-between" data-testid="documents-stat-downloads-layout">
               <div data-testid="documents-stat-downloads-info">
-                <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-downloads-label">{t('club.documentsPage.newThisMonth', language)}</p>
-                <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-downloads-value">
+                <p className="text-sm font-medium text-gray-500" data-testid="documents-stat-downloads-label">{t('club.documentsPage.newThisMonth', language)}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2" data-testid="documents-stat-downloads-value">
                   {documents.filter(d => {
                     const date = new Date(d.uploaded_at)
                     const now = new Date()
@@ -271,8 +277,8 @@ export default function DocumentsPage() {
                   }).length}
                 </p>
               </div>
-              <div className="p-3 rounded-full bg-green-400/10" data-testid="documents-stat-downloads-icon">
-                <Clock className="h-6 w-6 text-green-400" />
+              <div className="p-3 rounded-full bg-green-50" data-testid="documents-stat-downloads-icon">
+                <Clock className="h-6 w-6 text-green-600" />
               </div>
             </div>
           </CardContent>
@@ -283,26 +289,26 @@ export default function DocumentsPage() {
       <div className="space-y-3" data-testid="documents-list">
         {loading ? (
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-copper-400 mx-auto"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-copper-600 mx-auto"></div>
           </div>
         ) : filteredDocuments.length > 0 ? (
           filteredDocuments.map((doc) => {
             const Icon = getFileIcon(doc.file_type)
             return (
-              <Card key={doc.id} className="bg-slate-800 border-copper-400/20 hover:border-copper-400/50 transition-all" data-testid={`document-${doc.id}`}>
+              <Card key={doc.id} className="bg-white border-gray-200 hover:shadow-md transition-all" data-testid={`document-${doc.id}`}>
                 <CardContent className="p-6" data-testid={`document-${doc.id}-content`}>
                   <div className="flex items-center gap-4" data-testid={`document-${doc.id}-layout`}>
                     {/* Icon */}
-                    <div className="flex-shrink-0 w-12 h-12 bg-copper-400/10 rounded-lg flex items-center justify-center" data-testid={`document-${doc.id}-icon-container`}>
-                      <Icon className="h-6 w-6 text-copper-400" data-testid={`document-${doc.id}-icon`} />
+                    <div className="flex-shrink-0 w-12 h-12 bg-copper-50 rounded-lg flex items-center justify-center" data-testid={`document-${doc.id}-icon-container`}>
+                      <Icon className="h-6 w-6 text-copper-600" data-testid={`document-${doc.id}-icon`} />
                     </div>
 
                     {/* Details */}
                     <div className="flex-1 min-w-0" data-testid={`document-${doc.id}-details`}>
-                      <h3 className="font-semibold text-white mb-1" data-testid={`document-${doc.id}-name`}>{doc.name}</h3>
-                      <p className="text-sm text-gray-400 mb-2" data-testid={`document-${doc.id}-description`}>{doc.description}</p>
-                      <div className="flex items-center gap-3 text-xs text-gray-500" data-testid={`document-${doc.id}-metadata`}>
-                        <Badge variant="outline" className="border-copper-400/30 text-copper-400" data-testid={`document-${doc.id}-category`}>
+                      <h3 className="font-semibold text-gray-900 mb-1" data-testid={`document-${doc.id}-name`}>{doc.name}</h3>
+                      <p className="text-sm text-gray-500 mb-2" data-testid={`document-${doc.id}-description`}>{doc.description}</p>
+                      <div className="flex items-center gap-3 text-xs text-gray-400" data-testid={`document-${doc.id}-metadata`}>
+                        <Badge variant="outline" className="border-copper-200 text-copper-600" data-testid={`document-${doc.id}-category`}>
                           {doc.category}
                         </Badge>
                         <span data-testid={`document-${doc.id}-type`}>{doc.file_type}</span>
@@ -320,7 +326,7 @@ export default function DocumentsPage() {
                         variant="outline"
                         size="sm"
                         onClick={() => handlePreview(doc)}
-                        className="bg-transparent border-copper-400/20 text-gray-300 hover:bg-copper-400/10"
+                        className="bg-white border-gray-200 text-gray-600 hover:bg-gray-50"
                         data-testid={`document-${doc.id}-preview`}
                       >
                         <Eye className="h-4 w-4 mr-2" data-testid={`document-${doc.id}-preview-icon`} />
@@ -329,7 +335,7 @@ export default function DocumentsPage() {
                       <Button
                         size="sm"
                         onClick={() => handleDownload(doc)}
-                        className="bg-copper-600 hover:bg-copper-700"
+                        className="bg-copper-600 hover:bg-copper-700 text-white"
                         data-testid={`document-${doc.id}-download`}
                       >
                         <Download className="h-4 w-4 mr-2" data-testid={`document-${doc.id}-download-icon`} />
@@ -342,10 +348,10 @@ export default function DocumentsPage() {
             )
           })
         ) : (
-          <Card className="bg-slate-800 border-copper-400/20" data-testid="documents-empty-state">
+          <Card className="bg-white border-gray-200" data-testid="documents-empty-state">
             <CardContent className="p-12 text-center" data-testid="documents-empty-content">
-              <FileText className="h-12 w-12 text-gray-600 mx-auto mb-4" data-testid="documents-empty-icon" />
-              <p className="text-gray-400" data-testid="documents-empty-message">{t('club.documentsPage.noDocuments', language)}</p>
+              <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" data-testid="documents-empty-icon" />
+              <p className="text-gray-500" data-testid="documents-empty-message">{t('club.documentsPage.noDocuments', language)}</p>
             </CardContent>
           </Card>
         )}

@@ -153,6 +153,12 @@ const HOW_HEARD_OPTIONS = [
   'Other'
 ]
 
+// Light mode colors
+const cardClass = "bg-white border-gray-200"
+const textPrimary = "text-gray-900"
+const textSecondary = "text-gray-500"
+const inputClass = "bg-white border-gray-200 text-gray-900"
+
 export default function IntakeForm() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -439,11 +445,11 @@ export default function IntakeForm() {
     <div className="space-y-6 max-w-1400 mx-auto" data-testid="intake-form-container">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-white flex items-center space-x-3">
-          <FileText className="h-8 w-8 text-copper-400" />
+        <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3">
+          <FileText className="h-8 w-8 text-copper-600" />
           <span>{t('club.intakeFormPage.title', language)}</span>
         </h1>
-        <p className="text-gray-400 mt-2">
+        <p className="text-gray-600 mt-2">
           {t('club.intakeFormPage.subtitle', language)}
         </p>
       </div>
@@ -452,7 +458,7 @@ export default function IntakeForm() {
       {message.text && (
         <Alert 
           variant={message.type === 'error' ? 'destructive' : 'default'}
-          className={message.type === 'success' ? 'bg-green-900/20 border-green-600 text-green-400' : ''}
+          className={message.type === 'success' ? 'bg-green-50 border-green-200 text-green-700' : ''}
           data-testid={`intake-form-alert-${message.type}`}
         >
           {message.type === 'success' ? (
@@ -465,35 +471,35 @@ export default function IntakeForm() {
       )}
 
       {/* Personal Information */}
-      <Card className="bg-slate-800 border-copper-400/20" data-testid="intake-form-personal-card">
+      <Card className="bg-white border-gray-200" data-testid="intake-form-personal-card">
         <CardHeader data-testid="intake-form-personal-header">
-          <CardTitle className="flex items-center space-x-2 text-white" data-testid="intake-form-personal-title">
-            <User className="h-5 w-5 text-copper-400" data-testid="intake-form-personal-icon" />
+          <CardTitle className="flex items-center space-x-2 text-gray-900" data-testid="intake-form-personal-title">
+            <User className="h-5 w-5 text-copper-600" data-testid="intake-form-personal-icon" />
             <span data-testid="intake-form-personal-title-text">{t('club.intakeFormPage.personalInfo', language)}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4" data-testid="intake-form-personal-content">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="intake-form-personal-row1">
             <div data-testid="intake-form-fullname-field">
-              <Label htmlFor="fullName" className="text-gray-300" data-testid="intake-form-fullname-label">{t('club.intakeFormPage.fullName', language)} *</Label>
+              <Label htmlFor="fullName" className="text-gray-700" data-testid="intake-form-fullname-label">{t('club.intakeFormPage.fullName', language)} *</Label>
               <Input
                 id="fullName"
                 value={formData.fullName}
                 onChange={(e) => handleChange('fullName', e.target.value)}
                 placeholder="Your full name"
-                className="bg-slate-900 border-copper-400/20 text-white"
+                className="bg-white border-gray-200 text-gray-900"
                 data-testid="intake-form-fullname-input"
               />
             </div>
             <div data-testid="intake-form-email-field">
-              <Label htmlFor="email" className="text-gray-300" data-testid="intake-form-email-label">{t('club.intakeFormPage.email', language)} *</Label>
+              <Label htmlFor="email" className="text-gray-700" data-testid="intake-form-email-label">{t('club.intakeFormPage.email', language)} *</Label>
               <Input
                 id="email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleChange('email', e.target.value)}
                 placeholder="your.email@example.com"
-                className="bg-slate-900 border-copper-400/20 text-white"
+                className="bg-white border-gray-200 text-gray-900"
                 data-testid="intake-form-email-input"
               />
             </div>
@@ -501,37 +507,37 @@ export default function IntakeForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="intake-form-personal-row2">
             <div data-testid="intake-form-phone-field">
-              <Label htmlFor="phone" className="text-gray-300" data-testid="intake-form-phone-label">{t('club.intakeFormPage.phone', language)}</Label>
+              <Label htmlFor="phone" className="text-gray-700" data-testid="intake-form-phone-label">{t('club.intakeFormPage.phone', language)}</Label>
               <Input
                 id="phone"
                 value={formData.phone}
                 onChange={(e) => handleChange('phone', e.target.value)}
                 placeholder="+1 (555) 000-0000"
-                className="bg-slate-900 border-copper-400/20 text-white"
+                className="bg-white border-gray-200 text-gray-900"
                 data-testid="intake-form-phone-input"
               />
             </div>
             <div data-testid="intake-form-nationality-field">
-              <Label htmlFor="nationality" className="text-gray-300" data-testid="intake-form-nationality-label">{t('club.intakeFormPage.nationality', language)}</Label>
+              <Label htmlFor="nationality" className="text-gray-700" data-testid="intake-form-nationality-label">{t('club.intakeFormPage.nationality', language)}</Label>
               <Input
                 id="nationality"
                 value={formData.nationality}
                 onChange={(e) => handleChange('nationality', e.target.value)}
                 placeholder="Your nationality"
-                className="bg-slate-900 border-copper-400/20 text-white"
+                className="bg-white border-gray-200 text-gray-900"
                 data-testid="intake-form-nationality-input"
               />
             </div>
           </div>
 
           <div data-testid="intake-form-location-field">
-            <Label htmlFor="currentLocation" className="text-gray-300" data-testid="intake-form-location-label">{t('club.intakeFormPage.currentLocation', language)}</Label>
+            <Label htmlFor="currentLocation" className="text-gray-700" data-testid="intake-form-location-label">{t('club.intakeFormPage.currentLocation', language)}</Label>
             <Input
               id="currentLocation"
               value={formData.currentLocation}
               onChange={(e) => handleChange('currentLocation', e.target.value)}
               placeholder="City, Country"
-              className="bg-slate-900 border-copper-400/20 text-white"
+              className="bg-white border-gray-200 text-gray-900"
               data-testid="intake-form-location-input"
             />
           </div>
@@ -539,17 +545,17 @@ export default function IntakeForm() {
       </Card>
 
       {/* Property Preferences */}
-      <Card className="bg-slate-800 border-copper-400/20" data-testid="intake-form-property-card">
+      <Card className="bg-white border-gray-200" data-testid="intake-form-property-card">
         <CardHeader data-testid="intake-form-property-header">
-          <CardTitle className="flex items-center space-x-2 text-white" data-testid="intake-form-property-title">
-            <Home className="h-5 w-5 text-copper-400" data-testid="intake-form-property-icon" />
+          <CardTitle className="flex items-center space-x-2 text-gray-900" data-testid="intake-form-property-title">
+            <Home className="h-5 w-5 text-copper-600" data-testid="intake-form-property-icon" />
             <span data-testid="intake-form-property-title-text">{t('club.intakeFormPage.propertyPreferences', language)}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6" data-testid="intake-form-property-content">
           {/* Property Types */}
           <div data-testid="intake-form-property-types-section">
-            <Label className="text-gray-300 text-base font-medium" data-testid="intake-form-property-types-label">{t('club.intakeFormPage.propertyTypes', language)} *</Label>
+            <Label className="text-gray-700 text-base font-medium" data-testid="intake-form-property-types-label">{t('club.intakeFormPage.propertyTypes', language)} *</Label>
             <p className="text-sm text-gray-500 mb-3" data-testid="intake-form-property-types-description">{t('club.intakeFormPage.selectAll', language)}</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3" data-testid="intake-form-property-types-grid">
               {PROPERTY_TYPES.map((type) => (
@@ -558,8 +564,8 @@ export default function IntakeForm() {
                   onClick={() => toggleArrayField('propertyTypes', type)}
                   className={`p-3 rounded-lg border text-sm font-medium transition-all ${
                     formData.propertyTypes.includes(type)
-                      ? 'bg-copper-400/20 border-copper-400 text-copper-400'
-                      : 'bg-slate-900 border-copper-400/20 text-gray-300 hover:bg-slate-700'
+                      ? 'bg-copper-50 border-copper-600 text-copper-700'
+                      : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                   }`}
                   data-testid={`intake-form-property-type-${type.toLowerCase().replace(/\s+/g, '-')}`}
                 >
@@ -571,7 +577,7 @@ export default function IntakeForm() {
 
           {/* Preferred Regions */}
           <div data-testid="intake-form-regions-section">
-            <Label className="text-gray-300 text-base font-medium" data-testid="intake-form-regions-label">{t('club.intakeFormPage.preferredRegions', language)} *</Label>
+            <Label className="text-gray-700 text-base font-medium" data-testid="intake-form-regions-label">{t('club.intakeFormPage.preferredRegions', language)} *</Label>
             <p className="text-sm text-gray-500 mb-3" data-testid="intake-form-regions-description">{t('club.intakeFormPage.selectUpTo5', language)}</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3" data-testid="intake-form-regions-grid">
               {ITALIAN_REGIONS.map((region) => (
@@ -584,8 +590,8 @@ export default function IntakeForm() {
                   }}
                   className={`p-3 rounded-lg border text-sm font-medium transition-all ${
                     formData.preferredRegions.includes(region)
-                      ? 'bg-copper-400/20 border-copper-400 text-copper-400'
-                      : 'bg-slate-900 border-copper-400/20 text-gray-300 hover:bg-slate-700'
+                      ? 'bg-copper-50 border-copper-600 text-copper-700'
+                      : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                   }`}
                   disabled={!formData.preferredRegions.includes(region) && formData.preferredRegions.length >= 5}
                   data-testid={`intake-form-region-${region.toLowerCase().replace(/\s+/g, '-').replace(/'/, '')}`}
@@ -598,12 +604,12 @@ export default function IntakeForm() {
 
           {/* Budget Range */}
           <div data-testid="intake-form-budget-section">
-            <Label htmlFor="budgetRange" className="text-gray-300 text-base font-medium" data-testid="intake-form-budget-label">{t('club.intakeFormPage.budgetRange', language)} *</Label>
+            <Label htmlFor="budgetRange" className="text-gray-700 text-base font-medium" data-testid="intake-form-budget-label">{t('club.intakeFormPage.budgetRange', language)} *</Label>
             <select
               id="budgetRange"
               value={formData.budgetRange}
               onChange={(e) => handleChange('budgetRange', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
+              className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
               data-testid="intake-form-budget-select"
             >
               <option value="" data-testid="intake-form-budget-placeholder">{t('club.intakeFormPage.selectBudget', language)}</option>
@@ -616,7 +622,7 @@ export default function IntakeForm() {
           {/* Property Specifications */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4" data-testid="intake-form-specs-section">
             <div data-testid="intake-form-bedrooms-field">
-              <Label htmlFor="minBedrooms" className="text-gray-300" data-testid="intake-form-bedrooms-label">{t('club.intakeFormPage.minBedrooms', language)}</Label>
+              <Label htmlFor="minBedrooms" className="text-gray-700" data-testid="intake-form-bedrooms-label">{t('club.intakeFormPage.minBedrooms', language)}</Label>
               <div className="relative">
                 <Input
                   id="minBedrooms"
@@ -624,7 +630,7 @@ export default function IntakeForm() {
                   value={formData.minBedrooms}
                   onChange={(e) => handleChange('minBedrooms', e.target.value)}
                   placeholder="e.g., 3"
-                  className="bg-slate-900 border-copper-400/20 text-white pr-16"
+                  className="bg-white border-gray-200 text-gray-900 pr-16"
                   data-testid="intake-form-bedrooms-input"
                 />
                 <div className="absolute right-1 top-1 bottom-1 flex flex-col">
@@ -650,7 +656,7 @@ export default function IntakeForm() {
               </div>
             </div>
             <div data-testid="intake-form-bathrooms-field">
-              <Label htmlFor="minBathrooms" className="text-gray-300" data-testid="intake-form-bathrooms-label">{t('club.intakeFormPage.minBathrooms', language)}</Label>
+              <Label htmlFor="minBathrooms" className="text-gray-700" data-testid="intake-form-bathrooms-label">{t('club.intakeFormPage.minBathrooms', language)}</Label>
               <div className="relative">
                 <Input
                   id="minBathrooms"
@@ -658,7 +664,7 @@ export default function IntakeForm() {
                   value={formData.minBathrooms}
                   onChange={(e) => handleChange('minBathrooms', e.target.value)}
                   placeholder="e.g., 2"
-                  className="bg-slate-900 border-copper-400/20 text-white pr-16"
+                  className="bg-white border-gray-200 text-gray-900 pr-16"
                   data-testid="intake-form-bathrooms-input"
                 />
                 <div className="absolute right-1 top-1 bottom-1 flex flex-col">
@@ -684,7 +690,7 @@ export default function IntakeForm() {
               </div>
             </div>
             <div data-testid="intake-form-size-field">
-              <Label htmlFor="minSquareMeters" className="text-gray-300" data-testid="intake-form-size-label">{t('club.intakeFormPage.minSquareMeters', language)}</Label>
+              <Label htmlFor="minSquareMeters" className="text-gray-700" data-testid="intake-form-size-label">{t('club.intakeFormPage.minSquareMeters', language)}</Label>
               <div className="relative">
                 <Input
                   id="minSquareMeters"
@@ -692,7 +698,7 @@ export default function IntakeForm() {
                   value={formData.minSquareMeters}
                   onChange={(e) => handleChange('minSquareMeters', e.target.value)}
                   placeholder="e.g., 200"
-                  className="bg-slate-900 border-copper-400/20 text-white pr-16"
+                  className="bg-white border-gray-200 text-gray-900 pr-16"
                   data-testid="intake-form-size-input"
                 />
                 <div className="absolute right-1 top-1 bottom-1 flex flex-col">
@@ -914,21 +920,21 @@ export default function IntakeForm() {
       )}
 
       {/* Purchase Details */}
-      <Card className="bg-slate-800 border-copper-400/20" data-testid="intake-form-purchase-card">
+      <Card className="bg-white border-gray-200" data-testid="intake-form-purchase-card">
         <CardHeader data-testid="intake-form-purchase-header">
-          <CardTitle className="flex items-center space-x-2 text-white" data-testid="intake-form-purchase-title">
-            <Calendar className="h-5 w-5 text-copper-400" data-testid="intake-form-purchase-icon" />
+          <CardTitle className="flex items-center space-x-2 text-gray-900" data-testid="intake-form-purchase-title">
+            <Calendar className="h-5 w-5 text-copper-600" data-testid="intake-form-purchase-icon" />
             <span data-testid="intake-form-purchase-title-text">{t('club.intakeFormPage.purchaseDetails', language)}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4" data-testid="intake-form-purchase-content">
           <div data-testid="intake-form-timeline-field">
-            <Label htmlFor="timeline" className="text-gray-300 text-base font-medium" data-testid="intake-form-timeline-label">{t('club.intakeFormPage.timeline', language)} *</Label>
+            <Label htmlFor="timeline" className="text-gray-700 text-base font-medium" data-testid="intake-form-timeline-label">{t('club.intakeFormPage.timeline', language)} *</Label>
             <select
               id="timeline"
               value={formData.timeline}
               onChange={(e) => handleChange('timeline', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
+              className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
               data-testid="intake-form-timeline-select"
             >
               <option value="" data-testid="intake-form-timeline-placeholder">{t('club.intakeFormPage.selectTimeline', language)}</option>
@@ -939,12 +945,12 @@ export default function IntakeForm() {
           </div>
 
           <div data-testid="intake-form-purpose-field">
-            <Label htmlFor="purchaseReason" className="text-gray-300 text-base font-medium" data-testid="intake-form-purpose-label">{t('club.intakeFormPage.purpose', language)} *</Label>
+            <Label htmlFor="purchaseReason" className="text-gray-700 text-base font-medium" data-testid="intake-form-purpose-label">{t('club.intakeFormPage.purpose', language)} *</Label>
             <select
               id="purchaseReason"
               value={formData.purchaseReason}
               onChange={(e) => handleChange('purchaseReason', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
+              className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
               data-testid="intake-form-purpose-select"
             >
               <option value="">{t('club.intakeFormPage.selectPurpose', language)}</option>
@@ -955,12 +961,12 @@ export default function IntakeForm() {
           </div>
 
           <div data-testid="intake-form-financing-field">
-            <Label htmlFor="financingNeeded" className="text-gray-300 text-base font-medium" data-testid="intake-form-financing-label">{t('club.intakeFormPage.financing', language)} *</Label>
+            <Label htmlFor="financingNeeded" className="text-gray-700 text-base font-medium" data-testid="intake-form-financing-label">{t('club.intakeFormPage.financing', language)} *</Label>
             <select
               id="financingNeeded"
               value={formData.financingNeeded}
               onChange={(e) => handleChange('financingNeeded', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
+              className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
               data-testid="intake-form-financing-select"
             >
               <option value="">{t('club.intakeFormPage.selectFinancing', language)}</option>
@@ -971,14 +977,14 @@ export default function IntakeForm() {
           </div>
 
           <div data-testid="intake-form-requirements-field">
-            <Label htmlFor="additionalRequirements" className="text-gray-300" data-testid="intake-form-requirements-label">{t('club.intakeFormPage.specialRequirements', language)}</Label>
+            <Label htmlFor="additionalRequirements" className="text-gray-700" data-testid="intake-form-requirements-label">{t('club.intakeFormPage.specialRequirements', language)}</Label>
             <Textarea
               id="additionalRequirements"
               value={formData.additionalRequirements}
               onChange={(e) => handleChange('additionalRequirements', e.target.value)}
               placeholder={t('club.intakeFormPage.requirementsPlaceholder', language)}
               rows={3}
-              className="bg-slate-900 border-copper-400/20 text-white"
+              className="bg-white border-gray-200 text-gray-900"
               data-testid="intake-form-requirements-textarea"
             />
           </div>
@@ -986,34 +992,34 @@ export default function IntakeForm() {
       </Card>
 
       {/* Additional Information */}
-      <Card className="bg-slate-800 border-copper-400/20" data-testid="intake-form-additional-card">
+      <Card className="bg-white border-gray-200" data-testid="intake-form-additional-card">
         <CardHeader data-testid="intake-form-additional-header">
-          <CardTitle className="flex items-center space-x-2 text-white" data-testid="intake-form-additional-title">
-            <Globe className="h-5 w-5 text-copper-400" data-testid="intake-form-additional-icon" />
+          <CardTitle className="flex items-center space-x-2 text-gray-900" data-testid="intake-form-additional-title">
+            <Globe className="h-5 w-5 text-copper-600" data-testid="intake-form-additional-icon" />
             <span data-testid="intake-form-additional-title-text">{t('club.intakeFormPage.additionalInfo', language)}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4" data-testid="intake-form-additional-content">
           <div data-testid="intake-form-lifestyle-field">
-            <Label htmlFor="lifestylePreferences" className="text-gray-300" data-testid="intake-form-lifestyle-label">{t('club.intakeFormPage.lifestyle', language)}</Label>
+            <Label htmlFor="lifestylePreferences" className="text-gray-700" data-testid="intake-form-lifestyle-label">{t('club.intakeFormPage.lifestyle', language)}</Label>
             <Textarea
               id="lifestylePreferences"
               value={formData.lifestylePreferences}
               onChange={(e) => handleChange('lifestylePreferences', e.target.value)}
               placeholder={t('club.intakeFormPage.lifestylePlaceholder', language)}
               rows={4}
-              className="bg-slate-900 border-copper-400/20 text-white"
+              className="bg-white border-gray-200 text-gray-900"
               data-testid="intake-form-lifestyle-textarea"
             />
           </div>
 
           <div data-testid="intake-form-referral-field">
-            <Label htmlFor="howDidYouHear" className="text-gray-300 text-base font-medium" data-testid="intake-form-referral-label">{t('club.intakeFormPage.howDidYouHear', language)}</Label>
+            <Label htmlFor="howDidYouHear" className="text-gray-700 text-base font-medium" data-testid="intake-form-referral-label">{t('club.intakeFormPage.howDidYouHear', language)}</Label>
             <select
               id="howDidYouHear"
               value={formData.howDidYouHear}
               onChange={(e) => handleChange('howDidYouHear', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
+              className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
               data-testid="intake-form-referral-select"
             >
               <option value="">{t('club.intakeFormPage.selectOption', language)}</option>
@@ -1024,14 +1030,14 @@ export default function IntakeForm() {
           </div>
 
           <div data-testid="intake-form-notes-field">
-            <Label htmlFor="additionalNotes" className="text-gray-300" data-testid="intake-form-notes-label">{t('club.intakeFormPage.additionalNotes', language)}</Label>
+            <Label htmlFor="additionalNotes" className="text-gray-700" data-testid="intake-form-notes-label">{t('club.intakeFormPage.additionalNotes', language)}</Label>
             <Textarea
               id="additionalNotes"
               value={formData.additionalNotes}
               onChange={(e) => handleChange('additionalNotes', e.target.value)}
               placeholder={t('club.intakeFormPage.notesPlaceholder', language)}
               rows={4}
-              className="bg-slate-900 border-copper-400/20 text-white"
+              className="bg-white border-gray-200 text-gray-900"
               data-testid="intake-form-notes-textarea"
             />
           </div>
@@ -1039,12 +1045,12 @@ export default function IntakeForm() {
       </Card>
 
       {/* Extended Form Toggle */}
-      <Card className="bg-gradient-to-r from-copper-400/10 to-slate-800 border-copper-400/30">
+      <Card className="bg-gradient-to-r from-copper-50 to-white border-copper-200">
         <CardContent className="py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-lg font-semibold text-white mb-1">{t('club.intakeFormPage.extendedForm', language)}</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">{t('club.intakeFormPage.extendedForm', language)}</h3>
+              <p className="text-gray-500 text-sm">
                 {t('club.intakeFormPage.extendedFormDescription', language)}
               </p>
             </div>
@@ -1054,8 +1060,8 @@ export default function IntakeForm() {
               className={`${
                 showExtendedForm 
                   ? 'bg-copper-600 hover:bg-copper-700' 
-                  : 'bg-slate-700 hover:bg-slate-600'
-              } text-white transition-all duration-300`}
+                  : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
+              } transition-all duration-300`}
             >
               {showExtendedForm ? t('club.intakeFormPage.hideExtended', language) : t('club.intakeFormPage.showExtended', language)}
             </Button>

@@ -182,7 +182,6 @@ export default function DashboardLayout({ children }) {
 
   return (
     <div className="min-h-screen bg-gray-50 home-page-custom-border">
-      <Navigation />
       
       <div className="pt-16 lg:pt-0">
         {/* Mobile sidebar backdrop */}
