@@ -102,10 +102,12 @@ export default function DashboardOverview() {
         ticketCountRes
       ] = await Promise.all([
         supabase.from('favorites').select('*', { count: 'exact', head: true }).eq('user_id', user.id),
-        supabase.from('inquiries').select('*', { count: 'exact', head: true }).eq('user_id', user.id),
+        // inquiries uses camelCase columns
+        supabase.from('inquiries').select('*', { count: 'exact', head: true }).eq('userId', user.id),
         supabase.from('webinar_registrations').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('status', 'attended'),
         supabase.from('document_access_logs').select('*', { count: 'exact', head: true }).eq('user_id', user.id),
-        supabase.from('concierge_tickets').select('*', { count: 'exact', head: true }).eq('user_id', user.id).neq('status', 'closed')
+        // Concierge tickets are stored in inquiries table with type='concierge'
+        supabase.from('inquiries').select('*', { count: 'exact', head: true }).eq('userId', user.id).eq('type', 'concierge')
       ])
 
       // Membership days
@@ -123,8 +125,8 @@ export default function DashboardOverview() {
       const { data: recentInquiries } = await supabase
         .from('inquiries')
         .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
+        .eq('userId', user.id) // camelCase
+        .order('createdAt', { ascending: false }) // camelCase
         .limit(2)
 
       // 3. Load Club Activity (Logs)

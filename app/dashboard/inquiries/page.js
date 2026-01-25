@@ -93,8 +93,8 @@ export default function InquiriesManagement() {
       const { data: userInquiries, error } = await supabase
         .from('inquiries')
         .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
+        .eq('userId', user.id)
+        .order('createdAt', { ascending: false })
 
       if (error) throw error
 

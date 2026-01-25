@@ -124,12 +124,13 @@ export default function ConciergePage() {
       setUser(user)
 
       // Load user's tickets (inquiries of type 'concierge')
+      // NOTE: inquiries table uses camelCase columns (userId, type, createdAt) unlike favorites which uses snake_case
       const { data, error } = await supabase
         .from('inquiries')
         .select('*')
-        .eq('user_id', user.id)
+        .eq('userId', user.id)
         .eq('type', 'concierge')
-        .order('created_at', { ascending: false })
+        .order('createdAt', { ascending: false })
 
       if (error) {
         console.error('Error fetching tickets:', error)
@@ -149,8 +150,8 @@ export default function ConciergePage() {
           category,
           status: inquiry.responded ? 'resolved' : 'open',
           priority: priority.toLowerCase(),
-          createdAt: inquiry.created_at,
-          lastUpdate: inquiry.updated_at || inquiry.created_at, // Use updated_at if available
+          createdAt: inquiry.createdAt,
+          lastUpdate: inquiry.createdAt, 
           messages: 1, // Placeholder
           description: inquiry.message
         }
@@ -185,11 +186,12 @@ export default function ConciergePage() {
       // Structure the message with metadata
       const fullMessage = `Subject: ${newTicket.subject}\nCategory: ${newTicket.category}\nPriority: ${newTicket.priority}\nContact Method: ${newTicket.contactMethod}\n\n${newTicket.description}`
 
+      // NOTE: inquiries table uses camelCase columns (userId, listingId, etc)
       const { error } = await supabase.from('inquiries').insert({
-        user_id: user.id,
+        userId: user.id,
         name: user.user_metadata?.name || user.email?.split('@')[0] || 'Club Member',
         email: user.email,
-        listing_id: 'Concierge Request',
+        listingId: 'Concierge Request',
         type: 'concierge',
         message: fullMessage,
         phone: null 
