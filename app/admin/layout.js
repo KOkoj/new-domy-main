@@ -17,6 +17,7 @@ import {
   Menu,
   X,
   Shield,
+  Video,
   Mail
 } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
@@ -57,6 +58,12 @@ const adminMenuItems = [
     href: '/admin/content',
     icon: Settings,
     description: 'Manage properties and content'
+  },
+  {
+    title: 'Club Content',
+    href: '/admin/club-content',
+    icon: Video,
+    description: 'Manage videos, guides & articles'
   },
   {
     title: 'Email System',
