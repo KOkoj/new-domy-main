@@ -28,24 +28,25 @@ import {
   ArrowRight
 } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
+import { t } from '../../lib/translations'
 import Link from 'next/link'
 
 // Sample property data for recommendations
 const SAMPLE_RECOMMENDATIONS = [
   {
     _id: '1',
-    title: { en: 'Luxury Villa with Lake Como Views' },
+    title: { en: 'Luxury Villa with Lake Como Views', cs: 'Luxusní vila s výhledem na jezero Como', it: 'Villa di lusso con vista sul Lago di Como' },
     price: { amount: 2500000, currency: 'EUR' },
-    location: { city: { name: { en: 'Como' } } },
+    location: { city: { name: { en: 'Como', cs: 'Como', it: 'Como' } } },
     specifications: { bedrooms: 4, bathrooms: 3, squareFootage: 350 },
     image: 'https://images.unsplash.com/photo-1734173071981-b16ee4f9867f',
     matchScore: 95
   },
   {
     _id: '2',
-    title: { en: 'Tuscan Farmhouse with Vineyards' },
+    title: { en: 'Tuscan Farmhouse with Vineyards', cs: 'Toskánský statek s vinicemi', it: 'Casale toscano con vigneti' },
     price: { amount: 1200000, currency: 'EUR' },
-    location: { city: { name: { en: 'Tuscany' } } },
+    location: { city: { name: { en: 'Tuscany', cs: 'Toskánsko', it: 'Toscana' } } },
     specifications: { bedrooms: 3, bathrooms: 2, squareFootage: 280 },
     image: 'https://images.unsplash.com/12/gladiator.jpg',
     matchScore: 88
@@ -66,9 +67,24 @@ export default function DashboardOverview() {
   })
   const [user, setUser] = useState(null)
   const [upcomingWebinars, setUpcomingWebinars] = useState([])
+  const [language, setLanguage] = useState('en')
 
   useEffect(() => {
     loadDashboardData()
+    
+    // Load language preference
+    const savedLanguage = localStorage.getItem('preferred-language')
+    if (savedLanguage) {
+      setLanguage(savedLanguage)
+    }
+
+    // Listen for language changes
+    const handleLanguageChange = (e) => {
+      setLanguage(e.detail)
+    }
+    
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
 
   const loadDashboardData = async () => {
@@ -195,7 +211,7 @@ export default function DashboardOverview() {
   }
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat(language === 'cs' ? 'cs-CZ' : (language === 'it' ? 'it-IT' : 'en-US'), {
       style: 'currency',
       currency: price.currency,
       minimumFractionDigits: 0,
@@ -204,7 +220,7 @@ export default function DashboardOverview() {
   }
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', { 
+    return new Date(dateString).toLocaleDateString(language === 'cs' ? 'cs-CZ' : (language === 'it' ? 'it-IT' : 'en-US'), { 
       month: 'short', 
       day: 'numeric',
       year: 'numeric'
@@ -232,13 +248,13 @@ export default function DashboardOverview() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">
-            Welcome back, {user?.user_metadata?.name || 'User'}!
+            {t('club.welcomeBack', language)}, {user?.user_metadata?.name || 'User'}!
           </h1>
-          <p className="text-gray-600 mt-1">Here's what's happening with your property journey</p>
+          <p className="text-gray-600 mt-1">{t('club.dashboardSubtitle', language)}</p>
         </div>
         <Button>
           <Bell className="h-4 w-4 mr-2" />
-          Notifications
+          {t('club.notifications', language)}
         </Button>
       </div>
 
@@ -249,9 +265,9 @@ export default function DashboardOverview() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Favorites</p>
+                  <p className="text-sm font-medium text-gray-600">{t('club.favorites', language)}</p>
                   <p className="text-3xl font-bold text-gray-900 mt-2">{stats.favorites}</p>
-                  <p className="text-xs text-gray-500 mt-1">Saved properties</p>
+                  <p className="text-xs text-gray-500 mt-1">{t('club.savedProperties', language)}</p>
                 </div>
                 <div className="p-3 rounded-full bg-red-100">
                   <Heart className="h-6 w-6 text-red-600" />
@@ -266,9 +282,9 @@ export default function DashboardOverview() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Inquiries</p>
+                  <p className="text-sm font-medium text-gray-600">{t('club.inquiries', language)}</p>
                   <p className="text-3xl font-bold text-gray-900 mt-2">{stats.inquiries}</p>
-                  <p className="text-xs text-gray-500 mt-1">Sent to agents</p>
+                  <p className="text-xs text-gray-500 mt-1">{t('club.sentToAgents', language)}</p>
                 </div>
                 <div className="p-3 rounded-full bg-slate-100">
                   <MessageSquare className="h-6 w-6 text-slate-800" />
@@ -283,9 +299,9 @@ export default function DashboardOverview() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Concierge</p>
+                  <p className="text-sm font-medium text-gray-600">{t('club.conciergeTitle', language)}</p>
                   <p className="text-3xl font-bold text-gray-900 mt-2">{stats.conciergeTickets}</p>
-                  <p className="text-xs text-gray-500 mt-1">Active tickets</p>
+                  <p className="text-xs text-gray-500 mt-1">{t('club.activeTickets', language)}</p>
                 </div>
                 <div className="p-3 rounded-full bg-green-100">
                   <MessageCircle className="h-6 w-6 text-green-600" />
@@ -300,9 +316,9 @@ export default function DashboardOverview() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Documents</p>
+                  <p className="text-sm font-medium text-gray-600">{t('club.documentsTitle', language)}</p>
                   <p className="text-3xl font-bold text-gray-900 mt-2">{stats.documentsAccessed}</p>
-                  <p className="text-xs text-gray-500 mt-1">Files accessed</p>
+                  <p className="text-xs text-gray-500 mt-1">{t('club.filesAccessed', language)}</p>
                 </div>
                 <div className="p-3 rounded-full bg-blue-100">
                   <FileText className="h-6 w-6 text-blue-600" />
@@ -321,7 +337,7 @@ export default function DashboardOverview() {
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="flex items-center space-x-2">
               <Activity className="h-5 w-5" />
-              <span>Recent Activity</span>
+              <span>{t('club.recentActivity', language)}</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -339,7 +355,7 @@ export default function DashboardOverview() {
                         {activity.propertyId && (
                           <p className="text-xs text-gray-500">Property ID: {activity.propertyId}</p>
                         )}
-                        <p className="text-xs text-gray-500">{new Date(activity.date).toLocaleDateString()}</p>
+                        <p className="text-xs text-gray-500">{new Date(activity.date).toLocaleDateString(language === 'cs' ? 'cs-CZ' : 'en-US')}</p>
                       </div>
                     </div>
                   )
@@ -348,7 +364,7 @@ export default function DashboardOverview() {
             ) : (
               <div className="text-center py-8 text-gray-500">
                 <Activity className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                <p>No recent activity</p>
+                <p>{t('club.noActivity', language)}</p>
               </div>
             )}
           </CardContent>
@@ -359,10 +375,10 @@ export default function DashboardOverview() {
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="flex items-center space-x-2">
               <TrendingUp className="h-5 w-5" />
-              <span>Recommended for You</span>
+              <span>{t('club.recommended', language)}</span>
             </CardTitle>
             <Link href="/dashboard/recommendations">
-              <Button variant="outline" size="sm">View All</Button>
+              <Button variant="outline" size="sm">{t('club.viewAll', language)}</Button>
             </Link>
           </CardHeader>
           <CardContent>
@@ -371,12 +387,12 @@ export default function DashboardOverview() {
                 <div key={property._id} className="flex items-center space-x-4 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
                   <img 
                     src={property.image} 
-                    alt={property.title.en}
+                    alt={property.title[language] || property.title.en}
                     className="w-16 h-16 object-cover rounded-lg"
                   />
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-1">
-                      <h4 className="font-medium text-gray-900 text-sm">{property.title.en}</h4>
+                      <h4 className="font-medium text-gray-900 text-sm">{property.title[language] || property.title.en}</h4>
                       <Badge variant="secondary" className="text-xs">
                         <Star className="h-3 w-3 mr-1" />
                         {property.matchScore}% match
@@ -385,7 +401,7 @@ export default function DashboardOverview() {
                     <div className="flex items-center space-x-3 text-xs text-gray-600">
                       <span className="flex items-center">
                         <MapPin className="h-3 w-3 mr-1" />
-                        {property.location?.city?.name?.en}
+                        {property.location?.city?.name[language] || property.location?.city?.name.en}
                       </span>
                       <span className="flex items-center font-medium text-blue-600">
                         <DollarSign className="h-3 w-3 mr-1" />
@@ -408,10 +424,10 @@ export default function DashboardOverview() {
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle className="flex items-center space-x-2">
                 <Calendar className="h-5 w-5" />
-                <span>Upcoming Webinars</span>
+                <span>{t('club.upcomingWebinars', language)}</span>
               </CardTitle>
               <Link href="/dashboard/webinars">
-                <Button variant="outline" size="sm">View Calendar</Button>
+                <Button variant="outline" size="sm">{t('club.viewCalendar', language)}</Button>
               </Link>
             </CardHeader>
             <CardContent>
@@ -433,14 +449,14 @@ export default function DashboardOverview() {
                         </div>
                       </div>
                       <Link href="/dashboard/webinars">
-                        <Button size="sm" variant="outline">Register</Button>
+                        <Button size="sm" variant="outline">{t('club.register', language)}</Button>
                       </Link>
                     </div>
                   ))}
                 </div>
               ) : (
                 <div className="text-center py-6 text-gray-500">
-                  <p>No upcoming webinars scheduled.</p>
+                  <p>{t('club.noWebinars', language)}</p>
                 </div>
               )}
             </CardContent>
@@ -450,31 +466,31 @@ export default function DashboardOverview() {
         <div>
           <Card className="h-full">
             <CardHeader>
-              <CardTitle>Quick Actions</CardTitle>
+              <CardTitle>{t('club.quickActions', language)}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <Link href="/dashboard/intake-form">
                 <Button variant="outline" className="w-full justify-start">
                   <FileText className="h-4 w-4 mr-2" />
-                  Client Form
+                  {t('club.clientForm', language)}
                 </Button>
               </Link>
               <Link href="/dashboard/content">
                 <Button variant="outline" className="w-full justify-start">
                   <Video className="h-4 w-4 mr-2" />
-                  Exclusive Content
+                  {t('club.exclusiveContent', language)}
                 </Button>
               </Link>
               <Link href="/properties">
                 <Button variant="outline" className="w-full justify-start">
                   <Search className="h-4 w-4 mr-2" />
-                  Browse Properties
+                  {t('club.browseProperties', language)}
                 </Button>
               </Link>
               <Link href="/dashboard/profile">
                 <Button variant="outline" className="w-full justify-start">
                   <Settings className="h-4 w-4 mr-2" />
-                  Update Profile
+                  {t('club.updateProfile', language)}
                 </Button>
               </Link>
             </CardContent>
