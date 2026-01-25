@@ -22,6 +22,7 @@ import {
   Globe
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { t } from '../../../lib/translations'
 
 const PROPERTY_TYPES = ['Villa', 'House', 'Apartment', 'Farmhouse', 'Castle', 'Commercial', 'Land']
 const ITALIAN_REGIONS = [
@@ -158,6 +159,7 @@ export default function IntakeForm() {
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState({ type: '', text: '' })
   const [showExtendedForm, setShowExtendedForm] = useState(false)
+  const [language, setLanguage] = useState('cs')
   
   const [formData, setFormData] = useState({
     // Personal Information
@@ -206,7 +208,27 @@ export default function IntakeForm() {
 
   useEffect(() => {
     loadFormData()
-  }, [])
+    
+    const savedLanguage = localStorage.getItem('preferred-language')
+    if (savedLanguage && (savedLanguage === 'cs' || savedLanguage === 'en')) {
+      setLanguage(savedLanguage)
+    }
+    
+    const handleStorageChange = () => {
+      const newLang = localStorage.getItem('preferred-language')
+      if (newLang && (newLang === 'cs' || newLang === 'en') && newLang !== language) {
+        setLanguage(newLang)
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    const interval = setInterval(handleStorageChange, 1000)
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      clearInterval(interval)
+    }
+  }, [language])
 
   const loadFormData = async () => {
     try {
@@ -376,7 +398,7 @@ export default function IntakeForm() {
 
       setMessage({ 
         type: 'success', 
-        text: 'Your information has been saved successfully! Our team will review it and contact you soon.' 
+        text: t('club.intakeFormPage.successMessage', language)
       })
       
       // Scroll to top to show message
@@ -419,10 +441,10 @@ export default function IntakeForm() {
       <div>
         <h1 className="text-3xl font-bold text-white flex items-center space-x-3">
           <FileText className="h-8 w-8 text-copper-400" />
-          <span>Client Intake Form</span>
+          <span>{t('club.intakeFormPage.title', language)}</span>
         </h1>
         <p className="text-gray-400 mt-2">
-          Help us understand your needs better by completing this comprehensive form
+          {t('club.intakeFormPage.subtitle', language)}
         </p>
       </div>
 
@@ -447,13 +469,13 @@ export default function IntakeForm() {
         <CardHeader data-testid="intake-form-personal-header">
           <CardTitle className="flex items-center space-x-2 text-white" data-testid="intake-form-personal-title">
             <User className="h-5 w-5 text-copper-400" data-testid="intake-form-personal-icon" />
-            <span data-testid="intake-form-personal-title-text">Personal Information</span>
+            <span data-testid="intake-form-personal-title-text">{t('club.intakeFormPage.personalInfo', language)}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4" data-testid="intake-form-personal-content">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="intake-form-personal-row1">
             <div data-testid="intake-form-fullname-field">
-              <Label htmlFor="fullName" className="text-gray-300" data-testid="intake-form-fullname-label">Full Name *</Label>
+              <Label htmlFor="fullName" className="text-gray-300" data-testid="intake-form-fullname-label">{t('club.intakeFormPage.fullName', language)} *</Label>
               <Input
                 id="fullName"
                 value={formData.fullName}
@@ -464,7 +486,7 @@ export default function IntakeForm() {
               />
             </div>
             <div data-testid="intake-form-email-field">
-              <Label htmlFor="email" className="text-gray-300" data-testid="intake-form-email-label">Email Address *</Label>
+              <Label htmlFor="email" className="text-gray-300" data-testid="intake-form-email-label">{t('club.intakeFormPage.email', language)} *</Label>
               <Input
                 id="email"
                 type="email"
@@ -479,7 +501,7 @@ export default function IntakeForm() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="intake-form-personal-row2">
             <div data-testid="intake-form-phone-field">
-              <Label htmlFor="phone" className="text-gray-300" data-testid="intake-form-phone-label">Phone Number</Label>
+              <Label htmlFor="phone" className="text-gray-300" data-testid="intake-form-phone-label">{t('club.intakeFormPage.phone', language)}</Label>
               <Input
                 id="phone"
                 value={formData.phone}
@@ -490,7 +512,7 @@ export default function IntakeForm() {
               />
             </div>
             <div data-testid="intake-form-nationality-field">
-              <Label htmlFor="nationality" className="text-gray-300" data-testid="intake-form-nationality-label">Nationality</Label>
+              <Label htmlFor="nationality" className="text-gray-300" data-testid="intake-form-nationality-label">{t('club.intakeFormPage.nationality', language)}</Label>
               <Input
                 id="nationality"
                 value={formData.nationality}
@@ -503,7 +525,7 @@ export default function IntakeForm() {
           </div>
 
           <div data-testid="intake-form-location-field">
-            <Label htmlFor="currentLocation" className="text-gray-300" data-testid="intake-form-location-label">Current Location</Label>
+            <Label htmlFor="currentLocation" className="text-gray-300" data-testid="intake-form-location-label">{t('club.intakeFormPage.currentLocation', language)}</Label>
             <Input
               id="currentLocation"
               value={formData.currentLocation}
@@ -521,14 +543,14 @@ export default function IntakeForm() {
         <CardHeader data-testid="intake-form-property-header">
           <CardTitle className="flex items-center space-x-2 text-white" data-testid="intake-form-property-title">
             <Home className="h-5 w-5 text-copper-400" data-testid="intake-form-property-icon" />
-            <span data-testid="intake-form-property-title-text">Property Preferences</span>
+            <span data-testid="intake-form-property-title-text">{t('club.intakeFormPage.propertyPreferences', language)}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6" data-testid="intake-form-property-content">
           {/* Property Types */}
           <div data-testid="intake-form-property-types-section">
-            <Label className="text-gray-300 text-base font-medium" data-testid="intake-form-property-types-label">Property Types of Interest *</Label>
-            <p className="text-sm text-gray-500 mb-3" data-testid="intake-form-property-types-description">Select all that apply</p>
+            <Label className="text-gray-300 text-base font-medium" data-testid="intake-form-property-types-label">{t('club.intakeFormPage.propertyTypes', language)} *</Label>
+            <p className="text-sm text-gray-500 mb-3" data-testid="intake-form-property-types-description">{t('club.intakeFormPage.selectAll', language)}</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3" data-testid="intake-form-property-types-grid">
               {PROPERTY_TYPES.map((type) => (
                 <button
@@ -549,8 +571,8 @@ export default function IntakeForm() {
 
           {/* Preferred Regions */}
           <div data-testid="intake-form-regions-section">
-            <Label className="text-gray-300 text-base font-medium" data-testid="intake-form-regions-label">Preferred Regions *</Label>
-            <p className="text-sm text-gray-500 mb-3" data-testid="intake-form-regions-description">Select up to 5 regions</p>
+            <Label className="text-gray-300 text-base font-medium" data-testid="intake-form-regions-label">{t('club.intakeFormPage.preferredRegions', language)} *</Label>
+            <p className="text-sm text-gray-500 mb-3" data-testid="intake-form-regions-description">{t('club.intakeFormPage.selectUpTo5', language)}</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3" data-testid="intake-form-regions-grid">
               {ITALIAN_REGIONS.map((region) => (
                 <button
@@ -576,7 +598,7 @@ export default function IntakeForm() {
 
           {/* Budget Range */}
           <div data-testid="intake-form-budget-section">
-            <Label htmlFor="budgetRange" className="text-gray-300 text-base font-medium" data-testid="intake-form-budget-label">Budget Range *</Label>
+            <Label htmlFor="budgetRange" className="text-gray-300 text-base font-medium" data-testid="intake-form-budget-label">{t('club.intakeFormPage.budgetRange', language)} *</Label>
             <select
               id="budgetRange"
               value={formData.budgetRange}
@@ -584,7 +606,7 @@ export default function IntakeForm() {
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
               data-testid="intake-form-budget-select"
             >
-              <option value="" data-testid="intake-form-budget-placeholder">Select your budget range</option>
+              <option value="" data-testid="intake-form-budget-placeholder">{t('club.intakeFormPage.selectBudget', language)}</option>
               {BUDGET_RANGES.map((range) => (
                 <option key={range} value={range} data-testid={`intake-form-budget-${range.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>{range}</option>
               ))}
@@ -594,7 +616,7 @@ export default function IntakeForm() {
           {/* Property Specifications */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4" data-testid="intake-form-specs-section">
             <div data-testid="intake-form-bedrooms-field">
-              <Label htmlFor="minBedrooms" className="text-gray-300" data-testid="intake-form-bedrooms-label">Minimum Bedrooms</Label>
+              <Label htmlFor="minBedrooms" className="text-gray-300" data-testid="intake-form-bedrooms-label">{t('club.intakeFormPage.minBedrooms', language)}</Label>
               <div className="relative">
                 <Input
                   id="minBedrooms"
@@ -628,7 +650,7 @@ export default function IntakeForm() {
               </div>
             </div>
             <div data-testid="intake-form-bathrooms-field">
-              <Label htmlFor="minBathrooms" className="text-gray-300" data-testid="intake-form-bathrooms-label">Minimum Bathrooms</Label>
+              <Label htmlFor="minBathrooms" className="text-gray-300" data-testid="intake-form-bathrooms-label">{t('club.intakeFormPage.minBathrooms', language)}</Label>
               <div className="relative">
                 <Input
                   id="minBathrooms"
@@ -662,7 +684,7 @@ export default function IntakeForm() {
               </div>
             </div>
             <div data-testid="intake-form-size-field">
-              <Label htmlFor="minSquareMeters" className="text-gray-300" data-testid="intake-form-size-label">Min. Square Meters</Label>
+              <Label htmlFor="minSquareMeters" className="text-gray-300" data-testid="intake-form-size-label">{t('club.intakeFormPage.minSquareMeters', language)}</Label>
               <div className="relative">
                 <Input
                   id="minSquareMeters"
@@ -707,20 +729,20 @@ export default function IntakeForm() {
         <CardHeader>
           <CardTitle className="flex items-center space-x-2 text-white">
             <MapPin className="h-5 w-5 text-copper-400" />
-            <span>Location Preferences</span>
+            <span>{t('club.intakeFormPage.locationPreferences', language)}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Distance from Sea */}
           <div>
-            <Label htmlFor="maxDistanceFromSea" className="text-gray-300 text-base font-medium">Distance from Sea</Label>
+            <Label htmlFor="maxDistanceFromSea" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.distanceFromSea', language)}</Label>
             <select
               id="maxDistanceFromSea"
               value={formData.maxDistanceFromSea}
               onChange={(e) => handleChange('maxDistanceFromSea', e.target.value)}
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
             >
-              <option value="">Select distance preference</option>
+              <option value="">{t('club.intakeFormPage.selectDistance', language)}</option>
               {DISTANCE_FROM_SEA.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -729,14 +751,14 @@ export default function IntakeForm() {
 
           {/* Distance from Airport */}
           <div>
-            <Label htmlFor="maxDistanceFromAirport" className="text-gray-300 text-base font-medium">Distance from Airport</Label>
+            <Label htmlFor="maxDistanceFromAirport" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.distanceFromAirport', language)}</Label>
             <select
               id="maxDistanceFromAirport"
               value={formData.maxDistanceFromAirport}
               onChange={(e) => handleChange('maxDistanceFromAirport', e.target.value)}
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
             >
-              <option value="">Select airport distance</option>
+              <option value="">{t('club.intakeFormPage.selectAirportDistance', language)}</option>
               {DISTANCE_FROM_AIRPORT.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -745,14 +767,14 @@ export default function IntakeForm() {
 
           {/* Distance from City */}
           <div>
-            <Label htmlFor="maxDistanceFromCity" className="text-gray-300 text-base font-medium">Urban/Rural Preference</Label>
+            <Label htmlFor="maxDistanceFromCity" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.urbanRural', language)}</Label>
             <select
               id="maxDistanceFromCity"
               value={formData.maxDistanceFromCity}
               onChange={(e) => handleChange('maxDistanceFromCity', e.target.value)}
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
             >
-              <option value="">Select location type</option>
+              <option value="">{t('club.intakeFormPage.selectLocationType', language)}</option>
               {DISTANCE_FROM_CITY.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -761,7 +783,7 @@ export default function IntakeForm() {
 
           {/* Proximity Preferences */}
           <div>
-            <Label className="text-gray-300 text-base font-medium">Important Proximity (Select all that apply)</Label>
+            <Label className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.importantProximity', language)}</Label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
               {PROXIMITY_PREFERENCES.map((proximity) => (
                 <button
@@ -787,20 +809,20 @@ export default function IntakeForm() {
         <CardHeader>
           <CardTitle className="flex items-center space-x-2 text-white">
             <Home className="h-5 w-5 text-copper-400" />
-            <span>Property Characteristics</span>
+            <span>{t('club.intakeFormPage.propertyCharacteristics', language)}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Property Age */}
           <div>
-            <Label htmlFor="propertyAge" className="text-gray-300 text-base font-medium">Property Age Preference</Label>
+            <Label htmlFor="propertyAge" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.propertyAge', language)}</Label>
             <select
               id="propertyAge"
               value={formData.propertyAge}
               onChange={(e) => handleChange('propertyAge', e.target.value)}
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
             >
-              <option value="">Select age preference</option>
+              <option value="">{t('club.intakeFormPage.selectAge', language)}</option>
               {PROPERTY_AGE_OPTIONS.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -809,14 +831,14 @@ export default function IntakeForm() {
 
           {/* Property Condition */}
           <div>
-            <Label htmlFor="propertyCondition" className="text-gray-300 text-base font-medium">Preferred Property Condition</Label>
+            <Label htmlFor="propertyCondition" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.propertyCondition', language)}</Label>
             <select
               id="propertyCondition"
               value={formData.propertyCondition}
               onChange={(e) => handleChange('propertyCondition', e.target.value)}
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
             >
-              <option value="">Select condition preference</option>
+              <option value="">{t('club.intakeFormPage.selectCondition', language)}</option>
               {PROPERTY_CONDITION_OPTIONS.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -825,14 +847,14 @@ export default function IntakeForm() {
 
           {/* Renovation Willingness */}
           <div>
-            <Label htmlFor="renovationWillingness" className="text-gray-300 text-base font-medium">Renovation Willingness</Label>
+            <Label htmlFor="renovationWillingness" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.renovationWillingness', language)}</Label>
             <select
               id="renovationWillingness"
               value={formData.renovationWillingness}
               onChange={(e) => handleChange('renovationWillingness', e.target.value)}
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
             >
-              <option value="">Select renovation preference</option>
+              <option value="">{t('club.intakeFormPage.selectRenovation', language)}</option>
               {RENOVATION_WILLINGNESS.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -841,14 +863,14 @@ export default function IntakeForm() {
 
           {/* Land Size */}
           <div>
-            <Label htmlFor="landSize" className="text-gray-300 text-base font-medium">Land/Garden Size Preference</Label>
+            <Label htmlFor="landSize" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.landSize', language)}</Label>
             <select
               id="landSize"
               value={formData.landSize}
               onChange={(e) => handleChange('landSize', e.target.value)}
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
             >
-              <option value="">Select land size preference</option>
+              <option value="">{t('club.intakeFormPage.selectLandSize', language)}</option>
               {LAND_SIZE_OPTIONS.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -857,14 +879,14 @@ export default function IntakeForm() {
 
           {/* Climate Preference */}
           <div>
-            <Label htmlFor="climatePreference" className="text-gray-300 text-base font-medium">Climate Preference</Label>
+            <Label htmlFor="climatePreference" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.climatePreference', language)}</Label>
             <select
               id="climatePreference"
               value={formData.climatePreference}
               onChange={(e) => handleChange('climatePreference', e.target.value)}
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
             >
-              <option value="">Select climate preference</option>
+              <option value="">{t('club.intakeFormPage.selectClimate', language)}</option>
               {CLIMATE_PREFERENCES.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -873,14 +895,14 @@ export default function IntakeForm() {
 
           {/* Tourist Area Preference */}
           <div>
-            <Label htmlFor="touristAreaPreference" className="text-gray-300 text-base font-medium">Tourist Area Preference</Label>
+            <Label htmlFor="touristAreaPreference" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.touristArea', language)}</Label>
             <select
               id="touristAreaPreference"
               value={formData.touristAreaPreference}
               onChange={(e) => handleChange('touristAreaPreference', e.target.value)}
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
             >
-              <option value="">Select preference</option>
+              <option value="">{t('club.intakeFormPage.selectTourist', language)}</option>
               {TOURIST_AREA_PREFERENCES.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -896,12 +918,12 @@ export default function IntakeForm() {
         <CardHeader data-testid="intake-form-purchase-header">
           <CardTitle className="flex items-center space-x-2 text-white" data-testid="intake-form-purchase-title">
             <Calendar className="h-5 w-5 text-copper-400" data-testid="intake-form-purchase-icon" />
-            <span data-testid="intake-form-purchase-title-text">Purchase Details</span>
+            <span data-testid="intake-form-purchase-title-text">{t('club.intakeFormPage.purchaseDetails', language)}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4" data-testid="intake-form-purchase-content">
           <div data-testid="intake-form-timeline-field">
-            <Label htmlFor="timeline" className="text-gray-300 text-base font-medium" data-testid="intake-form-timeline-label">Purchase Timeline *</Label>
+            <Label htmlFor="timeline" className="text-gray-300 text-base font-medium" data-testid="intake-form-timeline-label">{t('club.intakeFormPage.timeline', language)} *</Label>
             <select
               id="timeline"
               value={formData.timeline}
@@ -909,7 +931,7 @@ export default function IntakeForm() {
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
               data-testid="intake-form-timeline-select"
             >
-              <option value="" data-testid="intake-form-timeline-placeholder">Select your timeline</option>
+              <option value="" data-testid="intake-form-timeline-placeholder">{t('club.intakeFormPage.selectTimeline', language)}</option>
               {TIMELINE_OPTIONS.map((option) => (
                 <option key={option} value={option} data-testid={`intake-form-timeline-${option.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>{option}</option>
               ))}
@@ -917,7 +939,7 @@ export default function IntakeForm() {
           </div>
 
           <div data-testid="intake-form-purpose-field">
-            <Label htmlFor="purchaseReason" className="text-gray-300 text-base font-medium" data-testid="intake-form-purpose-label">Purpose of Purchase *</Label>
+            <Label htmlFor="purchaseReason" className="text-gray-300 text-base font-medium" data-testid="intake-form-purpose-label">{t('club.intakeFormPage.purpose', language)} *</Label>
             <select
               id="purchaseReason"
               value={formData.purchaseReason}
@@ -925,7 +947,7 @@ export default function IntakeForm() {
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
               data-testid="intake-form-purpose-select"
             >
-              <option value="">Select purchase reason</option>
+              <option value="">{t('club.intakeFormPage.selectPurpose', language)}</option>
               {PURCHASE_REASONS.map((reason) => (
                 <option key={reason} value={reason}>{reason}</option>
               ))}
@@ -933,7 +955,7 @@ export default function IntakeForm() {
           </div>
 
           <div data-testid="intake-form-financing-field">
-            <Label htmlFor="financingNeeded" className="text-gray-300 text-base font-medium" data-testid="intake-form-financing-label">Financing Plan *</Label>
+            <Label htmlFor="financingNeeded" className="text-gray-300 text-base font-medium" data-testid="intake-form-financing-label">{t('club.intakeFormPage.financing', language)} *</Label>
             <select
               id="financingNeeded"
               value={formData.financingNeeded}
@@ -941,7 +963,7 @@ export default function IntakeForm() {
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
               data-testid="intake-form-financing-select"
             >
-              <option value="">Select financing plan</option>
+              <option value="">{t('club.intakeFormPage.selectFinancing', language)}</option>
               {FINANCING_OPTIONS.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -949,12 +971,12 @@ export default function IntakeForm() {
           </div>
 
           <div data-testid="intake-form-requirements-field">
-            <Label htmlFor="additionalRequirements" className="text-gray-300" data-testid="intake-form-requirements-label">Special Requirements</Label>
+            <Label htmlFor="additionalRequirements" className="text-gray-300" data-testid="intake-form-requirements-label">{t('club.intakeFormPage.specialRequirements', language)}</Label>
             <Textarea
               id="additionalRequirements"
               value={formData.additionalRequirements}
               onChange={(e) => handleChange('additionalRequirements', e.target.value)}
-              placeholder="Any specific needs? Pool, garden, historical features, renovation potential, proximity to services..."
+              placeholder={t('club.intakeFormPage.requirementsPlaceholder', language)}
               rows={3}
               className="bg-slate-900 border-copper-400/20 text-white"
               data-testid="intake-form-requirements-textarea"
@@ -968,17 +990,17 @@ export default function IntakeForm() {
         <CardHeader data-testid="intake-form-additional-header">
           <CardTitle className="flex items-center space-x-2 text-white" data-testid="intake-form-additional-title">
             <Globe className="h-5 w-5 text-copper-400" data-testid="intake-form-additional-icon" />
-            <span data-testid="intake-form-additional-title-text">Additional Information</span>
+            <span data-testid="intake-form-additional-title-text">{t('club.intakeFormPage.additionalInfo', language)}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4" data-testid="intake-form-additional-content">
           <div data-testid="intake-form-lifestyle-field">
-            <Label htmlFor="lifestylePreferences" className="text-gray-300" data-testid="intake-form-lifestyle-label">Lifestyle & Living Preferences</Label>
+            <Label htmlFor="lifestylePreferences" className="text-gray-300" data-testid="intake-form-lifestyle-label">{t('club.intakeFormPage.lifestyle', language)}</Label>
             <Textarea
               id="lifestylePreferences"
               value={formData.lifestylePreferences}
               onChange={(e) => handleChange('lifestylePreferences', e.target.value)}
-              placeholder="Tell us about your ideal Italian lifestyle. Do you prefer countryside, coastal, or city living? Any hobbies or activities you want to pursue?"
+              placeholder={t('club.intakeFormPage.lifestylePlaceholder', language)}
               rows={4}
               className="bg-slate-900 border-copper-400/20 text-white"
               data-testid="intake-form-lifestyle-textarea"
@@ -986,7 +1008,7 @@ export default function IntakeForm() {
           </div>
 
           <div data-testid="intake-form-referral-field">
-            <Label htmlFor="howDidYouHear" className="text-gray-300 text-base font-medium" data-testid="intake-form-referral-label">How Did You Hear About Us?</Label>
+            <Label htmlFor="howDidYouHear" className="text-gray-300 text-base font-medium" data-testid="intake-form-referral-label">{t('club.intakeFormPage.howDidYouHear', language)}</Label>
             <select
               id="howDidYouHear"
               value={formData.howDidYouHear}
@@ -994,7 +1016,7 @@ export default function IntakeForm() {
               className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
               data-testid="intake-form-referral-select"
             >
-              <option value="">Select an option</option>
+              <option value="">{t('club.intakeFormPage.selectOption', language)}</option>
               {HOW_HEARD_OPTIONS.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -1002,12 +1024,12 @@ export default function IntakeForm() {
           </div>
 
           <div data-testid="intake-form-notes-field">
-            <Label htmlFor="additionalNotes" className="text-gray-300" data-testid="intake-form-notes-label">Additional Notes</Label>
+            <Label htmlFor="additionalNotes" className="text-gray-300" data-testid="intake-form-notes-label">{t('club.intakeFormPage.additionalNotes', language)}</Label>
             <Textarea
               id="additionalNotes"
               value={formData.additionalNotes}
               onChange={(e) => handleChange('additionalNotes', e.target.value)}
-              placeholder="Anything else you'd like us to know?"
+              placeholder={t('club.intakeFormPage.notesPlaceholder', language)}
               rows={4}
               className="bg-slate-900 border-copper-400/20 text-white"
               data-testid="intake-form-notes-textarea"
@@ -1021,9 +1043,9 @@ export default function IntakeForm() {
         <CardContent className="py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-lg font-semibold text-white mb-1">Extended Preferences Form</h3>
+              <h3 className="text-lg font-semibold text-white mb-1">{t('club.intakeFormPage.extendedForm', language)}</h3>
               <p className="text-gray-400 text-sm">
-                Provide detailed preferences for better property matching (optional)
+                {t('club.intakeFormPage.extendedFormDescription', language)}
               </p>
             </div>
             <Button
@@ -1035,7 +1057,7 @@ export default function IntakeForm() {
                   : 'bg-slate-700 hover:bg-slate-600'
               } text-white transition-all duration-300`}
             >
-              {showExtendedForm ? 'Hide Extended Form' : 'Show Extended Form'}
+              {showExtendedForm ? t('club.intakeFormPage.hideExtended', language) : t('club.intakeFormPage.showExtended', language)}
             </Button>
           </div>
         </CardContent>
@@ -1050,7 +1072,7 @@ export default function IntakeForm() {
           data-testid="intake-form-save-button"
         >
           <Save className="h-5 w-5 mr-2" data-testid="intake-form-save-icon" />
-          <span data-testid="intake-form-save-text">{saving ? 'Saving...' : 'Save & Submit'}</span>
+          <span data-testid="intake-form-save-text">{saving ? t('club.intakeFormPage.saving', language) : t('club.intakeFormPage.saveSubmit', language)}</span>
         </Button>
       </div>
     </div>
