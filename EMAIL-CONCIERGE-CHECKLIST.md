@@ -182,6 +182,7 @@ curl -X POST http://localhost:3000/api/cron/alerts
 
 ### Environment Variables (Vercel)
 - [ ] `SENDGRID_API_KEY` added to Vercel
+- [ ] `SENDGRID_FROM_EMAIL` added to Vercel (Required!)
 - [ ] `OPENAI_API_KEY` added to Vercel (optional)
 - [ ] `NEXT_PUBLIC_BASE_URL` set to production URL
 - [ ] `CRON_SECRET` generated and added (optional)

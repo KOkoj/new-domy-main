@@ -39,7 +39,7 @@ export async function POST(request) {
     } else {
       return NextResponse.json(
         { 
-          error: result.message || 'Failed to send email',
+          error: result.error || result.message || 'Failed to send email',
           aiUsed: emailService.isAIConfigured
         },
         { status: 500 }
