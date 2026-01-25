@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { supabase } from '../../../lib/supabase'
+import { t } from '../../../lib/translations'
 import {
   FileText,
   BookOpen,
@@ -28,6 +29,7 @@ const videoCategories = ['All', 'Market Insights', 'Property Tours', 'Renovation
 export default function ContentPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedVideoCategory, setSelectedVideoCategory] = useState('All')
+  const [language, setLanguage] = useState('cs')
 
   const [content, setContent] = useState({ videos: [], guides: [], articles: [] })
   const [loading, setLoading] = useState(true)
@@ -38,7 +40,28 @@ export default function ContentPage() {
 
   useEffect(() => {
     loadContent()
-  }, [])
+    
+    // Load language
+    const savedLanguage = localStorage.getItem('preferred-language')
+    if (savedLanguage && (savedLanguage === 'cs' || savedLanguage === 'en')) {
+      setLanguage(savedLanguage)
+    }
+    
+    const handleStorageChange = () => {
+      const newLang = localStorage.getItem('preferred-language')
+      if (newLang && (newLang === 'cs' || newLang === 'en') && newLang !== language) {
+        setLanguage(newLang)
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    const interval = setInterval(handleStorageChange, 1000)
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      clearInterval(interval)
+    }
+  }, [language])
 
   const loadContent = async () => {
     try {
@@ -140,10 +163,10 @@ export default function ContentPage() {
       <div>
         <h1 className="text-3xl font-bold text-white flex items-center space-x-3">
           <Video className="h-8 w-8 text-copper-400" />
-          <span>Exclusive Content Library</span>
+          <span>{t('club.contentPage.title', language)}</span>
         </h1>
         <p className="text-gray-400 mt-2">
-          Access premium guides, videos, and market insights
+          {t('club.contentPage.subtitle', language)}
         </p>
       </div>
 
@@ -153,7 +176,7 @@ export default function ContentPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-400">Videos</p>
+                <p className="text-sm font-medium text-gray-400">{t('club.contentPage.videos', language)}</p>
                 <p className="text-3xl font-bold text-white mt-2">{content.videos.length}</p>
               </div>
               <div className="p-3 rounded-full bg-copper-400/10">
@@ -167,7 +190,7 @@ export default function ContentPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-400">Guides</p>
+                <p className="text-sm font-medium text-gray-400">{t('club.contentPage.guides', language)}</p>
                 <p className="text-3xl font-bold text-white mt-2">{content.guides.length}</p>
               </div>
               <div className="p-3 rounded-full bg-blue-400/10">
@@ -181,7 +204,7 @@ export default function ContentPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-400">Articles</p>
+                <p className="text-sm font-medium text-gray-400">{t('club.contentPage.articles', language)}</p>
                 <p className="text-3xl font-bold text-white mt-2">{content.articles.length}</p>
               </div>
               <div className="p-3 rounded-full bg-green-400/10">
@@ -195,7 +218,7 @@ export default function ContentPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-400">Total Views</p>
+                <p className="text-sm font-medium text-gray-400">{t('club.contentPage.totalViews', language)}</p>
                 <p className="text-3xl font-bold text-white mt-2">
                   {/* Calculate total views */}
                   {[...content.videos, ...content.articles].reduce((acc, item) => acc + (item.view_count || 0), 0)}
@@ -217,7 +240,7 @@ export default function ContentPage() {
             <Input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search videos, guides, and articles..."
+              placeholder={t('club.contentPage.searchPlaceholder', language)}
               className="pl-10 bg-slate-900 border-copper-400/20 text-white"
             />
           </div>
@@ -229,15 +252,15 @@ export default function ContentPage() {
         <TabsList className="bg-slate-800 border border-copper-400/20">
           <TabsTrigger value="videos" className="data-[state=active]:bg-copper-600">
             <Video className="h-4 w-4 mr-2" />
-            Videos
+            {t('club.contentPage.videos', language)}
           </TabsTrigger>
           <TabsTrigger value="guides" className="data-[state=active]:bg-copper-600">
             <BookOpen className="h-4 w-4 mr-2" />
-            Guides
+            {t('club.contentPage.guides', language)}
           </TabsTrigger>
           <TabsTrigger value="articles" className="data-[state=active]:bg-copper-600">
             <FileText className="h-4 w-4 mr-2" />
-            Articles
+            {t('club.contentPage.articles', language)}
           </TabsTrigger>
         </TabsList>
 
@@ -257,7 +280,7 @@ export default function ContentPage() {
                     : 'bg-transparent border-copper-400/20 text-gray-300 hover:bg-copper-400/10'
                 }`}
               >
-                {category}
+                {category === 'All' ? t('club.contentPage.all', language) : category}
               </Button>
             ))}
           </div>
@@ -292,7 +315,7 @@ export default function ContentPage() {
                   <div className="flex items-center justify-between text-xs text-gray-500">
                     <span className="flex items-center">
                       <Eye className="h-3 w-3 mr-1" />
-                      {video.view_count || 0} views
+                      {video.view_count || 0} {t('club.contentPage.views', language)}
                     </span>
                     <span>{formatDate(video.published_at)}</span>
                   </div>
@@ -303,7 +326,7 @@ export default function ContentPage() {
           ) : (
             <div className="text-center py-12">
               <Video className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-              <p className="text-gray-400">No videos found.</p>
+              <p className="text-gray-400">{t('club.contentPage.noVideos', language)}</p>
             </div>
           )}
         </TabsContent>
@@ -327,10 +350,10 @@ export default function ContentPage() {
                       <h3 className="text-lg font-semibold text-white mb-1">{guide.title}</h3>
                       <p className="text-sm text-gray-400 mb-3">{guide.description}</p>
                       <div className="flex items-center gap-4 text-xs text-gray-500">
-                        <span>{guide.pages} pages</span>
+                        <span>{guide.pages} {t('club.contentPage.pages', language)}</span>
                         <span className="flex items-center">
                           <Download className="h-3 w-3 mr-1" />
-                          {guide.download_count || 0} downloads
+                          {guide.download_count || 0} {t('club.contentPage.downloads', language)}
                         </span>
                         <span>{formatDate(guide.published_at)}</span>
                       </div>
@@ -340,7 +363,7 @@ export default function ContentPage() {
                       onClick={() => handleOpenItem(guide)}
                     >
                       <Download className="h-4 w-4 mr-2" />
-                      Download
+                      {t('club.contentPage.download', language)}
                     </Button>
                   </div>
                 </CardContent>
@@ -349,7 +372,7 @@ export default function ContentPage() {
           })) : (
             <div className="text-center py-12">
               <BookOpen className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-              <p className="text-gray-400">No guides available yet.</p>
+              <p className="text-gray-400">{t('club.contentPage.noGuides', language)}</p>
             </div>
           )}
         </TabsContent>
@@ -378,12 +401,12 @@ export default function ContentPage() {
                     </span>
                     <span className="flex items-center">
                       <Eye className="h-3 w-3 mr-1" />
-                      {article.view_count || 0} views
+                      {article.view_count || 0} {t('club.contentPage.views', language)}
                     </span>
                     <span>{formatDate(article.published_at)}</span>
                   </div>
                   <Button variant="outline" size="sm" className="bg-transparent border-copper-400/20 text-copper-400 hover:bg-copper-400/10">
-                    Read Article →
+                    {t('club.contentPage.readArticle', language)} →
                   </Button>
                 </div>
               </CardContent>
@@ -392,7 +415,7 @@ export default function ContentPage() {
           ) : (
             <div className="text-center py-12">
               <FileText className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-              <p className="text-gray-400">No articles available yet.</p>
+              <p className="text-gray-400">{t('club.contentPage.noArticles', language)}</p>
             </div>
           )}
         </TabsContent>

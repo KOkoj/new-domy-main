@@ -18,6 +18,7 @@ import {
   Clock
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { t } from '../../../lib/translations'
 
 const STORAGE_BUCKET = 'documents'
 
@@ -27,10 +28,31 @@ export default function DocumentsPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All Documents')
   const [categories, setCategories] = useState(['All Documents'])
+  const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
     loadDocuments()
-  }, [])
+    
+    const savedLanguage = localStorage.getItem('preferred-language')
+    if (savedLanguage && (savedLanguage === 'cs' || savedLanguage === 'en')) {
+      setLanguage(savedLanguage)
+    }
+    
+    const handleStorageChange = () => {
+      const newLang = localStorage.getItem('preferred-language')
+      if (newLang && (newLang === 'cs' || newLang === 'en') && newLang !== language) {
+        setLanguage(newLang)
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    const interval = setInterval(handleStorageChange, 1000)
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      clearInterval(interval)
+    }
+  }, [language])
 
   const loadDocuments = async () => {
     try {
@@ -163,10 +185,10 @@ export default function DocumentsPage() {
       <div data-testid="documents-header">
         <h1 className="text-3xl font-bold text-white flex items-center space-x-3" data-testid="documents-title">
           <Folder className="h-8 w-8 text-copper-400" data-testid="documents-title-icon" />
-          <span data-testid="documents-title-text">Document Library</span>
+          <span data-testid="documents-title-text">{t('club.documentsPage.title', language)}</span>
         </h1>
         <p className="text-gray-400 mt-2" data-testid="documents-subtitle">
-          Access contracts, guides, templates, and important documents
+          {t('club.documentsPage.subtitle', language)}
         </p>
       </div>
 
@@ -179,7 +201,7 @@ export default function DocumentsPage() {
               <Input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search documents..."
+                placeholder={t('club.documentsPage.searchPlaceholder', language)}
                 className="pl-10 bg-slate-900 border-copper-400/20 text-white"
                 data-testid="documents-search-input"
               />
@@ -212,7 +234,7 @@ export default function DocumentsPage() {
           <CardContent className="p-6" data-testid="documents-stat-total-content">
             <div className="flex items-center justify-between" data-testid="documents-stat-total-layout">
               <div data-testid="documents-stat-total-info">
-                <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-total-label">Total Documents</p>
+                <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-total-label">{t('club.documentsPage.totalDocuments', language)}</p>
                 <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-total-value">{documents.length}</p>
               </div>
               <div className="p-3 rounded-full bg-copper-400/10" data-testid="documents-stat-total-icon">
@@ -226,7 +248,7 @@ export default function DocumentsPage() {
           <CardContent className="p-6" data-testid="documents-stat-categories-content">
             <div className="flex items-center justify-between" data-testid="documents-stat-categories-layout">
               <div data-testid="documents-stat-categories-info">
-                <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-categories-label">Categories</p>
+                <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-categories-label">{t('club.documentsPage.categories', language)}</p>
                 <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-categories-value">{Math.max(0, categories.length - 1)}</p>
               </div>
               <div className="p-3 rounded-full bg-blue-400/10" data-testid="documents-stat-categories-icon">
@@ -240,7 +262,7 @@ export default function DocumentsPage() {
           <CardContent className="p-6" data-testid="documents-stat-downloads-content">
             <div className="flex items-center justify-between" data-testid="documents-stat-downloads-layout">
               <div data-testid="documents-stat-downloads-info">
-                <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-downloads-label">New This Month</p>
+                <p className="text-sm font-medium text-gray-400" data-testid="documents-stat-downloads-label">{t('club.documentsPage.newThisMonth', language)}</p>
                 <p className="text-3xl font-bold text-white mt-2" data-testid="documents-stat-downloads-value">
                   {documents.filter(d => {
                     const date = new Date(d.uploaded_at)
@@ -302,7 +324,7 @@ export default function DocumentsPage() {
                         data-testid={`document-${doc.id}-preview`}
                       >
                         <Eye className="h-4 w-4 mr-2" data-testid={`document-${doc.id}-preview-icon`} />
-                        Preview
+                        {t('club.documentsPage.preview', language)}
                       </Button>
                       <Button
                         size="sm"
@@ -311,7 +333,7 @@ export default function DocumentsPage() {
                         data-testid={`document-${doc.id}-download`}
                       >
                         <Download className="h-4 w-4 mr-2" data-testid={`document-${doc.id}-download-icon`} />
-                        Download
+                        {t('club.documentsPage.download', language)}
                       </Button>
                     </div>
                   </div>
@@ -323,7 +345,7 @@ export default function DocumentsPage() {
           <Card className="bg-slate-800 border-copper-400/20" data-testid="documents-empty-state">
             <CardContent className="p-12 text-center" data-testid="documents-empty-content">
               <FileText className="h-12 w-12 text-gray-600 mx-auto mb-4" data-testid="documents-empty-icon" />
-              <p className="text-gray-400" data-testid="documents-empty-message">No documents found matching your search.</p>
+              <p className="text-gray-400" data-testid="documents-empty-message">{t('club.documentsPage.noDocuments', language)}</p>
             </CardContent>
           </Card>
         )}

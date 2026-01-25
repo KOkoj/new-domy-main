@@ -16,6 +16,7 @@ import {
   Download
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { t } from '../../../lib/translations'
 
 const UPCOMING_WEBINARS = [
   {
@@ -141,10 +142,31 @@ export default function WebinarsPage() {
   const [loading, setLoading] = useState(true)
   const [upcomingWebinars, setUpcomingWebinars] = useState([])
   const [pastWebinars, setPastWebinars] = useState([])
+  const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
     loadWebinarData()
-  }, [])
+    
+    const savedLanguage = localStorage.getItem('preferred-language')
+    if (savedLanguage && (savedLanguage === 'cs' || savedLanguage === 'en')) {
+      setLanguage(savedLanguage)
+    }
+    
+    const handleStorageChange = () => {
+      const newLang = localStorage.getItem('preferred-language')
+      if (newLang && (newLang === 'cs' || newLang === 'en') && newLang !== language) {
+        setLanguage(newLang)
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    const interval = setInterval(handleStorageChange, 1000)
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      clearInterval(interval)
+    }
+  }, [language])
 
   const loadWebinarData = async () => {
     try {
@@ -289,10 +311,10 @@ END:VCALENDAR`
       <div data-testid="webinars-header">
         <h1 className="text-3xl font-bold text-white flex items-center space-x-3" data-testid="webinars-title">
           <Calendar className="h-8 w-8 text-copper-400" data-testid="webinars-title-icon" />
-          <span data-testid="webinars-title-text">Webinar Calendar</span>
+          <span data-testid="webinars-title-text">{t('club.webinarsPage.title', language)}</span>
         </h1>
         <p className="text-gray-400 mt-2" data-testid="webinars-subtitle">
-          Join exclusive educational sessions with industry experts
+          {t('club.webinarsPage.subtitle', language)}
         </p>
       </div>
 
@@ -300,10 +322,10 @@ END:VCALENDAR`
       <Tabs defaultValue="upcoming" className="w-full" data-testid="webinars-tabs">
         <TabsList className="bg-slate-800 border border-copper-400/20" data-testid="webinars-tabs-list">
           <TabsTrigger value="upcoming" className="data-[state=active]:bg-copper-600" data-testid="webinars-tab-upcoming">
-            Upcoming Webinars
+            {t('club.webinarsPage.upcomingWebinars', language)}
           </TabsTrigger>
           <TabsTrigger value="past" className="data-[state=active]:bg-copper-600" data-testid="webinars-tab-past">
-            Past Recordings
+            {t('club.webinarsPage.pastRecordings', language)}
           </TabsTrigger>
         </TabsList>
 
@@ -356,7 +378,7 @@ END:VCALENDAR`
                         </span>
                         <span className="flex items-center" data-testid={`webinar-upcoming-${webinar.id}-spots-info`}>
                           <Users className="h-4 w-4 mr-1" data-testid={`webinar-upcoming-${webinar.id}-spots-icon`} />
-                          {webinar.spots} spots available
+                          {webinar.spots} {t('club.webinarsPage.spotsAvailable', language)}
                         </span>
                       </div>
 
@@ -382,7 +404,7 @@ END:VCALENDAR`
                                 data-testid={`webinar-upcoming-${webinar.id}-add-calendar`}
                               >
                                 <CalendarPlus className="h-4 w-4 mr-2" data-testid={`webinar-upcoming-${webinar.id}-add-calendar-icon`} />
-                                Add to Calendar
+                                {t('club.webinarsPage.addToCalendar', language)}
                               </Button>
                               <Button
                                 variant="outline"
@@ -391,7 +413,7 @@ END:VCALENDAR`
                                 className="bg-transparent border-red-400/20 text-red-400 hover:bg-red-400/10"
                                 data-testid={`webinar-upcoming-${webinar.id}-cancel`}
                               >
-                                Cancel
+                                {t('club.webinarsPage.cancel', language)}
                               </Button>
                             </>
                           )}
@@ -402,7 +424,7 @@ END:VCALENDAR`
                               data-testid={`webinar-upcoming-${webinar.id}-register`}
                             >
                               <CheckCircle className="h-4 w-4 mr-2" data-testid={`webinar-upcoming-${webinar.id}-register-icon`} />
-                              Register Now
+                              {t('club.webinarsPage.registerNow', language)}
                             </Button>
                           )}
                         </div>
@@ -412,7 +434,7 @@ END:VCALENDAR`
                         <div className="mt-4 p-3 bg-green-900/20 border border-green-600/30 rounded-lg" data-testid={`webinar-upcoming-${webinar.id}-registered-status`}>
                           <p className="text-green-400 text-sm flex items-center" data-testid={`webinar-upcoming-${webinar.id}-registered-message`}>
                             <CheckCircle className="h-4 w-4 mr-2" data-testid={`webinar-upcoming-${webinar.id}-registered-icon`} />
-                            You're registered! A calendar invite and webinar link will be sent to your email.
+                            {t('club.webinarsPage.registered', language)}
                           </p>
                         </div>
                       )}
@@ -421,12 +443,12 @@ END:VCALENDAR`
                 </CardContent>
               </Card>
             )
-          })) : (
+          })          ) : (
             <Card className="bg-slate-800 border-copper-400/20">
               <CardContent className="p-12 text-center">
                 <Calendar className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-400">No upcoming webinars scheduled.</p>
-                <p className="text-sm text-gray-500 mt-2">Check back soon for new sessions!</p>
+                <p className="text-gray-400">{t('club.webinarsPage.noUpcoming', language)}</p>
+                <p className="text-sm text-gray-500 mt-2">{t('club.webinarsPage.noUpcomingDescription', language)}</p>
               </CardContent>
             </Card>
           )}
@@ -491,14 +513,14 @@ END:VCALENDAR`
                           data-testid={`webinar-past-${webinar.id}-download`}
                         >
                           <Download className="h-4 w-4 mr-2" data-testid={`webinar-past-${webinar.id}-download-icon`} />
-                          Download
+                          {t('club.webinarsPage.download', language)}
                         </Button>
                         <Button
                           className="bg-copper-600 hover:bg-copper-700"
                           data-testid={`webinar-past-${webinar.id}-watch`}
                         >
                           <Play className="h-4 w-4 mr-2" data-testid={`webinar-past-${webinar.id}-watch-icon`} />
-                          Watch Recording
+                          {t('club.webinarsPage.watchRecording', language)}
                         </Button>
                       </div>
                     </div>
@@ -511,7 +533,7 @@ END:VCALENDAR`
             <Card className="bg-slate-800 border-copper-400/20">
               <CardContent className="p-12 text-center">
                 <Video className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-400">No past recordings available.</p>
+                <p className="text-gray-400">{t('club.webinarsPage.noPast', language)}</p>
               </CardContent>
             </Card>
           )}
