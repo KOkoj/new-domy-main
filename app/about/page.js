@@ -68,25 +68,6 @@ const SERVICES = [
 
 const STATS = [
   { 
-    label: { en: 'Properties Sold', cs: 'Prodané nemovitosti', it: 'Proprietà Vendute' }, 
-    value: '500+' 
-  },
-  { 
-    label: { en: 'Happy Clients', cs: 'Spokojení klienti', it: 'Clienti Felici' }, 
-    value: '300+' 
-  },
-  { 
-    label: { en: 'Years Experience', cs: 'Let zkušeností', it: 'Anni di Esperienza' }, 
-    value: '15+' 
-  },
-  { 
-    label: { en: 'Italian Regions', cs: 'Italské regiony', it: 'Regioni Italiane' }, 
-    value: '12' 
-  }
-]
-
-const STATS = [
-  { 
     label: { en: 'Individual Approach', cs: 'Individuální přístup', it: 'Approccio Individuale' }, 
     value: '100%' 
   },
