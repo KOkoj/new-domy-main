@@ -217,23 +217,34 @@ export async function POST(request, { params }) {
 
     // Toggle favorite
     if (path[0] === 'favorites' && path[1] === 'toggle') {
-      if (!supabase) return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
+      console.log('Toggle favorite request received', body)
+      if (!supabase) {
+        console.error('Database not configured')
+        return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
+      }
       
       const { data: { user } } = await supabase.auth.getUser()
       
       if (!user) {
+        console.error('User not authenticated')
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
       }
 
       const { listingId } = body
+      console.log(`Toggling favorite for user ${user.id} and listing ${listingId}`)
       
       // Check if already favorited (snake_case)
-      const { data: existing } = await supabase
+      const { data: existing, error: checkError } = await supabase
         .from('favorites')
         .select('id')
         .eq('user_id', user.id)
         .eq('listing_id', listingId)
         .single()
+
+      if (checkError && checkError.code !== 'PGRST116') { // PGRST116 is "No rows found"
+         console.error('Error checking favorite:', checkError)
+         return NextResponse.json({ error: checkError.message }, { status: 500 })
+      }
 
       if (existing) {
         // Remove from favorites
@@ -244,9 +255,11 @@ export async function POST(request, { params }) {
           .eq('listing_id', listingId)
         
         if (error) {
+          console.error('Error deleting favorite:', error)
           return NextResponse.json({ error: error.message }, { status: 500 })
         }
         
+        console.log('Favorite removed')
         return NextResponse.json({ favorited: false })
       } else {
         // Add to favorites
@@ -255,9 +268,11 @@ export async function POST(request, { params }) {
           .insert([{ user_id: user.id, listing_id: listingId }])
         
         if (error) {
+          console.error('Error adding favorite:', error)
           return NextResponse.json({ error: error.message }, { status: 500 })
         }
         
+        console.log('Favorite added')
         return NextResponse.json({ favorited: true })
       }
     }
