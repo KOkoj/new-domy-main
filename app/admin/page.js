@@ -16,9 +16,11 @@ import {
   AlertCircle
 } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
+import { t } from '@/lib/translations'
 import Link from 'next/link'
 
 export default function AdminDashboard() {
+  const [language, setLanguage] = useState('cs')
   const [stats, setStats] = useState({
     totalUsers: 0,
     totalInquiries: 0,
@@ -28,6 +30,26 @@ export default function AdminDashboard() {
     recentInquiries: [],
     loading: true
   })
+
+  useEffect(() => {
+    // Load language from localStorage
+    const savedLanguage = localStorage.getItem('language') || 'cs'
+    setLanguage(savedLanguage)
+
+    // Listen for language changes
+    const handleLanguageChange = (e) => {
+      if (e.detail) setLanguage(e.detail)
+      else if (e.newValue) setLanguage(e.newValue)
+    }
+
+    window.addEventListener('languageChange', handleLanguageChange)
+    window.addEventListener('storage', handleLanguageChange)
+
+    return () => {
+      window.removeEventListener('languageChange', handleLanguageChange)
+      window.removeEventListener('storage', handleLanguageChange)
+    }
+  }, [])
 
   useEffect(() => {
     loadDashboardData()
@@ -88,7 +110,7 @@ export default function AdminDashboard() {
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('admin.dashboard.title', language)}</h1>
         </div>
         <div className="animate-pulse space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -103,7 +125,7 @@ export default function AdminDashboard() {
 
   const statCards = [
     {
-      title: 'Total Users',
+      title: t('admin.dashboard.totalUsers', language),
       value: stats.totalUsers,
       icon: Users,
       color: 'text-blue-600',
@@ -112,7 +134,7 @@ export default function AdminDashboard() {
       href: '/admin/users'
     },
     {
-      title: 'Property Inquiries',
+      title: t('admin.dashboard.propertyInquiries', language),
       value: stats.totalInquiries,
       icon: MessageSquare,
       color: 'text-slate-800',
@@ -121,7 +143,7 @@ export default function AdminDashboard() {
       href: '/admin/inquiries'
     },
     {
-      title: 'Total Favorites',
+      title: t('admin.dashboard.totalFavorites', language),
       value: stats.totalFavorites,
       icon: Heart,
       color: 'text-red-600',
@@ -130,7 +152,7 @@ export default function AdminDashboard() {
       href: '/admin/users'
     },
     {
-      title: 'Saved Searches',
+      title: t('admin.dashboard.savedSearches', language),
       value: stats.totalSavedSearches,
       icon: Search,
       color: 'text-purple-600',
@@ -145,16 +167,16 @@ export default function AdminDashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-          <p className="text-gray-600 mt-1">Italian Property Platform Management</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('admin.dashboard.title', language)}</h1>
+          <p className="text-gray-600 mt-1">{t('admin.dashboard.subtitle', language)}</p>
         </div>
         <div className="flex items-center space-x-2">
           <Badge variant="secondary">
-            Last updated: {new Date().toLocaleTimeString()}
+            {t('admin.dashboard.lastUpdated', language)}: {new Date().toLocaleTimeString()}
           </Badge>
           <Button variant="outline" onClick={loadDashboardData}>
             <Activity className="h-4 w-4 mr-2" />
-            Refresh
+            {t('admin.dashboard.refresh', language)}
           </Button>
         </div>
       </div>
@@ -174,7 +196,7 @@ export default function AdminDashboard() {
                       <div className="flex items-center mt-2">
                         <TrendingUp className="h-4 w-4 text-slate-800 mr-1" />
                         <span className="text-sm text-slate-800 font-medium">{stat.change}</span>
-                        <span className="text-sm text-gray-500 ml-1">vs last month</span>
+                        <span className="text-sm text-gray-500 ml-1">{t('admin.dashboard.vsLastMonth', language)}</span>
                       </div>
                     </div>
                     <div className={`p-3 rounded-full ${stat.bgColor}`}>
@@ -195,10 +217,10 @@ export default function AdminDashboard() {
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="flex items-center space-x-2">
               <Users className="h-5 w-5" />
-              <span>Recent Users</span>
+              <span>{t('admin.dashboard.recentUsers', language)}</span>
             </CardTitle>
             <Link href="/admin/users">
-              <Button variant="outline" size="sm">View All</Button>
+              <Button variant="outline" size="sm">{t('admin.dashboard.viewAll', language)}</Button>
             </Link>
           </CardHeader>
           <CardContent>
@@ -226,7 +248,7 @@ export default function AdminDashboard() {
             ) : (
               <div className="text-center py-8 text-gray-500">
                 <Users className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                <p>No users found</p>
+                <p>{t('admin.dashboard.noUsersFound', language)}</p>
               </div>
             )}
           </CardContent>
@@ -237,10 +259,10 @@ export default function AdminDashboard() {
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="flex items-center space-x-2">
               <MessageSquare className="h-5 w-5" />
-              <span>Recent Inquiries</span>
+              <span>{t('admin.dashboard.recentInquiries', language)}</span>
             </CardTitle>
             <Link href="/admin/inquiries">
-              <Button variant="outline" size="sm">View All</Button>
+              <Button variant="outline" size="sm">{t('admin.dashboard.viewAll', language)}</Button>
             </Link>
           </CardHeader>
           <CardContent>
@@ -254,7 +276,7 @@ export default function AdminDashboard() {
                         <p className="text-sm text-gray-600">{inquiry.email}</p>
                       </div>
                       <Badge variant="outline" className="text-xs">
-                        Property: {inquiry.listingId}
+                        {t('admin.dashboard.property', language)}: {inquiry.listingId}
                       </Badge>
                     </div>
                     <p className="text-sm text-gray-700 line-clamp-2">{inquiry.message}</p>
@@ -267,7 +289,7 @@ export default function AdminDashboard() {
             ) : (
               <div className="text-center py-8 text-gray-500">
                 <MessageSquare className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                <p>No inquiries found</p>
+                <p>{t('admin.dashboard.noInquiriesFound', language)}</p>
               </div>
             )}
           </CardContent>
@@ -277,26 +299,26 @@ export default function AdminDashboard() {
       {/* Quick Actions */}
       <Card>
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <CardTitle>{t('admin.dashboard.quickActions', language)}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Link href="/admin/users">
               <Button variant="outline" className="w-full h-16 flex-col space-y-2">
                 <Users className="h-5 w-5" />
-                <span>Manage Users</span>
+                <span>{t('admin.dashboard.manageUsers', language)}</span>
               </Button>
             </Link>
             <Link href="/admin/inquiries">
               <Button variant="outline" className="w-full h-16 flex-col space-y-2">
                 <MessageSquare className="h-5 w-5" />
-                <span>Review Inquiries</span>
+                <span>{t('admin.dashboard.reviewInquiries', language)}</span>
               </Button>
             </Link>
             <Link href="/admin/content">
               <Button variant="outline" className="w-full h-16 flex-col space-y-2">
                 <Home className="h-5 w-5" />
-                <span>Manage Content</span>
+                <span>{t('admin.dashboard.manageContent', language)}</span>
               </Button>
             </Link>
           </div>
@@ -308,7 +330,7 @@ export default function AdminDashboard() {
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <Activity className="h-5 w-5" />
-            <span>System Status</span>
+            <span>{t('admin.dashboard.systemStatus', language)}</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -316,22 +338,22 @@ export default function AdminDashboard() {
             <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg">
               <div className="w-3 h-3 bg-slate-500 rounded-full"></div>
               <div>
-                <p className="font-medium text-slate-900">Database</p>
-                <p className="text-sm text-slate-700">Connected</p>
+                <p className="font-medium text-slate-900">{t('admin.dashboard.database', language)}</p>
+                <p className="text-sm text-slate-700">{t('admin.dashboard.connected', language)}</p>
               </div>
             </div>
             <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg">
               <div className="w-3 h-3 bg-slate-500 rounded-full"></div>
               <div>
-                <p className="font-medium text-slate-900">Authentication</p>
-                <p className="text-sm text-slate-700">Active</p>
+                <p className="font-medium text-slate-900">{t('admin.dashboard.authentication', language)}</p>
+                <p className="text-sm text-slate-700">{t('admin.dashboard.active', language)}</p>
               </div>
             </div>
             <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg">
               <div className="w-3 h-3 bg-slate-500 rounded-full"></div>
               <div>
-                <p className="font-medium text-slate-900">API Services</p>
-                <p className="text-sm text-slate-700">Operational</p>
+                <p className="font-medium text-slate-900">{t('admin.dashboard.apiServices', language)}</p>
+                <p className="text-sm text-slate-700">{t('admin.dashboard.operational', language)}</p>
               </div>
             </div>
           </div>
