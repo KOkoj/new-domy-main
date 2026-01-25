@@ -127,10 +127,10 @@ export default function ProfileManagement() {
 
       if (error) throw error
 
-      setMessage({ type: 'success', text: t('dashboard.profile.successMessage', language) })
+      setMessage({ type: 'success', text: t('club.profile.successMessage', language) })
     } catch (error) {
       console.error('Error saving profile:', error)
-      setMessage({ type: 'error', text: t('dashboard.profile.errorMessage', language) })
+      setMessage({ type: 'error', text: t('club.profile.errorMessage', language) })
     } finally {
       setSaving(false)
     }
@@ -141,13 +141,13 @@ export default function ProfileManagement() {
     setMessage({ type: '', text: '' })
 
     if (passwordForm.newPassword !== passwordForm.confirmPassword) {
-      setMessage({ type: 'error', text: t('dashboard.profile.passwordMismatch', language) })
+      setMessage({ type: 'error', text: t('club.profile.passwordMismatch', language) })
       setSaving(false)
       return
     }
 
     if (passwordForm.newPassword.length < 6) {
-      setMessage({ type: 'error', text: t('dashboard.profile.passwordLength', language) })
+      setMessage({ type: 'error', text: t('club.profile.passwordLength', language) })
       setSaving(false)
       return
     }
@@ -159,11 +159,11 @@ export default function ProfileManagement() {
 
       if (error) throw error
 
-      setMessage({ type: 'success', text: t('dashboard.profile.passwordSuccess', language) })
+      setMessage({ type: 'success', text: t('club.profile.passwordSuccess', language) })
       setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' })
     } catch (error) {
       console.error('Error changing password:', error)
-      setMessage({ type: 'error', text: t('dashboard.profile.passwordError', language) })
+      setMessage({ type: 'error', text: t('club.profile.passwordError', language) })
     } finally {
       setSaving(false)
     }
@@ -208,8 +208,8 @@ export default function ProfileManagement() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t('dashboard.profile.title', language)}</h1>
-          <p className="text-gray-600 mt-1">{t('dashboard.profile.subtitle', language)}</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('club.profile.title', language)}</h1>
+          <p className="text-gray-600 mt-1">{t('club.profile.subtitle', language)}</p>
         </div>
       </div>
 
@@ -228,9 +228,9 @@ export default function ProfileManagement() {
       {/* Profile Tabs */}
       <Tabs defaultValue="personal" className="w-full">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="personal">{t('dashboard.profile.personalInfo', language)}</TabsTrigger>
-          <TabsTrigger value="preferences">{t('dashboard.profile.preferences', language)}</TabsTrigger>
-          <TabsTrigger value="security">{t('dashboard.profile.security', language)}</TabsTrigger>
+          <TabsTrigger value="personal">{t('club.profile.personalInfo', language)}</TabsTrigger>
+          <TabsTrigger value="preferences">{t('club.profile.preferences', language)}</TabsTrigger>
+          <TabsTrigger value="security">{t('club.profile.security', language)}</TabsTrigger>
         </TabsList>
 
         {/* Personal Information */}
@@ -239,23 +239,23 @@ export default function ProfileManagement() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <User className="h-5 w-5" />
-                <span>{t('dashboard.profile.personalInformation', language)}</span>
+                <span>{t('club.profile.personalInformation', language)}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="name">{t('dashboard.profile.fullName', language)}</Label>
+                  <Label htmlFor="name">{t('club.profile.fullName', language)}</Label>
                   <Input
                     id="name"
                     type="text"
                     value={profile.name}
                     onChange={(e) => setProfile(prev => ({ ...prev, name: e.target.value }))}
-                    placeholder={t('dashboard.profile.fullNamePlaceholder', language)}
+                    placeholder={t('club.profile.fullNamePlaceholder', language)}
                   />
                 </div>
                 <div>
-                  <Label htmlFor="email">{t('dashboard.profile.emailAddress', language)}</Label>
+                  <Label htmlFor="email">{t('club.profile.emailAddress', language)}</Label>
                   <Input
                     id="email"
                     type="email"
@@ -263,13 +263,13 @@ export default function ProfileManagement() {
                     disabled
                     className="bg-gray-50"
                   />
-                  <p className="text-xs text-gray-500 mt-1">{t('dashboard.profile.emailCannotChange', language)}</p>
+                  <p className="text-xs text-gray-500 mt-1">{t('club.profile.emailCannotChange', language)}</p>
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="phone">{t('dashboard.profile.phoneNumber', language)}</Label>
+                  <Label htmlFor="phone">{t('club.profile.phoneNumber', language)}</Label>
                   <Input
                     id="phone"
                     type="tel"
@@ -279,31 +279,31 @@ export default function ProfileManagement() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="location">{t('dashboard.profile.location', language)}</Label>
+                  <Label htmlFor="location">{t('club.profile.location', language)}</Label>
                   <Input
                     id="location"
                     type="text"
                     value={profile.location}
                     onChange={(e) => setProfile(prev => ({ ...prev, location: e.target.value }))}
-                    placeholder={t('dashboard.profile.locationPlaceholder', language)}
+                    placeholder={t('club.profile.locationPlaceholder', language)}
                   />
                 </div>
               </div>
               
               <div>
-                <Label htmlFor="bio">{t('dashboard.profile.aboutMe', language)}</Label>
+                <Label htmlFor="bio">{t('club.profile.aboutMe', language)}</Label>
                 <Textarea
                   id="bio"
                   value={profile.bio}
                   onChange={(e) => setProfile(prev => ({ ...prev, bio: e.target.value }))}
-                  placeholder={t('dashboard.profile.aboutMePlaceholder', language)}
+                  placeholder={t('club.profile.aboutMePlaceholder', language)}
                   rows={4}
                 />
               </div>
               
               <Button onClick={handleProfileSave} disabled={saving}>
                 <Save className="h-4 w-4 mr-2" />
-                {saving ? t('dashboard.profile.saving', language) : t('dashboard.profile.saveChanges', language)}
+                {saving ? t('club.profile.saving', language) : t('club.profile.saveChanges', language)}
               </Button>
             </CardContent>
           </Card>
@@ -315,14 +315,14 @@ export default function ProfileManagement() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Settings className="h-5 w-5" />
-                <span>{t('dashboard.profile.propertyPreferences', language)}</span>
+                <span>{t('club.profile.propertyPreferences', language)}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               {/* Property Types */}
               <div>
-                <Label className="text-base font-medium">{t('dashboard.profile.preferredPropertyTypes', language)}</Label>
-                <p className="text-sm text-gray-600 mb-3">{t('dashboard.profile.selectPropertyTypes', language)}</p>
+                <Label className="text-base font-medium">{t('club.profile.preferredPropertyTypes', language)}</Label>
+                <p className="text-sm text-gray-600 mb-3">{t('club.profile.selectPropertyTypes', language)}</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {['villa', 'house', 'apartment', 'commercial'].map((type) => (
                     <button
@@ -342,11 +342,11 @@ export default function ProfileManagement() {
 
               {/* Price Range */}
               <div>
-                <Label className="text-base font-medium">{t('dashboard.profile.priceRange', language)}</Label>
-                <p className="text-sm text-gray-600 mb-3">{t('dashboard.profile.setBudget', language)}</p>
+                <Label className="text-base font-medium">{t('club.profile.priceRange', language)}</Label>
+                <p className="text-sm text-gray-600 mb-3">{t('club.profile.setBudget', language)}</p>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="minPrice">{t('dashboard.profile.minPrice', language)}</Label>
+                    <Label htmlFor="minPrice">{t('club.profile.minPrice', language)}</Label>
                     <Input
                       id="minPrice"
                       type="number"
@@ -359,7 +359,7 @@ export default function ProfileManagement() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="maxPrice">{t('dashboard.profile.maxPrice', language)}</Label>
+                    <Label htmlFor="maxPrice">{t('club.profile.maxPrice', language)}</Label>
                     <Input
                       id="maxPrice"
                       type="number"
@@ -368,7 +368,7 @@ export default function ProfileManagement() {
                         ...profile.preferences.priceRange,
                         max: e.target.value
                       })}
-                      placeholder={t('dashboard.profile.noLimit', language)}
+                      placeholder={t('club.profile.noLimit', language)}
                     />
                   </div>
                 </div>
@@ -376,8 +376,8 @@ export default function ProfileManagement() {
 
               {/* Notification Preferences */}
               <div>
-                <Label className="text-base font-medium">{t('dashboard.profile.notificationPreferences', language)}</Label>
-                <p className="text-sm text-gray-600 mb-3">{t('dashboard.profile.chooseNotifications', language)}</p>
+                <Label className="text-base font-medium">{t('club.profile.notificationPreferences', language)}</Label>
+                <p className="text-sm text-gray-600 mb-3">{t('club.profile.chooseNotifications', language)}</p>
                 <div className="space-y-3">
                   <label className="flex items-center space-x-3">
                     <input
@@ -386,7 +386,7 @@ export default function ProfileManagement() {
                       onChange={(e) => handlePreferenceChange('emailNotifications', e.target.checked)}
                       className="rounded border-gray-300"
                     />
-                    <span className="text-sm">{t('dashboard.profile.emailNotifications', language)}</span>
+                    <span className="text-sm">{t('club.profile.emailNotifications', language)}</span>
                   </label>
                   <label className="flex items-center space-x-3">
                     <input
@@ -395,14 +395,14 @@ export default function ProfileManagement() {
                       onChange={(e) => handlePreferenceChange('propertyAlerts', e.target.checked)}
                       className="rounded border-gray-300"
                     />
-                    <span className="text-sm">{t('dashboard.profile.propertyAlerts', language)}</span>
+                    <span className="text-sm">{t('club.profile.propertyAlerts', language)}</span>
                   </label>
                 </div>
               </div>
               
               <Button onClick={handleProfileSave} disabled={saving}>
                 <Save className="h-4 w-4 mr-2" />
-                {saving ? t('dashboard.profile.saving', language) : t('dashboard.profile.savePreferences', language)}
+                {saving ? t('club.profile.saving', language) : t('club.profile.savePreferences', language)}
               </Button>
             </CardContent>
           </Card>
@@ -414,19 +414,19 @@ export default function ProfileManagement() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Lock className="h-5 w-5" />
-                <span>{t('dashboard.profile.changePassword', language)}</span>
+                <span>{t('club.profile.changePassword', language)}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <Label htmlFor="currentPassword">{t('dashboard.profile.currentPassword', language)}</Label>
+                <Label htmlFor="currentPassword">{t('club.profile.currentPassword', language)}</Label>
                 <div className="relative">
                   <Input
                     id="currentPassword"
                     type={showPasswords.current ? "text" : "password"}
                     value={passwordForm.currentPassword}
                     onChange={(e) => setPasswordForm(prev => ({ ...prev, currentPassword: e.target.value }))}
-                    placeholder={t('dashboard.profile.currentPasswordPlaceholder', language)}
+                    placeholder={t('club.profile.currentPasswordPlaceholder', language)}
                   />
                   <button
                     type="button"
@@ -439,14 +439,14 @@ export default function ProfileManagement() {
               </div>
               
               <div>
-                <Label htmlFor="newPassword">{t('dashboard.profile.newPassword', language)}</Label>
+                <Label htmlFor="newPassword">{t('club.profile.newPassword', language)}</Label>
                 <div className="relative">
                   <Input
                     id="newPassword"
                     type={showPasswords.new ? "text" : "password"}
                     value={passwordForm.newPassword}
                     onChange={(e) => setPasswordForm(prev => ({ ...prev, newPassword: e.target.value }))}
-                    placeholder={t('dashboard.profile.newPasswordPlaceholder', language)}
+                    placeholder={t('club.profile.newPasswordPlaceholder', language)}
                   />
                   <button
                     type="button"
@@ -459,14 +459,14 @@ export default function ProfileManagement() {
               </div>
               
               <div>
-                <Label htmlFor="confirmPassword">{t('dashboard.profile.confirmPassword', language)}</Label>
+                <Label htmlFor="confirmPassword">{t('club.profile.confirmPassword', language)}</Label>
                 <div className="relative">
                   <Input
                     id="confirmPassword"
                     type={showPasswords.confirm ? "text" : "password"}
                     value={passwordForm.confirmPassword}
                     onChange={(e) => setPasswordForm(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                    placeholder={t('dashboard.profile.confirmPasswordPlaceholder', language)}
+                    placeholder={t('club.profile.confirmPasswordPlaceholder', language)}
                   />
                   <button
                     type="button"
@@ -483,7 +483,7 @@ export default function ProfileManagement() {
                 disabled={saving || !passwordForm.newPassword || !passwordForm.confirmPassword}
               >
                 <Lock className="h-4 w-4 mr-2" />
-                {saving ? t('dashboard.profile.updating', language) : t('dashboard.profile.updatePassword', language)}
+                {saving ? t('club.profile.updating', language) : t('club.profile.updatePassword', language)}
               </Button>
             </CardContent>
           </Card>

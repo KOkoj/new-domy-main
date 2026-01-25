@@ -22,6 +22,7 @@ import {
   Settings
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { t } from '../../../lib/translations'
 import Link from 'next/link'
 
 export default function SavedSearchesManagement() {
@@ -30,9 +31,22 @@ export default function SavedSearchesManagement() {
   const [editingSearch, setEditingSearch] = useState(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [user, setUser] = useState(null)
+  const [language, setLanguage] = useState('en')
 
   useEffect(() => {
     loadSavedSearches()
+    
+    // Load language preference
+    const savedLanguage = localStorage.getItem('preferred-language')
+    if (savedLanguage) setLanguage(savedLanguage)
+    
+    // Listen for language changes
+    const handleLanguageChange = (e) => {
+      setLanguage(e.detail)
+    }
+    
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
 
   const loadSavedSearches = async () => {
@@ -212,12 +226,12 @@ export default function SavedSearchesManagement() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Saved Searches</h1>
-          <p className="text-gray-600 mt-1">{savedSearches.length} saved search criteria</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('club.searchesPage.title', language)}</h1>
+          <p className="text-gray-600 mt-1">{savedSearches.length} {t('club.searchesPage.savedCriteria', language)}</p>
         </div>
         <Button onClick={createNewSearch}>
           <Plus className="h-4 w-4 mr-2" />
-          New Search
+          {t('club.searchesPage.newSearch', language)}
         </Button>
       </div>
 
@@ -298,13 +312,13 @@ export default function SavedSearchesManagement() {
         <Card>
           <CardContent className="p-12 text-center">
             <Search className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No saved searches yet</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('club.searchesPage.noSearches', language)}</h3>
             <p className="text-gray-600 mb-6">
-              Save your search criteria to get notified when new properties match your preferences.
+              {t('club.searchesPage.noSearchesDescription', language)}
             </p>
             <Button onClick={createNewSearch}>
               <Plus className="h-4 w-4 mr-2" />
-              Create Your First Search
+              {t('club.searchesPage.createFirst', language)}
             </Button>
           </CardContent>
         </Card>

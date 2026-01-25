@@ -27,6 +27,7 @@ import {
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
 import { formatPrice as formatPriceUtil } from '../../../lib/currency'
+import { t } from '../../../lib/translations'
 import Link from 'next/link'
 
 // Enhanced sample recommendations with AI-like matching
@@ -154,6 +155,14 @@ export default function PropertyRecommendations() {
     
     const savedCurrency = localStorage.getItem('preferred-currency')
     if (savedCurrency) setCurrency(savedCurrency)
+    
+    // Listen for language changes
+    const handleLanguageChange = (e) => {
+      setLanguage(e.detail)
+    }
+    
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
 
   useEffect(() => {
@@ -262,12 +271,12 @@ export default function PropertyRecommendations() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Property Recommendations</h1>
-          <p className="text-gray-600 mt-1">AI-powered suggestions based on your preferences and activity</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('club.recommendationsPage.title', language)}</h1>
+          <p className="text-gray-600 mt-1">{t('club.recommendationsPage.subtitle', language)}</p>
         </div>
         <Button onClick={refreshRecommendations} disabled={loading}>
           <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
-          {loading ? 'Updating...' : 'Refresh'}
+          {loading ? t('club.recommendationsPage.updating', language) : t('club.recommendationsPage.refresh', language)}
         </Button>
       </div>
 

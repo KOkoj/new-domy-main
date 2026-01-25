@@ -26,6 +26,7 @@ import {
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
 import { formatPrice as formatPriceUtil } from '../../../lib/currency'
+import { t } from '../../../lib/translations'
 import Link from 'next/link'
 
 // Sample property data based on our existing properties
@@ -90,6 +91,14 @@ export default function FavoritesManagement() {
     
     const savedCurrency = localStorage.getItem('preferred-currency')
     if (savedCurrency) setCurrency(savedCurrency)
+    
+    // Listen for language changes
+    const handleLanguageChange = (e) => {
+      setLanguage(e.detail)
+    }
+    
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
 
   useEffect(() => {
@@ -307,8 +316,8 @@ export default function FavoritesManagement() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">My Favorites</h1>
-          <p className="text-gray-600 mt-1">{favorites.length} saved properties</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('club.favoritesPage.title', language)}</h1>
+          <p className="text-gray-600 mt-1">{favorites.length} {t('club.favoritesPage.savedProperties', language)}</p>
         </div>
         <div className="flex items-center space-x-2">
           <Button 
@@ -336,7 +345,7 @@ export default function FavoritesManagement() {
               <div className="relative">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                 <Input
-                  placeholder="Search favorites by name or location..."
+                  placeholder={t('club.favoritesPage.searchPlaceholder', language)}
                   className="pl-10"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -348,20 +357,20 @@ export default function FavoritesManagement() {
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
             >
-              <option value="all">All Types</option>
-              <option value="villa">Villa</option>
-              <option value="house">House</option>
-              <option value="apartment">Apartment</option>
+              <option value="all">{t('club.favoritesPage.allTypes', language)}</option>
+              <option value="villa">{t('club.favoritesPage.villa', language)}</option>
+              <option value="house">{t('club.favoritesPage.house', language)}</option>
+              <option value="apartment">{t('club.favoritesPage.apartment', language)}</option>
             </select>
             <select
               className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={priceFilter}
               onChange={(e) => setPriceFilter(e.target.value)}
             >
-              <option value="all">All Prices</option>
-              <option value="under-1m">Under €1M</option>
-              <option value="1m-2m">€1M - €2M</option>
-              <option value="over-2m">Over €2M</option>
+              <option value="all">{t('club.favoritesPage.allPrices', language)}</option>
+              <option value="under-1m">{t('club.favoritesPage.under1m', language)}</option>
+              <option value="1m-2m">{t('club.favoritesPage.between1m2m', language)}</option>
+              <option value="over-2m">{t('club.favoritesPage.over2m', language)}</option>
             </select>
           </div>
         </CardContent>
@@ -372,13 +381,13 @@ export default function FavoritesManagement() {
         <Alert>
           <Compare className="h-4 w-4" />
           <AlertDescription className="flex items-center justify-between">
-            <span>{selectedProperties.size} properties selected for comparison</span>
+            <span>{selectedProperties.size} {t('club.favoritesPage.propertiesSelected', language)}</span>
             <div className="flex items-center space-x-2">
               <Button size="sm">
-                Compare Properties
+                {t('club.favoritesPage.compareProperties', language)}
               </Button>
               <Button size="sm" variant="outline" onClick={() => setSelectedProperties(new Set())}>
-                Clear Selection
+                {t('club.favoritesPage.clearSelection', language)}
               </Button>
             </div>
           </AlertDescription>
@@ -405,20 +414,20 @@ export default function FavoritesManagement() {
             <Heart className="h-16 w-16 text-gray-300 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               {searchTerm || typeFilter !== 'all' || priceFilter !== 'all' 
-                ? 'No favorites match your filters'
-                : 'No favorites yet'
+                ? t('club.favoritesPage.noMatch', language)
+                : t('club.favoritesPage.noFavorites', language)
               }
             </h3>
             <p className="text-gray-600 mb-6">
               {searchTerm || typeFilter !== 'all' || priceFilter !== 'all'
-                ? 'Try adjusting your search criteria or filters.'
-                : 'Start browsing properties and save your favorites to see them here.'
+                ? t('club.favoritesPage.adjustFilters', language)
+                : t('club.favoritesPage.startBrowsing', language)
               }
             </p>
             <Link href="/properties">
               <Button>
                 <Search className="h-4 w-4 mr-2" />
-                Browse Properties
+                {t('club.favoritesPage.browseProperties', language)}
               </Button>
             </Link>
           </CardContent>

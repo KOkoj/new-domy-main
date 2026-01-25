@@ -22,6 +22,7 @@ import {
   Send
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { t } from '../../../lib/translations'
 import Link from 'next/link'
 
 // Sample property data for inquiries
@@ -60,9 +61,22 @@ export default function InquiriesManagement() {
   const [statusFilter, setStatusFilter] = useState('all')
   const [selectedInquiry, setSelectedInquiry] = useState(null)
   const [user, setUser] = useState(null)
+  const [language, setLanguage] = useState('en')
 
   useEffect(() => {
     loadInquiries()
+    
+    // Load language preference
+    const savedLanguage = localStorage.getItem('preferred-language')
+    if (savedLanguage) setLanguage(savedLanguage)
+    
+    // Listen for language changes
+    const handleLanguageChange = (e) => {
+      setLanguage(e.detail)
+    }
+    
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
 
   useEffect(() => {
@@ -178,13 +192,13 @@ export default function InquiriesManagement() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">My Inquiries</h1>
-          <p className="text-gray-600 mt-1">{inquiries.length} property inquiries sent</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('club.inquiriesPage.title', language)}</h1>
+          <p className="text-gray-600 mt-1">{inquiries.length} {t('club.inquiriesPage.inquiriesSent', language)}</p>
         </div>
         <Link href="/properties">
           <Button>
             <Home className="h-4 w-4 mr-2" />
-            Browse Properties
+            {t('club.inquiriesPage.browseProperties', language)}
           </Button>
         </Link>
       </div>

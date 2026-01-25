@@ -7,8 +7,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { t } from '../lib/translations';
 
-export default function NotificationPreferences() {
+export default function NotificationPreferences({ language = 'en' }) {
   const [preferences, setPreferences] = useState({
     property_alerts: true,
     inquiry_responses: true,
@@ -58,13 +59,13 @@ export default function NotificationPreferences() {
       });
 
       if (response.ok) {
-        toast.success('Notification preferences updated successfully');
+        toast.success(t('club.notificationsPage.successMessage', language));
       } else {
         throw new Error('Failed to save preferences');
       }
     } catch (error) {
       console.error('Error saving preferences:', error);
-      toast.error('Failed to save notification preferences');
+      toast.error(t('club.notificationsPage.errorMessage', language));
     } finally {
       setSaving(false);
     }
@@ -90,18 +91,18 @@ export default function NotificationPreferences() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Email Notification Preferences</CardTitle>
+        <CardTitle>{t('club.notificationsPage.preferencesTitle', language)}</CardTitle>
         <CardDescription>
-          Manage how and when you receive email notifications from Domy v Itálii
+          {t('club.notificationsPage.preferencesDesc', language)}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
-              <Label>Email Notifications</Label>
+              <Label>{t('club.notificationsPage.emailNotifications', language)}</Label>
               <p className="text-sm text-muted-foreground">
-                Enable or disable all email notifications
+                {t('club.notificationsPage.emailNotificationsDesc', language)}
               </p>
             </div>
             <Switch
@@ -115,9 +116,9 @@ export default function NotificationPreferences() {
           }}>
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label>Property Alerts</Label>
+                <Label>{t('club.notificationsPage.propertyAlerts', language)}</Label>
                 <p className="text-sm text-muted-foreground">
-                  Get notified when new properties match your saved searches
+                  {t('club.notificationsPage.propertyAlertsDescription', language)}
                 </p>
               </div>
               <Switch
@@ -129,9 +130,9 @@ export default function NotificationPreferences() {
 
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label>Inquiry Responses</Label>
+                <Label>{t('club.notificationsPage.inquiryResponses', language)}</Label>
                 <p className="text-sm text-muted-foreground">
-                  Receive confirmations when you submit property inquiries
+                  {t('club.notificationsPage.inquiryResponsesDesc', language)}
                 </p>
               </div>
               <Switch
@@ -143,9 +144,9 @@ export default function NotificationPreferences() {
 
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label>Onboarding Emails</Label>
+                <Label>{t('club.notificationsPage.onboardingEmails', language)}</Label>
                 <p className="text-sm text-muted-foreground">
-                  Helpful tips and guides for using the platform
+                  {t('club.notificationsPage.onboardingEmailsDesc', language)}
                 </p>
               </div>
               <Switch
@@ -157,9 +158,9 @@ export default function NotificationPreferences() {
 
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label>Marketing Emails</Label>
+                <Label>{t('club.notificationsPage.marketingEmails', language)}</Label>
                 <p className="text-sm text-muted-foreground">
-                  Promotional content and market updates
+                  {t('club.notificationsPage.marketingEmailsDesc', language)}
                 </p>
               </div>
               <Switch
@@ -171,23 +172,23 @@ export default function NotificationPreferences() {
           </div>
 
           <div className="space-y-2">
-            <Label>Notification Frequency</Label>
+            <Label>{t('club.notificationsPage.notificationFrequency', language)}</Label>
             <Select 
               value={preferences.frequency} 
               onValueChange={handleFrequencyChange}
               disabled={!preferences.email_enabled}
             >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select frequency" />
+                <SelectValue placeholder={t('club.notificationsPage.selectFrequency', language)} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="instant">Instant (as they happen)</SelectItem>
-                <SelectItem value="daily">Daily Digest</SelectItem>
-                <SelectItem value="weekly">Weekly Summary</SelectItem>
+                <SelectItem value="instant">{t('club.notificationsPage.instant', language)}</SelectItem>
+                <SelectItem value="daily">{t('club.notificationsPage.daily', language)}</SelectItem>
+                <SelectItem value="weekly">{t('club.notificationsPage.weekly', language)}</SelectItem>
               </SelectContent>
             </Select>
             <p className="text-xs text-muted-foreground">
-              How often you want to receive property alert emails
+              {t('club.notificationsPage.frequencyDesc', language)}
             </p>
           </div>
         </div>
@@ -197,7 +198,7 @@ export default function NotificationPreferences() {
           disabled={saving}
           className="w-full"
         >
-          {saving ? 'Saving...' : 'Save Preferences'}
+          {saving ? t('club.notificationsPage.saving', language) : t('club.notificationsPage.savePreferences', language)}
         </Button>
       </CardContent>
     </Card>
