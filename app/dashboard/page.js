@@ -101,8 +101,8 @@ export default function DashboardOverview() {
         docCountRes,
         ticketCountRes
       ] = await Promise.all([
-        supabase.from('favorites').select('*', { count: 'exact', head: true }).eq('userId', user.id),
-        supabase.from('inquiries').select('*', { count: 'exact', head: true }).eq('userId', user.id),
+        supabase.from('favorites').select('*', { count: 'exact', head: true }).eq('user_id', user.id),
+        supabase.from('inquiries').select('*', { count: 'exact', head: true }).eq('user_id', user.id),
         supabase.from('webinar_registrations').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('status', 'attended'),
         supabase.from('document_access_logs').select('*', { count: 'exact', head: true }).eq('user_id', user.id),
         supabase.from('concierge_tickets').select('*', { count: 'exact', head: true }).eq('user_id', user.id).neq('status', 'closed')
@@ -116,15 +116,15 @@ export default function DashboardOverview() {
       const { data: recentFavorites } = await supabase
         .from('favorites')
         .select('*')
-        .eq('userId', user.id)
-        .order('createdAt', { ascending: false })
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
         .limit(3)
 
       const { data: recentInquiries } = await supabase
         .from('inquiries')
         .select('*')
-        .eq('userId', user.id)
-        .order('createdAt', { ascending: false })
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
         .limit(2)
 
       // 3. Load Club Activity (Logs)
@@ -157,8 +157,8 @@ export default function DashboardOverview() {
         ...(recentFavorites || []).map(fav => ({
           type: 'favorite',
           action: 'Added property to favorites',
-          propertyId: fav.listingId,
-          date: fav.createdAt,
+          propertyId: fav.listing_id || fav.listingId,
+          date: fav.created_at || fav.createdAt,
           icon: Heart,
           iconColor: 'text-red-600',
           bg: 'bg-red-100'
@@ -166,8 +166,8 @@ export default function DashboardOverview() {
         ...(recentInquiries || []).map(inq => ({
           type: 'inquiry',
           action: 'Sent property inquiry',
-          propertyId: inq.listingId,
-          date: inq.createdAt,
+          propertyId: inq.listingId || inq.listing_id,
+          date: inq.createdAt || inq.created_at,
           icon: MessageSquare,
           iconColor: 'text-slate-800',
           bg: 'bg-slate-100'
