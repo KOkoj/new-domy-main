@@ -29,46 +29,6 @@ import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 import { t } from '../../../lib/translations'
 import Link from 'next/link'
 
-// Sample property data based on our existing properties
-const SAMPLE_PROPERTY_DATA = {
-  '1': {
-    _id: '1',
-    title: { en: 'Luxury Villa with Lake Como Views' },
-    slug: { current: 'luxury-villa-lake-como' },
-    propertyType: 'villa',
-    price: { amount: 2500000, currency: 'EUR' },
-    specifications: { bedrooms: 4, bathrooms: 3, squareFootage: 350 },
-    location: { city: { name: { en: 'Como' } } },
-    image: 'https://images.unsplash.com/photo-1734173071981-b16ee4f9867f',
-    status: 'available',
-    featured: true
-  },
-  '2': {
-    _id: '2',
-    title: { en: 'Tuscan Farmhouse with Vineyards' },
-    slug: { current: 'tuscan-farmhouse-vineyards' },
-    propertyType: 'house',
-    price: { amount: 1200000, currency: 'EUR' },
-    specifications: { bedrooms: 3, bathrooms: 2, squareFootage: 280 },
-    location: { city: { name: { en: 'Tuscany' } } },
-    image: 'https://images.unsplash.com/12/gladiator.jpg',
-    status: 'available',
-    featured: true
-  },
-  '3': {
-    _id: '3',
-    title: { en: 'Italian Villa with Lemon Gardens' },
-    slug: { current: 'italian-villa-lemon-gardens' },
-    propertyType: 'villa',
-    price: { amount: 1800000, currency: 'EUR' },
-    specifications: { bedrooms: 5, bathrooms: 4, squareFootage: 420 },
-    location: { city: { name: { en: 'Amalfi' } } },
-    image: 'https://images.unsplash.com/photo-1697200517905-ed24837193b5',
-    status: 'available',
-    featured: true
-  }
-}
-
 export default function FavoritesManagement() {
   const [favorites, setFavorites] = useState([])
   const [filteredFavorites, setFilteredFavorites] = useState([])
@@ -112,6 +72,7 @@ export default function FavoritesManagement() {
       
       setUser(user)
 
+      // 1. Fetch user favorites
       const { data: userFavorites, error } = await supabase
         .from('favorites')
         .select('*')
@@ -120,19 +81,59 @@ export default function FavoritesManagement() {
 
       if (error) throw error
 
-      // Enrich with property data
-      const enrichedFavorites = (userFavorites || []).map(fav => ({
-        ...fav,
-        property: SAMPLE_PROPERTY_DATA[fav.listingId] || {
+      // 2. Fetch all properties from API to get details
+      let allProperties = []
+      try {
+        const response = await fetch('/api/properties')
+        if (response.ok) {
+          const sanityProperties = await response.json()
+          if (Array.isArray(sanityProperties)) {
+             // Transform Sanity data to match our property card format
+             allProperties = sanityProperties.map((prop, index) => ({
+              _id: prop._id || `sanity-${index}`,
+              title: { en: prop.title?.en || prop.title?.it || prop.title || 'Untitled Property' },
+              propertyType: prop.propertyType ? prop.propertyType.toLowerCase() : 'property',
+              price: { amount: prop.price?.amount || 0, currency: 'EUR' },
+              specifications: {
+                bedrooms: prop.specifications?.bedrooms || 0,
+                bathrooms: prop.specifications?.bathrooms || 0,
+                squareFootage: prop.specifications?.squareFootage || 0
+              },
+              location: { 
+                city: { 
+                  name: { 
+                    en: prop.location?.city?.name?.en || prop.location?.city?.name || 'Italy' 
+                  } 
+                } 
+              },
+              image: prop.images?.[0]?.asset?.url || prop.images?.[0] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
+              slug: { current: prop.slug?.current || prop.slug || '' },
+              featured: prop.featured || false
+            }))
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching properties API:', err)
+      }
+
+      // 3. Enrich favorites with property data
+      const enrichedFavorites = (userFavorites || []).map(fav => {
+        const property = allProperties.find(p => p._id === fav.listingId) || {
           _id: fav.listingId,
           title: { en: 'Property Not Found' },
           price: { amount: 0, currency: 'EUR' },
           propertyType: 'unknown',
           specifications: { bedrooms: 0, bathrooms: 0, squareFootage: 0 },
           location: { city: { name: { en: 'Unknown' } } },
-          image: 'https://images.unsplash.com/photo-1533554030380-20991a0f9c9e'
+          image: 'https://images.unsplash.com/photo-1533554030380-20991a0f9c9e',
+          slug: { current: '' }
         }
-      }))
+        
+        return {
+          ...fav,
+          property
+        }
+      })
 
       setFavorites(enrichedFavorites)
     } catch (error) {
@@ -379,7 +380,7 @@ export default function FavoritesManagement() {
       {/* Selection Actions */}
       {selectedProperties.size > 0 && (
         <Alert>
-          <Compare className="h-4 w-4" />
+          <GitCompare className="h-4 w-4" />
           <AlertDescription className="flex items-center justify-between">
             <span>{selectedProperties.size} {t('club.favoritesPage.propertiesSelected', language)}</span>
             <div className="flex items-center space-x-2">

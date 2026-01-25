@@ -56,7 +56,6 @@ const SAMPLE_RECOMMENDATIONS = [
 export default function DashboardOverview() {
   const [stats, setStats] = useState({
     favorites: 0,
-    savedSearches: 0,
     inquiries: 0,
     completedWebinars: 0,
     documentsAccessed: 0,
@@ -97,14 +96,12 @@ export default function DashboardOverview() {
       // 1. Load basic stats (Parallel)
       const [
         favoritesRes, 
-        searchesRes, 
         inquiriesRes,
         webinarCountRes,
         docCountRes,
         ticketCountRes
       ] = await Promise.all([
         supabase.from('favorites').select('*', { count: 'exact', head: true }).eq('userId', user.id),
-        supabase.from('saved_searches').select('*', { count: 'exact', head: true }).eq('userId', user.id),
         supabase.from('inquiries').select('*', { count: 'exact', head: true }).eq('userId', user.id),
         supabase.from('webinar_registrations').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('status', 'attended'),
         supabase.from('document_access_logs').select('*', { count: 'exact', head: true }).eq('user_id', user.id),
@@ -195,7 +192,6 @@ export default function DashboardOverview() {
 
       setStats({
         favorites: favoritesRes.count || 0,
-        savedSearches: searchesRes.count || 0,
         inquiries: inquiriesRes.count || 0,
         completedWebinars: webinarCountRes.count || 0,
         documentsAccessed: docCountRes.count || 0,
@@ -370,7 +366,7 @@ export default function DashboardOverview() {
           </CardContent>
         </Card>
 
-        {/* Recommendations */}
+        {/* Recommendations - Hidden for now
         <Card className="h-full">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="flex items-center space-x-2">
@@ -415,6 +411,7 @@ export default function DashboardOverview() {
             </div>
           </CardContent>
         </Card>
+        */}
       </div>
 
       {/* Webinars & Quick Actions */}

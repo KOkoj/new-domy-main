@@ -50,22 +50,24 @@ const getDashboardMenuItems = (language) => [
     description: language === 'cs' ? 'Uložené nemovitosti' : (language === 'it' ? 'Proprietà salvate' : 'Saved properties')
   },
   {
-    title: language === 'cs' ? 'Uložená hledání' : (language === 'it' ? 'Ricerche salvate' : 'Saved Searches'),
-    href: '/dashboard/searches',
-    icon: Search,
-    description: language === 'cs' ? 'Vaše vyhledávací kritéria' : (language === 'it' ? 'I tuoi criteri di ricerca' : 'Your search criteria')
-  },
-  {
     title: language === 'cs' ? 'Dotazy' : (language === 'it' ? 'Richieste' : 'My Inquiries'),
     href: '/dashboard/inquiries',
     icon: MessageSquare,
     description: language === 'cs' ? 'Dotazy na nemovitosti' : (language === 'it' ? 'Richieste proprietà' : 'Property inquiries')
   },
+  /*
   {
     title: language === 'cs' ? 'Doporučení' : (language === 'it' ? 'Raccomandazioni' : 'Recommendations'),
     href: '/dashboard/recommendations',
     icon: TrendingUp,
     description: language === 'cs' ? 'Navržené nemovitosti' : (language === 'it' ? 'Proprietà suggerite' : 'Suggested properties')
+  },
+  */
+  {
+    title: language === 'cs' ? 'Uložená hledání' : (language === 'it' ? 'Ricerche salvate' : 'Saved Searches'),
+    href: '/dashboard/searches',
+    icon: Search,
+    description: language === 'cs' ? 'Vaše preference' : (language === 'it' ? 'Le tue preferenze' : 'Your search preferences')
   },
   {
     title: language === 'cs' ? 'Upozornění' : (language === 'it' ? 'Notifiche' : 'Notifications'),
