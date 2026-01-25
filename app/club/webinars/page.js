@@ -234,13 +234,20 @@ export default function WebinarsPage() {
   }
 
   const formatDate = (dateString) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', { 
-      weekday: 'long',
-      month: 'long', 
-      day: 'numeric',
-      year: 'numeric'
-    })
+    if (!dateString) return ''
+    try {
+      const date = new Date(dateString)
+      // Check for Invalid Date
+      if (isNaN(date.getTime())) return ''
+      return date.toLocaleDateString('en-US', { 
+        weekday: 'long',
+        month: 'long', 
+        day: 'numeric',
+        year: 'numeric'
+      })
+    } catch (e) {
+      return ''
+    }
   }
 
   const addToCalendar = (webinar) => {

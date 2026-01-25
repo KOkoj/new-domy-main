@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -20,125 +20,6 @@ import {
   MapPin,
   Video
 } from 'lucide-react'
-
-const VIDEOS = [
-  {
-    id: 1,
-    title: 'Complete Guide to Buying Property in Italy',
-    description: 'Step-by-step walkthrough of the entire property purchase process in Italy',
-    duration: '45:23',
-    views: 1247,
-    category: 'Guides',
-    thumbnail: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9',
-    releaseDate: '2025-09-15'
-  },
-  {
-    id: 2,
-    title: 'Virtual Tour: Luxury Villas in Tuscany',
-    description: 'Exclusive virtual tours of our premium properties in the Tuscan countryside',
-    duration: '28:17',
-    views: 892,
-    category: 'Property Tours',
-    thumbnail: 'https://images.unsplash.com/photo-1566073771259-6a8506099945',
-    releaseDate: '2025-09-10'
-  },
-  {
-    id: 3,
-    title: 'Renovation Success Stories',
-    description: 'Case studies of successful property renovations by our clients',
-    duration: '32:45',
-    views: 654,
-    category: 'Case Studies',
-    thumbnail: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e',
-    releaseDate: '2025-09-01'
-  },
-  {
-    id: 4,
-    title: 'Living the Italian Dream: Expat Experiences',
-    description: 'Interviews with expats who successfully relocated to Italy',
-    duration: '41:12',
-    views: 1089,
-    category: 'Lifestyle',
-    thumbnail: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9',
-    releaseDate: '2025-08-20'
-  }
-]
-
-const GUIDES = [
-  {
-    id: 1,
-    title: 'The Ultimate Italian Property Buyer\'s Guide',
-    description: 'Comprehensive 50-page guide covering everything from searching to closing',
-    pages: 50,
-    downloads: 342,
-    category: 'Buying Guides',
-    icon: BookOpen,
-    releaseDate: '2025-09-01'
-  },
-  {
-    id: 2,
-    title: 'Regional Investment Analysis 2025',
-    description: 'In-depth analysis of investment opportunities across all Italian regions',
-    pages: 35,
-    downloads: 287,
-    category: 'Market Reports',
-    icon: TrendingUp,
-    releaseDate: '2025-08-15'
-  },
-  {
-    id: 3,
-    title: 'Renovation & Restoration Handbook',
-    description: 'Expert guide to renovating Italian properties while preserving character',
-    pages: 42,
-    downloads: 198,
-    category: 'Renovation',
-    icon: Home,
-    releaseDate: '2025-08-01'
-  },
-  {
-    id: 4,
-    title: 'Regional Lifestyle Guide',
-    description: 'Discover the unique culture, cuisine, and lifestyle of each Italian region',
-    pages: 28,
-    downloads: 421,
-    category: 'Lifestyle',
-    icon: MapPin,
-    releaseDate: '2025-07-15'
-  }
-]
-
-const ARTICLES = [
-  {
-    id: 1,
-    title: 'Top 10 Emerging Property Markets in Italy for 2025',
-    excerpt: 'Discover the Italian regions showing the most promise for property investment this year...',
-    readTime: '8 min read',
-    views: 2341,
-    category: 'Market Insights',
-    author: 'Maria Rossi',
-    date: '2025-10-01'
-  },
-  {
-    id: 2,
-    title: 'Tax Advantages for Foreign Property Buyers',
-    excerpt: 'Understanding the fiscal benefits and incentives available to international buyers...',
-    readTime: '6 min read',
-    views: 1876,
-    category: 'Legal & Tax',
-    author: 'Giovanni Bianchi',
-    date: '2025-09-28'
-  },
-  {
-    id: 3,
-    title: 'Navigating Italian Property Law: A Primer',
-    excerpt: 'Essential legal knowledge every foreign buyer should have before purchasing...',
-    readTime: '10 min read',
-    views: 1542,
-    category: 'Legal & Tax',
-    author: 'Lucia Ferrari',
-    date: '2025-09-20'
-  }
-]
 
 const videoCategories = ['All', 'Market Insights', 'Property Tours', 'Renovation', 'Lifestyle', 'Guides', 'Case Studies']
 
@@ -201,12 +82,19 @@ export default function ContentPage() {
   )
 
   const formatDate = (dateString) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', { 
-      month: 'short', 
-      day: 'numeric',
-      year: 'numeric'
-    })
+    if (!dateString) return ''
+    try {
+      const date = new Date(dateString)
+      // Check for Invalid Date
+      if (isNaN(date.getTime())) return ''
+      return date.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric',
+        year: 'numeric'
+      })
+    } catch (e) {
+      return ''
+    }
   }
 
   return (
@@ -341,7 +229,7 @@ export default function ContentPage() {
                 <div className="relative h-48 overflow-hidden cursor-pointer">
                   <img 
                     src={video.thumbnail_url || '/placeholder-video.jpg'} 
-                    alt={video.title}
+                    alt={video.title || 'Video'}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                   />
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -461,4 +349,3 @@ export default function ContentPage() {
     </div>
   )
 }
-
