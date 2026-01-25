@@ -271,6 +271,7 @@ export default function PropertiesPage() {
   const [properties, setProperties] = useState([]);
   const [loadingProperties, setLoadingProperties] = useState(true);
   const [useSanity, setUseSanity] = useState(false);
+  const [userFavorites, setUserFavorites] = useState(new Set());
   
   // Pagination state
   const [displayedCount, setDisplayedCount] = useState(12); // Show 12 properties initially
@@ -278,20 +279,78 @@ export default function PropertiesPage() {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const ITEMS_PER_PAGE = 9; // Load 9 more each time
 
-  // Authentication effects
   useEffect(() => {
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       setUser(user);
+      if (user) {
+        loadFavorites(user.id);
+      }
     };
     checkUser();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user || null);
+      if (session?.user) {
+        loadFavorites(session.user.id);
+      } else {
+        setUserFavorites(new Set());
+      }
     });
 
     return () => subscription.unsubscribe();
   }, []);
+
+  const loadFavorites = async (userId) => {
+    try {
+      const response = await fetch('/api/favorites');
+      if (response.ok) {
+        const favorites = await response.json();
+        setUserFavorites(new Set(favorites.map(fav => fav.listingId)));
+      }
+    } catch (error) {
+      console.error('Error loading favorites:', error);
+    }
+  };
+
+  const handleToggleFavorite = async (propertyId) => {
+    if (!user) {
+      setIsAuthModalOpen(true);
+      return;
+    }
+
+    // Optimistic update
+    setUserFavorites(prev => {
+      const newFavorites = new Set(prev);
+      if (newFavorites.has(propertyId)) {
+        newFavorites.delete(propertyId);
+      } else {
+        newFavorites.add(propertyId);
+      }
+      return newFavorites;
+    });
+
+    try {
+      const response = await fetch('/api/favorites/toggle', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ listingId: propertyId }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to toggle favorite');
+      }
+
+      // Refresh real state
+      await loadFavorites(user.id);
+    } catch (error) {
+      console.error('Error toggling favorite:', error);
+      // Revert optimistic update on error
+      await loadFavorites(user.id);
+    }
+  };
 
   // Language effect
   useEffect(() => {
@@ -948,11 +1007,8 @@ export default function PropertiesPage() {
                   <PropertyCard
                   key={property.id} 
                     property={property}
-                    onFavorite={(id) => {
-                      // Handle favorite toggle
-                      console.log('Toggle favorite for property:', id);
-                    }}
-                    isFavorited={false} // You can implement favorite state management
+                    onFavorite={handleToggleFavorite}
+                    isFavorited={userFavorites.has(property.id) || userFavorites.has(property.sanityId)}
                     language={language}
                     currency={currency}
                   />
