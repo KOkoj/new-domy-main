@@ -28,79 +28,80 @@ import {
 } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
 import Navigation from '../../components/Navigation'
+import { t } from '../../lib/translations'
 
-const dashboardMenuItems = [
+const getDashboardMenuItems = (language) => [
   {
-    title: 'Overview',
+    title: language === 'cs' ? 'Přehled' : (language === 'it' ? 'Panoramica' : 'Overview'),
     href: '/dashboard',
     icon: Activity,
-    description: 'Dashboard overview'
+    description: language === 'cs' ? 'Přehled nástěnky' : (language === 'it' ? 'Panoramica dashboard' : 'Dashboard overview')
   },
   {
-    title: 'Profile',
+    title: language === 'cs' ? 'Profil' : (language === 'it' ? 'Profilo' : 'Profile'),
     href: '/dashboard/profile',
     icon: User,
-    description: 'Manage your profile'
+    description: language === 'cs' ? 'Spravovat profil' : (language === 'it' ? 'Gestisci profilo' : 'Manage your profile')
   },
   {
-    title: 'My Favorites',
+    title: language === 'cs' ? 'Oblíbené' : (language === 'it' ? 'Preferiti' : 'My Favorites'),
     href: '/dashboard/favorites',
     icon: Heart,
-    description: 'Saved properties'
+    description: language === 'cs' ? 'Uložené nemovitosti' : (language === 'it' ? 'Proprietà salvate' : 'Saved properties')
   },
   {
-    title: 'Saved Searches',
+    title: language === 'cs' ? 'Uložená hledání' : (language === 'it' ? 'Ricerche salvate' : 'Saved Searches'),
     href: '/dashboard/searches',
     icon: Search,
-    description: 'Your search criteria'
+    description: language === 'cs' ? 'Vaše vyhledávací kritéria' : (language === 'it' ? 'I tuoi criteri di ricerca' : 'Your search criteria')
   },
   {
-    title: 'My Inquiries',
+    title: language === 'cs' ? 'Dotazy' : (language === 'it' ? 'Richieste' : 'My Inquiries'),
     href: '/dashboard/inquiries',
     icon: MessageSquare,
-    description: 'Property inquiries'
+    description: language === 'cs' ? 'Dotazy na nemovitosti' : (language === 'it' ? 'Richieste proprietà' : 'Property inquiries')
   },
   {
-    title: 'Recommendations',
+    title: language === 'cs' ? 'Doporučení' : (language === 'it' ? 'Raccomandazioni' : 'Recommendations'),
     href: '/dashboard/recommendations',
     icon: TrendingUp,
-    description: 'Suggested properties'
+    description: language === 'cs' ? 'Navržené nemovitosti' : (language === 'it' ? 'Proprietà suggerite' : 'Suggested properties')
   },
   {
-    title: 'Notifications',
+    title: language === 'cs' ? 'Upozornění' : (language === 'it' ? 'Notifiche' : 'Notifications'),
     href: '/dashboard/notifications',
     icon: Bell,
-    description: 'Email preferences'
+    description: language === 'cs' ? 'Emailové preference' : (language === 'it' ? 'Preferenze email' : 'Email preferences')
   },
   {
-    title: 'Client Form',
+    title: language === 'cs' ? 'Zákaznický formulář' : (language === 'it' ? 'Modulo cliente' : 'Client Form'),
     href: '/dashboard/intake-form',
     icon: FileText,
-    description: 'Personal information'
+    description: language === 'cs' ? 'Osobní informace' : (language === 'it' ? 'Informazioni personali' : 'Personal information')
   },
   {
-    title: 'Webinars',
+    title: language === 'cs' ? 'Webináře' : (language === 'it' ? 'Webinar' : 'Webinars'),
     href: '/dashboard/webinars',
     icon: Calendar,
-    description: 'Events & sessions'
+    description: language === 'cs' ? 'Události a relace' : (language === 'it' ? 'Eventi e sessioni' : 'Events & sessions')
   },
   {
-    title: 'Documents',
+    title: language === 'cs' ? 'Dokumenty' : (language === 'it' ? 'Documenti' : 'Documents'),
     href: '/dashboard/documents',
     icon: Briefcase,
-    description: 'Files & contracts'
+    description: language === 'cs' ? 'Soubory a smlouvy' : (language === 'it' ? 'File e contratti' : 'Files & contracts')
   },
   {
-    title: 'Concierge',
+    title: language === 'cs' ? 'Concierge' : (language === 'it' ? 'Concierge' : 'Concierge'),
     href: '/dashboard/concierge',
     icon: MessageCircle,
-    description: 'Premium support'
+    description: language === 'cs' ? 'Prémiová podpora' : (language === 'it' ? 'Supporto premium' : 'Premium support')
   },
   {
-    title: 'Exclusive Content',
+    title: language === 'cs' ? 'Exkluzivní obsah' : (language === 'it' ? 'Contenuto esclusivo' : 'Exclusive Content'),
     href: '/dashboard/content',
     icon: Video,
-    description: 'Videos & guides'
+    description: language === 'cs' ? 'Videa a průvodci' : (language === 'it' ? 'Video e guide' : 'Videos & guides')
   }
 ]
 
@@ -228,7 +229,7 @@ export default function DashboardLayout({ children }) {
 
             {/* Navigation */}
             <nav className="flex-1 px-4 py-4 space-y-2">
-              {dashboardMenuItems.map((item) => {
+              {getDashboardMenuItems(language).map((item) => {
                 const Icon = item.icon
                 return (
                   <Link
@@ -264,7 +265,7 @@ export default function DashboardLayout({ children }) {
                 <Link href="/" className="w-full">
                   <Button variant="outline" size="sm" className="w-full justify-start">
                     <Home className="h-4 w-4 mr-2" />
-                    Browse Properties
+                    {language === 'cs' ? 'Procházet nemovitosti' : (language === 'it' ? 'Sfoglia proprietà' : 'Browse Properties')}
                   </Button>
                 </Link>
                 <Button 
@@ -274,7 +275,7 @@ export default function DashboardLayout({ children }) {
                   onClick={handleLogout}
                 >
                   <LogOut className="h-4 w-4 mr-2" />
-                  Logout
+                  {language === 'cs' ? 'Odhlásit se' : (language === 'it' ? 'Disconnettersi' : 'Logout')}
                 </Button>
               </div>
             </div>
@@ -292,9 +293,9 @@ export default function DashboardLayout({ children }) {
               <h1 className="font-semibold text-gray-900">Dashboard</h1>
             </div>
             
-            <div className="hidden lg:block">
-              {/* Breadcrumbs or Title could go here */}
-            </div>
+              <h1 className="hidden lg:block text-gray-900 font-semibold">
+              {language === 'cs' ? 'Nástěnka' : (language === 'it' ? 'Cruscotto' : 'Dashboard')}
+            </h1>
 
             <div className="flex items-center space-x-4 ml-auto">
               {/* Language Switcher */}

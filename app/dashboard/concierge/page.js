@@ -101,35 +101,20 @@ export default function ConciergePage() {
   useEffect(() => {
     loadConciergeData()
     
-    // Load saved language preference (default to Czech)
+    // Load saved language preference
     const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage && (savedLanguage === 'cs' || savedLanguage === 'en')) {
+    if (savedLanguage) {
       setLanguage(savedLanguage)
-    } else {
-      setLanguage('cs')
     }
 
     // Listen for language changes
-    const handleStorageChange = () => {
-      const newLang = localStorage.getItem('preferred-language')
-      if (newLang && (newLang === 'cs' || newLang === 'en')) {
-        setLanguage(newLang)
-      }
+    const handleLanguageChange = (e) => {
+      setLanguage(e.detail)
     }
 
-    window.addEventListener('storage', handleStorageChange)
-    const interval = setInterval(() => {
-      const newLang = localStorage.getItem('preferred-language')
-      if (newLang && newLang !== language && (newLang === 'cs' || newLang === 'en')) {
-        setLanguage(newLang)
-      }
-    }, 1000)
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange)
-      clearInterval(interval)
-    }
-  }, [language])
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
+  }, [])
 
   const loadConciergeData = async () => {
     try {

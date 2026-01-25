@@ -47,27 +47,20 @@ export default function ContentPage() {
   useEffect(() => {
     loadContent()
     
-    // Load language
+    // Load language preference
     const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage && (savedLanguage === 'cs' || savedLanguage === 'en')) {
+    if (savedLanguage) {
       setLanguage(savedLanguage)
     }
     
-    const handleStorageChange = () => {
-      const newLang = localStorage.getItem('preferred-language')
-      if (newLang && (newLang === 'cs' || newLang === 'en') && newLang !== language) {
-        setLanguage(newLang)
-      }
+    // Listen for language changes
+    const handleLanguageChange = (e) => {
+      setLanguage(e.detail)
     }
     
-    window.addEventListener('storage', handleStorageChange)
-    const interval = setInterval(handleStorageChange, 1000)
-    
-    return () => {
-      window.removeEventListener('storage', handleStorageChange)
-      clearInterval(interval)
-    }
-  }, [language])
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
+  }, [])
 
   const loadContent = async () => {
     try {
