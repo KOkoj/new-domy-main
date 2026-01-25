@@ -570,6 +570,12 @@ export default function PropertiesPage() {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 home-page-custom-border">
       {/* Navigation */}
