@@ -209,6 +209,7 @@ DROP POLICY IF EXISTS "Users can insert messages to their tickets" ON ticket_mes
 
 DROP POLICY IF EXISTS "Premium members can view content" ON premium_content;
 DROP POLICY IF EXISTS "Authenticated users can view premium content" ON premium_content;
+DROP POLICY IF EXISTS "Admins can manage content" ON premium_content;
 
 DROP POLICY IF EXISTS "Users can view their own content access logs" ON content_access_logs;
 DROP POLICY IF EXISTS "Users can insert their own content access logs" ON content_access_logs;
@@ -266,12 +267,16 @@ CREATE POLICY "Users can insert messages to their tickets" ON ticket_messages FO
     )
   );
 
--- premium_content
--- RELAXED POLICY FOR NOW so users can see empty state instead of error if they are not premium?
--- No, RLS doesn't cause error, it causes empty result. The error is missing table.
--- But if we want them to see the page, we should ensure the policy allows fetching.
--- Let's allow authenticated users to view for now, or just stick to the premium requirement.
--- If the user is admin/test user, we need to make sure they are premium.
+// RLS Policies for premium_content
+CREATE POLICY "Admins can manage content" ON premium_content
+  FOR ALL USING (
+    EXISTS (
+      SELECT 1 FROM profiles 
+      WHERE profiles.id = auth.uid() 
+      AND profiles.role = 'admin'
+    )
+  );
+
 CREATE POLICY "Premium members can view content" ON premium_content
   FOR SELECT USING (
     EXISTS (
