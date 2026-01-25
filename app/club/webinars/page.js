@@ -173,8 +173,8 @@ export default function WebinarsPage() {
         const formattedWebinar = {
           ...webinar,
           speaker: {
-            name: webinar.speaker_name,
-            title: webinar.speaker_title,
+            name: webinar.speaker_name || 'Speaker',
+            title: webinar.speaker_title || '',
             avatar: webinar.speaker_avatar || '/placeholder-avatar.jpg'
           },
           spots: webinar.max_spots - webinar.current_registrations

@@ -184,8 +184,8 @@ export default function ContentPage() {
 
   const filteredVideos = content.videos.filter(video => 
     (selectedVideoCategory === 'All' || video.category === selectedVideoCategory) &&
-    (video.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-     video.description.toLowerCase().includes(searchQuery.toLowerCase()))
+    ((video.title?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+     (video.description?.toLowerCase() || '').includes(searchQuery.toLowerCase()))
   )
 
   const formatDate = (dateString) => {
