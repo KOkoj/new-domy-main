@@ -105,7 +105,8 @@ export default function DashboardOverview() {
         // inquiries uses camelCase columns
         supabase.from('inquiries').select('*', { count: 'exact', head: true }).eq('userId', user.id),
         supabase.from('webinar_registrations').select('*', { count: 'exact', head: true }).eq('user_id', user.id).eq('status', 'attended'),
-        supabase.from('document_access_logs').select('*', { count: 'exact', head: true }).eq('user_id', user.id),
+        // Use premium_documents instead of access logs to show total available
+        supabase.from('premium_documents').select('*', { count: 'exact', head: true }),
         // Concierge tickets are stored in inquiries table with type='concierge'
         supabase.from('inquiries').select('*', { count: 'exact', head: true }).eq('userId', user.id).eq('type', 'concierge')
       ])
@@ -316,7 +317,7 @@ export default function DashboardOverview() {
                 <div>
                   <p className="text-sm font-medium text-gray-600">{t('club.documentsTitle', language)}</p>
                   <p className="text-3xl font-bold text-gray-900 mt-2">{stats.documentsAccessed}</p>
-                  <p className="text-xs text-gray-500 mt-1">{t('club.filesAccessed', language)}</p>
+                  <p className="text-xs text-gray-500 mt-1">{t('club.documentsAvailable', language) || 'Available documents'}</p>
                 </div>
                 <div className="p-3 rounded-full bg-blue-100">
                   <FileText className="h-6 w-6 text-blue-600" />
