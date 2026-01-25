@@ -598,10 +598,6 @@ export default function HomePage() {
     return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
 
-    // Load properties from Sanity API
-    loadProperties()
-  }, [])
-
   const loadProperties = async () => {
     try {
       console.log('Fetching properties in Homepage...')
@@ -623,6 +619,11 @@ export default function HomePage() {
       // Properties will remain empty array if fetch fails
     }
   }
+
+  // Load properties on mount
+  useEffect(() => {
+    loadProperties()
+  }, [])
 
   // Initialize Lenis smooth scroll
   useEffect(() => {
