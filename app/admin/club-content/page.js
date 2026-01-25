@@ -25,6 +25,7 @@ import {
   Calendar
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { t } from '@/lib/translations'
 
 export default function ClubContentManagement() {
   const [content, setContent] = useState([])
@@ -35,6 +36,25 @@ export default function ClubContentManagement() {
   const [saving, setSaving] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState(null)
+  const [language, setLanguage] = useState('cs')
+
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('language') || 'cs'
+    setLanguage(savedLanguage)
+    
+    const handleLanguageChange = (e) => {
+      if (e.detail) setLanguage(e.detail)
+      else if (e.newValue) setLanguage(e.newValue)
+    }
+    
+    window.addEventListener('languageChange', handleLanguageChange)
+    window.addEventListener('storage', handleLanguageChange)
+    
+    return () => {
+      window.removeEventListener('languageChange', handleLanguageChange)
+      window.removeEventListener('storage', handleLanguageChange)
+    }
+  }, [])
 
   const STORAGE_BUCKET = 'documents' // Using the same bucket for now, ideally 'premium-content'
 
@@ -84,7 +104,7 @@ export default function ClubContentManagement() {
   }
 
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this item?')) return
+    if (!confirm(t('admin.clubContent.deleteConfirm', language))) return
 
     try {
       const { error } = await supabase
@@ -96,7 +116,7 @@ export default function ClubContentManagement() {
       await loadContent()
     } catch (err) {
       console.error('Error deleting item:', err)
-      setError('Failed to delete item')
+      setError(t('admin.clubContent.deleteFailed', language))
     }
   }
 
@@ -195,12 +215,12 @@ export default function ClubContentManagement() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Club Content</h1>
-          <p className="text-gray-600 mt-1">Manage videos, guides, and articles for premium members</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('admin.clubContent.title', language)}</h1>
+          <p className="text-gray-600 mt-1">{t('admin.clubContent.subtitle', language)}</p>
         </div>
         <Button onClick={handleCreateNew} className="bg-blue-600 hover:bg-blue-700">
           <Plus className="h-4 w-4 mr-2" />
-          Add Content
+          {t('admin.clubContent.addContent', language)}
         </Button>
       </div>
 
@@ -210,7 +230,7 @@ export default function ClubContentManagement() {
             <div className="relative flex-1">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
               <Input
-                placeholder="Search content..."
+                placeholder={t('admin.clubContent.searchPlaceholder', language)}
                 className="pl-9"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -222,16 +242,16 @@ export default function ClubContentManagement() {
           {loading ? (
             <div className="text-center py-8">
               <Loader2 className="h-8 w-8 animate-spin mx-auto text-blue-600" />
-              <p className="text-gray-500 mt-2">Loading content...</p>
+              <p className="text-gray-500 mt-2">{t('admin.clubContent.loadingContent', language)}</p>
             </div>
           ) : filteredContent.length === 0 ? (
             <div className="text-center py-12 bg-gray-50 rounded-lg">
               <Video className="h-12 w-12 mx-auto text-gray-400 mb-3" />
-              <h3 className="text-lg font-medium text-gray-900">No content found</h3>
-              <p className="text-gray-500 mb-4">Get started by adding your first premium content.</p>
+              <h3 className="text-lg font-medium text-gray-900">{t('admin.clubContent.noContent', language)}</h3>
+              <p className="text-gray-500 mb-4">{t('admin.clubContent.getStarted', language)}</p>
               <Button onClick={handleCreateNew} variant="outline">
                 <Plus className="h-4 w-4 mr-2" />
-                Add Content
+                {t('admin.clubContent.addContent', language)}
               </Button>
             </div>
           ) : (
@@ -277,7 +297,7 @@ export default function ClubContentManagement() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{editingItem?.id ? 'Edit Content' : 'Add New Content'}</DialogTitle>
+            <DialogTitle>{editingItem?.id ? t('admin.clubContent.editContent', language) : t('admin.clubContent.addNewContent', language)}</DialogTitle>
           </DialogHeader>
           
           {editingItem && (
@@ -290,7 +310,7 @@ export default function ClubContentManagement() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Content Type</label>
+                  <label className="text-sm font-medium">{t('admin.clubContent.contentType', language)}</label>
                   <Select 
                     value={editingItem.content_type} 
                     onValueChange={(val) => setEditingItem({...editingItem, content_type: val})}
@@ -299,44 +319,44 @@ export default function ClubContentManagement() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="video">Video</SelectItem>
-                      <SelectItem value="guide">Guide (PDF)</SelectItem>
-                      <SelectItem value="article">Article</SelectItem>
+                      <SelectItem value="video">{t('admin.clubContent.video', language)}</SelectItem>
+                      <SelectItem value="guide">{t('admin.clubContent.guide', language)}</SelectItem>
+                      <SelectItem value="article">{t('admin.clubContent.article', language)}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Category</label>
+                  <label className="text-sm font-medium">{t('admin.clubContent.category', language)}</label>
                   <Input 
                     value={editingItem.category} 
                     onChange={(e) => setEditingItem({...editingItem, category: e.target.value})}
-                    placeholder="e.g. Market Insights"
+                    placeholder={t('admin.clubContent.categoryPlaceholder', language)}
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Title</label>
+                <label className="text-sm font-medium">{t('admin.clubContent.title', language)}</label>
                 <Input 
                   value={editingItem.title} 
                   onChange={(e) => setEditingItem({...editingItem, title: e.target.value})}
-                  placeholder="Content title"
+                  placeholder={t('admin.clubContent.titlePlaceholder', language)}
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Description</label>
+                <label className="text-sm font-medium">{t('admin.clubContent.description', language)}</label>
                 <Textarea 
                   value={editingItem.description} 
                   onChange={(e) => setEditingItem({...editingItem, description: e.target.value})}
-                  placeholder="Content description"
+                  placeholder={t('admin.clubContent.descriptionPlaceholder', language)}
                   rows={3}
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Thumbnail Image</label>
+                <label className="text-sm font-medium">{t('admin.clubContent.thumbnailImage', language)}</label>
                 <div className="flex gap-2">
                   <Input 
                     value={editingItem.thumbnail_url || ''} 
@@ -364,19 +384,19 @@ export default function ClubContentManagement() {
               {editingItem.content_type === 'video' && (
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Video URL</label>
+                    <label className="text-sm font-medium">{t('admin.clubContent.videoUrl', language)}</label>
                     <Input 
                       value={editingItem.content_url || ''} 
                       onChange={(e) => setEditingItem({...editingItem, content_url: e.target.value})}
-                      placeholder="https://youtube.com/..."
+                      placeholder={t('admin.clubContent.videoUrlPlaceholder', language)}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Duration</label>
+                    <label className="text-sm font-medium">{t('admin.clubContent.duration', language)}</label>
                     <Input 
                       value={editingItem.duration || ''} 
                       onChange={(e) => setEditingItem({...editingItem, duration: e.target.value})}
-                      placeholder="e.g. 15:30"
+                      placeholder={t('admin.clubContent.durationPlaceholder', language)}
                     />
                   </div>
                 </div>
@@ -385,7 +405,7 @@ export default function ClubContentManagement() {
               {editingItem.content_type === 'guide' && (
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">PDF File URL</label>
+                    <label className="text-sm font-medium">{t('admin.clubContent.pdfFileUrl', language)}</label>
                     <div className="flex gap-2">
                       <Input 
                         value={editingItem.file_url || ''} 
@@ -410,12 +430,12 @@ export default function ClubContentManagement() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Pages</label>
+                    <label className="text-sm font-medium">{t('admin.clubContent.pages', language)}</label>
                     <Input 
                       type="number"
                       value={editingItem.pages || ''} 
                       onChange={(e) => setEditingItem({...editingItem, pages: e.target.value})}
-                      placeholder="e.g. 12"
+                      placeholder={t('admin.clubContent.pagesPlaceholder', language)}
                     />
                   </div>
                 </div>
@@ -424,19 +444,19 @@ export default function ClubContentManagement() {
               {editingItem.content_type === 'article' && (
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Read Time</label>
+                    <label className="text-sm font-medium">{t('admin.clubContent.readTime', language)}</label>
                     <Input 
                       value={editingItem.read_time || ''} 
                       onChange={(e) => setEditingItem({...editingItem, read_time: e.target.value})}
-                      placeholder="e.g. 5 min read"
+                      placeholder={t('admin.clubContent.readTimePlaceholder', language)}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Author</label>
+                    <label className="text-sm font-medium">{t('admin.clubContent.author', language)}</label>
                     <Input 
                       value={editingItem.author || ''} 
                       onChange={(e) => setEditingItem({...editingItem, author: e.target.value})}
-                      placeholder="Author name"
+                      placeholder={t('admin.clubContent.authorPlaceholder', language)}
                     />
                   </div>
                 </div>
@@ -444,11 +464,11 @@ export default function ClubContentManagement() {
 
               <div className="flex justify-end gap-2 mt-6">
                 <Button variant="outline" onClick={() => setIsModalOpen(false)} disabled={saving}>
-                  Cancel
+                  {t('admin.clubContent.cancel', language)}
                 </Button>
                 <Button onClick={handleSave} disabled={saving} className="bg-blue-600 hover:bg-blue-700">
                   {saving && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-                  Save Content
+                  {t('admin.clubContent.saveContent', language)}
                 </Button>
               </div>
             </div>

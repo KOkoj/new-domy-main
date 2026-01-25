@@ -24,8 +24,10 @@ import {
   Edit
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { t } from '@/lib/translations'
 
 export default function UserManagement() {
+  const [language, setLanguage] = useState('cs')
   const [users, setUsers] = useState([])
   const [filteredUsers, setFilteredUsers] = useState([])
   const [loading, setLoading] = useState(true)
@@ -33,6 +35,26 @@ export default function UserManagement() {
   const [roleFilter, setRoleFilter] = useState('all')
   const [userStats, setUserStats] = useState({})
   const [selectedUser, setSelectedUser] = useState(null)
+
+  useEffect(() => {
+    // Load language from localStorage
+    const savedLanguage = localStorage.getItem('language') || 'cs'
+    setLanguage(savedLanguage)
+
+    // Listen for language changes
+    const handleLanguageChange = (e) => {
+      if (e.detail) setLanguage(e.detail)
+      else if (e.newValue) setLanguage(e.newValue)
+    }
+
+    window.addEventListener('languageChange', handleLanguageChange)
+    window.addEventListener('storage', handleLanguageChange)
+
+    return () => {
+      window.removeEventListener('languageChange', handleLanguageChange)
+      window.removeEventListener('storage', handleLanguageChange)
+    }
+  }, [])
 
   useEffect(() => {
     loadUsers()
@@ -169,7 +191,7 @@ export default function UserManagement() {
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-gray-900">User Management</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('admin.users.title', language)}</h1>
         </div>
         <div className="animate-pulse space-y-4">
           <div className="h-12 bg-gray-200 rounded"></div>
@@ -188,12 +210,12 @@ export default function UserManagement() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">User Management</h1>
-          <p className="text-gray-600 mt-1">{users.length} total users</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('admin.users.title', language)}</h1>
+          <p className="text-gray-600 mt-1">{users.length} {t('admin.users.totalUsers', language)}</p>
         </div>
         <Button onClick={loadUsers}>
           <Users className="h-4 w-4 mr-2" />
-          Refresh Users
+          {t('admin.users.refreshUsers', language)}
         </Button>
       </div>
 
@@ -205,7 +227,7 @@ export default function UserManagement() {
               <div className="relative">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                 <Input
-                  placeholder="Search users by name or ID..."
+                  placeholder={t('admin.users.searchPlaceholder', language)}
                   className="pl-10"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -218,9 +240,9 @@ export default function UserManagement() {
                 value={roleFilter}
                 onChange={(e) => setRoleFilter(e.target.value)}
               >
-                <option value="all">All Roles</option>
-                <option value="user">Users</option>
-                <option value="admin">Admins</option>
+                <option value="all">{t('admin.users.allRoles', language)}</option>
+                <option value="user">{t('admin.users.users', language)}</option>
+                <option value="admin">{t('admin.users.admins', language)}</option>
               </select>
             </div>
           </div>
@@ -233,14 +255,14 @@ export default function UserManagement() {
           <CardContent className="p-4 text-center">
             <Users className="h-8 w-8 text-blue-600 mx-auto mb-2" />
             <div className="text-2xl font-bold">{users.length}</div>
-            <div className="text-sm text-gray-600">Total Users</div>
+            <div className="text-sm text-gray-600">{t('admin.users.totalUsersCard', language)}</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
             <Shield className="h-8 w-8 text-slate-800 mx-auto mb-2" />
             <div className="text-2xl font-bold">{users.filter(u => u.role === 'admin').length}</div>
-            <div className="text-sm text-gray-600">Admins</div>
+            <div className="text-sm text-gray-600">{t('admin.users.adminsCard', language)}</div>
           </CardContent>
         </Card>
         <Card>
@@ -251,14 +273,14 @@ export default function UserManagement() {
               dayAgo.setDate(dayAgo.getDate() - 1)
               return new Date(u.createdAt) > dayAgo
             }).length}</div>
-            <div className="text-sm text-gray-600">New (24h)</div>
+            <div className="text-sm text-gray-600">{t('admin.users.newLast24h', language)}</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
             <Heart className="h-8 w-8 text-red-600 mx-auto mb-2" />
             <div className="text-2xl font-bold">{users.filter(u => getUserActivity(u.id) > 0).length}</div>
-            <div className="text-sm text-gray-600">Active Users</div>
+            <div className="text-sm text-gray-600">{t('admin.users.activeUsers', language)}</div>
           </CardContent>
         </Card>
       </div>
@@ -266,7 +288,7 @@ export default function UserManagement() {
       {/* Users Table */}
       <Card>
         <CardHeader>
-          <CardTitle>All Users</CardTitle>
+          <CardTitle>{t('admin.users.allUsers', language)}</CardTitle>
         </CardHeader>
         <CardContent>
           {filteredUsers.length > 0 ? (
@@ -283,7 +305,7 @@ export default function UserManagement() {
                       </div>
                       <div>
                         <div className="flex items-center space-x-2">
-                          <h3 className="font-medium text-gray-900">{user.name || 'Unknown User'}</h3>
+                          <h3 className="font-medium text-gray-900">{user.name || t('admin.users.unknownUser', language)}</h3>
                           <Badge variant={user.role === 'admin' ? 'default' : 'secondary'}>
                             {user.role}
                           </Badge>
@@ -309,35 +331,35 @@ export default function UserManagement() {
                             <Heart className="h-3 w-3 mr-1" />
                             <span className="font-medium">{stats.favorites}</span>
                           </div>
-                          <div className="text-xs text-gray-500">Favorites</div>
+                          <div className="text-xs text-gray-500">{t('admin.users.favorites', language)}</div>
                         </div>
                         <div className="text-center">
                           <div className="flex items-center text-blue-600">
                             <Search className="h-3 w-3 mr-1" />
                             <span className="font-medium">{stats.savedSearches}</span>
                           </div>
-                          <div className="text-xs text-gray-500">Searches</div>
+                          <div className="text-xs text-gray-500">{t('admin.users.searches', language)}</div>
                         </div>
                         <div className="text-center">
                           <div className="flex items-center text-slate-800">
                             <MessageSquare className="h-3 w-3 mr-1" />
                             <span className="font-medium">{stats.inquiries}</span>
                           </div>
-                          <div className="text-xs text-gray-500">Inquiries</div>
+                          <div className="text-xs text-gray-500">{t('admin.users.inquiries', language)}</div>
                         </div>
                         <div className="text-center">
                           <div className="flex items-center text-orange-600">
                             <FileText className="h-3 w-3 mr-1" />
                             <span className="font-medium">{stats.forms}</span>
                           </div>
-                          <div className="text-xs text-gray-500">Forms</div>
+                          <div className="text-xs text-gray-500">{t('admin.users.forms', language)}</div>
                         </div>
                         <div className="text-center">
                           <div className="flex items-center text-blue-500">
                             <File className="h-3 w-3 mr-1" />
                             <span className="font-medium">{stats.documents}</span>
                           </div>
-                          <div className="text-xs text-gray-500">Docs</div>
+                          <div className="text-xs text-gray-500">{t('admin.users.docs', language)}</div>
                         </div>
                       </div>
                       
@@ -348,8 +370,8 @@ export default function UserManagement() {
                           onChange={(e) => updateUserRole(user.id, e.target.value)}
                           className="text-sm border border-gray-300 rounded px-2 py-1"
                         >
-                          <option value="user">User</option>
-                          <option value="admin">Admin</option>
+                          <option value="user">{t('admin.users.users', language)}</option>
+                          <option value="admin">{t('admin.users.admins', language)}</option>
                         </select>
                       </div>
                     </div>
@@ -360,8 +382,8 @@ export default function UserManagement() {
           ) : (
             <div className="text-center py-12">
               <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No users found</h3>
-              <p className="text-gray-600">Try adjusting your search or filter criteria.</p>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">{t('admin.users.noUsersFound', language)}</h3>
+              <p className="text-gray-600">{t('admin.users.adjustFilters', language)}</p>
             </div>
           )}
         </CardContent>
@@ -371,8 +393,7 @@ export default function UserManagement() {
       <Alert>
         <Shield className="h-4 w-4" />
         <AlertDescription>
-          <strong>Demo Mode:</strong> In production, user management would include additional features like 
-          email verification status, last login tracking, detailed activity logs, and bulk actions.
+          <strong>Demo Mode:</strong> {t('admin.users.demoNote', language)}
         </AlertDescription>
       </Alert>
     </div>

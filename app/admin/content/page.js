@@ -36,6 +36,7 @@ import {
   Languages
 } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { t } from '@/lib/translations'
 
 export default function ContentManagement() {
   const [activeTab, setActiveTab] = useState('properties')
@@ -51,6 +52,25 @@ export default function ContentManagement() {
   const [uploadingImage, setUploadingImage] = useState(false)
   const [keywordInput, setKeywordInput] = useState('')
   const [translating, setTranslating] = useState({})
+  const [language, setLanguage] = useState('cs')
+
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('language') || 'cs'
+    setLanguage(savedLanguage)
+    
+    const handleLanguageChange = (e) => {
+      if (e.detail) setLanguage(e.detail)
+      else if (e.newValue) setLanguage(e.newValue)
+    }
+    
+    window.addEventListener('languageChange', handleLanguageChange)
+    window.addEventListener('storage', handleLanguageChange)
+    
+    return () => {
+      window.removeEventListener('languageChange', handleLanguageChange)
+      window.removeEventListener('storage', handleLanguageChange)
+    }
+  }, [])
 
   useEffect(() => {
     loadContent()
@@ -227,7 +247,7 @@ export default function ContentManagement() {
       }
 
       if (!sourceText) {
-        setError(`No ${sourceLang.toUpperCase()} text to translate`)
+        setError(t('admin.content.noTextToTranslate', language))
         setTranslating(prev => ({ ...prev, [translationKey]: false }))
         return
       }
@@ -259,11 +279,11 @@ export default function ContentManagement() {
         }
       }))
 
-      setSuccess(`Translated to ${targetLang.toUpperCase()} successfully!`)
+      setSuccess(t('admin.content.translationSuccess', language))
       setTimeout(() => setSuccess(null), 3000)
     } catch (err) {
       console.error('Translation error:', err)
-      setError(err.message || 'Translation failed. Make sure OPENAI_API_KEY is configured.')
+      setError(err.message || t('admin.content.translationFailed', language))
     } finally {
       setTranslating(prev => ({ ...prev, [translationKey]: false }))
     }
@@ -315,7 +335,7 @@ export default function ContentManagement() {
           throw new Error(errorMessage)
         }
 
-        setSuccess('Property created successfully!')
+        setSuccess(t('admin.content.propertyCreated', language))
         setIsModalOpen(false)
         setEditingItem(null)
         await loadContent()
@@ -355,7 +375,7 @@ export default function ContentManagement() {
           throw new Error(errorMessage)
     }
 
-        setSuccess('Property updated successfully!')
+        setSuccess(t('admin.content.propertyUpdated', language))
     setIsModalOpen(false)
     setEditingItem(null)
         await loadContent()
@@ -369,12 +389,12 @@ export default function ContentManagement() {
   }
 
   const handleDeleteProperty = async (propertyId) => {
-    if (!confirm('Are you sure you want to delete this property? This action cannot be undone.')) {
+    if (!confirm(t('admin.content.deleteConfirm', language))) {
       return
     }
 
     if (!sanityConfigured) {
-      setError('Sanity CMS is not configured.')
+      setError(t('admin.content.sanityNotConfigured', language))
       return
     }
 
@@ -387,7 +407,7 @@ export default function ContentManagement() {
       const result = await response.json()
       if (!response.ok) throw new Error(result.error || 'Failed to delete property')
 
-      setSuccess('Property deleted successfully!')
+      setSuccess(t('admin.content.propertyDeleted', language))
       await loadContent()
     } catch (err) {
       console.error('Error deleting property:', err)
@@ -424,8 +444,8 @@ export default function ContentManagement() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Content Management</h1>
-          <p className="text-gray-600 mt-1">Manage properties, regions, and platform content</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('admin.content.title', language)}</h1>
+          <p className="text-gray-600 mt-1">{t('admin.content.subtitle', language)}</p>
         </div>
       </div>
 
@@ -434,9 +454,7 @@ export default function ContentManagement() {
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>
-            <strong>Sanity CMS Not Configured:</strong> Please add your Sanity project credentials 
-            (NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET) to your environment variables to enable content management.
-            You can still view content if it's already in Sanity, but create/edit/delete operations won't work.
+            <strong>{t('admin.content.sanityNotConfigured', language)}</strong>
           </AlertDescription>
         </Alert>
       )}
@@ -445,7 +463,7 @@ export default function ContentManagement() {
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>
-            <strong>Error:</strong> {error}
+            <strong>{t('admin.content.error', language)}:</strong> {error}
             <Button 
               variant="ghost" 
               size="sm" 
@@ -478,18 +496,18 @@ export default function ContentManagement() {
       {/* Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="properties">Properties</TabsTrigger>
-          <TabsTrigger value="regions">Regions</TabsTrigger>
-          <TabsTrigger value="settings">Settings</TabsTrigger>
+          <TabsTrigger value="properties">{t('admin.content.properties', language)}</TabsTrigger>
+          <TabsTrigger value="regions">{t('admin.content.regions', language)}</TabsTrigger>
+          <TabsTrigger value="settings">{t('admin.content.settings', language)}</TabsTrigger>
         </TabsList>
 
         {/* Properties Tab */}
         <TabsContent value="properties" className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold">Property Management</h2>
+            <h2 className="text-xl font-semibold">{t('admin.content.propertyManagement', language)}</h2>
             <Button onClick={createNewProperty}>
               <Plus className="h-4 w-4 mr-2" />
-              Add Property
+              {t('admin.content.addProperty', language)}
             </Button>
           </div>
 
@@ -498,34 +516,34 @@ export default function ContentManagement() {
               <CardContent className="p-6 text-center">
                 <Home className="h-8 w-8 text-blue-600 mx-auto mb-2" />
                 <div className="text-2xl font-bold">{properties.length}</div>
-                <div className="text-sm text-gray-600">Total Properties</div>
+                <div className="text-sm text-gray-600">{t('admin.content.totalProperties', language)}</div>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-4 text-center">
                 <Eye className="h-8 w-8 text-slate-800 mx-auto mb-2" />
                 <div className="text-2xl font-bold">{properties.filter(p => p.status === 'available').length}</div>
-                <div className="text-sm text-gray-600">Available</div>
+                <div className="text-sm text-gray-600">{t('admin.content.available', language)}</div>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="p-4 text-center">
                 <Badge className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
                 <div className="text-2xl font-bold">{properties.filter(p => p.featured).length}</div>
-                <div className="text-sm text-gray-600">Featured</div>
+                <div className="text-sm text-gray-600">{t('admin.content.featured', language)}</div>
               </CardContent>
             </Card>
           </div>
 
           <Card>
             <CardHeader>
-              <CardTitle>All Properties</CardTitle>
+              <CardTitle>{t('admin.content.allProperties', language)}</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               {loading ? (
                 <div className="flex items-center justify-center py-12">
                   <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-                  <span className="ml-3 text-gray-600">Loading properties...</span>
+                  <span className="ml-3 text-gray-600">{t('admin.content.loadingProperties', language)}</span>
                 </div>
               ) : properties.length > 0 ? (
               <div className="space-y-6">
@@ -606,16 +624,16 @@ export default function ContentManagement() {
               ) : (
                 <div className="text-center py-12">
                   <Home className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No properties found</h3>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t('admin.content.noProperties', language)}</h3>
                   <p className="text-gray-600 mb-4">
                     {sanityConfigured 
-                      ? 'Get started by adding your first property.'
-                      : 'Configure Sanity CMS to manage properties.'}
+                      ? t('admin.content.getStarted', language)
+                      : t('admin.content.configureSanity', language)}
                   </p>
                   {sanityConfigured && (
                     <Button onClick={createNewProperty}>
                       <Plus className="h-4 w-4 mr-2" />
-                      Add First Property
+                      {t('admin.content.addFirstProperty', language)}
                     </Button>
                   )}
                 </div>
@@ -627,22 +645,22 @@ export default function ContentManagement() {
         {/* Regions Tab */}
         <TabsContent value="regions" className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold">Region Management</h2>
+            <h2 className="text-xl font-semibold">{t('admin.content.regionManagement', language)}</h2>
             <Button disabled={!sanityConfigured}>
               <Plus className="h-4 w-4 mr-2" />
-              Add Region
+              {t('admin.content.addRegion', language)}
             </Button>
           </div>
 
           <Card>
             <CardHeader>
-              <CardTitle>All Regions</CardTitle>
+              <CardTitle>{t('admin.content.allRegions', language)}</CardTitle>
             </CardHeader>
             <CardContent>
               {loading ? (
                 <div className="flex items-center justify-center py-12">
                   <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-                  <span className="ml-3 text-gray-600">Loading regions...</span>
+                  <span className="ml-3 text-gray-600">{t('admin.content.loadingRegions', language)}</span>
                 </div>
               ) : regions.length > 0 ? (
               <div className="space-y-4">
@@ -654,11 +672,11 @@ export default function ContentManagement() {
                       </div>
                       <div>
                           <h3 className="font-medium text-gray-900">
-                            {region.name?.en || region.name?.it || 'Unnamed Region'}
+                            {region.name?.en || region.name?.it || t('admin.content.unnamedRegion', language)}
                           </h3>
                         <div className="flex items-center space-x-4 text-sm text-gray-600 mt-1">
                             <span>{region.country || 'Italy'}</span>
-                            <span>{region.propertyCount || 0} properties</span>
+                            <span>{region.propertyCount || 0} {t('admin.content.propertiesCount', language)}</span>
                         </div>
                       </div>
                     </div>
@@ -676,11 +694,11 @@ export default function ContentManagement() {
               ) : (
                 <div className="text-center py-12">
                   <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No regions found</h3>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">{t('admin.content.noRegions', language)}</h3>
                   <p className="text-gray-600">
                     {sanityConfigured 
-                      ? 'Regions will appear here once they are added to Sanity CMS.'
-                      : 'Configure Sanity CMS to manage regions.'}
+                      ? t('admin.content.regionsWillAppear', language)
+                      : t('admin.content.configureSanity', language)}
                   </p>
                 </div>
               )}
@@ -690,20 +708,20 @@ export default function ContentManagement() {
 
         {/* Settings Tab */}
         <TabsContent value="settings" className="space-y-6">
-          <h2 className="text-xl font-semibold">Platform Settings</h2>
+          <h2 className="text-xl font-semibold">{t('admin.content.platformSettings', language)}</h2>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle>Site Configuration</CardTitle>
+                <CardTitle>{t('admin.content.siteConfiguration', language)}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Site Name</label>
+                  <label className="text-sm font-medium mb-1 block">{t('admin.content.siteName', language)}</label>
                   <Input defaultValue="Domy v Itálii" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Default Currency</label>
+                  <label className="text-sm font-medium mb-1 block">{t('admin.content.defaultCurrency', language)}</label>
                   <select className="w-full px-3 py-2 border border-gray-300 rounded-md">
                     <option value="EUR">EUR (€)</option>
                     <option value="USD">USD ($)</option>
@@ -711,30 +729,30 @@ export default function ContentManagement() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Contact Email</label>
+                  <label className="text-sm font-medium mb-1 block">{t('admin.content.contactEmail', language)}</label>
                   <Input defaultValue="info@domyvitalii.com" />
                 </div>
-                <Button>Save Settings</Button>
+                <Button>{t('admin.content.saveSettings', language)}</Button>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Email Templates</CardTitle>
+                <CardTitle>{t('admin.content.emailTemplates', language)}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Welcome Email Subject</label>
+                  <label className="text-sm font-medium mb-1 block">{t('admin.content.welcomeEmailSubject', language)}</label>
                   <Input defaultValue="Welcome to Domy v Itálii!" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Inquiry Auto-Response</label>
+                  <label className="text-sm font-medium mb-1 block">{t('admin.content.inquiryAutoResponse', language)}</label>
                   <Textarea 
                     defaultValue="Thank you for your inquiry. We'll get back to you within 24 hours."
                     rows={3}
                   />
                 </div>
-                <Button>Update Templates</Button>
+                <Button>{t('admin.content.updateTemplates', language)}</Button>
               </CardContent>
             </Card>
           </div>
@@ -746,23 +764,23 @@ export default function ContentManagement() {
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl">
-              {editingItem?._id === 'new' ? 'Add New Property' : 'Edit Property'}
+              {editingItem?._id === 'new' ? t('admin.content.addNewProperty', language) : t('admin.content.editProperty', language)}
             </DialogTitle>
           </DialogHeader>
           {editingItem && (
             <Tabs defaultValue="basic" className="w-full">
               <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="basic">Basic Info</TabsTrigger>
-                <TabsTrigger value="images">Images</TabsTrigger>
-                <TabsTrigger value="description">Description</TabsTrigger>
-                <TabsTrigger value="seo">SEO & Publishing</TabsTrigger>
+                <TabsTrigger value="basic">{t('admin.content.basicInfo', language)}</TabsTrigger>
+                <TabsTrigger value="images">{t('admin.content.images', language)}</TabsTrigger>
+                <TabsTrigger value="description">{t('admin.content.descriptionTab', language)}</TabsTrigger>
+                <TabsTrigger value="seo">{t('admin.content.seoPublishing', language)}</TabsTrigger>
               </TabsList>
 
               {/* Basic Info Tab */}
               <TabsContent value="basic" className="space-y-4 mt-4">
                 <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Title (English) *</label>
+                    <label className="text-sm font-medium mb-1 block">{t('admin.content.titleEn', language)} *</label>
                     <Input
                       value={editingItem.title.en}
                       onChange={(e) => setEditingItem(prev => ({
@@ -773,7 +791,7 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Title (Czech)</label>
+                    <label className="text-sm font-medium mb-1 block">{t('admin.content.titleCs', language)}</label>
                     <Input
                       value={editingItem.title.cs || ''}
                       onChange={(e) => setEditingItem(prev => ({
@@ -784,7 +802,7 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Title (Italian)</label>
+                    <label className="text-sm font-medium mb-1 block">{t('admin.content.titleIt', language)}</label>
                     <Input
                       value={editingItem.title.it}
                       onChange={(e) => setEditingItem(prev => ({
@@ -798,7 +816,7 @@ export default function ContentManagement() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Property Type *</label>
+                    <label className="text-sm font-medium mb-1 block">{t('admin.content.propertyType', language)} *</label>
                     <Select
                       value={editingItem.propertyType}
                       onValueChange={(value) => setEditingItem(prev => ({
@@ -810,18 +828,18 @@ export default function ContentManagement() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="villa">Villa</SelectItem>
-                        <SelectItem value="house">House</SelectItem>
-                        <SelectItem value="apartment">Apartment</SelectItem>
-                        <SelectItem value="farmhouse">Farmhouse</SelectItem>
-                        <SelectItem value="castle">Castle</SelectItem>
-                        <SelectItem value="commercial">Commercial</SelectItem>
-                        <SelectItem value="land">Land</SelectItem>
+                        <SelectItem value="villa">{t('admin.content.propertyTypes.villa', language)}</SelectItem>
+                        <SelectItem value="house">{t('admin.content.propertyTypes.house', language)}</SelectItem>
+                        <SelectItem value="apartment">{t('admin.content.propertyTypes.apartment', language)}</SelectItem>
+                        <SelectItem value="farmhouse">{t('admin.content.propertyTypes.farmhouse', language)}</SelectItem>
+                        <SelectItem value="castle">{t('admin.content.propertyTypes.castle', language)}</SelectItem>
+                        <SelectItem value="commercial">{t('admin.content.propertyTypes.commercial', language)}</SelectItem>
+                        <SelectItem value="land">{t('admin.content.propertyTypes.land', language)}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Status *</label>
+                    <label className="text-sm font-medium mb-1 block">{t('admin.content.status', language)} *</label>
                     <Select
                       value={editingItem.status}
                       onValueChange={(value) => setEditingItem(prev => ({
@@ -833,10 +851,10 @@ export default function ContentManagement() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="available">Available</SelectItem>
-                        <SelectItem value="reserved">Reserved</SelectItem>
-                        <SelectItem value="sold">Sold</SelectItem>
-                        <SelectItem value="draft">Draft</SelectItem>
+                        <SelectItem value="available">{t('admin.content.statusOptions.available', language)}</SelectItem>
+                        <SelectItem value="reserved">{t('admin.content.statusOptions.reserved', language)}</SelectItem>
+                        <SelectItem value="sold">{t('admin.content.statusOptions.sold', language)}</SelectItem>
+                        <SelectItem value="draft">{t('admin.content.statusOptions.draft', language)}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -844,7 +862,7 @@ export default function ContentManagement() {
 
                 <div className="grid grid-cols-4 gap-4">
                   <div className="col-span-1">
-                    <label className="text-sm font-medium mb-1 block">Price (EUR) *</label>
+                    <label className="text-sm font-medium mb-1 block">{t('admin.content.price', language)} *</label>
                     <Input
                       type="number"
                       value={editingItem.price.amount}
@@ -856,7 +874,7 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Bedrooms</label>
+                    <label className="text-sm font-medium mb-1 block">{t('admin.content.bedrooms', language)}</label>
                     <Input
                       type="number"
                       value={editingItem.specifications.bedrooms}
@@ -868,7 +886,7 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Bathrooms</label>
+                    <label className="text-sm font-medium mb-1 block">{t('admin.content.bathrooms', language)}</label>
                     <Input
                       type="number"
                       value={editingItem.specifications.bathrooms}
@@ -880,7 +898,7 @@ export default function ContentManagement() {
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Area (m²)</label>
+                    <label className="text-sm font-medium mb-1 block">{t('admin.content.area', language)}</label>
                     <Input
                       type="number"
                       value={editingItem.specifications.squareFootage}
@@ -894,7 +912,7 @@ export default function ContentManagement() {
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium mb-1 block">City (English)</label>
+                  <label className="text-sm font-medium mb-1 block">{t('admin.content.city', language)}</label>
                   <Input
                     value={editingItem.location?.city?.name?.en || ''}
                     onChange={(e) => setEditingItem(prev => ({
@@ -924,7 +942,7 @@ export default function ContentManagement() {
                   />
                   <label htmlFor="featured" className="text-sm font-medium flex items-center">
                     <Star className="h-4 w-4 mr-1 text-yellow-500" />
-                    Featured Property (appears on homepage)
+                    {t('admin.content.featuredProperty', language)}
                   </label>
                 </div>
               </TabsContent>
@@ -932,7 +950,7 @@ export default function ContentManagement() {
               {/* Images Tab */}
               <TabsContent value="images" className="space-y-4 mt-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Property Images</label>
+                  <label className="text-sm font-medium mb-2 block">{t('admin.content.propertyImages', language)}</label>
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                     <input
                       type="file"
@@ -950,16 +968,16 @@ export default function ContentManagement() {
                       {uploadingImage ? (
                         <>
                           <Loader2 className="h-12 w-12 text-blue-600 animate-spin mb-2" />
-                          <p className="text-sm text-gray-600">Uploading images...</p>
+                          <p className="text-sm text-gray-600">{t('admin.content.uploadingImages', language)}</p>
                         </>
                       ) : (
                         <>
                           <Upload className="h-12 w-12 text-gray-400 mb-2" />
                           <p className="text-sm text-gray-600">
-                            Click to upload images or drag and drop
+                            {t('admin.content.uploadImages', language)}
                           </p>
                           <p className="text-xs text-gray-500 mt-1">
-                            PNG, JPG, GIF up to 10MB each
+                            {t('admin.content.imageFormat', language)}
                           </p>
                         </>
                       )}
@@ -970,10 +988,10 @@ export default function ContentManagement() {
                 {editingItem.images && editingItem.images.length > 0 && (
                   <div>
                     <label className="text-sm font-medium mb-2 block">
-                      Uploaded Images ({editingItem.images.length})
+                      {t('admin.content.uploadedImages', language)} ({editingItem.images.length})
                     </label>
                     <p className="text-xs text-gray-600 mb-3">
-                      Click the star icon to set the main image that will appear first
+                      {t('admin.content.setMainImage', language)}
                     </p>
                     <div className="grid grid-cols-3 gap-4">
                       {editingItem.images.map((image, index) => (
@@ -1132,9 +1150,9 @@ export default function ContentManagement() {
               {/* SEO & Publishing Tab */}
               <TabsContent value="seo" className="space-y-6 mt-4">
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold flex items-center">
+                  <h3 className="text-sm font-semibold flex items-center">
                     <Tag className="h-5 w-5 mr-2" />
-                    SEO Settings
+                    {t('admin.content.seoSettings', language)}
                   </h3>
                   
                   <div className="grid grid-cols-3 gap-4">
@@ -1320,7 +1338,7 @@ export default function ContentManagement() {
               {/* Action Buttons */}
               <div className="flex justify-end space-x-2 pt-6 border-t mt-6">
                 <Button variant="outline" onClick={() => setIsModalOpen(false)} disabled={saving}>
-                  Cancel
+                  {t('admin.content.cancel', language)}
                 </Button>
                 <Button 
                   onClick={handleSaveProperty}
@@ -1329,12 +1347,12 @@ export default function ContentManagement() {
                   {saving ? (
                     <>
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                      Saving...
+                      {t('admin.content.saving', language)}
                     </>
                   ) : (
                     <>
                       <Save className="h-4 w-4 mr-2" />
-                      {editingItem._id === 'new' ? 'Create Property' : 'Save Changes'}
+                      {editingItem._id === 'new' ? t('admin.content.createProperty', language) : t('admin.content.saveChanges', language)}
                     </>
                   )}
                 </Button>

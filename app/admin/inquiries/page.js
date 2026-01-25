@@ -22,6 +22,7 @@ import {
   AlertCircle
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { t } from '@/lib/translations'
 
 export default function InquiryManagement() {
   const [inquiries, setInquiries] = useState([])
@@ -32,6 +33,25 @@ export default function InquiryManagement() {
   const [selectedInquiry, setSelectedInquiry] = useState(null)
   const [responseText, setResponseText] = useState('')
   const [sending, setSending] = useState(false)
+  const [language, setLanguage] = useState('cs')
+
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('language') || 'cs'
+    setLanguage(savedLanguage)
+    
+    const handleLanguageChange = (e) => {
+      if (e.detail) setLanguage(e.detail)
+      else if (e.newValue) setLanguage(e.newValue)
+    }
+    
+    window.addEventListener('languageChange', handleLanguageChange)
+    window.addEventListener('storage', handleLanguageChange)
+    
+    return () => {
+      window.removeEventListener('languageChange', handleLanguageChange)
+      window.removeEventListener('storage', handleLanguageChange)
+    }
+  }, [])
 
   useEffect(() => {
     loadInquiries()
@@ -115,10 +135,10 @@ export default function InquiryManagement() {
 
       setResponseText('')
       setSelectedInquiry(null)
-      alert('Response sent successfully!')
+      alert(t('admin.inquiries.responseSent', language))
     } catch (error) {
       console.error('Error sending response:', error)
-      alert('Failed to send response')
+      alert(t('admin.inquiries.responseFailed', language))
     } finally {
       setSending(false)
     }
@@ -145,7 +165,7 @@ export default function InquiryManagement() {
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-gray-900">Inquiry Management</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('admin.inquiries.title', language)}</h1>
         </div>
         <div className="animate-pulse space-y-4">
           <div className="h-12 bg-gray-200 rounded"></div>
@@ -164,12 +184,12 @@ export default function InquiryManagement() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Inquiry Management</h1>
-          <p className="text-gray-600 mt-1">{inquiries.length} total inquiries</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('admin.inquiries.title', language)}</h1>
+          <p className="text-gray-600 mt-1">{inquiries.length} {t('admin.inquiries.totalInquiries', language)}</p>
         </div>
         <Button onClick={loadInquiries}>
           <MessageSquare className="h-4 w-4 mr-2" />
-          Refresh Inquiries
+          {t('admin.inquiries.refreshInquiries', language)}
         </Button>
       </div>
 
@@ -181,7 +201,7 @@ export default function InquiryManagement() {
               <div className="relative">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                 <Input
-                  placeholder="Search inquiries by name, email, message, or property ID..."
+                  placeholder={t('admin.inquiries.searchPlaceholder', language)}
                   className="pl-10"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -194,9 +214,9 @@ export default function InquiryManagement() {
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
               >
-                <option value="all">All Status</option>
-                <option value="pending">Pending</option>
-                <option value="responded">Responded</option>
+                <option value="all">{t('admin.inquiries.allStatus', language)}</option>
+                <option value="pending">{t('admin.inquiries.pending', language)}</option>
+                <option value="responded">{t('admin.inquiries.responded', language)}</option>
               </select>
             </div>
           </div>
@@ -209,28 +229,28 @@ export default function InquiryManagement() {
           <CardContent className="p-4 text-center">
             <MessageSquare className="h-8 w-8 text-blue-600 mx-auto mb-2" />
             <div className="text-2xl font-bold">{inquiries.length}</div>
-            <div className="text-sm text-gray-600">Total Inquiries</div>
+            <div className="text-sm text-gray-600">{t('admin.inquiries.totalInquiriesCard', language)}</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
             <Clock className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
             <div className="text-2xl font-bold">{inquiries.filter(i => i.status === 'pending').length}</div>
-            <div className="text-sm text-gray-600">Pending</div>
+            <div className="text-sm text-gray-600">{t('admin.inquiries.pendingCard', language)}</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
             <CheckCircle className="h-8 w-8 text-slate-800 mx-auto mb-2" />
             <div className="text-2xl font-bold">{inquiries.filter(i => i.status === 'responded').length}</div>
-            <div className="text-sm text-gray-600">Responded</div>
+            <div className="text-sm text-gray-600">{t('admin.inquiries.respondedCard', language)}</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4 text-center">
             <AlertCircle className="h-8 w-8 text-red-600 mx-auto mb-2" />
             <div className="text-2xl font-bold">{inquiries.filter(i => i.priority === 'high').length}</div>
-            <div className="text-sm text-gray-600">High Priority</div>
+            <div className="text-sm text-gray-600">{t('admin.inquiries.highPriority', language)}</div>
           </CardContent>
         </Card>
       </div>
@@ -238,7 +258,7 @@ export default function InquiryManagement() {
       {/* Inquiries List */}
       <Card>
         <CardHeader>
-          <CardTitle>All Inquiries</CardTitle>
+          <CardTitle>{t('admin.inquiries.allInquiries', language)}</CardTitle>
         </CardHeader>
         <CardContent>
           {filteredInquiries.length > 0 ? (
@@ -250,11 +270,11 @@ export default function InquiryManagement() {
                       <div className="flex items-center space-x-2 mb-2">
                         <h3 className="font-medium text-gray-900">{inquiry.name}</h3>
                         <Badge className={getStatusColor(inquiry.status)}>
-                          {inquiry.status}
+                          {t(`admin.inquiries.${inquiry.status}`, language)}
                         </Badge>
                         {inquiry.priority === 'high' && (
                           <Badge variant="destructive" className="text-xs">
-                            High Priority
+                            {t('admin.inquiries.highPriorityBadge', language)}
                           </Badge>
                         )}
                       </div>
@@ -265,7 +285,7 @@ export default function InquiryManagement() {
                         </span>
                         <span className="flex items-center">
                           <Home className="h-3 w-3 mr-1" />
-                          {inquiry.listingId ? `Property: ${inquiry.listingId}` : 'General Inquiry'}
+                          {inquiry.listingId ? `${t('admin.dashboard.property', language)}: ${inquiry.listingId}` : t('admin.inquiries.generalInquiry', language)}
                         </span>
                         <span className="flex items-center">
                           <Calendar className="h-3 w-3 mr-1" />
@@ -290,24 +310,24 @@ export default function InquiryManagement() {
                             }}
                           >
                             <Reply className="h-4 w-4 mr-1" />
-                            {inquiry.status === 'pending' ? 'Respond' : 'View'}
+                            {inquiry.status === 'pending' ? t('admin.inquiries.respond', language) : t('admin.inquiries.view', language)}
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="max-w-2xl">
                           <DialogHeader>
-                            <DialogTitle>Inquiry Details & Response</DialogTitle>
+                            <DialogTitle>{t('admin.inquiries.inquiryDetails', language)}</DialogTitle>
                           </DialogHeader>
                           {selectedInquiry && (
                             <div className="space-y-6">
                               {/* Inquiry Details */}
                               <div className="bg-gray-50 p-4 rounded-lg">
-                                <h4 className="font-medium mb-2">Original Inquiry</h4>
+                                <h4 className="font-medium mb-2">{t('admin.inquiries.originalInquiry', language)}</h4>
                                 <div className="space-y-2 text-sm">
-                                  <p><strong>From:</strong> {selectedInquiry.name} ({selectedInquiry.email})</p>
-                                  <p><strong>Type:</strong> {selectedInquiry.listingId ? `Property: ${selectedInquiry.listingId}` : 'General Inquiry'}</p>
-                                  {selectedInquiry.phone && <p><strong>Phone:</strong> {selectedInquiry.phone}</p>}
-                                  <p><strong>Date:</strong> {new Date(selectedInquiry.createdAt).toLocaleString()}</p>
-                                  <p><strong>Message:</strong></p>
+                                  <p><strong>{t('admin.inquiries.from', language)}:</strong> {selectedInquiry.name} ({selectedInquiry.email})</p>
+                                  <p><strong>{t('admin.inquiries.type', language)}:</strong> {selectedInquiry.listingId ? `${t('admin.dashboard.property', language)}: ${selectedInquiry.listingId}` : t('admin.inquiries.generalInquiry', language)}</p>
+                                  {selectedInquiry.phone && <p><strong>{t('admin.inquiries.phone', language)}:</strong> {selectedInquiry.phone}</p>}
+                                  <p><strong>{t('admin.inquiries.date', language)}:</strong> {new Date(selectedInquiry.createdAt).toLocaleString()}</p>
+                                  <p><strong>{t('admin.inquiries.message', language)}:</strong></p>
                                   <p className="bg-white p-3 rounded border">{selectedInquiry.message}</p>
                                 </div>
                               </div>
@@ -315,9 +335,9 @@ export default function InquiryManagement() {
                               {/* Response Form */}
                               {selectedInquiry.status === 'pending' ? (
                                 <div className="space-y-4">
-                                  <h4 className="font-medium">Send Response</h4>
+                                  <h4 className="font-medium">{t('admin.inquiries.sendResponse', language)}</h4>
                                   <Textarea
-                                    placeholder="Type your response..."
+                                    placeholder={t('admin.inquiries.typeResponse', language)}
                                     value={responseText}
                                     onChange={(e) => setResponseText(e.target.value)}
                                     rows={6}
@@ -327,13 +347,13 @@ export default function InquiryManagement() {
                                       variant="outline"
                                       onClick={() => setSelectedInquiry(null)}
                                     >
-                                      Cancel
+                                      {t('admin.inquiries.cancel', language)}
                                     </Button>
                                     <Button
                                       onClick={sendResponse}
                                       disabled={sending || !responseText.trim()}
                                     >
-                                      {sending ? 'Sending...' : 'Send Response'}
+                                      {sending ? t('admin.inquiries.sending', language) : t('admin.inquiries.sendResponseBtn', language)}
                                     </Button>
                                   </div>
                                 </div>
@@ -341,7 +361,7 @@ export default function InquiryManagement() {
                                 <Alert>
                                   <CheckCircle className="h-4 w-4" />
                                   <AlertDescription>
-                                    This inquiry has already been responded to.
+                                    {t('admin.inquiries.alreadyResponded', language)}
                                   </AlertDescription>
                                 </Alert>
                               )}
@@ -357,8 +377,8 @@ export default function InquiryManagement() {
           ) : (
             <div className="text-center py-12">
               <MessageSquare className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No inquiries found</h3>
-              <p className="text-gray-600">Try adjusting your search or filter criteria.</p>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">{t('admin.inquiries.noInquiries', language)}</h3>
+              <p className="text-gray-600">{t('admin.inquiries.adjustFilters', language)}</p>
             </div>
           )}
         </CardContent>
@@ -368,8 +388,7 @@ export default function InquiryManagement() {
       <Alert>
         <AlertCircle className="h-4 w-4" />
         <AlertDescription>
-          <strong>Demo Mode:</strong> In production, this would integrate with email services to send actual responses, 
-          track email delivery status, and provide response templates.
+          <strong>{t('admin.layout.demoMode', language)}:</strong> {t('admin.inquiries.demoNote', language)}
         </AlertDescription>
       </Alert>
     </div>

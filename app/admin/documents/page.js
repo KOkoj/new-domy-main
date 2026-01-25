@@ -23,6 +23,7 @@ import {
   Plus
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { t } from '@/lib/translations'
 
 const STORAGE_BUCKET = 'documents'
 
@@ -38,15 +39,34 @@ export default function DocumentManagement() {
     category: 'Legal Documents',
     file: null
   })
+  const [language, setLanguage] = useState('cs')
+
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('language') || 'cs'
+    setLanguage(savedLanguage)
+    
+    const handleLanguageChange = (e) => {
+      if (e.detail) setLanguage(e.detail)
+      else if (e.newValue) setLanguage(e.newValue)
+    }
+    
+    window.addEventListener('languageChange', handleLanguageChange)
+    window.addEventListener('storage', handleLanguageChange)
+    
+    return () => {
+      window.removeEventListener('languageChange', handleLanguageChange)
+      window.removeEventListener('storage', handleLanguageChange)
+    }
+  }, [])
 
   const CATEGORIES = [
-    'Legal Documents',
-    'Tax Documents',
-    'Financing',
-    'Market Reports',
-    'Inspection',
-    'Insurance',
-    'Other'
+    t('admin.documents.categories.legal', language),
+    t('admin.documents.categories.tax', language),
+    t('admin.documents.categories.financing', language),
+    t('admin.documents.categories.reports', language),
+    t('admin.documents.categories.inspection', language),
+    t('admin.documents.categories.insurance', language),
+    t('admin.documents.categories.other', language)
   ]
 
   useEffect(() => {
@@ -135,17 +155,17 @@ export default function DocumentManagement() {
       setDocuments([data, ...documents])
       setUploadDialogOpen(false)
       setNewDoc({ name: '', description: '', category: 'Legal Documents', file: null })
-      
+      alert(t('admin.documents.uploadSuccess', language))
     } catch (error) {
       console.error('Error uploading document:', error)
-      alert('Failed to upload document: ' + (error.message || 'Unknown error'))
+      alert(t('admin.documents.uploadFailed', language) + ': ' + (error.message || 'Unknown error'))
     } finally {
       setIsUploading(false)
     }
   }
 
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this document?')) return
+    if (!confirm(t('admin.documents.deleteConfirm', language))) return
 
     try {
       const { error } = await supabase
@@ -158,7 +178,7 @@ export default function DocumentManagement() {
       setDocuments(documents.filter(doc => doc.id !== id))
     } catch (error) {
       console.error('Error deleting document:', error)
-      alert('Failed to delete document')
+      alert(t('admin.documents.deleteFailed', language))
     }
   }
 
@@ -180,41 +200,41 @@ export default function DocumentManagement() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Document Management</h1>
-          <p className="text-gray-600 mt-1">Manage premium documents for club members</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('admin.documents.title', language)}</h1>
+          <p className="text-gray-600 mt-1">{t('admin.documents.subtitle', language)}</p>
         </div>
         <Dialog open={uploadDialogOpen} onOpenChange={setUploadDialogOpen}>
           <DialogTrigger asChild>
             <Button className="bg-blue-600 hover:bg-blue-700">
               <Upload className="h-4 w-4 mr-2" />
-              Upload Document
+              {t('admin.documents.uploadDocument', language)}
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Upload New Document</DialogTitle>
+              <DialogTitle>{t('admin.documents.uploadNew', language)}</DialogTitle>
             </DialogHeader>
             <div className="space-y-4 py-4">
               <div>
-                <Label htmlFor="name">Document Name</Label>
+                <Label htmlFor="name">{t('admin.documents.documentName', language)}</Label>
                 <Input 
                   id="name" 
                   value={newDoc.name}
                   onChange={(e) => setNewDoc({ ...newDoc, name: e.target.value })}
-                  placeholder="e.g. Purchase Agreement Template"
+                  placeholder={t('admin.documents.namePlaceholder', language)}
                 />
               </div>
               <div>
-                <Label htmlFor="description">Description</Label>
+                <Label htmlFor="description">{t('admin.documents.description', language)}</Label>
                 <Input 
                   id="description" 
                   value={newDoc.description}
                   onChange={(e) => setNewDoc({ ...newDoc, description: e.target.value })}
-                  placeholder="Brief description of the document content"
+                  placeholder={t('admin.documents.descriptionPlaceholder', language)}
                 />
               </div>
               <div>
-                <Label htmlFor="category">Category</Label>
+                <Label htmlFor="category">{t('admin.documents.category', language)}</Label>
                 <select
                   id="category"
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
@@ -227,7 +247,7 @@ export default function DocumentManagement() {
                 </select>
               </div>
               <div>
-                <Label htmlFor="file">File</Label>
+                <Label htmlFor="file">{t('admin.documents.file', language)}</Label>
                 <Input 
                   id="file" 
                   type="file"
@@ -236,9 +256,9 @@ export default function DocumentManagement() {
               </div>
             </div>
             <DialogFooter>
-              <Button variant="outline" onClick={() => setUploadDialogOpen(false)}>Cancel</Button>
+              <Button variant="outline" onClick={() => setUploadDialogOpen(false)}>{t('admin.documents.cancel', language)}</Button>
               <Button onClick={handleUpload} disabled={isUploading || !newDoc.file || !newDoc.name}>
-                {isUploading ? 'Uploading...' : 'Upload'}
+                {isUploading ? t('admin.documents.uploading', language) : t('admin.documents.upload', language)}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -251,7 +271,7 @@ export default function DocumentManagement() {
           <div className="relative">
             <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
             <Input
-              placeholder="Search documents..."
+              placeholder={t('admin.documents.searchPlaceholder', language)}
               className="pl-10"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -264,12 +284,12 @@ export default function DocumentManagement() {
       <Card>
         <CardContent className="p-0">
           {loading ? (
-            <div className="p-8 text-center text-gray-500">Loading documents...</div>
+            <div className="p-8 text-center text-gray-500">{t('admin.documents.loadingDocuments', language)}</div>
           ) : filteredDocuments.length === 0 ? (
             <div className="p-12 text-center">
               <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No documents found</h3>
-              <p className="text-gray-600">Upload a document to get started.</p>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">{t('admin.documents.noDocuments', language)}</h3>
+              <p className="text-gray-600">{t('admin.documents.uploadToStart', language)}</p>
             </div>
           ) : (
             <div className="divide-y">
