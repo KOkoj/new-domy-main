@@ -150,7 +150,7 @@ export default function ConciergePage() {
           status: inquiry.responded ? 'resolved' : 'open',
           priority: priority.toLowerCase(),
           createdAt: inquiry.created_at,
-          lastUpdate: inquiry.created_at,
+          lastUpdate: inquiry.updated_at || inquiry.created_at, // Use updated_at if available
           messages: 1, // Placeholder
           description: inquiry.message
         }
@@ -235,6 +235,7 @@ export default function ConciergePage() {
   }
 
   const formatDate = (dateString) => {
+    if (!dateString) return 'N/A'
     const date = new Date(dateString)
     return date.toLocaleDateString('en-US', { 
       month: 'short', 
@@ -500,4 +501,3 @@ export default function ConciergePage() {
     </div>
   )
 }
-
