@@ -14,11 +14,17 @@ import {
   TrendingUp,
   Activity,
   Settings,
+  Crown,
   Home, 
   LogOut,
   Menu,
   X,
-  Bell
+  Bell,
+  FileText,
+  Calendar,
+  Briefcase,
+  Video,
+  MessageCircle
 } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
 import Navigation from '../../components/Navigation'
@@ -65,6 +71,36 @@ const dashboardMenuItems = [
     href: '/dashboard/notifications',
     icon: Bell,
     description: 'Email preferences'
+  },
+  {
+    title: 'Client Form',
+    href: '/dashboard/intake-form',
+    icon: FileText,
+    description: 'Personal information'
+  },
+  {
+    title: 'Webinars',
+    href: '/dashboard/webinars',
+    icon: Calendar,
+    description: 'Events & sessions'
+  },
+  {
+    title: 'Documents',
+    href: '/dashboard/documents',
+    icon: Briefcase,
+    description: 'Files & contracts'
+  },
+  {
+    title: 'Concierge',
+    href: '/dashboard/concierge',
+    icon: MessageCircle,
+    description: 'Premium support'
+  },
+  {
+    title: 'Exclusive Content',
+    href: '/dashboard/content',
+    icon: Video,
+    description: 'Videos & guides'
   }
 ]
 
@@ -189,9 +225,9 @@ export default function DashboardLayout({ children }) {
                     className="flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors"
                     onClick={() => setSidebarOpen(false)}
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon className={`h-5 w-5 ${item.className || ''}`} />
                     <div>
-                      <div className="font-medium">{item.title}</div>
+                      <div className={`font-medium ${item.className || ''}`}>{item.title}</div>
                       <div className="text-xs text-gray-500">{item.description}</div>
                     </div>
                   </Link>

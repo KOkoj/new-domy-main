@@ -1419,7 +1419,7 @@ export default function HomePage() {
           <div className="container mx-auto px-4 py-2">
             <div className="flex items-center justify-center relative">
               <Link 
-                href="/club" 
+                href="/dashboard" 
                 className="flex items-center gap-3 group hover:opacity-90 transition-opacity"
               >
                 <Crown className="h-5 w-5 text-white" />
@@ -2028,7 +2028,7 @@ export default function HomePage() {
               <GlareCard 
                 className="flex flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-900 to-slate-800 h-full"
                 onClick={() => {
-                  window.location.href = '/club';
+                  window.location.href = '/dashboard';
                 }}
               >
                 <div className="text-center space-y-6">
