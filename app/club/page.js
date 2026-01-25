@@ -40,16 +40,19 @@ export default function ClubOverview() {
   useEffect(() => {
     loadClubData()
     
-    // Load saved language preference
+    // Load saved language preference (default to Czech)
     const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) {
+    if (savedLanguage && (savedLanguage === 'cs' || savedLanguage === 'en')) {
       setLanguage(savedLanguage)
+    } else {
+      setLanguage('cs')
+      localStorage.setItem('preferred-language', 'cs')
     }
 
     // Listen for language changes from localStorage
     const handleLanguageChange = () => {
       const savedLanguage = localStorage.getItem('preferred-language')
-      if (savedLanguage && savedLanguage !== language) {
+      if (savedLanguage && savedLanguage !== language && (savedLanguage === 'cs' || savedLanguage === 'en')) {
         setLanguage(savedLanguage)
       }
     }
@@ -59,7 +62,7 @@ export default function ClubOverview() {
     // Poll for language changes (since we can't easily detect changes from same tab)
     const interval = setInterval(() => {
       const savedLanguage = localStorage.getItem('preferred-language')
-      if (savedLanguage && savedLanguage !== language) {
+      if (savedLanguage && savedLanguage !== language && (savedLanguage === 'cs' || savedLanguage === 'en')) {
         setLanguage(savedLanguage)
       }
     }, 1000)

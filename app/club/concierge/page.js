@@ -22,6 +22,7 @@ import {
   Sparkles
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { t } from '../../../lib/translations'
 
 const SAMPLE_TICKETS = [
   {
@@ -80,6 +81,7 @@ export default function ConciergePage() {
   const [submitting, setSubmitting] = useState(false)
   const [message, setMessage] = useState({ type: '', text: '' })
   const [tickets, setTickets] = useState([])
+  const [language, setLanguage] = useState('cs')
 
   const [newTicket, setNewTicket] = useState({
     subject: '',
@@ -91,7 +93,36 @@ export default function ConciergePage() {
 
   useEffect(() => {
     loadConciergeData()
-  }, [])
+    
+    // Load saved language preference (default to Czech)
+    const savedLanguage = localStorage.getItem('preferred-language')
+    if (savedLanguage && (savedLanguage === 'cs' || savedLanguage === 'en')) {
+      setLanguage(savedLanguage)
+    } else {
+      setLanguage('cs')
+    }
+
+    // Listen for language changes
+    const handleStorageChange = () => {
+      const newLang = localStorage.getItem('preferred-language')
+      if (newLang && (newLang === 'cs' || newLang === 'en')) {
+        setLanguage(newLang)
+      }
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+    const interval = setInterval(() => {
+      const newLang = localStorage.getItem('preferred-language')
+      if (newLang && newLang !== language && (newLang === 'cs' || newLang === 'en')) {
+        setLanguage(newLang)
+      }
+    }, 1000)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      clearInterval(interval)
+    }
+  }, [language])
 
   const loadConciergeData = async () => {
     try {
@@ -148,13 +179,13 @@ export default function ConciergePage() {
 
     try {
       if (!newTicket.subject || !newTicket.category || !newTicket.description) {
-        setMessage({ type: 'error', text: 'Please fill in all required fields.' })
+        setMessage({ type: 'error', text: t('club.conciergePage.errorFillFields', language) })
         setSubmitting(false)
         return
       }
 
       if (!user) {
-        setMessage({ type: 'error', text: 'You must be logged in to submit a request.' })
+        setMessage({ type: 'error', text: t('club.conciergePage.errorLogin', language) })
         setSubmitting(false)
         return
       }
@@ -176,7 +207,7 @@ export default function ConciergePage() {
 
       setMessage({ 
         type: 'success', 
-        text: 'Your request has been submitted! Our team will respond within 24 hours.' 
+        text: t('club.conciergePage.successMessage', language)
       })
       
       // Reset form
@@ -234,10 +265,10 @@ export default function ConciergePage() {
       <div>
         <h1 className="text-3xl font-bold text-white flex items-center space-x-3">
           <MessageCircle className="h-8 w-8 text-copper-400" />
-          <span>Premium Concierge Service</span>
+          <span>{t('club.conciergePage.title', language)}</span>
         </h1>
         <p className="text-gray-400 mt-2">
-          Get personalized assistance from our dedicated support team
+          {t('club.conciergePage.subtitle', language)}
         </p>
       </div>
 
@@ -248,9 +279,9 @@ export default function ConciergePage() {
             <div className="w-12 h-12 bg-copper-400/10 rounded-full flex items-center justify-center mx-auto mb-3">
               <Phone className="h-6 w-6 text-copper-400" />
             </div>
-            <h3 className="font-semibold text-white mb-1">Call Us</h3>
-            <p className="text-sm text-gray-400 mb-3">Mon-Fri, 9AM-6PM CET</p>
-            <p className="text-copper-400 font-medium">+39 02 1234 5678</p>
+            <h3 className="font-semibold text-white mb-1">{t('club.conciergePage.callUs', language)}</h3>
+            <p className="text-sm text-gray-400 mb-3">{t('club.conciergePage.callHours', language)}</p>
+            <p className="text-copper-400 font-medium">{t('club.conciergePage.phone', language)}</p>
           </CardContent>
         </Card>
 
@@ -259,9 +290,9 @@ export default function ConciergePage() {
             <div className="w-12 h-12 bg-blue-400/10 rounded-full flex items-center justify-center mx-auto mb-3">
               <Mail className="h-6 w-6 text-blue-400" />
             </div>
-            <h3 className="font-semibold text-white mb-1">Email Us</h3>
-            <p className="text-sm text-gray-400 mb-3">Response within 24 hours</p>
-            <p className="text-blue-400 font-medium">concierge@domy.com</p>
+            <h3 className="font-semibold text-white mb-1">{t('club.conciergePage.emailUs', language)}</h3>
+            <p className="text-sm text-gray-400 mb-3">{t('club.conciergePage.emailResponse', language)}</p>
+            <p className="text-blue-400 font-medium">{t('club.conciergePage.email', language)}</p>
           </CardContent>
         </Card>
 
@@ -270,10 +301,10 @@ export default function ConciergePage() {
             <div className="w-12 h-12 bg-green-400/10 rounded-full flex items-center justify-center mx-auto mb-3">
               <Calendar className="h-6 w-6 text-green-400" />
             </div>
-            <h3 className="font-semibold text-white mb-1">Book a Call</h3>
-            <p className="text-sm text-gray-400 mb-3">Schedule a consultation</p>
+            <h3 className="font-semibold text-white mb-1">{t('club.conciergePage.bookCall', language)}</h3>
+            <p className="text-sm text-gray-400 mb-3">{t('club.conciergePage.bookDescription', language)}</p>
             <Button size="sm" className="bg-green-600 hover:bg-green-700">
-              Schedule Now
+              {t('club.conciergePage.scheduleNow', language)}
             </Button>
           </CardContent>
         </Card>
@@ -298,10 +329,10 @@ export default function ConciergePage() {
       <Tabs defaultValue="new" className="w-full">
         <TabsList className="bg-slate-800 border border-copper-400/20">
           <TabsTrigger value="new" className="data-[state=active]:bg-copper-600">
-            New Request
+            {t('club.conciergePage.newRequest', language)}
           </TabsTrigger>
           <TabsTrigger value="tickets" className="data-[state=active]:bg-copper-600">
-            My Tickets ({tickets.length})
+            {t('club.conciergePage.myTickets', language)} ({tickets.length})
           </TabsTrigger>
         </TabsList>
 
@@ -311,18 +342,18 @@ export default function ConciergePage() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2 text-white">
                 <Sparkles className="h-5 w-5 text-copper-400" />
-                <span>Submit a New Request</span>
+                <span>{t('club.conciergePage.submitRequest', language)}</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmitTicket} className="space-y-4">
                 <div>
-                  <Label htmlFor="subject" className="text-gray-300">Subject *</Label>
+                  <Label htmlFor="subject" className="text-gray-300">{t('club.conciergePage.subject', language)} *</Label>
                   <Input
                     id="subject"
                     value={newTicket.subject}
                     onChange={(e) => setNewTicket(prev => ({ ...prev, subject: e.target.value }))}
-                    placeholder="Brief description of your request"
+                    placeholder={t('club.conciergePage.subjectPlaceholder', language)}
                     className="bg-slate-900 border-copper-400/20 text-white"
                     required
                   />
@@ -330,7 +361,7 @@ export default function ConciergePage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="category" className="text-gray-300">Category *</Label>
+                    <Label htmlFor="category" className="text-gray-300">{t('club.conciergePage.category', language)} *</Label>
                     <select
                       id="category"
                       value={newTicket.category}
@@ -338,7 +369,7 @@ export default function ConciergePage() {
                       className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
                       required
                     >
-                      <option value="">Select a category</option>
+                      <option value="">{t('club.conciergePage.selectCategory', language)}</option>
                       {TICKET_CATEGORIES.map((cat) => (
                         <option key={cat} value={cat}>{cat}</option>
                       ))}
@@ -346,7 +377,7 @@ export default function ConciergePage() {
                   </div>
 
                   <div>
-                    <Label htmlFor="priority" className="text-gray-300">Priority</Label>
+                    <Label htmlFor="priority" className="text-gray-300">{t('club.conciergePage.priority', language)}</Label>
                     <select
                       id="priority"
                       value={newTicket.priority}
@@ -363,12 +394,12 @@ export default function ConciergePage() {
                 </div>
 
                 <div>
-                  <Label htmlFor="description" className="text-gray-300">Description *</Label>
+                  <Label htmlFor="description" className="text-gray-300">{t('club.conciergePage.description', language)} *</Label>
                   <Textarea
                     id="description"
                     value={newTicket.description}
                     onChange={(e) => setNewTicket(prev => ({ ...prev, description: e.target.value }))}
-                    placeholder="Please provide detailed information about your request..."
+                    placeholder={t('club.conciergePage.descriptionPlaceholder', language)}
                     rows={6}
                     className="bg-slate-900 border-copper-400/20 text-white"
                     required
@@ -376,7 +407,7 @@ export default function ConciergePage() {
                 </div>
 
                 <div>
-                  <Label className="text-gray-300">Preferred Contact Method</Label>
+                  <Label className="text-gray-300">{t('club.conciergePage.contactMethod', language)}</Label>
                   <div className="flex gap-4 mt-2">
                     <label className="flex items-center space-x-2 cursor-pointer">
                       <input
@@ -387,7 +418,7 @@ export default function ConciergePage() {
                         onChange={(e) => setNewTicket(prev => ({ ...prev, contactMethod: e.target.value }))}
                         className="text-copper-600 focus:ring-copper-600"
                       />
-                      <span className="text-gray-300">Email</span>
+                      <span className="text-gray-300">{t('club.conciergePage.emailOption', language)}</span>
                     </label>
                     <label className="flex items-center space-x-2 cursor-pointer">
                       <input
@@ -398,7 +429,7 @@ export default function ConciergePage() {
                         onChange={(e) => setNewTicket(prev => ({ ...prev, contactMethod: e.target.value }))}
                         className="text-copper-600 focus:ring-copper-600"
                       />
-                      <span className="text-gray-300">Phone</span>
+                      <span className="text-gray-300">{t('club.conciergePage.phoneOption', language)}</span>
                     </label>
                   </div>
                 </div>
@@ -409,7 +440,7 @@ export default function ConciergePage() {
                   className="w-full bg-copper-600 hover:bg-copper-700 text-white py-6 text-lg"
                 >
                   <Send className="h-5 w-5 mr-2" />
-                  {submitting ? 'Submitting...' : 'Submit Request'}
+                  {submitting ? t('club.conciergePage.submitting', language) : t('club.conciergePage.submit', language)}
                 </Button>
               </form>
             </CardContent>
@@ -438,26 +469,26 @@ export default function ConciergePage() {
                         </span>
                         <span className="flex items-center">
                           <Clock className="h-4 w-4 mr-1" />
-                          Created: {formatDate(ticket.createdAt)}
+                          {t('club.conciergePage.created', language)}: {formatDate(ticket.createdAt)}
                         </span>
                         <span className="flex items-center">
                           <MessageCircle className="h-4 w-4 mr-1" />
-                          {ticket.messages} messages
+                          {ticket.messages} {t('club.conciergePage.messages', language)}
                         </span>
                       </div>
 
                       <div className="flex items-center gap-2">
                         <Badge variant="outline" className="border-copper-400/30 text-copper-400 text-xs">
-                          Priority: {ticket.priority}
+                          {t('club.conciergePage.priority', language)}: {ticket.priority}
                         </Badge>
                         <span className="text-xs text-gray-500">
-                          Last update: {formatDate(ticket.lastUpdate)}
+                          {t('club.conciergePage.lastUpdate', language)}: {formatDate(ticket.lastUpdate)}
                         </span>
                       </div>
                     </div>
 
                     <Button size="sm" className="bg-copper-600 hover:bg-copper-700">
-                      View Details
+                      {t('club.conciergePage.viewDetails', language)}
                     </Button>
                   </div>
                 </CardContent>
@@ -467,8 +498,8 @@ export default function ConciergePage() {
             <Card className="bg-slate-800 border-copper-400/20">
               <CardContent className="p-12 text-center">
                 <MessageCircle className="h-12 w-12 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-400">No support tickets yet.</p>
-                <p className="text-sm text-gray-500 mt-2">Submit your first request to get started!</p>
+                <p className="text-gray-400">{t('club.conciergePage.noTickets', language)}</p>
+                <p className="text-sm text-gray-500 mt-2">{t('club.conciergePage.noTicketsDescription', language)}</p>
               </CardContent>
             </Card>
           )}

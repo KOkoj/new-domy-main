@@ -76,11 +76,16 @@ export default function ClubLayout({ children }) {
   useEffect(() => {
     checkUserAccess()
     
-    // Load saved language preference
+    // Load saved language preference (default to Czech)
     const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) {
+    if (savedLanguage && (savedLanguage === 'cs' || savedLanguage === 'en')) {
       setLanguage(savedLanguage)
       document.documentElement.lang = savedLanguage
+    } else {
+      // Set default to Czech
+      setLanguage('cs')
+      document.documentElement.lang = 'cs'
+      localStorage.setItem('preferred-language', 'cs')
     }
   }, [])
 
@@ -214,17 +219,6 @@ export default function ClubLayout({ children }) {
             <div className="px-4 py-2 border-b border-copper-400/20" data-testid="club-language-switcher">
               <div className="flex items-center space-x-2">
                 <button
-                  onClick={() => handleLanguageChange('en')}
-                  className={`px-2 py-1 rounded text-xs font-medium transition-all duration-200 ${
-                    language === 'en' 
-                      ? 'bg-copper-400/20 text-copper-400' 
-                      : 'text-gray-400 hover:text-copper-400 hover:bg-copper-400/10'
-                  }`}
-                  data-testid="club-language-en"
-                >
-                  EN
-                </button>
-                <button
                   onClick={() => handleLanguageChange('cs')}
                   className={`px-2 py-1 rounded text-xs font-medium transition-all duration-200 ${
                     language === 'cs' 
@@ -236,15 +230,15 @@ export default function ClubLayout({ children }) {
                   CS
                 </button>
                 <button
-                  onClick={() => handleLanguageChange('it')}
+                  onClick={() => handleLanguageChange('en')}
                   className={`px-2 py-1 rounded text-xs font-medium transition-all duration-200 ${
-                    language === 'it' 
+                    language === 'en' 
                       ? 'bg-copper-400/20 text-copper-400' 
                       : 'text-gray-400 hover:text-copper-400 hover:bg-copper-400/10'
                   }`}
-                  data-testid="club-language-it"
+                  data-testid="club-language-en"
                 >
-                  IT
+                  EN
                 </button>
               </div>
             </div>
