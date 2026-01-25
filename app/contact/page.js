@@ -25,12 +25,16 @@ const CONTACT_INFO = [
   {
     icon: <Phone className="h-6 w-6" />,
     title: {
-      en: 'Phone',
-      cs: 'Telefon',
-      it: 'Telefono'
+      en: 'WhatsApp',
+      cs: 'WhatsApp',
+      it: 'WhatsApp'
     },
-    value: '+420 123 456 789',
-    link: 'tel:+420123456789'
+    value: {
+      en: 'Message us on WhatsApp',
+      cs: 'Napište nám na WhatsApp',
+      it: 'Scrivici su WhatsApp'
+    },
+    link: '#' // TODO: Add WhatsApp link when provided
   },
   {
     icon: <MapPin className="h-6 w-6" />,
@@ -49,14 +53,14 @@ const CONTACT_INFO = [
   {
     icon: <Clock className="h-6 w-6" />,
     title: {
-      en: 'Hours',
-      cs: 'Pracovní doba',
-      it: 'Orari'
+      en: 'Response Time',
+      cs: 'Doba odpovědi',
+      it: 'Tempo di risposta'
     },
     value: {
-      en: 'Mon-Fri: 9:00 - 18:00',
-      cs: 'Po-Pá: 9:00 - 18:00',
-      it: 'Lun-Ven: 9:00 - 18:00'
+      en: 'Within 24 hours',
+      cs: 'Do 24 hodin',
+      it: 'Entro 24 ore'
     },
     link: null
   }
@@ -371,9 +375,9 @@ export default function ContactPage() {
                  'Contact Us'}
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
-                {language === 'cs' ? 'Máte otázky o italských nemovitostech? Rádi vám pomůžeme najít perfektní nemovitost nebo zodpovíme jakékoli dotazy.' :
-                 language === 'it' ? 'Hai domande sugli immobili italiani? Siamo qui per aiutarti a trovare la proprietà perfetta o rispondere a qualsiasi domanda.' :
-                 'Have questions about Italian properties? We\'re here to help you find the perfect property or answer any questions you may have.'}
+                {language === 'cs' ? 'Přemýšlíte o koupi domu v Itálii? Napište nám – ozveme se vám s praktickými informacemi a navrhneme další krok.' :
+                 language === 'it' ? 'Stai pensando di acquistare una casa in Italia? Scrivici - ti contatteremo con informazioni pratiche e suggeriremo il prossimo passo.' :
+                 'Thinking about buying a house in Italy? Write to us - we\'ll get back to you with practical information and suggest the next step.'}
               </p>
             </div>
           </div>
@@ -434,9 +438,9 @@ export default function ContactPage() {
                      'Quick Response'}
                   </h3>
                   <p className="text-slate-200 text-sm leading-relaxed">
-                    {language === 'cs' ? 'Odpovídáme na všechny dotazy do 24 hodin během pracovních dnů. Pro naléhavé záležitosti nás prosím kontaktujte telefonicky.' :
-                     language === 'it' ? 'Rispondiamo a tutte le richieste entro 24 ore nei giorni lavorativi. Per questioni urgenti, contattateci telefonicamente.' :
-                     'We respond to all inquiries within 24 hours on business days. For urgent matters, please contact us by phone.'}
+                    {language === 'cs' ? 'Odpovídáme na všechny dotazy během pracovních dnů. Pro první konzultaci nám napište na email nebo WhatsApp.' :
+                     language === 'it' ? 'Rispondiamo a tutte le richieste nei giorni lavorativi. Per la prima consulenza, scriveteci via email o WhatsApp.' :
+                     'We respond to all inquiries on business days. For the first consultation, write to us by email or WhatsApp.'}
                   </p>
                 </CardContent>
               </Card>

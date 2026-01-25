@@ -9,80 +9,58 @@ import Link from 'next/link'
 import { supabase } from '../../lib/supabase'
 import AuthModal from '../../components/AuthModal'
 
-const TEAM_MEMBERS = [
-  {
-    name: 'Marco Rossi',
-    role: 'Founder & CEO',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
-    bio: 'Expert in Italian real estate with 15+ years of experience helping international clients find their dream properties.',
-    languages: ['Italian', 'English', 'Czech']
-  },
-  {
-    name: 'Elena Bianchi',
-    role: 'Senior Property Consultant',
-    image: 'https://images.unsplash.com/photo-1494790108755-2616b2db9622?w=400&h=400&fit=crop&crop=face',
-    bio: 'Specializes in luxury properties across Tuscany and Lake Como regions with deep local market knowledge.',
-    languages: ['Italian', 'English', 'German']
-  },
-  {
-    name: 'Pavel Novák',
-    role: 'Czech Market Specialist',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
-    bio: 'Native Czech speaker helping Czech clients navigate Italian property purchases and legal processes.',
-    languages: ['Czech', 'Italian', 'English']
-  }
-]
+const TEAM_MEMBERS = []
 
 const SERVICES = [
   {
     title: {
-      en: 'Property Search & Selection',
-      cs: 'Vyhledávání a výběr nemovitostí',
-      it: 'Ricerca e Selezione Immobili'
+      en: 'Understanding the Process',
+      cs: 'Vysvětlíme celý proces',
+      it: 'Spiegheremo l\'intero processo'
     },
     description: {
-      en: 'Curated property listings matching your specific requirements and budget.',
-      cs: 'Kurátorované nabídky nemovitostí odpovídající vašim specifickým požadavkům a rozpočtu.',
-      it: 'Listini immobiliari curati che corrispondono alle vostre esigenze specifiche e al vostro budget.'
+      en: 'We explain the entire process of buying property in Italy step by step.',
+      cs: 'Vysvětlíme celý proces koupě nemovitosti v Itálii krok za krokem.',
+      it: 'Spieghiamo l\'intero processo di acquisto di un immobile in Italia passo dopo passo.'
     },
     icon: <Globe className="h-8 w-8 text-slate-600" />
   },
   {
     title: {
-      en: 'Legal & Financial Guidance',
-      cs: 'Právní a finanční poradenství',
-      it: 'Consulenza Legale e Finanziaria'
+      en: 'Avoiding Mistakes',
+      cs: 'Předejdeme chybám',
+      it: 'Eviteremo errori'
     },
     description: {
-      en: 'Expert assistance with Italian property law, taxes, and financing options.',
-      cs: 'Odborná pomoc s italským právem nemovitostí, daněmi a možnostmi financování.',
-      it: 'Assistenza esperta con la legge immobiliare italiana, tasse e opzioni di finanziamento.'
+      en: 'We alert you to mistakes that cost Czechs time and money.',
+      cs: 'Upozorníme na chyby, které Čechy stojí čas i peníze.',
+      it: 'Vi avvisiamo sugli errori che costano tempo e denaro ai cechi.'
     },
     icon: <CheckCircle className="h-8 w-8 text-slate-600" />
   },
   {
     title: {
-      en: 'Property Management',
-      cs: 'Správa nemovitostí',
-      it: 'Gestione Immobiliare'
+      en: 'Region Selection',
+      cs: 'Výběr regionu',
+      it: 'Selezione della regione'
     },
     description: {
-      en: 'Complete property management services for your Italian investment.',
-      cs: 'Kompletní služby správy nemovitostí pro vaši italskou investici.',
-      it: 'Servizi completi di gestione immobiliare per il vostro investimento italiano.'
+      en: 'We help you choose the region and type of property that suits you.',
+      cs: 'Pomůžeme s výběrem regionu a typu nemovitosti, která vám vyhovuje.',
+      it: 'Ti aiutiamo a scegliere la regione e il tipo di proprietà adatto a te.'
     },
     icon: <Users className="h-8 w-8 text-slate-600" />
   },
   {
     title: {
-      en: 'Relocation Support',
-      cs: 'Podpora při stěhování',
-      it: 'Supporto per il Trasferimento'
+      en: 'Step-by-Step Guidance',
+      cs: 'Vedení krok za krokem',
+      it: 'Guida passo dopo passo'
     },
     description: {
-      en: 'Comprehensive support for relocating to Italy, from residency to local services.',
-      cs: 'Komplexní podpora při stěhování do Itálie, od pobytu po místní služby.',
-      it: 'Supporto completo per il trasferimento in Italia, dalla residenza ai servizi locali.'
+      en: 'We guide you step by step to a safe purchase.',
+      cs: 'Provedeme vás krok za krokem až k bezpečné koupi.',
+      it: 'Ti guidiamo passo dopo passo verso un acquisto sicuro.'
     },
     icon: <Heart className="h-8 w-8 text-slate-600" />
   }
@@ -104,6 +82,25 @@ const STATS = [
   { 
     label: { en: 'Italian Regions', cs: 'Italské regiony', it: 'Regioni Italiane' }, 
     value: '12' 
+  }
+]
+
+const STATS = [
+  { 
+    label: { en: 'Individual Approach', cs: 'Individuální přístup', it: 'Approccio Individuale' }, 
+    value: '100%' 
+  },
+  { 
+    label: { en: 'Local Knowledge', cs: 'Místní znalosti', it: 'Conoscenza Locale' }, 
+    value: '✓' 
+  },
+  { 
+    label: { en: 'Step by Step', cs: 'Krok za krokem', it: 'Passo dopo Passo' }, 
+    value: '✓' 
+  },
+  { 
+    label: { en: 'Your Interests First', cs: 'Vaše zájmy na prvním místě', it: 'I Vostri Interessi Prima' }, 
+    value: '✓' 
   }
 ]
 
@@ -324,28 +321,28 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {language === 'cs' ? 'Váš důvěryhodný partner pro italské nemovitosti' :
-                 language === 'it' ? 'Il vostro partner di fiducia per gli immobili italiani' :
-                 'Your Trusted Partner for Italian Real Estate'}
+                {language === 'cs' ? 'Průvodce koupí domu v Itálii' :
+                 language === 'it' ? 'Guida all\'acquisto di una casa in Italia' :
+                 'Guide to Buying a House in Italy'}
             </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                {language === 'cs' ? 'Od roku 2009 pomáháme českým a mezinárodním klientům objevovat a kupovat jejich vysněné nemovitosti v nejkrásnějších italských regionech.' :
-                 language === 'it' ? 'Dal 2009, aiutiamo i clienti cechi e internazionali a scoprire e acquistare le loro proprietà da sogno nelle più belle regioni d\'Italia.' :
-                 'Since 2009, we\'ve been helping Czech and international clients discover and purchase their dream properties across Italy\'s most beautiful regions.'}
+                {language === 'cs' ? 'Jasně, prakticky a bez stresu. Pomáháme Čechům porozumět tomu, jak koupě nemovitosti v Itálii skutečně funguje – ještě předtím, než udělají první krok.' :
+                 language === 'it' ? 'Chiaro, pratico e senza stress. Aiutiamo i cechi a capire come funziona realmente l\'acquisto di un immobile in Italia - prima ancora di fare il primo passo.' :
+                 'Clear, practical and stress-free. We help Czechs understand how buying property in Italy really works - before they take the first step.'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/properties">
+              <Link href="/process">
                   <Button size="lg" className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg">
-                    {language === 'cs' ? 'Procházet nemovitosti' : 
-                     language === 'it' ? 'Sfoglia proprietà' : 
-                     'Browse Properties'}
+                    {language === 'cs' ? 'Stáhnout bezplatný PDF průvodce' : 
+                     language === 'it' ? 'Scarica la guida PDF gratuita' : 
+                     'Download Free PDF Guide'}
                 </Button>
               </Link>
-                <Button variant="outline" size="lg" className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105">
+                <Button variant="outline" size="lg" className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105" onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}>
                 <Mail className="h-4 w-4 mr-2" />
-                  {language === 'cs' ? 'Kontaktujte nás' : 
-                   language === 'it' ? 'Contattaci' : 
-                   'Contact Us'}
+                  {language === 'cs' ? 'info@domyvitalii.cz' : 
+                   language === 'it' ? 'info@domyvitalii.cz' : 
+                   'info@domyvitalii.cz'}
               </Button>
             </div>
           </div>
@@ -354,13 +351,13 @@ export default function AboutPage() {
 
 
       <div className="container mx-auto px-4 py-16">
-        {/* Our Story */}
+        {/* Our Approach */}
         <div className="max-w-1400 mx-auto mb-16">
           <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {language === 'cs' ? 'Náš příběh' : 
-                 language === 'it' ? 'La nostra storia' : 
-                 'Our Story'}
+                {language === 'cs' ? 'Náš přístup' : 
+                 language === 'it' ? 'Il nostro approccio' : 
+                 'Our Approach'}
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-slate-600 to-slate-500 mx-auto mb-6 rounded-full"></div>
           </div>
@@ -368,26 +365,52 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <img 
-                src="https://images.unsplash.com/photo-1533554030380-20991a0f9c9e" 
-                alt="Italian villa" 
+                src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9" 
+                alt="Italian landscape" 
                   className="w-full h-80 object-cover rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300"
               />
             </div>
             <div className="space-y-6">
                 <p className="text-gray-700 leading-relaxed text-lg">
-                  {language === 'cs' ? 'Založeno v roce 2009 Marcem Rossim, Domy v Itálii začalo jako vášnivý projekt pomoci českým rodinám objevit krásu a příležitosti italských nemovitostí. Po životě v České republice i Itálii, Marco rozuměl jedinečným výzvám a příležitostem, kterým mezinárodní kupci čelí.' :
-                   language === 'it' ? 'Fondata nel 2009 da Marco Rossi, Domy v Itálii è iniziata come un progetto appassionato per aiutare le famiglie ceche a scoprire la bellezza e le opportunità degli immobili italiani. Avendo vissuto sia nella Repubblica Ceca che in Italia, Marco ha compreso le sfide e le opportunità uniche che gli acquirenti internazionali devono affrontare.' :
-                   'Founded in 2009 by Marco Rossi, Domy v Itálii began as a passion project to help Czech families discover the beauty and opportunity of Italian real estate. Having lived in both Czech Republic and Italy, Marco understood the unique challenges and opportunities that international buyers face.'}
+                  {language === 'cs' ? 'Ať už vás láká jih nebo sever Itálie, moře nebo hory, klidná vesnice nebo historické město, pomůžeme vám zorientovat se a rozhodnout správně.' :
+                   language === 'it' ? 'Che tu sia attratto dal sud o dal nord Italia, dal mare o dalle montagne, da un tranquillo villaggio o da una città storica, ti aiuteremo a orientarti e decidere correttamente.' :
+                   'Whether you\'re drawn to southern or northern Italy, sea or mountains, quiet village or historic city, we\'ll help you navigate and decide correctly.'}
                 </p>
-                <p className="text-gray-700 leading-relaxed text-lg">
-                  {language === 'cs' ? 'V průběhu let jsme vyrostli v důvěryhodný tým místních expertů, právních poradců a specialistů na nemovitosti, ale naše poslání zůstává stejné: učinit vlastnictví italských nemovitostí dostupné, příjemné a ziskové pro naše klienty.' :
-                   language === 'it' ? 'Nel corso degli anni, siamo cresciuti in un team fidato di esperti locali, consulenti legali e specialisti immobiliari, ma la nostra missione rimane la stessa: rendere la proprietà immobiliare italiana accessibile, piacevole e redditizia per i nostri clienti.' :
-                   'Over the years, we\'ve grown into a trusted team of local experts, legal advisors, and property specialists, but our mission remains the same: to make Italian property ownership accessible, enjoyable, and profitable for our clients.'}
+                <p className="text-gray-700 leading-relaxed text-lg font-semibold">
+                  {language === 'cs' ? 'Naše práce stojí na:' :
+                   language === 'it' ? 'Il nostro lavoro si basa su:' :
+                   'Our work is based on:'}
                 </p>
-                <p className="text-gray-700 leading-relaxed text-lg">
-                  {language === 'cs' ? 'Dnes jsme hrdí, že jsme pomohli více než 300 rodinám najít jejich kousek italského ráje, od útulných bytů v historické Florencii po luxusní vily s výhledem na Lago di Como.' :
-                   language === 'it' ? 'Oggi siamo orgogliosi di aver aiutato oltre 300 famiglie a trovare il loro pezzo di paradiso italiano, da appartamenti accoglienti nella storica Firenze a ville di lusso con vista sul Lago di Como.' :
-                   'Today, we\'re proud to have helped over 300 families find their piece of Italian paradise, from cozy apartments in historic Florence to luxury villas overlooking Lake Como.'}
+                <ul className="space-y-3">
+                  <li className="flex items-start">
+                    <CheckCircle className="h-6 w-6 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 leading-relaxed text-lg">
+                      {language === 'cs' ? 'Individuálním přístupu' :
+                       language === 'it' ? 'Approccio individuale' :
+                       'Individual approach'}
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-6 w-6 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 leading-relaxed text-lg">
+                      {language === 'cs' ? 'Znalosti italského prostředí' :
+                       language === 'it' ? 'Conoscenza dell\'ambiente italiano' :
+                       'Knowledge of Italian environment'}
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-6 w-6 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700 leading-relaxed text-lg">
+                      {language === 'cs' ? 'Srozumitelném vysvětlení celého procesu krok za krokem' :
+                       language === 'it' ? 'Spiegazione chiara dell\'intero processo passo dopo passo' :
+                       'Clear explanation of the entire process step by step'}
+                    </span>
+                  </li>
+                </ul>
+                <p className="text-gray-700 leading-relaxed text-lg font-semibold pt-4">
+                  {language === 'cs' ? 'Jsme tady proto, abychom hájili vaše zájmy a předešli zbytečným chybám.' :
+                   language === 'it' ? 'Siamo qui per difendere i vostri interessi ed evitare errori inutili.' :
+                   'We are here to protect your interests and prevent unnecessary mistakes.'}
               </p>
             </div>
           </div>
@@ -397,15 +420,15 @@ export default function AboutPage() {
         <div className="mb-16">
           <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {language === 'cs' ? 'Naše služby' : 
-                 language === 'it' ? 'I nostri servizi' : 
-                 'Our Services'}
+                {language === 'cs' ? 'Jak vám můžeme pomoci' : 
+                 language === 'it' ? 'Come possiamo aiutarvi' : 
+                 'How We Can Help You'}
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-slate-600 to-slate-500 mx-auto mb-6 rounded-full"></div>
               <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                {language === 'cs' ? 'Poskytujeme komplexní podporu během celé vaší cesty s italskými nemovitostmi, od počátečního vyhledávání až po finální koupi a dále.' :
-                 language === 'it' ? 'Forniamo supporto completo durante tutto il vostro percorso immobiliare italiano, dalla ricerca iniziale all\'acquisto finale e oltre.' :
-                 'We provide comprehensive support throughout your Italian property journey, from initial search to final purchase and beyond.'}
+                {language === 'cs' ? 'Nabízíme komplexní podporu, která vám pomůže orientovat se v celém procesu koupě nemovitosti v Itálii.' :
+                 language === 'it' ? 'Offriamo supporto completo per aiutarvi a orientarvi nell\'intero processo di acquisto di un immobile in Italia.' :
+                 'We provide comprehensive support to help you navigate the entire process of buying property in Italy.'}
             </p>
           </div>
           
@@ -428,77 +451,52 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Our Team */}
-        <div className="mb-16">
-          <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {language === 'cs' ? 'Seznamte se s naším týmem' : 
-                 language === 'it' ? 'Incontra il nostro team' : 
-                 'Meet Our Team'}
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-slate-600 to-slate-500 mx-auto mb-6 rounded-full"></div>
-              <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                {language === 'cs' ? 'Náš vícejazyčný tým kombinuje hluboké místní znalosti s mezinárodními zkušenostmi, aby sloužil klientům z celého světa.' :
-                 language === 'it' ? 'Il nostro team multilingue combina profonde conoscenze locali con esperienza internazionale per servire clienti da tutto il mondo.' :
-                 'Our multilingual team combines deep local knowledge with international experience to serve clients from around the world.'}
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {TEAM_MEMBERS.map((member, index) => (
-                <Card key={index} className="text-center bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden group">
-                  <CardContent className="p-8">
-                    <div className="relative mb-6">
-                  <img 
-                    src={member.image} 
-                    alt={member.name}
-                        className="w-32 h-32 rounded-full mx-auto object-cover shadow-lg group-hover:shadow-xl transition-all duration-300"
-                      />
-                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-slate-600 to-slate-700 rounded-full flex items-center justify-center">
-                        <Heart className="h-4 w-4 text-white" />
-                      </div>
-                    </div>
-                    <h3 className="text-2xl font-bold mb-2 text-slate-800">{member.name}</h3>
-                    <p className="text-slate-600 font-semibold mb-4 text-lg">{member.role}</p>
-                    <p className="text-gray-600 mb-6 leading-relaxed">{member.bio}</p>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                      {member.languages.map((lang, langIndex) => (
-                        <Badge key={langIndex} className="text-xs px-3 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                          {lang}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
         {/* Why Choose Us */}
         <div className="mb-16">
           <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {language === 'cs' ? 'Proč si vybrat Domy v Itálii?' : 
-                 language === 'it' ? 'Perché scegliere Domy v Itálii?' : 
-                 'Why Choose Domy v Itálii?'}
+                {language === 'cs' ? 'Pro koho je služba Domy v Itálii určena' : 
+                 language === 'it' ? 'Per chi è destinato il servizio Domy v Itálii' : 
+                 'Who Is Domy v Itálii Service For?'}
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-slate-600 to-slate-500 mx-auto mb-6 rounded-full"></div>
+              <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
+                {language === 'cs' ? 'Pomáháme lidem, kteří o koupi domu v Itálii uvažují vážně a chtějí se rozhodnout s klidem a dostatkem informací.' :
+                 language === 'it' ? 'Aiutiamo persone che stanno considerando seriamente l\'acquisto di una casa in Italia e vogliono decidere con calma e informazioni sufficienti.' :
+                 'We help people who are seriously considering buying a house in Italy and want to decide with peace of mind and sufficient information.'}
+              </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="text-center group">
+                <div className="w-20 h-20 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-slate-200 group-hover:to-slate-300 transition-all duration-300 shadow-lg">
+                  <Heart className="h-10 w-10 text-slate-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-slate-800">
+                  {language === 'cs' ? 'Rekreační dům' : 
+                   language === 'it' ? 'Casa per vacanze' : 
+                   'Vacation Home'}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {language === 'cs' ? 'Hledáte místo pro odpočinek a dovolenou v Itálii.' :
+                   language === 'it' ? 'Cercate un posto per riposare e vacanze in Italia.' :
+                   'Looking for a place to rest and vacation in Italy.'}
+                </p>
+              </div>
+              
               <div className="text-center group">
                 <div className="w-20 h-20 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-slate-200 group-hover:to-slate-300 transition-all duration-300 shadow-lg">
                   <Award className="h-10 w-10 text-slate-600" />
-                </div>
+            </div>
                 <h3 className="text-xl font-bold mb-3 text-slate-800">
-                  {language === 'cs' ? 'Odborné znalosti' : 
-                   language === 'it' ? 'Conoscenza esperta' : 
-                   'Expert Knowledge'}
+                  {language === 'cs' ? 'Investice' : 
+                   language === 'it' ? 'Investimento' : 
+                   'Investment'}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {language === 'cs' ? '15+ let zkušeností na italském trhu nemovitostí s hlubokými místními znalostmi.' :
-                   language === 'it' ? '15+ anni di esperienza nel mercato immobiliare italiano con profonde conoscenze locali.' :
-                   '15+ years of experience in Italian real estate market with deep local insights.'}
+                  {language === 'cs' ? 'Chcete investovat do nemovitosti v Itálii.' :
+                   language === 'it' ? 'Volete investire in un immobile in Italia.' :
+                   'Want to invest in Italian property.'}
                 </p>
               </div>
               
@@ -507,30 +505,14 @@ export default function AboutPage() {
                   <Globe className="h-10 w-10 text-slate-600" />
             </div>
                 <h3 className="text-xl font-bold mb-3 text-slate-800">
-                  {language === 'cs' ? 'Vícejazyčný servis' : 
-                   language === 'it' ? 'Servizio multilingue' : 
-                   'Multilingual Service'}
+                  {language === 'cs' ? 'Místo pro nový život' : 
+                   language === 'it' ? 'Posto per una nuova vita' : 
+                   'Place for New Life'}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {language === 'cs' ? 'Plynulá podpora v češtině, italštině, angličtině a němčině pro bezproblémovou komunikaci.' :
-                   language === 'it' ? 'Supporto fluente in ceco, italiano, inglese e tedesco per una comunicazione senza problemi.' :
-                   'Fluent support in Czech, Italian, English, and German for seamless communication.'}
-                </p>
-              </div>
-              
-              <div className="text-center group">
-                <div className="w-20 h-20 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:from-slate-200 group-hover:to-slate-300 transition-all duration-300 shadow-lg">
-                  <Heart className="h-10 w-10 text-slate-600" />
-            </div>
-                <h3 className="text-xl font-bold mb-3 text-slate-800">
-                  {language === 'cs' ? 'Osobní přístup' : 
-                   language === 'it' ? 'Tocco personale' : 
-                   'Personal Touch'}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {language === 'cs' ? 'Dedikovaný osobní servis s pozorností k vašim jedinečným potřebám a preferencím.' :
-                   language === 'it' ? 'Servizio personale dedicato con attenzione alle vostre esigenze e preferenze uniche.' :
-                   'Dedicated personal service with attention to your unique needs and preferences.'}
+                  {language === 'cs' ? 'Plánujete přestěhování a nový začátek v Itálii.' :
+                   language === 'it' ? 'State pianificando un trasferimento e un nuovo inizio in Italia.' :
+                   'Planning to relocate and start anew in Italy.'}
                 </p>
             </div>
           </div>
@@ -541,29 +523,34 @@ export default function AboutPage() {
             <Card className="max-w-3xl mx-auto bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
               <CardContent className="p-12">
                 <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                  {language === 'cs' ? 'Připraveni začít svou italskou cestu?' : 
-                   language === 'it' ? 'Pronti a iniziare il vostro viaggio italiano?' : 
-                   'Ready to Start Your Italian Journey?'}
+                  {language === 'cs' ? 'Začněte správně' : 
+                   language === 'it' ? 'Inizia correttamente' : 
+                   'Start Correctly'}
                 </h3>
                 <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                  {language === 'cs' ? 'Kontaktujte nás ještě dnes pro bezplatnou konzultaci o vašich snech o italských nemovitostech. Jsme tu, abychom vás provázeli každým krokem.' :
-                   language === 'it' ? 'Contattateci oggi per una consulenza gratuita sui vostri sogni immobiliari italiani. Siamo qui per guidarvi ad ogni passo.' :
-                   'Contact us today for a free consultation about your Italian property dreams. We\'re here to guide you every step of the way.'}
+                  {language === 'cs' ? 'Pokud jste na začátku, doporučujeme nejprve porozumět základům a reálným nákladům koupě domu v Itálii.' :
+                   language === 'it' ? 'Se siete all\'inizio, raccomandiamo prima di comprendere le basi e i costi reali dell\'acquisto di una casa in Italia.' :
+                   'If you\'re at the beginning, we recommend first understanding the basics and real costs of buying a house in Italy.'}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  <Phone className="h-4 w-4 mr-2" />
-                    {language === 'cs' ? 'Naplánovat konzultaci' : 
-                     language === 'it' ? 'Pianifica consultazione' : 
-                     'Schedule Consultation'}
-                </Button>
-                <Link href="/properties">
-                    <Button variant="outline" size="lg" className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105">
-                      {language === 'cs' ? 'Procházet nemovitosti' : 
-                       language === 'it' ? 'Sfoglia proprietà' : 
-                       'Browse Properties'}
+                <Link href="/process">
+                    <Button size="lg" className="text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
+                    {language === 'cs' ? 'Průvodce a zdroje' : 
+                     language === 'it' ? 'Guida e risorse' : 
+                     'Guide & Resources'}
                   </Button>
                 </Link>
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105"
+                  onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}
+                >
+                  <Mail className="h-4 w-4 mr-2" />
+                    {language === 'cs' ? 'info@domyvitalii.cz' : 
+                     language === 'it' ? 'info@domyvitalii.cz' : 
+                     'info@domyvitalii.cz'}
+                  </Button>
               </div>
             </CardContent>
           </Card>

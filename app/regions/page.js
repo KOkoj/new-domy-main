@@ -590,14 +590,19 @@ export default function RegionsPage() {
           <div className="container mx-auto px-4 py-12">
           <div className="text-center">
               <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {language === 'cs' ? 'Italské regiony' : 
-                 language === 'it' ? 'Regioni Italiane' : 
-                 'Italian Regions'}
+                {language === 'cs' ? 'Regiony Itálie – kde dává koupě domu největší smysl' : 
+                 language === 'it' ? 'Regioni d\'Italia - dove l\'acquisto di una casa ha più senso' : 
+                 'Italian Regions - Where Buying a House Makes the Most Sense'}
               </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                {language === 'cs' ? 'Objevte rozmanitost italských regionů - od alpských vrcholů po středomořské pobřeží. Každý region nabízí jedinečnou kulturu, krajinu a příležitosti k investicím.' :
-                 language === 'it' ? 'Scopri la diversità delle regioni italiane - dalle vette alpine alle coste mediterranee. Ogni regione offre cultura, paesaggio e opportunità di investimento uniche.' :
-                 'Discover the diversity of Italian regions - from Alpine peaks to Mediterranean coasts. Each region offers unique culture, landscape, and investment opportunities.'}
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-6">
+                {language === 'cs' ? 'Itálie nabízí velmi rozdílné regiony – od moře přes hory až po historická města a klidný venkov. Výběr správné lokality je často stejně důležitý jako výběr samotné nemovitosti.' :
+                 language === 'it' ? 'L\'Italia offre regioni molto diverse - dal mare alle montagne, dalle città storiche alla campagna tranquilla. Scegliere la giusta località è spesso importante quanto scegliere la proprietà stessa.' :
+                 'Italy offers very diverse regions - from the sea through mountains to historic cities and quiet countryside. Choosing the right location is often as important as choosing the property itself.'}
+            </p>
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                {language === 'cs' ? 'Každý region má jiná pravidla, ceny, možnosti využití i životní styl. Níže najdete přehled regionů a oblastí, které jsou pro české kupující nejčastěji zajímavé.' :
+                 language === 'it' ? 'Ogni regione ha regole, prezzi, possibilità di utilizzo e stile di vita diversi. Di seguito troverete una panoramica delle regioni e delle aree più interessanti per gli acquirenti cechi.' :
+                 'Each region has different rules, prices, usage possibilities and lifestyle. Below you will find an overview of regions and areas that are most interesting for Czech buyers.'}
             </p>
           </div>
         </div>
@@ -656,6 +661,120 @@ export default function RegionsPage() {
           </Card>
         </div>
 
+        {/* How to Choose a Region */}
+        <div className="mb-12">
+          <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
+            <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
+              <CardTitle className="text-2xl font-bold text-slate-800">
+                {language === 'cs' ? 'Jak si vybrat region v Itálii?' :
+                 language === 'it' ? 'Come scegliere una regione in Italia?' :
+                 'How to Choose a Region in Italy?'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-8">
+              <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                {language === 'cs' ? 'Při výběru lokality doporučujeme zvážit zejména:' :
+                 language === 'it' ? 'Nella scelta della località, raccomandiamo di considerare soprattutto:' :
+                 'When choosing a location, we recommend considering especially:'}
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center">
+                    <MapPin className="h-5 w-5 text-slate-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-800 mb-2">
+                      {language === 'cs' ? 'Chcete bydlení u moře, v horách nebo ve městě?' :
+                       language === 'it' ? 'Volete abitare al mare, in montagna o in città?' :
+                       'Do you want to live by the sea, in the mountains, or in the city?'}
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center">
+                    <Home className="h-5 w-5 text-slate-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-800 mb-2">
+                      {language === 'cs' ? 'Hledáte rekreační dům, investici nebo místo pro nový život?' :
+                       language === 'it' ? 'Cercate una casa per vacanze, un investimento o un posto per una nuova vita?' :
+                       'Are you looking for a vacation home, investment, or place for a new life?'}
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center">
+                    <TrendingUp className="h-5 w-5 text-slate-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-800 mb-2">
+                      {language === 'cs' ? 'Jaká je dostupnost z ČR a místní infrastruktura?' :
+                       language === 'it' ? 'Qual è l\'accessibilità dalla Repubblica Ceca e l\'infrastruttura locale?' :
+                       'What is the accessibility from Czech Republic and local infrastructure?'}
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center">
+                    <Star className="h-5 w-5 text-slate-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-800 mb-2">
+                      {language === 'cs' ? 'Jaký je váš rozpočet včetně daní a poplatků?' :
+                       language === 'it' ? 'Qual è il vostro budget incluse tasse e spese?' :
+                       'What is your budget including taxes and fees?'}
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center">
+                    <CheckCircle className="h-5 w-5 text-slate-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-800 mb-2">
+                      {language === 'cs' ? 'Plánujete nemovitost využívat sami, nebo ji pronajímat?' :
+                       language === 'it' ? 'Prevedete di utilizzare la proprietà voi stessi o affittarla?' :
+                       'Do you plan to use the property yourself or rent it out?'}
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center">
+                    <Shield className="h-5 w-5 text-slate-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-800 mb-2">
+                      {language === 'cs' ? 'Každý region má svá právní, cenová i životní specifika' :
+                       language === 'it' ? 'Ogni regione ha le sue specificità legali, di prezzo e di vita' :
+                       'Each region has its own legal, price, and lifestyle specifics'}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-xl">
+                <p className="text-blue-800 leading-relaxed">
+                  <strong>
+                    {language === 'cs' ? 'Nejste si jisti, který region je pro vás nejvhodnější?' :
+                     language === 'it' ? 'Non siete sicuri di quale regione sia più adatta a voi?' :
+                     'Not sure which region is most suitable for you?'}
+                  </strong>
+                  <br />
+                  {language === 'cs' ? 'Doporučíme vám region podle rozpočtu, cíle a způsobu využití nemovitosti. Kontaktujte nás přes WhatsApp nebo na info@domyvitalii.cz' :
+                   language === 'it' ? 'Vi raccomanderemo una regione in base al budget, all\'obiettivo e al tipo di utilizzo della proprietà. Contattateci via WhatsApp o a info@domyvitalii.cz' :
+                   'We\'ll recommend a region based on budget, goal, and property usage. Contact us via WhatsApp or at info@domyvitalii.cz'}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Region Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
           {SAMPLE_REGIONS.map(region => (
@@ -668,27 +787,32 @@ export default function RegionsPage() {
             <Card className="max-w-3xl mx-auto bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
               <CardContent className="p-12">
                 <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                  {language === 'cs' ? 'Připraveni najít svůj italský sen?' : 
-                   language === 'it' ? 'Pronto a trovare il tuo sogno italiano?' : 
-                   'Ready to Find Your Italian Dream Home?'}
+                  {language === 'cs' ? 'Chcete region nejdříve poznat osobně?' : 
+                   language === 'it' ? 'Volete conoscere prima la regione di persona?' : 
+                   'Want to Get to Know the Region Personally First?'}
                 </h3>
                 <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                  {language === 'cs' ? 'Náš tým odborníků vám pomůže orientovat se na italském trhu nemovitostí a najít perfektní domov v jakémkoli regionu.' :
-                   language === 'it' ? 'Il nostro team di esperti può aiutarti a orientarti nel mercato immobiliare italiano e trovare la casa perfetta in qualsiasi regione.' :
-                   'Our expert team can help you navigate the Italian property market and find the perfect home in any region.'}
+                  {language === 'cs' ? 'Mnoho klientů si před koupí vybírá region tak, že ho nejprve navštíví osobně – projde okolí, porovná lokality a atmosféru. Pro krátkodobé pobyty a orientační cesty můžete využít Booking.com.' :
+                   language === 'it' ? 'Molti clienti prima dell\'acquisto scelgono la regione visitandola di persona - esplorano i dintorni, confrontano le località e l\'atmosfera. Per soggiorni brevi e viaggi esplorativi potete utilizzare Booking.com.' :
+                   'Many clients choose their region before buying by visiting it personally first - exploring the surroundings, comparing locations and atmosphere. For short stays and exploratory trips, you can use Booking.com.'}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/properties">
+                <Link href="/process">
                     <Button size="lg" className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg">
-                      {language === 'cs' ? 'Procházet všechny nemovitosti' : 
-                       language === 'it' ? 'Sfoglia tutte le proprietà' : 
-                       'Browse All Properties'}
+                      {language === 'cs' ? 'Průvodce koupí domu' : 
+                       language === 'it' ? 'Guida all\'acquisto' : 
+                       'House Buying Guide'}
                   </Button>
                 </Link>
-                  <Button variant="outline" size="lg" className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105">
-                    {language === 'cs' ? 'Kontaktovat naše experty' : 
-                     language === 'it' ? 'Contatta i nostri esperti' : 
-                     'Contact Our Experts'}
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105"
+                    onClick={() => window.open('#', '_blank')} 
+                  >
+                    {language === 'cs' ? 'Najít ubytování (Booking.com)' : 
+                     language === 'it' ? 'Trova alloggio (Booking.com)' : 
+                     'Find Accommodation (Booking.com)'}
                 </Button>
               </div>
             </CardContent>

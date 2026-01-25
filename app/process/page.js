@@ -685,14 +685,19 @@ export default function ProcessPage() {
           <div className="container mx-auto px-4 py-16">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {language === 'cs' ? 'Náš proces' :
-                 language === 'it' ? 'Il nostro processo' :
-                 'Our Process'}
+                {language === 'cs' ? 'Jak koupit dům v Itálii – praktický průvodce pro Čechy' :
+                 language === 'it' ? 'Come acquistare una casa in Italia - guida pratica per i cechi' :
+                 'How to Buy a House in Italy - Practical Guide for Czechs'}
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed mb-8">
-                {language === 'cs' ? 'Od první konzultace po předání klíčů - transparentní, profesionální cesta k vaší italské nemovitosti.' :
-                 language === 'it' ? 'Dalla prima consulenza alla consegna delle chiavi - un percorso trasparente e professionale verso la tua proprietà italiana.' :
-                 'From first consultation to keys in hand - a transparent, professional journey to your Italian property.'}
+                {language === 'cs' ? 'Plánujete koupi domu nebo bytu v Itálii, ale nechcete riskovat chyby, zbytečné náklady ani právní problémy? Proces koupě nemovitosti v Itálii se v mnoha ohledech liší od České republiky – nejen právně, ale i v postupu, roli notáře a odpovědnosti jednotlivých stran.' :
+                 language === 'it' ? 'State pianificando l\'acquisto di una casa o appartamento in Italia, ma non volete rischiare errori, costi inutili o problemi legali? Il processo di acquisto di un immobile in Italia differisce in molti aspetti dalla Repubblica Ceca - non solo legalmente, ma anche nella procedura, nel ruolo del notaio e nelle responsabilità delle singole parti.' :
+                 'Are you planning to buy a house or apartment in Italy, but don\'t want to risk mistakes, unnecessary costs, or legal problems? The process of buying property in Italy differs in many respects from the Czech Republic - not only legally, but also in procedure, the role of the notary, and the responsibilities of individual parties.'}
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {language === 'cs' ? 'Proto jsme připravili praktického průvodce, který vám pomůže pochopit, jak celý proces skutečně funguje ještě předtím, než uděláte první krok.' :
+                 language === 'it' ? 'Per questo abbiamo preparato una guida pratica che vi aiuterà a capire come funziona realmente l\'intero processo prima ancora di fare il primo passo.' :
+                 'That\'s why we\'ve prepared a practical guide that will help you understand how the whole process really works before you take the first step.'}
               </p>
               
               {/* Quick Stats */}
@@ -727,6 +732,96 @@ export default function ProcessPage() {
         </div>
 
         <div className="container mx-auto px-4">
+          {/* What You'll Learn Section */}
+          <div className="max-w-5xl mx-auto mb-16">
+            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
+              <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
+                <CardTitle className="text-2xl font-bold text-slate-800">
+                  {language === 'cs' ? 'Co se v tomto průvodci dozvíte' :
+                   language === 'it' ? 'Cosa imparerete in questa guida' :
+                   'What You\'ll Learn in This Guide'}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-8">
+                <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                  {language === 'cs' ? 'Získáte přehled o tom:' :
+                   language === 'it' ? 'Otterrete una panoramica di:' :
+                   'You will get an overview of:'}
+                </p>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-4">
+                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+                    <p className="text-gray-700 leading-relaxed">
+                      {language === 'cs' ? 'Jak probíhá koupě nemovitosti v Itálii od prvního zájmu až po podpis u notáře' :
+                       language === 'it' ? 'Come funziona l\'acquisto di un immobile in Italia dal primo interesse fino alla firma dal notaio' :
+                       'How the purchase of property in Italy works from the first interest to signing with the notary'}
+                    </p>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+                    <p className="text-gray-700 leading-relaxed">
+                      {language === 'cs' ? 'Jaké jsou reálné náklady, daně a poplatky (nejen kupní cena)' :
+                       language === 'it' ? 'Quali sono i costi reali, tasse e spese (non solo il prezzo di acquisto)' :
+                       'What are the real costs, taxes and fees (not just the purchase price)'}
+                    </p>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+                    <p className="text-gray-700 leading-relaxed">
+                      {language === 'cs' ? 'Jaká je skutečná role realitní kanceláře a notáře' :
+                       language === 'it' ? 'Qual è il ruolo reale dell\'agenzia immobiliare e del notaio' :
+                       'What is the actual role of the real estate agency and notary'}
+                    </p>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+                    <p className="text-gray-700 leading-relaxed">
+                      {language === 'cs' ? 'Na co si dát pozor ještě před podpisem jakékoliv smlouvy' :
+                       language === 'it' ? 'A cosa fare attenzione prima di firmare qualsiasi contratto' :
+                       'What to watch out for before signing any contract'}
+                    </p>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+                    <p className="text-gray-700 leading-relaxed">
+                      {language === 'cs' ? 'Jak se vyhnout nejčastějším chybám českých i zahraničních kupujících' :
+                       language === 'it' ? 'Come evitare gli errori più comuni degli acquirenti cechi e stranieri' :
+                       'How to avoid the most common mistakes of Czech and foreign buyers'}
+                    </p>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+                    <p className="text-gray-700 leading-relaxed">
+                      {language === 'cs' ? 'Ve kterých regionech dává koupě domu největší smysl podle cíle a rozpočtu' :
+                       language === 'it' ? 'In quali regioni l\'acquisto di una casa ha più senso in base all\'obiettivo e al budget' :
+                       'In which regions buying a house makes the most sense according to goal and budget'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-8 p-6 bg-slate-50 border border-slate-200 rounded-xl">
+                  <p className="text-slate-700 leading-relaxed">
+                    <strong>
+                      {language === 'cs' ? 'Tento obsah je určen speciálně pro české zájemce o nemovitosti v Itálii' :
+                       language === 'it' ? 'Questo contenuto è destinato specificamente agli interessati cechi agli immobili in Italia' :
+                       'This content is specifically designed for Czech interested in Italian property'}
+                    </strong>
+                    {' '}
+                    {language === 'cs' ? ', kteří chtějí mít jasno, přehled a rozhodovat se s klidem.' :
+                     language === 'it' ? ', che vogliono avere chiarezza, panoramica e decidere con calma.' :
+                     ', who want to have clarity, overview and decide with peace of mind.'}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
           {/* Process Steps */}
           <div className="max-w-5xl mx-auto mb-16">
             <div className="space-y-8">
@@ -879,31 +974,48 @@ export default function ProcessPage() {
           </div>
 
           {/* CTA Section */}
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center mb-16">
             <Card className="bg-gradient-to-br from-slate-700 to-slate-800 text-white shadow-2xl rounded-2xl overflow-hidden">
               <CardContent className="p-12">
                 <Key className="h-16 w-16 mx-auto mb-6 opacity-90" />
                 <h2 className="text-3xl font-bold mb-4">
-                  {language === 'cs' ? 'Připraveni začít svou cestu?' :
-                   language === 'it' ? 'Pronti a iniziare il vostro viaggio?' :
-                   'Ready to Start Your Journey?'}
+                  {language === 'cs' ? 'Jak pokračovat dál?' :
+                   language === 'it' ? 'Come continuare?' :
+                   'How to Continue?'}
                 </h2>
                 <p className="text-slate-200 text-lg mb-8 leading-relaxed">
-                  {language === 'cs' ? 'Kontaktujte nás ještě dnes pro bezplatnou konzultaci a pojďme najít vaši dokonalou italskou nemovitost.' :
-                   language === 'it' ? 'Contattateci oggi per una consulenza gratuita e troviamo insieme la vostra proprietà italiana perfetta.' :
-                   'Contact us today for a free consultation and let\'s find your perfect Italian property together.'}
+                  {language === 'cs' ? 'Podle vaší aktuální situace doporučujeme pokračovat jednou z těchto cest:' :
+                   language === 'it' ? 'In base alla vostra situazione attuale, raccomandiamo di continuare con uno di questi percorsi:' :
+                   'Based on your current situation, we recommend continuing with one of these paths:'}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Button 
+                    size="lg" 
+                    className="bg-white hover:bg-gray-100 text-slate-800 font-semibold px-6 py-6 text-sm transition-all duration-300 hover:scale-105 shadow-lg"
+                    onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}
+                  >
+                    <Mail className="h-5 w-5 mr-2" />
+                    {language === 'cs' ? 'info@domyvitalii.cz' :
+                     language === 'it' ? 'info@domyvitalii.cz' :
+                     'info@domyvitalii.cz'}
+                  </Button>
+                  <Link href="/regions">
+                    <Button size="lg" className="bg-white hover:bg-gray-100 text-slate-800 font-semibold px-6 py-6 text-sm transition-all duration-300 hover:scale-105 shadow-lg w-full">
+                      {language === 'cs' ? 'Regiony Itálie' :
+                       language === 'it' ? 'Regioni d\'Italia' :
+                       'Italian Regions'}
+                      <ChevronRight className="h-5 w-5 ml-2" />
+                    </Button>
+                  </Link>
                   <Link href="/contact">
-                    <Button size="lg" className="text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                      <Phone className="h-5 w-5 mr-2" />
-                      {language === 'cs' ? 'Naplánovat konzultaci' :
-                       language === 'it' ? 'Pianifica consultazione' :
-                       'Schedule Consultation'}
+                    <Button size="lg" className="bg-white hover:bg-gray-100 text-slate-800 font-semibold px-6 py-6 text-sm transition-all duration-300 hover:scale-105 shadow-lg w-full">
+                      {language === 'cs' ? 'Kontaktujte nás' :
+                       language === 'it' ? 'Contattateci' :
+                       'Contact Us'}
                     </Button>
                   </Link>
                   <Link href="/properties">
-                    <Button size="lg" className="bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg">
+                    <Button size="lg" className="bg-white hover:bg-gray-100 text-slate-800 font-semibold px-6 py-6 text-sm transition-all duration-300 hover:scale-105 shadow-lg w-full">
                       {language === 'cs' ? 'Procházet nemovitosti' :
                        language === 'it' ? 'Sfoglia proprietà' :
                        'Browse Properties'}
@@ -911,6 +1023,33 @@ export default function ProcessPage() {
                     </Button>
                   </Link>
                 </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Booking.com Section */}
+          <div className="max-w-4xl mx-auto">
+            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
+              <CardContent className="p-12">
+                <h3 className="text-2xl font-bold mb-4 text-slate-800">
+                  {language === 'cs' ? 'Chcete poznat Itálii osobně ještě před koupí?' :
+                   language === 'it' ? 'Volete conoscere l\'Italia di persona prima dell\'acquisto?' :
+                   'Want to Experience Italy Personally Before Buying?'}
+                </h3>
+                <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                  {language === 'cs' ? 'Mnoho našich klientů si před finálním rozhodnutím vybírá region osobně – udělají si krátký pobyt, projdou okolí, porovnají lokality i styl života.' :
+                   language === 'it' ? 'Molti dei nostri clienti prima della decisione finale scelgono la regione di persona - fanno un breve soggiorno, esplorano i dintorni, confrontano località e stile di vita.' :
+                   'Many of our clients choose their region personally before the final decision - they take a short stay, explore the surroundings, compare locations and lifestyle.'}
+                </p>
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg w-full sm:w-auto"
+                  onClick={() => window.open('#', '_blank')}
+                >
+                  {language === 'cs' ? 'Najít ubytování v Itálii (Booking.com)' :
+                   language === 'it' ? 'Trova alloggio in Italia (Booking.com)' :
+                   'Find Accommodation in Italy (Booking.com)'}
+                </Button>
               </CardContent>
             </Card>
           </div>
