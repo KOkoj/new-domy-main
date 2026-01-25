@@ -127,9 +127,9 @@ export default function ConciergePage() {
       const { data, error } = await supabase
         .from('inquiries')
         .select('*')
-        .eq('userId', user.id)
+        .eq('user_id', user.id)
         .eq('type', 'concierge')
-        .order('createdAt', { ascending: false })
+        .order('created_at', { ascending: false })
 
       if (error) {
         console.error('Error fetching tickets:', error)
@@ -149,8 +149,8 @@ export default function ConciergePage() {
           category,
           status: inquiry.responded ? 'resolved' : 'open',
           priority: priority.toLowerCase(),
-          createdAt: inquiry.createdAt,
-          lastUpdate: inquiry.createdAt,
+          createdAt: inquiry.created_at,
+          lastUpdate: inquiry.created_at,
           messages: 1, // Placeholder
           description: inquiry.message
         }
@@ -186,10 +186,10 @@ export default function ConciergePage() {
       const fullMessage = `Subject: ${newTicket.subject}\nCategory: ${newTicket.category}\nPriority: ${newTicket.priority}\nContact Method: ${newTicket.contactMethod}\n\n${newTicket.description}`
 
       const { error } = await supabase.from('inquiries').insert({
-        userId: user.id,
+        user_id: user.id,
         name: user.user_metadata?.name || user.email?.split('@')[0] || 'Club Member',
         email: user.email,
-        listingId: 'Concierge Request',
+        listing_id: 'Concierge Request',
         type: 'concierge',
         message: fullMessage,
         phone: null 

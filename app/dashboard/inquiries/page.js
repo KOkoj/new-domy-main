@@ -93,16 +93,16 @@ export default function InquiriesManagement() {
       const { data: userInquiries, error } = await supabase
         .from('inquiries')
         .select('*')
-        .eq('userId', user.id)
-        .order('createdAt', { ascending: false })
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
 
       if (error) throw error
 
       // Enrich with property data and add demo status
       const enrichedInquiries = (userInquiries || []).map(inquiry => ({
         ...inquiry,
-        property: SAMPLE_PROPERTY_DATA[inquiry.listingId] || {
-          _id: inquiry.listingId,
+        property: SAMPLE_PROPERTY_DATA[inquiry.listing_id || inquiry.listingId] || {
+          _id: inquiry.listing_id || inquiry.listingId,
           title: { en: 'Property Not Found' },
           price: { amount: 0, currency: 'EUR' },
           location: { city: { name: { en: 'Unknown' } } },
@@ -110,6 +110,7 @@ export default function InquiriesManagement() {
         },
         status: inquiry.responded ? 'responded' : 'pending', // Demo status
         priority: Math.random() > 0.7 ? 'high' : 'normal', // Demo priority
+        createdAt: inquiry.created_at || inquiry.createdAt,
         responses: inquiry.responded ? [{
           id: 1,
           message: 'Thank you for your interest in this property. We\'d be happy to arrange a viewing. Please let us know your availability.',
