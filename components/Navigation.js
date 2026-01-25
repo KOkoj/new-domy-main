@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Menu, X, User, XCircle, Crown } from 'lucide-react'
 import { t } from '../lib/translations'
+import AuthModal from './AuthModal'
+import { supabase } from '@/lib/supabase'
 
 export default function Navigation() {
   const [user, setUser] = useState(null)
