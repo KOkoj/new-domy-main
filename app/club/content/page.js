@@ -171,9 +171,17 @@ export default function ContentPage() {
       const contentData = data || []
 
       contentData.forEach(item => {
+        if (!item) return
         if (item.content_type === 'video') organized.videos.push(item)
-        if (item.content_type === 'guide') organized.guides.push({ ...item, icon: item.category === 'Buying Guides' ? BookOpen : item.category === 'Market Reports' ? TrendingUp : item.category === 'Renovation' ? Home : MapPin })
-        if (item.content_type === 'article') organized.articles.push(item)
+        else if (item.content_type === 'guide') {
+          let Icon = BookOpen
+          if (item.category === 'Market Reports') Icon = TrendingUp
+          else if (item.category === 'Renovation') Icon = Home
+          else if (item.category === 'Lifestyle') Icon = MapPin
+          
+          organized.guides.push({ ...item, icon: Icon })
+        }
+        else if (item.content_type === 'article') organized.articles.push(item)
       })
 
       setContent(organized)
@@ -184,7 +192,7 @@ export default function ContentPage() {
     }
   }
 
-  const filteredVideos = content.videos.filter(video => 
+  const filteredVideos = (content.videos || []).filter(video => 
     (selectedVideoCategory === 'All' || video.category === selectedVideoCategory) &&
     ((video.title?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
      (video.description?.toLowerCase() || '').includes(searchQuery.toLowerCase()))
@@ -324,7 +332,7 @@ export default function ContentPage() {
             ))}
           </div>
 
-          {filteredVideos.length > 0 ? (
+          {filteredVideos && filteredVideos.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredVideos.map((video) => (
               <Card key={video.id} className="bg-slate-800 border-copper-400/20 hover:border-copper-400/50 transition-all overflow-hidden group">
@@ -368,7 +376,7 @@ export default function ContentPage() {
 
         {/* Guides Tab */}
         <TabsContent value="guides" className="mt-6 space-y-4">
-          {content.guides.length > 0 ? (
+          {content.guides && content.guides.length > 0 ? (
             content.guides.map((guide) => {
             const Icon = guide.icon || BookOpen
             return (
@@ -411,7 +419,7 @@ export default function ContentPage() {
 
         {/* Articles Tab */}
         <TabsContent value="articles" className="mt-6 space-y-4">
-          {content.articles.length > 0 ? (
+          {content.articles && content.articles.length > 0 ? (
             content.articles.map((article) => (
             <Card key={article.id} className="bg-slate-800 border-copper-400/20 hover:border-copper-400/50 transition-all cursor-pointer">
               <CardContent className="p-6">
