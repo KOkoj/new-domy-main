@@ -135,17 +135,25 @@ export async function GET(request, { params }) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
       }
 
+      // Updated to snake_case
       const { data: favorites, error } = await supabase
         .from('favorites')
-        .select('listingId, createdAt')
-        .eq('userId', user.id)
-        .order('createdAt', { ascending: false })
+        .select('listing_id, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
 
       if (error) {
         return NextResponse.json({ error: error.message }, { status: 500 })
       }
 
-      return NextResponse.json(favorites || [])
+      // Map back to camelCase for frontend compatibility if needed, or update frontend
+      // Let's return as is but the frontend needs to map listing_id -> listingId or use listing_id
+      const mappedFavorites = favorites.map(f => ({
+        listingId: f.listing_id,
+        createdAt: f.created_at
+      }))
+
+      return NextResponse.json(mappedFavorites || [])
     }
 
     // Saved searches endpoints
@@ -159,14 +167,23 @@ export async function GET(request, { params }) {
       const { data: searches, error } = await supabase
         .from('saved_searches')
         .select('*')
-        .eq('userId', user.id)
-        .order('createdAt', { ascending: false })
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
 
       if (error) {
         return NextResponse.json({ error: error.message }, { status: 500 })
       }
+      
+      const mappedSearches = searches.map(s => ({
+        id: s.id,
+        userId: s.user_id,
+        name: s.name,
+        filters: s.filters,
+        notifications: s.notifications,
+        createdAt: s.created_at
+      }))
 
-      return NextResponse.json(searches || [])
+      return NextResponse.json(mappedSearches || [])
     }
 
     // Inquiries endpoints
@@ -210,12 +227,12 @@ export async function POST(request, { params }) {
 
       const { listingId } = body
       
-      // Check if already favorited
+      // Check if already favorited (snake_case)
       const { data: existing } = await supabase
         .from('favorites')
         .select('id')
-        .eq('userId', user.id)
-        .eq('listingId', listingId)
+        .eq('user_id', user.id)
+        .eq('listing_id', listingId)
         .single()
 
       if (existing) {
@@ -223,8 +240,8 @@ export async function POST(request, { params }) {
         const { error } = await supabase
           .from('favorites')
           .delete()
-          .eq('userId', user.id)
-          .eq('listingId', listingId)
+          .eq('user_id', user.id)
+          .eq('listing_id', listingId)
         
         if (error) {
           return NextResponse.json({ error: error.message }, { status: 500 })
@@ -235,7 +252,7 @@ export async function POST(request, { params }) {
         // Add to favorites
         const { error } = await supabase
           .from('favorites')
-          .insert([{ userId: user.id, listingId }])
+          .insert([{ user_id: user.id, listing_id: listingId }])
         
         if (error) {
           return NextResponse.json({ error: error.message }, { status: 500 })
@@ -255,11 +272,11 @@ export async function POST(request, { params }) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
       }
 
-      const { name, filters } = body
+      const { name, filters, notifications = true } = body
       
       const { data, error } = await supabase
         .from('saved_searches')
-        .insert([{ userId: user.id, name, filters }])
+        .insert([{ user_id: user.id, name, filters, notifications }])
         .select()
         .single()
 
@@ -267,7 +284,17 @@ export async function POST(request, { params }) {
         return NextResponse.json({ error: error.message }, { status: 500 })
       }
 
-      return NextResponse.json(data)
+      // Map back to camelCase
+      const mappedData = {
+        id: data.id,
+        userId: data.user_id,
+        name: data.name,
+        filters: data.filters,
+        notifications: data.notifications,
+        createdAt: data.created_at
+      }
+
+      return NextResponse.json(mappedData)
     }
 
     // Submit inquiry
@@ -357,7 +384,7 @@ export async function DELETE(request, { params }) {
         .from('saved_searches')
         .delete()
         .eq('id', id)
-        .eq('userId', user.id)
+        .eq('user_id', user.id)
 
       if (error) {
         return NextResponse.json({ error: error.message }, { status: 500 })

@@ -76,8 +76,8 @@ export default function FavoritesManagement() {
       const { data: userFavorites, error } = await supabase
         .from('favorites')
         .select('*')
-        .eq('userId', user.id)
-        .order('createdAt', { ascending: false })
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
 
       if (error) throw error
 
@@ -118,8 +118,11 @@ export default function FavoritesManagement() {
 
       // 3. Enrich favorites with property data
       const enrichedFavorites = (userFavorites || []).map(fav => {
-        const property = allProperties.find(p => p._id === fav.listingId) || {
-          _id: fav.listingId,
+        // Handle listing_id (snake_case from DB)
+        const listingId = fav.listing_id || fav.listingId
+        
+        const property = allProperties.find(p => p._id === listingId) || {
+          _id: listingId,
           title: { en: 'Property Not Found' },
           price: { amount: 0, currency: 'EUR' },
           propertyType: 'unknown',
@@ -131,6 +134,8 @@ export default function FavoritesManagement() {
         
         return {
           ...fav,
+          // Map created_at to camelCase for frontend compatibility
+          createdAt: fav.created_at || fav.createdAt,
           property
         }
       })

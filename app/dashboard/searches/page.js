@@ -59,12 +59,16 @@ export default function SavedSearchesManagement() {
       const { data: searches, error } = await supabase
         .from('saved_searches')
         .select('*')
-        .eq('userId', user.id)
-        .order('createdAt', { ascending: false })
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
 
       if (error) throw error
 
-      setSavedSearches(searches || [])
+      setSavedSearches((searches || []).map(s => ({
+        ...s,
+        userId: s.user_id,
+        createdAt: s.created_at
+      })))
     } catch (error) {
       console.error('Error loading saved searches:', error)
     } finally {
@@ -109,7 +113,7 @@ export default function SavedSearchesManagement() {
         const { data, error } = await supabase
           .from('saved_searches')
           .insert([{
-            userId: user.id,
+            user_id: user.id,
             name: editingSearch.name,
             filters: editingSearch.filters,
             notifications: editingSearch.notifications
@@ -119,7 +123,7 @@ export default function SavedSearchesManagement() {
 
         if (error) throw error
 
-        setSavedSearches(prev => [data, ...prev])
+        setSavedSearches(prev => [{...data, userId: data.user_id, createdAt: data.created_at}, ...prev])
       } else {
         // Update existing search
         const { data, error } = await supabase
@@ -135,7 +139,7 @@ export default function SavedSearchesManagement() {
 
         if (error) throw error
 
-        setSavedSearches(prev => prev.map(s => s.id === editingSearch.id ? data : s))
+        setSavedSearches(prev => prev.map(s => s.id === editingSearch.id ? {...data, userId: data.user_id, createdAt: data.created_at} : s))
       }
 
       setIsDialogOpen(false)
@@ -154,6 +158,7 @@ export default function SavedSearchesManagement() {
         .from('saved_searches')
         .delete()
         .eq('id', searchId)
+        .eq('user_id', user.id)
 
       if (error) throw error
 
@@ -170,6 +175,7 @@ export default function SavedSearchesManagement() {
         .from('saved_searches')
         .update({ notifications: !currentStatus })
         .eq('id', searchId)
+        .eq('user_id', user.id)
 
       if (error) throw error
 
