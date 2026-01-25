@@ -8,6 +8,7 @@ export default function Error({ error, reset }) {
   useEffect(() => {
     // Log the error to an error reporting service
     console.error('Club section error:', error)
+    console.error('Club section error digest:', error.digest)
   }, [error])
 
   return (

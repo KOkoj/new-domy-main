@@ -140,6 +140,8 @@ const ARTICLES = [
   }
 ]
 
+const videoCategories = ['All', 'Market Insights', 'Property Tours', 'Renovation', 'Lifestyle', 'Guides', 'Case Studies']
+
 export default function ContentPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedVideoCategory, setSelectedVideoCategory] = useState('All')
