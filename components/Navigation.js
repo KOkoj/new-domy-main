@@ -2,20 +2,36 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Menu, X, User, XCircle, Crown } from 'lucide-react'
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuLabel, 
+  DropdownMenuSeparator, 
+  DropdownMenuTrigger 
+} from '@/components/ui/dropdown-menu'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Menu, X, User, XCircle, Crown, LayoutDashboard, LogOut, Settings } from 'lucide-react'
 import { t } from '../lib/translations'
 import AuthModal from './AuthModal'
 import { supabase } from '@/lib/supabase'
 
 export default function Navigation() {
+  const pathname = usePathname()
   const [user, setUser] = useState(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [language, setLanguage] = useState('en')
   const [isPopupBarVisible, setIsPopupBarVisible] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
+
+  const isActive = (path) => {
+    if (path === '/') return pathname === '/'
+    return pathname?.startsWith(path)
+  }
 
   useEffect(() => {
     // Load saved language preference
@@ -121,34 +137,24 @@ export default function Navigation() {
               <div className="h-12 w-24"></div>
             </Link>
             <div className="hidden md:flex space-x-6" data-testid="nav-desktop-links">
-              <Link href="/" className="text-gray-200 hover:text-copper-400 transition-colors border-b-2 border-white pb-1" data-testid="nav-home-link">
+              <Link href="/" className={`text-gray-200 hover:text-copper-400 transition-colors ${isActive('/') ? 'border-b-2 border-white pb-1' : ''}`} data-testid="nav-home-link">
                 {t('nav.home', language)}
               </Link>
-              <Link href="/properties" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-properties-link">
+              <Link href="/properties" className={`text-gray-200 hover:text-copper-400 transition-colors ${isActive('/properties') ? 'border-b-2 border-white pb-1' : ''}`} data-testid="nav-properties-link">
                 {t('nav.properties', language)}
               </Link>
-              <Link href="/regions" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-regions-link">
+              <Link href="/regions" className={`text-gray-200 hover:text-copper-400 transition-colors ${isActive('/regions') ? 'border-b-2 border-white pb-1' : ''}`} data-testid="nav-regions-link">
                 {t('nav.regions', language)}
               </Link>
-              <Link href="/about" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-about-link">
+              <Link href="/about" className={`text-gray-200 hover:text-copper-400 transition-colors ${isActive('/about') ? 'border-b-2 border-white pb-1' : ''}`} data-testid="nav-about-link">
                 {t('nav.about', language)}
               </Link>
-              <Link href="/process" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-process-link">
+              <Link href="/process" className={`text-gray-200 hover:text-copper-400 transition-colors ${isActive('/process') ? 'border-b-2 border-white pb-1' : ''}`} data-testid="nav-process-link">
                 {t('nav.process', language)}
               </Link>
-              <Link href="/contact" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-contact-link">
+              <Link href="/contact" className={`text-gray-200 hover:text-copper-400 transition-colors ${isActive('/contact') ? 'border-b-2 border-white pb-1' : ''}`} data-testid="nav-contact-link">
                 {t('nav.contact', language)}
               </Link>
-              {user && (
-                <Link href="/dashboard" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-dashboard-link">
-                  {t('nav.dashboard', language)}
-                </Link>
-              )}
-              {user && isAdmin && (
-                <Link href="/admin" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-admin-link">
-                  {t('nav.admin', language)}
-                </Link>
-              )}
             </div>
           </div>
           
@@ -192,22 +198,49 @@ export default function Navigation() {
 
             {/* User Authentication */}
             {user ? (
-              <div className="flex items-center space-x-3" data-testid="user-authenticated-section">
-                <div className="flex items-center space-x-2" data-testid="user-info">
-                  <User className="h-4 w-4 text-gray-200" />
-                  <span className="text-base text-gray-200" data-testid="user-name">
-                    {user.user_metadata?.name || user.email}
-                  </span>
-                </div>
-                <Button 
-                  variant="outline" 
-                  onClick={handleLogout} 
-                  className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-200 rounded-full px-6 py-4 text-base font-medium"
-                  data-testid="logout-button"
-                >
-                  Logout
-                </Button>
-              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex items-center space-x-2 bg-transparent hover:bg-white/10 text-gray-200 hover:text-white rounded-full px-3 py-2 transition-all">
+                    <Avatar className="h-8 w-8 border border-white/20">
+                      <AvatarImage src={user.user_metadata?.avatar_url} />
+                      <AvatarFallback className="bg-white/10 text-white">
+                        {(user.user_metadata?.name || user.email || 'U').charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="text-base font-medium hidden sm:inline-block">
+                      {user.user_metadata?.name || user.email}
+                    </span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56 bg-[#0e152e] border-white/20 text-gray-200">
+                  <DropdownMenuLabel className="font-normal">
+                    <div className="flex flex-col space-y-1">
+                      <p className="text-sm font-medium leading-none text-white">{user.user_metadata?.name || 'User'}</p>
+                      <p className="text-xs leading-none text-gray-400">{user.email}</p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator className="bg-white/10" />
+                  <DropdownMenuItem className="focus:bg-white/10 focus:text-white cursor-pointer" asChild>
+                    <Link href="/dashboard" className="flex w-full items-center">
+                      <LayoutDashboard className="mr-2 h-4 w-4" />
+                      <span>{t('nav.dashboard', language)}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  {isAdmin && (
+                    <DropdownMenuItem className="focus:bg-white/10 focus:text-white cursor-pointer" asChild>
+                      <Link href="/admin" className="flex w-full items-center">
+                        <Settings className="mr-2 h-4 w-4" />
+                        <span>{t('nav.admin', language)}</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuSeparator className="bg-white/10" />
+                  <DropdownMenuItem onClick={handleLogout} className="focus:bg-white/10 focus:text-white cursor-pointer text-red-400 focus:text-red-400">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Logout</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20">
                 <button

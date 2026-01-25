@@ -11,10 +11,19 @@ import { Separator } from '@/components/ui/separator'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import Link from 'next/link'
 import { supabase } from '../../../lib/supabase'
+import { urlForImage } from '../../../lib/sanity'
 import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 
 function ImageGallery({ images, title }) {
   const [selectedImage, setSelectedImage] = useState(0)
+
+  if (!images || images.length === 0) {
+    return (
+      <div className="h-96 w-full bg-gray-200 rounded-lg flex items-center justify-center">
+        <span className="text-gray-400">No images available</span>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-4">
@@ -250,6 +259,15 @@ export default function PropertyDetailPage({ params }) {
               if (typeof img === 'string') return img
               if (img.url) return img.url
               if (img.asset?.url) return img.asset.url
+              
+              // Try using Sanity image builder
+              try {
+                const url = urlForImage(img)?.url()
+                if (url) return url
+              } catch (e) {
+                console.error('Error generating image URL:', e)
+              }
+              
               return null
             }).filter(Boolean) || [],
             amenities: sanityProperty.amenities || [],
@@ -752,7 +770,7 @@ export default function PropertyDetailPage({ params }) {
               </Card>
             )}
 
-            {/* Quick Actions */}
+            {/* Quick Actions - Hidden for now
             <Card>
               <CardHeader>
                 <CardTitle>
@@ -772,6 +790,7 @@ export default function PropertyDetailPage({ params }) {
                 </Button>
               </CardContent>
             </Card>
+            */}
           </div>
         </div>
       </div>
