@@ -166,8 +166,10 @@ export default function WebinarsPage() {
       const now = new Date()
       const upcoming = []
       const past = []
+      
+      const webinars = webinarsData || []
 
-      webinarsData.forEach(webinar => {
+      webinars.forEach(webinar => {
         const webinarDate = new Date(`${webinar.date}T${webinar.time.split(' ')[0]}:00`)
         // Transform to match UI expected format if needed
         const formattedWebinar = {

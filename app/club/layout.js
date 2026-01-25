@@ -147,7 +147,6 @@ export default function ClubLayout({ children }) {
   if (!user) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        <Navigation />
         <div className="flex items-center justify-center pt-20">
           <Card className="max-w-md mx-auto bg-slate-800 border-copper-400/20">
             <CardContent className="p-8 text-center">

@@ -168,7 +168,9 @@ export default function ContentPage() {
         articles: []
       }
 
-      data.forEach(item => {
+      const contentData = data || []
+
+      contentData.forEach(item => {
         if (item.content_type === 'video') organized.videos.push(item)
         if (item.content_type === 'guide') organized.guides.push({ ...item, icon: item.category === 'Buying Guides' ? BookOpen : item.category === 'Market Reports' ? TrendingUp : item.category === 'Renovation' ? Home : MapPin })
         if (item.content_type === 'article') organized.articles.push(item)
