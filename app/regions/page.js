@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { MapPin, TrendingUp, Home, ChevronRight, Star, Menu, X, User } from 'lucide-react'
+import { MapPin, TrendingUp, Home, ChevronRight, Star, Menu, X, User, CheckCircle, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
