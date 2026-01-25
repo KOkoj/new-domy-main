@@ -267,7 +267,7 @@ CREATE POLICY "Users can insert messages to their tickets" ON ticket_messages FO
     )
   );
 
-// RLS Policies for premium_content
+-- RLS Policies for premium_content
 CREATE POLICY "Admins can manage content" ON premium_content
   FOR ALL USING (
     EXISTS (

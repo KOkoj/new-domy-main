@@ -87,9 +87,8 @@ export default function ClubOverview() {
       setProfile(profile)
 
       // 1. Stats Calculation
-      const membershipDays = profile?.createdAt 
-        ? Math.floor((new Date() - new Date(profile.createdAt)) / (1000 * 60 * 60 * 24))
-        : 0
+      const startDate = user?.created_at || new Date().toISOString()
+      const membershipDays = Math.floor((new Date() - new Date(startDate)) / (1000 * 60 * 60 * 24))
 
       // Count webinars attended/registered
       const { count: webinarCount } = await supabase
@@ -120,30 +119,35 @@ export default function ClubOverview() {
       })
 
       // 2. Fetch Upcoming Webinars
-      const { data: webinars } = await supabase
+      const { data: webinars, error: webinarFetchError } = await supabase
         .from('webinars')
         .select('*')
         .eq('status', 'upcoming')
         .order('date', { ascending: true })
         .limit(3)
 
+      if (webinarFetchError) console.warn('Webinars fetch error:', webinarFetchError)
       setUpcomingWebinars(webinars || [])
 
       // 3. Fetch Recent Activities (Logs)
       // Combine document logs and webinar registrations
-      const { data: docLogs } = await supabase
+      const { data: docLogs, error: docLogsError } = await supabase
         .from('document_access_logs')
         .select('*, premium_documents(name)')
         .eq('user_id', user.id)
         .order('accessed_at', { ascending: false })
         .limit(3)
+      
+      if (docLogsError) console.warn('Doc logs error:', docLogsError)
 
-      const { data: webinarLogs } = await supabase
+      const { data: webinarLogs, error: webinarLogsError } = await supabase
         .from('webinar_registrations')
         .select('*, webinars(title)')
         .eq('user_id', user.id)
         .order('registered_at', { ascending: false })
         .limit(3)
+
+      if (webinarLogsError) console.warn('Webinar logs error:', webinarLogsError)
 
       // Normalize and merge
       const activities = [
