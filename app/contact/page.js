@@ -1,15 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Mail, Phone, MapPin, Clock, Send, MessageSquare, User as UserIcon, Menu, X, User, CheckCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Send, MessageSquare, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
-import { supabase } from '../../lib/supabase'
-import AuthModal from '../../components/AuthModal'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 const CONTACT_INFO = [
   {
@@ -100,9 +99,6 @@ const INQUIRY_TYPES = [
 ]
 
 export default function ContactPage() {
-  const [user, setUser] = useState(null)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [language, setLanguage] = useState('en')
   const [formData, setFormData] = useState({
     name: '',
@@ -121,41 +117,16 @@ export default function ContactPage() {
       setLanguage(savedLanguage)
       document.documentElement.lang = savedLanguage
     }
-  }, [])
 
-  useEffect(() => {
-    // Check if user is authenticated
-    const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      setUser(user)
+    // Listen for language changes
+    const handleLanguageChange = (event) => {
+      setLanguage(event.detail)
+      document.documentElement.lang = event.detail
     }
-    checkUser()
 
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user || null)
-    })
-
-    return () => subscription.unsubscribe()
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
-
-  const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut()
-    if (!error) {
-      setUser(null)
-    }
-  }
-
-  const handleAuthSuccess = (user) => {
-    setUser(user)
-    setIsAuthModalOpen(false)
-  }
-
-  const handleLanguageChange = (newLanguage) => {
-    setLanguage(newLanguage)
-    document.documentElement.lang = newLanguage
-    localStorage.setItem('preferred-language', newLanguage)
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -204,177 +175,22 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 home-page-custom-border">
       {/* Modern Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}>
-        <div className="container mx-auto px-4 pt-4 pb-3 overflow-visible">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-8">
-              <Link href="/" className="relative overflow-visible">
-                <img 
-                  src="/logo domy.svg" 
-                  alt="Domy v Itálii"
-                  className="h-12 w-auto cursor-pointer" 
-                  style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))' }}
-                />
-              </Link>
-              <div className="hidden md:flex space-x-6">
-                <Link href="/" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home'}
-                </Link>
-                <Link href="/properties" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties'}
-                </Link>
-                <Link href="/regions" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions'}
-                </Link>
-                <Link href="/about" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About'}
-                </Link>
-                <Link href="/process" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Proces' : language === 'it' ? 'Processo' : 'Process'}
-                </Link>
-                <Link href="/contact" className="text-gray-200 hover:text-copper-400 transition-colors border-b-2 border-white pb-1">
-                  {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
-                </Link>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              {/* Language Selector */}
-              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
-                <button
-                  onClick={() => handleLanguageChange('en')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'en' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => handleLanguageChange('cs')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'cs' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  CS
-                </button>
-                <button
-                  onClick={() => handleLanguageChange('it')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'it' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  IT
-                </button>
-              </div>
-
-              {/* User Authentication */}
-              {user ? (
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center space-x-2">
-                    <User className="h-4 w-4 text-gray-200" />
-                    <span className="text-sm text-gray-200">
-                      {user.user_metadata?.name || user.email}
-                    </span>
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    onClick={handleLogout} 
-                    className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-200 rounded-full px-6 py-4 text-sm font-medium"
-                  >
-                    Logout
-                  </Button>
-                </div>
-              ) : (
-                <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20">
-                  <button
-                    onClick={() => setIsAuthModalOpen(true)}
-                    className="text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                  >
-                    {language === 'cs' ? 'Přihlásit' : (language === 'it' ? 'Accedi' : 'Login')}
-                  </button>
-                  <span className="text-white/40 mx-1">/</span>
-                  <button
-                    onClick={() => setIsAuthModalOpen(true)}
-                    className="text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                  >
-                    {language === 'cs' ? 'Registrovat' : (language === 'it' ? 'Registrati' : 'Register')}
-                  </button>
-                </div>
-              )}
-              
-              {/* Mobile menu button */}
-              <button
-                className="md:hidden"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                {isMenuOpen ? <X className="h-6 w-6 text-gray-200" /> : <Menu className="h-6 w-6 text-gray-200" />}
-              </button>
-            </div>
-          </div>
-          
-          {/* Mobile menu */}
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 pt-4 border-t border-[#0e152e]">
-              <div className="flex flex-col space-y-4">
-                <Link 
-                  href="/properties" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties'}
-                </Link>
-                <Link 
-                  href="/regions" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions'}
-                </Link>
-                <Link 
-                  href="/about" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About'}
-                </Link>
-                <Link 
-                  href="/process" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Proces' : language === 'it' ? 'Processo' : 'Process'}
-                </Link>
-                <Link 
-                  href="/contact" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <Navigation />
+      </div>
 
       {/* Main Content */}
-      <main className="pt-28 pb-12">
+      <main className="pt-32 pb-12">
         {/* Hero Section */}
         <section className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm mb-8">
           <div className="container mx-auto px-4 py-16">
             <div className="max-w-1400 mx-auto text-center">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent px-2">
                 {language === 'cs' ? 'Kontaktujte nás' :
                  language === 'it' ? 'Contattaci' :
                  'Contact Us'}
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed px-4">
                 {language === 'cs' ? 'Přemýšlíte o koupi domu v Itálii? Napište nám – ozveme se vám s praktickými informacemi a navrhneme další krok.' :
                  language === 'it' ? 'Stai pensando di acquistare una casa in Italia? Scrivici - ti contatteremo con informazioni pratiche e suggeriremo il prossimo passo.' :
                  'Thinking about buying a house in Italy? Write to us - we\'ll get back to you with practical information and suggest the next step.'}
@@ -392,7 +208,7 @@ export default function ContactPage() {
               {/* Contact Info Card */}
               <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl overflow-hidden">
                 <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
-                  <CardTitle className="text-2xl font-bold text-slate-800">
+                  <CardTitle className="text-xl md:text-2xl font-bold text-slate-800">
                     {language === 'cs' ? 'Kontaktní informace' :
                      language === 'it' ? 'Informazioni di contatto' :
                      'Contact Information'}
@@ -413,7 +229,7 @@ export default function ContactPage() {
                         {info.link ? (
                           <a 
                             href={info.link}
-                            className="text-gray-600 hover:text-slate-700 transition-colors"
+                            className="text-gray-600 hover:text-slate-700 transition-colors break-all"
                           >
                             {typeof info.value === 'string' ? info.value : info.value[language]}
                           </a>
@@ -450,13 +266,13 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl overflow-hidden">
                 <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
-                  <CardTitle className="text-2xl font-bold text-slate-800">
+                  <CardTitle className="text-xl md:text-2xl font-bold text-slate-800">
                     {language === 'cs' ? 'Pošlete nám zprávu' :
                      language === 'it' ? 'Inviaci un messaggio' :
                      'Send Us a Message'}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-8">
+                <CardContent className="p-6 md:p-8">
                   {/* Success Message */}
                   {submitStatus === 'success' && (
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start space-x-3">
@@ -600,8 +416,8 @@ export default function ContactPage() {
           {/* Call-to-Action Section */}
           <section className="text-center">
             <Card className="max-w-3xl mx-auto bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
-              <CardContent className="p-12">
-                <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              <CardContent className="p-8 md:p-12">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
                   {language === 'cs' ? 'Prozkoumejte naše nemovitosti' :
                    language === 'it' ? 'Esplora le nostre proprietà' :
                    'Explore Our Properties'}
@@ -612,15 +428,15 @@ export default function ContactPage() {
                    'Browse our extensive collection of Italian properties, from cozy apartments to luxury villas.'}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/properties">
-                    <Button size="lg" className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg">
+                  <Link href="/properties" className="w-full sm:w-auto">
+                    <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg">
                       {language === 'cs' ? 'Zobrazit nemovitosti' :
                        language === 'it' ? 'Visualizza proprietà' :
                        'View Properties'}
                     </Button>
                   </Link>
-                  <Link href="/regions">
-                    <Button variant="outline" size="lg" className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105">
+                  <Link href="/regions" className="w-full sm:w-auto">
+                    <Button variant="outline" size="lg" className="w-full sm:w-auto border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105">
                       {language === 'cs' ? 'Procházet regiony' :
                        language === 'it' ? 'Sfoglia regioni' :
                        'Browse Regions'}
@@ -633,13 +449,8 @@ export default function ContactPage() {
         </section>
       </main>
 
-      {/* Auth Modal */}
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        onAuthSuccess={handleAuthSuccess}
-      />
+      {/* Footer */}
+      <Footer language={language} />
     </div>
   )
 }
-

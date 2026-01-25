@@ -15,6 +15,8 @@ import ImageReveal from '@/components/ui/image-tiles'
 import { GlareCard } from '@/components/ui/premium-card'
 import BackgroundImageTransition from '@/components/BackgroundImageTransition'
 import AuthModal from '@/components/AuthModal'
+import Footer from '@/components/Footer'
+import Navigation from '../components/Navigation'
 import { supabase } from '../lib/supabase'
 import { t } from '../lib/translations'
 import { CURRENCY_RATES, CURRENCY_SYMBOLS, formatPrice as formatPriceUtil } from '../lib/currency'
@@ -570,11 +572,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true)
   const [startAnimations, setStartAnimations] = useState(false)
   
-  // Auth modal state
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
-  
-  // Popup bar state
-  const [isPopupBarVisible, setIsPopupBarVisible] = useState(true)
 
   useEffect(() => {
     // Load saved language preference
@@ -589,12 +587,16 @@ export default function HomePage() {
     if (savedCurrency) {
       setCurrency(savedCurrency)
     }
-    
-    // Check if popup bar was dismissed
-    const popupDismissed = localStorage.getItem('premium-club-popup-dismissed')
-    if (popupDismissed === 'true') {
-      setIsPopupBarVisible(false)
+
+    // Listen for language changes from Navigation
+    const handleLanguageChange = (event) => {
+      setLanguage(event.detail)
+      document.documentElement.lang = event.detail
     }
+
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
+  }, [])
 
     // Load properties from Sanity API
     loadProperties()
@@ -1282,167 +1284,9 @@ export default function HomePage() {
       )}
       
       {/* Navigation */}
-       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }} data-testid="main-navigation">
-        <div className="container mx-auto px-4 pt-6 pb-4 overflow-visible" data-testid="nav-container">
-          <div className="flex items-center justify-between" data-testid="nav-content">
-            <div className="flex items-center space-x-8" data-testid="nav-brand-links">
-              <Link href="/" data-testid="nav-brand-link" className="relative overflow-visible">
-                <img 
-                  src="/logo domy.svg" 
-                  alt={t('nav.brand', language)}
-                  className="h-32 w-auto cursor-pointer absolute top-0 left-0 z-30" 
-                  style={{ transform: 'translateY(-2px)' }}
-                  data-testid="nav-brand-logo"
-                />
-                <div className="h-12 w-24"></div>
-              </Link>
-              <div className="hidden md:flex space-x-6" data-testid="nav-desktop-links">
-                <Link href="/" className="text-gray-200 hover:text-copper-400 transition-colors border-b-2 border-white pb-1" data-testid="nav-home-link">{language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home'}</Link>
-                <Link href="/properties" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-properties-link">{t('nav.properties', language)}</Link>
-                <Link href="/regions" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-regions-link">{t('nav.regions', language)}</Link>
-                <Link href="/about" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-about-link">{t('nav.about', language)}</Link>
-                <Link href="/process" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-process-link">{language === 'cs' ? 'Proces' : language === 'it' ? 'Processo' : 'Process'}</Link>
-                <Link href="/contact" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-contact-link">{t('nav.contact', language)}</Link>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4" data-testid="nav-user-controls">
-              {/* Language & Currency Selector */}
-              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
-                {/* Language Buttons */}
-                <div className="flex items-center">
-                  <button
-                    onClick={() => handleLanguageChange('en')}
-                    className={`px-3 py-1 rounded-full text-base font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                      language === 'en' 
-                        ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                        : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                    }`}
-                  >
-                    EN
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange('cs')}
-                    className={`px-3 py-1 rounded-full text-base font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                      language === 'cs' 
-                        ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                        : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                    }`}
-                  >
-                    CS
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange('it')}
-                    className={`px-3 py-1 rounded-full text-base font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                      language === 'it' 
-                        ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                        : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                    }`}
-                  >
-                    IT
-                  </button>
-                </div>
-                
-                {/* Divider */}
-                <div className="w-0 group-hover:w-px h-6 bg-gray-300 group-hover:mx-2 opacity-0 group-hover:opacity-100 transition-all duration-200 overflow-hidden"></div>
-                
-                {/* Currency Buttons */}
-                <div className="flex items-center">
-                  <button
-                    onClick={() => handleCurrencyChange('EUR')}
-                    className={`px-3 py-1 rounded-full text-base font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                      currency === 'EUR' 
-                        ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                        : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                    }`}
-                  >
-                    EUR
-                  </button>
-                  <button
-                    onClick={() => handleCurrencyChange('CZK')}
-                    className={`px-3 py-1 rounded-full text-base font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                      currency === 'CZK' 
-                        ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                        : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                    }`}
-                  >
-                    CZK
-                  </button>
-                </div>
-              </div>
-
-              {/* User Authentication */}
-              {user ? (
-                <Button 
-                  variant="outline" 
-                  onClick={handleLogout}
-                  className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-200 rounded-full px-6 py-4 text-base font-medium"
-                  data-testid="logout-button"
-                  data-user-authenticated="true"
-                >
-                  Logout
-                </Button>
-              ) : (
-                <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20">
-                  <button
-                    onClick={() => setIsAuthModalOpen(true)}
-                    className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                    data-testid="homepage-login-button"
-                    data-user-authenticated="false"
-                  >
-                    {language === 'cs' ? 'Přihlásit' : t('nav.login', language)}
-                  </button>
-                  <span className="text-white/40 mx-1">/</span>
-                  <button
-                    onClick={() => setIsAuthModalOpen(true)}
-                    className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                    data-testid="homepage-register-button"
-                    data-user-authenticated="false"
-                  >
-                    {language === 'cs' ? 'Registrovat' : (language === 'it' ? 'Registrati' : 'Register')}
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Premium Club Popup Bar */}
-      {isPopupBarVisible && (
-        <div 
-          className="fixed left-0 right-0 z-40 shadow-lg backdrop-blur-md transition-all duration-300"
-          style={{ 
-            background: 'linear-gradient(to right, rgba(199, 137, 91, 0.9), rgba(153, 105, 69, 0.9))',
-            top: '88px'
-          }}
-        >
-          <div className="container mx-auto px-4 py-2">
-            <div className="flex items-center justify-center relative">
-              <Link 
-                href="/dashboard" 
-                className="flex items-center gap-3 group hover:opacity-90 transition-opacity"
-              >
-                <Crown className="h-5 w-5 text-white" />
-                <span className="text-white font-semibold text-sm md:text-base whitespace-nowrap">
-                  {language === 'cs' ? 'Premium Club - Zaregistrujte se zdarma nyní' :
-                   language === 'it' ? 'Club Premium - Registrati gratuitamente ora' :
-                   'Premium Club - Register for Free Now'}
-                </span>
-              </Link>
-              <button
-                onClick={() => {
-                  setIsPopupBarVisible(false)
-                  localStorage.setItem('premium-club-popup-dismissed', 'true')
-                }}
-                className="absolute right-0 p-1 hover:bg-white/20 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
-                aria-label="Close popup"
-              >
-                <XCircle className="h-5 w-5 text-white" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <Navigation />
+      </div>
 
       {/* Hero Section */}
       <section 
@@ -3578,51 +3422,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 mt-12" data-testid="main-footer">
-        <div className="container mx-auto px-4" data-testid="footer-container">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8" data-testid="footer-content">
-            <div data-testid="footer-brand-section">
-              <img 
-                src="/logo domy.svg" 
-                alt={t('nav.brand', language)}
-                className="h-20 w-auto mb-4" 
-                data-testid="footer-brand-logo"
-              />
-              <p className="text-gray-400" data-testid="footer-brand-description">{t('footer.brandDescription', language)}</p>
-            </div>
-            <div data-testid="footer-properties-section">
-              <h5 className="font-semibold mb-4" data-testid="footer-properties-title">{t('footer.properties', language)}</h5>
-              <ul className="space-y-2 text-gray-400" data-testid="footer-properties-links">
-                <li><a href="#" className="hover:text-white" data-testid="footer-luxury-villas-link">{t('footer.luxuryVillas', language)}</a></li>
-                <li><a href="#" className="hover:text-white" data-testid="footer-apartments-link">{t('footer.apartments', language)}</a></li>
-                <li><a href="#" className="hover:text-white" data-testid="footer-farmhouses-link">{t('footer.farmhouses', language)}</a></li>
-                <li><a href="#" className="hover:text-white" data-testid="footer-commercial-link">{t('footer.commercial', language)}</a></li>
-              </ul>
-            </div>
-            <div data-testid="footer-regions-section">
-              <h5 className="font-semibold mb-4" data-testid="footer-regions-title">{t('footer.regions', language)}</h5>
-              <ul className="space-y-2 text-gray-400" data-testid="footer-regions-links">
-                <li><a href="#" className="hover:text-white" data-testid="footer-tuscany-link">{t('footer.tuscany', language)}</a></li>
-                <li><a href="#" className="hover:text-white" data-testid="footer-lake-como-link">{t('footer.lakeComo', language)}</a></li>
-                <li><a href="#" className="hover:text-white" data-testid="footer-amalfi-coast-link">{t('footer.amalfiCoast', language)}</a></li>
-                <li><a href="#" className="hover:text-white" data-testid="footer-sicily-link">{t('footer.sicily', language)}</a></li>
-              </ul>
-            </div>
-            <div data-testid="footer-support-section">
-              <h5 className="font-semibold mb-4" data-testid="footer-support-title">{t('footer.support', language)}</h5>
-              <ul className="space-y-2 text-gray-400" data-testid="footer-support-links">
-                <li><a href="#" className="hover:text-white" data-testid="footer-contact-link">{t('footer.contactUs', language)}</a></li>
-                <li><a href="#" className="hover:text-white" data-testid="footer-buying-guide-link">{t('footer.buyingGuide', language)}</a></li>
-                <li><a href="#" className="hover:text-white" data-testid="footer-legal-services-link">{t('footer.legalServices', language)}</a></li>
-                <li><a href="#" className="hover:text-white" data-testid="footer-faq-link">{t('footer.faq', language)}</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400" data-testid="footer-copyright">
-            <p data-testid="footer-copyright-text">{t('footer.copyright', language)}</p>
-          </div>
-        </div>
-      </footer>
+      <Footer language={language} />
       
       {/* Auth Modal */}
       <AuthModal 

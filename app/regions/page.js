@@ -1,13 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { MapPin, TrendingUp, Home, ChevronRight, Star, Menu, X, User, CheckCircle, Shield } from 'lucide-react'
+import { MapPin, TrendingUp, Home, ChevronRight, Star, CheckCircle, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
-import { supabase } from '../../lib/supabase'
-import AuthModal from '../../components/AuthModal'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 const SAMPLE_REGIONS = [
   {
@@ -374,9 +374,6 @@ function RegionCard({ region, language = 'en' }) {
 }
 
 export default function RegionsPage() {
-  const [user, setUser] = useState(null)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [language, setLanguage] = useState('en')
 
   useEffect(() => {
@@ -386,220 +383,40 @@ export default function RegionsPage() {
       setLanguage(savedLanguage)
       document.documentElement.lang = savedLanguage
     }
-  }, [])
 
-  useEffect(() => {
-    // Check if user is authenticated
-    const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      setUser(user)
+    // Listen for language changes
+    const handleLanguageChange = (event) => {
+      setLanguage(event.detail)
+      document.documentElement.lang = event.detail
     }
-    checkUser()
 
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user || null)
-    })
-
-    return () => subscription.unsubscribe()
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
-
-  const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut()
-    if (!error) {
-      setUser(null)
-    }
-  }
-
-  const handleAuthSuccess = (user) => {
-    setUser(user)
-    setIsAuthModalOpen(false)
-  }
-
-  const handleLanguageChange = (newLanguage) => {
-    setLanguage(newLanguage)
-    document.documentElement.lang = newLanguage
-    localStorage.setItem('preferred-language', newLanguage)
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 home-page-custom-border">
       {/* Modern Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}>
-        <div className="container mx-auto px-4 pt-4 pb-3 overflow-visible">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-8">
-              <Link href="/" className="relative overflow-visible">
-                <img 
-                  src="/logo domy.svg" 
-                  alt="Domy v Itálii"
-                  className="h-12 w-auto cursor-pointer" 
-                  style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))' }}
-                />
-              </Link>
-              <div className="hidden md:flex space-x-6">
-                <Link href="/" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home'}
-                </Link>
-                <Link href="/properties" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties'}
-                </Link>
-                <Link href="/regions" className="text-gray-200 hover:text-copper-400 transition-colors border-b-2 border-white pb-1">
-                  {language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions'}
-                </Link>
-                <Link href="/about" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About'}
-                </Link>
-                <Link href="/process" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Proces' : language === 'it' ? 'Processo' : 'Process'}
-                </Link>
-                <Link href="/contact" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
-                </Link>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              {/* Language Selector */}
-              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
-                <button
-                  onClick={() => handleLanguageChange('en')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'en' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => handleLanguageChange('cs')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'cs' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  CS
-                </button>
-                <button
-                  onClick={() => handleLanguageChange('it')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'it' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  IT
-                </button>
-              </div>
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <Navigation />
+      </div>
 
-              {/* User Authentication */}
-              {user ? (
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center space-x-2">
-                    <User className="h-4 w-4 text-gray-200" />
-                    <span className="text-sm text-gray-200">
-                      {user.user_metadata?.name || user.email}
-                    </span>
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    onClick={handleLogout} 
-                    className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-200"
-                  >
-                    Logout
-                  </Button>
-                </div>
-              ) : (
-                <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20">
-                  <button
-                    onClick={() => setIsAuthModalOpen(true)}
-                    className="text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                  >
-                    {language === 'cs' ? 'Přihlásit' : (language === 'it' ? 'Accedi' : 'Login')}
-                  </button>
-                  <span className="text-white/40 mx-1">/</span>
-                  <button
-                    onClick={() => setIsAuthModalOpen(true)}
-                    className="text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                  >
-                    {language === 'cs' ? 'Registrovat' : (language === 'it' ? 'Registrati' : 'Register')}
-                  </button>
-                </div>
-              )}
-              
-              {/* Mobile menu button */}
-              <button
-                className="md:hidden"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                {isMenuOpen ? <X className="h-6 w-6 text-gray-200" /> : <Menu className="h-6 w-6 text-gray-200" />}
-              </button>
-            </div>
-          </div>
-          
-          {/* Mobile menu */}
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 pt-4 border-t border-[#0e152e]">
-              <div className="flex flex-col space-y-4">
-                <Link 
-                  href="/properties" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties'}
-                </Link>
-                <Link 
-                  href="/regions" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions'}
-                </Link>
-                <Link 
-                  href="/about" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About'}
-                </Link>
-                <Link 
-                  href="/process" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Proces' : language === 'it' ? 'Processo' : 'Process'}
-                </Link>
-                <Link 
-                  href="/contact" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
-
-      <div className="pt-28 pb-12">
-      {/* Header */}
+      <div className="pt-32 pb-12">
+        {/* Header */}
         <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm mb-8">
           <div className="container mx-auto px-4 py-12">
-          <div className="text-center">
-              <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent px-2">
                 {language === 'cs' ? 'Regiony Itálie – kde dává koupě domu největší smysl' : 
                  language === 'it' ? 'Regioni d\'Italia - dove l\'acquisto di una casa ha più senso' : 
                  'Italian Regions - Where Buying a House Makes the Most Sense'}
               </h1>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-6">
+              <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-6 px-4">
                 {language === 'cs' ? 'Itálie nabízí velmi rozdílné regiony – od moře přes hory až po historická města a klidný venkov. Výběr správné lokality je často stejně důležitý jako výběr samotné nemovitosti.' :
                  language === 'it' ? 'L\'Italia offre regioni molto diverse - dal mare alle montagne, dalle città storiche alla campagna tranquilla. Scegliere la giusta località è spesso importante quanto scegliere la proprietà stessa.' :
                  'Italy offers very diverse regions - from the sea through mountains to historic cities and quiet countryside. Choosing the right location is often as important as choosing the property itself.'}
             </p>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base md:text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
                 {language === 'cs' ? 'Každý region má jiná pravidla, ceny, možnosti využití i životní styl. Níže najdete přehled regionů a oblastí, které jsou pro české kupující nejčastěji zajímavé.' :
                  language === 'it' ? 'Ogni regione ha regole, prezzi, possibilità di utilizzo e stile di vita diversi. Di seguito troverete una panoramica delle regioni e delle aree più interessanti per gli acquirenti cechi.' :
                  'Each region has different rules, prices, usage possibilities and lifestyle. Below you will find an overview of regions and areas that are most interesting for Czech buyers.'}
@@ -613,7 +430,7 @@ export default function RegionsPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
             <CardContent className="p-6 text-center">
-                <div className="text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">
                 {SAMPLE_REGIONS.reduce((acc, region) => acc + region.propertyCount, 0).toLocaleString()}
               </div>
                 <div className="text-sm text-gray-600 font-medium">
@@ -625,7 +442,7 @@ export default function RegionsPage() {
           </Card>
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
             <CardContent className="p-6 text-center">
-                <div className="text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">
                 {SAMPLE_REGIONS.length}
               </div>
                 <div className="text-sm text-gray-600 font-medium">
@@ -637,7 +454,7 @@ export default function RegionsPage() {
           </Card>
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
             <CardContent className="p-6 text-center">
-                <div className="text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">
                 €{Math.round(SAMPLE_REGIONS.reduce((acc, region) => acc + region.averagePrice, 0) / SAMPLE_REGIONS.length / 1000)}K
               </div>
                 <div className="text-sm text-gray-600 font-medium">
@@ -649,7 +466,7 @@ export default function RegionsPage() {
           </Card>
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
             <CardContent className="p-6 text-center">
-                <div className="text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">
+                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">
                 €{Math.min(...SAMPLE_REGIONS.map(r => r.priceRange.min)) / 1000}K+
               </div>
                 <div className="text-sm text-gray-600 font-medium">
@@ -797,8 +614,8 @@ export default function RegionsPage() {
                    'Many clients choose their region before buying by visiting it personally first - exploring the surroundings, comparing locations and atmosphere. For short stays and exploratory trips, you can use Booking.com.'}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/process">
-                    <Button size="lg" className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg">
+                <Link href="/process" className="w-full sm:w-auto">
+                    <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg">
                       {language === 'cs' ? 'Průvodce koupí domu' : 
                        language === 'it' ? 'Guida all\'acquisto' : 
                        'House Buying Guide'}
@@ -807,7 +624,7 @@ export default function RegionsPage() {
                   <Button 
                     variant="outline" 
                     size="lg" 
-                    className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105"
+                    className="w-full sm:w-auto border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105"
                     onClick={() => window.open('#', '_blank')} 
                   >
                     {language === 'cs' ? 'Najít ubytování (Booking.com)' : 
@@ -821,12 +638,8 @@ export default function RegionsPage() {
       </div>
       </div>
 
-      {/* Auth Modal */}
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        onAuthSuccess={handleAuthSuccess}
-      />
+      {/* Footer */}
+      <Footer language={language} />
     </div>
   )
 }

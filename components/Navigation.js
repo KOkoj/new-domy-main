@@ -4,9 +4,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Menu, X, User, XCircle, Crown, Settings } from 'lucide-react'
-import { supabase } from '../lib/supabase'
-import AuthModal from './AuthModal'
+import { Menu, X, User, XCircle, Crown } from 'lucide-react'
+import { t } from '../lib/translations'
 
 export default function Navigation() {
   const [user, setUser] = useState(null)
@@ -14,6 +13,7 @@ export default function Navigation() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [language, setLanguage] = useState('en')
   const [isPopupBarVisible, setIsPopupBarVisible] = useState(true)
+  const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
     // Load saved language preference
@@ -35,12 +35,38 @@ export default function Navigation() {
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
       setUser(user)
+      
+      // Check if user is admin
+      if (user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', user.id)
+          .single()
+        
+        setIsAdmin(profile?.role === 'admin')
+      } else {
+        setIsAdmin(false)
+      }
     }
     checkUser()
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       setUser(session?.user || null)
+      
+      // Check admin status on auth change
+      if (session?.user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', session.user.id)
+          .single()
+        
+        setIsAdmin(profile?.role === 'admin')
+      } else {
+        setIsAdmin(false)
+      }
     })
 
     return () => subscription.unsubscribe()
@@ -94,23 +120,33 @@ export default function Navigation() {
             </Link>
             <div className="hidden md:flex space-x-6" data-testid="nav-desktop-links">
               <Link href="/" className="text-gray-200 hover:text-copper-400 transition-colors border-b-2 border-white pb-1" data-testid="nav-home-link">
-                Home
+                {t('nav.home', language)}
               </Link>
               <Link href="/properties" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-properties-link">
-                Properties
+                {t('nav.properties', language)}
               </Link>
               <Link href="/regions" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-regions-link">
-                Regions
+                {t('nav.regions', language)}
               </Link>
               <Link href="/about" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-about-link">
-                About
+                {t('nav.about', language)}
               </Link>
               <Link href="/process" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-process-link">
-                Process
+                {t('nav.process', language)}
               </Link>
               <Link href="/contact" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-contact-link">
-                Contact
+                {t('nav.contact', language)}
               </Link>
+              {user && (
+                <Link href="/dashboard" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-dashboard-link">
+                  {t('nav.dashboard', language)}
+                </Link>
+              )}
+              {user && isAdmin && (
+                <Link href="/admin" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-admin-link">
+                  {t('nav.admin', language)}
+                </Link>
+              )}
             </div>
           </div>
           
@@ -161,16 +197,6 @@ export default function Navigation() {
                     {user.user_metadata?.name || user.email}
                   </span>
                 </div>
-                <Link href="/admin">
-                  <Button 
-                    variant="outline" 
-                    className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-200 rounded-full px-4 py-2 text-sm font-medium flex items-center gap-2"
-                    data-testid="admin-link"
-                  >
-                    <Settings className="h-4 w-4" />
-                    Admin
-                  </Button>
-                </Link>
                 <Button 
                   variant="outline" 
                   onClick={handleLogout} 
@@ -221,7 +247,7 @@ export default function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
                 data-testid="mobile-properties-link"
               >
-                Properties
+                {t('nav.properties', language)}
               </Link>
               <Link 
                 href="/regions" 
@@ -229,7 +255,7 @@ export default function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
                 data-testid="mobile-regions-link"
               >
-                Regions
+                {t('nav.regions', language)}
               </Link>
               <Link 
                 href="/about" 
@@ -237,7 +263,7 @@ export default function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
                 data-testid="mobile-about-link"
               >
-                About
+                {t('nav.about', language)}
               </Link>
               <Link 
                 href="/process" 
@@ -245,7 +271,7 @@ export default function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
                 data-testid="mobile-process-link"
               >
-                Process
+                {t('nav.process', language)}
               </Link>
               <Link 
                 href="/contact" 
@@ -253,8 +279,28 @@ export default function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
                 data-testid="mobile-contact-link"
               >
-                Contact
+                {t('nav.contact', language)}
               </Link>
+              {user && (
+                <Link 
+                  href="/dashboard" 
+                  className="text-gray-200 hover:text-white transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                  data-testid="mobile-dashboard-link"
+                >
+                  {t('nav.dashboard', language)}
+                </Link>
+              )}
+              {user && isAdmin && (
+                <Link 
+                  href="/admin" 
+                  className="text-gray-200 hover:text-white transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                  data-testid="mobile-admin-link"
+                >
+                  {t('nav.admin', language)}
+                </Link>
+              )}
             </div>
           </div>
         )}

@@ -10,27 +10,10 @@ import {
   Castle, 
   Building2,
   X,
-  Eye,
-  Bed,
-  Bath,
-  Square,
-  Mountain,
-  Waves,
-  Car,
-  Thermometer,
   MapPin,
-  Trees,
-  Flame,
-  Wind,
-  Menu,
-  User,
   Map as MapIcon,
-  Grid3x3,
-  List,
-  SlidersHorizontal,
   Heart,
   ChevronRight,
-  Check
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -39,9 +22,11 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent } from '@/components/ui/card';
 import { supabase } from '../../lib/supabase';
 import AuthModal from '../../components/AuthModal';
+import Footer from '../../components/Footer';
 import RegionBanner from '../../components/RegionBanner';
+import Navigation from '@/components/Navigation';
 import { t } from '../../lib/translations';
-import { CURRENCY_RATES, CURRENCY_SYMBOLS, formatPriceCompact } from '../../lib/currency';
+import { formatPriceCompact } from '../../lib/currency';
 
 // Format price with compact symbols (k, M) using shared currency utility
 const formatPrice = (price, currency = 'EUR') => {
@@ -260,9 +245,8 @@ export default function PropertiesPage() {
   const [mapCenter, setMapCenter] = useState([42.8333, 12.8333]);
   const [showMap, setShowMap] = useState(false);
   
-  // Navigation state
+  // Navigation state (user only used for Favorites functionality)
   const [user, setUser] = useState(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [language, setLanguage] = useState('cs');
   const [currency, setCurrency] = useState('EUR');
@@ -364,6 +348,15 @@ export default function PropertiesPage() {
     if (savedCurrency) {
       setCurrency(savedCurrency);
     }
+
+    // Listen for language changes from Navigation
+    const handleLanguageChange = (event) => {
+      setLanguage(event.detail)
+      document.documentElement.lang = event.detail
+    }
+
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, []);
 
   // Scroll detection for "Back to Top" button
@@ -469,27 +462,9 @@ export default function PropertiesPage() {
     }
   }, [showRegionBanner]);
 
-  const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (!error) {
-      setUser(null);
-    }
-  };
-
   const handleAuthSuccess = (user) => {
     setUser(user);
     setIsAuthModalOpen(false);
-  };
-
-  const handleLanguageChange = (newLanguage) => {
-    setLanguage(newLanguage);
-    document.documentElement.lang = newLanguage;
-    localStorage.setItem('preferred-language', newLanguage);
-  };
-
-  const handleCurrencyChange = (newCurrency) => {
-    setCurrency(newCurrency);
-    localStorage.setItem('preferred-currency', newCurrency);
   };
 
   // Load more properties
@@ -501,11 +476,6 @@ export default function PropertiesPage() {
       setDisplayedCount(prev => prev + ITEMS_PER_PAGE);
       setIsLoadingMore(false);
     }, 600);
-  };
-
-  // Scroll to top smoothly
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Update map center when selected property changes
@@ -544,7 +514,7 @@ export default function PropertiesPage() {
       }
       return true;
     });
-  }, [filters]);
+  }, [filters, properties]);
 
   // Sort properties
   const sortedProperties = useMemo(() => {
@@ -584,8 +554,8 @@ export default function PropertiesPage() {
     setFilters(prev => ({
       ...prev,
       amenities: prev.amenities.includes(amenityId)
-        ? prev.amenities.filter(id => id !== amenityId)
-        : [...prev.amenities, amenityId]
+      ? prev.amenities.filter(id => id !== amenityId)
+      : [...prev.amenities, amenityId]
     }));
   };
 
@@ -603,193 +573,11 @@ export default function PropertiesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 home-page-custom-border">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }} data-testid="main-navigation">
-        <div className="container mx-auto px-4 pt-4 pb-3 overflow-visible" data-testid="nav-container">
-          <div className="flex items-center justify-between" data-testid="nav-content">
-            <div className="flex items-center space-x-8" data-testid="nav-brand-links">
-              <Link href="/" data-testid="nav-brand-link" className="relative overflow-visible">
-                <img 
-                  src="/logo domy.svg" 
-                  alt="Domy v Itálii"
-                  className="h-12 w-auto cursor-pointer" 
-                  style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))' }}
-                  data-testid="nav-brand-logo"
-                />
-              </Link>
-              <div className="hidden md:flex space-x-6" data-testid="nav-desktop-links">
-                <Link href="/" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-home-link">Domů</Link>
-                <Link href="/properties" className="text-gray-200 hover:text-copper-400 transition-colors border-b-2 border-white pb-1" data-testid="nav-properties-link">Nemovitosti</Link>
-                <Link href="/regions" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-regions-link">Regiony</Link>
-                <Link href="/about" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-about-link">O nás</Link>
-                <Link href="/process" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-process-link">Proces</Link>
-                <Link href="/contact" className="text-gray-200 hover:text-copper-400 transition-colors" data-testid="nav-contact-link">Kontakt</Link>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4" data-testid="nav-user-controls">
-              {/* Language & Currency Selector */}
-              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
-                {/* Language Buttons */}
-                <div className="flex items-center">
-                  <button
-                    onClick={() => handleLanguageChange('en')}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                      language === 'en' 
-                        ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                        : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                    }`}
-                  >
-                    EN
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange('cs')}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                      language === 'cs' 
-                        ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                        : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                    }`}
-                  >
-                    CS
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange('it')}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                      language === 'it' 
-                        ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                        : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                    }`}
-                  >
-                    IT
-                  </button>
-                </div>
-                
-                {/* Divider */}
-                <div className="w-0 group-hover:w-px h-6 bg-gray-300 group-hover:mx-2 opacity-0 group-hover:opacity-100 transition-all duration-200 overflow-hidden"></div>
-                
-                {/* Currency Buttons */}
-                <div className="flex items-center">
-                  <button
-                    onClick={() => handleCurrencyChange('EUR')}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                      currency === 'EUR' 
-                        ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                        : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                    }`}
-                  >
-                    EUR
-                  </button>
-                  <button
-                    onClick={() => handleCurrencyChange('CZK')}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                      currency === 'CZK' 
-                        ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                        : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                    }`}
-                  >
-                    CZK
-                  </button>
-                </div>
-          </div>
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <Navigation />
+      </div>
 
-              {/* User Authentication */}
-              {user ? (
-                <div className="flex items-center space-x-3" data-testid="user-authenticated-section">
-                  <div className="flex items-center space-x-2" data-testid="user-info">
-                    <User className="h-4 w-4 text-gray-200" />
-                    <span className="text-sm text-gray-200" data-testid="user-name">
-                      {user.user_metadata?.name || user.email}
-            </span>
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    onClick={handleLogout} 
-                    className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-200"
-                    data-testid="logout-button"
-                  >
-                    Logout
-                  </Button>
-          </div>
-              ) : (
-                <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20">
-                  <button
-                    onClick={() => setIsAuthModalOpen(true)}
-                    className="text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                    data-testid="login-button"
-                  >
-                    {language === 'cs' ? 'Přihlásit' : (language === 'it' ? 'Accedi' : 'Login')}
-                  </button>
-                  <span className="text-white/40 mx-1">/</span>
-                  <button
-                    onClick={() => setIsAuthModalOpen(true)}
-                    className="text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                    data-testid="register-button"
-                  >
-                    {language === 'cs' ? 'Registrovat' : (language === 'it' ? 'Registrati' : 'Register')}
-                  </button>
-        </div>
-              )}
-              
-              {/* Mobile menu button */}
-              <button
-                className="md:hidden"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                data-testid="mobile-menu-button"
-              >
-                {isMenuOpen ? <X className="h-6 w-6 text-gray-200" /> : <Menu className="h-6 w-6 text-gray-200" />}
-              </button>
-            </div>
-          </div>
-          
-          {/* Mobile menu */}
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 pt-4 border-t border-[#0e152e]" data-testid="mobile-menu">
-              <div className="flex flex-col space-y-4" data-testid="mobile-menu-links">
-                <Link 
-                  href="/properties" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                  data-testid="mobile-properties-link"
-                >
-                  Nemovitosti
-                </Link>
-                <Link 
-                  href="/regions" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                  data-testid="mobile-regions-link"
-                >
-                  Regiony
-                </Link>
-                <Link 
-                  href="/about" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                  data-testid="mobile-about-link"
-                >
-                  O nás
-                </Link>
-                <Link 
-                  href="/process" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                  data-testid="mobile-process-link"
-                >
-                  Proces
-                </Link>
-                <Link 
-                  href="/contact" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                  data-testid="mobile-contact-link"
-                >
-                  Kontakt
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
-
-      <div className="pt-28 pb-8">
+      <div className="pt-32 pb-8">
         <div className="container mx-auto px-4">
           {/* Region Banner */}
           {showRegionBanner && filters.region && (
@@ -807,7 +595,7 @@ export default function PropertiesPage() {
           )}
           
           <div className="flex gap-6">
-        {/* Left Sidebar - Filters */}
+            {/* Left Sidebar - Filters */}
             <div className="w-80 flex-shrink-0">
               <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg sticky top-24">
                 {/* Header */}
@@ -818,133 +606,133 @@ export default function PropertiesPage() {
                   <span className="text-sm bg-slate-100 px-3 py-1.5 rounded-lg font-semibold text-slate-800">
                     {sortedProperties.length} nemovitostí
                   </span>
-          </div>
+                </div>
 
-          {/* Filters */}
+                {/* Filters */}
                 <div className="flex-1">
-            {/* Property Type */}
-            <div className="p-6 border-b border-gray-100">
+                  {/* Property Type */}
+                  <div className="p-6 border-b border-gray-100">
                     <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">Typ nemovitosti</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {propertyTypes.map(type => {
-                  const Icon = type.icon;
-                  return (
-                    <button
-                      key={type.id}
-                      onClick={() => setFilters(prev => ({ 
-                        ...prev, 
-                        propertyType: prev.propertyType === type.id ? '' : type.id 
-                      }))}
+                    <div className="grid grid-cols-2 gap-3">
+                      {propertyTypes.map(type => {
+                        const Icon = type.icon;
+                        return (
+                          <button
+                            key={type.id}
+                            onClick={() => setFilters(prev => ({ 
+                              ...prev, 
+                              propertyType: prev.propertyType === type.id ? '' : type.id 
+                            }))}
                             className={`p-3 rounded-lg border transition-all duration-300 flex flex-col items-center space-y-2 hover:scale-105 shadow-sm hover:shadow-md ${
-                        filters.propertyType === type.id 
+                              filters.propertyType === type.id 
                                 ? 'bg-gradient-to-br from-slate-700 to-slate-800 border-slate-700 text-white shadow-lg' 
                                 : 'bg-white border-gray-200 hover:bg-gray-50 text-gray-700'
-                      }`}
-                    >
-                      <Icon className="h-5 w-5" />
+                            }`}
+                          >
+                            <Icon className="h-5 w-5" />
                             <span className="text-xs font-semibold">{type.name}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
 
-            {/* Region */}
-            <div className="p-6 border-b border-gray-100">
+                  {/* Region */}
+                  <div className="p-6 border-b border-gray-100">
                     <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">Region</h3>
-              <select
-                value={filters.region}
-                onChange={(e) => setFilters(prev => ({ ...prev, region: e.target.value }))}
+                    <select
+                      value={filters.region}
+                      onChange={(e) => setFilters(prev => ({ ...prev, region: e.target.value }))}
                       className="w-full p-3 pr-10 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm hover:border-gray-400 transition-colors duration-200 font-medium text-gray-700 appearance-none bg-no-repeat bg-right-2 bg-[length:16px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQgNkw4IDEwTDEyIDYiIHN0cm9rZT0iIzY0NzQ4QiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K')]"
-              >
-                <option value="">Všechny regiony</option>
-                {Object.keys(italianRegions).map(region => (
-                  <option key={region} value={region}>{region}</option>
-                ))}
-              </select>
-            </div>
+                    >
+                      <option value="">Všechny regiony</option>
+                      {Object.keys(italianRegions).map(region => (
+                        <option key={region} value={region}>{region}</option>
+                      ))}
+                    </select>
+                  </div>
 
-            {/* Rooms */}
-            <div className="p-6 border-b border-gray-100">
+                  {/* Rooms */}
+                  <div className="p-6 border-b border-gray-100">
                     <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">Počet pokojů</h3>
-              <div className="flex space-x-2">
-                {['1', '2', '3', '4+'].map(room => (
-                  <button
-                    key={room}
-                    onClick={() => setFilters(prev => ({ 
-                      ...prev, 
-                      rooms: prev.rooms === room ? '' : room 
-                    }))}
+                    <div className="flex space-x-2">
+                      {['1', '2', '3', '4+'].map(room => (
+                        <button
+                          key={room}
+                          onClick={() => setFilters(prev => ({ 
+                            ...prev, 
+                            rooms: prev.rooms === room ? '' : room 
+                          }))}
                           className={`flex-1 px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-sm ${
-                      filters.rooms === room 
+                            filters.rooms === room 
                               ? 'bg-gradient-to-br from-slate-700 to-slate-800 text-white border border-slate-700 shadow-lg' 
                               : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:shadow-md'
-                    }`}
-                  >
-                    {room}kk
-                  </button>
-                ))}
-              </div>
-            </div>
+                          }`}
+                        >
+                          {room}kk
+                        </button>
+                      ))}
+                    </div>
+                  </div>
 
-            {/* Price Range */}
-            <div className="p-6 border-b border-gray-100">
+                  {/* Price Range */}
+                  <div className="p-6 border-b border-gray-100">
                     <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">Cenové rozpětí (EUR)</h3>
-              <div className="space-y-3">
-                <Input
-                  type="number"
-                  placeholder="Od"
-                  value={filters.priceFrom}
-                  onChange={(e) => setFilters(prev => ({ ...prev, priceFrom: e.target.value }))}
+                    <div className="space-y-3">
+                      <Input
+                        type="number"
+                        placeholder="Od"
+                        value={filters.priceFrom}
+                        onChange={(e) => setFilters(prev => ({ ...prev, priceFrom: e.target.value }))}
                         className="border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm"
-                />
-                <Input
-                  type="number"
-                  placeholder="Do"
-                  value={filters.priceTo}
-                  onChange={(e) => setFilters(prev => ({ ...prev, priceTo: e.target.value }))}
+                      />
+                      <Input
+                        type="number"
+                        placeholder="Do"
+                        value={filters.priceTo}
+                        onChange={(e) => setFilters(prev => ({ ...prev, priceTo: e.target.value }))}
                         className="border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm"
-                />
-              </div>
-            </div>
+                      />
+                    </div>
+                  </div>
 
-            {/* Amenities */}
-            <div className="p-6">
+                  {/* Amenities */}
+                  <div className="p-6">
                     <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">Vybavení</h3>
-              <div className="space-y-3">
-                {amenities.map(amenity => (
-                  <label key={amenity.id} className="flex items-center space-x-3 cursor-pointer group">
-                    <Checkbox
-                      checked={filters.amenities.includes(amenity.id)}
-                      onCheckedChange={() => toggleAmenity(amenity.id)}
+                    <div className="space-y-3">
+                      {amenities.map(amenity => (
+                        <label key={amenity.id} className="flex items-center space-x-3 cursor-pointer group">
+                          <Checkbox
+                            checked={filters.amenities.includes(amenity.id)}
+                            onCheckedChange={() => toggleAmenity(amenity.id)}
                             className="data-[state=checked]:bg-slate-700 data-[state=checked]:border-slate-700"
-                    />
+                          />
                           <span className="text-sm text-gray-700 group-hover:text-slate-800 font-medium transition-colors duration-200">{amenity.name}</span>
-                  </label>
-                ))}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Clear Filters */}
+                <div className="p-6 border-t border-gray-200 bg-gradient-to-br from-gray-50 to-white rounded-b-2xl">
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-slate-600 text-slate-700 hover:bg-slate-700 hover:text-white font-semibold transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md"
+                    onClick={clearFilters}
+                  >
+                    <X className="h-4 w-4 mr-2" />
+                    Vymazat filtry
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-
-          {/* Clear Filters */}
-                <div className="p-6 border-t border-gray-200 bg-gradient-to-br from-gray-50 to-white rounded-b-2xl">
-            <Button 
-              variant="outline" 
-                    className="w-full border-slate-600 text-slate-700 hover:bg-slate-700 hover:text-white font-semibold transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md"
-              onClick={clearFilters}
-            >
-              <X className="h-4 w-4 mr-2" />
-              Vymazat filtry
-            </Button>
-                </div>
-          </div>
-        </div>
 
             {/* Main Content Area */}
             <div className="flex-1 min-w-0">
               {/* Top Controls Bar */}
               <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg p-6 mb-6">
-            <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between">
                   {/* Search Bar */}
                   <div className="relative max-w-md">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-500" />
@@ -982,144 +770,93 @@ export default function PropertiesPage() {
                       <MapIcon className="h-5 w-5 mr-2" />
                       {showMap ? 'Skrýt mapu' : 'Zobrazit mapu'}
                     </Button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
               {/* Map View (when toggled) */}
               {showMap && (
                 <div className="bg-white border border-gray-200 rounded-2xl shadow-lg mb-6 overflow-hidden">
                   <div className="h-[500px] relative">
-            <MapComponent
-              properties={sortedProperties}
-              selectedProperty={selectedProperty}
-              onPropertyClick={handleCardClick}
-              center={selectedProperty ? selectedProperty.location : [42.8333, 12.8333]}
-              zoom={selectedProperty ? 10 : 6}
-            />
+                    <MapComponent
+                      properties={sortedProperties}
+                      selectedProperty={selectedProperty}
+                      onPropertyClick={handleCardClick}
+                      center={selectedProperty ? selectedProperty.location : [42.8333, 12.8333]}
+                      zoom={selectedProperty ? 10 : 6}
+                    />
                   </div>
                 </div>
               )}
 
               {/* Properties Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {displayedProperties.map(property => (
-                  <PropertyCard
-                  key={property.id} 
-                    property={property}
+                {displayedProperties.map(property => (
+                  <PropertyCard 
+                    key={property.id} 
+                    property={property} 
                     onFavorite={handleToggleFavorite}
-                    isFavorited={userFavorites.has(property.id) || userFavorites.has(property.sanityId)}
+                    isFavorited={userFavorites.has(property.id)}
                     language={language}
                     currency={currency}
+                    onClick={handleCardClick}
                   />
-              ))}
-              
-              {/* Loading More Skeleton */}
-              {isLoadingMore && (
-                <>
-                  {[...Array(ITEMS_PER_PAGE)].map((_, index) => (
-                    <div key={`skeleton-${index}`} className="animate-pulse">
-                      <div className="bg-gray-200 rounded-2xl h-96"></div>
-                    </div>
-                  ))}
-                </>
-              )}
-              
-              {loadingProperties && (
-                <div className="col-span-full text-center py-20">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-700 mx-auto mb-4"></div>
-                  <p className="text-gray-600">Načítám nemovitosti...</p>
-                </div>
-              )}
+                ))}
+              </div>
 
-              {sortedProperties.length === 0 && !loadingProperties && (
-                  <div className="col-span-full text-center py-20 bg-white rounded-2xl border border-gray-200 shadow-lg">
-                    <MapPin className="h-16 w-16 mx-auto mb-4 text-slate-300" />
-                    <p className="font-bold text-xl text-gray-900 mb-2">Žádné nemovitosti nenalezeny</p>
-                    <p className="text-sm text-gray-500 mb-6">Zkuste upravit kritéria vyhledávání nebo vymazat filtry</p>
-                    <Button 
-                      variant="outline" 
-                      onClick={clearFilters} 
-                      className="border-slate-600 text-slate-700 hover:bg-slate-700 hover:text-white transition-all duration-300 hover:scale-105 shadow-sm"
-                    >
-                      <X className="h-4 w-4 mr-2" />
-                      Vymazat všechny filtry
-                  </Button>
-                </div>
-              )}
-            </div>
-
-            {/* Load More Section */}
-            {!loadingProperties && sortedProperties.length > 0 && (
+              {/* Load More / Back to Top */}
               <div className="mt-12 text-center space-y-6">
-                {/* Results Counter */}
-                <div className="text-gray-600 text-sm font-medium">
-                  {language === 'cs' ? 'Zobrazeno' : language === 'it' ? 'Visualizzato' : 'Showing'}{' '}
-                  <span className="text-slate-800 font-bold">{displayedProperties.length}</span>{' '}
-                  {language === 'cs' ? 'z' : language === 'it' ? 'di' : 'of'}{' '}
-                  <span className="text-slate-800 font-bold">{sortedProperties.length}</span>{' '}
-                  {language === 'cs' ? 'nemovitostí' : language === 'it' ? 'proprietà' : 'properties'}
-                </div>
-
-                {/* Load More Button */}
                 {hasMoreProperties && (
-                  <Button
+                  <Button 
                     onClick={handleLoadMore}
                     disabled={isLoadingMore}
-                    className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    className="bg-white hover:bg-gray-50 text-slate-800 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 px-8 py-6 rounded-xl font-semibold text-lg"
                   >
                     {isLoadingMore ? (
-                      <>
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-                        {language === 'cs' ? 'Načítám další nemovitosti...' : language === 'it' ? 'Caricamento...' : 'Loading more properties...'}
-                      </>
+                      <span className="flex items-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-slate-800 mr-3"></div>
+                        Načítání...
+                      </span>
                     ) : (
-                      <>
-                        <ChevronRight className="h-5 w-5 mr-2 rotate-90" />
-                        {language === 'cs' 
-                          ? `Načíst další (${Math.min(ITEMS_PER_PAGE, sortedProperties.length - displayedCount)} nemovitostí)` 
-                          : language === 'it' 
-                          ? `Carica altri (${Math.min(ITEMS_PER_PAGE, sortedProperties.length - displayedCount)} proprietà)` 
-                          : `Load More (${Math.min(ITEMS_PER_PAGE, sortedProperties.length - displayedCount)} properties)`
-                        }
-                      </>
+                      'Načíst další nemovitosti'
                     )}
                   </Button>
                 )}
-
-                {/* All Loaded Message */}
-                {!hasMoreProperties && sortedProperties.length > 12 && (
-                  <div className="text-center py-8">
-                    <div className="inline-flex items-center px-6 py-3 bg-slate-100 rounded-full text-slate-700 font-medium">
-                      <Check className="h-5 w-5 mr-2 text-slate-600" />
-                      {language === 'cs' ? 'Zobrazeny všechny nemovitosti' : language === 'it' ? 'Tutte le proprietà visualizzate' : 'All properties displayed'}
-                    </div>
-                  </div>
+                
+                {!hasMoreProperties && displayedProperties.length > 0 && (
+                  <p className="text-gray-500 font-medium">
+                    Zobrazili jste všechny nemovitosti ({displayedProperties.length})
+                  </p>
                 )}
+
+                {/* Back to Top Button - Only shows when scrolled down */}
+                <div 
+                  className={`fixed bottom-8 right-8 transition-all duration-500 transform ${
+                    showBackToTop ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
+                  }`}
+                >
+                  <Button
+                    onClick={scrollToTop}
+                    className="bg-slate-800 hover:bg-slate-700 text-white rounded-full p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
+                  >
+                    <ChevronRight className="h-6 w-6 transform -rotate-90" />
+                  </Button>
+                </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>
-      </div>
 
-      {/* Back to Top Button */}
-      {showBackToTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 active:scale-95 group"
-          aria-label="Back to top"
-        >
-          <ChevronRight className="h-6 w-6 -rotate-90 group-hover:-translate-y-1 transition-transform duration-300" />
-        </button>
-      )}
-      
-      {/* Auth Modal */}
+      {/* Footer */}
+      <Footer language={language} />
+
+      {/* Auth Modal (for Favorites) */}
       <AuthModal 
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
       />
     </div>
-  );
+  )
 }

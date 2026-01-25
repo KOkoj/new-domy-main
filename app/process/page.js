@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { 
   Search, 
   FileSearch, 
-  Home, 
   CheckCircle, 
   Calendar,
   Users,
@@ -13,26 +12,19 @@ import {
   MapPin,
   Heart,
   Key,
-  Briefcase,
   Clock,
   CheckSquare,
-  Menu,
-  X,
-  User,
   ChevronRight,
   Euro,
-  Building,
   Landmark,
-  Video,
-  Phone,
   Mail
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
-import { supabase } from '../../lib/supabase'
-import AuthModal from '../../components/AuthModal'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 const PROCESS_STEPS = [
   {
@@ -471,11 +463,7 @@ const COSTS_OVERVIEW = [
 ]
 
 export default function ProcessPage() {
-  const [user, setUser] = useState(null)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [language, setLanguage] = useState('en')
-  const [expandedStep, setExpandedStep] = useState(null)
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')
@@ -483,225 +471,46 @@ export default function ProcessPage() {
       setLanguage(savedLanguage)
       document.documentElement.lang = savedLanguage
     }
-  }, [])
 
-  useEffect(() => {
-    const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      setUser(user)
+    const handleLanguageChange = (event) => {
+      setLanguage(event.detail)
+      document.documentElement.lang = event.detail
     }
-    checkUser()
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user || null)
-    })
-
-    return () => subscription.unsubscribe()
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
-
-  const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut()
-    if (!error) {
-      setUser(null)
-    }
-  }
-
-  const handleAuthSuccess = (user) => {
-    setUser(user)
-    setIsAuthModalOpen(false)
-  }
-
-  const handleLanguageChange = (newLanguage) => {
-    setLanguage(newLanguage)
-    document.documentElement.lang = newLanguage
-    localStorage.setItem('preferred-language', newLanguage)
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 home-page-custom-border">
       {/* Modern Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}>
-        <div className="container mx-auto px-4 pt-4 pb-3 overflow-visible">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-8">
-              <Link href="/" className="relative overflow-visible">
-                <img 
-                  src="/logo domy.svg" 
-                  alt="Domy v Itálii"
-                  className="h-12 w-auto cursor-pointer" 
-                  style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))' }}
-                />
-              </Link>
-              <div className="hidden md:flex space-x-6">
-                <Link href="/" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home'}
-                </Link>
-                <Link href="/properties" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties'}
-                </Link>
-                <Link href="/regions" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions'}
-                </Link>
-                <Link href="/about" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About'}
-                </Link>
-                <Link href="/process" className="text-gray-200 hover:text-copper-400 transition-colors border-b-2 border-white pb-1">
-                  {language === 'cs' ? 'Proces' : language === 'it' ? 'Processo' : 'Process'}
-                </Link>
-                <Link href="/contact" className="text-gray-200 hover:text-copper-400 transition-colors">
-                  {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
-                </Link>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              {/* Language Selector */}
-              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
-                <button
-                  onClick={() => handleLanguageChange('en')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'en' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => handleLanguageChange('cs')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'cs' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  CS
-                </button>
-                <button
-                  onClick={() => handleLanguageChange('it')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'it' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  IT
-                </button>
-              </div>
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <Navigation />
+      </div>
 
-              {/* User Authentication */}
-              {user ? (
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center space-x-2">
-                    <User className="h-4 w-4 text-gray-200" />
-                    <span className="text-sm text-gray-200">
-                      {user.user_metadata?.name || user.email}
-                    </span>
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    onClick={handleLogout} 
-                    className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-200 rounded-full px-6 py-4 text-sm font-medium"
-                  >
-                    Logout
-                  </Button>
-                </div>
-              ) : (
-                <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20">
-                  <button
-                    onClick={() => setIsAuthModalOpen(true)}
-                    className="text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                  >
-                    {language === 'cs' ? 'Přihlásit' : (language === 'it' ? 'Accedi' : 'Login')}
-                  </button>
-                  <span className="text-white/40 mx-1">/</span>
-                  <button
-                    onClick={() => setIsAuthModalOpen(true)}
-                    className="text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-2 py-1 hover:bg-white/5"
-                  >
-                    {language === 'cs' ? 'Registrovat' : (language === 'it' ? 'Registrati' : 'Register')}
-                  </button>
-                </div>
-              )}
-              
-              {/* Mobile menu button */}
-              <button
-                className="md:hidden"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                {isMenuOpen ? <X className="h-6 w-6 text-gray-200" /> : <Menu className="h-6 w-6 text-gray-200" />}
-              </button>
-            </div>
-          </div>
-          
-          {/* Mobile menu */}
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 pt-4 border-t border-[#0e152e]">
-              <div className="flex flex-col space-y-4">
-                <Link 
-                  href="/properties" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties'}
-                </Link>
-                <Link 
-                  href="/regions" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions'}
-                </Link>
-                <Link 
-                  href="/about" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About'}
-                </Link>
-                <Link 
-                  href="/process" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Proces' : language === 'it' ? 'Processo' : 'Process'}
-                </Link>
-                <Link 
-                  href="/contact" 
-                  className="text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
-
-      <div className="pt-28 pb-12">
+      <div className="pt-32 pb-12">
         {/* Hero Section */}
         <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm mb-12">
           <div className="container mx-auto px-4 py-16">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent px-2">
                 {language === 'cs' ? 'Jak koupit dům v Itálii – praktický průvodce pro Čechy' :
                  language === 'it' ? 'Come acquistare una casa in Italia - guida pratica per i cechi' :
                  'How to Buy a House in Italy - Practical Guide for Czechs'}
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed mb-8">
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8 px-4">
                 {language === 'cs' ? 'Plánujete koupi domu nebo bytu v Itálii, ale nechcete riskovat chyby, zbytečné náklady ani právní problémy? Proces koupě nemovitosti v Itálii se v mnoha ohledech liší od České republiky – nejen právně, ale i v postupu, roli notáře a odpovědnosti jednotlivých stran.' :
                  language === 'it' ? 'State pianificando l\'acquisto di una casa o appartamento in Italia, ma non volete rischiare errori, costi inutili o problemi legali? Il processo di acquisto di un immobile in Italia differisce in molti aspetti dalla Repubblica Ceca - non solo legalmente, ma anche nella procedura, nel ruolo del notaio e nelle responsabilità delle singole parti.' :
                  'Are you planning to buy a house or apartment in Italy, but don\'t want to risk mistakes, unnecessary costs, or legal problems? The process of buying property in Italy differs in many respects from the Czech Republic - not only legally, but also in procedure, the role of the notary, and the responsibilities of individual parties.'}
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-600 leading-relaxed px-4">
                 {language === 'cs' ? 'Proto jsme připravili praktického průvodce, který vám pomůže pochopit, jak celý proces skutečně funguje ještě předtím, než uděláte první krok.' :
                  language === 'it' ? 'Per questo abbiamo preparato una guida pratica che vi aiuterà a capire come funziona realmente l\'intero processo prima ancora di fare il primo passo.' :
                  'That\'s why we\'ve prepared a practical guide that will help you understand how the whole process really works before you take the first step.'}
               </p>
               
               {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 px-4">
                 <div className="bg-gradient-to-br from-slate-50 to-white rounded-xl p-4 border border-gray-200 shadow-sm">
                   <div className="text-3xl font-bold text-slate-700 mb-1">8</div>
                   <div className="text-sm text-gray-600">
@@ -838,16 +647,16 @@ export default function ProcessPage() {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-start justify-between mb-2">
+                        <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
                           <div>
-                            <CardTitle className="text-2xl font-bold text-slate-800 mb-1">
+                            <CardTitle className="text-xl md:text-2xl font-bold text-slate-800 mb-1">
                               {step.title[language]}
                             </CardTitle>
                             <p className="text-slate-600 font-medium">
                               {step.subtitle[language]}
                             </p>
                           </div>
-                          <Badge className="bg-slate-100 text-slate-700 border-slate-200 px-3 py-1">
+                          <Badge className="bg-slate-100 text-slate-700 border-slate-200 px-3 py-1 mt-2 md:mt-0 w-fit">
                             <Clock className="h-3 w-3 mr-1" />
                             {step.duration[language]}
                           </Badge>
@@ -940,7 +749,7 @@ export default function ProcessPage() {
 
                 <div className="space-y-4">
                   {COSTS_OVERVIEW.map((cost, index) => (
-                    <div key={index} className="flex items-start justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <div key={index} className="flex flex-col md:flex-row md:items-start md:justify-between p-4 bg-slate-50 rounded-xl border border-slate-100 gap-2 md:gap-4">
                       <div className="flex-1">
                         <h4 className="font-semibold text-slate-800 mb-1">
                           {cost.title[language]}
@@ -949,7 +758,7 @@ export default function ProcessPage() {
                           {cost.description[language]}
                         </p>
                       </div>
-                      <div className="text-right ml-4">
+                      <div className="md:text-right md:ml-4">
                         <span className="font-bold text-lg text-slate-700">
                           {cost.amount[language]}
                         </span>
@@ -1056,13 +865,8 @@ export default function ProcessPage() {
         </div>
       </div>
 
-      {/* Auth Modal */}
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        onAuthSuccess={handleAuthSuccess}
-      />
+      {/* Footer */}
+      <Footer language={language} />
     </div>
   )
 }
-
