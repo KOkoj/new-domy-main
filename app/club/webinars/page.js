@@ -140,6 +140,8 @@ export default function WebinarsPage() {
   const [user, setUser] = useState(null)
   const [registrations, setRegistrations] = useState([])
   const [loading, setLoading] = useState(true)
+  const [upcomingWebinars, setUpcomingWebinars] = useState([])
+  const [pastWebinars, setPastWebinars] = useState([])
 
   useEffect(() => {
     loadWebinarData()
@@ -147,14 +149,58 @@ export default function WebinarsPage() {
 
   const loadWebinarData = async () => {
     try {
+      setLoading(true)
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
       
       setUser(user)
 
-      // TODO: Load user's webinar registrations from database
-      // For now using hardcoded data
-      setRegistrations([3]) // User registered for webinar ID 3
+      // Fetch Webinars
+      const { data: webinarsData, error: webinarsError } = await supabase
+        .from('webinars')
+        .select('*')
+        .order('date', { ascending: true })
+
+      if (webinarsError) throw webinarsError
+
+      // Split into upcoming and past
+      const now = new Date()
+      const upcoming = []
+      const past = []
+
+      webinarsData.forEach(webinar => {
+        const webinarDate = new Date(`${webinar.date}T${webinar.time.split(' ')[0]}:00`)
+        // Transform to match UI expected format if needed
+        const formattedWebinar = {
+          ...webinar,
+          speaker: {
+            name: webinar.speaker_name,
+            title: webinar.speaker_title,
+            avatar: webinar.speaker_avatar || '/placeholder-avatar.jpg'
+          },
+          spots: webinar.max_spots - webinar.current_registrations
+        }
+
+        if (webinarDate >= now || webinar.status === 'upcoming') {
+          upcoming.push(formattedWebinar)
+        } else {
+          past.push(formattedWebinar)
+        }
+      })
+
+      setUpcomingWebinars(upcoming)
+      setPastWebinars(past)
+
+      // Load user's webinar registrations
+      const { data: userRegistrations, error: regError } = await supabase
+        .from('webinar_registrations')
+        .select('webinar_id')
+        .eq('user_id', user.id)
+      
+      if (regError) throw regError
+
+      setRegistrations(userRegistrations.map(r => r.webinar_id))
+
     } catch (error) {
       console.error('Error loading webinar data:', error)
     } finally {
@@ -255,7 +301,8 @@ END:VCALENDAR`
 
         {/* Upcoming Webinars */}
         <TabsContent value="upcoming" className="space-y-4 mt-6" data-testid="webinars-upcoming-content">
-          {UPCOMING_WEBINARS.map((webinar) => {
+          {upcomingWebinars.length > 0 ? (
+            upcomingWebinars.map((webinar) => {
             const isRegistered = registrations.includes(webinar.id)
             
             return (
@@ -366,12 +413,21 @@ END:VCALENDAR`
                 </CardContent>
               </Card>
             )
-          })}
+          })) : (
+            <Card className="bg-slate-800 border-copper-400/20">
+              <CardContent className="p-12 text-center">
+                <Calendar className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+                <p className="text-gray-400">No upcoming webinars scheduled.</p>
+                <p className="text-sm text-gray-500 mt-2">Check back soon for new sessions!</p>
+              </CardContent>
+            </Card>
+          )}
         </TabsContent>
 
         {/* Past Webinars / Recordings */}
         <TabsContent value="past" className="space-y-4 mt-6" data-testid="webinars-past-content">
-          {PAST_WEBINARS.map((webinar) => (
+          {pastWebinars.length > 0 ? (
+            pastWebinars.map((webinar) => (
             <Card key={webinar.id} className="bg-slate-800 border-copper-400/20" data-testid={`webinar-past-${webinar.id}`}>
               <CardContent className="p-6" data-testid={`webinar-past-${webinar.id}-content`}>
                 <div className="flex flex-col lg:flex-row gap-6" data-testid={`webinar-past-${webinar.id}-layout`}>
@@ -404,7 +460,7 @@ END:VCALENDAR`
                       </span>
                       <span className="flex items-center" data-testid={`webinar-past-${webinar.id}-views-info`}>
                         <Users className="h-4 w-4 mr-1" data-testid={`webinar-past-${webinar.id}-views-icon`} />
-                        {webinar.views} views
+                        {webinar.views || 0} views
                       </span>
                     </div>
 
@@ -442,7 +498,15 @@ END:VCALENDAR`
                 </div>
               </CardContent>
             </Card>
-          ))}
+          ))
+          ) : (
+            <Card className="bg-slate-800 border-copper-400/20">
+              <CardContent className="p-12 text-center">
+                <Video className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+                <p className="text-gray-400">No past recordings available.</p>
+              </CardContent>
+            </Card>
+          )}
         </TabsContent>
       </Tabs>
     </div>
