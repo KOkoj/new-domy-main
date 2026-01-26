@@ -27,12 +27,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${sora.variable} font-sans`}>
+    <html lang="en" className={`${manrope.variable} ${sora.variable} font-sans overflow-x-hidden`}>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="antialiased">
+      <body className="antialiased overflow-x-hidden">
         {children}
       </body>
     </html>

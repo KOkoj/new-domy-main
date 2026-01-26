@@ -322,11 +322,11 @@ function PropertyOfTheDay({ property, language, currency }) {
   }
 
   return (
-    <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border-0" data-testid="property-of-the-day">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[500px]">
+    <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border-0" data-testid="property-of-the-day">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]">
         {/* Left Side - Enhanced Image */}
         <div className="relative group overflow-hidden h-full">
-          <div className="relative h-full min-h-[400px]">
+          <div className="relative h-full min-h-[250px] sm:min-h-[300px] lg:min-h-[400px]">
             <img 
               src={(typeof property.images?.[0] === 'string' ? property.images[0] : property.images?.[0]?.url) || '/placeholder-property.jpg'}  
               alt={property.title[language] || property.title.en}
@@ -1253,7 +1253,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f7f4ed] home-page-custom-border" data-testid="homepage-container">
+    <div className="min-h-screen bg-[#f7f4ed] home-page-custom-border overflow-x-hidden" data-testid="homepage-container">
       {/* Loading Screen */}
       {isLoading && (
         <div className="fixed inset-0 z-[100] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center transition-opacity duration-1000 ease-in-out">
@@ -1291,8 +1291,7 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section 
-        className="relative h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 shadow-inner flex items-center justify-center" 
-        style={{ height: '100vh' }}
+        className="relative min-h-[100dvh] overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 shadow-inner flex items-center justify-center" 
         data-testid="hero-section"
       >
         {/* Hero Background Image Transition */}
@@ -1308,39 +1307,49 @@ export default function HomePage() {
         {/* Golden Accent Overlay - vibrant and noticeable */}
         <div className="absolute inset-0 z-10 bg-gradient-to-br from-copper-500/35 via-copper-400/25 to-copper-300/15 opacity-80"></div>
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-        <div className="container mx-auto px-4 relative z-20" data-testid="hero-content-container">
-          <div className="text-center text-white space-y-12" data-testid="hero-content">
-            <div className="space-y-6">
+        <div className="container mx-auto px-3 sm:px-4 relative z-20" data-testid="hero-content-container">
+          <div className="text-center text-white space-y-4 sm:space-y-8 md:space-y-12" data-testid="hero-content">
+            <div className="space-y-3 sm:space-y-6">
               <h2 
-                className="font-bold leading-tight tracking-tight" 
+                className="font-bold leading-tight tracking-tight text-4xl md:text-6xl lg:text-7xl" 
                 style={{ 
-                  fontSize: '3.5rem',
-                  textShadow: '0 4px 8px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4)'
+                  textShadow: '0 4px 8px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4)',
+                  textWrap: 'balance',
+                  wordBreak: 'normal',
+                  overflowWrap: 'normal',
+                  hyphens: 'none'
                 }}
                 data-testid="hero-title"
               >
                 {startAnimations ? (
-                  t('hero.title', language).split('').map((char, index) => (
-                    <span
-                      key={index}
-                      className="inline-block animate-char-fade-in"
-                      style={{ 
-                        animationDelay: `${index * 0.05}s`,
-                        opacity: 0,
-                        animationFillMode: 'forwards'
-                      }}
-                    >
-                      {char === ' ' ? '\u00A0' : char}
-                    </span>
-                  ))
+                  t('hero.title', language).split(' ').map((word, wordIndex, words) => {
+                    const charsBefore = words.slice(0, wordIndex).join(' ').length + (wordIndex > 0 ? wordIndex : 0);
+                    return (
+                      <span key={wordIndex} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+                        {word.split('').map((char, charIndex) => (
+                          <span
+                            key={charIndex}
+                            className="inline-block animate-char-fade-in"
+                            style={{ 
+                              animationDelay: `${(charsBefore + charIndex) * 0.05}s`,
+                              opacity: 0,
+                              animationFillMode: 'forwards'
+                            }}
+                          >
+                            {char}
+                          </span>
+                        ))}
+                        {wordIndex < words.length - 1 && '\u00A0'}
+                      </span>
+                    );
+                  })
                 ) : (
                   <span style={{ opacity: 0 }}>{t('hero.title', language)}</span>
                 )}
               </h2>
               <p 
-                className={`text-gray-100 max-w-1400 mx-auto leading-relaxed font-light italic transition-all duration-700 ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                className={`text-gray-100 max-w-4xl mx-auto leading-relaxed font-light italic transition-all duration-700 text-lg md:text-2xl lg:text-3xl ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                 style={{ 
-                  fontSize: '1.75rem',
                   marginTop: '5px',
                   textShadow: '0 3px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3)',
                   transitionDelay: startAnimations ? '1s' : '0s'
@@ -1353,38 +1362,20 @@ export default function HomePage() {
             
             {/* Enhanced Search Container */}
             <div 
-              className={`transition-all duration-700 ${startAnimations ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`}
+              className={`transition-all duration-700 w-full max-w-md sm:max-w-lg mx-auto mt-4 sm:mt-8 px-2 sm:px-0 ${startAnimations ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`}
               style={{
-                maxWidth: '30rem',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                marginTop: '2rem',
                 transitionDelay: startAnimations ? '1.3s' : '0s'
               }}
               data-testid="hero-search-container"
             >
-              <div className="bg-white/95 backdrop-blur-sm rounded-[99px] p-1.5 shadow-2xl border border-white/20 hover:shadow-3xl transition-all duration-300 group">
-                <div className="flex items-center gap-1.5">
-                  <div className="flex-1 relative group">
-                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 transition-colors duration-200 group-focus-within:text-blue-600" />
+              <div className="bg-white/95 backdrop-blur-sm rounded-full sm:rounded-[99px] p-1 sm:p-1.5 shadow-2xl border border-white/20 hover:shadow-3xl transition-all duration-300 group">
+                <div className="flex items-center gap-1 sm:gap-1.5">
+                  <div className="flex-1 relative group min-w-0">
+                    <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 transition-colors duration-200 group-focus-within:text-blue-600" />
               <input 
                       type="text"
                       placeholder={t('hero.searchPlaceholder', language)} 
-                      style={{
-                        width: '100%',
-                        paddingLeft: '2.75rem',
-                        paddingRight: '1rem',
-                        paddingTop: '0.625rem',
-                        paddingBottom: '0.625rem',
-                        fontSize: '1rem',
-                        lineHeight: '1.5rem',
-                        backgroundColor: 'transparent',
-                        border: 'none',
-                        outline: 'none',
-                        color: '#1f2937',
-                        borderRadius: '99px'
-                      }}
-                      className="placeholder-gray-500 focus:bg-blue-50/30 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 hover:bg-gray-50/50"
+                      className="w-full pl-9 sm:pl-11 pr-2 sm:pr-4 py-2 sm:py-2.5 text-sm sm:text-base bg-transparent border-none outline-none text-gray-800 rounded-full placeholder-gray-500 focus:bg-blue-50/30 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 hover:bg-gray-50/50"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                       data-testid="hero-search-input"
@@ -1392,7 +1383,7 @@ export default function HomePage() {
                   </div>
                   <Button 
                     size="sm" 
-                    className="px-6 py-2.5 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white rounded-[99px] font-medium text-base shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 h-[40px] flex items-center gap-2 focus:outline-none focus:ring-0 focus-visible:ring-0" 
+                    className="px-3 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white rounded-full font-medium text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 h-[36px] sm:h-[40px] flex items-center gap-1 sm:gap-2 focus:outline-none focus:ring-0 focus-visible:ring-0 flex-shrink-0" 
                     data-testid="hero-search-button"
                     onClick={() => {
                       const searchParams = new URLSearchParams()
@@ -1403,7 +1394,7 @@ export default function HomePage() {
                     }}
                   >
                     <Search className="h-4 w-4" />
-                    {t('hero.searchButton', language)}
+                    <span className="hidden sm:inline">{t('hero.searchButton', language)}</span>
               </Button>
                 </div>
               </div>
@@ -1411,14 +1402,9 @@ export default function HomePage() {
             
             {/* Quick Search Keywords - Enhanced Colors & Animations */}
             <div 
-              style={{
-                maxWidth: '41rem',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                marginTop: '1.5rem'
-              }}
+              className="w-full max-w-2xl mx-auto mt-3 sm:mt-6 px-2 sm:px-0 hidden sm:block"
             >
-              <div className="flex flex-wrap justify-center gap-1.5" data-testid="quick-search-keywords">
+              <div className="flex flex-wrap justify-center gap-1 sm:gap-1.5" data-testid="quick-search-keywords">
                 {/* Property Types - Luxury Theme */}
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '1.6s' : '0s', animationFillMode: 'forwards' }}>
                   <button
@@ -1544,20 +1530,16 @@ export default function HomePage() {
             
             {/* Trust Indicators - Subtle & Elegant */}
             <div 
-              className={`transition-all duration-700 ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              className={`transition-all duration-700 w-full max-w-3xl mx-auto mt-6 sm:mt-16 px-2 sm:px-4 ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{
-                maxWidth: '50rem',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                marginTop: '4rem',
                 transitionDelay: startAnimations ? '2.9s' : '0s'
               }}
             >
-              <div className="flex flex-wrap justify-center items-center gap-4 px-4">
+              <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-2 sm:gap-4">
                 {/* Legal Partner */}
-                <div className="flex items-center gap-2 rounded-lg px-4 py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  <Scale className="h-4 w-4 text-white group-hover:text-white transition-colors" />
-                  <div className="flex flex-col">
+                <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full sm:w-auto" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
+                  <Scale className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
+                  <div className="flex flex-col min-w-0">
                     <span className="text-xs font-semibold text-white leading-tight">
                       {language === 'cs' ? 'Právní Partner' :
                        language === 'it' ? 'Partner Legale' :
@@ -1572,9 +1554,9 @@ export default function HomePage() {
                 </div>
                 
                 {/* Tour Partner */}
-                <div className="flex items-center gap-2 rounded-lg px-4 py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  <Globe className="h-4 w-4 text-white group-hover:text-white transition-colors" />
-                  <div className="flex flex-col">
+                <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full sm:w-auto" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
+                  <Globe className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
+                  <div className="flex flex-col min-w-0">
                     <span className="text-xs font-semibold text-white leading-tight">
                       {language === 'cs' ? 'Turistický Partner' :
                        language === 'it' ? 'Partner Turistico' :
@@ -1589,9 +1571,9 @@ export default function HomePage() {
                 </div>
                 
                 {/* Data Privacy */}
-                <div className="flex items-center gap-2 rounded-lg px-4 py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  <Lock className="h-4 w-4 text-white group-hover:text-white transition-colors" />
-                  <div className="flex flex-col">
+                <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full sm:w-auto" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
+                  <Lock className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
+                  <div className="flex flex-col min-w-0">
                     <span className="text-xs font-semibold text-white leading-tight">
                       {language === 'cs' ? 'Soukromí Dát' :
                        language === 'it' ? 'Privacy dei Dati' :
@@ -1611,25 +1593,25 @@ export default function HomePage() {
       </section>
 
         {/* Intro Section - Not a Real Estate Agency */}
-        <section className="bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10 pt-0 pb-20">
+        <section className="bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10 pt-8 sm:pt-0 pb-12 sm:pb-20 overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Side - Text Content */}
-            <div className="space-y-6 animate-on-scroll slide-left">
-                <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+            <div className="space-y-4 sm:space-y-6 animate-on-scroll slide-left">
+                <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                   {language === 'cs' ? 'Nejsme realitní kancelář.' :
                    language === 'it' ? 'Non siamo un\'agenzia immobiliare.' :
                    'We\'re Not a Real Estate Agency.'}
                 </h2>
-                <p className="text-xl text-gray-700 leading-relaxed">
+                <p className="text-base sm:text-xl text-gray-700 leading-relaxed">
                   {language === 'cs' ? 'Nevlastníme žádné nemovitosti a nesnažíme se nic „prodat". Jsme váš osobní průvodce celým procesem – cílem je najít domov, který skutečně sedí vám. Námi vybrané nemovitosti' :
                    language === 'it' ? 'Non possediamo proprietà e non cerchiamo di "vendere" nulla. Siamo la tua guida personale attraverso l\'intero processo – l\'obiettivo è trovare una casa che si adatti davvero a te. Le proprietà che selezioniamo' :
                    'We don\'t own any properties and we\'re not trying to "sell" anything. We\'re your personal guide through the entire process – the goal is to find a home that truly fits you. The properties we select'}
               </p>
-              <div className="pt-4">
+              <div className="pt-2 sm:pt-4">
                   <Link href="/process">
                     <Button 
-                      className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-8 py-3 text-lg font-semibold shadow-lg hover:shadow-xl"
+                      className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl"
                     >
                       {language === 'cs' ? 'O našem procesu' : 
                        language === 'it' ? 'Sul nostro processo' : 
@@ -1639,8 +1621,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Side - Animated Image Tiles */}
-            <div className="relative h-[500px] flex items-center justify-center animate-on-scroll slide-right">
+            {/* Right Side - Animated Image Tiles - Hidden on small mobile */}
+            <div className="hidden md:flex relative h-[400px] lg:h-[500px] items-center justify-center animate-on-scroll slide-right">
               <ImageReveal
                 leftImage="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=800&q=80"
                 middleImage="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80"
@@ -1677,18 +1659,18 @@ export default function HomePage() {
       <div className="container mx-auto px-4 pt-12 pb-8 bg-[#f7f4ed]" data-testid="main-content-container">
         {/* Section Description and View All Button - appears when either region or property type is selected */}
         {(selectedRegion || selectedPropertyType) && (
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4" data-testid="section-description">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900" data-testid="section-description">
               Námi vybrané nemovitosti
             </h2>
-            <Link href="/properties">
+            <Link href="/properties" className="flex-shrink-0">
               <Button 
                 size="lg"
-                className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white px-6 py-3 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
                 data-testid="view-all-properties-button"
               >
                 <MapPin className="h-4 w-4 mr-2" />
-{t('property.viewAllProperties', language)}
+                {t('property.viewAllProperties', language)}
               </Button>
             </Link>
           </div>
@@ -1841,23 +1823,23 @@ export default function HomePage() {
       </section> */}
 
       {/* Premium Club Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20">
+      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 sm:py-20 overflow-hidden">
         <div className="container mx-auto px-4">
           {/* Main Premium Club Content */}
-          <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#c48759' }}>
+          <div className="text-center mb-8 sm:mb-16 animate-on-scroll">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" style={{ color: '#c48759' }}>
               {language === 'cs' ? 'Premium Club' :
                language === 'it' ? 'Club Premium' :
                'Premium Club'}
             </h2>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
+            <p className="text-base sm:text-xl text-gray-200 max-w-3xl mx-auto mb-6 sm:mb-8 px-2">
               {language === 'cs' ? 'Váš osobní průvodce nemovitostmi a životním stylem v Itálii' :
                language === 'it' ? 'La tua guida personale a proprietà e stile di vita in Italia' :
                'Your Personal Guide to Property & Lifestyle in Italy'}
             </p>
             <Button 
               size="lg"
-              className="font-semibold py-4 px-8 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-white"
+              className="font-semibold py-3 sm:py-4 px-6 sm:px-8 text-base sm:text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-white"
               style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
             >
               {language === 'cs' ? 'Připojit se zdarma' :
@@ -1867,7 +1849,7 @@ export default function HomePage() {
           </div>
 
           {/* Premium Card and Blogs Side by Side */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-16">
             {/* Premium Card - Takes 1 column on large screens */}
             <div className="lg:col-span-1">
               <GlareCard 
@@ -1960,7 +1942,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {/* Blog Card 1 */}
             <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-700">
               <div className="aspect-video relative overflow-hidden">
@@ -1970,17 +1952,17 @@ export default function HomePage() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute top-4 left-4">
-                  <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                  <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
                     {language === 'it' ? 'Legale' : 'Legal'}
                   </span>
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2">
                   {language === 'it' ? 'Come Acquistare una Casa in Italia: Guida Completa' : 'How to Buy a House in Italy: Complete Guide'}
                 </h3>
-                <p className="text-gray-300 text-base mb-4 line-clamp-3">
+                <p className="text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3">
                   {language === 'it' ? 'Tutto quello che devi sapere sui documenti, tasse e procedure per acquistare immobili in Italia.' : 'Everything you need to know about documents, taxes, and procedures for buying property in Italy.'}
                 </p>
                 <div className="flex items-center justify-between">
@@ -2003,17 +1985,17 @@ export default function HomePage() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute top-4 left-4">
-                  <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                  <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
                     {language === 'it' ? 'Stile di Vita' : 'Lifestyle'}
                   </span>
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2">
                   {language === 'it' ? 'Vivere come un Italiano: Tradizioni e Cultura' : 'Living Like an Italian: Traditions and Culture'}
                 </h3>
-                <p className="text-gray-300 text-base mb-4 line-clamp-3">
+                <p className="text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3">
                   {language === 'it' ? 'Scopri i segreti dello stile di vita italiano e come integrarti nella comunità locale.' : 'Discover the secrets of Italian lifestyle and how to integrate into the local community.'}
                 </p>
                 <div className="flex items-center justify-between">
@@ -2028,7 +2010,7 @@ export default function HomePage() {
             </div>
 
             {/* Blog Card 3 */}
-            <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-700">
+            <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-700 sm:col-span-2 lg:col-span-1">
               <div className="aspect-video relative overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
@@ -2036,17 +2018,17 @@ export default function HomePage() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute top-4 left-4">
-                  <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                  <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
                     {language === 'it' ? 'Investimento' : 'Investment'}
                   </span>
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2">
                   {language === 'it' ? 'Investire in Immobili Italiani: Opportunità e Rischi' : 'Investing in Italian Real Estate: Opportunities and Risks'}
                 </h3>
-                <p className="text-gray-300 text-base mb-4 line-clamp-3">
+                <p className="text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3">
                   {language === 'it' ? 'Analisi approfondita del mercato immobiliare italiano e strategie di investimento.' : 'In-depth analysis of the Italian real estate market and investment strategies.'}
                 </p>
                 <div className="flex items-center justify-between">
@@ -2066,22 +2048,22 @@ export default function HomePage() {
       </section>
 
       {/* Featured Regions Section */}
-      <section className="py-20 bg-[#f7f4ed]">
+      <section className="py-12 sm:py-20 bg-[#f7f4ed] overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+          <div className="text-center mb-8 sm:mb-16 animate-on-scroll">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight">
               {language === 'cs' ? 'Prozkoumejte Nejžádanější Regiony Itálie' :
                language === 'it' ? 'Esplora le Regioni Più Ricercate d\'Italia' : 
                'Explore Italy\'s Most Wanted Regions'}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto px-2">
               {language === 'cs' ? 'Ne celá Itálie je stejná. Vyberte si region, který vyhovuje vašemu rozpočtu, životnímu stylu a investičním cílům. Prohlédněte si nemovitosti v oblastech, které milujete.' :
                language === 'it' ? 'Non tutta l\'Italia è uguale. Scegli una regione che si adatti al tuo budget, stile di vita e obiettivi di investimento. Esplora le proprietà nelle aree che ami.' : 
                'Not all of Italy is the same. Choose a region that fits your budget, lifestyle, and investment goals. Explore properties in the areas you love.'}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12">
             {/* Sardegna */}
             <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">

@@ -71,7 +71,7 @@ export const GlareCard = ({
         transitionTimingFunction: 'var(--easing)',
         transitionDelay: 'var(--delay)'
       }}
-      className="relative isolate transition-transform w-[380px] h-[480px] cursor-pointer"
+      className="relative isolate transition-transform w-full max-w-[380px] h-[480px] cursor-pointer mx-auto"
       ref={refElement}
       onClick={onClick}
       onPointerMove={(event) => {

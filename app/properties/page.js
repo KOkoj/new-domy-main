@@ -14,6 +14,7 @@ import {
   Map as MapIcon,
   Heart,
   ChevronRight,
+  SlidersHorizontal,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -69,7 +70,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
         <img 
           src={property.image} 
           alt={property.title}
-          className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+          className="w-full h-48 sm:h-64 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           data-testid="property-image"
         />
         
@@ -116,28 +117,28 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
         </div>
       </div>
       
-      <CardContent className="p-6 flex flex-col flex-1">
+      <CardContent className="p-4 sm:p-6 flex flex-col flex-1">
         {/* Content area that grows */}
-        <div className="flex-1 space-y-3">
+        <div className="flex-1 space-y-2 sm:space-y-3">
           {/* Title and location */}
-          <div className="space-y-2">
+          <div className="space-y-1.5 sm:space-y-2">
             <h3 
-              className="font-bold text-lg leading-tight line-clamp-2 group-hover:text-slate-800 transition-colors duration-300 group-hover:tracking-wide"
+              className="font-bold text-base sm:text-lg leading-tight line-clamp-2 group-hover:text-slate-800 transition-colors duration-300 group-hover:tracking-wide"
               data-testid="property-title"
             >
               {property.title}
             </h3>
             
-            <div className="flex items-center text-gray-500 text-sm group-hover:text-gray-600 transition-colors duration-300" data-testid="property-location">
+            <div className="flex items-center text-gray-500 text-xs sm:text-sm group-hover:text-gray-600 transition-colors duration-300" data-testid="property-location">
               <div className="p-1 bg-slate-100 rounded-lg mr-2 group-hover:bg-slate-200 transition-colors duration-300">
-                <MapPin className="h-4 w-4 text-slate-600 group-hover:text-slate-700 transition-colors duration-300" />
+                <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-slate-600 group-hover:text-slate-700 transition-colors duration-300" />
               </div>
               <span className="font-medium" data-testid="property-region">{property.region}</span>
             </div>
           </div>
           
           {/* Specifications */}
-          <div className="flex items-center justify-between pt-3 border-t border-gray-100 text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300" data-testid="property-specifications">
+          <div className="flex items-center justify-between pt-2 sm:pt-3 border-t border-gray-100 text-xs sm:text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300" data-testid="property-specifications">
             <span className="font-semibold" data-testid="bedrooms-count">{property.rooms} pokoje</span>
             <span className="font-semibold" data-testid="bathrooms-count">{property.bathrooms} koup.</span>
             <span className="font-semibold" data-testid="square-footage-count">{property.area} m²</span>
@@ -145,9 +146,9 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
         </div>
         
         {/* Enhanced CTA button - always at bottom */}
-        <div className="pt-4 mt-auto" data-testid="property-footer">
+        <div className="pt-3 sm:pt-4 mt-auto" data-testid="property-footer">
           <div 
-            className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border-0 text-sm flex items-center justify-center cursor-pointer"
+            className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border-0 text-xs sm:text-sm flex items-center justify-center cursor-pointer"
           >
             <span data-testid="view-details-text">Zobrazit detail</span>
             <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -262,6 +263,9 @@ export default function PropertiesPage() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const ITEMS_PER_PAGE = 9; // Load 9 more each time
+  
+  // Mobile filter state
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -577,14 +581,14 @@ export default function PropertiesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 home-page-custom-border">
+    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 home-page-custom-border overflow-x-hidden">
       {/* Navigation */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <Navigation />
       </div>
 
-      <div className="pt-32 pb-8">
-        <div className="container mx-auto px-4">
+      <div className="pt-24 sm:pt-28 lg:pt-32 pb-6 sm:pb-8">
+        <div className="container mx-auto px-3 sm:px-4">
           {/* Region Banner */}
           {showRegionBanner && filters.region && (
             <div className="mb-8">
@@ -600,10 +604,21 @@ export default function PropertiesPage() {
             </div>
           )}
           
-          <div className="flex gap-6">
-            {/* Left Sidebar - Filters */}
-            <div className="w-80 flex-shrink-0">
-              <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg sticky top-24">
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
+            {/* Mobile Filter Toggle Button */}
+            <div className="lg:hidden">
+              <Button
+                onClick={() => setShowMobileFilters(!showMobileFilters)}
+                className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 rounded-xl shadow-lg"
+              >
+                <SlidersHorizontal className="h-5 w-5 mr-2" />
+                {showMobileFilters ? 'Skrýt filtry' : 'Zobrazit filtry'}
+              </Button>
+            </div>
+
+            {/* Left Sidebar - Filters (Hidden on mobile, shown when toggled) */}
+            <div className={`${showMobileFilters ? 'block' : 'hidden'} lg:block w-full lg:w-80 flex-shrink-0`}>
+              <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg lg:sticky lg:top-24">
                 {/* Header */}
                 <div className="p-6 border-b border-gray-200 bg-gradient-to-br from-gray-50 to-white rounded-t-2xl">
                   <h1 className="text-2xl font-bold text-gray-900 tracking-tight mb-2">
@@ -737,26 +752,26 @@ export default function PropertiesPage() {
             {/* Main Content Area */}
             <div className="flex-1 min-w-0">
               {/* Top Controls Bar */}
-              <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg p-6 mb-6">
-                <div className="flex items-center justify-between">
+              <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg p-4 sm:p-6 mb-4 sm:mb-6">
+                <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
                   {/* Search Bar */}
-                  <div className="relative max-w-md">
+                  <div className="relative w-full sm:max-w-md">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-500" />
                     <Input
                       type="text"
                       placeholder="Vyhledat nemovitosti..."
                       value={filters.search}
                       onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-                      className="pl-10 border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 rounded-lg shadow-sm"
+                      className="pl-10 border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 rounded-lg shadow-sm w-full"
                     />
                   </div>
                   
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3">
                     {/* Sort Dropdown */}
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="text-sm border border-gray-300 rounded-lg px-3 py-2 pr-10 bg-white hover:border-gray-400 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm transition-colors duration-200 font-medium text-gray-700 appearance-none bg-no-repeat bg-right-2 bg-[length:16px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQgNkw4IDEwTDEyIDYiIHN0cm9rZT0iIzY0NzQ4QiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K')]"
+                      className="text-sm border border-gray-300 rounded-lg px-2 sm:px-3 py-2 pr-8 sm:pr-10 bg-white hover:border-gray-400 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm transition-colors duration-200 font-medium text-gray-700 appearance-none bg-no-repeat bg-right-2 bg-[length:16px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQgNkw4IDEwTDEyIDYiIHN0cm9rZT0iIzY0NzQ4QiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K')] flex-1 sm:flex-none"
                     >
                       <option value="newest">Nejnovější</option>
                       <option value="cheapest">Nejlevnější</option>
@@ -771,10 +786,10 @@ export default function PropertiesPage() {
                         showMap
                           ? 'bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow-lg hover:shadow-xl'
                           : 'bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white shadow-md hover:shadow-lg'
-                      } font-bold text-sm px-6 py-3 transition-all duration-300 hover:scale-105 border-0`}
+                      } font-bold text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 transition-all duration-300 hover:scale-105 border-0 whitespace-nowrap`}
                     >
-                      <MapIcon className="h-5 w-5 mr-2" />
-                      {showMap ? 'Skrýt mapu' : 'Zobrazit mapu'}
+                      <MapIcon className="h-4 w-4 sm:h-5 sm:w-5 sm:mr-2" />
+                      <span className="hidden sm:inline">{showMap ? 'Skrýt mapu' : 'Zobrazit mapu'}</span>
                     </Button>
                   </div>
                 </div>
@@ -782,8 +797,8 @@ export default function PropertiesPage() {
 
               {/* Map View (when toggled) */}
               {showMap && (
-                <div className="bg-white border border-gray-200 rounded-2xl shadow-lg mb-6 overflow-hidden">
-                  <div className="h-[500px] relative">
+                <div className="bg-white border border-gray-200 rounded-2xl shadow-lg mb-4 sm:mb-6 overflow-hidden">
+                  <div className="h-[300px] sm:h-[400px] lg:h-[500px] relative">
                     <MapComponent
                       properties={sortedProperties}
                       selectedProperty={selectedProperty}
@@ -796,7 +811,7 @@ export default function PropertiesPage() {
               )}
 
               {/* Properties Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {displayedProperties.map(property => (
                   <PropertyCard 
                     key={property.id} 
