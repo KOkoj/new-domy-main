@@ -581,11 +581,9 @@ export default function PropertiesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 home-page-custom-border overflow-x-hidden">
+    <div className="min-h-screen bg-[#faf8f5] overflow-x-hidden">
       {/* Navigation */}
-      <div className="fixed top-0 left-0 right-0 z-50">
-        <Navigation />
-      </div>
+      <Navigation />
 
       <div className="pt-24 sm:pt-28 lg:pt-32 pb-6 sm:pb-8">
         <div className="container mx-auto px-3 sm:px-4">

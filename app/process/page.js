@@ -425,39 +425,57 @@ const TIMELINE_OVERVIEW = {
 
 const COSTS_OVERVIEW = [
   {
-    title: { en: 'Purchase Tax', cs: 'Daň z nabytí', it: 'Imposta di acquisto' },
-    amount: { en: '2-10% of property value', cs: '2-10% hodnoty nemovitosti', it: '2-10% valore immobile' },
+    title: { en: 'Purchase Tax – First Property + Residency', cs: 'Daň z nabytí – první nemovitost + trvalý pobyt', it: 'Imposta di acquisto – prima casa + residenza' },
+    amount: { en: '2% of purchase price', cs: '2 % z kupní ceny', it: '2% del prezzo di acquisto' },
     description: { 
-      en: 'Varies based on property type and buyer status',
-      cs: 'Liší se podle typu nemovitosti a statusu kupujícího',
-      it: 'Varia in base al tipo di proprietà e stato acquirente'
+      en: 'Applies when buying your first property in Italy and establishing permanent residence',
+      cs: 'Platí při koupi první nemovitosti v Itálii a zřízení trvalého pobytu',
+      it: 'Si applica all\'acquisto della prima proprietà in Italia e stabilimento della residenza permanente'
+    }
+  },
+  {
+    title: { en: 'Purchase Tax – Non-Residence', cs: 'Daň z nabytí – bez trvalého pobytu', it: 'Imposta di acquisto – senza residenza' },
+    amount: { en: '9% of purchase price', cs: '9 % z kupní ceny', it: '9% del prezzo di acquisto' },
+    description: { 
+      en: 'Applies when Italy will not be your permanent residence (most Czech buyers)',
+      cs: 'Platí, pokud se v Itálii nebude jednat o trvalé bydliště (většina českých kupujících)',
+      it: 'Si applica quando l\'Italia non sarà la vostra residenza permanente (la maggior parte degli acquirenti cechi)'
+    }
+  },
+  {
+    title: { en: 'VAT (New/Renovated Properties)', cs: 'DPH (nové/zrekonstruované nemovitosti)', it: 'IVA (immobili nuovi/ristrutturati)' },
+    amount: { en: '10% (or 4% with residency)', cs: '10 % (nebo 4 % při trvalém pobytu)', it: '10% (o 4% con residenza)' },
+    description: { 
+      en: 'Applies to new or recently renovated properties (replaces purchase tax in these cases)',
+      cs: 'Platí u nových nebo nově zrekonstruovaných nemovitostí (nahrazuje daň z nabytí)',
+      it: 'Si applica a immobili nuovi o ristrutturati di recente (sostituisce l\'imposta di acquisto)'
     }
   },
   {
     title: { en: 'Notary Fees', cs: 'Notářské poplatky', it: 'Spese notarili' },
-    amount: { en: '1-2.5% of property value', cs: '1-2,5% hodnoty nemovitosti', it: '1-2,5% valore immobile' },
+    amount: { en: '1-2.5% of property value', cs: '1–2,5 % hodnoty nemovitosti', it: '1-2,5% valore immobile' },
     description: { 
-      en: 'Legal fees for deed preparation and registration',
-      cs: 'Právní poplatky za přípravu a registraci aktu',
-      it: 'Spese legali per preparazione e registrazione atto'
+      en: 'Set by law (notary decree). Includes deed preparation, tax collection, and property transfer oversight',
+      cs: 'Stanoveny zákonem (notářský dekret). Zahrnuje přípravu smlouvy, výběr daní a dohled nad převodem',
+      it: 'Stabilite per legge (decreto notarile). Include preparazione atto, riscossione tasse e supervisione trasferimento'
     }
   },
   {
-    title: { en: 'Agency Commission', cs: 'Provize agentury', it: 'Commissione agenzia' },
-    amount: { en: '3% of property value', cs: '3% hodnoty nemovitosti', it: '3% valore immobile' },
+    title: { en: 'Reservation Deposit', cs: 'Rezervační poplatek', it: 'Deposito di prenotazione' },
+    amount: { en: '~10% of purchase price', cs: 'cca 10 % z kupní ceny', it: '~10% del prezzo di acquisto' },
     description: { 
-      en: 'Our service fee for complete assistance',
-      cs: 'Náš poplatek za služby pro kompletní pomoc',
-      it: 'Il nostro compenso per assistenza completa'
+      en: 'Paid when signing the reservation contract (exact amount depends on agreement)',
+      cs: 'Platí se při podpisu rezervační smlouvy (přesná výše závisí na dohodě)',
+      it: 'Pagato alla firma del contratto di prenotazione (importo esatto dipende dall\'accordo)'
     }
   },
   {
     title: { en: 'Additional Costs', cs: 'Další náklady', it: 'Costi aggiuntivi' },
-    amount: { en: '€1,000-3,000', cs: '1 000-3 000 €', it: '€1.000-3.000' },
+    amount: { en: '€1,000-3,000+', cs: '1 000–3 000+ €', it: '€1.000-3.000+' },
     description: { 
-      en: 'Surveys, translations, registrations',
-      cs: 'Průzkumy, překlady, registrace',
-      it: 'Rilievi, traduzioni, registrazioni'
+      en: 'Translations, interpretation at notary, technical inspections, land registry registration',
+      cs: 'Překlady, tlumočení u notáře, technické kontroly, zápis do katastru nemovitostí',
+      it: 'Traduzioni, interpretariato dal notaio, ispezioni tecniche, registrazione catastale'
     }
   }
 ]
@@ -482,11 +500,9 @@ export default function ProcessPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 home-page-custom-border">
+    <div className="min-h-screen bg-[#faf8f5]">
       {/* Modern Navigation */}
-      <div className="fixed top-0 left-0 right-0 z-50">
-        <Navigation />
-      </div>
+      <Navigation />
 
       <div className="pt-32 pb-12">
         {/* Hero Section */}
@@ -853,11 +869,21 @@ export default function ProcessPage() {
                 <Button 
                   size="lg" 
                   className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg w-full sm:w-auto"
-                  onClick={() => window.open('#', '_blank')}
+                  onClick={() => window.open('https://www.dpbolvw.net/click-101629596-15735418', '_blank')}
                 >
                   {language === 'cs' ? 'Najít ubytování v Itálii (Booking.com)' :
                    language === 'it' ? 'Trova alloggio in Italia (Booking.com)' :
                    'Find Accommodation in Italy (Booking.com)'}
+                </Button>
+                <Button 
+                  variant="outline"
+                  size="lg" 
+                  className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                  onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}
+                >
+                  {language === 'cs' ? 'Výlety a průvodce (GetYourGuide)' :
+                   language === 'it' ? 'Escursioni e guide (GetYourGuide)' :
+                   'Tours & Guides (GetYourGuide)'}
                 </Button>
               </CardContent>
             </Card>

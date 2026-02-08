@@ -30,6 +30,20 @@
     --chart-5: 27 87% 67%;
   }
 
+  /* Smooth scrolling for the entire page */
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Better text selection */
+  ::selection {
+    background-color: rgba(199, 137, 91, 0.25);
+    color: inherit;
+  }
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -141,11 +155,12 @@
 
 /* Property card hover effects */
 .property-card {
-  transition: all 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .property-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.15);
 }
 
 /* Custom checkbox styling for dark background */
@@ -158,6 +173,18 @@
 /* Loading states */
 .loading-skeleton {
   @apply animate-pulse bg-gray-200 rounded;
+}
+
+/* Skeleton shimmer effect for better perceived performance */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
 }
 
 /* Map container styling */
@@ -296,6 +323,8 @@
 }
 
 .animate-keyword-pop {
+  opacity: 0;
+  transform: scale(0);
   animation: keywordPop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
@@ -437,14 +466,26 @@ input[type="number"] {
 /* Removed global transition - was causing animation bugs */
 /* Use specific transitions on elements that need them instead */
 
-button:hover, .hover-scale:hover {
+/* Subtle button hover - only for generic buttons, not nav links */
+.hover-scale:hover {
   transform: scale(1.02);
 }
 
+/* Smooth link transitions globally */
+a {
+  transition: color 0.2s ease;
+}
+
 /* Focus styles for accessibility */
-button:focus, input:focus, select:focus {
-  outline: 2px solid #3e6343;
+button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible {
+  outline: 2px solid rgba(199, 137, 91, 0.7);
   outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove outline on click, keep for keyboard */
+button:focus:not(:focus-visible), a:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Font utility classes */
@@ -461,19 +502,7 @@ html {
   font-family: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-/* Debug font loading - remove in production */
-body::before {
-  content: "Font Debug: Manrope=" attr(data-font-manrope) " Sora=" attr(data-font-sora);
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0,0,0,0.8);
-  color: white;
-  padding: 4px 8px;
-  font-size: 12px;
-  z-index: 9999;
-  display: none; /* Set to block for debugging */
-}
+/* Debug font loading - removed in production */
 
 /* Custom border color for home page - applies to all borders and outlines with opacity */
 .home-page-custom-border *:not(.card):not([data-testid*="card"]) {
@@ -513,27 +542,10 @@ body::before {
   border-color: transparent !important;
 }
 
-/* Remove borders from all cards globally - applies to all pages */
-/* Target all Card components and card-like elements */
-.card,
-[data-testid*="card"],
-[class*="property-card"] {
-  border: none !important;
-  border-color: transparent !important;
-}
-
-/* Target success story cards and other white rounded cards */
-.bg-white.rounded-xl,
-.bg-white.rounded-2xl,
-.bg-white.rounded-xl.overflow-hidden.shadow-lg {
-  border: none !important;
-  border-color: transparent !important;
-}
-
-/* Target premium club dark cards */
-.bg-slate-800,
-.bg-slate-900,
-.bg-slate-900\/50 {
+/* Clean card borders - only on homepage */
+.home-page-custom-border .card,
+.home-page-custom-border [data-testid*="card"],
+.home-page-custom-border [class*="property-card"] {
   border: none !important;
   border-color: transparent !important;
 }

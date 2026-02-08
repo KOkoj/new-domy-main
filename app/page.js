@@ -1285,9 +1285,7 @@ export default function HomePage() {
       )}
       
       {/* Navigation */}
-      <div className="fixed top-0 left-0 right-0 z-50">
-        <Navigation />
-      </div>
+      <Navigation />
 
       {/* Hero Section */}
       <section 
@@ -1575,7 +1573,7 @@ export default function HomePage() {
                   <Lock className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
                   <div className="flex flex-col min-w-0">
                     <span className="text-xs font-semibold text-white leading-tight">
-                      {language === 'cs' ? 'Soukromí Dát' :
+                      {language === 'cs' ? 'Ochrana dat' :
                        language === 'it' ? 'Privacy dei Dati' :
                        'Data Privacy'}
                     </span>
@@ -1593,7 +1591,7 @@ export default function HomePage() {
       </section>
 
         {/* Intro Section - Not a Real Estate Agency */}
-        <section className="bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10 pt-8 sm:pt-0 pb-12 sm:pb-20 overflow-hidden">
+        <section className="bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10 pt-12 sm:pt-16 md:pt-20 pb-12 sm:pb-20 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Side - Text Content */}
@@ -1936,111 +1934,142 @@ export default function HomePage() {
                    'Exclusive Content'}
                 </h3>
                 <p className="text-lg text-gray-200">
-                  {language === 'cs' ? 'Přistup k prémiovým blogům a průvodcům' :
-                   language === 'it' ? 'Accesso a blog e guide premium' :
-                   'Access to premium blogs and guides'}
+                  {user 
+                    ? (language === 'cs' ? 'Vaše prémiové články a průvodci' :
+                       language === 'it' ? 'I tuoi articoli e guide premium' :
+                       'Your premium articles and guides')
+                    : (language === 'cs' ? 'Zaregistrujte se zdarma a získejte přístup k prémiovým článkům' :
+                       language === 'it' ? 'Registrati gratis per accedere ai contenuti premium' :
+                       'Register for free to unlock premium articles and guides')
+                  }
                 </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {/* Blog Card 1 */}
-            <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-700">
-              <div className="aspect-video relative overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                  alt="Italian legal documents" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
-                  <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
-                    {language === 'it' ? 'Legale' : 'Legal'}
-                  </span>
-                </div>
-              </div>
-              <div className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2">
-                  {language === 'it' ? 'Come Acquistare una Casa in Italia: Guida Completa' : 'How to Buy a House in Italy: Complete Guide'}
-                </h3>
-                <p className="text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3">
-                  {language === 'it' ? 'Tutto quello che devi sapere sui documenti, tasse e procedure per acquistare immobili in Italia.' : 'Everything you need to know about documents, taxes, and procedures for buying property in Italy.'}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-400">
-                    {language === 'it' ? '15 min di lettura' : '15 min read'}
-                  </span>
-                  <span className="text-xs text-slate-600 font-semibold">
-                    {language === 'it' ? 'Premium' : 'Premium'}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Blog Card 2 */}
-            <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-700">
-              <div className="aspect-video relative overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                  alt="Italian lifestyle and culture" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
-                  <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
-                    {language === 'it' ? 'Stile di Vita' : 'Lifestyle'}
-                  </span>
-                </div>
-              </div>
-              <div className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2">
-                  {language === 'it' ? 'Vivere come un Italiano: Tradizioni e Cultura' : 'Living Like an Italian: Traditions and Culture'}
-                </h3>
-                <p className="text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3">
-                  {language === 'it' ? 'Scopri i segreti dello stile di vita italiano e come integrarti nella comunità locale.' : 'Discover the secrets of Italian lifestyle and how to integrate into the local community.'}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-400">
-                    {language === 'it' ? '12 min di lettura' : '12 min read'}
-                  </span>
-                  <span className="text-xs text-slate-600 font-semibold">
-                    {language === 'it' ? 'Premium' : 'Premium'}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Blog Card 3 */}
-            <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-700 sm:col-span-2 lg:col-span-1">
-              <div className="aspect-video relative overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                  alt="Real estate investment charts" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
-                  <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
-                    {language === 'it' ? 'Investimento' : 'Investment'}
-                  </span>
-                </div>
-              </div>
-              <div className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2">
-                  {language === 'it' ? 'Investire in Immobili Italiani: Opportunità e Rischi' : 'Investing in Italian Real Estate: Opportunities and Risks'}
-                </h3>
-                <p className="text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3">
-                  {language === 'it' ? 'Analisi approfondita del mercato immobiliare italiano e strategie di investimento.' : 'In-depth analysis of the Italian real estate market and investment strategies.'}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-400">
-                    {language === 'it' ? '18 min di lettura' : '18 min read'}
-                  </span>
-                  <span className="text-xs text-slate-600 font-semibold">
-                    {language === 'it' ? 'Premium' : 'Premium'}
-                  </span>
-                </div>
-              </div>
-            </div>
+                {[
+                  {
+                    title: {
+                      en: 'How to Buy a House in Italy: Complete Guide',
+                      cs: 'Jak koupit dům v Itálii: Kompletní průvodce',
+                      it: 'Come Acquistare una Casa in Italia: Guida Completa'
+                    },
+                    excerpt: {
+                      en: 'Everything you need to know about documents, taxes, and procedures for buying property in Italy.',
+                      cs: 'Vše, co potřebujete vědět o dokumentech, daních a postupech při koupi nemovitosti v Itálii.',
+                      it: 'Tutto quello che devi sapere sui documenti, tasse e procedure per acquistare immobili in Italia.'
+                    },
+                    category: { en: 'Legal', cs: 'Právo', it: 'Legale' },
+                    readTime: { en: '15 min read', cs: '15 min čtení', it: '15 min di lettura' },
+                    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop',
+                    link: '/guides/costs'
+                  },
+                  {
+                    title: {
+                      en: 'Most Common Czech Mistakes When Buying in Italy',
+                      cs: 'Nejčastější chyby Čechů při koupi domu v Itálii',
+                      it: 'Errori Più Comuni dei Cechi nell\'Acquisto in Italia'
+                    },
+                    excerpt: {
+                      en: 'What to watch out for to avoid losing time and money. Problems arise from unfamiliarity, not carelessness.',
+                      cs: 'Na co si dát pozor, abyste neztratili čas a peníze. Problémy vznikají z neznalosti, ne z nepozornosti.',
+                      it: 'A cosa fare attenzione per non perdere tempo e denaro. I problemi nascono dalla scarsa conoscenza, non dalla disattenzione.'
+                    },
+                    category: { en: 'Guide', cs: 'Průvodce', it: 'Guida' },
+                    readTime: { en: '12 min read', cs: '12 min čtení', it: '12 min di lettura' },
+                    image: 'https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?q=80&w=800&auto=format&fit=crop',
+                    link: '/guides/mistakes'
+                  },
+                  {
+                    title: {
+                      en: 'Investing in Italian Real Estate: Opportunities and Risks',
+                      cs: 'Investice do italských nemovitostí: Příležitosti a rizika',
+                      it: 'Investire in Immobili Italiani: Opportunità e Rischi'
+                    },
+                    excerpt: {
+                      en: 'In-depth analysis of the Italian real estate market and investment strategies.',
+                      cs: 'Podrobná analýza italského realitního trhu a investičních strategií.',
+                      it: 'Analisi approfondita del mercato immobiliare italiano e strategie di investimento.'
+                    },
+                    category: { en: 'Investment', cs: 'Investice', it: 'Investimento' },
+                    readTime: { en: '18 min read', cs: '18 min čtení', it: '18 min di lettura' },
+                    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&auto=format&fit=crop',
+                    link: '/blog'
+                  }
+                ].map((article, index) => (
+                  <div 
+                    key={index} 
+                    className={`${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''} cursor-pointer`}
+                    onClick={() => {
+                      if (user) {
+                        window.location.href = article.link
+                      } else {
+                        setIsAuthModalOpen(true)
+                      }
+                    }}
+                  >
+                    <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-700 h-full relative group">
+                      <div className="aspect-video relative overflow-hidden">
+                        <img 
+                          src={article.image} 
+                          alt={article.title[language]} 
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                          <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
+                            {article.category[language]}
+                          </span>
+                        </div>
+                        {/* Lock badge on image */}
+                        {!user && (
+                          <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
+                            <span className="flex items-center gap-1 bg-black/50 backdrop-blur-sm text-white text-xs font-medium px-2 py-1 rounded-full border border-white/10">
+                              <Lock className="h-3 w-3" />
+                              Premium
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-4 sm:p-6 relative">
+                        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2">
+                          {article.title[language]}
+                        </h3>
+                        <p className="text-gray-300 text-sm sm:text-base line-clamp-2">
+                          {article.excerpt[language]}
+                        </p>
+                        
+                        {/* Blur overlay + register CTA for non-logged-in users */}
+                        {!user && (
+                          <div className="mt-2">
+                            {/* Fading blur over text */}
+                            <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-slate-800 via-slate-800/95 to-transparent pointer-events-none" />
+                            {/* Register prompt */}
+                            <div className="relative z-10 pt-6 flex items-center justify-center">
+                              <span className="flex items-center gap-2 text-sm font-semibold group-hover:scale-105 transition-transform" style={{ color: '#c48759' }}>
+                                <Lock className="h-3.5 w-3.5" />
+                                {language === 'cs' ? 'Zaregistrujte se pro čtení' :
+                                 language === 'it' ? 'Registrati per leggere' :
+                                 'Register to read'}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* Normal footer for logged-in users */}
+                        {user && (
+                          <div className="flex items-center justify-between mt-3">
+                            <span className="text-xs text-gray-400">
+                              {article.readTime[language]}
+                            </span>
+                            <span className="text-xs font-semibold text-copper-400">
+                              {language === 'cs' ? 'Číst článek' : language === 'it' ? 'Leggi' : 'Read'}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -3388,7 +3417,7 @@ export default function HomePage() {
                 </svg>
                 <div className="text-left">
                   <p className="text-base font-semibold text-gray-900">
-                    {language === 'cs' ? 'Soukromí Dát' :
+                    {language === 'cs' ? 'Ochrana dat' :
                      language === 'it' ? 'Privacy dei Dati' :
                      'Data Privacy'}
                   </p>

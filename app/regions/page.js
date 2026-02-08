@@ -225,6 +225,78 @@ const SAMPLE_REGIONS = [
     topCities: ['Perugia', 'Assisi', 'Terni', 'Spoleto'],
     highlights: ['Hill towns', 'Spiritual heritage', 'Green landscapes', 'Peaceful living'],
     popularity: 3
+  },
+  {
+    _id: '13',
+    name: { en: 'Friuli Venezia Giulia', it: 'Friuli Venezia Giulia', cs: 'Friuli Venezia Giulia' },
+    slug: { current: 'friuli-venezia-giulia' },
+    country: 'Italy',
+    description: { 
+      en: 'Where the Alps meet the Adriatic – close to Austria and Slovenia. Excellent accessibility from Czech Republic with diverse landscapes.',
+      it: 'Dove le Alpi incontrano l\'Adriatico – vicino ad Austria e Slovenia. Eccellente accessibilità dalla Repubblica Ceca.',
+      cs: 'Kde se Alpy setkávají s Jadranem – blízko Rakouska a Slovinska. Vynikající dostupnost z ČR.'
+    },
+    image: '/Friuli-Venezia Giulia.avif',
+    propertyCount: 180,
+    averagePrice: 280000,
+    priceRange: { min: 50000, max: 500000 },
+    topCities: ['Trieste', 'Udine', 'Gorizia', 'Pordenone'],
+    highlights: ['Close to CZ', 'Alps & sea', 'Wine culture', 'Affordable'],
+    popularity: 5
+  },
+  {
+    _id: '14',
+    name: { en: 'Calabria', it: 'Calabria', cs: 'Kalábrie' },
+    slug: { current: 'calabria' },
+    country: 'Italy',
+    description: { 
+      en: 'The toe of Italy\'s boot with stunning coastlines and remarkably affordable real estate. Beautiful beaches and authentic southern culture.',
+      it: 'La punta dello stivale italiano con coste mozzafiato e immobili sorprendentemente accessibili.',
+      cs: 'Špička italské boty s úchvatným pobřežím a pozoruhodně dostupnými nemovitostmi.'
+    },
+    image: '/calabria.jpg',
+    propertyCount: 220,
+    averagePrice: 150000,
+    priceRange: { min: 20000, max: 250000 },
+    topCities: ['Tropea', 'Cosenza', 'Reggio Calabria', 'Catanzaro'],
+    highlights: ['Very affordable', 'Beautiful coast', 'Mild winters', 'Authentic culture'],
+    popularity: 4
+  },
+  {
+    _id: '15',
+    name: { en: 'Abruzzo', it: 'Abruzzo', cs: 'Abruzzo' },
+    slug: { current: 'abruzzo' },
+    country: 'Italy',
+    description: { 
+      en: 'The greenest region in Europe with national parks, mountains, and Adriatic coastline. Remarkably affordable property prices.',
+      it: 'La regione più verde d\'Europa con parchi nazionali, montagne e costa adriatica. Prezzi immobiliari sorprendentemente accessibili.',
+      cs: 'Nejzelenější region Evropy s národními parky, horami a jadranským pobřežím. Pozoruhodně dostupné ceny nemovitostí.'
+    },
+    image: '/abruzzo.jpg',
+    propertyCount: 150,
+    averagePrice: 120000,
+    priceRange: { min: 25000, max: 300000 },
+    topCities: ['L\'Aquila', 'Pescara', 'Chieti', 'Teramo'],
+    highlights: ['National parks', 'Very affordable', 'Mountains & sea', 'Quiet life'],
+    popularity: 4
+  },
+  {
+    _id: '16',
+    name: { en: 'Trentino-Alto Adige', it: 'Trentino-Alto Adige', cs: 'Trentino-Alto Adige' },
+    slug: { current: 'trentino-alto-adige' },
+    country: 'Italy',
+    description: { 
+      en: 'Italian Alps at their finest – skiing, hiking, and year-round mountain activities. Austrian and Italian culture blend beautifully.',
+      it: 'Le Alpi italiane al meglio – sci, escursionismo e attività montane tutto l\'anno. Cultura austriaca e italiana si fondono splendidamente.',
+      cs: 'Italské Alpy v nejlepším – lyžování, turistika a celoroční horské aktivity. Rakouská a italská kultura se krásně prolínají.'
+    },
+    image: '/Trentino-Alto Adige.jpg',
+    propertyCount: 240,
+    averagePrice: 450000,
+    priceRange: { min: 100000, max: 1500000 },
+    topCities: ['Bolzano', 'Trento', 'Merano', 'Cortina'],
+    highlights: ['Skiing & hiking', 'Year-round use', 'Alpine lifestyle', 'High quality of life'],
+    popularity: 4
   }
 ]
 
@@ -348,12 +420,41 @@ function RegionCard({ region, language = 'en' }) {
         </div>
       </CardContent>
       
-      <CardFooter className="pt-0">
+      <CardFooter className="pt-0 flex flex-col gap-2">
+        {(() => {
+          const regionDetailSlugs = {
+            'friuli-venezia-giulia': 'friuli-venezia-giulia',
+            'puglia': 'puglia',
+            'calabria': 'calabria',
+            'sicilia': 'sicilia',
+            'toscana': 'toscana',
+            'liguria': 'liguria',
+            'veneto': 'lago-di-garda',
+            'umbria': 'umbria',
+            'sardegna': 'sardegna',
+            'abruzzo': 'abruzzo',
+            'trentino-alto-adige': 'alpy',
+            'valle-d-aosta': 'alpy'
+          }
+          const detailSlug = regionDetailSlugs[region.slug.current]
+          return detailSlug ? (
+            <Link href={`/regions/${detailSlug}`} className="w-full">
+              <Button 
+                variant="outline"
+                className="w-full border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold py-3 transition-all duration-300 hover:scale-105"
+              >
+                {language === 'cs' ? 'Podrobný průvodce' : 
+                 language === 'it' ? 'Guida dettagliata' : 
+                 'Detailed Guide'}
+                <ChevronRight className="h-4 w-4 ml-2" />
+              </Button>
+            </Link>
+          ) : null
+        })()}
         <Link 
           href={`/properties?region=${region.slug.current}`} 
           className="w-full"
           onClick={() => {
-            // Scroll to top before navigation
             window.scrollTo({ top: 0, behavior: 'smooth' });
             document.documentElement.scrollTop = 0;
             document.body.scrollTop = 0;
@@ -395,11 +496,9 @@ export default function RegionsPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 home-page-custom-border">
+    <div className="min-h-screen bg-[#faf8f5]">
       {/* Modern Navigation */}
-      <div className="fixed top-0 left-0 right-0 z-50">
-        <Navigation />
-      </div>
+      <Navigation />
 
       <div className="pt-32 pb-12">
         {/* Header */}
@@ -625,11 +724,21 @@ export default function RegionsPage() {
                     variant="outline" 
                     size="lg" 
                     className="w-full sm:w-auto border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105"
-                    onClick={() => window.open('#', '_blank')} 
+                    onClick={() => window.open('https://www.dpbolvw.net/click-101629596-15735418', '_blank')} 
                   >
                     {language === 'cs' ? 'Najít ubytování (Booking.com)' : 
                      language === 'it' ? 'Trova alloggio (Booking.com)' : 
                      'Find Accommodation (Booking.com)'}
+                </Button>
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="w-full sm:w-auto border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105"
+                    onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')} 
+                  >
+                    {language === 'cs' ? 'Výlety a průvodce (GetYourGuide)' : 
+                     language === 'it' ? 'Escursioni e guide (GetYourGuide)' : 
+                     'Tours & Guides (GetYourGuide)'}
                 </Button>
               </div>
             </CardContent>

@@ -33,7 +33,7 @@ const CONTACT_INFO = [
       cs: 'Napište nám na WhatsApp',
       it: 'Scrivici su WhatsApp'
     },
-    link: '#' // TODO: Add WhatsApp link when provided
+    link: 'https://wa.me/420731450001'
   },
   {
     icon: <MapPin className="h-6 w-6" />,
@@ -43,25 +43,38 @@ const CONTACT_INFO = [
       it: 'Ufficio'
     },
     value: {
-      en: 'Prague, Czech Republic',
-      cs: 'Praha, Česká republika',
-      it: 'Praga, Repubblica Ceca'
+      en: 'Creavita s.r.o., Láskova 1802/3, 148 00 Praha 4 - Chodov',
+      cs: 'Creavita s.r.o., Láskova 1802/3, 148 00 Praha 4 - Chodov',
+      it: 'Creavita s.r.o., Láskova 1802/3, 148 00 Praga 4 - Chodov'
     },
     link: null
   },
   {
     icon: <Clock className="h-6 w-6" />,
     title: {
-      en: 'Response Time',
-      cs: 'Doba odpovědi',
-      it: 'Tempo di risposta'
+      en: 'Working Hours',
+      cs: 'Pracovní doba',
+      it: 'Orario di lavoro'
     },
     value: {
-      en: 'Within 24 hours',
-      cs: 'Do 24 hodin',
-      it: 'Entro 24 ore'
+      en: 'Monday – Friday, 9:00 – 18:00',
+      cs: 'Pondělí – pátek, 9:00 – 18:00',
+      it: 'Lunedì – venerdì, 9:00 – 18:00'
     },
     link: null
+  }
+]
+
+const TEAM_CONTACTS = [
+  {
+    name: 'Lucie Kučerová',
+    phone: '+420 731 450 001',
+    email: 'lucie@domyvitalii.cz'
+  },
+  {
+    name: 'Luca Croce',
+    phone: '+420 720 363 136',
+    email: 'luca.croce@domyvitalii.cz'
   }
 ]
 
@@ -173,29 +186,29 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 home-page-custom-border">
-      {/* Modern Navigation */}
-      <div className="fixed top-0 left-0 right-0 z-50">
-        <Navigation />
-      </div>
+    <div className="min-h-screen bg-[#faf8f5]">
+      <Navigation />
 
-      {/* Main Content */}
-      <main className="pt-32 pb-12">
+      <main className="pt-28 md:pt-32 pb-12">
         {/* Hero Section */}
-        <section className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm mb-8">
-          <div className="container mx-auto px-4 py-16">
-            <div className="max-w-1400 mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent px-2">
-                {language === 'cs' ? 'Kontaktujte nás' :
-                 language === 'it' ? 'Contattaci' :
-                 'Contact Us'}
-              </h1>
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed px-4">
-                {language === 'cs' ? 'Přemýšlíte o koupi domu v Itálii? Napište nám – ozveme se vám s praktickými informacemi a navrhneme další krok.' :
-                 language === 'it' ? 'Stai pensando di acquistare una casa in Italia? Scrivici - ti contatteremo con informazioni pratiche e suggeriremo il prossimo passo.' :
-                 'Thinking about buying a house in Italy? Write to us - we\'ll get back to you with practical information and suggest the next step.'}
-              </p>
+        <section className="container mx-auto px-4 py-12 md:py-16 mb-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-6">
+              <Mail className="h-4 w-4 text-slate-500" />
+              <span className="text-sm text-slate-600 font-medium">
+                {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
+              </span>
             </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-slate-800 leading-tight">
+              {language === 'cs' ? 'Kontaktujte nás' :
+               language === 'it' ? 'Contattaci' :
+               'Contact Us'}
+            </h1>
+            <p className="text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">
+              {language === 'cs' ? 'Přemýšlíte o koupi domu v Itálii? Napište nám – ozveme se vám s praktickými informacemi a navrhneme další krok.' :
+               language === 'it' ? 'Stai pensando di acquistare una casa in Italia? Scrivici - ti contatteremo con informazioni pratiche e suggeriremo il prossimo passo.' :
+               'Thinking about buying a house in Italy? Write to us - we\'ll get back to you with practical information and suggest the next step.'}
+            </p>
           </div>
         </section>
 
@@ -241,6 +254,37 @@ export default function ContactPage() {
                       </div>
                     </div>
                   ))}
+                </CardContent>
+              </Card>
+
+              {/* Team Contacts Card */}
+              <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl overflow-hidden">
+                <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
+                  <CardTitle className="text-xl font-bold text-slate-800">
+                    {language === 'cs' ? 'Osobní kontakty' :
+                     language === 'it' ? 'Contatti personali' :
+                     'Personal Contacts'}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 space-y-5">
+                  {TEAM_CONTACTS.map((contact, index) => (
+                    <div key={index} className="space-y-1">
+                      <p className="font-semibold text-slate-800">{contact.name}</p>
+                      <a href={`tel:${contact.phone.replace(/\s/g, '')}`} className="text-gray-600 hover:text-slate-700 text-sm flex items-center gap-2 transition-colors">
+                        <Phone className="h-3.5 w-3.5" />{contact.phone}
+                      </a>
+                      <a href={`mailto:${contact.email}`} className="text-gray-600 hover:text-slate-700 text-sm flex items-center gap-2 transition-colors">
+                        <Mail className="h-3.5 w-3.5" />{contact.email}
+                      </a>
+                    </div>
+                  ))}
+                  <div className="pt-2 border-t border-gray-100">
+                    <p className="text-xs text-gray-500">
+                      {language === 'cs' ? 'IČ: 07136943 | DIČ: CZ07136943' :
+                       language === 'it' ? 'P.IVA: 07136943 | C.F.: CZ07136943' :
+                       'ID: 07136943 | VAT: CZ07136943'}
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
 
