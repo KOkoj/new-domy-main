@@ -33,6 +33,7 @@ export default function LoginPage() {
 
   // Check if user is already logged in
   useEffect(() => {
+    if (!supabase) return
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
       if (user) {
@@ -44,6 +45,7 @@ export default function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault()
+    if (!supabase) return
     setIsLoading(true)
     setError('')
 
@@ -84,6 +86,7 @@ export default function LoginPage() {
 
   const handleSignup = async (e) => {
     e.preventDefault()
+    if (!supabase) return
     setIsLoading(true)
     setError('')
 

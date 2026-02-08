@@ -50,6 +50,7 @@ export default function SavedSearchesManagement() {
   }, [])
 
   const loadSavedSearches = async () => {
+    if (!supabase) return
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
@@ -102,6 +103,7 @@ export default function SavedSearchesManagement() {
   }
 
   const saveSearch = async () => {
+    if (!supabase) return
     if (!editingSearch.name.trim()) {
       alert('Please enter a name for your search')
       return
@@ -151,6 +153,7 @@ export default function SavedSearchesManagement() {
   }
 
   const deleteSearch = async (searchId) => {
+    if (!supabase) return
     if (!confirm('Are you sure you want to delete this saved search?')) return
 
     try {
@@ -170,6 +173,7 @@ export default function SavedSearchesManagement() {
   }
 
   const toggleNotifications = async (searchId, currentStatus) => {
+    if (!supabase) return
     try {
       const { error } = await supabase
         .from('saved_searches')

@@ -73,6 +73,7 @@ export default function ProfileManagement() {
   }, [])
 
   const loadProfile = async () => {
+    if (!supabase) return
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
@@ -109,6 +110,7 @@ export default function ProfileManagement() {
   }
 
   const handleProfileSave = async () => {
+    if (!supabase) return
     setSaving(true)
     setMessage({ type: '', text: '' })
 
@@ -137,6 +139,7 @@ export default function ProfileManagement() {
   }
 
   const handlePasswordChange = async () => {
+    if (!supabase) return
     setSaving(true)
     setMessage({ type: '', text: '' })
 

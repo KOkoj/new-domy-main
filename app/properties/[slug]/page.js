@@ -204,6 +204,7 @@ export default function PropertyDetailPage({ params }) {
 
     // Check if user is authenticated
     const checkUser = async () => {
+      if (!supabase) return
       const { data: { user } } = await supabase.auth.getUser()
       setUser(user)
     }
@@ -516,6 +517,7 @@ export default function PropertyDetailPage({ params }) {
                   <Button 
                     variant="outline" 
                     onClick={async () => {
+                      if (!supabase) return
                       await supabase.auth.signOut()
                       setUser(null)
                     }}

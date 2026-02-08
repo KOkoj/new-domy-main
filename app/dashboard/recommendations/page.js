@@ -170,6 +170,7 @@ export default function PropertyRecommendations() {
   }, [recommendations, filterType, minMatchScore])
 
   const loadUserData = async () => {
+    if (!supabase) return
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
@@ -238,6 +239,7 @@ export default function PropertyRecommendations() {
 
   const addToFavorites = async (propertyId) => {
     if (!user) return
+    if (!supabase) return
 
     try {
       const { error } = await supabase

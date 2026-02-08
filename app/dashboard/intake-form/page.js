@@ -230,6 +230,7 @@ export default function IntakeForm() {
   }, [])
 
   const loadFormData = async () => {
+    if (!supabase) return
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
@@ -320,6 +321,7 @@ export default function IntakeForm() {
   }
 
   const handleSave = async () => {
+    if (!supabase) return
     setSaving(true)
     setMessage({ type: '', text: '' })
 

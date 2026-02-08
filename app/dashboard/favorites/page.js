@@ -66,6 +66,7 @@ export default function FavoritesManagement() {
   }, [favorites, searchTerm, typeFilter, priceFilter])
 
   const loadFavorites = async () => {
+    if (!supabase) return
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
@@ -181,6 +182,7 @@ export default function FavoritesManagement() {
   }
 
   const removeFavorite = async (favoriteId, propertyId) => {
+    if (!supabase) return
     try {
       const { error } = await supabase
         .from('favorites')

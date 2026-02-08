@@ -18,6 +18,7 @@ export default function AuthDemoPage() {
   const [userProfile, setUserProfile] = useState(null)
 
   useEffect(() => {
+    if (!supabase) return
     // Check if user is authenticated
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
@@ -47,6 +48,7 @@ export default function AuthDemoPage() {
   }, [])
 
   const loadUserData = async (userId) => {
+    if (!supabase) return
     try {
       // Load user profile
       const { data: profile } = await supabase
@@ -83,6 +85,7 @@ export default function AuthDemoPage() {
   }
 
   const handleLogout = async () => {
+    if (!supabase) return
     await supabase.auth.signOut()
   }
 

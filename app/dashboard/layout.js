@@ -132,6 +132,7 @@ export default function DashboardLayout({ children }) {
   }
 
   const checkUserAccess = async () => {
+    if (!supabase) return
     try {
       const { data: { user }, error: authError } = await supabase.auth.getUser()
       
@@ -159,6 +160,7 @@ export default function DashboardLayout({ children }) {
   }
 
   const handleLogout = async () => {
+    if (!supabase) return
     await supabase.auth.signOut()
     router.push('/')
   }

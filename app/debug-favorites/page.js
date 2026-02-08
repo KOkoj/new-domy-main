@@ -20,6 +20,7 @@ export default function DebugFavoritesPage() {
   }, [])
 
   const checkUser = async () => {
+    if (!supabase) return
     const { data: { user }, error } = await supabase.auth.getUser()
     if (error) addLog(`Auth Error: ${error.message}`, 'error')
     if (user) {
@@ -32,6 +33,7 @@ export default function DebugFavoritesPage() {
   }
 
   const loadFavoritesDirectly = async (userId) => {
+    if (!supabase) return
     addLog('Attempting to fetch favorites via Supabase Client (Direct DB)...')
     // Try both snake_case and camelCase to see what exists
     
@@ -98,6 +100,7 @@ export default function DebugFavoritesPage() {
 
   const testDirectInsert = async () => {
     if (!user) return addLog('Login required', 'error')
+    if (!supabase) return
     
     setLoading(true)
     const testId = `direct-prop-${Math.floor(Math.random() * 1000)}`

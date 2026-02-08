@@ -87,6 +87,7 @@ export default function DashboardOverview() {
   }, [])
 
   const loadDashboardData = async () => {
+    if (!supabase) return
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return

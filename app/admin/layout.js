@@ -110,6 +110,7 @@ export default function AdminLayout({ children }) {
   }, [])
 
   const checkAdminAccess = async () => {
+    if (!supabase) return
     try {
       const { data: { user }, error: authError } = await supabase.auth.getUser()
       
@@ -159,6 +160,7 @@ export default function AdminLayout({ children }) {
   }
 
   const handleLogout = async () => {
+    if (!supabase) return
     await supabase.auth.signOut()
     router.push('/')
   }

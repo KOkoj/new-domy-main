@@ -117,6 +117,7 @@ export default function ConciergePage() {
   }, [])
 
   const loadConciergeData = async () => {
+    if (!supabase) return
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
@@ -167,6 +168,7 @@ export default function ConciergePage() {
 
   const handleSubmitTicket = async (e) => {
     e.preventDefault()
+    if (!supabase) return
     setSubmitting(true)
     setMessage({ type: '', text: '' })
 

@@ -168,6 +168,7 @@ export default function WebinarsPage() {
   }, [])
 
   const loadWebinarData = async () => {
+    if (!supabase) return
     try {
       setLoading(true)
       const { data: { user } } = await supabase.auth.getUser()

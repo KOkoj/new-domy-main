@@ -84,6 +84,7 @@ export default function InquiriesManagement() {
   }, [inquiries, searchTerm, statusFilter])
 
   const loadInquiries = async () => {
+    if (!supabase) return
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return

@@ -724,6 +724,7 @@ export default function HomePage() {
   }, [startAnimations])
 
   useEffect(() => {
+    if (!supabase) return
     // Check if user is authenticated
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
@@ -1239,6 +1240,7 @@ export default function HomePage() {
   }
 
   const handleLogout = async () => {
+    if (!supabase) return
     const { error } = await supabase.auth.signOut()
     if (!error) {
       setUser(null)

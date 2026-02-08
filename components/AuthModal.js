@@ -41,6 +41,11 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
     }
 
     try {
+      if (!supabase) {
+        setError('Authentication service is unavailable. Please try again later.')
+        setIsLoading(false)
+        return
+      }
       const { data, error } = await supabase.auth.signInWithPassword({
         email: loginForm.email,
         password: loginForm.password
@@ -94,6 +99,11 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
     }
 
     try {
+      if (!supabase) {
+        setError('Authentication service is unavailable. Please try again later.')
+        setIsLoading(false)
+        return
+      }
       const { data, error } = await supabase.auth.signUp({
         email: signupForm.email,
         password: signupForm.password,
@@ -139,6 +149,11 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
     }
 
     try {
+      if (!supabase) {
+        setError('Authentication service is unavailable. Please try again later.')
+        setIsLoading(false)
+        return
+      }
       const { error } = await supabase.auth.signInWithOtp({
         email: loginForm.email,
         options: {

@@ -63,6 +63,8 @@ export default function Navigation() {
   }, [pathname])
 
   useEffect(() => {
+    if (!supabase) return
+
     // Check if user is authenticated
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
@@ -105,6 +107,7 @@ export default function Navigation() {
   }, [])
 
   const handleLogout = async () => {
+    if (!supabase) return
     const { error } = await supabase.auth.signOut()
     if (!error) {
       setUser(null)

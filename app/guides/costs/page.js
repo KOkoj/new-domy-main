@@ -24,6 +24,7 @@ export default function CostsGuidePage() {
   }, [])
 
   useEffect(() => {
+    if (!supabase) return
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
       setUser(user)
@@ -38,6 +39,7 @@ export default function CostsGuidePage() {
   }, [])
 
   const handleLogout = async () => {
+    if (!supabase) return
     const { error } = await supabase.auth.signOut()
     if (!error) {
       setUser(null)

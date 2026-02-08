@@ -268,6 +268,7 @@ export default function PropertiesPage() {
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   useEffect(() => {
+    if (!supabase) return;
     const checkUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       setUser(user);
