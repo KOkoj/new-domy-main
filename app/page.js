@@ -130,6 +130,7 @@ function CustomDropdown({ value, options, onChange, placeholder, className = "",
       >
         <span className="truncate">{selectedLabel}</span>
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
       
       {isOpen && (
         <>
@@ -154,8 +155,12 @@ function CustomDropdown({ value, options, onChange, placeholder, className = "",
                 data-testid={`${testId}-option-${option.value}`}
               >
                 {option.label}
+              </button>
             ))}
+          </div>
         </>
+      )}
+    </div>
   )
 }
 
@@ -192,6 +197,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
         data-testid="property-card-link"
       >
         <span className="sr-only">View property details</span>
+      </Link>
 
       <div className="relative overflow-hidden" data-testid="property-image-container">
         <img 
@@ -213,6 +219,8 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
             >
               ⭐ {t('property.featured', language)}
           </Badge>
+          </div>
+        )}
 
         {/* Top badges and favorite button */}
         <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20">
@@ -237,6 +245,8 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
             data-favorited={isFavorited}
           >
             <Heart className={`h-4 w-4 ${isFavorited ? 'fill-current' : ''}`} />
+          </Button>
+        </div>
         
         {/* Price overlay */}
         <div className="absolute bottom-4 left-4">
@@ -249,6 +259,9 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
             >
             {formatPrice(typeof property.price === 'number' ? { amount: property.price, currency: 'EUR' } : property.price)}
           </span>
+        </div>
+        </div>
+      </div>
       
             <CardContent className="p-6 flex flex-col flex-1">
               {/* Content area that grows */}
@@ -265,20 +278,28 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
             <div className="flex items-center text-gray-500 text-base group-hover:text-gray-600 transition-colors duration-300" data-testid="property-location">
               <div className="p-1 bg-slate-100 rounded-lg mr-2 group-hover:bg-slate-200 transition-colors duration-300">
                 <MapPin className="h-4 w-4 text-slate-600 group-hover:text-slate-700 transition-colors duration-300" />
+              </div>
               <span className="font-medium" data-testid="property-city">{property.location?.city?.name?.[language] || property.location?.city?.name?.en}</span>
               <span data-testid="property-region">, {property.location?.city?.region?.name?.[language] || property.location?.city?.region?.name?.en}</span>
+            </div>
+          </div>
           
           
           {/* Specifications - simplified text only */}
           <div className="flex items-center justify-between pt-3 border-t border-gray-100 text-base text-gray-600 group-hover:text-gray-700 transition-colors duration-300" data-testid="property-specifications">
             {property.specifications.bedrooms && (
               <span className="font-semibold" data-testid="bedrooms-count">{property.specifications.bedrooms} {t('property.beds', language)}</span>
+            )}
             
           {property.specifications.bathrooms && (
               <span className="font-semibold" data-testid="bathrooms-count">{property.specifications.bathrooms} {t('property.baths', language)}</span>
+          )}
             
           {property.specifications.squareFootage && (
               <span className="font-semibold" data-testid="square-footage-count">{property.specifications.squareFootage} m²</span>
+            )}
+          </div>
+            </div>
         
         {/* Enhanced CTA button - always at bottom */}
         <div className="pt-4 mt-auto" data-testid="property-footer">
@@ -288,6 +309,8 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
           >
             <span data-testid="view-details-text">{t('property.viewDetails', language)}</span>
             <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+          </div>
+        </div>
       </CardContent>
     </Card>
   )
@@ -321,23 +344,32 @@ function PropertyOfTheDay({ property, language, currency }) {
                   <span className="text-yellow-300 mr-2">⭐</span>
                   {t('property.propertyOfTheDay', language)}
                 </span>
+              </div>
+            </div>
             
             {/* Views Counter */}
             <div className="absolute top-6 right-6">
               <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 px-3 py-2 text-xs font-medium shadow-lg rounded-lg">
                 <Eye className="h-4 w-4 inline mr-1" />
                 {property.views}
+              </div>
+            </div>
             
             {/* Property Title Overlay */}
             <div className="absolute bottom-6 left-6 max-w-md">
               <h2 className="text-2xl lg:text-3xl font-bold text-white leading-tight drop-shadow-lg" data-testid="property-of-day-title">
                 {property.title[language] || property.title.en}
               </h2>
+            </div>
             
             {/* Price Overlay */}
             <div className="absolute top-6 right-6">
               <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 px-4 py-3 text-2xl font-bold shadow-lg rounded-lg">
                 {formatPrice(property.price)}
+              </div>
+            </div>
+          </div>
+        </div>
         
         {/* Right Side - Detailed Content */}
         <div className="p-4 lg:p-6 flex flex-col justify-between">
@@ -346,6 +378,7 @@ function PropertyOfTheDay({ property, language, currency }) {
             <div className="flex items-center space-x-2 text-base text-gray-600">
               <MapPin className="h-4 w-4 text-slate-700" />
               <span>{property.location.city}, {property.location.region}</span>
+            </div>
             
             
             {/* Specifications */}
@@ -353,15 +386,20 @@ function PropertyOfTheDay({ property, language, currency }) {
               <div className="flex items-center space-x-2">
                 <Bed className="h-5 w-5 text-slate-700" />
                 <span className="font-semibold text-gray-700">{property.specifications.bedrooms} {t('property.beds', language)}</span>
+              </div>
               <div className="flex items-center space-x-2">
                 <Bath className="h-5 w-5 text-slate-700" />
                 <span className="font-semibold text-gray-700">{property.specifications.bathrooms} {t('property.baths', language)}</span>
+              </div>
               <div className="flex items-center space-x-2">
                 <Square className="h-5 w-5 text-slate-700" />
                 <span className="font-semibold text-gray-700">{property.specifications.area} m²</span>
+              </div>
               <div className="flex items-center space-x-2">
                 <Car className="h-5 w-5 text-slate-700" />
                 <span className="font-semibold text-gray-700">{property.specifications.parking} {t('property.parking', language)}</span>
+              </div>
+            </div>
             
             {/* Featured Amenities */}
             <div className="space-y-3">
@@ -373,7 +411,10 @@ function PropertyOfTheDay({ property, language, currency }) {
                   <div key={index} className="flex items-center space-x-2 text-base text-gray-600">
                     <span className="text-slate-700">•</span>
                     <span>{amenity[language] || amenity.en}</span>
+                  </div>
                 ))}
+              </div>
+            </div>
             
             {/* Description */}
             <div className="space-y-3">
@@ -383,15 +424,23 @@ function PropertyOfTheDay({ property, language, currency }) {
               <p className="text-gray-700 leading-relaxed">
                 {property.description[language] || property.description.en}
               </p>
+            </div>
+          </div>
           
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-6">
             <Button className="flex-1 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
               <Eye className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform duration-200" />
               {t('property.viewFullDetails', language)}
+            </Button>
             <Button variant="outline" className="flex-1 border-slate-600 text-slate-700 hover:bg-slate-700 hover:text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 group">
               <Phone className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform duration-200" />
               {t('property.contactAgent', language)}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -412,6 +461,8 @@ function SearchFilters({ filters, onFilterChange, language }) {
                 placeholder={t('filters.location', language)}
                 testId="location-filter"
               />
+            </div>
+          </div>
           <div className="flex items-center gap-3" data-testid="property-type-filter-container">
             <label className="text-base font-medium text-slate-700 whitespace-nowrap min-w-0 flex-shrink-0" data-testid="property-type-filter-label">{t('filters.propertyType', language)}:</label>
             <div className="flex-1">
@@ -428,6 +479,8 @@ function SearchFilters({ filters, onFilterChange, language }) {
                 placeholder={t('filters.anyType', language)}
                 testId="property-type-select"
               />
+            </div>
+        </div>
             <div className="flex items-center gap-3" data-testid="price-range-filter-container">
              <label className="text-base font-medium text-slate-700 whitespace-nowrap min-w-0 flex-shrink-0" data-testid="price-range-filter-label">
                Price Range:
@@ -445,8 +498,11 @@ function SearchFilters({ filters, onFilterChange, language }) {
                  className="w-full"
                  data-testid="price-range-slider"
                />
+             </div>
              <div className="text-xs text-gray-600 whitespace-nowrap">
                €{(filters.minPrice || 50000).toLocaleString()} - €{(filters.maxPrice || 2000000).toLocaleString()}
+             </div>
+           </div>
            <div className="flex items-center" data-testid="filter-actions-container">
              <Button 
                className="bg-slate-700 hover:bg-slate-600 text-white text-base py-2 px-4 rounded-lg transition-colors duration-200"
@@ -478,6 +534,10 @@ function SearchFilters({ filters, onFilterChange, language }) {
                    (filters.maxPrice && filters.maxPrice !== null)
                  return hasActiveFilters ? 'Clear Filters' : 'Apply Filters'
                })()}
+             </Button>
+           </div>
+      </div>
+    </div>
   )
 }
 
@@ -1207,6 +1267,7 @@ export default function HomePage() {
                 alt="Domy v Itálii" 
                 className="w-24 h-24 mx-auto opacity-90"
               />
+            </div>
             
             {/* Loading Text */}
             <h2 className="text-2xl font-bold text-white mb-4 tracking-wide">
@@ -1220,6 +1281,10 @@ export default function HomePage() {
               <div className="w-3 h-3 bg-white/80 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
               <div className="w-3 h-3 bg-white/80 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
               <div className="w-3 h-3 bg-white/80 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+            </div>
+          </div>
+        </div>
+      )}
       
       {/* Navigation */}
       <Navigation />
@@ -1280,6 +1345,7 @@ export default function HomePage() {
                   })
                 ) : (
                   <span style={{ opacity: 0 }}>{t('hero.title', language)}</span>
+                )}
               </h2>
               <p 
                 className={`text-gray-100 max-w-4xl mx-auto leading-relaxed font-light italic transition-all duration-700 text-lg md:text-2xl lg:text-3xl ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
@@ -1292,6 +1358,7 @@ export default function HomePage() {
               >
                 {t('hero.subtitle', language)}
               </p>
+            </div>
             
             {/* Enhanced Search Container */}
             <div 
@@ -1313,6 +1380,7 @@ export default function HomePage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                       data-testid="hero-search-input"
                     />
+                  </div>
                   <Button 
                     size="sm" 
                     className="px-3 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white rounded-full font-medium text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 h-[36px] sm:h-[40px] flex items-center gap-1 sm:gap-2 focus:outline-none focus:ring-0 focus-visible:ring-0 flex-shrink-0" 
@@ -1327,6 +1395,10 @@ export default function HomePage() {
                   >
                     <Search className="h-4 w-4" />
                     <span className="hidden sm:inline">{t('hero.searchButton', language)}</span>
+              </Button>
+                </div>
+              </div>
+            </div>
             
             {/* Quick Search Keywords - Enhanced Colors & Animations */}
             <div 
@@ -1340,6 +1412,8 @@ export default function HomePage() {
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Vila' : (language === 'it' ? 'Villa' : 'Villa')}
+                  </button>
+                </div>
                 
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '1.7s' : '0s', animationFillMode: 'forwards' }}>
                   <button
@@ -1347,6 +1421,8 @@ export default function HomePage() {
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Byt' : (language === 'it' ? 'Appartamento' : 'Apartment')}
+                  </button>
+                </div>
                 
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '1.8s' : '0s', animationFillMode: 'forwards' }}>
                   <button
@@ -1354,6 +1430,8 @@ export default function HomePage() {
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Dům' : (language === 'it' ? 'Casa' : 'House')}
+                  </button>
+                </div>
                 
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '1.9s' : '0s', animationFillMode: 'forwards' }}>
                   <button
@@ -1361,6 +1439,8 @@ export default function HomePage() {
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Penthouse' : (language === 'it' ? 'Attico' : 'Penthouse')}
+                  </button>
+                </div>
                 
                 {/* Popular Locations - Luxury Theme */}
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.0s' : '0s', animationFillMode: 'forwards' }}>
@@ -1369,6 +1449,8 @@ export default function HomePage() {
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Toskánsko' : (language === 'it' ? 'Toscana' : 'Tuscany')}
+                  </button>
+                </div>
                 
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.1s' : '0s', animationFillMode: 'forwards' }}>
                   <button
@@ -1376,6 +1458,8 @@ export default function HomePage() {
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Ligurie' : (language === 'it' ? 'Liguria' : 'Liguria')}
+                  </button>
+                </div>
                 
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.2s' : '0s', animationFillMode: 'forwards' }}>
                   <button
@@ -1383,6 +1467,8 @@ export default function HomePage() {
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Milán' : (language === 'it' ? 'Milano' : 'Milan')}
+                  </button>
+                </div>
                 
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.3s' : '0s', animationFillMode: 'forwards' }}>
                   <button
@@ -1390,6 +1476,8 @@ export default function HomePage() {
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Puglie' : (language === 'it' ? 'Puglia' : 'Puglia')}
+                  </button>
+                </div>
                 
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.4s' : '0s', animationFillMode: 'forwards' }}>
                   <button
@@ -1397,6 +1485,8 @@ export default function HomePage() {
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Sicílie' : (language === 'it' ? 'Sicilia' : 'Sicily')}
+                  </button>
+                </div>
                 
                 {/* Price & Style - Luxury Theme */}
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.5s' : '0s', animationFillMode: 'forwards' }}>
@@ -1405,6 +1495,8 @@ export default function HomePage() {
                     className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Luxusní' : (language === 'it' ? 'Lusso' : 'Luxury')}
+                  </button>
+                </div>
                 
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.6s' : '0s', animationFillMode: 'forwards' }}>
                   <button
@@ -1412,6 +1504,8 @@ export default function HomePage() {
                     className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'U moře' : (language === 'it' ? 'Sul mare' : 'Beachfront')}
+                  </button>
+                </div>
                 
                 {/* Features - Luxury Theme */}
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.7s' : '0s', animationFillMode: 'forwards' }}>
@@ -1420,6 +1514,8 @@ export default function HomePage() {
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Bazén' : (language === 'it' ? 'Piscina' : 'Pool')}
+                  </button>
+                </div>
                 
                 <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.8s' : '0s', animationFillMode: 'forwards' }}>
                   <button
@@ -1427,6 +1523,10 @@ export default function HomePage() {
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
                     {language === 'cs' ? 'Zahrada' : (language === 'it' ? 'Giardino' : 'Garden')}
+                  </button>
+                </div>
+              </div>
+            </div>
             
             {/* Trust Indicators - Subtle & Elegant */}
             <div 
@@ -1450,6 +1550,8 @@ export default function HomePage() {
                        language === 'it' ? 'Avvocati Certificati' :
                        'Certified Lawyers'}
                     </span>
+                  </div>
+                </div>
                 
                 {/* Tour Partner */}
                 <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full sm:w-auto" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
@@ -1465,6 +1567,8 @@ export default function HomePage() {
                        language === 'it' ? 'Esperienza Locale' :
                        'Local Experience'}
                     </span>
+                  </div>
+                </div>
                 
                 {/* Data Privacy */}
                 <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full sm:w-auto" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
@@ -1480,6 +1584,12 @@ export default function HomePage() {
                        language === 'it' ? 'Conforme al GDPR' :
                        'GDPR Compliant'}
                     </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
         {/* Intro Section - Not a Real Estate Agency */}
@@ -1506,6 +1616,10 @@ export default function HomePage() {
                       {language === 'cs' ? 'O našem procesu' : 
                        language === 'it' ? 'Sul nostro processo' : 
                        'About Our Process'}
+                    </Button>
+                  </Link>
+              </div>
+            </div>
 
             {/* Right Side - Animated Image Tiles - Hidden on small mobile */}
             <div className="hidden md:flex relative h-[400px] lg:h-[500px] items-center justify-center animate-on-scroll slide-right">
@@ -1514,6 +1628,9 @@ export default function HomePage() {
                 middleImage="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80"
                 rightImage="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80"
               />
+            </div>
+          </div>
+        </div>
         
         {/* Scroll Down Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
@@ -1534,6 +1651,9 @@ export default function HomePage() {
             </span>
             <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center group-hover:border-white transition-colors duration-300">
               <div className="w-1 h-3 bg-white/60 rounded-full mt-2 group-hover:bg-white transition-colors duration-300 slow-bounce"></div>
+            </div>
+          </div>
+        </div>
       </section>
       <div className="container mx-auto px-4 pt-12 pb-8 bg-[#f7f4ed]" data-testid="main-content-container">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
@@ -1602,6 +1722,29 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      </div>
+
+      {/* Property of the Day Section - Hidden for now */}
+      {/* <section className="pt-8 pb-16 bg-[#f7f4ed]">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4" data-testid="property-of-day-section-title">
+              {t('property.propertyOfTheDay', language)}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {language === 'cs' ? 'Objevte dnešní doporučenou nemovitost - pečlivě vybraná nabídka nejlepších italských nemovitostí' :
+               language === 'it' ? 'Scopri la proprietà in evidenza di oggi - una selezione accurata che mostra i migliori immobili italiani' :
+               'Discover today\'s featured property - a handpicked selection showcasing the finest Italian real estate'}
+            </p>
+          </div>
+          
+          <PropertyOfTheDay 
+            property={PROPERTY_OF_THE_DAY} 
+            language={language}
+            currency={currency}
+          />
+        </div>
+      </section> */}
 
       {/* Premium Club Section */}
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 sm:py-20 overflow-hidden">
@@ -1626,6 +1769,8 @@ export default function HomePage() {
               {language === 'cs' ? 'Připojit se zdarma' :
                language === 'it' ? 'Unisciti gratuitamente' :
                'Join for Free'}
+            </Button>
+          </div>
 
           {/* Premium Card and Blogs Side by Side */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-16">
@@ -1640,6 +1785,7 @@ export default function HomePage() {
                 <div className="text-center space-y-6">
                   <div className="flex items-center justify-center mx-auto">
                     <img src="/logo domy.svg" alt="Logo" className="h-16 w-16" />
+                  </div>
                   
                   <div>
                     <h4 className="text-2xl font-bold mb-2" style={{ color: '#c48759' }}>
@@ -1652,6 +1798,7 @@ export default function HomePage() {
                        language === 'it' ? 'Membri esclusivi' :
                        'Exclusive Membership'}
                     </p>
+                  </div>
 
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
@@ -1661,6 +1808,7 @@ export default function HomePage() {
                          language === 'it' ? 'Ricerca Personalizzata' :
                          'Custom Finder'}
                       </span>
+                    </div>
                     <div className="flex items-center space-x-3">
                       <Check className="h-5 w-5 text-slate-600" />
                       <span className="text-base" style={{ color: '#c48759' }}>
@@ -1668,6 +1816,7 @@ export default function HomePage() {
                          language === 'it' ? 'Vantaggi di Viaggio' :
                          'Travel Perks'}
                       </span>
+                    </div>
                     <div className="flex items-center space-x-3">
                       <Check className="h-5 w-5 text-slate-600" />
                       <span className="text-base" style={{ color: '#c48759' }}>
@@ -1675,6 +1824,7 @@ export default function HomePage() {
                          language === 'it' ? 'Blog Insider' :
                          'Insider Blogs'}
                       </span>
+                    </div>
                     <div className="flex items-center space-x-3">
                       <Check className="h-5 w-5 text-slate-600" />
                       <span className="text-base" style={{ color: '#c48759' }}>
@@ -1682,18 +1832,24 @@ export default function HomePage() {
                          language === 'it' ? 'Webinar Settimanali' :
                          'Weekly Webinars'}
                       </span>
+                    </div>
+                  </div>
 
                   <div className="pt-4">
                     <div className="text-3xl font-bold mb-1" style={{ color: '#c48759' }}>
                       {language === 'cs' ? 'ZDARMA' :
                        language === 'it' ? 'GRATIS' :
                        'FREE'}
+                    </div>
                     <p className="text-gray-300 text-xs">
                       {language === 'cs' ? 'Bez skrytých poplatků' :
                        language === 'it' ? 'Nessuna commissione nascosta' :
                        'No hidden fees'}
                     </p>
+                  </div>
+                </div>
               </GlareCard>
+            </div>
 
             {/* Premium Blogs - Takes 2 columns on large screens */}
             <div className="lg:col-span-2">
@@ -1713,6 +1869,7 @@ export default function HomePage() {
                        'Register for free to unlock premium articles and guides')
                   }
                 </p>
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {[
@@ -1788,6 +1945,7 @@ export default function HomePage() {
                           <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
                             {article.category[language]}
                           </span>
+                        </div>
                         {/* Lock badge on image */}
                         {!user && (
                           <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
@@ -1795,6 +1953,9 @@ export default function HomePage() {
                               <Lock className="h-3 w-3" />
                               Premium
                             </span>
+                          </div>
+                        )}
+                      </div>
                       <div className="p-4 sm:p-6 relative">
                         <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2">
                           {article.title[language]}
@@ -1816,6 +1977,9 @@ export default function HomePage() {
                                  language === 'it' ? 'Registrati per leggere' :
                                  'Register to read'}
                               </span>
+                            </div>
+                          </div>
+                        )}
                         
                         {/* Normal footer for logged-in users */}
                         {user && (
@@ -1826,7 +1990,16 @@ export default function HomePage() {
                             <span className="text-xs font-semibold text-copper-400">
                               {language === 'cs' ? 'Číst článek' : language === 'it' ? 'Leggi' : 'Read'}
                             </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Featured Regions Section */}
@@ -1843,6 +2016,7 @@ export default function HomePage() {
                language === 'it' ? 'Non tutta l\'Italia è uguale. Scegli una regione che si adatti al tuo budget, stile di vita e obiettivi di investimento. Esplora le proprietà nelle aree che ami.' : 
                'Not all of Italy is the same. Choose a region that fits your budget, lifestyle, and investment goals. Explore properties in the areas you love.'}
             </p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12">
             {/* Sardegna */}
@@ -1865,6 +2039,8 @@ export default function HomePage() {
                      language === 'it' ? 'Acque cristalline, spiagge incontaminate, resort di lusso' :
                      'Crystal waters, pristine beaches, luxury resorts'}
                   </p>
+                </div>
+              </div>
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
@@ -1876,6 +2052,7 @@ export default function HomePage() {
                   <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
                     EU resident
                   </span>
+                </div>
                 <Link 
                   href="/properties?region=sardegna"
                   onClick={() => {
@@ -1888,6 +2065,10 @@ export default function HomePage() {
                     {language === 'cs' ? 'Zobrazit nabídky ze Sardinie' :
                      language === 'it' ? 'Visualizza offerte per la Sardegna' :
                      'View offers from Sardinia'}
+                  </button>
+                </Link>
+              </div>
+            </div>
 
             {/* Tuscany */}
             <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
@@ -1909,6 +2090,8 @@ export default function HomePage() {
                      language === 'it' ? 'Case coloniche in pietra, viste sui vigneti, domanda di affitto stabile' :
                      'Stone farmhouses, vineyard views, stable rental demand'}
                   </p>
+                </div>
+              </div>
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
@@ -1924,6 +2107,7 @@ export default function HomePage() {
                      language === 'it' ? 'Residente UE' :
                      'EU resident'}
                   </span>
+                </div>
                 <Link 
                   href="/properties?region=toscana"
                   onClick={() => {
@@ -1936,6 +2120,10 @@ export default function HomePage() {
                     {language === 'cs' ? 'Zobrazit nabídky z Toskánska' :
                      language === 'it' ? 'Visualizza offerte per la Toscana' :
                      'View offers from Tuscany'}
+                  </button>
+                </Link>
+              </div>
+            </div>
 
             {/* Emilia-Romagna */}
             <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
@@ -1957,6 +2145,8 @@ export default function HomePage() {
                      language === 'it' ? 'Capitale culinaria, città storiche, dolci colline' :
                      'Culinary capital, historic cities, rolling hills'}
                   </p>
+                </div>
+              </div>
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
@@ -1968,6 +2158,7 @@ export default function HomePage() {
                   <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
                     EU resident
                   </span>
+                </div>
                 <Link 
                   href="/properties?region=emilia-romagna"
                   onClick={() => {
@@ -1980,6 +2171,10 @@ export default function HomePage() {
                     {language === 'cs' ? 'Zobrazit nabídky z Emilia-Romagna' :
                      language === 'it' ? 'Visualizza offerte per l\'Emilia-Romagna' :
                      'View offers from Emilia-Romagna'}
+                  </button>
+                </Link>
+              </div>
+            </div>
 
             {/* Sicily */}
             <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
@@ -2001,6 +2196,8 @@ export default function HomePage() {
                      language === 'it' ? 'Palazzi storici, città barocche, mercato emergente' :
                      'Historic palazzi, Baroque towns, emerging market'}
                   </p>
+                </div>
+              </div>
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
@@ -2016,6 +2213,7 @@ export default function HomePage() {
                      language === 'it' ? 'Residente UE' :
                      'EU resident'}
                   </span>
+                </div>
                 <Link 
                   href="/properties?region=sicilia"
                   onClick={() => {
@@ -2028,6 +2226,10 @@ export default function HomePage() {
                     {language === 'cs' ? 'Zobrazit nabídky ze Sicílie' :
                      language === 'it' ? 'Visualizza offerte per la Sicilia' :
                      'View offers from Sicily'}
+                  </button>
+                </Link>
+              </div>
+            </div>
 
             {/* Trentino-Alto Adige */}
             <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
@@ -2049,6 +2251,8 @@ export default function HomePage() {
                      language === 'it' ? 'Dolomiti, laghi alpini, cultura duale unica' :
                      'Dolomites, alpine lakes, unique dual culture'}
                   </p>
+                </div>
+              </div>
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
@@ -2064,6 +2268,7 @@ export default function HomePage() {
                      language === 'it' ? 'Residente UE' :
                      'EU resident'}
                   </span>
+                </div>
                 <Link 
                   href="/properties?region=trentino-alto-adige"
                   onClick={() => {
@@ -2076,6 +2281,10 @@ export default function HomePage() {
                     {language === 'cs' ? 'Zobrazit nabídky z Trentino-Alto Adige' :
                      language === 'it' ? 'Visualizza offerte per il Trentino-Alto Adige' :
                      'View offers from Trentino-Alto Adige'}
+                  </button>
+                </Link>
+              </div>
+            </div>
 
             {/* Lazio (Rome) */}
             <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
@@ -2097,6 +2306,8 @@ export default function HomePage() {
                      language === 'it' ? 'Centro storico, quartieri moderni, forte mercato degli affitti' :
                      'Historic center, modern districts, strong rental market'}
                   </p>
+                </div>
+              </div>
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
@@ -2112,6 +2323,7 @@ export default function HomePage() {
                      language === 'it' ? 'Residente UE' :
                      'EU resident'}
                   </span>
+                </div>
                 <Link 
                   href="/properties?region=lazio"
                   onClick={() => {
@@ -2124,12 +2336,20 @@ export default function HomePage() {
                     {language === 'cs' ? 'Zobrazit nabídky z Lazia' :
                      language === 'it' ? 'Visualizza offerte per il Lazio' :
                      'View offers from Lazio'}
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
 
           <div className="text-center">
             <button className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-8 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
               {language === 'cs' ? 'Získejte kurátorované nabídky pro tento region' :
                language === 'it' ? 'Ottieni offerte curate per questa regione' :
                'Get curated listings for this region'}
+            </button>
+          </div>
+        </div>
       </section>
 
         {/* How It Works Section */}
@@ -2146,12 +2366,14 @@ export default function HomePage() {
                language === 'it' ? 'Dal primo brief all\'atto firmato: il tuo percorso per possedere in Italia, semplificato.' :
                'From first brief to signed deed—your path to owning in Italy, simplified.'}
             </p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Step 1 */}
               <div className="text-center group">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                   <span className="text-2xl font-bold text-white">1</span>
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                 {language === 'cs' ? 'Začněte Hledat' :
                  language === 'it' ? 'Inizia la Ricerca' :
@@ -2162,11 +2384,13 @@ export default function HomePage() {
                  language === 'it' ? 'Compila il form di 60 secondi o sfoglia le nostre proprietà esistenti.' :
                  'Fill out a 60-second form or browse our existing property listings.'}
               </p>
+            </div>
 
             {/* Step 2 */}
               <div className="text-center group">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                   <span className="text-2xl font-bold text-white">2</span>
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                 {language === 'cs' ? 'Prohlédněte Všechny Nemovitosti' :
                  language === 'it' ? 'Sfoglia Tutte le Proprietà' :
@@ -2177,11 +2401,13 @@ export default function HomePage() {
                  language === 'it' ? 'Sfoglia il nostro vasto portafoglio di proprietà in tutte le regioni d\'Italia.' :
                  'Browse our extensive portfolio of properties across all Italian regions.'}
               </p>
+            </div>
 
             {/* Step 3 */}
               <div className="text-center group">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                   <span className="text-2xl font-bold text-white">3</span>
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                 {language === 'cs' ? 'Navštivte a Ověřte' :
                  language === 'it' ? 'Visita e Verifica' :
@@ -2192,11 +2418,13 @@ export default function HomePage() {
                  language === 'it' ? 'Organizziamo visite e controlli sul posto per te.' :
                  'We arrange viewings and on-site checks.'}
               </p>
+            </div>
 
             {/* Step 4 */}
               <div className="text-center group">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                   <span className="text-2xl font-bold text-white">4</span>
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                 {language === 'cs' ? 'Právní a Dokončení' :
                  language === 'it' ? 'Legale e Chiusura' :
@@ -2207,6 +2435,8 @@ export default function HomePage() {
                  language === 'it' ? 'I nostri partner gestiscono contratti, tasse e conformità.' :
                  'Our partners handle contracts, taxes, and compliance.'}
               </p>
+            </div>
+          </div>
 
           <div className="text-center">
             <Link href="/process">
@@ -2214,6 +2444,10 @@ export default function HomePage() {
                 {language === 'cs' ? 'Zobrazit celý proces' :
                  language === 'it' ? 'Visualizza il processo completo' :
                  'View Full Process'}
+              </button>
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* Recent Success Stories Section */}
@@ -2230,6 +2464,7 @@ export default function HomePage() {
                language === 'it' ? 'Risultati reali da acquirenti come te.' :
                'Real results from buyers like you.'}
             </p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {/* Success Story 1 */}
@@ -2245,6 +2480,9 @@ export default function HomePage() {
                   <div className="flex items-center gap-2 mb-2">
                     <span className="bg-slate-800 text-white text-xs font-semibold px-2 py-1 rounded">SOLD</span>
                     <span className="text-white/90 text-xs">€280,000</span>
+                  </div>
+                </div>
+              </div>
               <div className="p-6 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
@@ -2263,11 +2501,13 @@ export default function HomePage() {
                       {language === 'cs' ? '6 měsíců • Toskánsko' :
                        language === 'it' ? '6 mesi • Toscana' :
                        '6 months • Tuscany'}
+                    </div>
                     <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-2 py-1 rounded-full">
                       {language === 'cs' ? 'Dokončeno' :
                        language === 'it' ? 'Completato' :
                        'Completed'}
                     </span>
+                  </div>
                   <div className="mb-4">
                     <p className="text-xs text-gray-600 mb-2">
                       <span className="font-semibold">
@@ -2284,10 +2524,15 @@ export default function HomePage() {
                           language === 'it' ? 'Permessi di ristrutturazione' :
                           'Renovation permits'}</li>
                     </ul>
+                  </div>
+                </div>
                 <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105 mt-auto">
                   {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
                    language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
+                </button>
+              </div>
+            </div>
 
             {/* Success Story 2 */}
             <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 flex flex-col">
@@ -2302,6 +2547,9 @@ export default function HomePage() {
                   <div className="flex items-center gap-2 mb-2">
                     <span className="bg-slate-800 text-white text-xs font-semibold px-2 py-1 rounded">SOLD</span>
                     <span className="text-white/90 text-xs">€450,000</span>
+                  </div>
+                </div>
+              </div>
               <div className="p-6 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
@@ -2320,11 +2568,13 @@ export default function HomePage() {
                       {language === 'cs' ? '4 měsíce • Sicílie' :
                        language === 'it' ? '4 mesi • Sicilia' :
                        '4 months • Sicily'}
+                    </div>
                     <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-2 py-1 rounded-full">
                       {language === 'cs' ? 'Dokončeno' :
                        language === 'it' ? 'Completato' :
                        'Completed'}
                     </span>
+                  </div>
                   <div className="mb-4">
                     <p className="text-xs text-gray-600 mb-2">
                       <span className="font-semibold">
@@ -2341,10 +2591,15 @@ export default function HomePage() {
                           language === 'it' ? 'Supporto legale internazionale' :
                           'International legal support'}</li>
                     </ul>
+                  </div>
+                </div>
                 <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105 mt-auto">
                   {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
                    language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
+                </button>
+              </div>
+            </div>
 
             {/* Success Story 3 */}
             <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 flex flex-col">
@@ -2359,6 +2614,9 @@ export default function HomePage() {
                   <div className="flex items-center gap-2 mb-2">
                     <span className="bg-slate-800 text-white text-xs font-semibold px-2 py-1 rounded">SOLD</span>
                     <span className="text-white/90 text-xs">€320,000</span>
+                  </div>
+                </div>
+              </div>
               <div className="p-6 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
@@ -2377,11 +2635,13 @@ export default function HomePage() {
                       {language === 'cs' ? '3 měsíce • Ligurie' :
                        language === 'it' ? '3 mesi • Liguria' :
                        '3 months • Liguria'}
+                    </div>
                     <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-2 py-1 rounded-full">
                       {language === 'cs' ? 'Dokončeno' :
                        language === 'it' ? 'Completato' :
                        'Completed'}
                     </span>
+                  </div>
                   <div className="mb-4">
                     <p className="text-xs text-gray-600 mb-2">
                       <span className="font-semibold">
@@ -2398,10 +2658,17 @@ export default function HomePage() {
                           language === 'it' ? 'Permessi turistici' :
                           'Tourist permits'}</li>
                     </ul>
+                  </div>
+                </div>
                 <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105 mt-auto">
                   {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
                    language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Weekly Webinar Section */}
@@ -2418,6 +2685,7 @@ export default function HomePage() {
                language === 'it' ? 'Acquistare in Italia: il processo, le insidie e i numeri — dal vivo, ogni settimana.' :
                'Buying in Italy: the process, the pitfalls, and the numbers—live, every week.'}
             </p>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Next Date + Agenda */}
@@ -2427,6 +2695,7 @@ export default function HomePage() {
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
+                </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
                   {language === 'cs' ? 'Příští Webinář' :
                    language === 'it' ? 'Prossimo Webinar' :
@@ -2442,6 +2711,7 @@ export default function HomePage() {
                    language === 'it' ? '19:00 - 20:30 CET' :
                    '7:00 - 8:30 PM CET'}
                 </p>
+              </div>
 
               <div className="space-y-4">
                 <h4 className="text-lg font-semibold text-gray-900 mb-4">
@@ -2453,35 +2723,45 @@ export default function HomePage() {
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="w-2 h-2 bg-slate-800 rounded-full"></div>
+                    </div>
                     <p className="text-gray-700">
                       {language === 'cs' ? 'Přehled procesu nákupu' :
                        language === 'it' ? 'Panoramica del processo di acquisto' :
                        'Process overview'}
                     </p>
+                  </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="w-2 h-2 bg-slate-800 rounded-full"></div>
+                    </div>
                     <p className="text-gray-700">
                       {language === 'cs' ? 'Daně a poplatky' :
                        language === 'it' ? 'Tasse e commissioni' :
                        'Taxes & fees'}
                     </p>
+                  </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="w-2 h-2 bg-slate-800 rounded-full"></div>
+                    </div>
                     <p className="text-gray-700">
                       {language === 'cs' ? 'Běžná úskalí' :
                        language === 'it' ? 'Insidie comuni' :
                        'Common pitfalls'}
                     </p>
+                  </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-slate-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="w-2 h-2 bg-slate-800 rounded-full"></div>
+                    </div>
                     <p className="text-gray-700">
                       {language === 'cs' ? 'Živé Q&A' :
                        language === 'it' ? 'Q&A dal vivo' :
                        'Live Q&A'}
                     </p>
+                  </div>
+                </div>
+              </div>
 
               <div className="mt-8 p-4 bg-slate-50 rounded-lg border border-slate-200">
                 <p className="text-base text-slate-800 font-medium">
@@ -2489,6 +2769,8 @@ export default function HomePage() {
                    language === 'it' ? 'Gratuito per i membri del Premium Club. Posti limitati.' :
                    'Free for Premium Club members. Limited seats.'}
                 </p>
+              </div>
+            </div>
 
             {/* Right Side - Signup Form */}
             <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200">
@@ -2503,6 +2785,7 @@ export default function HomePage() {
                    language === 'it' ? 'Non riesci a partecipare? Ricevi la registrazione tramite Premium Club.' :
                    'Can\'t make it? Get the recording via Premium Club.'}
                 </p>
+              </div>
 
               <form className="space-y-6">
                 <div>
@@ -2518,6 +2801,7 @@ export default function HomePage() {
                                  language === 'it' ? 'Il tuo nome' :
                                  'Your name'}
                   />
+                </div>
 
                 <div>
                   <label className="block text-base font-medium text-gray-700 mb-2">
@@ -2532,6 +2816,7 @@ export default function HomePage() {
                                  language === 'it' ? 'la-tua-email@esempio.com' :
                                  'your-email@example.com'}
                   />
+                </div>
 
                 <div>
                   <label className="block text-base font-medium text-gray-700 mb-2">
@@ -2646,6 +2931,7 @@ export default function HomePage() {
                        'Veneto'}
                     </option>
                   </select>
+                </div>
 
                 <button 
                   type="submit"
@@ -2654,6 +2940,7 @@ export default function HomePage() {
                   {language === 'cs' ? 'Rezervovat Místo' :
                    language === 'it' ? 'Riserva il Posto' :
                    'Reserve a Seat'}
+                </button>
 
                 <p className="text-xs text-gray-500 text-center">
                   {language === 'cs' ? 'Registrací souhlasíte s přijímáním e-mailových aktualizací.' :
@@ -2661,6 +2948,9 @@ export default function HomePage() {
                    'By signing up, you agree to receive email updates.'}
                 </p>
               </form>
+            </div>
+          </div>
+        </div>
       </section>
 
         {/* FAQ Section */}
@@ -2677,6 +2967,7 @@ export default function HomePage() {
                language === 'it' ? 'Le risposte di cui hai bisogno prima di decidere.' :
                'The answers you need before you decide.'}
             </p>
+          </div>
 
           <div className="max-w-4xl mx-auto space-y-4">
             {[
@@ -2817,12 +3108,17 @@ export default function HomePage() {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
+                </button>
                 {openFaqIndex === index && (
                   <div className="px-8 py-6 bg-gradient-to-r from-blue-50/30 to-indigo-50/20 border-t border-blue-200/30">
                     <p className="text-gray-700 leading-relaxed">
                       {faq.answer[language] || faq.answer.en}
                     </p>
+                  </div>
+                )}
+              </div>
             ))}
+          </div>
 
           {/* CTA at end */}
           <div className="text-center mt-16">
@@ -2836,10 +3132,15 @@ export default function HomePage() {
                 {language === 'cs' ? 'Připojte se k Webináři' :
                  language === 'it' ? 'Partecipa al Webinar' :
                  'Join the Webinar'}
+              </button>
               <button className="text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                 {language === 'cs' ? 'Rezervovat Hovor' :
                  language === 'it' ? 'Prenota una Chiamata' :
                  'Book a Call'}
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Contact / Book a Call Section */}
@@ -2856,6 +3157,7 @@ export default function HomePage() {
                language === 'it' ? 'Scegli come vuoi procedere. Siamo qui per guidarti in ogni fase del processo.' :
                'Choose how you want to proceed. We\'re here to guide you through every step of the process.'}
             </p>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto mb-16">
             {/* Book a Free Consultation */}
@@ -2865,6 +3167,7 @@ export default function HomePage() {
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
+                </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {language === 'cs' ? 'Rezervujte si Bezplatnou Konzultaci' :
                    language === 'it' ? 'Prenota una Consulenza Gratuita' :
@@ -2913,11 +3216,14 @@ export default function HomePage() {
                   {language === 'cs' ? 'Rezervovat Hovor' :
                    language === 'it' ? 'Prenota una Chiamata' :
                    'Book a Call'}
+                </button>
                 <p className="text-xs text-gray-500 mt-4">
                   {language === 'cs' ? 'Dostupné pondělí-pátek, 9:00-18:00 CET' :
                    language === 'it' ? 'Disponibile dal lunedì al venerdì, 9:00-18:00 CET' :
                    'Available Monday-Friday, 9:00-18:00 CET'}
                 </p>
+              </div>
+            </div>
 
             {/* Start the Personal Property Finder */}
             <div className="bg-gradient-to-br from-slate-700 via-slate-800 to-slate-600 rounded-2xl p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
@@ -2926,6 +3232,7 @@ export default function HomePage() {
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
+                </div>
                 <h3 className="text-2xl font-bold text-white mb-4">
                   {language === 'cs' ? 'Spustit Osobní Vyhledávač Nemovitostí' :
                    language === 'it' ? 'Avvia il Personal Property Finder' :
@@ -2974,11 +3281,15 @@ export default function HomePage() {
                   {language === 'cs' ? 'Spustit Vyhledávač' :
                    language === 'it' ? 'Avvia il Finder' :
                    'Start the Finder'}
+                </button>
                 <p className="text-xs text-gray-300 mt-4">
                   {language === 'cs' ? 'Není vyžadována kreditní karta' :
                    language === 'it' ? 'Nessuna carta di credito richiesta' :
                    'No credit card required'}
                 </p>
+              </div>
+            </div>
+          </div>
 
           {/* Trust Row */}
           <div className="border-t border-gray-300 pt-12">
@@ -2988,6 +3299,7 @@ export default function HomePage() {
                  language === 'it' ? 'Partner di Fiducia' :
                  'Trusted Partners'}
               </p>
+            </div>
             <div className="flex flex-wrap justify-center items-center gap-8">
               <div className="flex items-center space-x-3 bg-white rounded-lg px-6 py-3 shadow-md border border-gray-200">
                 <svg className="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3004,6 +3316,8 @@ export default function HomePage() {
                      language === 'it' ? 'Avvocati Certificati' :
                      'Certified Lawyers'}
                   </p>
+                </div>
+              </div>
               
               <div className="flex items-center space-x-3 bg-white rounded-lg px-6 py-3 shadow-md border border-gray-200">
                 <svg className="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3020,6 +3334,8 @@ export default function HomePage() {
                      language === 'it' ? 'Esperienza Locale' :
                      'Local Experience'}
                   </p>
+                </div>
+              </div>
               
               <div className="flex items-center space-x-3 bg-white rounded-lg px-6 py-3 shadow-md border border-gray-200">
                 <svg className="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3036,6 +3352,11 @@ export default function HomePage() {
                      language === 'it' ? 'Conforme al GDPR' :
                      'GDPR Compliant'}
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Footer */}
@@ -3047,7 +3368,7 @@ export default function HomePage() {
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
       />
+    </div>
   )
 }
-
 
