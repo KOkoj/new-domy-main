@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -1599,14 +1599,14 @@ export default function HomePage() {
             {/* Left Side - Text Content */}
             <div className="space-y-4 sm:space-y-6 animate-on-scroll slide-left">
                 <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  {language === 'cs' ? 'Nejsme realitní kancelář.' :
-                   language === 'it' ? 'Non siamo un\'agenzia immobiliare.' :
-                   'We\'re Not a Real Estate Agency.'}
+                  {language === 'cs' ? 'Pomáháme Čechům koupit dům v Itálii. Bez stresu. Bez iluzí. S jasným postupem.' :
+                   language === 'it' ? 'Aiutiamo i cechi a comprare casa in Italia. Senza stress. Senza illusioni. Con un percorso chiaro.' :
+                   'We help Czechs buy a home in Italy. Stress-free. No illusions. With a clear process.'}
                 </h2>
                 <p className="text-base sm:text-xl text-gray-700 leading-relaxed">
-                  {language === 'cs' ? 'Nevlastníme žádné nemovitosti a nesnažíme se nic „prodat". Jsme váš osobní průvodce celým procesem – cílem je najít domov, který skutečně sedí vám. Námi vybrané nemovitosti' :
-                   language === 'it' ? 'Non possediamo proprietà e non cerchiamo di "vendere" nulla. Siamo la tua guida personale attraverso l\'intero processo – l\'obiettivo è trovare una casa che si adatti davvero a te. Le proprietà che selezioniamo' :
-                   'We don\'t own any properties and we\'re not trying to "sell" anything. We\'re your personal guide through the entire process – the goal is to find a home that truly fits you. The properties we select'}
+                  {language === 'cs' ? 'Praktické informace ještě předtím, než uděláte první rozhodnutí.' :
+                   language === 'it' ? 'Informazioni pratiche prima ancora di prendere la prima decisione.' :
+                   'Practical information before you make your first decision.'}
               </p>
               <div className="pt-2 sm:pt-4">
                   <Link href="/process">
@@ -3447,3 +3447,4 @@ export default function HomePage() {
     </div>
   )
 }
+
