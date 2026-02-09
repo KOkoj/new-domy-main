@@ -1697,11 +1697,18 @@ export default function HomePage() {
               <CardContent className="p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-4">
                   <h3 className="font-bold text-2xl leading-tight text-gray-900">
-                    {language === 'cs' ? 'Druhá karta' : language === 'it' ? 'Seconda card' : 'Second card'}
+                    {language === 'cs' ? 'Cena není všechno' : language === 'it' ? 'Il prezzo non è tutto' : 'Price isn’t everything'}
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    {language === 'cs' ? 'Obsah doplníme dle instrukcí.' : language === 'it' ? 'Contenuto da definire.' : 'Content to be defined.'}
+                    {language === 'cs' ? 'Skutečné náklady se ukazují až v detailu.' : language === 'it' ? 'I costi reali emergono nei dettagli.' : 'The real costs show up in the details.'}
                   </p>
+                <div className="pt-4 mt-auto">
+                  <Link href="/guides/costs">
+                    <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
+                      {language === 'it' ? 'Scopri di più' : language === 'cs' ? 'Zjistit více' : 'Learn more'}
+                    </Button>
+                  </Link>
+                </div>
                 </div>
               </CardContent>
             </Card>
@@ -3348,5 +3355,6 @@ export default function HomePage() {
     </div>
   )
 }
+
 
 
