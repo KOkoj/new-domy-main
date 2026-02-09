@@ -33,7 +33,12 @@ import {
   Calendar,
   Tag,
   ExternalLink,
-  Languages
+  Languages,
+  FileText,
+  BookOpen,
+  Clock,
+  Link as LinkIcon,
+  Download
 } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { t } from '@/lib/translations'
@@ -42,16 +47,21 @@ export default function ContentManagement() {
   const [activeTab, setActiveTab] = useState('properties')
   const [properties, setProperties] = useState([])
   const [regions, setRegions] = useState([])
+  const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [editingItem, setEditingItem] = useState(null)
+  const [editingArticle, setEditingArticle] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isArticleModalOpen, setIsArticleModalOpen] = useState(false)
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
   const [sanityConfigured, setSanityConfigured] = useState(true)
   const [uploadingImage, setUploadingImage] = useState(false)
   const [keywordInput, setKeywordInput] = useState('')
+  const [tagInput, setTagInput] = useState('')
   const [translating, setTranslating] = useState({})
+  const [seeding, setSeeding] = useState(false)
   const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
@@ -81,7 +91,8 @@ export default function ContentManagement() {
       setLoading(true)
       setError(null)
 
-      const type = activeTab === 'properties' ? 'properties' : 'regions'
+      const typeMap = { properties: 'properties', regions: 'regions', articles: 'articles' }
+      const type = typeMap[activeTab] || 'properties'
       const response = await fetch(`/api/content?type=${type}`)
       const result = await response.json()
 
@@ -94,8 +105,10 @@ export default function ContentManagement() {
 
       if (activeTab === 'properties') {
         setProperties(result.properties || [])
-      } else {
+      } else if (activeTab === 'regions') {
         setRegions(result.regions || [])
+      } else if (activeTab === 'articles') {
+        setArticles(result.articles || [])
       }
     } catch (err) {
       console.error('Error loading content:', err)
@@ -439,6 +452,261 @@ export default function ContentManagement() {
     setIsModalOpen(true)
   }
 
+  // === Article Handlers ===
+  const createNewArticle = () => {
+    setEditingArticle({
+      _id: 'new',
+      slug: '',
+      title: { en: '', cs: '', it: '' },
+      excerpt: { en: '', cs: '', it: '' },
+      date: new Date().toISOString().split('T')[0],
+      readTime: '',
+      category: { en: '', cs: '', it: '' },
+      author: '',
+      image: '',
+      content: { en: '', cs: '', it: '' },
+      tags: [],
+      link: '',
+      articleType: 'blog',
+      relatedRegions: []
+    })
+    setTagInput('')
+    setIsArticleModalOpen(true)
+  }
+
+  const handleEditArticle = (article) => {
+    setEditingArticle({
+      ...article,
+      title: { en: '', cs: '', it: '', ...article.title },
+      excerpt: { en: '', cs: '', it: '', ...article.excerpt },
+      category: { en: '', cs: '', it: '', ...(article.category || {}) },
+      content: { en: '', cs: '', it: '', ...(article.content || {}) },
+      tags: article.tags || [],
+      relatedRegions: article.relatedRegions || [],
+      link: article.link || '',
+      author: article.author || '',
+      image: article.image || '',
+    })
+    setTagInput('')
+    setIsArticleModalOpen(true)
+  }
+
+  const handleSaveArticle = async () => {
+    if (!sanityConfigured) {
+      setError('Sanity CMS is not configured.')
+      return
+    }
+
+    setSaving(true)
+    setError(null)
+    setSuccess(null)
+
+    try {
+      if (editingArticle._id === 'new') {
+        const response = await fetch('/api/content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'article',
+            data: {
+              slug: editingArticle.slug,
+              title: editingArticle.title,
+              excerpt: editingArticle.excerpt,
+              date: editingArticle.date,
+              readTime: editingArticle.readTime,
+              category: editingArticle.category,
+              author: editingArticle.author,
+              image: editingArticle.image,
+              content: editingArticle.content,
+              tags: editingArticle.tags,
+              link: editingArticle.link,
+              articleType: editingArticle.articleType,
+              relatedRegions: editingArticle.relatedRegions
+            }
+          })
+        })
+
+        const result = await response.json()
+        if (!response.ok) {
+          const errorMessage = result.details 
+            ? `${result.error}: ${result.details}`
+            : result.error || 'Failed to create article'
+          throw new Error(errorMessage)
+        }
+
+        setSuccess('Article created successfully!')
+      } else {
+        const response = await fetch('/api/content', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'article',
+            id: editingArticle._id,
+            data: {
+              slug: editingArticle.slug,
+              title: editingArticle.title,
+              excerpt: editingArticle.excerpt,
+              date: editingArticle.date,
+              readTime: editingArticle.readTime,
+              category: editingArticle.category,
+              author: editingArticle.author,
+              image: editingArticle.image,
+              content: editingArticle.content,
+              tags: editingArticle.tags,
+              link: editingArticle.link,
+              articleType: editingArticle.articleType,
+              relatedRegions: editingArticle.relatedRegions
+            }
+          })
+        })
+
+        const result = await response.json()
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to update article')
+        }
+
+        setSuccess('Article updated successfully!')
+      }
+
+      setIsArticleModalOpen(false)
+      setEditingArticle(null)
+      await loadContent()
+    } catch (err) {
+      console.error('Error saving article:', err)
+      setError(err.message)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const handleDeleteArticle = async (articleId) => {
+    if (!confirm('Are you sure you want to delete this article? This action cannot be undone.')) {
+      return
+    }
+
+    try {
+      setError(null)
+      const response = await fetch(`/api/content?type=article&id=${articleId}`, {
+        method: 'DELETE'
+      })
+
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || 'Failed to delete article')
+
+      setSuccess('Article deleted successfully!')
+      await loadContent()
+    } catch (err) {
+      console.error('Error deleting article:', err)
+      setError(err.message)
+    }
+  }
+
+  const handleAddTag = () => {
+    if (!tagInput.trim()) return
+    setEditingArticle(prev => ({
+      ...prev,
+      tags: [...(prev.tags || []), tagInput.trim()]
+    }))
+    setTagInput('')
+  }
+
+  const handleRemoveTag = (index) => {
+    setEditingArticle(prev => ({
+      ...prev,
+      tags: prev.tags.filter((_, i) => i !== index)
+    }))
+  }
+
+  const handleSeedArticles = async () => {
+    if (!confirm('This will import all existing hardcoded articles into the CMS. Articles that already exist will be skipped. Continue?')) {
+      return
+    }
+
+    setSeeding(true)
+    setError(null)
+
+    try {
+      const response = await fetch('/api/seed-articles', {
+        method: 'POST'
+      })
+
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || 'Failed to seed articles')
+
+      setSuccess(`Successfully imported ${result.created} articles! (${result.skipped} already existed)`)
+      await loadContent()
+    } catch (err) {
+      console.error('Error seeding articles:', err)
+      setError(err.message)
+    } finally {
+      setSeeding(false)
+    }
+  }
+
+  const handleArticleTranslate = async (field, sourceLang, targetLang) => {
+    const translationKey = `article-${field}-${targetLang}`
+    setTranslating(prev => ({ ...prev, [translationKey]: true }))
+
+    try {
+      let sourceText = ''
+      let context = ''
+      
+      if (field === 'title') {
+        sourceText = editingArticle.title[sourceLang]
+        context = 'Blog article title'
+      } else if (field === 'excerpt') {
+        sourceText = editingArticle.excerpt[sourceLang]
+        context = 'Blog article excerpt/summary'
+      } else if (field === 'content') {
+        sourceText = editingArticle.content[sourceLang]
+        context = 'Blog article content (HTML format, preserve HTML tags)'
+      } else if (field === 'category') {
+        sourceText = editingArticle.category[sourceLang]
+        context = 'Article category name'
+      }
+
+      if (!sourceText) {
+        setError('No text to translate')
+        setTranslating(prev => ({ ...prev, [translationKey]: false }))
+        return
+      }
+
+      const response = await fetch('/api/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text: sourceText,
+          sourceLang,
+          targetLang,
+          context
+        })
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Translation failed')
+      }
+
+      const { translatedText } = await response.json()
+
+      setEditingArticle(prev => ({
+        ...prev,
+        [field]: {
+          ...prev[field],
+          [targetLang]: translatedText
+        }
+      }))
+
+      setSuccess('Translated successfully!')
+      setTimeout(() => setSuccess(null), 3000)
+    } catch (err) {
+      console.error('Translation error:', err)
+      setError(err.message || 'Translation failed')
+    } finally {
+      setTranslating(prev => ({ ...prev, [translationKey]: false }))
+    }
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -495,8 +763,12 @@ export default function ContentManagement() {
 
       {/* Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="properties">{t('admin.content.properties', language)}</TabsTrigger>
+          <TabsTrigger value="articles">
+            <FileText className="h-4 w-4 mr-1" />
+            {language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles'}
+          </TabsTrigger>
           <TabsTrigger value="regions">{t('admin.content.regions', language)}</TabsTrigger>
           <TabsTrigger value="settings">{t('admin.content.settings', language)}</TabsTrigger>
         </TabsList>
@@ -636,6 +908,196 @@ export default function ContentManagement() {
                       {t('admin.content.addFirstProperty', language)}
                     </Button>
                   )}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Articles Tab */}
+        <TabsContent value="articles" className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-semibold">
+              {language === 'cs' ? 'Správa článků' : language === 'it' ? 'Gestione articoli' : 'Article Management'}
+            </h2>
+            <div className="flex items-center space-x-2">
+              {articles.length === 0 && (
+                <Button 
+                  variant="outline" 
+                  onClick={handleSeedArticles}
+                  disabled={seeding || !sanityConfigured}
+                >
+                  {seeding ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      {language === 'cs' ? 'Importuji...' : 'Importing...'}
+                    </>
+                  ) : (
+                    <>
+                      <Download className="h-4 w-4 mr-2" />
+                      {language === 'cs' ? 'Importovat existující články' : language === 'it' ? 'Importa articoli esistenti' : 'Import Existing Articles'}
+                    </>
+                  )}
+                </Button>
+              )}
+              <Button onClick={createNewArticle} disabled={!sanityConfigured}>
+                <Plus className="h-4 w-4 mr-2" />
+                {language === 'cs' ? 'Přidat článek' : language === 'it' ? 'Aggiungi articolo' : 'Add Article'}
+              </Button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <Card>
+              <CardContent className="p-6 text-center">
+                <FileText className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+                <div className="text-2xl font-bold">{articles.length}</div>
+                <div className="text-sm text-gray-600">
+                  {language === 'cs' ? 'Celkem článků' : language === 'it' ? 'Articoli totali' : 'Total Articles'}
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4 text-center">
+                <BookOpen className="h-8 w-8 text-slate-800 mx-auto mb-2" />
+                <div className="text-2xl font-bold">{articles.filter(a => a.articleType === 'blog').length}</div>
+                <div className="text-sm text-gray-600">
+                  {language === 'cs' ? 'Blogové články' : language === 'it' ? 'Articoli blog' : 'Blog Articles'}
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-4 text-center">
+                <MapPin className="h-8 w-8 text-green-600 mx-auto mb-2" />
+                <div className="text-2xl font-bold">{articles.filter(a => a.articleType === 'region').length}</div>
+                <div className="text-sm text-gray-600">
+                  {language === 'cs' ? 'Regionální články' : language === 'it' ? 'Articoli regionali' : 'Region Articles'}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                {language === 'cs' ? 'Všechny články' : language === 'it' ? 'Tutti gli articoli' : 'All Articles'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              {loading ? (
+                <div className="flex items-center justify-center py-12">
+                  <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                  <span className="ml-3 text-gray-600">
+                    {language === 'cs' ? 'Načítám články...' : 'Loading articles...'}
+                  </span>
+                </div>
+              ) : articles.length > 0 ? (
+                <div className="space-y-4">
+                  {articles.map((article) => (
+                    <div key={article._id} className="flex items-center justify-between p-5 border rounded-lg hover:bg-gray-50 transition-colors">
+                      <div className="flex items-center space-x-5 flex-1">
+                        <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                          {article.image ? (
+                            <img src={article.image} alt="" className="w-16 h-16 object-cover rounded-lg" />
+                          ) : (
+                            <FileText className="h-7 w-7 text-gray-400" />
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center space-x-2 mb-1.5">
+                            <h3 className="font-semibold text-gray-900 truncate">
+                              {article.title?.en || article.title?.cs || 'Untitled Article'}
+                            </h3>
+                            <Badge variant="secondary" className="capitalize text-xs">
+                              {article.articleType === 'region' 
+                                ? (language === 'cs' ? 'Region' : 'Region') 
+                                : 'Blog'}
+                            </Badge>
+                            {article.category?.en && (
+                              <Badge variant="outline" className="text-xs">
+                                {article.category[language] || article.category.en}
+                              </Badge>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-500 truncate mb-1">
+                            {article.excerpt?.[language] || article.excerpt?.en || ''}
+                          </p>
+                          <div className="flex items-center gap-3 text-xs text-gray-400">
+                            {article.date && (
+                              <span className="flex items-center gap-1">
+                                <Calendar className="h-3 w-3" />
+                                {article.date}
+                              </span>
+                            )}
+                            {article.readTime && (
+                              <span className="flex items-center gap-1">
+                                <Clock className="h-3 w-3" />
+                                {article.readTime}
+                              </span>
+                            )}
+                            {article.author && (
+                              <span>{article.author}</span>
+                            )}
+                            {article.link && (
+                              <span className="flex items-center gap-1 text-blue-500">
+                                <LinkIcon className="h-3 w-3" />
+                                {article.link}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2 ml-4">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => handleEditArticle(article)}
+                          disabled={!sanityConfigured}
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => handleDeleteArticle(article._id)}
+                          disabled={!sanityConfigured}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                    {language === 'cs' ? 'Žádné články nenalezeny' : language === 'it' ? 'Nessun articolo trovato' : 'No articles found'}
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    {language === 'cs' 
+                      ? 'Importujte existující články nebo vytvořte nový.' 
+                      : 'Import existing articles or create a new one.'}
+                  </p>
+                  <div className="flex items-center justify-center gap-3">
+                    <Button variant="outline" onClick={handleSeedArticles} disabled={seeding || !sanityConfigured}>
+                      {seeding ? (
+                        <>
+                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                          {language === 'cs' ? 'Importuji...' : 'Importing...'}
+                        </>
+                      ) : (
+                        <>
+                          <Download className="h-4 w-4 mr-2" />
+                          {language === 'cs' ? 'Importovat existující' : 'Import Existing'}
+                        </>
+                      )}
+                    </Button>
+                    <Button onClick={createNewArticle} disabled={!sanityConfigured}>
+                      <Plus className="h-4 w-4 mr-2" />
+                      {language === 'cs' ? 'Vytvořit článek' : 'Create Article'}
+                    </Button>
+                  </div>
                 </div>
               )}
             </CardContent>
@@ -1353,6 +1815,532 @@ export default function ContentManagement() {
                     <>
                       <Save className="h-4 w-4 mr-2" />
                       {editingItem._id === 'new' ? t('admin.content.createProperty', language) : t('admin.content.saveChanges', language)}
+                    </>
+                  )}
+                </Button>
+              </div>
+            </Tabs>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Article Edit Modal */}
+      <Dialog open={isArticleModalOpen} onOpenChange={setIsArticleModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">
+              {editingArticle?._id === 'new' 
+                ? (language === 'cs' ? 'Nový článek' : language === 'it' ? 'Nuovo articolo' : 'New Article')
+                : (language === 'cs' ? 'Upravit článek' : language === 'it' ? 'Modifica articolo' : 'Edit Article')}
+            </DialogTitle>
+          </DialogHeader>
+          {editingArticle && (
+            <Tabs defaultValue="basic" className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="basic">
+                  {language === 'cs' ? 'Základní info' : 'Basic Info'}
+                </TabsTrigger>
+                <TabsTrigger value="content">
+                  {language === 'cs' ? 'Obsah' : language === 'it' ? 'Contenuto' : 'Content'}
+                </TabsTrigger>
+                <TabsTrigger value="meta">
+                  {language === 'cs' ? 'Meta & Tagy' : 'Meta & Tags'}
+                </TabsTrigger>
+              </TabsList>
+
+              {/* Basic Info Tab */}
+              <TabsContent value="basic" className="space-y-4 mt-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">
+                      {language === 'cs' ? 'Typ článku' : 'Article Type'} *
+                    </label>
+                    <Select
+                      value={editingArticle.articleType}
+                      onValueChange={(value) => setEditingArticle(prev => ({
+                        ...prev,
+                        articleType: value
+                      }))}
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="blog">
+                          {language === 'cs' ? 'Blog článek' : 'Blog Article'}
+                        </SelectItem>
+                        <SelectItem value="region">
+                          {language === 'cs' ? 'Regionální článek' : 'Region Article'}
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Slug *</label>
+                    <Input
+                      value={editingArticle.slug}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]+/g, '-')
+                      }))}
+                      placeholder="my-article-slug"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">
+                      {language === 'cs' ? 'Název (EN)' : 'Title (EN)'} *
+                    </label>
+                    <Input
+                      value={editingArticle.title.en}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        title: { ...prev.title, en: e.target.value }
+                      }))}
+                      placeholder="Article title in English"
+                    />
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-sm font-medium block">
+                        {language === 'cs' ? 'Název (CS)' : 'Title (CS)'}
+                      </label>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => handleArticleTranslate('title', 'en', 'cs')}
+                        disabled={!editingArticle.title.en || translating['article-title-cs']}
+                        className="h-6 text-xs px-2"
+                      >
+                        {translating['article-title-cs'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
+                      </Button>
+                    </div>
+                    <Input
+                      value={editingArticle.title.cs || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        title: { ...prev.title, cs: e.target.value }
+                      }))}
+                      placeholder="Název článku v češtině"
+                    />
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-sm font-medium block">
+                        {language === 'cs' ? 'Název (IT)' : 'Title (IT)'}
+                      </label>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => handleArticleTranslate('title', 'en', 'it')}
+                        disabled={!editingArticle.title.en || translating['article-title-it']}
+                        className="h-6 text-xs px-2"
+                      >
+                        {translating['article-title-it'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
+                      </Button>
+                    </div>
+                    <Input
+                      value={editingArticle.title.it || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        title: { ...prev.title, it: e.target.value }
+                      }))}
+                      placeholder="Titolo dell'articolo in italiano"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">
+                      {language === 'cs' ? 'Shrnutí (EN)' : 'Excerpt (EN)'}
+                    </label>
+                    <Textarea
+                      value={editingArticle.excerpt.en || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        excerpt: { ...prev.excerpt, en: e.target.value }
+                      }))}
+                      rows={3}
+                      placeholder="Brief summary in English..."
+                    />
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-sm font-medium block">
+                        {language === 'cs' ? 'Shrnutí (CS)' : 'Excerpt (CS)'}
+                      </label>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => handleArticleTranslate('excerpt', 'en', 'cs')}
+                        disabled={!editingArticle.excerpt.en || translating['article-excerpt-cs']}
+                        className="h-6 text-xs px-2"
+                      >
+                        {translating['article-excerpt-cs'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
+                      </Button>
+                    </div>
+                    <Textarea
+                      value={editingArticle.excerpt.cs || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        excerpt: { ...prev.excerpt, cs: e.target.value }
+                      }))}
+                      rows={3}
+                      placeholder="Krátké shrnutí v češtině..."
+                    />
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-sm font-medium block">
+                        {language === 'cs' ? 'Shrnutí (IT)' : 'Excerpt (IT)'}
+                      </label>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => handleArticleTranslate('excerpt', 'en', 'it')}
+                        disabled={!editingArticle.excerpt.en || translating['article-excerpt-it']}
+                        className="h-6 text-xs px-2"
+                      >
+                        {translating['article-excerpt-it'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
+                      </Button>
+                    </div>
+                    <Textarea
+                      value={editingArticle.excerpt.it || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        excerpt: { ...prev.excerpt, it: e.target.value }
+                      }))}
+                      rows={3}
+                      placeholder="Breve riassunto in italiano..."
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-4 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">
+                      {language === 'cs' ? 'Datum' : 'Date'}
+                    </label>
+                    <Input
+                      type="date"
+                      value={editingArticle.date || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        date: e.target.value
+                      }))}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">
+                      {language === 'cs' ? 'Doba čtení' : 'Read Time'}
+                    </label>
+                    <Input
+                      value={editingArticle.readTime || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        readTime: e.target.value
+                      }))}
+                      placeholder="8 min"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">
+                      {language === 'cs' ? 'Autor' : 'Author'}
+                    </label>
+                    <Input
+                      value={editingArticle.author || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        author: e.target.value
+                      }))}
+                      placeholder="Maria Rossi"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">
+                      {language === 'cs' ? 'Odkaz' : 'Link'}
+                    </label>
+                    <Input
+                      value={editingArticle.link || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        link: e.target.value
+                      }))}
+                      placeholder="/guides/costs"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-sm font-medium mb-1 block">
+                    {language === 'cs' ? 'URL obrázku' : 'Image URL'}
+                  </label>
+                  <Input
+                    value={editingArticle.image || ''}
+                    onChange={(e) => setEditingArticle(prev => ({
+                      ...prev,
+                      image: e.target.value
+                    }))}
+                    placeholder="https://images.unsplash.com/..."
+                  />
+                  {editingArticle.image && (
+                    <img src={editingArticle.image} alt="Preview" className="mt-2 h-32 object-cover rounded-lg" />
+                  )}
+                </div>
+
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">
+                      {language === 'cs' ? 'Kategorie (EN)' : 'Category (EN)'}
+                    </label>
+                    <Input
+                      value={editingArticle.category?.en || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        category: { ...prev.category, en: e.target.value }
+                      }))}
+                      placeholder="Guide"
+                    />
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-sm font-medium block">
+                        {language === 'cs' ? 'Kategorie (CS)' : 'Category (CS)'}
+                      </label>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => handleArticleTranslate('category', 'en', 'cs')}
+                        disabled={!editingArticle.category?.en || translating['article-category-cs']}
+                        className="h-6 text-xs px-2"
+                      >
+                        {translating['article-category-cs'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
+                      </Button>
+                    </div>
+                    <Input
+                      value={editingArticle.category?.cs || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        category: { ...prev.category, cs: e.target.value }
+                      }))}
+                      placeholder="Průvodce"
+                    />
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="text-sm font-medium block">
+                        {language === 'cs' ? 'Kategorie (IT)' : 'Category (IT)'}
+                      </label>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => handleArticleTranslate('category', 'en', 'it')}
+                        disabled={!editingArticle.category?.en || translating['article-category-it']}
+                        className="h-6 text-xs px-2"
+                      >
+                        {translating['article-category-it'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
+                      </Button>
+                    </div>
+                    <Input
+                      value={editingArticle.category?.it || ''}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        category: { ...prev.category, it: e.target.value }
+                      }))}
+                      placeholder="Guida"
+                    />
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* Content Tab */}
+              <TabsContent value="content" className="space-y-4 mt-4">
+                <Alert className="mb-4">
+                  <Languages className="h-4 w-4" />
+                  <AlertDescription>
+                    <strong>
+                      {language === 'cs' ? 'AI Překlad:' : 'AI Translation:'}
+                    </strong>{' '}
+                    {language === 'cs' 
+                      ? 'Vyplňte anglický obsah a poté použijte tlačítka překladu pro automatický překlad.' 
+                      : 'Fill in the English content, then use the translate buttons. HTML tags are preserved.'}
+                  </AlertDescription>
+                </Alert>
+
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Content (English) - HTML</label>
+                  <Textarea
+                    value={editingArticle.content?.en || ''}
+                    onChange={(e) => setEditingArticle(prev => ({
+                      ...prev,
+                      content: { ...(prev.content || {}), en: e.target.value }
+                    }))}
+                    rows={10}
+                    placeholder="<h2>Article heading</h2>\n<p>Article content...</p>"
+                    className="resize-y font-mono text-sm"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    {(editingArticle.content?.en || '').length} characters
+                  </p>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="text-sm font-medium block">Content (Czech) - HTML</label>
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleArticleTranslate('content', 'en', 'cs')}
+                      disabled={!editingArticle.content?.en || translating['article-content-cs']}
+                      className="h-7"
+                    >
+                      {translating['article-content-cs'] ? (
+                        <>
+                          <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+                          {language === 'cs' ? 'Překládám...' : 'Translating...'}
+                        </>
+                      ) : (
+                        <>
+                          <Languages className="h-3 w-3 mr-1" />
+                          {language === 'cs' ? 'Přeložit z EN' : 'Translate from EN'}
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                  <Textarea
+                    value={editingArticle.content?.cs || ''}
+                    onChange={(e) => setEditingArticle(prev => ({
+                      ...prev,
+                      content: { ...(prev.content || {}), cs: e.target.value }
+                    }))}
+                    rows={10}
+                    placeholder="<h2>Nadpis článku</h2>\n<p>Obsah článku...</p>"
+                    className="resize-y font-mono text-sm"
+                  />
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="text-sm font-medium block">Content (Italian) - HTML</label>
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleArticleTranslate('content', 'en', 'it')}
+                      disabled={!editingArticle.content?.en || translating['article-content-it']}
+                      className="h-7"
+                    >
+                      {translating['article-content-it'] ? (
+                        <>
+                          <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+                          Translating...
+                        </>
+                      ) : (
+                        <>
+                          <Languages className="h-3 w-3 mr-1" />
+                          Translate from EN
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                  <Textarea
+                    value={editingArticle.content?.it || ''}
+                    onChange={(e) => setEditingArticle(prev => ({
+                      ...prev,
+                      content: { ...(prev.content || {}), it: e.target.value }
+                    }))}
+                    rows={10}
+                    placeholder="<h2>Titolo dell'articolo</h2>\n<p>Contenuto dell'articolo...</p>"
+                    className="resize-y font-mono text-sm"
+                  />
+                </div>
+              </TabsContent>
+
+              {/* Meta & Tags Tab */}
+              <TabsContent value="meta" className="space-y-4 mt-4">
+                <div>
+                  <label className="text-sm font-medium mb-2 block">Tags</label>
+                  <div className="flex gap-2 mb-2">
+                    <Input
+                      value={tagInput}
+                      onChange={(e) => setTagInput(e.target.value)}
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault()
+                          handleAddTag()
+                        }
+                      }}
+                      placeholder={language === 'cs' ? 'Zadejte tag a stiskněte Enter' : 'Enter tag and press Enter'}
+                    />
+                    <Button type="button" onClick={handleAddTag} variant="secondary">
+                      <Plus className="h-4 w-4 mr-1" />
+                      {language === 'cs' ? 'Přidat' : 'Add'}
+                    </Button>
+                  </div>
+                  {editingArticle.tags && editingArticle.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {editingArticle.tags.map((tag, index) => (
+                        <Badge key={index} variant="secondary" className="px-3 py-1">
+                          {tag}
+                          <button
+                            onClick={() => handleRemoveTag(index)}
+                            className="ml-2 hover:text-red-500"
+                          >
+                            <X className="h-3 w-3" />
+                          </button>
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {editingArticle.articleType === 'region' && (
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">
+                      {language === 'cs' ? 'Související regiony (slug, oddělené čárkou)' : 'Related Regions (slugs, comma-separated)'}
+                    </label>
+                    <Input
+                      value={(editingArticle.relatedRegions || []).join(', ')}
+                      onChange={(e) => setEditingArticle(prev => ({
+                        ...prev,
+                        relatedRegions: e.target.value.split(',').map(s => s.trim()).filter(Boolean)
+                      }))}
+                      placeholder="lombardy, tuscany, liguria"
+                    />
+                  </div>
+                )}
+              </TabsContent>
+
+              {/* Action Buttons */}
+              <div className="flex justify-end space-x-2 pt-6 border-t mt-6">
+                <Button variant="outline" onClick={() => setIsArticleModalOpen(false)} disabled={saving}>
+                  {language === 'cs' ? 'Zrušit' : 'Cancel'}
+                </Button>
+                <Button 
+                  onClick={handleSaveArticle}
+                  disabled={saving || !sanityConfigured}
+                >
+                  {saving ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      {language === 'cs' ? 'Ukládám...' : 'Saving...'}
+                    </>
+                  ) : (
+                    <>
+                      <Save className="h-4 w-4 mr-2" />
+                      {editingArticle._id === 'new' 
+                        ? (language === 'cs' ? 'Vytvořit článek' : 'Create Article')
+                        : (language === 'cs' ? 'Uložit změny' : 'Save Changes')}
                     </>
                   )}
                 </Button>

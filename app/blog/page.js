@@ -9,7 +9,8 @@ import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
-const ARTICLES = [
+// Fallback articles used when CMS is not configured or returns no data
+const FALLBACK_ARTICLES = [
   {
     slug: 'costs-2026',
     title: {
@@ -133,6 +134,8 @@ const ARTICLES = [
 
 export default function BlogPage() {
   const [language, setLanguage] = useState('cs')
+  const [articles, setArticles] = useState(FALLBACK_ARTICLES)
+  const [loadingArticles, setLoadingArticles] = useState(true)
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')
@@ -148,6 +151,39 @@ export default function BlogPage() {
 
     window.addEventListener('languageChange', handleLanguageChange)
     return () => window.removeEventListener('languageChange', handleLanguageChange)
+  }, [])
+
+  // Fetch articles from CMS, fall back to hardcoded if unavailable
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await fetch('/api/content?type=articles')
+        if (response.ok) {
+          const data = await response.json()
+          const cmsArticles = data.articles || []
+          // Only use CMS articles if there are any; otherwise keep fallback
+          if (cmsArticles.length > 0) {
+            // Map CMS articles to the format expected by the blog page
+            // For blog articles, use the link field; for region articles, construct the link
+            const mapped = cmsArticles.map(a => ({
+              slug: a.slug,
+              title: a.title || { en: '', cs: '', it: '' },
+              excerpt: a.excerpt || { en: '', cs: '', it: '' },
+              date: a.date || '',
+              readTime: a.readTime || '',
+              category: a.category || { en: '', cs: '', it: '' },
+              link: a.link || (a.articleType === 'region' ? `/blog/regions/${a.slug}` : `/blog/${a.slug}`)
+            }))
+            setArticles(mapped)
+          }
+        }
+      } catch (err) {
+        console.log('CMS not available, using fallback articles')
+      } finally {
+        setLoadingArticles(false)
+      }
+    }
+    fetchArticles()
   }, [])
 
   return (
@@ -181,7 +217,7 @@ export default function BlogPage() {
           {/* Articles List */}
           <div className="max-w-3xl mx-auto mb-20">
             <div className="divide-y divide-gray-100">
-              {ARTICLES.map((article, index) => (
+              {articles.map((article, index) => (
                 <Link key={article.slug} href={article.link} className="block group">
                   <article className="py-8 first:pt-4">
                     <div className="flex items-center gap-3 mb-3">

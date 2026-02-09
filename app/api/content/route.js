@@ -62,6 +62,30 @@ export async function GET(request) {
       return NextResponse.json({ regions: regions || [] })
     }
 
+    if (type === 'articles') {
+      const query = `*[_type == "article" && !(_id in path("drafts.**"))] | order(date desc) {
+        _id,
+        slug,
+        title,
+        excerpt,
+        date,
+        readTime,
+        category,
+        author,
+        image,
+        content,
+        tags,
+        link,
+        articleType,
+        relatedRegions,
+        _createdAt,
+        _updatedAt
+      }`
+      
+      const articles = await client.fetch(query)
+      return NextResponse.json({ articles: articles || [] })
+    }
+
     return NextResponse.json({ error: 'Invalid type parameter' }, { status: 400 })
   } catch (error) {
     console.error('Error fetching content:', error)
@@ -133,6 +157,41 @@ export async function POST(request) {
 
       const result = await writeClient.create(document)
       return NextResponse.json({ success: true, property: result })
+    }
+
+    if (type === 'article') {
+      // Generate slug from title if not provided
+      const slug = data.slug || (data.title?.en || data.title?.it || 'untitled')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '')
+
+      const document = {
+        _type: 'article',
+        slug,
+        title: data.title || { en: '', cs: '', it: '' },
+        excerpt: data.excerpt || { en: '', cs: '', it: '' },
+        date: data.date || new Date().toISOString().split('T')[0],
+        readTime: data.readTime || '',
+        category: data.category || { en: '', cs: '', it: '' },
+        author: data.author || '',
+        image: data.image || '',
+        content: data.content || { en: '', cs: '', it: '' },
+        tags: data.tags || [],
+        link: data.link || '',
+        articleType: data.articleType || 'blog',
+        relatedRegions: data.relatedRegions || []
+      }
+
+      // Use writeClient for mutations (requires API token)
+      if (!process.env.SANITY_API_TOKEN) {
+        return NextResponse.json({ 
+          error: 'Sanity API token not configured. Write operations require SANITY_API_TOKEN.' 
+        }, { status: 503 })
+      }
+
+      const result = await writeClient.create(document)
+      return NextResponse.json({ success: true, article: result })
     }
 
     return NextResponse.json({ error: 'Invalid type or missing data' }, { status: 400 })
@@ -207,6 +266,38 @@ export async function PUT(request) {
       return NextResponse.json({ success: true, property: result })
     }
 
+    if (type === 'article' && id) {
+      const updateData = {}
+
+      if (data.title) updateData.title = data.title
+      if (data.excerpt) updateData.excerpt = data.excerpt
+      if (data.slug) updateData.slug = data.slug
+      if (data.date) updateData.date = data.date
+      if (data.readTime !== undefined) updateData.readTime = data.readTime
+      if (data.category) updateData.category = data.category
+      if (data.author !== undefined) updateData.author = data.author
+      if (data.image !== undefined) updateData.image = data.image
+      if (data.content) updateData.content = data.content
+      if (data.tags) updateData.tags = data.tags
+      if (data.link !== undefined) updateData.link = data.link
+      if (data.articleType) updateData.articleType = data.articleType
+      if (data.relatedRegions) updateData.relatedRegions = data.relatedRegions
+
+      // Use writeClient for mutations (requires API token)
+      if (!process.env.SANITY_API_TOKEN) {
+        return NextResponse.json({ 
+          error: 'Sanity API token not configured. Write operations require SANITY_API_TOKEN.' 
+        }, { status: 503 })
+      }
+
+      const result = await writeClient
+        .patch(id)
+        .set(updateData)
+        .commit()
+
+      return NextResponse.json({ success: true, article: result })
+    }
+
     return NextResponse.json({ error: 'Invalid type or missing ID' }, { status: 400 })
   } catch (error) {
     console.error('Error updating content:', error)
@@ -225,7 +316,7 @@ export async function DELETE(request) {
     const type = url.searchParams.get('type')
     const id = url.searchParams.get('id')
 
-    if (type === 'property' && id) {
+    if ((type === 'property' || type === 'article') && id) {
       // Use writeClient for mutations (requires API token)
       if (!process.env.SANITY_API_TOKEN) {
         return NextResponse.json({ 

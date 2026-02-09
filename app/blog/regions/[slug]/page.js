@@ -8,7 +8,8 @@ import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
 import Navigation from '../../../../components/Navigation'
 
-const REGION_BLOG_DATA = {
+// Fallback data used when CMS is not configured or returns no data
+const FALLBACK_REGION_BLOG_DATA = {
   'tuscany': {
     title: { 
       en: 'Discovering Tuscany: Italy\'s Timeless Treasure', 
@@ -105,9 +106,43 @@ export default function RegionBlogPage({ params }) {
     const savedLanguage = localStorage.getItem('preferred-language') || 'en'
     setLanguage(savedLanguage)
     
-    if (REGION_BLOG_DATA[params.slug]) {
-      setBlogData(REGION_BLOG_DATA[params.slug])
+    // Try to fetch from CMS first, fall back to hardcoded data
+    const fetchArticle = async () => {
+      try {
+        const response = await fetch('/api/content?type=articles')
+        if (response.ok) {
+          const data = await response.json()
+          const cmsArticles = data.articles || []
+          // Find region article matching this slug
+          const cmsArticle = cmsArticles.find(
+            a => a.slug === params.slug && a.articleType === 'region'
+          )
+          if (cmsArticle) {
+            setBlogData({
+              title: cmsArticle.title || { en: '', cs: '', it: '' },
+              excerpt: cmsArticle.excerpt || { en: '', cs: '', it: '' },
+              author: cmsArticle.author || '',
+              publishedAt: cmsArticle.date || '',
+              readTime: cmsArticle.readTime || '',
+              image: cmsArticle.image || '',
+              content: cmsArticle.content || { en: '', cs: '', it: '' },
+              tags: cmsArticle.tags || [],
+              relatedRegions: cmsArticle.relatedRegions || []
+            })
+            return
+          }
+        }
+      } catch (err) {
+        console.log('CMS not available, using fallback data')
+      }
+      
+      // Fall back to hardcoded data
+      if (FALLBACK_REGION_BLOG_DATA[params.slug]) {
+        setBlogData(FALLBACK_REGION_BLOG_DATA[params.slug])
+      }
     }
+
+    fetchArticle()
   }, [params.slug])
 
   if (!blogData) {

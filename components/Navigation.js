@@ -213,6 +213,18 @@ export default function Navigation() {
               ))}
             </div>
 
+            {/* Admin Quick Access Button */}
+            {user && isAdmin && (
+              <Link
+                href="/admin"
+                className="hidden sm:flex items-center gap-1.5 bg-copper-500/20 backdrop-blur-md rounded-full px-3 py-1.5 text-xs font-medium text-copper-300 hover:text-white hover:bg-copper-500/30 border border-copper-400/25 transition-all duration-200"
+                data-testid="admin-quick-button"
+              >
+                <Settings className="h-3.5 w-3.5" />
+                <span className="hidden lg:inline">Admin</span>
+              </Link>
+            )}
+
             {/* User Authentication */}
             {user ? (
               <DropdownMenu>
@@ -326,11 +338,12 @@ export default function Navigation() {
             {user && isAdmin && (
               <Link 
                 href="/admin" 
-                className="px-3 py-2.5 rounded-lg text-base text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+                className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-base text-copper-300 hover:text-white bg-copper-500/10 hover:bg-copper-500/20 border border-copper-400/20 transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
                 data-testid="mobile-admin-link"
               >
-                {t('nav.admin', language)}
+                <Settings className="h-4 w-4" />
+                {t('nav.admin', language)} Panel
               </Link>
             )}
             {!user && (
