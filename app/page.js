@@ -1722,29 +1722,6 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      </div>
-
-      {/* Property of the Day Section - Hidden for now */}
-      {/* <section className="pt-8 pb-16 bg-[#f7f4ed]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4" data-testid="property-of-day-section-title">
-              {t('property.propertyOfTheDay', language)}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {language === 'cs' ? 'Objevte dnešní doporučenou nemovitost - pečlivě vybraná nabídka nejlepších italských nemovitostí' :
-               language === 'it' ? 'Scopri la proprietà in evidenza di oggi - una selezione accurata che mostra i migliori immobili italiani' :
-               'Discover today\'s featured property - a handpicked selection showcasing the finest Italian real estate'}
-            </p>
-          </div>
-          
-          <PropertyOfTheDay 
-            property={PROPERTY_OF_THE_DAY} 
-            language={language}
-            currency={currency}
-          />
-        </div>
-      </section> */}
 
       {/* Premium Club Section */}
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 sm:py-20 overflow-hidden">
@@ -3371,4 +3348,5 @@ export default function HomePage() {
     </div>
   )
 }
+
 
