@@ -112,7 +112,7 @@ const INQUIRY_TYPES = [
 ]
 
 export default function ContactPage() {
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const [formData, setFormData] = useState({
     name: '',
     email: '',

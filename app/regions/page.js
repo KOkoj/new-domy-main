@@ -475,7 +475,7 @@ function RegionCard({ region, language = 'en' }) {
 }
 
 export default function RegionsPage() {
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
     // Load saved language preference

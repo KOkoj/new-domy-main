@@ -24,7 +24,7 @@ export default function Navigation() {
   const [user, setUser] = useState(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const [isPopupBarVisible, setIsPopupBarVisible] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)

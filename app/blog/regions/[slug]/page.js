@@ -97,7 +97,7 @@ const REGION_BLOG_DATA = {
 }
 
 export default function RegionBlogPage({ params }) {
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const [isLiked, setIsLiked] = useState(false)
   const [blogData, setBlogData] = useState(null)
 

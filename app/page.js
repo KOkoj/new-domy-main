@@ -556,7 +556,7 @@ export default function HomePage() {
   const [filters, setFilters] = useState({})
   const [user, setUser] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const [currency, setCurrency] = useState('EUR')
 
   // Dynamic content data

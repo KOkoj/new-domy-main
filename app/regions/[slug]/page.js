@@ -257,7 +257,7 @@ const REGION_DATA = {
 
 export default function RegionDetailPage() {
   const params = useParams()
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const region = REGION_DATA[params.slug]
 
   useEffect(() => {

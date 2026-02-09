@@ -31,7 +31,7 @@ export default function SavedSearchesManagement() {
   const [editingSearch, setEditingSearch] = useState(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [user, setUser] = useState(null)
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
     loadSavedSearches()

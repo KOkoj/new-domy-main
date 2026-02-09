@@ -183,7 +183,7 @@ export default function PropertyDetailPage({ params }) {
   const [loading, setLoading] = useState(true)
   const [isFavorited, setIsFavorited] = useState(false)
   const [user, setUser] = useState(null)
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const [currency, setCurrency] = useState('EUR')
 
   useEffect(() => {

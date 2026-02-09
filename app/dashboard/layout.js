@@ -112,7 +112,7 @@ export default function DashboardLayout({ children }) {
   const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [userProfile, setUserProfile] = useState(null)
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const router = useRouter()
 
   useEffect(() => {

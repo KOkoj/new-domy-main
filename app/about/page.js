@@ -72,7 +72,7 @@ const SERVICES = [
 ]
 
 export default function AboutPage() {
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')

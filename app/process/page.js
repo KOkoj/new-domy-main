@@ -481,7 +481,7 @@ const COSTS_OVERVIEW = [
 ]
 
 export default function ProcessPage() {
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')
