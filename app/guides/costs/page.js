@@ -110,7 +110,7 @@ export default function CostsGuidePage() {
             {/* Header */}
             <div className="mb-8">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {language === 'cs' ? 'Kolik skutečně stojí koupě domu v Itálii v roce 2026' :
+                {language === 'cs' ? 'test skutečně stojí koupě domu v Itálii v roce 2026' :
                  language === 'it' ? 'Quanto costa veramente acquistare una casa in Italia nel 2026' :
                  'How Much Does Buying a House in Italy Really Cost in 2026'}
               </h1>
@@ -122,15 +122,15 @@ export default function CostsGuidePage() {
             </div>
 
             {/* Quick Overview Card */}
-            <Card className="bg-blue-50 border-blue-200 mb-8">
+            <Card className="bg-red-50 border-red-200 mb-8">
               <CardContent className="p-6">
-                <h3 className="font-bold text-blue-900 mb-3 flex items-center">
+                <h3 className="font-bold text-red-900 mb-3 flex items-center">
                   <AlertTriangle className="h-5 w-5 mr-2" />
                   {language === 'cs' ? 'Rychlá orientace' :
                    language === 'it' ? 'Orientamento rapido' :
                    'Quick Overview'}
                 </h3>
-                <p className="text-blue-800 leading-relaxed">
+                <p className="text-red-800 leading-relaxed">
                   {language === 'cs' ? 'Tento článek vysvětluje reálné náklady koupě domu v Itálii – nejen cenu nemovitosti, ale i daně, notáře, poplatky a vedlejší výdaje. Pokud jste na začátku, doporučujeme začít také zde: Průvodce a zdroje ke koupi domu v Itálii.' :
                    language === 'it' ? 'Questo articolo spiega i costi reali dell\'acquisto di una casa in Italia - non solo il prezzo dell\'immobile, ma anche tasse, notaio, spese e costi accessori. Se siete all\'inizio, raccomandiamo di iniziare anche qui: Guida e risorse per l\'acquisto di una casa in Italia.' :
                    'This article explains the real costs of buying a house in Italy - not just the property price, but also taxes, notary, fees, and incidental expenses. If you\'re at the beginning, we also recommend starting here: Guide and resources for buying a house in Italy.'}

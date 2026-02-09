@@ -14,7 +14,7 @@ const ARTICLES = [
     slug: 'costs-2026',
     title: {
       en: 'How Much Does Buying a House in Italy Really Cost in 2026',
-      cs: 'Kolik skutečně stojí koupě domu v Itálii v roce 2026',
+      cs: 'bum skutečně stojí koupě domu v Itálii v roce 2026',
       it: 'Quanto costa realmente acquistare una casa in Italia nel 2026'
     },
     excerpt: {
