@@ -27,7 +27,7 @@ const PROPERTY_OF_THE_DAY = {
   id: "featured-property-1",
   title: {
     en: "Luxury Tuscan Villa with Panoramic Views",
-    cs: "Luxusn� tosk�nsk� vila s panoramatick�mi v�hledy",
+    cs: "Luxusní toskánská vila s panoramatickými výhledy",
     it: "Lussuosa Villa Toscana con Viste Panoramiche"
   },
   location: {
@@ -49,22 +49,22 @@ const PROPERTY_OF_THE_DAY = {
   featuredAmenities: [
     {
       en: "Swimming Pool",
-      cs: "Baz�n",
+      cs: "Bazén",
       it: "Piscina"
     },
     {
       en: "Wine Cellar",
-      cs: "Vinn� sklep",
+      cs: "Vinný sklep",
       it: "Cantina"
     },
     {
       en: "Garden Terrace",
-      cs: "Zahradn� terasa",
+      cs: "Zahradní terasa",
       it: "Terrazza Giardino"
     },
     {
       en: "Mountain Views",
-      cs: "V�hled na hory",
+      cs: "Výhled na hory",
       it: "Vista Montagne"
     },
     {
@@ -80,8 +80,8 @@ const PROPERTY_OF_THE_DAY = {
   ],
   description: {
     en: "This stunning Tuscan villa offers breathtaking panoramic views of the rolling hills and vineyards. The property features a modern open-plan design with traditional Italian architectural elements, creating the perfect blend of contemporary luxury and timeless charm.",
-    cs: "Tato �chvatn� tosk�nsk� vila nab�z� dechberouc� panoramatick� v�hledy na zvln�n� kopce a vinice. Nemovitost m� modern� otev�en� design s tradi�n�mi italsk�mi architektonick�mi prvky, vytv��ej�c� dokonalou kombinaci sou�asn�ho luxusu a nad�asov�ho kouzla.",
-    it: "Questa splendida villa toscana offre viste panoramiche mozzafiato sulle dolci colline e vigneti. La proprieta presenta un design moderno open-space con elementi architettonici italiani tradizionali, creando la perfetta fusione tra lusso contemporaneo e fascino senza tempo."
+    cs: "Tato úchvatná toskánská vila nabízí dechberoucí panoramatické výhledy na zvlněné kopce a vinice. Nemovitost má moderní otevřený design s tradičními italskými architektonickými prvky, vytvářející dokonalou kombinaci současného luxusu a nadčasového kouzla.",
+    it: "Questa splendida villa toscana offre viste panoramiche mozzafiato sulle dolci colline e vigneti. La proprietà presenta un design moderno open-space con elementi architettonici italiani tradizionali, creando la perfetta fusione tra lusso contemporaneo e fascino senza tempo."
   },
   images: [
     "/house_tuscany_vineyards.jpg",
@@ -217,7 +217,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
               className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-3 py-1.5 text-xs font-medium shadow-lg rounded-lg backdrop-blur-sm border border-white/20 pointer-events-none"
               data-testid="featured-badge"
             >
-              ? {t('property.featured', language)}
+              ⭐ {t('property.featured', language)}
           </Badge>
           </div>
         )}
@@ -296,7 +296,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
           )}
             
           {property.specifications.squareFootage && (
-              <span className="font-semibold" data-testid="square-footage-count">{property.specifications.squareFootage} m2</span>
+              <span className="font-semibold" data-testid="square-footage-count">{property.specifications.squareFootage} m²</span>
             )}
           </div>
             </div>
@@ -341,7 +341,7 @@ function PropertyOfTheDay({ property, language, currency }) {
             <div className="absolute top-6 left-6">
               <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 px-4 py-2 text-base font-semibold shadow-lg rounded-lg">
                 <span className="flex items-center">
-                  <span className="text-yellow-300 mr-2">?</span>
+                  <span className="text-yellow-300 mr-2">⭐</span>
                   {t('property.propertyOfTheDay', language)}
                 </span>
               </div>
@@ -393,7 +393,7 @@ function PropertyOfTheDay({ property, language, currency }) {
               </div>
               <div className="flex items-center space-x-2">
                 <Square className="h-5 w-5 text-slate-700" />
-                <span className="font-semibold text-gray-700">{property.specifications.area} m2</span>
+                <span className="font-semibold text-gray-700">{property.specifications.area} m²</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Car className="h-5 w-5 text-slate-700" />
@@ -409,7 +409,7 @@ function PropertyOfTheDay({ property, language, currency }) {
               <div className="grid grid-cols-2 gap-2">
                 {property.featuredAmenities.map((amenity, index) => (
                   <div key={index} className="flex items-center space-x-2 text-base text-gray-600">
-                    <span className="text-slate-700">�</span>
+                    <span className="text-slate-700">•</span>
                     <span>{amenity[language] || amenity.en}</span>
                   </div>
                 ))}
@@ -500,7 +500,7 @@ function SearchFilters({ filters, onFilterChange, language }) {
                />
              </div>
              <div className="text-xs text-gray-600 whitespace-nowrap">
-               �{(filters.minPrice || 50000).toLocaleString()} - �{(filters.maxPrice || 2000000).toLocaleString()}
+               €{(filters.minPrice || 50000).toLocaleString()} - €{(filters.maxPrice || 2000000).toLocaleString()}
              </div>
            </div>
            <div className="flex items-center" data-testid="filter-actions-container">
@@ -744,12 +744,12 @@ export default function HomePage() {
       name: 'Abruzzo',
       title: {
         en: 'Complete Guide to Buying in Abruzzo',
-        cs: 'Kompletn� pr�vodce n�kupem v Abruzzu',
+        cs: 'Kompletní průvodce nákupem v Abruzzu',
         it: 'Guida Completa all\'Acquisto in Abruzzo'
       },
       description: {
         en: 'Discover the mountains, coastlines, and medieval villages of Abruzzo. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte hory, pob�e�� a st�edov�k� vesnice Abruzza. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Objevte hory, pobřeží a středověké vesnice Abruzza. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri le montagne, le coste e i villaggi medievali dell\'Abruzzo. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -758,13 +758,13 @@ export default function HomePage() {
       name: 'Basilicata',
       title: {
         en: 'Complete Guide to Buying in Basilicata',
-        cs: 'Kompletn� pr�vodce n�kupem v Basilicat�',
+        cs: 'Kompletní průvodce nákupem v Basilicatě',
         it: 'Guida Completa all\'Acquisto in Basilicata'
       },
       description: {
         en: 'Explore the ancient landscapes and historic towns of Basilicata. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte starobyl� krajiny a historick� m�sta Basilicaty. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
-        it: 'Esplora i paesaggi antichi e le citta storiche della Basilicata. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
+        cs: 'Prozkoumejte starobylé krajiny a historická města Basilicaty. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        it: 'Esplora i paesaggi antichi e le città storiche della Basilicata. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
     },
@@ -772,12 +772,12 @@ export default function HomePage() {
       name: 'Calabria',
       title: {
         en: 'Complete Guide to Buying in Calabria',
-        cs: 'Kompletn� pr�vodce n�kupem v Kal�brii',
+        cs: 'Kompletní průvodce nákupem v Kalábrii',
         it: 'Guida Completa all\'Acquisto in Calabria'
       },
       description: {
         en: 'Discover the pristine beaches and mountain villages of Calabria. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte nedot�en� pl�e a horsk� vesnice Kal�brie. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Objevte nedotčené pláže a horské vesnice Kalábrie. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri le spiagge incontaminate e i villaggi montani della Calabria. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -786,12 +786,12 @@ export default function HomePage() {
       name: 'Campania',
       title: {
         en: 'Complete Guide to Buying in Campania',
-        cs: 'Kompletn� pr�vodce n�kupem v Kamp�nii',
+        cs: 'Kompletní průvodce nákupem v Kampánii',
         it: 'Guida Completa all\'Acquisto in Campania'
       },
       description: {
         en: 'Explore the Amalfi Coast, Naples, and historic sites of Campania. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte pob�e�� Amalfi, Neapol a historick� m�sta Kamp�nie. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Prozkoumejte pobřeží Amalfi, Neapol a historická místa Kampánie. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora la Costiera Amalfitana, Napoli e i siti storici della Campania. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -800,13 +800,13 @@ export default function HomePage() {
       name: 'Emilia-Romagna',
       title: {
         en: 'Complete Guide to Buying in Emilia-Romagna',
-        cs: 'Kompletn� pr�vodce n�kupem v Emilia-Romagna',
+        cs: 'Kompletní průvodce nákupem v Emilia-Romagna',
         it: 'Guida Completa all\'Acquisto in Emilia-Romagna'
       },
       description: {
         en: 'Discover the culinary capital, historic cities, and rolling hills of Emilia-Romagna. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte kulin��sk� hlavn� m�sto, historick� m�sta a zvln�n� kopce Emilia-Romagna. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
-        it: 'Scopri la capitale culinaria, le citta storiche e le dolci colline dell\'Emilia-Romagna. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
+        cs: 'Objevte kulinářské hlavní město, historická města a zvlněné kopce Emilia-Romagna. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        it: 'Scopri la capitale culinaria, le città storiche e le dolci colline dell\'Emilia-Romagna. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
     },
@@ -814,12 +814,12 @@ export default function HomePage() {
       name: 'Friuli-Venezia Giulia',
       title: {
         en: 'Complete Guide to Buying in Friuli-Venezia Giulia',
-        cs: 'Kompletn� pr�vodce n�kupem v Friuli-Venezia Giulia',
+        cs: 'Kompletní průvodce nákupem v Friuli-Venezia Giulia',
         it: 'Guida Completa all\'Acquisto in Friuli-Venezia Giulia'
       },
       description: {
         en: 'Explore the crossroads of cultures, mountains, and coastline in Friuli-Venezia Giulia. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte k�i�ovatku kultur, hor a pob�e�� ve Friuli-Venezia Giulia. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Prozkoumejte křižovatku kultur, hor a pobřeží ve Friuli-Venezia Giulia. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora il crocevia di culture, montagne e costa nel Friuli-Venezia Giulia. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -828,12 +828,12 @@ export default function HomePage() {
       name: 'Lazio',
       title: {
         en: 'Complete Guide to Buying in Lazio',
-        cs: 'Kompletn� pr�vodce n�kupem v Laziu',
+        cs: 'Kompletní průvodce nákupem v Laziu',
         it: 'Guida Completa all\'Acquisto nel Lazio'
       },
       description: {
         en: 'Discover Rome, ancient history, and beautiful countryside in Lazio. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte ��m, starov�kou historii a kr�sn� venkov v Laziu. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Objevte Řím, starověkou historii a krásný venkov v Laziu. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri Roma, la storia antica e la bellissima campagna nel Lazio. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -842,12 +842,12 @@ export default function HomePage() {
       name: 'Liguria',
       title: {
         en: 'Complete Guide to Buying in Liguria',
-        cs: 'Kompletn� pr�vodce n�kupem v Ligurii',
+        cs: 'Kompletní průvodce nákupem v Ligurii',
         it: 'Guida Completa all\'Acquisto in Liguria'
       },
       description: {
         en: 'Explore the Italian Riviera, colorful villages, and Mediterranean coastline in Liguria. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte italskou rivi�ru, barevn� vesnice a st�edomo�sk� pob�e�� v Ligurii. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Prozkoumejte italskou riviéru, barevné vesnice a středomořské pobřeží v Ligurii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora la Riviera Italiana, i villaggi colorati e la costa mediterranea in Liguria. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -856,12 +856,12 @@ export default function HomePage() {
       name: 'Lombardia',
       title: {
         en: 'Complete Guide to Buying in Lombardy',
-        cs: 'Kompletn� pr�vodce n�kupem v Lombardii',
+        cs: 'Kompletní průvodce nákupem v Lombardii',
         it: 'Guida Completa all\'Acquisto in Lombardia'
       },
       description: {
         en: 'Discover Milan, Lake Como, and the economic heart of Italy in Lombardy. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte Mil�n, Lago di Como a ekonomick� srdce It�lie v Lombardii. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Objevte Milán, Lago di Como a ekonomické srdce Itálie v Lombardii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri Milano, il Lago di Como e il cuore economico dell\'Italia in Lombardia. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -870,13 +870,13 @@ export default function HomePage() {
       name: 'Marche',
       title: {
         en: 'Complete Guide to Buying in Marche',
-        cs: 'Kompletn� pr�vodce n�kupem v Marche',
+        cs: 'Kompletní průvodce nákupem v Marche',
         it: 'Guida Completa all\'Acquisto nelle Marche'
       },
       description: {
         en: 'Explore the hidden gem with Adriatic coast and medieval towns in Marche. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte skryt� klenot s pob�e��m Jadersk�ho mo�e a st�edov�k�mi m�sty v Marche. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
-        it: 'Esplora la gemma nascosta con costa adriatica e citta medievali nelle Marche. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
+        cs: 'Prozkoumejte skrytý klenot s pobřežím Jaderského moře a středověkými městy v Marche. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        it: 'Esplora la gemma nascosta con costa adriatica e città medievali nelle Marche. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
     },
@@ -884,13 +884,13 @@ export default function HomePage() {
       name: 'Molise',
       title: {
         en: 'Complete Guide to Buying in Molise',
-        cs: 'Kompletn� pr�vodce n�kupem v Molise',
+        cs: 'Kompletní průvodce nákupem v Molise',
         it: 'Guida Completa all\'Acquisto in Molise'
       },
       description: {
         en: 'Discover the smallest region with authentic Italian charm in Molise. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte nejmen�� region s autentick�m italsk�m kouzlem v Molise. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
-        it: 'Scopri la regione piu piccola con il fascino italiano autentico in Molise. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
+        cs: 'Objevte nejmenší region s autentickým italským kouzlem v Molise. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        it: 'Scopri la regione più piccola con il fascino italiano autentico in Molise. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
     },
@@ -898,12 +898,12 @@ export default function HomePage() {
       name: 'Piemonte',
       title: {
         en: 'Complete Guide to Buying in Piedmont',
-        cs: 'Kompletn� pr�vodce n�kupem v Piemontu',
+        cs: 'Kompletní průvodce nákupem v Piemontu',
         it: 'Guida Completa all\'Acquisto in Piemonte'
       },
       description: {
         en: 'Explore the wine country, Alps, and elegant Turin in Piedmont. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte vina�skou oblast, Alpy a elegantn� Tur�n v Piemontu. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Prozkoumejte vinařskou oblast, Alpy a elegantní Turín v Piemontu. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora la terra del vino, le Alpi e l\'elegante Torino in Piemonte. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -912,12 +912,12 @@ export default function HomePage() {
       name: 'Puglia',
       title: {
         en: 'Complete Guide to Buying in Puglia',
-        cs: 'Kompletn� pr�vodce n�kupem v Puglii',
+        cs: 'Kompletní průvodce nákupem v Puglii',
         it: 'Guida Completa all\'Acquisto in Puglia'
       },
       description: {
         en: 'Discover the heel of Italy with trulli houses and stunning coastline in Puglia. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte patu It�lie s domy trulli a ��asn�m pob�e��m v Puglii. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Objevte patu Itálie s domy trulli a úžasným pobřežím v Puglii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri il tallone d\'Italia con le case trulli e la costa mozzafiato in Puglia. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -926,12 +926,12 @@ export default function HomePage() {
       name: 'Sardegna',
       title: {
         en: 'Complete Guide to Buying in Sardinia',
-        cs: 'Kompletn� pr�vodce n�kupem na Sardinii',
+        cs: 'Kompletní průvodce nákupem na Sardinii',
         it: 'Guida Completa all\'Acquisto in Sardegna'
       },
       description: {
         en: 'Explore the Mediterranean island with pristine beaches and unique culture in Sardinia. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte st�edomo�sk� ostrov s nedot�en�mi pl�emi a jedine�nou kulturou na Sardinii. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Prozkoumejte středomořský ostrov s nedotčenými plážemi a jedinečnou kulturou na Sardinii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora l\'isola mediterranea con spiagge incontaminate e cultura unica in Sardegna. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -940,13 +940,13 @@ export default function HomePage() {
       name: 'Sicilia',
       title: {
         en: 'Complete Guide to Buying in Sicily',
-        cs: 'Kompletn� pr�vodce n�kupem na Sic�lii',
+        cs: 'Kompletní průvodce nákupem na Sicílii',
         it: 'Guida Completa all\'Acquisto in Sicilia'
       },
       description: {
         en: 'Discover the largest Mediterranean island with Mount Etna and ancient history in Sicily. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte nejv�t�� st�edomo�sk� ostrov s Etnou a starov�kou histori� na Sic�lii. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
-        it: 'Scopri la piu grande isola mediterranea con l\'Etna e la storia antica in Sicilia. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
+        cs: 'Objevte největší středomořský ostrov s Etnou a starověkou historií na Sicílii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        it: 'Scopri la più grande isola mediterranea con l\'Etna e la storia antica in Sicilia. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
     },
@@ -954,13 +954,13 @@ export default function HomePage() {
       name: 'Toscana',
       title: {
         en: 'Complete Guide to Buying in Tuscany',
-        cs: 'Kompletn� pr�vodce n�kupem v Tosk�nsku',
+        cs: 'Kompletní průvodce nákupem v Toskánsku',
         it: 'Guida Completa all\'Acquisto in Toscana'
       },
       description: {
         en: 'Discover the rolling hills, vineyards, and historic cities of Tuscany. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte zvln�n� kopce, vinice a historick� m�sta Tosk�nska. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
-        it: 'Scopri le dolci colline, i vigneti e le citta storiche della Toscana. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
+        cs: 'Objevte zvlněné kopce, vinice a historická města Toskánska. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        it: 'Scopri le dolci colline, i vigneti e le città storiche della Toscana. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
     },
@@ -968,12 +968,12 @@ export default function HomePage() {
       name: 'Trentino-Alto Adige',
       title: {
         en: 'Complete Guide to Buying in Trentino-Alto Adige',
-        cs: 'Kompletn� pr�vodce n�kupem v Trentino-Alto Adige',
+        cs: 'Kompletní průvodce nákupem v Trentino-Alto Adige',
         it: 'Guida Completa all\'Acquisto in Trentino-Alto Adige'
       },
       description: {
         en: 'Explore the Dolomites, alpine lakes, and unique dual culture in Trentino-Alto Adige. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte Dolomity, alpsk� jezera a jedine�nou dvoj� kulturu v Trentino-Alto Adige. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Prozkoumejte Dolomity, alpská jezera a jedinečnou dvojí kulturu v Trentino-Alto Adige. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora le Dolomiti, i laghi alpini e la cultura duale unica in Trentino-Alto Adige. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -982,13 +982,13 @@ export default function HomePage() {
       name: 'Umbria',
       title: {
         en: 'Complete Guide to Buying in Umbria',
-        cs: 'Kompletn� pr�vodce n�kupem v Umbrii',
+        cs: 'Kompletní průvodce nákupem v Umbrii',
         it: 'Guida Completa all\'Acquisto in Umbria'
       },
       description: {
         en: 'Discover the green heart of Italy with medieval hill towns in Umbria. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte zelen� srdce It�lie se st�edov�k�mi m�sty na kopc�ch v Umbrii. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
-        it: 'Scopri il cuore verde d\'Italia con le citta medievali sui colli in Umbria. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
+        cs: 'Objevte zelené srdce Itálie se středověkými městy na kopcích v Umbrii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        it: 'Scopri il cuore verde d\'Italia con le città medievali sui colli in Umbria. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
     },
@@ -996,13 +996,13 @@ export default function HomePage() {
       name: 'Valle d\'Aosta',
       title: {
         en: 'Complete Guide to Buying in Valle d\'Aosta',
-        cs: 'Kompletn� pr�vodce n�kupem v Valle d\'Aosta',
+        cs: 'Kompletní průvodce nákupem v Valle d\'Aosta',
         it: 'Guida Completa all\'Acquisto in Valle d\'Aosta'
       },
       description: {
         en: 'Explore the smallest region with highest peaks and alpine charm in Valle d\'Aosta. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte nejmen�� region s nejvy���mi vrcholy a alpsk�m kouzlem v Valle d\'Aosta. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
-        it: 'Esplora la regione piu piccola con le vette piu alte e il fascino alpino in Valle d\'Aosta. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
+        cs: 'Prozkoumejte nejmenší region s nejvyššími vrcholy a alpským kouzlem v Valle d\'Aosta. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        it: 'Esplora la regione più piccola con le vette più alte e il fascino alpino in Valle d\'Aosta. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
     },
@@ -1010,12 +1010,12 @@ export default function HomePage() {
       name: 'Veneto',
       title: {
         en: 'Complete Guide to Buying in Veneto',
-        cs: 'Kompletn� pr�vodce n�kupem v Ben�tsku',
+        cs: 'Kompletní průvodce nákupem v Benátsku',
         it: 'Guida Completa all\'Acquisto in Veneto'
       },
       description: {
         en: 'Discover Venice, Verona, and the diverse landscapes of Veneto. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte Ben�tky, Veronu a rozmanit� krajiny Ben�tska. Zjist�te o cen�ch nemovitost�, pr�vn�ch po�adavc�ch a nejlep��ch oblastech k investici.',
+        cs: 'Objevte Benátky, Veronu a rozmanité krajiny Benátska. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri Venezia, Verona e i paesaggi diversi del Veneto. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -1027,12 +1027,12 @@ export default function HomePage() {
       name: 'Villa',
       title: {
         en: 'Villa vs House: Which is Right for You?',
-        cs: 'Vila vs d�m: Co je pro v�s to prav�?',
-        it: 'Villa vs Casa: Quale e Giusto per Te?'
+        cs: 'Vila vs dům: Co je pro vás to pravé?',
+        it: 'Villa vs Casa: Quale è Giusto per Te?'
       },
       description: {
         en: 'Learn the key differences between Italian villas and houses. From architectural styles to investment potential, make an informed decision.',
-        cs: 'Poznejte kl��ov� rozd�ly mezi italsk�mi vilami a domy. Od architektonick�ch styl� po investi�n� potenci�l, u�init informovan� rozhodnut�.',
+        cs: 'Poznejte klíčové rozdíly mezi italskými vilami a domy. Od architektonických stylů po investiční potenciál, učinit informované rozhodnutí.',
         it: 'Impara le principali differenze tra ville e case italiane. Dagli stili architettonici al potenziale di investimento, prendi una decisione informata.'
       },
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -1041,12 +1041,12 @@ export default function HomePage() {
       name: 'Farmhouse',
       title: {
         en: 'Restoring Italian Farmhouses: A Complete Guide',
-        cs: 'Obnova italsk�ch statk�: Kompletn� pr�vodce',
+        cs: 'Obnova italských statků: Kompletní průvodce',
         it: 'Ristrutturare le Masserie Italiane: Una Guida Completa'
       },
       description: {
         en: 'Transform a traditional farmhouse into your dream home. Learn about restoration costs, permits, and the charm of rural Italian living.',
-        cs: 'Prom��te tradi�n� statek ve sv�j vysn�n� domov. Zjist�te o n�kladech na rekonstrukci, povolen�ch a kouzlu venkovsk�ho italsk�ho �ivota.',
+        cs: 'Proměňte tradiční statek ve svůj vysněný domov. Zjistěte o nákladech na rekonstrukci, povoleních a kouzlu venkovského italského života.',
         it: 'Trasforma una masseria tradizionale nella casa dei tuoi sogni. Impara sui costi di ristrutturazione, permessi e il fascino della vita rurale italiana.'
       },
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -1055,13 +1055,13 @@ export default function HomePage() {
       name: 'Apartment',
       title: {
         en: 'Apartment Living in Italian Cities',
-        cs: 'Bydlen� v bytech v italsk�ch m�stech',
-        it: 'Vita in Appartamento nelle Citta Italiane'
+        cs: 'Bydlení v bytech v italských městech',
+        it: 'Vita in Appartamento nelle Città Italiane'
       },
       description: {
         en: 'Discover the benefits of city living in Italy. From Milan to Florence, explore modern apartments and historic palazzos.',
-        cs: 'Objevte v�hody m�stsk�ho �ivota v It�lii. Od Mil�na po Florencii prozkoumejte modern� byty a historick� pal�ce.',
-        it: 'Scopri i benefici della vita in citta in Italia. Da Milano a Firenze, esplora appartamenti moderni e palazzi storici.'
+        cs: 'Objevte výhody městského života v Itálii. Od Milána po Florencii prozkoumejte moderní byty a historické paláce.',
+        it: 'Scopri i benefici della vita in città in Italia. Da Milano a Firenze, esplora appartamenti moderni e palazzi storici.'
       },
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
     },
@@ -1069,13 +1069,13 @@ export default function HomePage() {
       name: 'Commercial',
       title: {
         en: 'Commercial Property in Italy: Investment Guide',
-        cs: 'Komer�n� nemovitosti v It�lii: Investi�n� pr�vodce',
+        cs: 'Komerční nemovitosti v Itálii: Investiční průvodce',
         it: 'Immobili Commerciali in Italia: Guida agli Investimenti'
       },
       description: {
         en: 'Explore commercial real estate opportunities. From restaurants to retail spaces, learn about Italy\'s business property market.',
-        cs: 'Prozkoumejte p��le�itosti komer�n�ch nemovitost�. Od restaurac� po maloobchodn� prostory, zjist�te o italsk�m trhu s obchodn�mi nemovitostmi.',
-        it: 'Esplora le opportunita immobiliari commerciali. Dai ristoranti agli spazi retail, impara sul mercato immobiliare commerciale italiano.'
+        cs: 'Prozkoumejte příležitosti komerčních nemovitostí. Od restaurací po maloobchodní prostory, zjistěte o italském trhu s obchodními nemovitostmi.',
+        it: 'Esplora le opportunità immobiliari commerciali. Dai ristoranti agli spazi retail, impara sul mercato immobiliare commerciale italiano.'
       },
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
     }
@@ -1264,14 +1264,14 @@ export default function HomePage() {
             <div className="mb-8 animate-pulse">
               <img 
                 src="/logo domy.svg" 
-                alt="Domy v It�lii" 
+                alt="Domy v Itálii" 
                 className="w-24 h-24 mx-auto opacity-90"
               />
             </div>
             
             {/* Loading Text */}
             <h2 className="text-2xl font-bold text-white mb-4 tracking-wide">
-              {language === 'cs' ? 'Na��t�n�...' : 
+              {language === 'cs' ? 'Načítání...' : 
                language === 'it' ? 'Caricamento...' : 
                'Loading...'}
             </h2>
@@ -1429,7 +1429,7 @@ export default function HomePage() {
                     onClick={() => setSearchQuery('house')}
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
-                    {language === 'cs' ? 'D�m' : (language === 'it' ? 'Casa' : 'House')}
+                    {language === 'cs' ? 'Dům' : (language === 'it' ? 'Casa' : 'House')}
                   </button>
                 </div>
                 
@@ -1448,7 +1448,7 @@ export default function HomePage() {
                     onClick={() => setSearchQuery('Tuscany')}
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
-                    {language === 'cs' ? 'Tosk�nsko' : (language === 'it' ? 'Toscana' : 'Tuscany')}
+                    {language === 'cs' ? 'Toskánsko' : (language === 'it' ? 'Toscana' : 'Tuscany')}
                   </button>
                 </div>
                 
@@ -1466,7 +1466,7 @@ export default function HomePage() {
                     onClick={() => setSearchQuery('Milan')}
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
-                    {language === 'cs' ? 'Mil�n' : (language === 'it' ? 'Milano' : 'Milan')}
+                    {language === 'cs' ? 'Milán' : (language === 'it' ? 'Milano' : 'Milan')}
                   </button>
                 </div>
                 
@@ -1484,7 +1484,7 @@ export default function HomePage() {
                     onClick={() => setSearchQuery('Sicilia')}
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
-                    {language === 'cs' ? 'Sic�lie' : (language === 'it' ? 'Sicilia' : 'Sicily')}
+                    {language === 'cs' ? 'Sicílie' : (language === 'it' ? 'Sicilia' : 'Sicily')}
                   </button>
                 </div>
                 
@@ -1494,7 +1494,7 @@ export default function HomePage() {
                     onClick={() => setSearchQuery('luxury')}
                     className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
-                    {language === 'cs' ? 'Luxusn�' : (language === 'it' ? 'Lusso' : 'Luxury')}
+                    {language === 'cs' ? 'Luxusní' : (language === 'it' ? 'Lusso' : 'Luxury')}
                   </button>
                 </div>
                 
@@ -1503,7 +1503,7 @@ export default function HomePage() {
                     onClick={() => setSearchQuery('beachfront')}
                     className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
-                    {language === 'cs' ? 'U mo�e' : (language === 'it' ? 'Sul mare' : 'Beachfront')}
+                    {language === 'cs' ? 'U moře' : (language === 'it' ? 'Sul mare' : 'Beachfront')}
                   </button>
                 </div>
                 
@@ -1513,7 +1513,7 @@ export default function HomePage() {
                     onClick={() => setSearchQuery('pool')}
                     className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
                   >
-                    {language === 'cs' ? 'Baz�n' : (language === 'it' ? 'Piscina' : 'Pool')}
+                    {language === 'cs' ? 'Bazén' : (language === 'it' ? 'Piscina' : 'Pool')}
                   </button>
                 </div>
                 
@@ -1541,12 +1541,12 @@ export default function HomePage() {
                   <Scale className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
                   <div className="flex flex-col min-w-0">
                     <span className="text-xs font-semibold text-white leading-tight">
-                      {language === 'cs' ? 'Pr�vn� Partner' :
+                      {language === 'cs' ? 'Právní Partner' :
                        language === 'it' ? 'Partner Legale' :
                        'Legal Partner'}
                     </span>
                     <span className="text-[10px] text-white/90 leading-tight">
-                      {language === 'cs' ? 'Certifikovan� Pr�vn�ci' :
+                      {language === 'cs' ? 'Certifikovaní Právníci' :
                        language === 'it' ? 'Avvocati Certificati' :
                        'Certified Lawyers'}
                     </span>
@@ -1558,12 +1558,12 @@ export default function HomePage() {
                   <Globe className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
                   <div className="flex flex-col min-w-0">
                     <span className="text-xs font-semibold text-white leading-tight">
-                      {language === 'cs' ? 'Turistick� Partner' :
+                      {language === 'cs' ? 'Turistický Partner' :
                        language === 'it' ? 'Partner Turistico' :
                        'Tour Partner'}
                     </span>
                     <span className="text-[10px] text-white/90 leading-tight">
-                      {language === 'cs' ? 'M�stn� Zku�enosti' :
+                      {language === 'cs' ? 'Místní Zkušenosti' :
                        language === 'it' ? 'Esperienza Locale' :
                        'Local Experience'}
                     </span>
@@ -1599,12 +1599,12 @@ export default function HomePage() {
             {/* Left Side - Text Content */}
             <div className="space-y-4 sm:space-y-6 animate-on-scroll slide-left">
                 <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  {language === 'cs' ? 'Pom�h�me �ech�m koupit d�m v It�lii. Bez stresu. Bez iluz�. S jasn�m postupem.' :
+                  {language === 'cs' ? 'Pomáháme Čechům koupit dům v Itálii. Bez stresu. Bez iluzí. S jasným postupem.' :
                    language === 'it' ? 'Aiutiamo i cechi a comprare casa in Italia. Senza stress. Senza illusioni. Con un percorso chiaro.' :
                    'We help Czechs buy a home in Italy. Stress-free. No illusions. With a clear process.'}
                 </h2>
                 <p className="text-base sm:text-xl text-gray-700 leading-relaxed">
-                  {language === 'cs' ? 'Praktick� informace je�t� p�edt�m, ne� ud�l�te prvn� rozhodnut�.' :
+                  {language === 'cs' ? 'Praktické informace ještě předtím, než uděláte první rozhodnutí.' :
                    language === 'it' ? 'Informazioni pratiche prima ancora di prendere la prima decisione.' :
                    'Practical information before you make your first decision.'}
               </p>
@@ -1613,7 +1613,7 @@ export default function HomePage() {
                     <Button 
                       className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl"
                     >
-                      {language === 'cs' ? 'O na�em procesu' : 
+                      {language === 'cs' ? 'O našem procesu' : 
                        language === 'it' ? 'Sul nostro processo' : 
                        'About Our Process'}
                     </Button>
@@ -1637,46 +1637,32 @@ export default function HomePage() {
           <div 
             className="flex flex-col items-center space-y-2 text-white/80 hover:text-white transition-colors duration-300 cursor-pointer group"
             onClick={() => {
-              const nextSection = document.querySelector('[data-testid="main-content-container"]');
-              if (nextSection) {
-                // Use Lenis for smooth scrolling
-                window.lenis?.scrollTo(nextSection, { offset: -80 });
-              }
-            }}
-          >
-            <span className="text-base font-medium tracking-wide uppercase">
-              {language === 'cs' ? 'P�ejd�te dol�' : 
-               language === 'it' ? 'Scorri per esplorare' : 
-               'Scroll to explore'}
-            </span>
-            <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center group-hover:border-white transition-colors duration-300">
-              <div className="w-1 h-3 bg-white/60 rounded-full mt-2 group-hover:bg-white transition-colors duration-300 slow-bounce"></div>
-            </div>
-          </div>
-        </div>
-      </section>
       <div className="container mx-auto px-4 pt-12 pb-8 bg-[#f7f4ed]" data-testid="main-content-container">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900" data-testid="section-description">
-            {language === 'cs' ? 'Koup� domu v It�lii nen� jen o cen�' : language === 'it' ? 'L\'acquisto di una casa in Italia non riguarda solo il prezzo' : 'Buying a home in Italy isn\'t just about price'}
+            {language === 'cs' ? 'Koupě domu v Itálii není jen o ceně' :
+             language === 'it' ? 'L\'acquisto di una casa in Italia non riguarda solo il prezzo' :
+             'Buying a home in Italy isn\'t just about price'}
           </h2>
-          <p className="text-base sm:text-xl text-gray-700 max-w-3xl">{language === 'cs' ? 'Rozhodnut� bez spr�vn�ch informac� m��e st�t �as, pen�ze i klid. Proto je d�le�it� rozum�t syst�mu je�t� p�ed prvn�m krokem.' : language === 'it' ? 'Una decisione senza le giuste informazioni puo costare tempo, denaro e serenita. Per questo e importante capire il sistema prima del primo passo.' : 'Decisions without the right information can cost time, money, and peace of mind. That�s why it�s important to understand the system before the first step.'}</p>
         </div>
+        <p className="text-base sm:text-xl text-gray-700 max-w-3xl">
+          {language === 'cs' ? 'Rozhodnutí bez správných informací může stát čas, peníze i klid. Proto je důležité rozumět systému ještě před prvním krokem.' : language === 'it' ? 'Una decisione senza le giuste informazioni può costare tempo, denaro e serenità. Per questo è importante capire il sistema prima del primo passo.' : 'Decisions without the right information can cost time, money, and peace of mind. That’s why it’s important to understand the system before the first step.'}
+        </p>
 
-        {/* Why Italy is Different - 3 cards */}
-        <div className="mb-16">
+        {/* Why Italy is Different - 5 cards */}
+        <div className="mb-16 mt-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8" data-testid="why-italy-different-grid">
             {/* Card 1 */}
             <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full">
               <CardContent className="p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-4">
                   <h3 className="font-bold text-2xl leading-tight text-gray-900">
-                    {language === 'cs' ? 'Italsk� syst�m je jin�' :
-                     language === 'it' ? 'Il sistema italiano e diverso' :
+                    {language === 'cs' ? 'Italský systém je jiný' :
+                     language === 'it' ? 'Il sistema italiano è diverso' :
                      'The Italian system is different'}
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    {language === 'cs' ? 'Pravidla, dan� a procesy se li�� od �esk� republiky.' :
+                    {language === 'cs' ? 'Pravidla, daně a procesy se liší od České republiky.' :
                      language === 'it' ? 'Regole, tasse e processi differiscono dalla Repubblica Ceca.' :
                      'Rules, taxes and processes differ from the Czech Republic.'}
                   </p>
@@ -1684,30 +1670,30 @@ export default function HomePage() {
                 <div className="pt-4 mt-auto">
                   <Link href="https://new-domy-main-z3ex.vercel.app/process">
                     <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
-                      {language === 'cs' ? 'O na�em procesu' : language === 'it' ? 'Sul nostro processo' : 'About Our Process'}
+                      {language === 'cs' ? 'O našem procesu' : language === 'it' ? 'Sul nostro processo' : 'About Our Process'}
                     </Button>
                   </Link>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Card 2 (placeholder) */}
+            {/* Card 2 */}
             <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full">
               <CardContent className="p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-4">
                   <h3 className="font-bold text-2xl leading-tight text-gray-900">
-                    {language === 'cs' ? 'Cena nen� v�echno' : language === 'it' ? 'Il prezzo non e tutto' : 'Price isn�t everything'}
+                    {language === 'cs' ? 'Cena není všechno' : language === 'it' ? 'Il prezzo non è tutto' : 'Price isn’t everything'}
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    {language === 'cs' ? 'Skute�n� n�klady se ukazuj� a� v detailu.' : language === 'it' ? 'I costi reali emergono nei dettagli.' : 'The real costs show up in the details.'}
+                    {language === 'cs' ? 'Skutečné náklady se ukazují až v detailu.' : language === 'it' ? 'I costi reali emergono nei dettagli.' : 'The real costs show up in the details.'}
                   </p>
+                </div>
                 <div className="pt-4 mt-auto">
                   <Link href="/guides/costs">
                     <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
                       {language === 'it' ? 'Scopri di più' : language === 'cs' ? 'Zjistit více' : 'Learn more'}
                     </Button>
                   </Link>
-                </div>
                 </div>
               </CardContent>
             </Card>
@@ -1717,13 +1703,15 @@ export default function HomePage() {
               <CardContent className="p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-4">
                   <h3 className="font-bold text-2xl leading-tight text-gray-900">
-                    {language === 'cs' ? 'T�et� karta' : language === 'it' ? 'Terza card' : 'Third card'}
+                    {language === 'cs' ? 'Třetí karta' : language === 'it' ? 'Terza card' : 'Third card'}
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    {language === 'cs' ? 'Obsah dopln�me dle instrukc�.' : language === 'it' ? 'Contenuto da definire.' : 'Content to be defined.'}
+                    {language === 'cs' ? 'Obsah doplníme dle instrukcí.' : language === 'it' ? 'Contenuto da definire.' : 'Content to be defined.'}
                   </p>
                 </div>
               </CardContent>
+            </Card>
+
             {/* Card 4 (placeholder) */}
             <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full">
               <CardContent className="p-6 flex flex-col flex-1">
@@ -1751,12 +1739,11 @@ export default function HomePage() {
                 </div>
               </CardContent>
             </Card>
-            </Card>
           </div>
         </div>
       </div>
 
-      {/* Premium Club Section */}
+      {/* Premium Club Section */}{/* Premium Club Section */}
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 sm:py-20 overflow-hidden">
         <div className="container mx-auto px-4">
           {/* Main Premium Club Content */}
@@ -1767,8 +1754,8 @@ export default function HomePage() {
                'Premium Club'}
             </h2>
             <p className="text-base sm:text-xl text-gray-200 max-w-3xl mx-auto mb-6 sm:mb-8 px-2">
-              {language === 'cs' ? 'V� osobn� pr�vodce nemovitostmi a �ivotn�m stylem v It�lii' :
-               language === 'it' ? 'La tua guida personale a proprieta e stile di vita in Italia' :
+              {language === 'cs' ? 'Váš osobní průvodce nemovitostmi a životním stylem v Itálii' :
+               language === 'it' ? 'La tua guida personale a proprietà e stile di vita in Italia' :
                'Your Personal Guide to Property & Lifestyle in Italy'}
             </p>
             <Button 
@@ -1776,7 +1763,7 @@ export default function HomePage() {
               className="font-semibold py-3 sm:py-4 px-6 sm:px-8 text-base sm:text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-white"
               style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
             >
-              {language === 'cs' ? 'P�ipojit se zdarma' :
+              {language === 'cs' ? 'Připojit se zdarma' :
                language === 'it' ? 'Unisciti gratuitamente' :
                'Join for Free'}
             </Button>
@@ -1804,7 +1791,7 @@ export default function HomePage() {
                        'PREMIUM CLUB'}
                     </h4>
                     <p className="text-gray-300 text-base">
-                      {language === 'cs' ? 'Exkluzivn� �lenstv�' :
+                      {language === 'cs' ? 'Exkluzivní členství' :
                        language === 'it' ? 'Membri esclusivi' :
                        'Exclusive Membership'}
                     </p>
@@ -1814,7 +1801,7 @@ export default function HomePage() {
                     <div className="flex items-center space-x-3">
                       <Check className="h-5 w-5 text-slate-600" />
                       <span className="text-base" style={{ color: '#c48759' }}>
-                        {language === 'cs' ? 'Vlastn� vyhled�va�' :
+                        {language === 'cs' ? 'Vlastní vyhledávač' :
                          language === 'it' ? 'Ricerca Personalizzata' :
                          'Custom Finder'}
                       </span>
@@ -1822,7 +1809,7 @@ export default function HomePage() {
                     <div className="flex items-center space-x-3">
                       <Check className="h-5 w-5 text-slate-600" />
                       <span className="text-base" style={{ color: '#c48759' }}>
-                        {language === 'cs' ? 'Cestovn� v�hody' :
+                        {language === 'cs' ? 'Cestovní výhody' :
                          language === 'it' ? 'Vantaggi di Viaggio' :
                          'Travel Perks'}
                       </span>
@@ -1838,7 +1825,7 @@ export default function HomePage() {
                     <div className="flex items-center space-x-3">
                       <Check className="h-5 w-5 text-slate-600" />
                       <span className="text-base" style={{ color: '#c48759' }}>
-                        {language === 'cs' ? 'T�denn� webin��e' :
+                        {language === 'cs' ? 'Týdenní webináře' :
                          language === 'it' ? 'Webinar Settimanali' :
                          'Weekly Webinars'}
                       </span>
@@ -1852,7 +1839,7 @@ export default function HomePage() {
                        'FREE'}
                     </div>
                     <p className="text-gray-300 text-xs">
-                      {language === 'cs' ? 'Bez skryt�ch poplatk�' :
+                      {language === 'cs' ? 'Bez skrytých poplatků' :
                        language === 'it' ? 'Nessuna commissione nascosta' :
                        'No hidden fees'}
                     </p>
@@ -1865,16 +1852,16 @@ export default function HomePage() {
             <div className="lg:col-span-2">
               <div className="text-center mb-8">
                 <h3 className="text-3xl font-bold text-white mb-4">
-                  {language === 'cs' ? 'Exkluzivn� Obsah' :
+                  {language === 'cs' ? 'Exkluzivní Obsah' :
                    language === 'it' ? 'Contenuto Esclusivo' :
                    'Exclusive Content'}
                 </h3>
                 <p className="text-lg text-gray-200">
                   {user 
-                    ? (language === 'cs' ? 'Va�e pr�miov� �l�nky a pr�vodci' :
+                    ? (language === 'cs' ? 'Vaše prémiové články a průvodci' :
                        language === 'it' ? 'I tuoi articoli e guide premium' :
                        'Your premium articles and guides')
-                    : (language === 'cs' ? 'Zaregistrujte se zdarma a z�skejte p��stup k pr�miov�m �l�nk�m' :
+                    : (language === 'cs' ? 'Zaregistrujte se zdarma a získejte přístup k prémiovým článkům' :
                        language === 'it' ? 'Registrati gratis per accedere ai contenuti premium' :
                        'Register for free to unlock premium articles and guides')
                   }
@@ -1886,48 +1873,48 @@ export default function HomePage() {
                   {
                     title: {
                       en: 'How to Buy a House in Italy: Complete Guide',
-                      cs: 'Jak koupit d�m v It�lii: Kompletn� pr�vodce',
+                      cs: 'Jak koupit dům v Itálii: Kompletní průvodce',
                       it: 'Come Acquistare una Casa in Italia: Guida Completa'
                     },
                     excerpt: {
                       en: 'Everything you need to know about documents, taxes, and procedures for buying property in Italy.',
-                      cs: 'V�e, co pot�ebujete v�d�t o dokumentech, dan�ch a postupech p�i koupi nemovitosti v It�lii.',
+                      cs: 'Vše, co potřebujete vědět o dokumentech, daních a postupech při koupi nemovitosti v Itálii.',
                       it: 'Tutto quello che devi sapere sui documenti, tasse e procedure per acquistare immobili in Italia.'
                     },
-                    category: { en: 'Legal', cs: 'Pr�vo', it: 'Legale' },
-                    readTime: { en: '15 min read', cs: '15 min �ten�', it: '15 min di lettura' },
+                    category: { en: 'Legal', cs: 'Právo', it: 'Legale' },
+                    readTime: { en: '15 min read', cs: '15 min čtení', it: '15 min di lettura' },
                     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop',
                     link: '/guides/costs'
                   },
                   {
                     title: {
                       en: 'Most Common Czech Mistakes When Buying in Italy',
-                      cs: 'Nej�ast�j�� chyby �ech� p�i koupi domu v It�lii',
-                      it: 'Errori Piu Comuni dei Cechi nell\'Acquisto in Italia'
+                      cs: 'Nejčastější chyby Čechů při koupi domu v Itálii',
+                      it: 'Errori Più Comuni dei Cechi nell\'Acquisto in Italia'
                     },
                     excerpt: {
                       en: 'What to watch out for to avoid losing time and money. Problems arise from unfamiliarity, not carelessness.',
-                      cs: 'Na co si d�t pozor, abyste neztratili �as a pen�ze. Probl�my vznikaj� z neznalosti, ne z nepozornosti.',
+                      cs: 'Na co si dát pozor, abyste neztratili čas a peníze. Problémy vznikají z neznalosti, ne z nepozornosti.',
                       it: 'A cosa fare attenzione per non perdere tempo e denaro. I problemi nascono dalla scarsa conoscenza, non dalla disattenzione.'
                     },
-                    category: { en: 'Guide', cs: 'Pr�vodce', it: 'Guida' },
-                    readTime: { en: '12 min read', cs: '12 min �ten�', it: '12 min di lettura' },
+                    category: { en: 'Guide', cs: 'Průvodce', it: 'Guida' },
+                    readTime: { en: '12 min read', cs: '12 min čtení', it: '12 min di lettura' },
                     image: 'https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?q=80&w=800&auto=format&fit=crop',
                     link: '/guides/mistakes'
                   },
                   {
                     title: {
                       en: 'Investing in Italian Real Estate: Opportunities and Risks',
-                      cs: 'Investice do italsk�ch nemovitost�: P��le�itosti a rizika',
-                      it: 'Investire in Immobili Italiani: Opportunita e Rischi'
+                      cs: 'Investice do italských nemovitostí: Příležitosti a rizika',
+                      it: 'Investire in Immobili Italiani: Opportunità e Rischi'
                     },
                     excerpt: {
                       en: 'In-depth analysis of the Italian real estate market and investment strategies.',
-                      cs: 'Podrobn� anal�za italsk�ho realitn�ho trhu a investi�n�ch strategi�.',
+                      cs: 'Podrobná analýza italského realitního trhu a investičních strategií.',
                       it: 'Analisi approfondita del mercato immobiliare italiano e strategie di investimento.'
                     },
                     category: { en: 'Investment', cs: 'Investice', it: 'Investimento' },
-                    readTime: { en: '18 min read', cs: '18 min �ten�', it: '18 min di lettura' },
+                    readTime: { en: '18 min read', cs: '18 min čtení', it: '18 min di lettura' },
                     image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&auto=format&fit=crop',
                     link: '/blog'
                   }
@@ -1983,7 +1970,7 @@ export default function HomePage() {
                             <div className="relative z-10 pt-6 flex items-center justify-center">
                               <span className="flex items-center gap-2 text-sm font-semibold group-hover:scale-105 transition-transform" style={{ color: '#c48759' }}>
                                 <Lock className="h-3.5 w-3.5" />
-                                {language === 'cs' ? 'Zaregistrujte se pro �ten�' :
+                                {language === 'cs' ? 'Zaregistrujte se pro čtení' :
                                  language === 'it' ? 'Registrati per leggere' :
                                  'Register to read'}
                               </span>
@@ -1998,7 +1985,7 @@ export default function HomePage() {
                               {article.readTime[language]}
                             </span>
                             <span className="text-xs font-semibold text-copper-400">
-                              {language === 'cs' ? '��st �l�nek' : language === 'it' ? 'Leggi' : 'Read'}
+                              {language === 'cs' ? 'Číst článek' : language === 'it' ? 'Leggi' : 'Read'}
                             </span>
                           </div>
                         )}
@@ -2017,13 +2004,13 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight">
-              {language === 'cs' ? 'Prozkoumejte Nej��dan�j�� Regiony It�lie' :
-               language === 'it' ? 'Esplora le Regioni Piu Ricercate d\'Italia' : 
+              {language === 'cs' ? 'Prozkoumejte Nejžádanější Regiony Itálie' :
+               language === 'it' ? 'Esplora le Regioni Più Ricercate d\'Italia' : 
                'Explore Italy\'s Most Wanted Regions'}
             </h2>
             <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-              {language === 'cs' ? 'Ne cel� It�lie je stejn�. Vyberte si region, kter� vyhovuje va�emu rozpo�tu, �ivotn�mu stylu a investi�n�m c�l�m. Prohl�dn�te si nemovitosti v oblastech, kter� milujete.' :
-               language === 'it' ? 'Non tutta l\'Italia e uguale. Scegli una regione che si adatti al tuo budget, stile di vita e obiettivi di investimento. Esplora le proprieta nelle aree che ami.' : 
+              {language === 'cs' ? 'Ne celá Itálie je stejná. Vyberte si region, který vyhovuje vašemu rozpočtu, životnímu stylu a investičním cílům. Prohlédněte si nemovitosti v oblastech, které milujete.' :
+               language === 'it' ? 'Non tutta l\'Italia è uguale. Scegli una regione che si adatti al tuo budget, stile di vita e obiettivi di investimento. Esplora le proprietà nelle aree che ami.' : 
                'Not all of Italy is the same. Choose a region that fits your budget, lifestyle, and investment goals. Explore properties in the areas you love.'}
             </p>
           </div>
@@ -2045,7 +2032,7 @@ export default function HomePage() {
                      'Sardinia'}
                   </h3>
                   <p className="text-white/90 text-base">
-                    {language === 'cs' ? 'K�i���lov� vody, panensk� pl�e, luxusn� resorty' :
+                    {language === 'cs' ? 'Křišťálové vody, panenské pláže, luxusní resorty' :
                      language === 'it' ? 'Acque cristalline, spiagge incontaminate, resort di lusso' :
                      'Crystal waters, pristine beaches, luxury resorts'}
                   </p>
@@ -2054,7 +2041,7 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    �3,500-8,000/m2
+                    €3,500-8,000/m²
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
                     5-8% yield
@@ -2072,7 +2059,7 @@ export default function HomePage() {
                   }}
                 >
                   <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
-                    {language === 'cs' ? 'Zobrazit nab�dky ze Sardinie' :
+                    {language === 'cs' ? 'Zobrazit nabídky ze Sardinie' :
                      language === 'it' ? 'Visualizza offerte per la Sardegna' :
                      'View offers from Sardinia'}
                   </button>
@@ -2091,12 +2078,12 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
                   <h3 className="text-2xl font-bold text-white mb-2">
-                    {language === 'cs' ? 'Tosk�nsko' :
+                    {language === 'cs' ? 'Toskánsko' :
                      language === 'it' ? 'Toscana' :
                      'Tuscany'}
                   </h3>
                   <p className="text-white/90 text-base">
-                    {language === 'cs' ? 'Kamenn� statky, vinice, stabiln� popt�vka po pron�jmu' :
+                    {language === 'cs' ? 'Kamenné statky, vinice, stabilní poptávka po pronájmu' :
                      language === 'it' ? 'Case coloniche in pietra, viste sui vigneti, domanda di affitto stabile' :
                      'Stone farmhouses, vineyard views, stable rental demand'}
                   </p>
@@ -2105,10 +2092,10 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    �2,500-6,000/m2
+                    €2,500-6,000/m²
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? '4-7% v�nos' :
+                    {language === 'cs' ? '4-7% výnos' :
                      language === 'it' ? 'Rendimento 4-7%' :
                      '4-7% yield'}
                   </span>
@@ -2127,7 +2114,7 @@ export default function HomePage() {
                   }}
                 >
                   <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
-                    {language === 'cs' ? 'Zobrazit nab�dky z Tosk�nska' :
+                    {language === 'cs' ? 'Zobrazit nabídky z Toskánska' :
                      language === 'it' ? 'Visualizza offerte per la Toscana' :
                      'View offers from Tuscany'}
                   </button>
@@ -2151,8 +2138,8 @@ export default function HomePage() {
                      'Emilia-Romagna'}
                   </h3>
                   <p className="text-white/90 text-base">
-                    {language === 'cs' ? 'Kulin��sk� hlavn� m�sto, historick� m�sta, zvln�n� kopce' :
-                     language === 'it' ? 'Capitale culinaria, citta storiche, dolci colline' :
+                    {language === 'cs' ? 'Kulinářské hlavní město, historická města, zvlněné kopce' :
+                     language === 'it' ? 'Capitale culinaria, città storiche, dolci colline' :
                      'Culinary capital, historic cities, rolling hills'}
                   </p>
                 </div>
@@ -2160,7 +2147,7 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    �2,000-5,000/m2
+                    €2,000-5,000/m²
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
                     4-7% yield
@@ -2178,7 +2165,7 @@ export default function HomePage() {
                   }}
                 >
                   <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
-                    {language === 'cs' ? 'Zobrazit nab�dky z Emilia-Romagna' :
+                    {language === 'cs' ? 'Zobrazit nabídky z Emilia-Romagna' :
                      language === 'it' ? 'Visualizza offerte per l\'Emilia-Romagna' :
                      'View offers from Emilia-Romagna'}
                   </button>
@@ -2197,13 +2184,13 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
                   <h3 className="text-2xl font-bold text-white mb-2">
-                    {language === 'cs' ? 'Sic�lie' :
+                    {language === 'cs' ? 'Sicílie' :
                      language === 'it' ? 'Sicilia' :
                      'Sicily'}
                   </h3>
                   <p className="text-white/90 text-base">
-                    {language === 'cs' ? 'Historick� pal�ce, barokn� m�sta, rostouc� trh' :
-                     language === 'it' ? 'Palazzi storici, citta barocche, mercato emergente' :
+                    {language === 'cs' ? 'Historické paláce, barokní města, rostoucí trh' :
+                     language === 'it' ? 'Palazzi storici, città barocche, mercato emergente' :
                      'Historic palazzi, Baroque towns, emerging market'}
                   </p>
                 </div>
@@ -2211,10 +2198,10 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    �1,500-4,000/m2
+                    €1,500-4,000/m²
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? '6-10% v�nos' :
+                    {language === 'cs' ? '6-10% výnos' :
                      language === 'it' ? 'Rendimento 6-10%' :
                      '6-10% yield'}
                   </span>
@@ -2233,7 +2220,7 @@ export default function HomePage() {
                   }}
                 >
                   <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
-                    {language === 'cs' ? 'Zobrazit nab�dky ze Sic�lie' :
+                    {language === 'cs' ? 'Zobrazit nabídky ze Sicílie' :
                      language === 'it' ? 'Visualizza offerte per la Sicilia' :
                      'View offers from Sicily'}
                   </button>
@@ -2257,7 +2244,7 @@ export default function HomePage() {
                      'Trentino-Alto Adige'}
                   </h3>
                   <p className="text-white/90 text-base">
-                    {language === 'cs' ? 'Dolomity, alpsk� jezera, jedine�n� dvoj� kultura' :
+                    {language === 'cs' ? 'Dolomity, alpská jezera, jedinečná dvojí kultura' :
                      language === 'it' ? 'Dolomiti, laghi alpini, cultura duale unica' :
                      'Dolomites, alpine lakes, unique dual culture'}
                   </p>
@@ -2266,10 +2253,10 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    �4,500-12,000/m2
+                    €4,500-12,000/m²
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? '3-6% v�nos' :
+                    {language === 'cs' ? '3-6% výnos' :
                      language === 'it' ? 'Rendimento 3-6%' :
                      '3-6% yield'}
                   </span>
@@ -2288,7 +2275,7 @@ export default function HomePage() {
                   }}
                 >
                   <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
-                    {language === 'cs' ? 'Zobrazit nab�dky z Trentino-Alto Adige' :
+                    {language === 'cs' ? 'Zobrazit nabídky z Trentino-Alto Adige' :
                      language === 'it' ? 'Visualizza offerte per il Trentino-Alto Adige' :
                      'View offers from Trentino-Alto Adige'}
                   </button>
@@ -2307,12 +2294,12 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
                   <h3 className="text-2xl font-bold text-white mb-2">
-                    {language === 'cs' ? 'Lazio (��m)' :
+                    {language === 'cs' ? 'Lazio (Řím)' :
                      language === 'it' ? 'Lazio (Roma)' :
                      'Lazio (Rome)'}
                   </h3>
                   <p className="text-white/90 text-base">
-                    {language === 'cs' ? 'Historick� centrum, modern� �tvrti, siln� trh s pron�jmem' :
+                    {language === 'cs' ? 'Historické centrum, moderní čtvrti, silný trh s pronájmem' :
                      language === 'it' ? 'Centro storico, quartieri moderni, forte mercato degli affitti' :
                      'Historic center, modern districts, strong rental market'}
                   </p>
@@ -2321,10 +2308,10 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    �3,000-12,000/m2
+                    €3,000-12,000/m²
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? '4-6% v�nos' :
+                    {language === 'cs' ? '4-6% výnos' :
                      language === 'it' ? 'Rendimento 4-6%' :
                      '4-6% yield'}
                   </span>
@@ -2343,7 +2330,7 @@ export default function HomePage() {
                   }}
                 >
                   <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
-                    {language === 'cs' ? 'Zobrazit nab�dky z Lazia' :
+                    {language === 'cs' ? 'Zobrazit nabídky z Lazia' :
                      language === 'it' ? 'Visualizza offerte per il Lazio' :
                      'View offers from Lazio'}
                   </button>
@@ -2354,7 +2341,7 @@ export default function HomePage() {
 
           <div className="text-center">
             <button className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-8 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              {language === 'cs' ? 'Z�skejte kur�torovan� nab�dky pro tento region' :
+              {language === 'cs' ? 'Získejte kurátorované nabídky pro tento region' :
                language === 'it' ? 'Ottieni offerte curate per questa regione' :
                'Get curated listings for this region'}
             </button>
@@ -2372,9 +2359,9 @@ export default function HomePage() {
                'How It Works'}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {language === 'cs' ? 'Od prvn�ho briefingu po podepsanou smlouvu � va�e cesta k vlastnictv� v It�lii, zjednodu�en�.' :
+              {language === 'cs' ? 'Od prvního briefingu po podepsanou smlouvu — vaše cesta k vlastnictví v Itálii, zjednodušená.' :
                language === 'it' ? 'Dal primo brief all\'atto firmato: il tuo percorso per possedere in Italia, semplificato.' :
-               'From first brief to signed deed�your path to owning in Italy, simplified.'}
+               'From first brief to signed deed—your path to owning in Italy, simplified.'}
             </p>
           </div>
 
@@ -2385,13 +2372,13 @@ export default function HomePage() {
                   <span className="text-2xl font-bold text-white">1</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'cs' ? 'Za�n�te Hledat' :
+                {language === 'cs' ? 'Začněte Hledat' :
                  language === 'it' ? 'Inizia la Ricerca' :
                  'Start Your Search'}
               </h3>
               <p className="text-gray-600 text-base">
-                {language === 'cs' ? 'Vypl�te 60sekundov� formul�� nebo proch�zejte na�e st�vaj�c� nemovitosti.' :
-                 language === 'it' ? 'Compila il form di 60 secondi o sfoglia le nostre proprieta esistenti.' :
+                {language === 'cs' ? 'Vyplňte 60sekundový formulář nebo procházejte naše stávající nemovitosti.' :
+                 language === 'it' ? 'Compila il form di 60 secondi o sfoglia le nostre proprietà esistenti.' :
                  'Fill out a 60-second form or browse our existing property listings.'}
               </p>
             </div>
@@ -2402,13 +2389,13 @@ export default function HomePage() {
                   <span className="text-2xl font-bold text-white">2</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'cs' ? 'Prohl�dn�te V�echny Nemovitosti' :
-                 language === 'it' ? 'Sfoglia Tutte le Proprieta' :
+                {language === 'cs' ? 'Prohlédněte Všechny Nemovitosti' :
+                 language === 'it' ? 'Sfoglia Tutte le Proprietà' :
                  'Browse All Properties'}
               </h3>
               <p className="text-gray-600 text-base">
-                {language === 'cs' ? 'Proch�zejte na�e rozs�hl� portfolio nemovitost� nap��� v�emi regiony It�lie.' :
-                 language === 'it' ? 'Sfoglia il nostro vasto portafoglio di proprieta in tutte le regioni d\'Italia.' :
+                {language === 'cs' ? 'Procházejte naše rozsáhlé portfolio nemovitostí napříč všemi regiony Itálie.' :
+                 language === 'it' ? 'Sfoglia il nostro vasto portafoglio di proprietà in tutte le regioni d\'Italia.' :
                  'Browse our extensive portfolio of properties across all Italian regions.'}
               </p>
             </div>
@@ -2419,12 +2406,12 @@ export default function HomePage() {
                   <span className="text-2xl font-bold text-white">3</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'cs' ? 'Nav�tivte a Ov��te' :
+                {language === 'cs' ? 'Navštivte a Ověřte' :
                  language === 'it' ? 'Visita e Verifica' :
                  'Visit & Verify'}
               </h3>
               <p className="text-gray-600 text-base">
-                {language === 'cs' ? 'Za��d�me prohl�dky a kontroly na m�st� za v�s.' :
+                {language === 'cs' ? 'Zařídíme prohlídky a kontroly na místě za vás.' :
                  language === 'it' ? 'Organizziamo visite e controlli sul posto per te.' :
                  'We arrange viewings and on-site checks.'}
               </p>
@@ -2436,13 +2423,13 @@ export default function HomePage() {
                   <span className="text-2xl font-bold text-white">4</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'cs' ? 'Pr�vn� a Dokon�en�' :
+                {language === 'cs' ? 'Právní a Dokončení' :
                  language === 'it' ? 'Legale e Chiusura' :
                  'Legal & Close'}
               </h3>
               <p className="text-gray-600 text-base">
-                {language === 'cs' ? 'Na�i partne�i se staraj� o smlouvy, dan� a dodr�ov�n� p�edpis�.' :
-                 language === 'it' ? 'I nostri partner gestiscono contratti, tasse e conformita.' :
+                {language === 'cs' ? 'Naši partneři se starají o smlouvy, daně a dodržování předpisů.' :
+                 language === 'it' ? 'I nostri partner gestiscono contratti, tasse e conformità.' :
                  'Our partners handle contracts, taxes, and compliance.'}
               </p>
             </div>
@@ -2451,7 +2438,7 @@ export default function HomePage() {
           <div className="text-center">
             <Link href="/process">
               <button className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-8 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                {language === 'cs' ? 'Zobrazit cel� proces' :
+                {language === 'cs' ? 'Zobrazit celý proces' :
                  language === 'it' ? 'Visualizza il processo completo' :
                  'View Full Process'}
               </button>
@@ -2465,12 +2452,12 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-              {language === 'cs' ? 'Od Vyhled�v�n� po Kl��e v Ruce' :
+              {language === 'cs' ? 'Od Vyhledávání po Klíče v Ruce' :
                language === 'it' ? 'Dalla Ricerca alle Chiavi in Mano' :
                'From Search to Keys in Hand'}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {language === 'cs' ? 'Skute�n� v�sledky od kupuj�c�ch jako jste vy.' :
+              {language === 'cs' ? 'Skutečné výsledky od kupujících jako jste vy.' :
                language === 'it' ? 'Risultati reali da acquirenti come te.' :
                'Real results from buyers like you.'}
             </p>
@@ -2489,31 +2476,31 @@ export default function HomePage() {
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="bg-slate-800 text-white text-xs font-semibold px-2 py-1 rounded">SOLD</span>
-                    <span className="text-white/90 text-xs">�280,000</span>
+                    <span className="text-white/90 text-xs">€280,000</span>
                   </div>
                 </div>
               </div>
               <div className="p-6 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
-                    {language === 'cs' ? 'Obnoven� Tosk�nsk� Statek' :
+                    {language === 'cs' ? 'Obnovený Toskánský Statek' :
                      language === 'it' ? 'Fattoria Toscana Restaurata' :
                      'Restored Tuscan Farmhouse'}
                   </h3>
                   <p className="text-gray-600 text-base mb-4">
-                    {language === 'cs' ? '"T�m se postaral o v�echno: od po��te�n�ho hled�n� po povolen� k rekonstrukci. Za 6 m�s�c� jsme m�li n� dokonal� domov v Tosk�nsku."' :
+                    {language === 'cs' ? '"Tým se postaral o všechno: od počátečního hledání po povolení k rekonstrukci. Za 6 měsíců jsme měli náš dokonalý domov v Toskánsku."' :
                      language === 'it' ? '"Il team ha gestito tutto: dalla ricerca iniziale ai permessi di ristrutturazione. In 6 mesi abbiamo la nostra casa perfetta in Toscana."' :
                      '"The team handled everything: from initial search to renovation permits. In 6 months we had our perfect home in Tuscany."'}
                   </p>
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-xs text-gray-500">
                       <span className="font-semibold">Sarah & Marco</span><br/>
-                      {language === 'cs' ? '6 m�s�c� � Tosk�nsko' :
-                       language === 'it' ? '6 mesi � Toscana' :
-                       '6 months � Tuscany'}
+                      {language === 'cs' ? '6 měsíců • Toskánsko' :
+                       language === 'it' ? '6 mesi • Toscana' :
+                       '6 months • Tuscany'}
                     </div>
                     <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-2 py-1 rounded-full">
-                      {language === 'cs' ? 'Dokon�eno' :
+                      {language === 'cs' ? 'Dokončeno' :
                        language === 'it' ? 'Completato' :
                        'Completed'}
                     </span>
@@ -2521,24 +2508,24 @@ export default function HomePage() {
                   <div className="mb-4">
                     <p className="text-xs text-gray-600 mb-2">
                       <span className="font-semibold">
-                        {language === 'cs' ? 'Co jsme vy�e�ili:' :
+                        {language === 'cs' ? 'Co jsme vyřešili:' :
                          language === 'it' ? 'Cosa abbiamo risolto:' :
                          'What we solved:'}
                       </span>
                     </p>
                     <ul className="text-xs text-gray-600 space-y-1">
-                      <li>� {language === 'cs' ? 'Katastr�ln� kontrola' :
+                      <li>• {language === 'cs' ? 'Katastrální kontrola' :
                           language === 'it' ? 'Controllo catastale' :
                           'Cadastral check'}</li>
-                      <li>� {language === 'cs' ? 'Povolen� k rekonstrukci' :
+                      <li>• {language === 'cs' ? 'Povolení k rekonstrukci' :
                           language === 'it' ? 'Permessi di ristrutturazione' :
                           'Renovation permits'}</li>
                     </ul>
                   </div>
                 </div>
                 <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105 mt-auto">
-                  {language === 'cs' ? 'Zobrazit podobn� nemovitosti' :
-                   language === 'it' ? 'Vedi proprieta simili' :
+                  {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
+                   language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
                 </button>
               </div>
@@ -2556,31 +2543,31 @@ export default function HomePage() {
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="bg-slate-800 text-white text-xs font-semibold px-2 py-1 rounded">SOLD</span>
-                    <span className="text-white/90 text-xs">�450,000</span>
+                    <span className="text-white/90 text-xs">€450,000</span>
                   </div>
                 </div>
               </div>
               <div className="p-6 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
-                    {language === 'cs' ? 'Sicilsk� Barokn� Pal�c' :
+                    {language === 'cs' ? 'Sicilský Barokní Palác' :
                      language === 'it' ? 'Palazzo Barocco Siciliano' :
                      'Sicilian Baroque Palazzo'}
                   </h3>
                   <p className="text-gray-600 text-base mb-4">
-                    {language === 'cs' ? '"Perfektn� investice. Pr�vn� a da�ov� poradenstv� bylo kl��ov� pro dokon�en� n�kupu bez p�ekvapen�."' :
-                     language === 'it' ? '"Un investimento perfetto. La consulenza legale e fiscale e stata fondamentale per completare l\'acquisto senza sorprese."' :
+                    {language === 'cs' ? '"Perfektní investice. Právní a daňové poradenství bylo klíčové pro dokončení nákupu bez překvapení."' :
+                     language === 'it' ? '"Un investimento perfetto. La consulenza legale e fiscale è stata fondamentale per completare l\'acquisto senza sorprese."' :
                      '"Perfect investment. The legal and tax consultation was crucial to complete the purchase without surprises."'}
                   </p>
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-xs text-gray-500">
                       <span className="font-semibold">James & Elena</span><br/>
-                      {language === 'cs' ? '4 m�s�ce � Sic�lie' :
-                       language === 'it' ? '4 mesi � Sicilia' :
-                       '4 months � Sicily'}
+                      {language === 'cs' ? '4 měsíce • Sicílie' :
+                       language === 'it' ? '4 mesi • Sicilia' :
+                       '4 months • Sicily'}
                     </div>
                     <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-2 py-1 rounded-full">
-                      {language === 'cs' ? 'Dokon�eno' :
+                      {language === 'cs' ? 'Dokončeno' :
                        language === 'it' ? 'Completato' :
                        'Completed'}
                     </span>
@@ -2588,24 +2575,24 @@ export default function HomePage() {
                   <div className="mb-4">
                     <p className="text-xs text-gray-600 mb-2">
                       <span className="font-semibold">
-                        {language === 'cs' ? 'Co jsme vy�e�ili:' :
+                        {language === 'cs' ? 'Co jsme vyřešili:' :
                          language === 'it' ? 'Cosa abbiamo risolto:' :
                          'What we solved:'}
                       </span>
                     </p>
                     <ul className="text-xs text-gray-600 space-y-1">
-                      <li>� {language === 'cs' ? 'Kompletn� da�ov� anal�za' :
+                      <li>• {language === 'cs' ? 'Kompletní daňová analýza' :
                           language === 'it' ? 'Analisi fiscale completa' :
                           'Complete tax analysis'}</li>
-                      <li>� {language === 'cs' ? 'Mezin�rodn� pr�vn� podpora' :
+                      <li>• {language === 'cs' ? 'Mezinárodní právní podpora' :
                           language === 'it' ? 'Supporto legale internazionale' :
                           'International legal support'}</li>
                     </ul>
                   </div>
                 </div>
                 <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105 mt-auto">
-                  {language === 'cs' ? 'Zobrazit podobn� nemovitosti' :
-                   language === 'it' ? 'Vedi proprieta simili' :
+                  {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
+                   language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
                 </button>
               </div>
@@ -2623,31 +2610,31 @@ export default function HomePage() {
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="bg-slate-800 text-white text-xs font-semibold px-2 py-1 rounded">SOLD</span>
-                    <span className="text-white/90 text-xs">�320,000</span>
+                    <span className="text-white/90 text-xs">€320,000</span>
                   </div>
                 </div>
               </div>
               <div className="p-6 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
-                    {language === 'cs' ? 'Pob�e�n� Apartm�n v Ligurii' :
+                    {language === 'cs' ? 'Pobřežní Apartmán v Ligurii' :
                      language === 'it' ? 'Appartamento Costiero Liguria' :
                      'Ligurian Coastal Apartment'}
                   </h3>
                   <p className="text-gray-600 text-base mb-4">
-                    {language === 'cs' ? '"Od prvn�ho kontaktu po kl��e v ruce za 3 m�s�ce. Slu�ba spr�vy pron�jm� je v�jime�n�."' :
-                     language === 'it' ? '"Dal primo contatto alle chiavi in mano in 3 mesi. Il servizio di gestione degli affitti e eccezionale."' :
+                    {language === 'cs' ? '"Od prvního kontaktu po klíče v ruce za 3 měsíce. Služba správy pronájmů je výjimečná."' :
+                     language === 'it' ? '"Dal primo contatto alle chiavi in mano in 3 mesi. Il servizio di gestione degli affitti è eccezionale."' :
                      '"From first contact to keys in hand in 3 months. The rental management service is exceptional."'}
                   </p>
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-xs text-gray-500">
                       <span className="font-semibold">Anna & David</span><br/>
-                      {language === 'cs' ? '3 m�s�ce � Ligurie' :
-                       language === 'it' ? '3 mesi � Liguria' :
-                       '3 months � Liguria'}
+                      {language === 'cs' ? '3 měsíce • Ligurie' :
+                       language === 'it' ? '3 mesi • Liguria' :
+                       '3 months • Liguria'}
                     </div>
                     <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-2 py-1 rounded-full">
-                      {language === 'cs' ? 'Dokon�eno' :
+                      {language === 'cs' ? 'Dokončeno' :
                        language === 'it' ? 'Completato' :
                        'Completed'}
                     </span>
@@ -2655,24 +2642,24 @@ export default function HomePage() {
                   <div className="mb-4">
                     <p className="text-xs text-gray-600 mb-2">
                       <span className="font-semibold">
-                        {language === 'cs' ? 'Co jsme vy�e�ili:' :
+                        {language === 'cs' ? 'Co jsme vyřešili:' :
                          language === 'it' ? 'Cosa abbiamo risolto:' :
                          'What we solved:'}
                       </span>
                     </p>
                     <ul className="text-xs text-gray-600 space-y-1">
-                      <li>� {language === 'cs' ? 'Spr�va pron�jm�' :
+                      <li>• {language === 'cs' ? 'Správa pronájmů' :
                           language === 'it' ? 'Gestione affitti' :
                           'Rental management'}</li>
-                      <li>� {language === 'cs' ? 'Turistick� povolen�' :
+                      <li>• {language === 'cs' ? 'Turistická povolení' :
                           language === 'it' ? 'Permessi turistici' :
                           'Tourist permits'}</li>
                     </ul>
                   </div>
                 </div>
                 <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105 mt-auto">
-                  {language === 'cs' ? 'Zobrazit podobn� nemovitosti' :
-                   language === 'it' ? 'Vedi proprieta simili' :
+                  {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
+                   language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
                 </button>
               </div>
@@ -2686,14 +2673,14 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-              {language === 'cs' ? 'Kupov�n� v It�lii: Proces, �skal� a ��sla' :
+              {language === 'cs' ? 'Kupování v Itálii: Proces, Úskalí a Čísla' :
                language === 'it' ? 'Acquistare in Italia: Il Processo, le Insidie e i Numeri' :
                'Buying in Italy: The Process, the Pitfalls, and the Numbers'}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {language === 'cs' ? 'Kupov�n� v It�lii: proces, �skal� a ��sla � �iv�, ka�d� t�den.' :
-               language === 'it' ? 'Acquistare in Italia: il processo, le insidie e i numeri � dal vivo, ogni settimana.' :
-               'Buying in Italy: the process, the pitfalls, and the numbers�live, every week.'}
+              {language === 'cs' ? 'Kupování v Itálii: proces, úskalí a čísla — živě, každý týden.' :
+               language === 'it' ? 'Acquistare in Italia: il processo, le insidie e i numeri — dal vivo, ogni settimana.' :
+               'Buying in Italy: the process, the pitfalls, and the numbers—live, every week.'}
             </p>
           </div>
 
@@ -2707,13 +2694,13 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  {language === 'cs' ? 'P��t� Webin��' :
+                  {language === 'cs' ? 'Příští Webinář' :
                    language === 'it' ? 'Prossimo Webinar' :
                    'Next Webinar'}
                 </h3>
                 <p className="text-lg text-gray-600 mb-4">
-                  {language === 'cs' ? 'St�eda 15. ledna 2025' :
-                   language === 'it' ? 'Mercoledi 15 Gennaio 2025' :
+                  {language === 'cs' ? 'Středa 15. ledna 2025' :
+                   language === 'it' ? 'Mercoledì 15 Gennaio 2025' :
                    'Wednesday, January 15, 2025'}
                 </p>
                 <p className="text-lg font-semibold text-slate-700">
@@ -2735,7 +2722,7 @@ export default function HomePage() {
                       <div className="w-2 h-2 bg-slate-800 rounded-full"></div>
                     </div>
                     <p className="text-gray-700">
-                      {language === 'cs' ? 'P�ehled procesu n�kupu' :
+                      {language === 'cs' ? 'Přehled procesu nákupu' :
                        language === 'it' ? 'Panoramica del processo di acquisto' :
                        'Process overview'}
                     </p>
@@ -2745,7 +2732,7 @@ export default function HomePage() {
                       <div className="w-2 h-2 bg-slate-800 rounded-full"></div>
                     </div>
                     <p className="text-gray-700">
-                      {language === 'cs' ? 'Dan� a poplatky' :
+                      {language === 'cs' ? 'Daně a poplatky' :
                        language === 'it' ? 'Tasse e commissioni' :
                        'Taxes & fees'}
                     </p>
@@ -2755,7 +2742,7 @@ export default function HomePage() {
                       <div className="w-2 h-2 bg-slate-800 rounded-full"></div>
                     </div>
                     <p className="text-gray-700">
-                      {language === 'cs' ? 'B�n� �skal�' :
+                      {language === 'cs' ? 'Běžná úskalí' :
                        language === 'it' ? 'Insidie comuni' :
                        'Common pitfalls'}
                     </p>
@@ -2765,7 +2752,7 @@ export default function HomePage() {
                       <div className="w-2 h-2 bg-slate-800 rounded-full"></div>
                     </div>
                     <p className="text-gray-700">
-                      {language === 'cs' ? '�iv� Q&A' :
+                      {language === 'cs' ? 'Živé Q&A' :
                        language === 'it' ? 'Q&A dal vivo' :
                        'Live Q&A'}
                     </p>
@@ -2775,7 +2762,7 @@ export default function HomePage() {
 
               <div className="mt-8 p-4 bg-slate-50 rounded-lg border border-slate-200">
                 <p className="text-base text-slate-800 font-medium">
-                  {language === 'cs' ? 'Zdarma pro �leny Premium Clubu. Omezen� po�et m�st.' :
+                  {language === 'cs' ? 'Zdarma pro členy Premium Clubu. Omezený počet míst.' :
                    language === 'it' ? 'Gratuito per i membri del Premium Club. Posti limitati.' :
                    'Free for Premium Club members. Limited seats.'}
                 </p>
@@ -2786,12 +2773,12 @@ export default function HomePage() {
             <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  {language === 'cs' ? 'Rezervujte si M�sto' :
+                  {language === 'cs' ? 'Rezervujte si Místo' :
                    language === 'it' ? 'Riserva il Tuo Posto' :
                    'Reserve Your Seat'}
                 </h3>
                 <p className="text-gray-600">
-                  {language === 'cs' ? 'Nem��ete se z��astnit? Z�skejte nahr�vku p�es Premium Club.' :
+                  {language === 'cs' ? 'Nemůžete se zúčastnit? Získejte nahrávku přes Premium Club.' :
                    language === 'it' ? 'Non riesci a partecipare? Ricevi la registrazione tramite Premium Club.' :
                    'Can\'t make it? Get the recording via Premium Club.'}
                 </p>
@@ -2800,14 +2787,14 @@ export default function HomePage() {
               <form className="space-y-6">
                 <div>
                   <label className="block text-base font-medium text-gray-700 mb-2">
-                    {language === 'cs' ? 'Cel� jm�no' :
+                    {language === 'cs' ? 'Celé jméno' :
                      language === 'it' ? 'Nome completo' :
                      'Full Name'}
                   </label>
                   <input 
                     type="text" 
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                    placeholder={language === 'cs' ? 'Va�e jm�no' :
+                    placeholder={language === 'cs' ? 'Vaše jméno' :
                                  language === 'it' ? 'Il tuo nome' :
                                  'Your name'}
                   />
@@ -2830,7 +2817,7 @@ export default function HomePage() {
 
                 <div>
                   <label className="block text-base font-medium text-gray-700 mb-2">
-                    {language === 'cs' ? 'Z�jem o region' :
+                    {language === 'cs' ? 'Zájem o region' :
                      language === 'it' ? 'Regione di interesse' :
                      'Region of Interest'}
                   </label>
@@ -2851,12 +2838,12 @@ export default function HomePage() {
                        'Basilicata'}
                     </option>
                     <option value="calabria">
-                      {language === 'cs' ? 'Kal�brie' :
+                      {language === 'cs' ? 'Kalábrie' :
                        language === 'it' ? 'Calabria' :
                        'Calabria'}
                     </option>
                     <option value="campania">
-                      {language === 'cs' ? 'Kamp�nie' :
+                      {language === 'cs' ? 'Kampánie' :
                        language === 'it' ? 'Campania' :
                        'Campania'}
                     </option>
@@ -2911,12 +2898,12 @@ export default function HomePage() {
                        'Sardinia'}
                     </option>
                     <option value="sicilia">
-                      {language === 'cs' ? 'Sic�lie' :
+                      {language === 'cs' ? 'Sicílie' :
                        language === 'it' ? 'Sicilia' :
                        'Sicily'}
                     </option>
                     <option value="toscana">
-                      {language === 'cs' ? 'Tosk�nsko' :
+                      {language === 'cs' ? 'Toskánsko' :
                        language === 'it' ? 'Toscana' :
                        'Tuscany'}
                     </option>
@@ -2936,7 +2923,7 @@ export default function HomePage() {
                        'Valle d\'Aosta'}
                     </option>
                     <option value="veneto">
-                      {language === 'cs' ? 'Ben�tsko' :
+                      {language === 'cs' ? 'Benátsko' :
                        language === 'it' ? 'Veneto' :
                        'Veneto'}
                     </option>
@@ -2947,13 +2934,13 @@ export default function HomePage() {
                   type="submit"
                   className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-6 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg"
                 >
-                  {language === 'cs' ? 'Rezervovat M�sto' :
+                  {language === 'cs' ? 'Rezervovat Místo' :
                    language === 'it' ? 'Riserva il Posto' :
                    'Reserve a Seat'}
                 </button>
 
                 <p className="text-xs text-gray-500 text-center">
-                  {language === 'cs' ? 'Registrac� souhlas�te s p�ij�m�n�m e-mailov�ch aktualizac�.' :
+                  {language === 'cs' ? 'Registrací souhlasíte s přijímáním e-mailových aktualizací.' :
                    language === 'it' ? 'Iscrivendoti, accetti di ricevere aggiornamenti via email.' :
                    'By signing up, you agree to receive email updates.'}
                 </p>
@@ -2968,12 +2955,12 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-              {language === 'cs' ? '�asto Kladen� Ot�zky' :
+              {language === 'cs' ? 'Často Kladené Otázky' :
                language === 'it' ? 'Domande Frequenti' :
                'Frequently Asked Questions'}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {language === 'cs' ? 'Odpov�di, kter� pot�ebujete p�ed rozhodnut�m.' :
+              {language === 'cs' ? 'Odpovědi, které potřebujete před rozhodnutím.' :
                language === 'it' ? 'Le risposte di cui hai bisogno prima di decidere.' :
                'The answers you need before you decide.'}
             </p>
@@ -2983,122 +2970,122 @@ export default function HomePage() {
             {[
               {
                 question: {
-                  cs: 'Jak� dan� a poplatky mohu o�ek�vat p�i koupi v It�lii?',
+                  cs: 'Jaké daně a poplatky mohu očekávat při koupi v Itálii?',
                   en: 'What taxes and fees should I expect when buying in Italy?',
                   it: 'Quali tasse e commissioni devo aspettarmi quando acquisto in Italia?'
                 },
                 answer: {
-                  cs: 'Dan� zahrnuj� registra�n� da� (2-9% v z�vislosti na kategorii), DPH (4-10% pro novostavby), not��sk� poplatky (1-2%), pr�vn� poplatky (1-2%) a katastr�ln� poplatky. Celkem se m��e pohybovat od 10% do 15% z kupn� ceny.',
+                  cs: 'Daně zahrnují registrační daň (2-9% v závislosti na kategorii), DPH (4-10% pro novostavby), notářské poplatky (1-2%), právní poplatky (1-2%) a katastrální poplatky. Celkem se může pohybovat od 10% do 15% z kupní ceny.',
                   en: 'Taxes include registration tax (2-9% depending on category), VAT (4-10% for new builds), notary fees (1-2%), legal fees (1-2%), and cadastral fees. Total can range from 10% to 15% of the purchase price.',
-                  it: 'Le tasse includono l\'imposta di registro (2-9% a seconda della categoria), l\'IVA (4-10% per nuove costruzioni), le spese notarili (1-2%), le spese legali (1-2%) e le spese catastali. Il totale puo variare dal 10% al 15% del prezzo di acquisto.'
+                  it: 'Le tasse includono l\'imposta di registro (2-9% a seconda della categoria), l\'IVA (4-10% per nuove costruzioni), le spese notarili (1-2%), le spese legali (1-2%) e le spese catastali. Il totale può variare dal 10% al 15% del prezzo di acquisto.'
                 }
               },
               {
                 question: {
-                  cs: 'Mohou cizinci kupovat nemovitosti v It�lii?',
+                  cs: 'Mohou cizinci kupovat nemovitosti v Itálii?',
                   en: 'Can foreigners buy property in Italy?',
-                  it: 'Gli stranieri possono acquistare proprieta in Italia?'
+                  it: 'Gli stranieri possono acquistare proprietà in Italia?'
                 },
                 answer: {
-                  cs: 'Ano, cizinci mohou kupovat nemovitosti v It�lii bez omezen�. Budete pot�ebovat Codice Fiscale (da�ov� identifika�n� ��slo) a italsk� bankovn� ��et. Ob�an� mimo EU mohou pot�ebovat dodate�nou dokumentaci.',
+                  cs: 'Ano, cizinci mohou kupovat nemovitosti v Itálii bez omezení. Budete potřebovat Codice Fiscale (daňové identifikační číslo) a italský bankovní účet. Občané mimo EU mohou potřebovat dodatečnou dokumentaci.',
                   en: 'Yes, foreigners can buy property in Italy without restrictions. You\'ll need a Codice Fiscale (tax ID number) and an Italian bank account. Non-EU citizens may need additional documentation.',
-                  it: 'Si, gli stranieri possono acquistare proprieta in Italia senza restrizioni. Avrai bisogno di un Codice Fiscale (numero di identificazione fiscale) e di un conto bancario italiano. I cittadini non UE potrebbero aver bisogno di documentazione aggiuntiva.'
+                  it: 'Sì, gli stranieri possono acquistare proprietà in Italia senza restrizioni. Avrai bisogno di un Codice Fiscale (numero di identificazione fiscale) e di un conto bancario italiano. I cittadini non UE potrebbero aver bisogno di documentazione aggiuntiva.'
                 }
               },
               {
                 question: {
-                  cs: 'Pot�ebuji Codice Fiscale?',
+                  cs: 'Potřebuji Codice Fiscale?',
                   en: 'Do I need a Codice Fiscale?',
                   it: 'Ho bisogno di un Codice Fiscale?'
                 },
                 answer: {
-                  cs: 'Ano, Codice Fiscale je povinn� pro jakoukoliv transakci s nemovitostmi v It�lii. Je zdarma a lze jej z�skat na kter�mkoliv italsk�m konzul�tu nebo m�stn�m da�ov�m ��ad� v It�lii. M��eme v�m pomoci s procesem.',
+                  cs: 'Ano, Codice Fiscale je povinné pro jakoukoliv transakci s nemovitostmi v Itálii. Je zdarma a lze jej získat na kterémkoliv italském konzulátu nebo místním daňovém úřadě v Itálii. Můžeme vám pomoci s procesem.',
                   en: 'Yes, a Codice Fiscale is mandatory for any property transaction in Italy. It\'s free and can be obtained from any Italian consulate or local tax office in Italy. We can help you with the process.',
-                  it: 'Si, un Codice Fiscale e obbligatorio per qualsiasi transazione immobiliare in Italia. E gratuito e puo essere ottenuto presso qualsiasi consolato italiano o ufficio delle entrate locale in Italia. Possiamo aiutarti nel processo.'
+                  it: 'Sì, un Codice Fiscale è obbligatorio per qualsiasi transazione immobiliare in Italia. È gratuito e può essere ottenuto presso qualsiasi consolato italiano o ufficio delle entrate locale in Italia. Possiamo aiutarti nel processo.'
                 }
               },
               {
                 question: {
-                  cs: 'Jak dlouho trv� proces od nab�dky po kl��e?',
+                  cs: 'Jak dlouho trvá proces od nabídky po klíče?',
                   en: 'How long does the process take from offer to keys?',
                   it: 'Quanto tempo ci vuole dall\'offerta alle chiavi?'
                 },
                 answer: {
-                  cs: 'Typicky 3-6 m�s�c�. Po p�ijet� nab�dky podep�ete p�edb�nou smlouvu (compromesso), pot� fin�ln� kupn� smlouvu (rogito) u not��e. Na�asov�n� z�vis� na pr�vn�ch kontrol�ch, hypot�k�ch a dostupnosti stran.',
+                  cs: 'Typicky 3-6 měsíců. Po přijetí nabídky podepíšete předběžnou smlouvu (compromesso), poté finální kupní smlouvu (rogito) u notáře. Načasování závisí na právních kontrolách, hypotékách a dostupnosti stran.',
                   en: 'Typically 3-6 months. After accepted offer, you sign the preliminary contract (compromesso), then the final deed (rogito) with a notary. Timing depends on legal checks, mortgages, and party availability.',
-                  it: 'Tipicamente 3-6 mesi. Dopo l\'offerta accettata, firmi il contratto preliminare (compromesso), poi il rogito finale (atto di compravendita) davanti al notaio. I tempi dipendono dai controlli legali, dai mutui e dalla disponibilita delle parti.'
+                  it: 'Tipicamente 3-6 mesi. Dopo l\'offerta accettata, firmi il contratto preliminare (compromesso), poi il rogito finale (atto di compravendita) davanti al notaio. I tempi dipendono dai controlli legali, dai mutui e dalla disponibilità delle parti.'
                 }
               },
               {
                 question: {
-                  cs: 'Mo�nosti hypot�ky pro nerezidenty?',
+                  cs: 'Možnosti hypotéky pro nerezidenty?',
                   en: 'Mortgage options for non-residents?',
                   it: 'Opzioni di mutuo per non residenti?'
                 },
                 answer: {
-                  cs: 'Italsk� banky poskytuj� hypot�ky nerezident�m, typicky a� 50-60% hodnoty nemovitosti. Budete pot�ebovat doklad o p��jmech, bankovn� v�pisy a dobr� kreditn� sk�re. �rokov� sazby jsou konkurenceschopn� pro ob�any EU.',
+                  cs: 'Italské banky poskytují hypotéky nerezidentům, typicky až 50-60% hodnoty nemovitosti. Budete potřebovat doklad o příjmech, bankovní výpisy a dobrý kreditní skóre. Úrokové sazby jsou konkurenceschopné pro občany EU.',
                   en: 'Italian banks offer mortgages to non-residents, typically up to 50-60% of property value. You\'ll need proof of income, bank statements, and good credit score. Interest rates are competitive for EU citizens.',
-                  it: 'Le banche italiane offrono mutui ai non residenti, tipicamente fino al 50-60% del valore della proprieta. Avrai bisogno di prova di reddito, estratti conto bancari e un buon punteggio di credito. I tassi di interesse sono competitivi per i cittadini UE.'
+                  it: 'Le banche italiane offrono mutui ai non residenti, tipicamente fino al 50-60% del valore della proprietà. Avrai bisogno di prova di reddito, estratti conto bancari e un buon punteggio di credito. I tassi di interesse sono competitivi per i cittadini UE.'
                 }
               },
               {
                 question: {
-                  cs: 'Rozd�l mezi p�edb�nou smlouvou a rogito?',
+                  cs: 'Rozdíl mezi předběžnou smlouvou a rogito?',
                   en: 'Difference between preliminary contract and rogito?',
                   it: 'Differenza tra contratto preliminare e rogito?'
                 },
                 answer: {
-                  cs: 'P�edb�n� smlouva (compromesso) je po��te�n� dohoda s z�lohou (10-20%). Rogito je fin�ln� kupn� smlouva u not��e, kde doch�z� k p�evodu vlastnictv� a zaplat�te zbytek. Ob� jsou pr�vn� z�vazn�.',
+                  cs: 'Předběžná smlouva (compromesso) je počáteční dohoda s zálohou (10-20%). Rogito je finální kupní smlouva u notáře, kde dochází k převodu vlastnictví a zaplatíte zbytek. Obě jsou právně závazné.',
                   en: 'The preliminary contract (compromesso) is the initial agreement with a deposit (10-20%). The rogito is the final deed of sale with a notary where ownership transfers and you pay the balance. Both are legally binding.',
-                  it: 'Il contratto preliminare (compromesso) e l\'accordo iniziale con un deposito (10-20%). Il rogito e l\'atto di vendita finale davanti al notaio dove avviene il trasferimento di proprieta e paghi il saldo. Entrambi sono legalmente vincolanti.'
+                  it: 'Il contratto preliminare (compromesso) è l\'accordo iniziale con un deposito (10-20%). Il rogito è l\'atto di vendita finale davanti al notaio dove avviene il trasferimento di proprietà e paghi il saldo. Entrambi sono legalmente vincolanti.'
                 }
               },
               {
                 question: {
-                  cs: 'Pr�b�n� n�klady (IMU, TARI, poplatky za bytov� dru�stvo)?',
+                  cs: 'Průběžné náklady (IMU, TARI, poplatky za bytové družstvo)?',
                   en: 'Ongoing costs (IMU, TARI, condo fees)?',
                   it: 'Costi correnti (IMU, TARI, spese condominiali)?'
                 },
                 answer: {
-                  cs: 'Ro�n� n�klady zahrnuj�: IMU (obecn� da� z nemovitosti, 0,4-1,06% katastr�ln� hodnoty), TARI (da� z odpadu, �200-600/rok), poplatky za bytov� dru�stvo (pokud se vztahuj�, �50-200/m�s�c), energie a poji�t�n�. Po��tejte s 1-2% hodnoty nemovitosti ro�n�.',
-                  en: 'Annual costs include: IMU (municipal property tax, 0.4-1.06% of cadastral value), TARI (waste tax, �200-600/year), condo fees (if applicable, �50-200/month), utilities, and insurance. Budget 1-2% of property value per year.',
-                  it: 'I costi annuali includono: IMU (imposta municipale, 0,4-1,06% del valore catastale), TARI (tassa rifiuti, �200-600/anno), spese condominiali (se applicabili, �50-200/mese), utenze e assicurazione. Budget 1-2% del valore della proprieta all\'anno.'
+                  cs: 'Roční náklady zahrnují: IMU (obecní daň z nemovitosti, 0,4-1,06% katastrální hodnoty), TARI (daň z odpadu, €200-600/rok), poplatky za bytové družstvo (pokud se vztahují, €50-200/měsíc), energie a pojištění. Počítejte s 1-2% hodnoty nemovitosti ročně.',
+                  en: 'Annual costs include: IMU (municipal property tax, 0.4-1.06% of cadastral value), TARI (waste tax, €200-600/year), condo fees (if applicable, €50-200/month), utilities, and insurance. Budget 1-2% of property value per year.',
+                  it: 'I costi annuali includono: IMU (imposta municipale, 0,4-1,06% del valore catastale), TARI (tassa rifiuti, €200-600/anno), spese condominiali (se applicabili, €50-200/mese), utenze e assicurazione. Budget 1-2% del valore della proprietà all\'anno.'
                 }
               },
               {
                 question: {
-                  cs: 'Jak funguj� pron�jmy a povolen� pro kr�tkodob� pobyty?',
+                  cs: 'Jak fungují pronájmy a povolení pro krátkodobé pobyty?',
                   en: 'How do rentals and permits work for short-term stays?',
                   it: 'Come funzionano gli affitti e i permessi per soggiorni brevi?'
                 },
                 answer: {
-                  cs: 'Kr�tkodob� pron�jmy vy�aduj� registraci u m�stn� obce a region�ln� identifika�n� k�d (CIR/CIN). Mus�te platit turistickou da� a dodr�ovat m�stn� p�edpisy. N�kter� oblasti maj� omezen�. Prov�d�me v�s procesem dodr�ov�n� p�edpis�.',
+                  cs: 'Krátkodobé pronájmy vyžadují registraci u místní obce a regionální identifikační kód (CIR/CIN). Musíte platit turistickou daň a dodržovat místní předpisy. Některé oblasti mají omezení. Provádíme vás procesem dodržování předpisů.',
                   en: 'Short-term rentals require registration with local municipality and regional ID code (CIR/CIN). You must pay tourist tax and comply with local regulations. Some areas have restrictions. We guide you through compliance.',
-                  it: 'Gli affitti brevi richiedono registrazione con il comune locale e codice identificativo regionale (CIR/CIN). Devi pagare l\'imposta di soggiorno (tassa turistica) e rispettare le normative locali. Alcune zone hanno restrizioni. Ti guidiamo attraverso la conformita.'
+                  it: 'Gli affitti brevi richiedono registrazione con il comune locale e codice identificativo regionale (CIR/CIN). Devi pagare l\'imposta di soggiorno (tassa turistica) e rispettare le normative locali. Alcune zone hanno restrizioni. Ti guidiamo attraverso la conformità.'
                 }
               },
               {
                 question: {
-                  cs: 'Pot�ebuji pr�vn�ka nebo not��e�jak� je rozd�l?',
-                  en: 'Do I need a lawyer or notary�what\'s the difference?',
-                  it: 'Ho bisogno di un avvocato o notaio�qual e la differenza?'
+                  cs: 'Potřebuji právníka nebo notáře—jaký je rozdíl?',
+                  en: 'Do I need a lawyer or notary—what\'s the difference?',
+                  it: 'Ho bisogno di un avvocato o notaio—qual è la differenza?'
                 },
                 answer: {
-                  cs: 'Not�� je povinn� (jmenov�n prod�vaj�c�m nebo kupuj�c�m) a ��d� pr�vn� p�evod. Pr�vn�k je voliteln�, ale doporu�uje se pro prov�rky due diligence, p�ezkoum�n� smluv a ochranu va�ich z�jm�. V�dy doporu�ujeme oba.',
+                  cs: 'Notář je povinný (jmenován prodávajícím nebo kupujícím) a řídí právní převod. Právník je volitelný, ale doporučuje se pro prověrky due diligence, přezkoumání smluv a ochranu vašich zájmů. Vždy doporučujeme oba.',
                   en: 'A notary is mandatory (appointed by seller or buyer) and handles the legal transfer. A lawyer is optional but recommended for due diligence checks, contract review, and protecting your interests. We always recommend both.',
-                  it: 'Il notaio e obbligatorio (nominato dal venditore o acquirente) e gestisce il trasferimento legale. Un avvocato e facoltativo ma consigliato per i controlli di due diligence, la revisione dei contratti e la tutela dei tuoi interessi. Noi raccomandiamo sempre entrambi.'
+                  it: 'Il notaio è obbligatorio (nominato dal venditore o acquirente) e gestisce il trasferimento legale. Un avvocato è facoltativo ma consigliato per i controlli di due diligence, la revisione dei contratti e la tutela dei tuoi interessi. Noi raccomandiamo sempre entrambi.'
                 }
               },
               {
                 question: {
-                  cs: 'M��ete pomoci s rekonstrukcemi a povolen�mi?',
+                  cs: 'Můžete pomoci s rekonstrukcemi a povoleními?',
                   en: 'Can you help with renovations and permits?',
                   it: 'Potete aiutarmi con ristrutturazioni e permessi?'
                 },
                 answer: {
-                  cs: 'Ano, spolupracujeme s d�v�ryhodn�mi m�stn�mi architekty a dodavateli. Pom�h�me v�m z�skat pot�ebn� povolen� (CILA, SCIA, stavebn� povolen�), ��dit nab�dky a dohl�et na pr�ce. Rekonstrukce se mohou kvalifikovat pro da�ov� pob�dky a� do 110% (Superbonus).',
+                  cs: 'Ano, spolupracujeme s důvěryhodnými místními architekty a dodavateli. Pomáháme vám získat potřebná povolení (CILA, SCIA, stavební povolení), řídit nabídky a dohlížet na práce. Rekonstrukce se mohou kvalifikovat pro daňové pobídky až do 110% (Superbonus).',
                   en: 'Yes, we work with trusted local architects and contractors. We help you obtain necessary permits (CILA, SCIA, building permit), manage quotes, and oversee work. Renovations may qualify for tax incentives up to 110% (Superbonus).',
-                  it: 'Si, lavoriamo con architetti e appaltatori locali fidati. Ti aiutiamo a ottenere i permessi necessari (CILA, SCIA, permesso di costruire), gestire preventivi e supervisionare i lavori. Le ristrutturazioni possono qualificarsi per incentivi fiscali fino al 110% (Superbonus).'
+                  it: 'Sì, lavoriamo con architetti e appaltatori locali fidati. Ti aiutiamo a ottenere i permessi necessari (CILA, SCIA, permesso di costruire), gestire preventivi e supervisionare i lavori. Le ristrutturazioni possono qualificarsi per incentivi fiscali fino al 110% (Superbonus).'
                 }
               }
             ].map((faq, index) => (
@@ -3133,13 +3120,13 @@ export default function HomePage() {
           {/* CTA at end */}
           <div className="text-center mt-16">
             <p className="text-xl text-gray-700 mb-6">
-              {language === 'cs' ? 'M�te je�t� ot�zku?' :
+              {language === 'cs' ? 'Máte ještě otázku?' :
                language === 'it' ? 'Hai ancora una domanda?' :
                'Still have a question?'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-white hover:bg-gray-100 text-slate-700 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg">
-                {language === 'cs' ? 'P�ipojte se k Webin��i' :
+                {language === 'cs' ? 'Připojte se k Webináři' :
                  language === 'it' ? 'Partecipa al Webinar' :
                  'Join the Webinar'}
               </button>
@@ -3158,12 +3145,12 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-              {language === 'cs' ? 'Za�n�te Svou Cestu' :
+              {language === 'cs' ? 'Začněte Svou Cestu' :
                language === 'it' ? 'Inizia il Tuo Viaggio' :
                'Start Your Journey'}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {language === 'cs' ? 'Vyberte si, jak chcete pokra�ovat. Jsme tu, abychom v�s provedli ka�d�m krokem procesu.' :
+              {language === 'cs' ? 'Vyberte si, jak chcete pokračovat. Jsme tu, abychom vás provedli každým krokem procesu.' :
                language === 'it' ? 'Scegli come vuoi procedere. Siamo qui per guidarti in ogni fase del processo.' :
                'Choose how you want to proceed. We\'re here to guide you through every step of the process.'}
             </p>
@@ -3185,9 +3172,9 @@ export default function HomePage() {
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   {language === 'cs' 
-                    ? 'Promluvte si s jedn�m z na�ich expert� na 15-20 minut. Prodiskutujte sv� pot�eby, rozpo�et a z�skejte osobn� rady ohledn� region� a typ� nemovitost�.'
+                    ? 'Promluvte si s jedním z našich expertů na 15-20 minut. Prodiskutujte své potřeby, rozpočet a získejte osobní rady ohledně regionů a typů nemovitostí.'
                     : language === 'it' 
-                    ? 'Parla con uno dei nostri esperti per 15-20 minuti. Discuti le tue esigenze, il budget e ottieni consigli personalizzati su regioni e tipi di proprieta.'
+                    ? 'Parla con uno dei nostri esperti per 15-20 minuti. Discuti le tue esigenze, il budget e ottieni consigli personalizzati su regioni e tipi di proprietà.'
                     : 'Speak with one of our experts for 15-20 minutes. Discuss your needs, budget, and get personalized advice on regions and property types.'}
                 </p>
                 <ul className="text-left space-y-3 mb-8">
@@ -3196,7 +3183,7 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-gray-700">
-                      {language === 'cs' ? '��dn� n�klady, ��dn� z�vazek' :
+                      {language === 'cs' ? 'Žádné náklady, žádný závazek' :
                        language === 'it' ? 'Nessun costo, nessun impegno' :
                        'No cost, no commitment'}
                     </span>
@@ -3206,7 +3193,7 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-gray-700">
-                      {language === 'cs' ? 'Expert�, kte�� mluv� �esky, anglicky a italsky' :
+                      {language === 'cs' ? 'Expertí, kteří mluví česky, anglicky a italsky' :
                        language === 'it' ? 'Esperti che parlano ceco, inglese e italiano' :
                        'Experts who speak Czech, English, and Italian'}
                     </span>
@@ -3216,7 +3203,7 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-gray-700">
-                      {language === 'cs' ? 'Osobn� rady na z�klad� va�eho profilu' :
+                      {language === 'cs' ? 'Osobní rady na základě vašeho profilu' :
                        language === 'it' ? 'Consigli personalizzati in base al tuo profilo' :
                        'Personalized advice based on your profile'}
                     </span>
@@ -3228,8 +3215,8 @@ export default function HomePage() {
                    'Book a Call'}
                 </button>
                 <p className="text-xs text-gray-500 mt-4">
-                  {language === 'cs' ? 'Dostupn� pond�l�-p�tek, 9:00-18:00 CET' :
-                   language === 'it' ? 'Disponibile dal lunedi al venerdi, 9:00-18:00 CET' :
+                  {language === 'cs' ? 'Dostupné pondělí-pátek, 9:00-18:00 CET' :
+                   language === 'it' ? 'Disponibile dal lunedì al venerdì, 9:00-18:00 CET' :
                    'Available Monday-Friday, 9:00-18:00 CET'}
                 </p>
               </div>
@@ -3244,13 +3231,13 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">
-                  {language === 'cs' ? 'Spustit Osobn� Vyhled�va� Nemovitost�' :
+                  {language === 'cs' ? 'Spustit Osobní Vyhledávač Nemovitostí' :
                    language === 'it' ? 'Avvia il Personal Property Finder' :
                    'Start the Personal Property Finder'}
                 </h3>
                 <p className="text-gray-300 mb-6 leading-relaxed">
                   {language === 'cs' 
-                    ? 'Vypl�te n� 60sekundov� formul�� a z�skejte kur�torovan� nab�dky nemovitost� p��mo do va�� schr�nky, p�izp�soben� va�emu rozpo�tu, regionu a ��elu.'
+                    ? 'Vyplňte náš 60sekundový formulář a získejte kurátorované nabídky nemovitostí přímo do vaší schránky, přizpůsobené vašemu rozpočtu, regionu a účelu.'
                     : language === 'it' 
                     ? 'Completa il nostro modulo di 60 secondi e ricevi annunci immobiliari curati direttamente nella tua casella di posta, adattati al tuo budget, regione e scopo.'
                     : 'Complete our 60-second form and get curated property listings delivered straight to your inbox, tailored to your budget, region, and purpose.'}
@@ -3261,7 +3248,7 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-gray-200">
-                      {language === 'cs' ? 'Ru�n� vybran� nab�dky jen pro v�s' :
+                      {language === 'cs' ? 'Ručně vybrané nabídky jen pro vás' :
                        language === 'it' ? 'Annunci selezionati manualmente per te' :
                        'Hand-picked listings just for you'}
                     </span>
@@ -3271,7 +3258,7 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-gray-200">
-                      {language === 'cs' ? 'Vyberte si frekvenci doru�ov�n�' :
+                      {language === 'cs' ? 'Vyberte si frekvenci doručování' :
                        language === 'it' ? 'Scegli la tua frequenza di invio' :
                        'Choose your delivery frequency'}
                     </span>
@@ -3281,19 +3268,19 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-gray-200">
-                      {language === 'cs' ? 'Bezplatn� p��stup k Premium Clubu' :
+                      {language === 'cs' ? 'Bezplatný přístup k Premium Clubu' :
                        language === 'it' ? 'Accesso gratuito al Premium Club' :
                        'Free Premium Club access included'}
                     </span>
                   </li>
                 </ul>
                 <button className="w-full bg-white hover:bg-gray-100 text-slate-700 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg">
-                  {language === 'cs' ? 'Spustit Vyhled�va�' :
+                  {language === 'cs' ? 'Spustit Vyhledávač' :
                    language === 'it' ? 'Avvia il Finder' :
                    'Start the Finder'}
                 </button>
                 <p className="text-xs text-gray-300 mt-4">
-                  {language === 'cs' ? 'Nen� vy�adov�na kreditn� karta' :
+                  {language === 'cs' ? 'Není vyžadována kreditní karta' :
                    language === 'it' ? 'Nessuna carta di credito richiesta' :
                    'No credit card required'}
                 </p>
@@ -3305,7 +3292,7 @@ export default function HomePage() {
           <div className="border-t border-gray-300 pt-12">
             <div className="text-center mb-8">
               <p className="text-gray-600 text-base font-medium mb-6">
-                {language === 'cs' ? 'D�v�ryhodn� Partne�i' :
+                {language === 'cs' ? 'Důvěryhodní Partneři' :
                  language === 'it' ? 'Partner di Fiducia' :
                  'Trusted Partners'}
               </p>
@@ -3317,12 +3304,12 @@ export default function HomePage() {
                 </svg>
                 <div className="text-left">
                   <p className="text-base font-semibold text-gray-900">
-                    {language === 'cs' ? 'Pr�vn� Partner' :
+                    {language === 'cs' ? 'Právní Partner' :
                      language === 'it' ? 'Partner Legale' :
                      'Legal Partner'}
                   </p>
                   <p className="text-xs text-gray-600">
-                    {language === 'cs' ? 'Certifikovan� Pr�vn�ci' :
+                    {language === 'cs' ? 'Certifikovaní Právníci' :
                      language === 'it' ? 'Avvocati Certificati' :
                      'Certified Lawyers'}
                   </p>
@@ -3335,12 +3322,12 @@ export default function HomePage() {
                 </svg>
                 <div className="text-left">
                   <p className="text-base font-semibold text-gray-900">
-                    {language === 'cs' ? 'Turistick� Partner' :
+                    {language === 'cs' ? 'Turistický Partner' :
                      language === 'it' ? 'Partner Turistico' :
                      'Tour Partner'}
                   </p>
                   <p className="text-xs text-gray-600">
-                    {language === 'cs' ? 'M�stn� Zku�enosti' :
+                    {language === 'cs' ? 'Místní Zkušenosti' :
                      language === 'it' ? 'Esperienza Locale' :
                      'Local Experience'}
                   </p>
@@ -3381,8 +3368,5 @@ export default function HomePage() {
     </div>
   )
 }
-
-
-
 
 
