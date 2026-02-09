@@ -1646,7 +1646,7 @@ export default function HomePage() {
           </h2>
         </div>
         <p className="text-base sm:text-xl text-gray-700 max-w-3xl">
-          {language === 'cs' ? 'Rozhodnutí bez správných informací může stát čas, peníze i klid. Proto je důležité rozumět systému ještě před prvním krokem.' : language === 'it' ? 'Una decisione senza le giuste informazioni può costare tempo, denaro e serenità. Per questo è importante capire il sistema prima del primo passo.' : 'Decisions without the right information can cost time, money, and peace of mind. That’s why it’s important to understand the system before the first step.'}
+          {language === 'cs' ? 'Rozhodnutí bez správných informací může stát čas, peníze i klid. Proto je důležité rozumět systému ještě před prvním krokem.' : language === 'it' ? 'Una decisione senza le giuste informazioni può costare tempo, denaro e serenità. Per questo è importante capire il sistema prima del primo passo.' : 'Decisions without the right information can cost time, money, and peace of mind. That's why it's important to understand the system before the first step.'}
         </p>
 
         {/* Why Italy is Different - 5 cards */}
@@ -1682,7 +1682,7 @@ export default function HomePage() {
               <CardContent className="p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-4">
                   <h3 className="font-bold text-2xl leading-tight text-gray-900">
-                    {language === 'cs' ? 'Cena není všechno' : language === 'it' ? 'Il prezzo non è tutto' : 'Price isn’t everything'}
+                    {language === 'cs' ? 'Cena není všechno' : language === 'it' ? 'Il prezzo non è tutto' : 'Price isn't everything'}
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed">
                     {language === 'cs' ? 'Skutečné náklady se ukazují až v detailu.' : language === 'it' ? 'I costi reali emergono nei dettagli.' : 'The real costs show up in the details.'}
@@ -3368,5 +3368,7 @@ export default function HomePage() {
     </div>
   )
 }
+
+
 
 
