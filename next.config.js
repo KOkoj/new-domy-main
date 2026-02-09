@@ -1,4 +1,4 @@
-const nextConfig = {
+﻿const nextConfig = {
   // Removed 'output: standalone' for Vercel deployment
   // Vercel handles builds automatically
   images: {
@@ -16,10 +16,7 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    // Remove if not using Server Components
-    serverComponentsExternalPackages: ['mongodb'],
-  },
+  serverExternalPackages: ['mongodb'],
   webpack(config, { dev }) {
     if (dev) {
       // Reduce CPU/memory from file watching
@@ -49,6 +46,8 @@ const nextConfig = {
       },
     ];
   },
+  turbopack: {}
 };
-
 module.exports = nextConfig;
+
+
