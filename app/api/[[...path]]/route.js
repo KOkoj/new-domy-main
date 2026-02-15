@@ -3,7 +3,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { client } from '../../../lib/sanity.js'
 import { FEATURED_PROPERTIES_QUERY, ALL_PROPERTIES_QUERY, PROPERTY_BY_SLUG_QUERY } from '../../../lib/sanity.js'
-import { getLocalProperties, getLocalPropertyBySlug } from '../../../lib/localPropertiesStore.js'
+import { getLocalProperties, getLocalPropertyBySlug } from '@/lib/localPropertiesStore'
 
 // Force dynamic rendering - don't pre-render this route during build
 export const dynamic = 'force-dynamic'
