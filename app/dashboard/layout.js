@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { 
+import {
   User, 
   Heart, 
   Search, 
@@ -26,7 +26,6 @@ import {
   Video,
   MessageCircle
 } from 'lucide-react'
-import { supabase } from '../../lib/supabase'
 import Navigation from '../../components/Navigation'
 import { t } from '../../lib/translations'
 
@@ -132,37 +131,50 @@ export default function DashboardLayout({ children }) {
   }
 
   const checkUserAccess = async () => {
-    if (!supabase) return
     try {
-      const { data: { user }, error: authError } = await supabase.auth.getUser()
-      
-      if (authError || !user) {
-        router.push('/')
+      const sessionResponse = await fetch('/api/auth/session', { cache: 'no-store' })
+      if (!sessionResponse.ok) {
+        router.push('/login?redirect=/dashboard')
         return
       }
 
-      setUser(user)
+      const sessionPayload = await sessionResponse.json()
+      if (!sessionPayload?.authenticated || !sessionPayload?.user) {
+        router.push('/login?redirect=/dashboard')
+        return
+      }
+
+      setUser(sessionPayload.user)
 
       // Load user profile
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', user.id)
-        .single()
-
-      setUserProfile(profile)
+      try {
+        const profileResponse = await fetch('/api/profile', { cache: 'no-store' })
+        if (profileResponse.ok) {
+          const profilePayload = await profileResponse.json()
+          setUserProfile(profilePayload?.profile || null)
+        } else {
+          setUserProfile(null)
+        }
+      } catch (profileError) {
+        console.error('Profile load failed:', profileError)
+        setUserProfile(null)
+      }
     } catch (error) {
       console.error('User access check failed:', error)
-      router.push('/')
+      router.push('/login?redirect=/dashboard')
     } finally {
       setLoading(false)
     }
   }
 
   const handleLogout = async () => {
-    if (!supabase) return
-    await supabase.auth.signOut()
-    router.push('/')
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' })
+    } catch (error) {
+      console.error('Logout failed:', error)
+    } finally {
+      window.location.assign('/')
+    }
   }
 
   if (loading) {

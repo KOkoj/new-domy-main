@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,7 +9,6 @@ import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Mail, Lock, User, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
-import { supabase } from '../../lib/supabase'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -18,6 +17,10 @@ export default function LoginPage() {
   const [success, setSuccess] = useState('')
   const [activeTab, setActiveTab] = useState('login')
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const tabParam = searchParams.get('tab')
+  const redirectParam = searchParams.get('redirect')
+  const redirectPath = redirectParam && redirectParam.startsWith('/') ? redirectParam : '/dashboard'
 
   const [loginForm, setLoginForm] = useState({
     email: '',
@@ -31,21 +34,71 @@ export default function LoginPage() {
     confirmPassword: ''
   })
 
+  const loginViaServer = async (email, password) => {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    })
+
+    const payload = await response.json().catch(() => ({}))
+    if (!response.ok) {
+      return {
+        ok: false,
+        error: payload?.error || 'Server login failed'
+      }
+    }
+
+    return { ok: true }
+  }
+
+  const signupViaServer = async (name, email, password) => {
+    const response = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password })
+    })
+
+    const payload = await response.json().catch(() => ({}))
+    if (!response.ok) {
+      return {
+        ok: false,
+        error: payload?.error || 'Server signup failed'
+      }
+    }
+
+    return {
+      ok: true,
+      hasSession: Boolean(payload?.hasSession)
+    }
+  }
+
+  useEffect(() => {
+    if (tabParam === 'signup' || tabParam === 'login') {
+      setActiveTab(tabParam)
+    }
+  }, [tabParam])
+
   // Check if user is already logged in
   useEffect(() => {
-    if (!supabase) return
     const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user) {
-        router.push('/club')
+      try {
+        const response = await fetch('/api/auth/session', { cache: 'no-store' })
+        if (!response.ok) return
+        const payload = await response.json()
+        if (payload?.authenticated) {
+          router.push(redirectPath)
+        }
+      } catch (error) {
+        // Ignore network checks on first load
       }
     }
     checkUser()
-  }, [router])
+  }, [router, redirectPath])
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    if (!supabase) return
+
     setIsLoading(true)
     setError('')
 
@@ -56,29 +109,23 @@ export default function LoginPage() {
     }
 
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: loginForm.email,
-        password: loginForm.password
-      })
-
-      if (error) {
-        setError(error.message)
-      } else {
-        setSuccess('Login successful! Redirecting...')
-        
-        // Ensure profile exists
-        try {
-          await fetch('/api/profile', { method: 'POST' })
-        } catch (profileError) {
-          console.warn('Profile check/creation failed:', profileError)
-        }
-        
-        setTimeout(() => {
-          router.push('/club')
-        }, 1500)
+      const result = await loginViaServer(loginForm.email, loginForm.password)
+      if (!result.ok) {
+        setError(result.error)
+        return
       }
+
+      setSuccess('Login successful! Redirecting...')
+      try {
+        await fetch('/api/profile', { method: 'POST' })
+      } catch (profileError) {
+        console.warn('Profile check/creation failed:', profileError)
+      }
+      setTimeout(() => {
+        window.location.assign(redirectPath)
+      }, 1000)
     } catch (err) {
-      setError('An unexpected error occurred')
+      setError('Unable to connect to authentication service. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -86,7 +133,7 @@ export default function LoginPage() {
 
   const handleSignup = async (e) => {
     e.preventDefault()
-    if (!supabase) return
+
     setIsLoading(true)
     setError('')
 
@@ -109,35 +156,43 @@ export default function LoginPage() {
     }
 
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email: signupForm.email,
-        password: signupForm.password,
-        options: {
-          data: {
-            name: signupForm.name
-          }
-        }
-      })
+      const result = await signupViaServer(
+        signupForm.name,
+        signupForm.email,
+        signupForm.password
+      )
 
-      if (error) {
-        setError(error.message)
+      if (!result.ok) {
+        setError(result.error)
+        return
+      }
+
+      const hasSession = Boolean(result?.hasSession)
+      setSuccess(
+        hasSession
+          ? 'Account created successfully! Redirecting...'
+          : 'Account created successfully! Please check your email to confirm your account.'
+      )
+      
+      // Try to create profile manually as fallback
+      try {
+        await fetch('/api/profile', { method: 'POST' })
+      } catch (profileError) {
+        console.warn('Manual profile creation failed:', profileError)
+      }
+
+      if (hasSession) {
+        setTimeout(() => {
+          window.location.assign(redirectPath)
+        }, 1500)
       } else {
-        setSuccess('Account created successfully! Please check your email to confirm your account.')
-        
-        // Try to create profile manually as fallback
-        try {
-          await fetch('/api/profile', { method: 'POST' })
-        } catch (profileError) {
-          console.warn('Manual profile creation failed:', profileError)
-        }
-        
         setTimeout(() => {
           setActiveTab('login')
           setSuccess('You can now log in with your credentials.')
         }, 3000)
       }
     } catch (err) {
-      setError('An unexpected error occurred')
+      setError('Unable to connect to authentication service. Please try again.')
     } finally {
       setIsLoading(false)
     }
