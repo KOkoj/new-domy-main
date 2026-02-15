@@ -1,13 +1,16 @@
 import { NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { promises as fs } from 'fs'
+import path from 'path'
 import { client } from '../../../lib/sanity.js'
 import { FEATURED_PROPERTIES_QUERY, ALL_PROPERTIES_QUERY, PROPERTY_BY_SLUG_QUERY } from '../../../lib/sanity.js'
-import { getLocalProperties, getLocalPropertyBySlug } from '@/lib/localPropertiesStore'
 
 // Force dynamic rendering - don't pre-render this route during build
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
+
+const LOCAL_PROPERTIES_PATH = path.join(process.cwd(), 'data', 'local-properties.json')
 
 function hasSanityConfig() {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
@@ -54,6 +57,26 @@ async function getSupabaseClient() {
   )
 }
 
+async function readLocalPropertiesFromJson() {
+  try {
+    const raw = await fs.readFile(LOCAL_PROPERTIES_PATH, 'utf8')
+    const parsed = JSON.parse(raw)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
+
+async function findLocalPropertyBySlug(slugOrId) {
+  const properties = await readLocalPropertiesFromJson()
+  return (
+    properties.find(
+      (property) =>
+        property?.slug?.current === slugOrId || property?._id === slugOrId
+    ) || null
+  )
+}
+
 // Handle all API routes
 export async function GET(request, { params }) {
   const { path = [] } = await params
@@ -80,7 +103,7 @@ export async function GET(request, { params }) {
       let properties = []
 
       if (!hasSanityConfig()) {
-        properties = await getLocalProperties()
+        properties = await readLocalPropertiesFromJson()
       } else {
         let query = ALL_PROPERTIES_QUERY
         if (featured) {
@@ -93,7 +116,7 @@ export async function GET(request, { params }) {
 
         // Fallback to local store when Sanity returns no data
         if (!Array.isArray(properties) || properties.length === 0) {
-          properties = await getLocalProperties()
+          properties = await readLocalPropertiesFromJson()
           console.log(`Fallback to local properties: ${properties.length} items`)
         }
       }
@@ -146,8 +169,8 @@ export async function GET(request, { params }) {
       // Always fallback to local store for dev/imported properties
       if (!property) {
         property =
-          await getLocalPropertyBySlug(slug) ||
-          await getLocalPropertyBySlug(decodeURIComponent(slug))
+          await findLocalPropertyBySlug(slug) ||
+          await findLocalPropertyBySlug(decodeURIComponent(slug))
       }
 
       if (!property) {
