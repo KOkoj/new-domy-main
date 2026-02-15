@@ -1,107 +1,184 @@
 import { NextResponse } from 'next/server'
-import { supabase } from '../../../lib/supabase.js'
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
 
 export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
 
-export async function POST(request) {
+async function createRouteClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    return { supabase: null, applyCookies: (response) => response }
+  }
+
+  const cookieStore = await cookies()
+  const pendingCookies = []
+
+  const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
+    cookies: {
+      getAll() {
+        return cookieStore.getAll()
+      },
+      setAll(cookiesToSet) {
+        for (const cookie of cookiesToSet) {
+          pendingCookies.push(cookie)
+        }
+      }
+    }
+  })
+
+  const applyCookies = (response) => {
+    for (const cookie of pendingCookies) {
+      response.cookies.set(cookie.name, cookie.value, cookie.options)
+    }
+    return response
+  }
+
+  return { supabase, applyCookies }
+}
+
+async function ensureAuthenticatedUser(supabase) {
+  const {
+    data: { user },
+    error
+  } = await supabase.auth.getUser()
+
+  if (error || !user) return null
+  return user
+}
+
+function buildProfileFromUser(user) {
+  return {
+    id: user.id,
+    name:
+      user.user_metadata?.name ||
+      user.user_metadata?.full_name ||
+      user.email?.split('@')[0] ||
+      'User',
+    role: 'user'
+  }
+}
+
+export async function POST() {
   try {
-    // Get the current user
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
-    
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const { supabase, applyCookies } = await createRouteClient()
+
+    if (!supabase) {
+      return NextResponse.json(
+        { error: 'Database not configured' },
+        { status: 503 }
+      )
     }
 
-    // Check if profile already exists
+    const user = await ensureAuthenticatedUser(supabase)
+    if (!user) {
+      return applyCookies(
+        NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      )
+    }
+
     const { data: existingProfile } = await supabase
       .from('profiles')
-      .select('id')
+      .select('*')
       .eq('id', user.id)
-      .single()
+      .maybeSingle()
 
     if (existingProfile) {
-      return NextResponse.json({ 
-        success: true, 
-        message: 'Profile already exists',
-        profile: existingProfile 
-      })
+      return applyCookies(
+        NextResponse.json({
+          success: true,
+          message: 'Profile already exists',
+          profile: existingProfile
+        })
+      )
     }
 
-    // Create the profile manually
-    const profileData = {
-      id: user.id,
-      name: user.user_metadata?.name || user.user_metadata?.full_name || user.email.split('@')[0],
-      role: 'user'
-    }
-
-    const { data: newProfile, error: profileError } = await supabase
+    const profileData = buildProfileFromUser(user)
+    const { data: createdProfile, error: createError } = await supabase
       .from('profiles')
       .insert([profileData])
       .select()
       .single()
 
-    if (profileError) {
-      console.error('Profile creation error:', profileError)
-      return NextResponse.json({ 
-        error: 'Failed to create profile',
-        details: profileError.message 
-      }, { status: 500 })
+    if (createError) {
+      return applyCookies(
+        NextResponse.json(
+          {
+            error: 'Failed to create profile',
+            details: createError.message
+          },
+          { status: 500 }
+        )
+      )
     }
 
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Profile created successfully',
-      profile: newProfile 
-    })
-
+    return applyCookies(
+      NextResponse.json({
+        success: true,
+        message: 'Profile created successfully',
+        profile: createdProfile
+      })
+    )
   } catch (error) {
-    console.error('Profile creation exception:', error)
-    return NextResponse.json({ 
-      error: 'Internal server error',
-      message: error.message 
-    }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Internal server error', message: error.message },
+      { status: 500 }
+    )
   }
 }
 
-export async function GET(request) {
+export async function GET() {
   try {
-    // Get the current user
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
-    
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const { supabase, applyCookies } = await createRouteClient()
+
+    if (!supabase) {
+      return NextResponse.json(
+        { error: 'Database not configured' },
+        { status: 503 }
+      )
     }
 
-    // Get the user's profile
+    const user = await ensureAuthenticatedUser(supabase)
+    if (!user) {
+      return applyCookies(
+        NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      )
+    }
+
     const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', user.id)
-      .single()
+      .maybeSingle()
 
     if (profileError) {
-      // If profile doesn't exist, try to create it
-      if (profileError.code === 'PGRST116') {
-        // Call the POST method to create profile
-        return await POST(request)
-      }
-      
-      return NextResponse.json({ 
-        error: 'Failed to fetch profile',
-        details: profileError.message 
-      }, { status: 500 })
+      return applyCookies(
+        NextResponse.json(
+          {
+            error: 'Failed to fetch profile',
+            details: profileError.message
+          },
+          { status: 500 }
+        )
+      )
     }
 
-    return NextResponse.json({ 
-      success: true, 
-      profile 
-    })
+    if (!profile) {
+      return POST()
+    }
 
+    return applyCookies(
+      NextResponse.json({
+        success: true,
+        profile
+      })
+    )
   } catch (error) {
-    console.error('Profile fetch exception:', error)
-    return NextResponse.json({ 
-      error: 'Internal server error',
-      message: error.message 
-    }, { status: 500 })
+    return NextResponse.json(
+      { error: 'Internal server error', message: error.message },
+      { status: 500 }
+    )
   }
 }

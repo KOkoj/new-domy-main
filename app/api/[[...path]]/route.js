@@ -3,13 +3,21 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { client } from '../../../lib/sanity.js'
 import { FEATURED_PROPERTIES_QUERY, ALL_PROPERTIES_QUERY, PROPERTY_BY_SLUG_QUERY } from '../../../lib/sanity.js'
+import { getLocalProperties, getLocalPropertyBySlug } from '../../../lib/localPropertiesStore.js'
 
 // Force dynamic rendering - don't pre-render this route during build
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-function getSupabaseClient() {
-  const cookieStore = cookies()
+function hasSanityConfig() {
+  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+
+  return Boolean(projectId && dataset && projectId !== 'placeholder')
+}
+
+async function getSupabaseClient() {
+  const cookieStore = await cookies()
   
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     return null
@@ -48,12 +56,12 @@ function getSupabaseClient() {
 
 // Handle all API routes
 export async function GET(request, { params }) {
-  const { path } = params
+  const { path = [] } = await params
   const url = new URL(request.url)
   const searchParams = url.searchParams
 
   try {
-    const supabase = getSupabaseClient()
+    const supabase = await getSupabaseClient()
 
     // Check if Supabase is configured
     if (!supabase && path && (path[0] === 'favorites' || path[0] === 'saved-searches' || path[0] === 'inquiries')) {
@@ -69,18 +77,29 @@ export async function GET(request, { params }) {
       const city = searchParams.get('city')
       const search = searchParams.get('search')
 
-      let query = ALL_PROPERTIES_QUERY
-      
-      if (featured) {
-        query = FEATURED_PROPERTIES_QUERY
-      }
+      let properties = []
 
-      console.log('Fetching properties from Sanity with query:', query)
-      const properties = await client.fetch(query)
-      console.log(`Fetched ${properties.length} properties from Sanity`)
+      if (!hasSanityConfig()) {
+        properties = await getLocalProperties()
+      } else {
+        let query = ALL_PROPERTIES_QUERY
+        if (featured) {
+          query = FEATURED_PROPERTIES_QUERY
+        }
+
+        console.log('Fetching properties from Sanity with query:', query)
+        properties = await client.fetch(query)
+        console.log(`Fetched ${properties.length} properties from Sanity`)
+
+        // Fallback to local store when Sanity returns no data
+        if (!Array.isArray(properties) || properties.length === 0) {
+          properties = await getLocalProperties()
+          console.log(`Fallback to local properties: ${properties.length} items`)
+        }
+      }
       
       // Apply additional filters if needed
-      let filteredProperties = properties
+      let filteredProperties = Array.isArray(properties) ? properties : []
       
       if (propertyType) {
         filteredProperties = filteredProperties.filter(p => p.propertyType === propertyType)
@@ -118,8 +137,19 @@ export async function GET(request, { params }) {
     if (path[0] === 'properties' && path[1]) {
       // Get single property by slug
       const slug = path[1]
-      const property = await client.fetch(PROPERTY_BY_SLUG_QUERY, { slug })
-      
+      let property = null
+
+      if (hasSanityConfig()) {
+        property = await client.fetch(PROPERTY_BY_SLUG_QUERY, { slug })
+      }
+
+      // Always fallback to local store for dev/imported properties
+      if (!property) {
+        property =
+          await getLocalPropertyBySlug(slug) ||
+          await getLocalPropertyBySlug(decodeURIComponent(slug))
+      }
+
       if (!property) {
         return NextResponse.json({ error: 'Property not found' }, { status: 404 })
       }
@@ -209,11 +239,11 @@ export async function GET(request, { params }) {
 }
 
 export async function POST(request, { params }) {
-  const { path } = params
+  const { path = [] } = await params
   const body = await request.json()
 
   try {
-    const supabase = getSupabaseClient()
+    const supabase = await getSupabaseClient()
 
     // Toggle favorite
     if (path[0] === 'favorites' && path[1] === 'toggle') {
@@ -379,12 +409,12 @@ export async function POST(request, { params }) {
 }
 
 export async function DELETE(request, { params }) {
-  const { path } = params
+  const { path = [] } = await params
   const url = new URL(request.url)
   const id = url.searchParams.get('id')
 
   try {
-    const supabase = getSupabaseClient()
+    const supabase = await getSupabaseClient()
 
     if (path[0] === 'saved-searches' && id) {
       if (!supabase) return NextResponse.json({ error: 'Database not configured' }, { status: 503 })

@@ -8,7 +8,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react'
-import { supabase } from '../lib/supabase'
 
 export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -29,6 +28,49 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
     confirmPassword: ''
   })
 
+  const loginViaServer = async (email, password) => {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    })
+
+    const payload = await response.json().catch(() => ({}))
+    if (!response.ok) {
+      return {
+        ok: false,
+        error: payload?.error || 'Server login failed'
+      }
+    }
+
+    return {
+      ok: true,
+      user: payload?.user || null
+    }
+  }
+
+  const signupViaServer = async (name, email, password) => {
+    const response = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password })
+    })
+
+    const payload = await response.json().catch(() => ({}))
+    if (!response.ok) {
+      return {
+        ok: false,
+        error: payload?.error || 'Server signup failed'
+      }
+    }
+
+    return {
+      ok: true,
+      hasSession: Boolean(payload?.hasSession),
+      user: payload?.user || null
+    }
+  }
+
   const handleLogin = async (e) => {
     e.preventDefault()
     setIsLoading(true)
@@ -41,35 +83,27 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
     }
 
     try {
-      if (!supabase) {
-        setError('Authentication service is unavailable. Please try again later.')
-        setIsLoading(false)
+      const result = await loginViaServer(loginForm.email, loginForm.password)
+      if (!result.ok) {
+        setError(result.error)
         return
       }
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: loginForm.email,
-        password: loginForm.password
-      })
 
-      if (error) {
-        setError(error.message)
-      } else {
-        setSuccess('Login successful!')
-        
-        // Ensure profile exists (fallback)
-        try {
-          await fetch('/api/profile', { method: 'POST' })
-        } catch (profileError) {
-          console.warn('Profile check/creation failed:', profileError)
-        }
-        
-        setTimeout(() => {
-          onAuthSuccess?.(data.user)
-          onClose()
-        }, 1000)
+      setSuccess('Login successful!')
+      
+      // Ensure profile exists (fallback)
+      try {
+        await fetch('/api/profile', { method: 'POST' })
+      } catch (profileError) {
+        console.warn('Profile check/creation failed:', profileError)
       }
+      
+      setTimeout(() => {
+        onAuthSuccess?.(result.user)
+        onClose()
+      }, 1000)
     } catch (err) {
-      setError('An unexpected error occurred')
+      setError('Unable to connect to authentication service. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -99,40 +133,44 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
     }
 
     try {
-      if (!supabase) {
-        setError('Authentication service is unavailable. Please try again later.')
-        setIsLoading(false)
+      const result = await signupViaServer(
+        signupForm.name,
+        signupForm.email,
+        signupForm.password
+      )
+
+      if (!result.ok) {
+        setError(result.error)
         return
       }
-      const { data, error } = await supabase.auth.signUp({
-        email: signupForm.email,
-        password: signupForm.password,
-        options: {
-          data: {
-            name: signupForm.name
-          }
-        }
-      })
 
-      if (error) {
-        setError(error.message)
+      const hasSession = Boolean(result.hasSession)
+      setSuccess(
+        hasSession
+          ? 'Account created successfully! Redirecting...'
+          : 'Account created successfully! Please check your email to confirm your account.'
+      )
+
+      // Try to create profile manually as fallback
+      try {
+        await fetch('/api/profile', { method: 'POST' })
+      } catch (profileError) {
+        console.warn('Manual profile creation failed:', profileError)
+      }
+
+      if (hasSession) {
+        setTimeout(() => {
+          onAuthSuccess?.(result.user)
+          onClose()
+        }, 1000)
       } else {
-        setSuccess('Account created successfully! Please check your email to confirm your account.')
-        
-        // Try to create profile manually as fallback
-        try {
-          await fetch('/api/profile', { method: 'POST' })
-        } catch (profileError) {
-          console.warn('Manual profile creation failed:', profileError)
-        }
-        
         setTimeout(() => {
           setActiveTab('login')
           setSuccess('')
         }, 3000)
       }
     } catch (err) {
-      setError('An unexpected error occurred')
+      setError('Unable to connect to authentication service. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -148,29 +186,8 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
       return
     }
 
-    try {
-      if (!supabase) {
-        setError('Authentication service is unavailable. Please try again later.')
-        setIsLoading(false)
-        return
-      }
-      const { error } = await supabase.auth.signInWithOtp({
-        email: loginForm.email,
-        options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback`
-        }
-      })
-
-      if (error) {
-        setError(error.message)
-      } else {
-        setSuccess('Magic link sent! Check your email to sign in.')
-      }
-    } catch (err) {
-      setError('An unexpected error occurred')
-    } finally {
-      setIsLoading(false)
-    }
+    setError('Magic Link is temporarily unavailable. Please use email and password login.')
+    setIsLoading(false)
   }
 
   const resetForm = () => {

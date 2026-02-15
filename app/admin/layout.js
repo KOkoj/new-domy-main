@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { 
+import {
   FileText,
   Users, 
   MessageSquare, 
@@ -21,7 +21,6 @@ import {
   Mail,
   Languages
 } from 'lucide-react'
-import { supabase } from '../../lib/supabase'
 import { t } from '@/lib/translations'
 
 
@@ -110,59 +109,39 @@ export default function AdminLayout({ children }) {
   }, [])
 
   const checkAdminAccess = async () => {
-    if (!supabase) return
     try {
-      const { data: { user }, error: authError } = await supabase.auth.getUser()
-      
-      if (authError || !user) {
-        router.push('/')
+      const sessionResponse = await fetch('/api/auth/session', { cache: 'no-store' })
+      if (!sessionResponse.ok) {
+        router.push('/login?redirect=/admin/content')
         return
       }
 
-      setUser(user)
-
-      // Check if user has admin role
-      const { data: profile, error: profileError } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', user.id)
-        .single()
-
-      if (profileError || !profile || profile.role !== 'admin') {
-        // For demo purposes, allow any authenticated user to access admin panel
-        // In production, you'd have proper role management
-        console.log('User role:', profile?.role)
-        console.log('Demo mode: Granting admin access for demonstration')
-        
-        // Grant admin access for demo
-        setIsAdmin(true)
-        
-        // Update user role to admin for demo purposes
-        if (profile) {
-          try {
-            await supabase
-              .from('profiles')
-              .update({ role: 'admin' })
-              .eq('id', user.id)
-          } catch (err) {
-            console.log('Could not update role for demo:', err)
-          }
-        }
-      } else {
-        setIsAdmin(true)
+      const sessionPayload = await sessionResponse.json()
+      if (!sessionPayload?.authenticated || !sessionPayload?.user) {
+        router.push('/login?redirect=/admin/content')
+        return
       }
+
+      setUser(sessionPayload.user)
+
+      // Keep demo behavior: any authenticated user can access admin.
+      setIsAdmin(true)
     } catch (error) {
       console.error('Admin access check failed:', error)
-      router.push('/')
+      router.push('/login?redirect=/admin/content')
     } finally {
       setLoading(false)
     }
   }
 
   const handleLogout = async () => {
-    if (!supabase) return
-    await supabase.auth.signOut()
-    router.push('/')
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' })
+    } catch (error) {
+      console.error('Logout failed:', error)
+    } finally {
+      window.location.assign('/')
+    }
   }
 
   const switchLanguage = (lang) => {
