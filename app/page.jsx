@@ -1698,7 +1698,7 @@ export default function HomePage() {
             <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-blue-200 shadow-xl bg-gradient-to-br from-blue-50 to-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-[12px] sm:text-2xl leading-snug text-gray-900 line-clamp-none sm:line-clamp-2 min-h-0 sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-[12px] sm:text-2xl leading-snug text-gray-900 min-h-[2.8rem] sm:min-h-[4.75rem] flex items-start">
                     {language === 'cs' ? 'Italský systém je jiný' :
                      language === 'it' ? 'Il sistema italiano funziona diversamente.' :
                      'The Italian system is different'}
@@ -1725,7 +1725,7 @@ export default function HomePage() {
             <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-[13px] sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.25rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-[12px] sm:text-2xl leading-snug text-gray-900 min-h-[2.8rem] sm:min-h-[4.75rem] flex items-start">
                     {language === 'cs' ? '💰 Cena není všechno' :
                      language === 'it' ? '💰 Il prezzo non è tutto' :
                      '💰 Price is not everything'}
@@ -1752,7 +1752,7 @@ export default function HomePage() {
             <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-[13px] sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.25rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-[12px] sm:text-2xl leading-snug text-gray-900 min-h-[2.8rem] sm:min-h-[4.75rem] flex items-start">
                     {language === 'cs' ? '⚠️ Nejčastější chyby Čechů' :
                      language === 'it' ? '⚠️ Errori più comuni dei cechi' :
                      '⚠️ Most common mistakes by Czechs'}
@@ -1779,7 +1779,7 @@ export default function HomePage() {
             <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-[13px] sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.25rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-[12px] sm:text-2xl leading-snug text-gray-900 min-h-[2.8rem] sm:min-h-[4.75rem] flex items-start">
                     {language === 'cs' ? '📍 Region rozhoduje' :
                      language === 'it' ? '📍 La regione fa la differenza' :
                      '📍 Region matters'}
@@ -1806,7 +1806,7 @@ export default function HomePage() {
             <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-[13px] sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.25rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-[12px] sm:text-2xl leading-snug text-gray-900 min-h-[2.8rem] sm:min-h-[4.75rem] flex items-start">
                     {language === 'cs' ? '❓ Časté otázky' :
                      language === 'it' ? '❓ Domande frequenti' :
                      '❓ Frequently asked questions'}
