@@ -1517,6 +1517,16 @@ export default function HomePage() {
               >
                 {t('hero.subtitle', language)}
               </p>
+              <p
+                className={`max-w-3xl mx-auto text-[13px] sm:text-base md:text-lg text-gray-200/95 transition-all duration-700 ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}
+                style={{ transitionDelay: startAnimations ? '1.15s' : '0s' }}
+              >
+                {language === 'cs'
+                  ? 'Právní, technická i praktická podpora během celého procesu.'
+                  : language === 'it'
+                    ? 'Supporto legale, tecnico e pratico durante tutto il processo.'
+                    : 'Legal, technical, and practical support throughout the entire process.'}
+              </p>
             </div>
             
             {/* Enhanced Search Container */}
