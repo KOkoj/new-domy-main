@@ -26,10 +26,12 @@ export default function InspectionsFreePdfLandingPage() {
         backToGuide: "Torna all'articolo",
         title: "Guida PDF gratuita: visite immobiliari in Italia",
         intro:
-          "Una sintesi pratica per preparare le visite, fare le domande giuste e ridurre errori prima di fare offerte.",
+          "Una sintesi pratica per preparare le visite, fare le domande giuste e ridurre errori prima di fare offerte. Dentro trovi una traccia semplice da usare durante la visita, per non perdere dettagli importanti.",
         primaryCta: "Scarica PDF gratuito",
         downloadedNote: "Download avviato. Controlla anche la cartella download del telefono.",
         softTitle: "Se vuoi approfondire:",
+        premiumDescription:
+          "Se desideri nozioni piu mirate e concrete prima della decisione finale, abbiamo preparato PDF premium piu specifici che aiutano a chiarire dubbi critici su rischi, costi e passaggi operativi.",
         softDomy: "Vai al PDF premium: acquisto in Italia",
         softNotary: "Vai al PDF premium: ruolo del notaio",
         backToProcess: "Vai al processo completo",
@@ -41,10 +43,12 @@ export default function InspectionsFreePdfLandingPage() {
         backToGuide: "Back to article",
         title: "Free PDF guide: property inspections in Italy",
         intro:
-          "A practical summary to prepare your visits, ask the right questions, and reduce mistakes before making offers.",
+          "A practical summary to prepare your visits, ask the right questions, and reduce mistakes before making offers. Inside, you get a simple checklist you can use during the visit.",
         primaryCta: "Download free PDF",
         downloadedNote: "Download started. Check your phone downloads folder as well.",
         softTitle: "If you want to go deeper:",
+        premiumDescription:
+          "If you want more targeted and practical guidance before your final decision, we also prepared focused premium PDFs to remove key doubts about risks, costs, and execution.",
         softDomy: "Go to premium PDF: buying in Italy",
         softNotary: "Go to premium PDF: notary role",
         backToProcess: "Go to full process",
@@ -55,10 +59,12 @@ export default function InspectionsFreePdfLandingPage() {
       backToGuide: "Zpět na článek",
       title: "Bezplatný PDF průvodce: prohlídky nemovitostí v Itálii",
       intro:
-        "Praktické shrnutí pro přípravu prohlídek, správné otázky a menší riziko chyb před podáním nabídky.",
+        "Praktické shrnutí pro přípravu prohlídek, správné otázky a menší riziko chyb před podáním nabídky. Uvnitř najdete jednoduchý checklist, který můžete použít přímo při návštěvě.",
       primaryCta: "Stáhnout bezplatné PDF",
       downloadedNote: "Stahování bylo spuštěno. Zkontrolujte i složku stažených souborů v telefonu.",
       softTitle: "Pokud chcete jít více do hloubky:",
+      premiumDescription:
+        "Pokud chcete cílenější a praktičtější podklady před finálním rozhodnutím, připravili jsme i konkrétnější prémiová PDF, která pomáhají odstranit klíčové nejasnosti kolem rizik, nákladů a postupu.",
       softDomy: "Přejít na prémiové PDF: koupě v Itálii",
       softNotary: "Přejít na prémiové PDF: role notáře",
       backToProcess: "Přejít na celý proces",
@@ -124,16 +130,17 @@ export default function InspectionsFreePdfLandingPage() {
 
             <div className="pt-1">
               <p className="text-sm text-slate-600 mb-3">{copy.softTitle}</p>
+              <p className="text-sm text-slate-600 leading-relaxed mb-3">{copy.premiumDescription}</p>
               <div className="flex flex-col gap-2">
                 <Link
                   href="/premium?product=premium-domy"
-                  className="inline-flex items-center justify-center rounded-md border border-slate-200 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                  className="inline-flex w-fit items-center justify-center rounded-md border border-amber-300 bg-amber-100/70 px-3 py-1.5 text-xs sm:text-sm font-medium text-amber-900 hover:bg-amber-200/80 transition-colors"
                 >
                   {copy.softDomy}
                 </Link>
                 <Link
                   href="/premium?product=premium-notary"
-                  className="inline-flex items-center justify-center rounded-md border border-slate-200 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                  className="inline-flex w-fit items-center justify-center rounded-md border border-amber-300 bg-amber-100/70 px-3 py-1.5 text-xs sm:text-sm font-medium text-amber-900 hover:bg-amber-200/80 transition-colors"
                 >
                   {copy.softNotary}
                 </Link>
