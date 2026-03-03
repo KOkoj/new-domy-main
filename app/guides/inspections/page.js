@@ -14,12 +14,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { supabase } from "../../../lib/supabase";
 import AuthModal from "../../../components/AuthModal";
-import FreePdfUpsellModal from "../../../components/FreePdfUpsellModal";
 
 export default function InspectionsGuidePage() {
   const [user, setUser] = useState(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [isFreePdfUpsellOpen, setIsFreePdfUpsellOpen] = useState(false);
   const [language, setLanguage] = useState("cs");
 
   useEffect(() => {
@@ -62,67 +60,6 @@ export default function InspectionsGuidePage() {
     document.documentElement.lang = newLanguage;
     localStorage.setItem("preferred-language", newLanguage);
   };
-
-  const handleFreePdfDownload = () => {
-    if (typeof window !== "undefined") {
-      window.open("/pdfs/visite%20nuovo%20sito.pdf", "_blank", "noopener,noreferrer");
-    }
-
-    setIsFreePdfUpsellOpen(true);
-
-    fetch("/api/free-pdf/upsell", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        pdfKey: "inspections-guide",
-        language,
-        sourcePath: "/guides/inspections",
-      }),
-      keepalive: true,
-    }).catch((error) => {
-      console.error("[FREE PDF UPSELL] Trigger error:", error);
-    });
-  };
-
-  const upsellCopy =
-    language === "cs"
-      ? {
-          title: "Chcete i prémiové PDF?",
-          body:
-            "Bezplatné PDF jste už stáhli. Pokud chcete praktičtější a podrobnější materiál, můžete si odemknout také placené PDF.",
-          bullets: [
-            "konkrétní prevence častých chyb",
-            "jasnější práce s náklady a riziky",
-            "praktická struktura kroků a dokumentů",
-          ],
-          cta: "Zobrazit prémiové PDF",
-          secondary: "Později",
-        }
-      : language === "it"
-        ? {
-            title: "Vuoi anche il PDF premium?",
-            body:
-              "Hai già scaricato il PDF gratuito. Se vuoi un materiale più operativo e approfondito, puoi sbloccare anche il PDF a pagamento.",
-            bullets: [
-              "prevenzione concreta degli errori più comuni",
-              "gestione più chiara di costi e rischi",
-              "struttura pratica di passaggi e documenti",
-            ],
-            cta: "Vedi il PDF premium",
-            secondary: "Più tardi",
-          }
-        : {
-            title: "Do you want the premium PDF too?",
-            body:
-              "You already downloaded the free PDF. If you want a more operational and detailed resource, you can also unlock the paid PDF.",
-            bullets: [
-              "concrete prevention of common mistakes",
-              "clearer handling of costs and risks",
-              "practical structure of steps and documents",
-            ],
-            cta: "View premium PDF",
-            secondary: "Later",
-          };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
@@ -738,16 +675,16 @@ export default function InspectionsGuidePage() {
                         ? "Vuoi avere un materiale pratico prima delle visite?\n\nAbbiamo preparato un PDF dedicato alle visite immobiliari in Italia."
                         : "Do you want a practical resource before your visits?\n\nWe prepared a dedicated PDF guide for property visits in Italy."}
                   </p>
-                  <Button
-                    onClick={handleFreePdfDownload}
-                    className="bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 text-amber-950 hover:from-amber-200 hover:via-yellow-200 hover:to-amber-300 border border-amber-200/70 shadow-sm"
+                  <Link
+                    href="/guides/inspections/free-pdf"
+                    className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-white text-slate-800 border border-slate-300 hover:bg-slate-50 transition-colors shadow-sm"
                   >
                     {language === "cs"
                       ? "Stáhnout PDF - návštěvy nemovitostí"
                       : language === "it"
                         ? "Scarica il PDF completo sulle visite"
                         : "Download the full inspections PDF"}
-                  </Button>
+                  </Link>
                 </CardContent>
               </Card>
 
@@ -806,10 +743,10 @@ export default function InspectionsGuidePage() {
                       <Button variant="outline" size="lg" className="w-full">
                         <ArrowLeft className="h-5 w-5 mr-2" />
                         {language === "cs"
-                          ? "Zpět na průvodce"
+                          ? "Zpět na proces"
                           : language === "it"
-                            ? "Torna alla guida"
-                            : "Back to Guide"}
+                            ? "Torna al processo"
+                            : "Back to Process"}
                       </Button>
                     </Link>
                     <Link href="/contact">
@@ -836,16 +773,6 @@ export default function InspectionsGuidePage() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={(user) => setUser(user)}
-      />
-
-      <FreePdfUpsellModal
-        open={isFreePdfUpsellOpen}
-        onOpenChange={setIsFreePdfUpsellOpen}
-        language={language}
-        copy={upsellCopy}
-        user={user}
-        premiumProductKey="premium-domy"
-        sourcePath="/guides/inspections"
       />
     </div>
   );
