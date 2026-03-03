@@ -654,31 +654,31 @@ projít celým procesem s jistotou a klidem` :
           </div>
 
           {/* Process Steps */}
-          <div className="max-w-5xl mx-auto mb-16">
-            <div className="space-y-8">
+          <div className="max-w-5xl mx-auto mb-10 sm:mb-16">
+            <div className="space-y-4 sm:space-y-8">
               {visibleProcessSteps.map((step, index) => (
                 <Card 
                   key={index} 
                   className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden"
                 >
-                  <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
-                    <div className="flex items-start gap-6">
+                  <CardHeader className="p-4 sm:p-6 bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
+                    <div className="flex items-start gap-3 sm:gap-6">
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 bg-gradient-to-r from-slate-700 to-slate-800 rounded-2xl flex items-center justify-center shadow-lg">
-                          <span className="text-2xl font-bold text-white">{index + 1}</span>
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-slate-700 to-slate-800 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg">
+                          <span className="text-lg sm:text-2xl font-bold text-white">{index + 1}</span>
                         </div>
                       </div>
                       <div className="flex-1">
                         <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
                           <div>
-                            <CardTitle className="text-xl md:text-2xl font-bold text-slate-800 mb-1">
+                            <CardTitle className="text-lg sm:text-xl md:text-2xl font-bold text-slate-800 mb-1">
                               {step.title[language]}
                             </CardTitle>
-                            <p className="text-slate-600 font-medium">
+                            <p className="text-sm sm:text-base text-slate-600 font-medium">
                               {step.subtitle[language]}
                             </p>
                           </div>
-                          <Badge className="bg-slate-100 text-slate-700 border-slate-200 px-3 py-1 mt-2 md:mt-0 w-fit">
+                          <Badge className="bg-slate-100 text-slate-700 border-slate-200 px-2.5 py-1 mt-2 md:mt-0 w-fit text-xs">
                             <Clock className="h-3 w-3 mr-1" />
                             {step.duration[language]}
                           </Badge>
@@ -686,19 +686,19 @@ projít celým procesem s jistotou a klidem` :
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="p-6">
-                    <p className="text-gray-600 leading-relaxed mb-6">
+                  <CardContent className="p-4 sm:p-6">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 sm:mb-6">
                       {step.description[language]}
                     </p>
                     
-                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                      <h4 className="font-semibold text-slate-800 mb-3 flex items-center">
+                    <div className="bg-slate-50 rounded-xl p-3 sm:p-4 border border-slate-100">
+                      <h4 className="font-semibold text-sm sm:text-base text-slate-800 mb-2 sm:mb-3 flex items-center">
                         <CheckSquare className="h-4 w-4 mr-2" />
                         {language === 'cs' ? 'Co je zahrnuto:' : language === 'it' ? 'Cosa include:' : 'What\'s Included:'}
                       </h4>
-                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-1.5 sm:gap-2">
                         {step.includes.map((item, idx) => (
-                          <li key={idx} className="flex items-start text-sm text-gray-700">
+                          <li key={idx} className="flex items-start text-xs sm:text-sm text-gray-700">
                             <CheckCircle className="h-4 w-4 mr-2 text-green-600 flex-shrink-0 mt-0.5" />
                             <span>{item[language]}</span>
                           </li>
@@ -707,9 +707,9 @@ projít celým procesem s jistotou a klidem` :
                     </div>
 
                     {step.ctaHref && (
-                      <div className="mt-4">
+                      <div className="mt-3 sm:mt-4">
                         <Link href={step.ctaHref}>
-                          <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold">
+                          <Button className="min-h-[40px] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm px-4">
                             {step.ctaLabel?.[language] || (language === 'cs' ? 'Zjistit více' : language === 'it' ? 'Scopri di più' : 'Learn more')}
                           </Button>
                         </Link>

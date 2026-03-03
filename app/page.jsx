@@ -2652,9 +2652,9 @@ export default function HomePage() {
       </section>
 
       {/* Weekly Webinar Section */}
-      <section className="py-20 bg-[#f7f4ed]">
+      <section className="pt-10 sm:pt-14 pb-16 sm:pb-20 bg-[#f7f4ed]">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-on-scroll">
+          <div className="text-center mb-10 sm:mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
               {language === 'cs' ? 'Kupování v Itálii: proces, úskalí a čísla' :
                language === 'it' ? 'Acquistare in Italia: Il Processo, le Insidie e i Numeri' :

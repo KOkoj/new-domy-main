@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { MapPin, TrendingUp, Home, ChevronRight, Star, CheckCircle, Shield } from 'lucide-react'
+import { MapPin, TrendingUp, Home, ChevronRight, Star, CheckCircle, Shield, Square } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -334,6 +334,26 @@ const REGION_OVERRIDE_SLUGS = {
   lombardy: 'lombardia'
 }
 
+const REGION_DETAIL_SLUGS = {
+  lombardy: 'lombardia',
+  'friuli-venezia-giulia': 'friuli-venezia-giulia',
+  puglia: 'puglia',
+  calabria: 'calabria',
+  sicilia: 'sicilia',
+  toscana: 'toscana',
+  liguria: 'liguria',
+  veneto: 'veneto',
+  lazio: 'lazio',
+  campania: 'campania',
+  piemonte: 'piemonte',
+  'emilia-romagna': 'emilia-romagna',
+  umbria: 'umbria',
+  sardegna: 'sardegna',
+  abruzzo: 'abruzzo',
+  'trentino-alto-adige': 'trentino-alto-adige',
+  'valle-d-aosta': 'valle-d-aosta'
+}
+
 const REGION_CARD_WARNINGS = {
   toscana: {
     en: 'Historic and rural assets often need strict urban planning and technical checks before offer.',
@@ -437,6 +457,16 @@ function getRegionOverrideSlug(slug = '') {
   return REGION_OVERRIDE_SLUGS[slug] || slug
 }
 
+function getRegionDetailSlug(slug = '') {
+  if (!slug) return ''
+  return REGION_DETAIL_SLUGS[slug] || slug
+}
+
+function getRegionDisplayName(region, language = 'en') {
+  const raw = region?.name?.[language] || region?.name?.en || ''
+  return raw.split(' - ')[0]
+}
+
 function RegionCard({ region, language = 'en' }) {
   const formatPrice = (price) => {
     if (typeof price !== 'number' || Number.isNaN(price)) {
@@ -491,6 +521,7 @@ function RegionCard({ region, language = 'en' }) {
             : `Average price: ${formatPrice(region.averagePrice)}`
       ]
   const warningBySlug = REGION_CARD_WARNINGS[overrideSlug] || REGION_CARD_WARNINGS[regionSlug]
+  const detailSlug = getRegionDetailSlug(region.slug?.current || '')
   const warningText = language === 'cs'
     ? 'Před podáním nabídky vždy proveďte technickou a právní due diligence.'
     : (region.warning?.[language] || warningBySlug?.[language] || (
@@ -574,41 +605,17 @@ function RegionCard({ region, language = 'en' }) {
       </CardContent>
       
       <CardFooter className="pt-0 flex flex-col gap-2">
-        {(() => {
-          const regionDetailSlugs = {
-            'lombardy': 'lombardia',
-            'friuli-venezia-giulia': 'friuli-venezia-giulia',
-            'puglia': 'puglia',
-            'calabria': 'calabria',
-            'sicilia': 'sicilia',
-            'toscana': 'toscana',
-            'liguria': 'liguria',
-            'veneto': 'veneto',
-            'lazio': 'lazio',
-            'campania': 'campania',
-            'piemonte': 'piemonte',
-            'emilia-romagna': 'emilia-romagna',
-            'umbria': 'umbria',
-            'sardegna': 'sardegna',
-            'abruzzo': 'abruzzo',
-            'trentino-alto-adige': 'trentino-alto-adige',
-            'valle-d-aosta': 'valle-d-aosta'
-          }
-          const detailSlug = regionDetailSlugs[region.slug.current] || region.slug.current
-          return (
-            <Link href={`/regions/${detailSlug}`} className="w-full">
-              <Button 
-                variant="outline"
-                className="w-full border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold py-3 transition-all duration-300 hover:scale-105"
-              >
-                {language === 'cs' ? 'Podrobn\u00fd pr\u016fvodce' :
-                 language === 'it' ? 'Guida dettagliata' : 
-                 'Detailed Guide'}
-                <ChevronRight className="h-4 w-4 ml-2" />
-              </Button>
-            </Link>
-          )
-        })()}
+        <Link href={`/regions/${detailSlug}`} className="w-full">
+          <Button 
+            variant="outline"
+            className="w-full border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold py-3 transition-all duration-300 hover:scale-105"
+          >
+            {language === 'cs' ? 'Podrobn\u00fd pr\u016fvodce' :
+             language === 'it' ? 'Guida dettagliata' : 
+             'Detailed Guide'}
+            <ChevronRight className="h-4 w-4 ml-2" />
+          </Button>
+        </Link>
         <Button
           className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-semibold py-3 transition-all duration-300 hover:scale-105"
           onClick={() => window.open('https://wa.me/420731450001', '_blank')}
@@ -644,6 +651,8 @@ function RegionCard({ region, language = 'en' }) {
 export default function RegionsPage() {
   const [language, setLanguage] = useState('en')
   const [regionsData, setRegionsData] = useState(SAMPLE_REGIONS)
+  const mobileFeaturedRegions = regionsData.slice(0, 5)
+  const mobileRemainingRegions = regionsData.slice(5)
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')
@@ -748,19 +757,19 @@ export default function RegionsPage() {
              'Buying a House in Italy - Prices, Regions, and Available Properties'}
           </h2>
 
-          <div className="flex md:grid md:grid-cols-4 gap-3 sm:gap-6 mb-10 sm:mb-12 overflow-x-auto md:overflow-visible pb-2 md:pb-0 snap-x snap-mandatory">
-            <Card className="min-w-[145px] sm:min-w-[170px] md:min-w-0 aspect-square md:aspect-auto snap-start bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
-              <CardContent className="p-4 sm:p-6 text-center h-full flex flex-col justify-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1.5 sm:mb-2">20</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-6 mb-8 sm:mb-12">
+            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl sm:rounded-2xl">
+              <CardContent className="px-2 py-3 sm:p-6 text-center">
+                <div className="text-xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1">20</div>
                 <div className="text-xs md:text-sm text-blue-600/80 font-medium">
                   {language === 'cs' ? 'Italsk? regiony' : language === 'it' ? 'Regioni italiane' : 'Italian regions'}
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="min-w-[145px] sm:min-w-[170px] md:min-w-0 aspect-square md:aspect-auto snap-start bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
-              <CardContent className="p-4 sm:p-6 text-center h-full flex flex-col justify-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1.5 sm:mb-2">
+            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl sm:rounded-2xl">
+              <CardContent className="px-2 py-3 sm:p-6 text-center">
+                <div className="text-lg sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1">
                   {language === 'cs' ? '\u20AC2 150 / m\u00B2' : language === 'it' ? '\u20AC2.150 / m\u00B2' : '\u20AC2,150 / m\u00B2'}
                 </div>
                 <div className="text-xs md:text-sm text-blue-600/80 font-medium">
@@ -769,9 +778,9 @@ export default function RegionsPage() {
               </CardContent>
             </Card>
 
-            <Card className="min-w-[145px] sm:min-w-[170px] md:min-w-0 aspect-square md:aspect-auto snap-start bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
-              <CardContent className="p-4 sm:p-6 text-center h-full flex flex-col justify-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1.5 sm:mb-2">
+            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl sm:rounded-2xl">
+              <CardContent className="px-2 py-3 sm:p-6 text-center">
+                <div className="text-lg sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1">
                   {language === 'cs' ? '\u20AC30 000+' : language === 'it' ? '\u20AC30.000+' : '\u20AC30,000+'}
                 </div>
                 <div className="text-xs md:text-sm text-blue-600/80 font-medium">
@@ -780,9 +789,9 @@ export default function RegionsPage() {
               </CardContent>
             </Card>
 
-            <Card className="min-w-[145px] sm:min-w-[170px] md:min-w-0 aspect-square md:aspect-auto snap-start bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
-              <CardContent className="p-4 sm:p-6 text-center h-full flex flex-col justify-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1.5 sm:mb-2">
+            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl sm:rounded-2xl">
+              <CardContent className="px-2 py-3 sm:p-6 text-center">
+                <div className="text-xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1">
                   {language === 'cs' ? '+800 000' : language === 'it' ? '+800.000' : '+800,000'}
                 </div>
                 <div className="text-xs md:text-sm text-blue-600/80 font-medium">
@@ -848,7 +857,55 @@ export default function RegionsPage() {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+          <div className="md:hidden mb-8">
+            <h3 className="text-lg font-semibold text-slate-800 mb-3">
+              {language === 'cs' ? 'Doporučené regiony' : language === 'it' ? 'Regioni consigliate' : 'Recommended regions'}
+            </h3>
+            <div className="grid grid-cols-2 gap-2.5">
+              {mobileFeaturedRegions.map((region, index) => {
+                const detailSlug = getRegionDetailSlug(region.slug?.current || '')
+                return (
+                  <Link
+                    key={region._id}
+                    href={`/regions/${detailSlug}`}
+                    className={`${index === 4 ? 'col-span-2' : ''} rounded-xl border border-gray-200 bg-white p-2.5 shadow-sm`}
+                  >
+                    <div className="aspect-[4/3] rounded-lg overflow-hidden mb-2">
+                      <img
+                        src={region.image}
+                        alt={getRegionDisplayName(region, language)}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <p className="text-xs font-semibold text-slate-800 line-clamp-2">{getRegionDisplayName(region, language)}</p>
+                  </Link>
+                )
+              })}
+            </div>
+
+            <div className="mt-4 rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
+              <p className="text-sm font-semibold text-slate-800 mb-2.5">
+                {language === 'cs' ? 'Další regiony (rychlý výběr)' : language === 'it' ? 'Altre regioni (selezione rapida)' : 'Other regions (quick pick)'}
+              </p>
+              <div className="grid grid-cols-1 gap-2">
+                {mobileRemainingRegions.map((region) => {
+                  const detailSlug = getRegionDetailSlug(region.slug?.current || '')
+                  return (
+                    <Link
+                      key={region._id}
+                      href={`/regions/${detailSlug}`}
+                      className="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                    >
+                      <Square className="h-4 w-4 flex-shrink-0 text-slate-500" />
+                      <span className="line-clamp-1">{getRegionDisplayName(region, language)}</span>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
             {regionsData.map(region => (
               <RegionCard key={region._id} region={region} language={language} />
             ))}
