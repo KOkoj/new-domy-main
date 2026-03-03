@@ -1316,7 +1316,7 @@ export default function HomePage() {
       <Navigation />
 
       {/* Intro Section - Not a Real Estate Agency */}
-        <section className="bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10 pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-10 overflow-hidden">
+        <section className="bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10 pt-28 sm:pt-32 md:pt-36 pb-6 sm:pb-10 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Side - Text Content */}
@@ -1341,7 +1341,7 @@ export default function HomePage() {
                 <div className="pt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <Link href="/process">
                     <Button
-                      className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl w-full sm:w-auto"
+                      className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl w-full sm:w-auto inline-flex items-center justify-center text-center leading-tight"
                     >
                       {language === 'cs' ? 'O našem procesu' :
                        language === 'it' ? 'Sul nostro processo' :
@@ -1350,7 +1350,7 @@ export default function HomePage() {
                   </Link>
                   <Link href="/contact">
                     <Button
-                      className="text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl w-full sm:w-auto"
+                      className="text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl w-full sm:w-auto inline-flex items-center justify-center text-center leading-tight"
                       style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
                     >
                       {language === 'cs' ? 'Konzultace zdarma' :
@@ -1374,20 +1374,20 @@ export default function HomePage() {
       </section>
 
       {/* How It Works Section - merged under intro */}
-      <section className="pt-0 sm:pt-1 pb-16 sm:pb-20 bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10">
+      <section className="pt-0 sm:pt-1 pb-10 sm:pb-16 bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-2">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-2">
             {/* Step 1 */}
-            <div className="text-center group">
+            <div className="text-center group rounded-xl bg-white/80 p-3 sm:p-4 shadow-sm">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                 <span className="text-2xl font-bold text-white">1</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
+              <h3 className="text-sm sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4 uppercase tracking-wide">
                 {language === 'cs' ? 'ZADÁNÍ & NABÍDKA' :
                  language === 'it' ? 'ESIGENZE & PROPOSTA' :
                  'BRIEF & PROPOSAL'}
               </h3>
-              <p className="text-gray-600 text-base whitespace-pre-line">
+              <p className="text-gray-600 text-xs sm:text-base whitespace-pre-line leading-relaxed">
                 {language === 'cs' ? 'Vy řeknete, co hledáte. My připravíme řešení.\nŘídíme proces a připravujeme nabídky.' :
                  language === 'it' ? 'Voi ci dite cosa cercate. Noi prepariamo la soluzione.\nGestiamo il processo e prepariamo le proposte.' :
                  'You tell us what you are looking for. We prepare the solution.\nWe manage the process and prepare the proposals.'}
@@ -1395,16 +1395,16 @@ export default function HomePage() {
             </div>
 
             {/* Step 2 */}
-            <div className="text-center group">
+            <div className="text-center group rounded-xl bg-white/80 p-3 sm:p-4 shadow-sm">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                 <span className="text-2xl font-bold text-white">2</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
+              <h3 className="text-sm sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4 uppercase tracking-wide">
                 {language === 'cs' ? 'Prohlédněte Všechny Nemovitosti' :
                  language === 'it' ? 'Sfoglia Tutte le Proprietà' :
                  'Browse All Properties'}
               </h3>
-              <p className="text-gray-600 text-base whitespace-pre-line">
+              <p className="text-gray-600 text-xs sm:text-base whitespace-pre-line leading-relaxed">
                 {language === 'cs' ? 'Procházejte naše rozsáhlé portfolio nemovitostí napříč všemi regiony Itálie.' :
                  language === 'it' ? 'Sfoglia il nostro vasto portafoglio di proprietà in tutte le regioni d\'Italia.' :
                  'Browse our extensive portfolio of properties across all Italian regions.'}
@@ -1412,16 +1412,16 @@ export default function HomePage() {
             </div>
 
             {/* Step 3 */}
-            <div className="text-center group">
+            <div className="text-center group rounded-xl bg-white/80 p-3 sm:p-4 shadow-sm">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                 <span className="text-2xl font-bold text-white">3</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
+              <h3 className="text-sm sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4 uppercase tracking-wide">
                 {language === 'cs' ? 'PODPIS & PŘEVOD' :
                  language === 'it' ? 'FIRMA & TRASFERIMENTO' :
                  'SIGNING & TRANSFER'}
               </h3>
-              <p className="text-gray-600 text-base whitespace-pre-line">
+              <p className="text-gray-600 text-xs sm:text-base whitespace-pre-line leading-relaxed">
                 {language === 'cs' ? 'My hlídáme formality. Vy podepisujete bez stresu.\nOrganizace podpisu, převod vlastnictví a zápis do katastru.' :
                  language === 'it' ? 'Noi controlliamo le formalità. Voi firmate senza stress.\nOrganizzazione della firma, trasferimento di proprietà e registrazione catastale.' :
                  'We handle the formalities. You sign without stress.\nSigning coordination, ownership transfer, and land registry filing.'}
@@ -1429,16 +1429,16 @@ export default function HomePage() {
             </div>
 
             {/* Step 4 */}
-            <div className="text-center group">
+            <div className="text-center group rounded-xl bg-white/80 p-3 sm:p-4 shadow-sm">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
                 <span className="text-2xl font-bold text-white">4</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
+              <h3 className="text-sm sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4 uppercase tracking-wide">
                 {language === 'cs' ? 'PÉČE PO KOUPI' :
                  language === 'it' ? 'ASSISTENZA DOPO L\'ACQUISTO' :
                  'POST-PURCHASE SUPPORT'}
               </h3>
-              <p className="text-gray-600 text-base whitespace-pre-line">
+              <p className="text-gray-600 text-xs sm:text-base whitespace-pre-line leading-relaxed">
                 {language === 'cs' ? 'Jsme s vámi i po koupi.\nDlouhodobá asistence v Itálii.' :
                  language === 'it' ? 'Siamo con voi anche dopo l\'acquisto.\nAssistenza a lungo termine in Italia.' :
                  'We stay with you even after the purchase.\nLong-term assistance in Italy.'}
@@ -1450,7 +1450,7 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section 
-        className="relative min-h-[100dvh] overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 shadow-inner flex items-center justify-center" 
+        className="relative min-h-[100dvh] overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 shadow-inner flex items-start sm:items-center justify-center" 
         data-testid="hero-section"
       >
         {/* Hero Background Image Transition */}
@@ -1466,11 +1466,11 @@ export default function HomePage() {
         {/* Golden Accent Overlay - vibrant and noticeable */}
         <div className="absolute inset-0 z-10 bg-gradient-to-br from-copper-500/35 via-copper-400/25 to-copper-300/15 opacity-80"></div>
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-        <div className="container mx-auto px-3 sm:px-4 relative z-20" data-testid="hero-content-container">
+        <div className="container mx-auto px-3 sm:px-4 relative z-20 pt-20 sm:pt-24 md:pt-0" data-testid="hero-content-container">
           <div className="text-center text-white space-y-4 sm:space-y-8 md:space-y-12" data-testid="hero-content">
             <div className="space-y-3 sm:space-y-6">
               <h2 
-                className="font-bold leading-tight tracking-tight text-4xl md:text-6xl lg:text-7xl" 
+                className="font-bold leading-tight tracking-tight text-3xl sm:text-4xl md:text-6xl lg:text-7xl px-1" 
                 style={{ 
                   textShadow: '0 4px 8px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4)',
                   textWrap: 'balance',
@@ -1507,7 +1507,7 @@ export default function HomePage() {
                 )}
               </h2>
               <p 
-                className={`text-gray-100 max-w-4xl mx-auto leading-relaxed font-light italic transition-all duration-700 text-lg md:text-2xl lg:text-3xl ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                className={`text-gray-100 max-w-4xl mx-auto leading-relaxed font-light italic transition-all duration-700 text-base sm:text-lg md:text-2xl lg:text-3xl ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                 style={{ 
                   marginTop: '5px',
                   textShadow: '0 3px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3)',
@@ -1635,7 +1635,7 @@ export default function HomePage() {
         </div>
 
         {/* Scroll Down Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 hidden sm:block">
           <div
             className="flex flex-col items-center space-y-2 text-white/80 hover:text-white transition-colors duration-300 cursor-pointer group"
             onClick={() => {
@@ -1658,31 +1658,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 pt-12 pb-8 bg-[#f7f4ed]" data-testid="main-content-container">
+      <div className="container mx-auto px-4 pt-8 sm:pt-12 pb-8 bg-[#f7f4ed]" data-testid="main-content-container">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900" data-testid="section-description">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-900" data-testid="section-description">
             {language === 'cs' ? 'Koupě domu v Itálii není jen o ceně' :
              language === 'it' ? 'L\'acquisto di una casa in Italia non riguarda solo il prezzo' :
              'Buying a home in Italy isn\'t just about price'}
           </h2>
         </div>
-        <p className="text-base sm:text-xl text-gray-700 max-w-3xl">
+        <p className="text-sm sm:text-xl text-gray-700 max-w-3xl">
           {language === 'cs' ? 'Rozhodnutí bez správných informací může stát čas, peníze i klid. Proto je důležité rozumět systému ještě před prvním krokem.' : language === 'it' ? 'Una decisione senza le giuste informazioni può costare tempo, denaro e serenità. Per questo è importante capire il sistema prima del primo passo.' : "Decisions without the right information can cost time, money, and peace of mind. That's why it's important to understand the system before the first step."}
         </p>
 
         {/* Why Italy is Different - 5 cards */}
-        <div className="mb-16 mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8" data-testid="why-italy-different-grid">
+        <div className="mb-12 sm:mb-16 mt-4 sm:mt-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-8" data-testid="why-italy-different-grid">
             {/* Card 1 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-blue-200 shadow-xl bg-gradient-to-br from-blue-50 to-white rounded-2xl flex flex-col h-full">
-              <CardContent className="p-6 flex flex-col flex-1">
-                <div className="flex-1 space-y-4">
-                  <h3 className="font-bold text-2xl leading-tight text-gray-900">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-blue-200 shadow-xl bg-gradient-to-br from-blue-50 to-white rounded-2xl flex flex-col h-full min-h-[250px] sm:min-h-[320px]">
+              <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
+                <div className="flex-1 space-y-2 sm:space-y-4">
+                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.75rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '🧾 Italský systém je jiný' :
                      language === 'it' ? '🧾 Il sistema italiano funziona diversamente.' :
                      '🧾 The Italian system is different'}
                   </h3>
-                  <p className="text-gray-600 text-base leading-relaxed">
+                  <p className="text-gray-600 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                     {language === 'cs' ? 'Pravidla, postupy a role se liší od Česka.' :
                      language === 'it' ? 'In Italia nessuno coordina tutto automaticamente. Capire chi fa cosa è fondamentale.' :
                      'Rules, processes, and roles differ from the Czech Republic.'}
@@ -1690,7 +1690,7 @@ export default function HomePage() {
                 </div>
                 <div className="pt-4 mt-auto">
                   <Link href="/guides/real-estate-purchase-system-italy">
-                    <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
+                    <Button className="w-full min-h-[40px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-xs sm:text-base">
                       {language === 'cs' ? 'V?ce informac?' :
                        language === 'it' ? 'Piu info' :
                        'More info'}
@@ -1701,15 +1701,15 @@ export default function HomePage() {
             </Card>
 
             {/* Card 2 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full">
-              <CardContent className="p-6 flex flex-col flex-1">
-                <div className="flex-1 space-y-4">
-                  <h3 className="font-bold text-2xl leading-tight text-gray-900">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[250px] sm:min-h-[320px]">
+              <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
+                <div className="flex-1 space-y-2 sm:space-y-4">
+                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.75rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '💰 Cena není všechno' :
                      language === 'it' ? '💰 Il prezzo non è tutto' :
                      '💰 Price is not everything'}
                   </h3>
-                  <p className="text-gray-600 text-base leading-relaxed">
+                  <p className="text-gray-600 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                     {language === 'cs' ? 'Daně, notář, poplatky a náklady navíc.' :
                      language === 'it' ? 'Tasse, notaio, commissioni e costi extra.' :
                      'Taxes, notary, fees, and extra costs.'}
@@ -1717,7 +1717,7 @@ export default function HomePage() {
                 </div>
                 <div className="pt-4 mt-auto">
                   <Link href="/guides/costs">
-                    <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
+                    <Button className="w-full min-h-[40px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-xs sm:text-base">
                       {language === 'cs' ? 'V?ce informac?' :
                        language === 'it' ? 'Piu info' :
                        'More info'}
@@ -1728,15 +1728,15 @@ export default function HomePage() {
             </Card>
 
             {/* Card 3 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full">
-              <CardContent className="p-6 flex flex-col flex-1">
-                <div className="flex-1 space-y-4">
-                  <h3 className="font-bold text-2xl leading-tight text-gray-900">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[250px] sm:min-h-[320px]">
+              <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
+                <div className="flex-1 space-y-2 sm:space-y-4">
+                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.75rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '⚠️ Nejčastější chyby Čechů' :
                      language === 'it' ? '⚠️ Errori più comuni dei cechi' :
                      '⚠️ Most common mistakes by Czechs'}
                   </h3>
-                  <p className="text-gray-600 text-base leading-relaxed">
+                  <p className="text-gray-600 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                     {language === 'cs' ? 'Omyly, které vedou ke zbytečným problémům.' :
                      language === 'it' ? 'Errori che portano a problemi evitabili.' :
                      'Mistakes that lead to avoidable problems.'}
@@ -1744,7 +1744,7 @@ export default function HomePage() {
                 </div>
                 <div className="pt-4 mt-auto">
                   <Link href="/guides/mistakes">
-                    <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
+                    <Button className="w-full min-h-[40px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-xs sm:text-base">
                       {language === 'cs' ? 'V?ce informac?' :
                        language === 'it' ? 'Piu info' :
                        'More info'}
@@ -1755,15 +1755,15 @@ export default function HomePage() {
             </Card>
 
             {/* Card 4 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full">
-              <CardContent className="p-6 flex flex-col flex-1">
-                <div className="flex-1 space-y-4">
-                  <h3 className="font-bold text-2xl leading-tight text-gray-900">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[250px] sm:min-h-[320px]">
+              <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
+                <div className="flex-1 space-y-2 sm:space-y-4">
+                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.75rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '📍 Region rozhoduje' :
                      language === 'it' ? '📍 La regione fa la differenza' :
                      '📍 Region matters'}
                   </h3>
-                  <p className="text-gray-600 text-base leading-relaxed">
+                  <p className="text-gray-600 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                     {language === 'cs' ? 'Cena, životní styl, dostupnost i využití domu.' :
                      language === 'it' ? 'Prezzo, stile di vita, accessibilità e uso della casa.' :
                      'Price, lifestyle, accessibility, and home use.'}
@@ -1771,7 +1771,7 @@ export default function HomePage() {
                 </div>
                 <div className="pt-4 mt-auto">
                   <Link href="/regions">
-                    <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
+                    <Button className="w-full min-h-[40px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-xs sm:text-base">
                       {language === 'cs' ? 'V?ce informac?' :
                        language === 'it' ? 'Piu info' :
                        'More info'}
@@ -1782,15 +1782,15 @@ export default function HomePage() {
             </Card>
 
             {/* Card 5 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full">
-              <CardContent className="p-6 flex flex-col flex-1">
-                <div className="flex-1 space-y-4">
-                  <h3 className="font-bold text-2xl leading-tight text-gray-900">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[250px] sm:min-h-[320px]">
+              <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
+                <div className="flex-1 space-y-2 sm:space-y-4">
+                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.75rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '❓ Časté otázky' :
                      language === 'it' ? '❓ Domande frequenti' :
                      '❓ Frequently asked questions'}
                   </h3>
-                  <p className="text-gray-600 text-base leading-relaxed">
+                  <p className="text-gray-600 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                     {language === 'cs' ? 'Rychlé odpovědi na to, co lidé řeší nejčastěji.' :
                      language === 'it' ? 'Risposte rapide a ciò che le persone chiedono più spesso.' :
                      'Quick answers to what people ask most often.'}
@@ -1798,7 +1798,7 @@ export default function HomePage() {
                 </div>
                 <div className="pt-4 mt-auto">
                   <Link href="/faq">
-                    <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
+                    <Button className="w-full min-h-[40px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-xs sm:text-base">
                       {language === 'cs' ? 'V?ce informac?' :
                        language === 'it' ? 'Piu info' :
                        'More info'}
@@ -1812,7 +1812,7 @@ export default function HomePage() {
       </div>
 
       {/* Premium Club Section */}{/* Premium Club Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 sm:py-20 overflow-hidden">
+      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-10 sm:py-20 overflow-hidden">
         <div className="container mx-auto px-4">
           {/* Main Premium Club Content */}
           <div className="text-center mb-8 sm:mb-16 animate-on-scroll">
@@ -1828,7 +1828,7 @@ export default function HomePage() {
             </p>
             <Button 
               size="lg"
-              className="font-semibold py-3 sm:py-4 px-6 sm:px-8 text-base sm:text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-white"
+              className="font-semibold py-3 sm:py-4 px-6 sm:px-8 text-base sm:text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-white inline-flex items-center justify-center text-center leading-tight"
               style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
               onClick={() => setIsAuthModalOpen(true)}
             >
@@ -1839,11 +1839,11 @@ export default function HomePage() {
           </div>
 
           {/* Premium Card and Blogs Side by Side */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-16">
             {/* Premium Card - Takes 1 column on large screens */}
             <div className="lg:col-span-1">
               <GlareCard 
-                className="flex flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-900 to-slate-800 h-full"
+                className="flex flex-col items-center justify-center p-5 sm:p-8 bg-gradient-to-br from-slate-900 to-slate-800 h-full"
                 onClick={() => {
                   window.location.href = '/dashboard';
                 }}
@@ -1919,13 +1919,13 @@ export default function HomePage() {
 
             {/* Premium Blogs - Takes 2 columns on large screens */}
             <div className="lg:col-span-2">
-              <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-white mb-4">
+              <div className="text-center mb-5 sm:mb-8">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
                   {language === 'cs' ? 'Exkluzivní obsah' :
                    language === 'it' ? 'Contenuti esclusivi' :
                    'Exclusive Contents'}
                 </h3>
-                <p className="text-lg text-gray-200">
+                <p className="text-sm sm:text-lg text-gray-200">
                   {user 
                     ? (language === 'cs' ? 'Vaše prémiové články a průvodci' :
                        language === 'it' ? 'I tuoi articoli e guide premium' :
@@ -1937,7 +1937,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 snap-x snap-mandatory">
                 {[
                   {
                     title: {
@@ -1990,7 +1990,7 @@ export default function HomePage() {
                 ].map((article, index) => (
                   <div 
                     key={index} 
-                    className={`${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''} cursor-pointer`}
+                    className={`${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''} cursor-pointer min-w-[250px] sm:min-w-0 snap-start`}
                     onClick={() => {
                       if (user) {
                         window.location.href = article.link
@@ -2022,11 +2022,11 @@ export default function HomePage() {
                           </div>
                         )}
                       </div>
-                      <div className="p-4 sm:p-6 relative">
-                        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2">
+                      <div className="p-3 sm:p-6 relative">
+                        <h3 className="text-base sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2">
                           {article.title[language]}
                         </h3>
-                        <p className="text-gray-300 text-sm sm:text-base line-clamp-2">
+                        <p className="text-gray-300 text-xs sm:text-base line-clamp-2">
                           {article.excerpt[language]}
                         </p>
                         
@@ -2084,9 +2084,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-12">
             {/* Sardegna */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
+            <div className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
                 <img 
                   src="/Sardegna.jpg" 
@@ -2095,19 +2095,19 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-2xl font-bold text-white mb-2">
+                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
                     {language === 'cs' ? 'Sardinie' :
                      language === 'it' ? 'Sardegna' :
                      'Sardinia'}
                   </h3>
-                  <p className="text-white/90 text-base">
+                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
                     {language === 'cs' ? 'Křišťálové vody, panenské pláže, luxusní resorty' :
                      language === 'it' ? 'Acque cristalline, spiagge incontaminate, resort di lusso' :
                      'Crystal waters, pristine beaches, luxury resorts'}
                   </p>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
                     €3,500-8,000/m2
@@ -2131,7 +2131,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
                     {language === 'cs' ? 'Zobrazit nabídky ze Sardinie' :
                      language === 'it' ? 'Visualizza offerte per la Sardegna' :
                      'View offers from Sardinia'}
@@ -2141,7 +2141,7 @@ export default function HomePage() {
             </div>
 
             {/* Tuscany */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
+            <div className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
                 <img 
                   src="/Toscana.png" 
@@ -2150,19 +2150,19 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-2xl font-bold text-white mb-2">
+                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
                     {language === 'cs' ? 'Toskánsko' :
                      language === 'it' ? 'Toscana' :
                      'Tuscany'}
                   </h3>
-                  <p className="text-white/90 text-base">
+                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
                     {language === 'cs' ? 'Kamenné statky, vinice, stabilní poptávka po pronájmu' :
                      language === 'it' ? 'Case coloniche in pietra, viste sui vigneti, domanda di affitto stabile' :
                      'Stone farmhouses, vineyard views, stable rental demand'}
                   </p>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
                     €2,500-6,000/m2
@@ -2186,7 +2186,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
                     {language === 'cs' ? 'Zobrazit nabídky z Toskánska' :
                      language === 'it' ? 'Visualizza offerte per la Toscana' :
                      'View offers from Tuscany'}
@@ -2196,7 +2196,7 @@ export default function HomePage() {
             </div>
 
             {/* Emilia-Romagna */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
+            <div className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
                 <img 
                   src="/Emilia-Romagna.jpg" 
@@ -2205,19 +2205,19 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-2xl font-bold text-white mb-2">
+                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
                     {language === 'cs' ? 'Emilia-Romagna' :
                      language === 'it' ? 'Emilia-Romagna' :
                      'Emilia-Romagna'}
                   </h3>
-                  <p className="text-white/90 text-base">
+                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
                     {language === 'cs' ? 'Kulinářské hlavní město, historická města, zvlněné kopce' :
                      language === 'it' ? 'Capitale culinaria, città storiche, dolci colline' :
                      'Culinary capital, historic cities, rolling hills'}
                   </p>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
                     €2,000-5,000/m2
@@ -2241,7 +2241,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
                     {language === 'cs' ? 'Zobrazit nabídky z Emilia-Romagna' :
                      language === 'it' ? 'Visualizza offerte per l\'Emilia-Romagna' :
                      'View offers from Emilia-Romagna'}
@@ -2251,7 +2251,7 @@ export default function HomePage() {
             </div>
 
             {/* Sicily */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
+            <div className="hidden sm:block bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
                 <img 
                   src="/Sicilia.jpg" 
@@ -2260,19 +2260,19 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-2xl font-bold text-white mb-2">
+                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
                     {language === 'cs' ? 'Sicílie' :
                      language === 'it' ? 'Sicilia' :
                      'Sicily'}
                   </h3>
-                  <p className="text-white/90 text-base">
+                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
                     {language === 'cs' ? 'Historické paláce, barokní města, rostoucí trh' :
                      language === 'it' ? 'Palazzi storici, città barocche, mercato emergente' :
                      'Historic palazzi, Baroque towns, emerging market'}
                   </p>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
                     €1,500-4,000/m2
@@ -2296,7 +2296,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
                     {language === 'cs' ? 'Zobrazit nabídky ze Sicílie' :
                      language === 'it' ? 'Visualizza offerte per la Sicilia' :
                      'View offers from Sicily'}
@@ -2306,7 +2306,7 @@ export default function HomePage() {
             </div>
 
             {/* Trentino-Alto Adige */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
+            <div className="hidden sm:block bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
                 <img 
                   src="/Trentino-Alto Adige.jpg" 
@@ -2315,19 +2315,19 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-2xl font-bold text-white mb-2">
+                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
                     {language === 'cs' ? 'Trentino-Alto Adige' :
                      language === 'it' ? 'Trentino-Alto Adige' :
                      'Trentino-Alto Adige'}
                   </h3>
-                  <p className="text-white/90 text-base">
+                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
                     {language === 'cs' ? 'Dolomity, alpská jezera, jedinečná dvojí kultura' :
                      language === 'it' ? 'Dolomiti, laghi alpini, cultura duale unica' :
                      'Dolomites, alpine lakes, unique dual culture'}
                   </p>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
                     €4,500-12,000/m2
@@ -2351,7 +2351,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
                     {language === 'cs' ? 'Zobrazit nabídky z Trentino-Alto Adige' :
                      language === 'it' ? 'Visualizza offerte per il Trentino-Alto Adige' :
                      'View offers from Trentino-Alto Adige'}
@@ -2361,7 +2361,7 @@ export default function HomePage() {
             </div>
 
             {/* Lazio (Rome) */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
+            <div className="hidden sm:block bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
                 <img 
                   src="/Lazio.webp" 
@@ -2370,19 +2370,19 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-2xl font-bold text-white mb-2">
+                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
                     {language === 'cs' ? 'Lazio (Řím)' :
                      language === 'it' ? 'Lazio (Roma)' :
                      'Lazio (Rome)'}
                   </h3>
-                  <p className="text-white/90 text-base">
+                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
                     {language === 'cs' ? 'Historické centrum, moderní čtvrti, silný trh s pronájmem' :
                      language === 'it' ? 'Centro storico, quartieri moderni, forte mercato degli affitti' :
                      'Historic center, modern districts, strong rental market'}
                   </p>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
                     €3,000-12,000/m2
@@ -2406,7 +2406,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
                     {language === 'cs' ? 'Zobrazit nabídky z Lazia' :
                      language === 'it' ? 'Visualizza offerte per il Lazio' :
                      'View offers from Lazio'}
@@ -2415,15 +2415,25 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+          <div className="sm:hidden text-center mb-8">
+            <Link
+              href="/regions"
+              className="inline-flex min-h-[42px] items-center justify-center rounded-lg bg-gradient-to-r from-slate-700 to-slate-800 px-5 py-2.5 text-sm font-semibold text-white shadow-lg"
+            >
+              {language === 'cs' ? 'Zobrazit více regionů' :
+               language === 'it' ? 'Vedi di più' :
+               'See more regions'}
+            </Link>
+          </div>
         </div>
       </section>
 
       {SHOW_HOME_ARCHIVED_SECTIONS && (
       <>
       {/* Recent Success Stories Section */}
-      <section className="py-20 bg-[#f7f4ed]">
+      <section className="py-14 sm:py-20 bg-[#f7f4ed]">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-on-scroll">
+          <div className="text-center mb-10 sm:mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
               {language === 'cs' ? 'Od vyhledávání po klíče v ruce' :
                language === 'it' ? 'Dalla Ricerca alle Chiavi in Mano' :
@@ -3135,9 +3145,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 max-w-5xl mx-auto mb-10 sm:mb-16">
             {/* Book a Free Consultation */}
-            <div className="order-2 bg-white rounded-2xl p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+            <div className="order-2 bg-white rounded-2xl p-6 sm:p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-slate-700 to-slate-800 rounded-full mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3190,7 +3200,7 @@ export default function HomePage() {
                 </ul>
                 <Link
                   href="/book-call"
-                  className="block w-full text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                  className="block w-full text-white font-semibold py-3 sm:py-4 px-8 rounded-lg text-base sm:text-lg transition-all duration-300 hover:scale-105 shadow-lg text-center leading-tight"
                   style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
                 >
                   {language === 'cs' ? 'Rezervovat hovor' :
@@ -3206,26 +3216,26 @@ export default function HomePage() {
             </div>
 
             {/* Start the Personal Property Finder */}
-            <div className="order-1 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-600 rounded-2xl p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+            <div className="order-1 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-600 rounded-2xl p-5 sm:p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-center">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-md rounded-full mb-6 border border-white/20">
+                <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white/10 backdrop-blur-md rounded-full mb-3 sm:mb-6 border border-white/20">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                   {language === 'cs' ? 'Spustit osobní vyhledávač nemovitostí' :
                    language === 'it' ? 'Avvia il Personal Property Finder' :
                    'Start the Personal Property Finder'}
                 </h3>
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 leading-relaxed">
                   {language === 'cs' 
                     ? 'Vyplňte náš 60sekundový formulář a získejte kurátorované nabídky nemovitostí přímo do vaší schránky, přizpůsobené vašemu rozpočtu, regionu a účelu.'
                     : language === 'it' 
                     ? 'Completa il nostro modulo di 60 secondi e ricevi annunci immobiliari curati direttamente nella tua casella di posta, adattati al tuo budget, regione e scopo.'
                     : 'Complete our 60-second form and get curated property listings delivered straight to your inbox, tailored to your budget, region, and purpose.'}
                 </p>
-                <ul className="text-left space-y-3 mb-8">
+                <ul className="text-left space-y-2 sm:space-y-3 mb-5 sm:mb-8">
                   <li className="flex items-start">
                     <svg className="w-6 h-6 text-slate-600 flex-shrink-0 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -3258,7 +3268,7 @@ export default function HomePage() {
                   </li>
                 </ul>
                 <button
-                  className="w-full bg-white hover:bg-gray-100 text-slate-700 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                  className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-white hover:bg-gray-100 text-slate-700 font-semibold py-3 sm:py-4 px-8 rounded-lg text-base sm:text-lg transition-all duration-300 hover:scale-105 shadow-lg"
                   onClick={handleStartFinder}
                 >
                   {language === 'cs' ? 'Spustit vyhledávač' :
