@@ -1522,7 +1522,11 @@ export default function HomePage() {
                 }}
                 data-testid="hero-subtitle"
               >
-                {t('hero.subtitle', language)}
+                {language === 'cs'
+                  ? 'Služba určená českým klientům'
+                  : language === 'it'
+                    ? 'Servizio dedicato ai clienti cechi'
+                    : 'Service dedicated to Czech clients'}
               </p>
               <p
                 className={`max-w-3xl mx-auto text-[13px] sm:text-base md:text-lg text-gray-200/95 transition-all duration-700 ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}
@@ -1708,9 +1712,9 @@ export default function HomePage() {
                 <div className="pt-2.5 sm:pt-4 mt-auto">
                   <Link href="/guides/real-estate-purchase-system-italy">
                     <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
-                      {language === 'cs' ? 'V?ce informac?' :
-                       language === 'it' ? 'Piu info' :
-                       'More info'}
+                      {language === 'cs' ? 'Objevte systém' :
+                       language === 'it' ? 'Scopri il sistema' :
+                       'Discover the system'}
                     </Button>
                   </Link>
                 </div>
@@ -1735,9 +1739,9 @@ export default function HomePage() {
                 <div className="pt-2.5 sm:pt-4 mt-auto">
                   <Link href="/guides/costs">
                     <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
-                      {language === 'cs' ? 'V?ce informac?' :
-                       language === 'it' ? 'Piu info' :
-                       'More info'}
+                      {language === 'cs' ? 'Spočítejte reálné náklady' :
+                       language === 'it' ? 'Calcola i costi reali' :
+                       'Calculate real costs'}
                     </Button>
                   </Link>
                 </div>
@@ -1762,9 +1766,9 @@ export default function HomePage() {
                 <div className="pt-2.5 sm:pt-4 mt-auto">
                   <Link href="/guides/mistakes">
                     <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
-                      {language === 'cs' ? 'V?ce informac?' :
-                       language === 'it' ? 'Piu info' :
-                       'More info'}
+                      {language === 'cs' ? 'Vyhněte se těmto chybám' :
+                       language === 'it' ? 'Evita questi errori' :
+                       'Avoid these mistakes'}
                     </Button>
                   </Link>
                 </div>
@@ -1789,9 +1793,9 @@ export default function HomePage() {
                 <div className="pt-2.5 sm:pt-4 mt-auto">
                   <Link href="/regions">
                     <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
-                      {language === 'cs' ? 'V?ce informac?' :
-                       language === 'it' ? 'Piu info' :
-                       'More info'}
+                      {language === 'cs' ? 'Vyberte správný region' :
+                       language === 'it' ? 'Scegli la regione giusta' :
+                       'Choose the right region'}
                     </Button>
                   </Link>
                 </div>
@@ -1816,9 +1820,9 @@ export default function HomePage() {
                 <div className="pt-2.5 sm:pt-4 mt-auto">
                   <Link href="/faq">
                     <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
-                      {language === 'cs' ? 'V?ce informac?' :
-                       language === 'it' ? 'Piu info' :
-                       'More info'}
+                      {language === 'cs' ? 'Přečtěte si FAQ' :
+                       language === 'it' ? 'Leggi le FAQ' :
+                       'Read the FAQs'}
                     </Button>
                   </Link>
                 </div>
@@ -2098,6 +2102,11 @@ export default function HomePage() {
               {language === 'cs' ? 'Ne celá Itálie je stejná. Vyberte si region, který vyhovuje vašemu rozpočtu, životnímu stylu a investičním cílům. Prohlédněte si nemovitosti v oblastech, které milujete.' :
                language === 'it' ? 'Non tutta l\'Italia è uguale. Scegli una regione che si adatti al tuo budget, stile di vita e obiettivi di investimento. Esplora le proprietà nelle aree che ami.' : 
                'Not all of Italy is the same. Choose a region that fits your budget, lifestyle, and investment goals. Explore properties in the areas you love.'}
+            </p>
+            <p className="text-sm sm:text-base text-gray-500 mt-2">
+              {language === 'cs' ? 'Průměrná data aktualizována 2025' :
+               language === 'it' ? 'Dati medi aggiornati 2025' :
+               'Average data updated 2025'}
             </p>
           </div>
 
@@ -3164,7 +3173,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 max-w-5xl mx-auto mb-10 sm:mb-16">
             {/* Book a Free Consultation */}
-            <div className="order-2 bg-white rounded-2xl p-6 sm:p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+            <div className="order-1 bg-white rounded-2xl p-6 sm:p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-slate-700 to-slate-800 rounded-full mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3233,7 +3242,7 @@ export default function HomePage() {
             </div>
 
             {/* Start the Personal Property Finder */}
-            <div className="order-1 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-600 rounded-2xl p-5 sm:p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+            <div className="order-2 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-600 rounded-2xl p-5 sm:p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white/10 backdrop-blur-md rounded-full mb-3 sm:mb-6 border border-white/20">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3285,7 +3294,7 @@ export default function HomePage() {
                   </li>
                 </ul>
                 <button
-                  className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-white hover:bg-gray-100 text-slate-700 font-semibold py-3 sm:py-4 px-8 rounded-lg text-base sm:text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                  className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-transparent hover:bg-white/10 text-white border border-white/45 font-semibold py-3 sm:py-4 px-8 rounded-lg text-base sm:text-lg transition-all duration-300 shadow-sm"
                   onClick={handleStartFinder}
                 >
                   {language === 'cs' ? 'Spustit vyhledávač' :
