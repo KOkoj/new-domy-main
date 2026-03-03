@@ -1338,6 +1338,13 @@ export default function HomePage() {
                      'With a clear process.'}
                    </span>
                  </h1>
+                <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
+                  {language === 'cs'
+                    ? 'Právní, technická i praktická podpora během celého procesu.'
+                    : language === 'it'
+                      ? 'Supporto legale, tecnico e pratico durante tutto il processo.'
+                      : 'Legal, technical, and practical support throughout the entire process.'}
+                </p>
                 <div className="pt-6 sm:pt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <Link href="/process">
                     <Button

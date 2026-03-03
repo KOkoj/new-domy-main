@@ -378,19 +378,19 @@ export default function Navigation() {
       {/* Premium Club Popup Bar - inside nav so it flows directly below */}
       {isPopupBarVisible && (
         <div 
-          className="w-full shadow-sm backdrop-blur-sm transition-all duration-300 border-t border-white/10"
+          className="w-full backdrop-blur-sm transition-all duration-300 border-t border-white/10"
           style={{ 
-            background: 'linear-gradient(to right, rgba(199, 137, 91, 0.82), rgba(153, 105, 69, 0.82))',
+            background: 'linear-gradient(to right, rgba(199, 137, 91, 0.68), rgba(153, 105, 69, 0.68))',
           }}
         >
-          <div className="container mx-auto px-4 py-1.5 sm:py-1.5">
+          <div className="container mx-auto px-4 py-0.5 sm:py-1">
             <div className="flex items-center justify-center relative">
               <Link 
                 href="/premium" 
                 className="flex items-center gap-2 sm:gap-3 group hover:opacity-90 transition-opacity"
               >
-                <Crown className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white/95 flex-shrink-0" />
-                <span className="text-white/95 font-medium text-[11px] sm:text-xs md:text-sm">
+                <Crown className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-white/90 flex-shrink-0" />
+                <span className="text-white/90 font-normal text-[10px] sm:text-[11px] md:text-xs">
                   {language === 'cs' ? 'Premium Club - Zaregistrujte se zdarma nyní' :
                    language === 'it' ? 'Club Premium - Registrati gratuitamente ora' :
                    'Premium Club - Register for Free Now'}
@@ -398,10 +398,10 @@ export default function Navigation() {
               </Link>
               <button
                 onClick={handleClosePopup}
-                className="absolute right-0 p-1 hover:bg-white/15 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white/40"
+                className="absolute right-0 p-0.5 sm:p-1 hover:bg-white/15 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white/40"
                 aria-label="Close popup"
               >
-                <XCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white/95" />
+                <XCircle className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-white/90" />
               </button>
             </div>
           </div>
