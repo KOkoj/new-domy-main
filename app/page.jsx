@@ -1316,7 +1316,7 @@ export default function HomePage() {
       <Navigation />
 
       {/* Intro Section - Not a Real Estate Agency */}
-        <section className="bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10 pt-28 sm:pt-32 md:pt-36 pb-6 sm:pb-10 overflow-hidden">
+        <section className="bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10 pt-36 sm:pt-32 md:pt-36 pb-6 sm:pb-10 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Side - Text Content */}
@@ -1338,7 +1338,7 @@ export default function HomePage() {
                      'With a clear process.'}
                    </span>
                  </h1>
-                <div className="pt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <div className="pt-6 sm:pt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <Link href="/process">
                     <Button
                       className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl w-full sm:w-auto inline-flex items-center justify-center text-center leading-tight"
@@ -1674,10 +1674,10 @@ export default function HomePage() {
         <div className="mb-12 sm:mb-16 mt-4 sm:mt-6">
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-8" data-testid="why-italy-different-grid">
             {/* Card 1 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-blue-200 shadow-xl bg-gradient-to-br from-blue-50 to-white rounded-2xl flex flex-col h-full min-h-[250px] sm:min-h-[320px]">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-blue-200 shadow-xl bg-gradient-to-br from-blue-50 to-white rounded-2xl flex flex-col h-full min-h-[220px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.75rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.5rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '🧾 Italský systém je jiný' :
                      language === 'it' ? '🧾 Il sistema italiano funziona diversamente.' :
                      '🧾 The Italian system is different'}
@@ -1701,10 +1701,10 @@ export default function HomePage() {
             </Card>
 
             {/* Card 2 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[250px] sm:min-h-[320px]">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[220px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.75rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.5rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '💰 Cena není všechno' :
                      language === 'it' ? '💰 Il prezzo non è tutto' :
                      '💰 Price is not everything'}
@@ -1728,10 +1728,10 @@ export default function HomePage() {
             </Card>
 
             {/* Card 3 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[250px] sm:min-h-[320px]">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[220px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.75rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.5rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '⚠️ Nejčastější chyby Čechů' :
                      language === 'it' ? '⚠️ Errori più comuni dei cechi' :
                      '⚠️ Most common mistakes by Czechs'}
@@ -1755,10 +1755,10 @@ export default function HomePage() {
             </Card>
 
             {/* Card 4 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[250px] sm:min-h-[320px]">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[220px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.75rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.5rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '📍 Region rozhoduje' :
                      language === 'it' ? '📍 La regione fa la differenza' :
                      '📍 Region matters'}
@@ -1782,10 +1782,10 @@ export default function HomePage() {
             </Card>
 
             {/* Card 5 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[250px] sm:min-h-[320px]">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[220px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.75rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.5rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '❓ Časté otázky' :
                      language === 'it' ? '❓ Domande frequenti' :
                      '❓ Frequently asked questions'}
@@ -1843,57 +1843,57 @@ export default function HomePage() {
             {/* Premium Card - Takes 1 column on large screens */}
             <div className="lg:col-span-1">
               <GlareCard 
-                className="flex flex-col items-center justify-center p-5 sm:p-8 bg-gradient-to-br from-slate-900 to-slate-800 h-full"
+                className="flex flex-col items-center justify-center p-4 sm:p-8 bg-gradient-to-br from-slate-900 to-slate-800 h-full"
                 onClick={() => {
                   window.location.href = '/dashboard';
                 }}
               >
-                <div className="text-center space-y-6">
+                <div className="text-center space-y-4 sm:space-y-6">
                   <div className="flex items-center justify-center mx-auto">
-                    <img src="/logo domy.svg" alt="Logo" className="h-16 w-16" />
+                    <img src="/logo domy.svg" alt="Logo" className="h-14 w-14 sm:h-16 sm:w-16" />
                   </div>
                   
                   <div>
-                    <h4 className="text-2xl font-bold mb-2" style={{ color: '#c48759' }}>
+                    <h4 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2" style={{ color: '#c48759' }}>
                       {language === 'cs' ? 'Premium' :
                        language === 'it' ? 'Premium' :
                        'Premium'}
                     </h4>
-                    <p className="text-gray-300 text-base">
+                    <p className="text-gray-300 text-sm sm:text-base">
                       {language === 'cs' ? 'Exkluzivní členství' :
                        language === 'it' ? 'Membri esclusivi' :
                        'Exclusive Membership'}
                     </p>
                   </div>
 
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-3">
-                      <Check className="h-5 w-5 text-slate-600" />
-                      <span className="text-base" style={{ color: '#c48759' }}>
+                  <div className="space-y-2 sm:space-y-3">
+                    <div className="flex items-center space-x-2.5 sm:space-x-3">
+                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" />
+                      <span className="text-sm sm:text-base" style={{ color: '#c48759' }}>
                         {language === 'cs' ? 'Personalizované vyhledávání' :
                          language === 'it' ? 'Ricerca personalizzata' :
                          'Personalized search'}
                       </span>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <Check className="h-5 w-5 text-slate-600" />
-                      <span className="text-base" style={{ color: '#c48759' }}>
+                    <div className="flex items-center space-x-2.5 sm:space-x-3">
+                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" />
+                      <span className="text-sm sm:text-base" style={{ color: '#c48759' }}>
                         {language === 'cs' ? 'Privátní dashboard' :
                          language === 'it' ? 'Dashboard privata' :
                          'Private dashboard'}
                       </span>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <Check className="h-5 w-5 text-slate-600" />
-                      <span className="text-base" style={{ color: '#c48759' }}>
+                    <div className="flex items-center space-x-2.5 sm:space-x-3">
+                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" />
+                      <span className="text-sm sm:text-base" style={{ color: '#c48759' }}>
                         {language === 'cs' ? 'Prioritní komunikace' :
                          language === 'it' ? 'Comunicazione prioritaria' :
                          'Priority communication'}
                       </span>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <Check className="h-5 w-5 text-slate-600" />
-                      <span className="text-base" style={{ color: '#c48759' }}>
+                    <div className="flex items-center space-x-2.5 sm:space-x-3">
+                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" />
+                      <span className="text-sm sm:text-base" style={{ color: '#c48759' }}>
                         {language === 'cs' ? 'Prémiový obsah' :
                          language === 'it' ? 'Contenuti premium' :
                          'Premium content'}
@@ -1901,8 +1901,8 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="pt-4">
-                    <div className="text-3xl font-bold mb-1" style={{ color: '#c48759' }}>
+                  <div className="pt-2 sm:pt-4">
+                    <div className="text-2xl sm:text-3xl font-bold mb-1" style={{ color: '#c48759' }}>
                       {language === 'cs' ? 'ZDARMA' :
                        language === 'it' ? 'GRATIS' :
                        'FREE'}
@@ -1937,7 +1937,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 snap-x snap-mandatory">
+              <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 snap-x snap-mandatory">
                 {[
                   {
                     title: {
@@ -1990,7 +1990,7 @@ export default function HomePage() {
                 ].map((article, index) => (
                   <div 
                     key={index} 
-                    className={`${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''} cursor-pointer min-w-[250px] sm:min-w-0 snap-start`}
+                    className={`${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''} cursor-pointer min-w-[220px] sm:min-w-0 snap-start`}
                     onClick={() => {
                       if (user) {
                         window.location.href = article.link
@@ -2000,7 +2000,7 @@ export default function HomePage() {
                     }}
                   >
                     <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-700 h-full relative group">
-                      <div className="aspect-video relative overflow-hidden">
+                      <div className="aspect-[4/3] sm:aspect-video relative overflow-hidden">
                         <img 
                           src={article.image} 
                           alt={article.title[language]} 
@@ -3399,6 +3399,7 @@ export default function HomePage() {
     </div>
   )
 }
+
 
 
 

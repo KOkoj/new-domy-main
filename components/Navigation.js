@@ -157,21 +157,20 @@ export default function Navigation() {
       }} 
       data-testid="navigation-component"
     >
-      <div className={`container mx-auto px-4 overflow-visible transition-all duration-300 ${isScrolled ? 'pt-2 pb-1.5' : 'pt-4 pb-2'}`} data-testid="nav-container">
+      <div className={`container mx-auto px-4 overflow-visible transition-all duration-300 ${isScrolled ? 'pt-2 pb-1.5' : 'pt-3 pb-2 sm:pt-4 sm:pb-2'}`} data-testid="nav-container">
         <div className="flex items-center justify-between" data-testid="nav-content">
           <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-8" data-testid="nav-brand-links">
             <Link href="/" data-testid="nav-brand-link" className="relative overflow-visible">
               <img 
                 src="/logo domy.svg" 
                 alt="Domy v Italii"
-                className={`w-auto cursor-pointer absolute top-0 left-0 z-30 transition-all duration-500 ease-out ${isScrolled ? 'h-16 md:h-24' : 'h-20 md:h-32'}`}
+                className={`w-auto cursor-pointer z-30 transition-all duration-500 ease-out relative sm:absolute top-0 left-0 ${isScrolled ? 'h-12 sm:h-16 md:h-24' : 'h-14 sm:h-20 md:h-32'}`}
                 style={{ 
-                  transform: 'translateY(-2px)',
                   filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))'
                 }}
                 data-testid="nav-brand-logo"
               />
-              <div className="h-12 w-24"></div>
+              <div className="hidden sm:block h-12 w-24"></div>
             </Link>
             <div className="hidden lg:flex items-center space-x-0.5 xl:space-x-1" data-testid="nav-desktop-links">
               {[
