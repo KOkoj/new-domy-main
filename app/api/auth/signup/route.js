@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import emailService from '@/lib/emailService'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -74,6 +75,27 @@ export async function POST(request) {
       return applyCookies(
         NextResponse.json({ error: error.message }, { status })
       )
+    }
+
+    // Send welcome email after successful signup without blocking registration flow.
+    // Supabase may return an obfuscated user on duplicate signups in some configurations
+    // (identities can be empty), so avoid sending in that case.
+    const isLikelyNewUser =
+      !Array.isArray(data?.user?.identities) || data.user.identities.length > 0
+
+    if (isLikelyNewUser && data?.user?.email) {
+      try {
+        const displayName =
+          (typeof data.user.user_metadata?.name === 'string' && data.user.user_metadata.name.trim()) ||
+          name
+
+        await emailService.sendWelcomeEmail({
+          userEmail: data.user.email,
+          userName: displayName || 'there'
+        })
+      } catch (emailError) {
+        console.error('[SIGNUP] Welcome email failed:', emailError?.message || emailError)
+      }
     }
 
     return applyCookies(

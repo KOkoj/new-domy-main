@@ -60,7 +60,7 @@ async function getSupabaseClient() {
 async function readLocalPropertiesFromJson() {
   try {
     const raw = await fs.readFile(LOCAL_PROPERTIES_PATH, 'utf8')
-    const parsed = JSON.parse(raw)
+    const parsed = JSON.parse(raw.replace(/^\uFEFF/, ''))
     return Array.isArray(parsed) ? parsed : []
   } catch {
     return []

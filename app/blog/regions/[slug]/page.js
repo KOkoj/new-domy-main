@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useParams } from 'next/navigation'
 import { ArrowLeft, Calendar, User, Clock, Share2, Heart, BookOpen, MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -96,7 +97,9 @@ const REGION_BLOG_DATA = {
   }
 }
 
-export default function RegionBlogPage({ params }) {
+export default function RegionBlogPage() {
+  const params = useParams()
+  const slug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug
   const [language, setLanguage] = useState('en')
   const [isLiked, setIsLiked] = useState(false)
   const [blogData, setBlogData] = useState(null)
@@ -105,17 +108,19 @@ export default function RegionBlogPage({ params }) {
     const savedLanguage = localStorage.getItem('preferred-language') || 'en'
     setLanguage(savedLanguage)
     
-    if (REGION_BLOG_DATA[params.slug]) {
-      setBlogData(REGION_BLOG_DATA[params.slug])
+    if (slug && REGION_BLOG_DATA[slug]) {
+      setBlogData(REGION_BLOG_DATA[slug])
     }
-  }, [params.slug])
+  }, [slug])
 
   if (!blogData) {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <div className="container mx-auto px-4 py-20 text-center">
-          <h1 className="text-2xl font-bold text-gray-900">Blog post not found</h1>
+          <h1 className="text-2xl font-bold text-gray-900">
+            Blog post not found
+          </h1>
           <Link href="/regions">
             <Button className="mt-4">Back to Regions</Button>
           </Link>
@@ -132,17 +137,26 @@ export default function RegionBlogPage({ params }) {
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
-            {/* Breadcrumb */}
-            <div className="flex items-center text-sm text-gray-600 mb-6">
-              <Link href="/regions" className="hover:text-blue-600 transition-colors">
-                Regions
+            {/* Breadcrumb + Back to Articles */}
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
+              <div className="flex items-center text-sm text-gray-600">
+                <Link href="/regions" className="hover:text-blue-600 transition-colors">
+                  Regions
+                </Link>
+                <span className="mx-2">/</span>
+                <Link href={`/properties?region=${slug || ''}`} className="hover:text-blue-600 transition-colors">
+                  {(slug || '').charAt(0).toUpperCase() + (slug || '').slice(1)}
+                </Link>
+                <span className="mx-2">/</span>
+                <span className="text-gray-900">Blog</span>
+              </div>
+              <Link
+                href="/blog"
+                className="inline-flex items-center text-sm font-semibold text-slate-700 hover:text-slate-900 border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2 transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                {language === 'cs' ? 'Zpět na články' : language === 'it' ? 'Torna agli articoli' : 'Back to articles'}
               </Link>
-              <span className="mx-2">/</span>
-              <Link href={`/properties?region=${params.slug}`} className="hover:text-blue-600 transition-colors">
-                {params.slug.charAt(0).toUpperCase() + params.slug.slice(1)}
-              </Link>
-              <span className="mx-2">/</span>
-              <span className="text-gray-900">Blog</span>
             </div>
 
             {/* Article Meta */}
@@ -260,7 +274,7 @@ export default function RegionBlogPage({ params }) {
                language === 'it' ? 'Esplora le proprietà in questa regione' :
                'Explore properties in this region'}
             </p>
-            <Link href={`/properties?region=${params.slug}`}>
+            <Link href={`/properties?region=${slug || ''}`}>
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-4">
                 <BookOpen className="h-5 w-5 mr-2" />
                 {language === 'cs' ? 'Prohlédnout nemovitosti' : 

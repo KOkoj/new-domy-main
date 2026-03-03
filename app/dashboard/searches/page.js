@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -208,7 +208,7 @@ export default function SavedSearchesManagement() {
     if (filters.location) parts.push(filters.location)
     if (filters.minPrice || filters.maxPrice) {
       const min = filters.minPrice ? `€${parseInt(filters.minPrice).toLocaleString()}` : '0'
-      const max = filters.maxPrice ? `€${parseInt(filters.maxPrice).toLocaleString()}` : '∞'
+      const max = filters.maxPrice ? `€${parseInt(filters.maxPrice).toLocaleString()}` : '€'
       parts.push(`${min} - ${max}`)
     }
     if (filters.bedrooms) parts.push(`${filters.bedrooms}+ beds`)

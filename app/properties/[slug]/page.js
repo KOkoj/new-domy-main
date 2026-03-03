@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Heart, MapPin, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, User } from 'lucide-react'
+import { useParams } from 'next/navigation'
+import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -178,7 +179,9 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
   )
 }
 
-export default function PropertyDetailPage({ params }) {
+export default function PropertyDetailPage() {
+  const routeParams = useParams()
+  const slugParam = Array.isArray(routeParams?.slug) ? routeParams.slug[0] : routeParams?.slug
   const [property, setProperty] = useState(null)
   const [loading, setLoading] = useState(true)
   const [isFavorited, setIsFavorited] = useState(false)
@@ -187,7 +190,9 @@ export default function PropertyDetailPage({ params }) {
   const [currency, setCurrency] = useState('EUR')
 
   useEffect(() => {
-    loadProperty()
+    if (slugParam) {
+      loadProperty(slugParam)
+    }
 
     // Load saved language preference
     const savedLanguage = localStorage.getItem('preferred-language')
@@ -232,12 +237,11 @@ export default function PropertyDetailPage({ params }) {
       window.removeEventListener('languageChange', handleLanguageChange)
       window.removeEventListener('storage', handleStorageChange)
     }
-  }, [params.slug])
+  }, [slugParam])
 
-  const loadProperty = async () => {
+  const loadProperty = async (slug) => {
     try {
       setLoading(true)
-      const slug = params.slug
       
       // Try to fetch from Sanity API first
       try {
@@ -391,6 +395,25 @@ export default function PropertyDetailPage({ params }) {
       </div>
     )
   }
+
+  const specifications = property.specifications || {}
+  const localizedAddress = getLocalizedText(property.location?.address, '')
+  const localizedCity = getLocalizedText(property.location?.city?.name, '')
+  const fallbackLocation = language === 'cs'
+    ? 'Lokalita neuvedena'
+    : language === 'it'
+    ? 'Posizione non specificata'
+    : 'Location not specified'
+  const locationText = localizedAddress || localizedCity || fallbackLocation
+  const hasLocation = Boolean(localizedAddress || localizedCity)
+  const mapsQuery = hasLocation
+    ? [localizedAddress, localizedCity, 'Italy']
+        .filter((value, index, array) => value && array.indexOf(value) === index)
+        .join(', ')
+    : ''
+  const googleMapsUrl = mapsQuery
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapsQuery)}`
+    : ''
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -588,9 +611,18 @@ export default function PropertyDetailPage({ params }) {
                   </h1>
                   <div className="flex items-center text-gray-600">
                     <MapPin className="h-4 w-4 mr-1" />
-                    {getLocalizedText(property.location?.address) || 
-                     getLocalizedText(property.location?.city?.name) || 
-                     'Location not specified'}
+                    {googleMapsUrl ? (
+                      <a
+                        href={googleMapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline decoration-dotted underline-offset-2 hover:text-blue-600 transition-colors"
+                      >
+                        {locationText}
+                      </a>
+                    ) : (
+                      <span>{locationText}</span>
+                    )}
                   </div>
                 </div>
                 <div className="text-right">
@@ -621,30 +653,37 @@ export default function PropertyDetailPage({ params }) {
             />
 
             {/* Property Details */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <div className="text-center p-4 bg-white rounded-lg border">
+                <Home className="h-6 w-6 mx-auto mb-2 text-blue-600" />
+                <div className="text-2xl font-bold">{specifications.rooms || specifications.bedrooms || 0}</div>
+                <div className="text-sm text-gray-600">
+                  {language === 'cs' ? 'Mistnosti' : language === 'it' ? 'Locali' : 'Rooms'}
+                </div>
+              </div>
               <div className="text-center p-4 bg-white rounded-lg border">
                 <Bed className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                <div className="text-2xl font-bold">{property.specifications.bedrooms}</div>
+                <div className="text-2xl font-bold">{specifications.bedrooms || 0}</div>
                 <div className="text-sm text-gray-600">
                   {language === 'cs' ? 'Ložnice' : language === 'it' ? 'Camere' : 'Bedrooms'}
                 </div>
               </div>
               <div className="text-center p-4 bg-white rounded-lg border">
                 <Bath className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                <div className="text-2xl font-bold">{property.specifications.bathrooms}</div>
+                <div className="text-2xl font-bold">{specifications.bathrooms || 0}</div>
                 <div className="text-sm text-gray-600">
                   {language === 'cs' ? 'Koupelny' : language === 'it' ? 'Bagni' : 'Bathrooms'}
                 </div>
               </div>
               <div className="text-center p-4 bg-white rounded-lg border">
                 <Square className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                <div className="text-2xl font-bold">{property.specifications.squareFootage}</div>
+                <div className="text-2xl font-bold">{specifications.squareFootage || 0}</div>
                 <div className="text-sm text-gray-600">m²</div>
               </div>
-              {property.specifications.parking && (
+              {specifications.parking && (
                 <div className="text-center p-4 bg-white rounded-lg border">
                   <Car className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                  <div className="text-2xl font-bold">{property.specifications.parking}</div>
+                  <div className="text-2xl font-bold">{specifications.parking}</div>
                   <div className="text-sm text-gray-600">
                     {language === 'cs' ? 'Parkování' : language === 'it' ? 'Parcheggio' : 'Parking'}
                   </div>
@@ -696,28 +735,28 @@ export default function PropertyDetailPage({ params }) {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-4">
-                  {property.specifications.yearBuilt && (
+                  {specifications.yearBuilt && (
                     <div>
                       <span className="text-sm text-gray-600">
                         {language === 'cs' ? 'Rok výstavby:' : language === 'it' ? 'Anno di costruzione:' : 'Year Built:'}
                       </span>
-                      <span className="ml-2 font-medium">{property.specifications.yearBuilt}</span>
+                      <span className="ml-2 font-medium">{specifications.yearBuilt}</span>
                     </div>
                   )}
-                  {property.specifications.renovated && (
+                  {specifications.renovated && (
                     <div>
                       <span className="text-sm text-gray-600">
                         {language === 'cs' ? 'Rekonstrukce:' : language === 'it' ? 'Ristrutturato:' : 'Renovated:'}
                       </span>
-                      <span className="ml-2 font-medium">{property.specifications.renovated}</span>
+                      <span className="ml-2 font-medium">{specifications.renovated}</span>
                     </div>
                   )}
-                  {property.specifications.lotSize && (
+                  {specifications.lotSize && (
                     <div>
                       <span className="text-sm text-gray-600">
                         {language === 'cs' ? 'Velikost pozemku:' : language === 'it' ? 'Dimensione lotto:' : 'Lot Size:'}
                       </span>
-                      <span className="ml-2 font-medium">{property.specifications.lotSize.toLocaleString()} m²</span>
+                      <span className="ml-2 font-medium">{Number(specifications.lotSize).toLocaleString()} m²</span>
                     </div>
                   )}
                   <div>

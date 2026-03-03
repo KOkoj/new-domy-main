@@ -1,10 +1,10 @@
-﻿'use client'
+'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Lenis from 'lenis'
-import { Heart, Search, MapPin, ChevronRight, ChevronDown, Eye, Bed, Bath, Square, Car, Phone, Crown, Gem, Target, Shield, Check, Scale, Globe, Lock, XCircle } from 'lucide-react'
+import { Heart, Search, MapPin, ChevronRight, ChevronDown, Eye, Bed, Bath, Square, Car, Phone, Mail, MessageCircle, Crown, Gem, Target, Shield, Check, Plane, Globe, Lock, XCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
@@ -287,14 +287,13 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency })
           
           {/* Specifications - simplified text only */}
           <div className="flex items-center justify-between pt-3 border-t border-gray-100 text-base text-gray-600 group-hover:text-gray-700 transition-colors duration-300" data-testid="property-specifications">
+            {(property.specifications.rooms || property.specifications.bedrooms) && (
+              <span className="font-semibold" data-testid="rooms-count">{property.specifications.rooms || property.specifications.bedrooms} {t('property.rooms', language)}</span>
+            )}
             {property.specifications.bedrooms && (
               <span className="font-semibold" data-testid="bedrooms-count">{property.specifications.bedrooms} {t('property.beds', language)}</span>
             )}
-            
-          {property.specifications.bathrooms && (
-              <span className="font-semibold" data-testid="bathrooms-count">{property.specifications.bathrooms} {t('property.baths', language)}</span>
-          )}
-            
+
           {property.specifications.squareFootage && (
               <span className="font-semibold" data-testid="square-footage-count">{property.specifications.squareFootage} m²</span>
             )}
@@ -542,6 +541,7 @@ function SearchFilters({ filters, onFilterChange, language }) {
 }
 
 export default function HomePage() {
+  const SHOW_HOME_ARCHIVED_SECTIONS = false
   const [properties, setProperties] = useState([])
   
   // Background images for hero section
@@ -573,6 +573,7 @@ export default function HomePage() {
   const [startAnimations, setStartAnimations] = useState(false)
   
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const [postAuthRedirect, setPostAuthRedirect] = useState('')
 
   useEffect(() => {
     // Load saved language preference
@@ -745,11 +746,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Abruzzo',
         cs: 'Kompletní průvodce nákupem v Abruzzu',
-        it: 'Guida Completa all\'Acquisto in Abruzzo'
+        it: 'Guida completa all\'acquisto in Abruzzo'
       },
       description: {
         en: 'Discover the mountains, coastlines, and medieval villages of Abruzzo. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte hory, pobřeží a středověké vesnice Abruzza. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Objevte hory, pobřeží a středověké vesnice Abruzza. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri le montagne, le coste e i villaggi medievali dell\'Abruzzo. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -759,11 +760,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Basilicata',
         cs: 'Kompletní průvodce nákupem v Basilicatě',
-        it: 'Guida Completa all\'Acquisto in Basilicata'
+        it: 'Guida completa all\'acquisto in Basilicata'
       },
       description: {
         en: 'Explore the ancient landscapes and historic towns of Basilicata. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte starobylé krajiny a historická města Basilicaty. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Prozkoumejte starobylé krajiny a historická města Basilicaty. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora i paesaggi antichi e le città storiche della Basilicata. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -773,11 +774,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Calabria',
         cs: 'Kompletní průvodce nákupem v Kalábrii',
-        it: 'Guida Completa all\'Acquisto in Calabria'
+        it: 'Guida completa all\'acquisto in Calabria'
       },
       description: {
         en: 'Discover the pristine beaches and mountain villages of Calabria. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte nedotčené pláže a horské vesnice Kalábrie. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Objevte nedotčené pláže a horské vesnice Kalábrie. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri le spiagge incontaminate e i villaggi montani della Calabria. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -787,11 +788,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Campania',
         cs: 'Kompletní průvodce nákupem v Kampánii',
-        it: 'Guida Completa all\'Acquisto in Campania'
+        it: 'Guida completa all\'acquisto in Campania'
       },
       description: {
         en: 'Explore the Amalfi Coast, Naples, and historic sites of Campania. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte pobřeží Amalfi, Neapol a historická místa Kampánie. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Prozkoumejte pobřeží Amalfi, Neapol a historická místa Kampánie. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora la Costiera Amalfitana, Napoli e i siti storici della Campania. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -801,11 +802,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Emilia-Romagna',
         cs: 'Kompletní průvodce nákupem v Emilia-Romagna',
-        it: 'Guida Completa all\'Acquisto in Emilia-Romagna'
+        it: 'Guida completa all\'acquisto in Emilia-Romagna'
       },
       description: {
         en: 'Discover the culinary capital, historic cities, and rolling hills of Emilia-Romagna. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte kulinářské hlavní město, historická města a zvlněné kopce Emilia-Romagna. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Objevte kulinářské hlavní město, historická města a zvlněné kopce Emilia-Romagna. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri la capitale culinaria, le città storiche e le dolci colline dell\'Emilia-Romagna. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -815,11 +816,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Friuli-Venezia Giulia',
         cs: 'Kompletní průvodce nákupem v Friuli-Venezia Giulia',
-        it: 'Guida Completa all\'Acquisto in Friuli-Venezia Giulia'
+        it: 'Guida completa all\'acquisto in Friuli-Venezia Giulia'
       },
       description: {
         en: 'Explore the crossroads of cultures, mountains, and coastline in Friuli-Venezia Giulia. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte křižovatku kultur, hor a pobřeží ve Friuli-Venezia Giulia. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Prozkoumejte křižovatku kultur, hor a pobřeží ve Friuli-Venezia Giulia. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora il crocevia di culture, montagne e costa nel Friuli-Venezia Giulia. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -829,11 +830,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Lazio',
         cs: 'Kompletní průvodce nákupem v Laziu',
-        it: 'Guida Completa all\'Acquisto nel Lazio'
+        it: 'Guida completa all\'acquisto nel Lazio'
       },
       description: {
         en: 'Discover Rome, ancient history, and beautiful countryside in Lazio. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte Řím, starověkou historii a krásný venkov v Laziu. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Objevte Řím, starověkou historii a krásný venkov v Laziu. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri Roma, la storia antica e la bellissima campagna nel Lazio. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -843,11 +844,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Liguria',
         cs: 'Kompletní průvodce nákupem v Ligurii',
-        it: 'Guida Completa all\'Acquisto in Liguria'
+        it: 'Guida completa all\'acquisto in Liguria'
       },
       description: {
         en: 'Explore the Italian Riviera, colorful villages, and Mediterranean coastline in Liguria. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte italskou riviéru, barevné vesnice a středomořské pobřeží v Ligurii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Prozkoumejte italskou riviéru, barevné vesnice a středomořské pobřeží v Ligurii. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora la Riviera Italiana, i villaggi colorati e la costa mediterranea in Liguria. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -857,11 +858,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Lombardy',
         cs: 'Kompletní průvodce nákupem v Lombardii',
-        it: 'Guida Completa all\'Acquisto in Lombardia'
+        it: 'Guida completa all\'acquisto in Lombardia'
       },
       description: {
         en: 'Discover Milan, Lake Como, and the economic heart of Italy in Lombardy. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte Milán, Lago di Como a ekonomické srdce Itálie v Lombardii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Objevte Milán, Lago di Como a ekonomické srdce Itálie v Lombardii. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri Milano, il Lago di Como e il cuore economico dell\'Italia in Lombardia. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -871,11 +872,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Marche',
         cs: 'Kompletní průvodce nákupem v Marche',
-        it: 'Guida Completa all\'Acquisto nelle Marche'
+        it: 'Guida completa all\'acquisto nelle Marche'
       },
       description: {
         en: 'Explore the hidden gem with Adriatic coast and medieval towns in Marche. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte skrytý klenot s pobřežím Jaderského moře a středověkými městy v Marche. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Prozkoumejte skrytý klenot s pobřežím Jaderského moře a středověkými městy v Marche. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora la gemma nascosta con costa adriatica e città medievali nelle Marche. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -885,11 +886,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Molise',
         cs: 'Kompletní průvodce nákupem v Molise',
-        it: 'Guida Completa all\'Acquisto in Molise'
+        it: 'Guida completa all\'acquisto in Molise'
       },
       description: {
         en: 'Discover the smallest region with authentic Italian charm in Molise. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte nejmenší region s autentickým italským kouzlem v Molise. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Objevte nejmenší region s autentickým italským kouzlem v Molise. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri la regione più piccola con il fascino italiano autentico in Molise. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -899,11 +900,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Piedmont',
         cs: 'Kompletní průvodce nákupem v Piemontu',
-        it: 'Guida Completa all\'Acquisto in Piemonte'
+        it: 'Guida completa all\'acquisto in Piemonte'
       },
       description: {
         en: 'Explore the wine country, Alps, and elegant Turin in Piedmont. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte vinařskou oblast, Alpy a elegantní Turín v Piemontu. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Prozkoumejte vinařskou oblast, Alpy a elegantní Turín v Piemontu. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora la terra del vino, le Alpi e l\'elegante Torino in Piemonte. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -913,11 +914,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Puglia',
         cs: 'Kompletní průvodce nákupem v Puglii',
-        it: 'Guida Completa all\'Acquisto in Puglia'
+        it: 'Guida completa all\'acquisto in Puglia'
       },
       description: {
         en: 'Discover the heel of Italy with trulli houses and stunning coastline in Puglia. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte patu Itálie s domy trulli a úžasným pobřežím v Puglii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Objevte patu Itálie s domy trulli a úžasným pobřežím v Puglii. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri il tallone d\'Italia con le case trulli e la costa mozzafiato in Puglia. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -927,11 +928,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Sardinia',
         cs: 'Kompletní průvodce nákupem na Sardinii',
-        it: 'Guida Completa all\'Acquisto in Sardegna'
+        it: 'Guida completa all\'acquisto in Sardegna'
       },
       description: {
         en: 'Explore the Mediterranean island with pristine beaches and unique culture in Sardinia. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte středomořský ostrov s nedotčenými plážemi a jedinečnou kulturou na Sardinii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Prozkoumejte středomořský ostrov s nedotčenými plážemi a jedinečnou kulturou na Sardinii. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora l\'isola mediterranea con spiagge incontaminate e cultura unica in Sardegna. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -941,11 +942,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Sicily',
         cs: 'Kompletní průvodce nákupem na Sicílii',
-        it: 'Guida Completa all\'Acquisto in Sicilia'
+        it: 'Guida completa all\'acquisto in Sicilia'
       },
       description: {
         en: 'Discover the largest Mediterranean island with Mount Etna and ancient history in Sicily. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte největší středomořský ostrov s Etnou a starověkou historií na Sicílii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Objevte největší středomořský ostrov s Etnou a starověkou historií na Sicílii. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri la più grande isola mediterranea con l\'Etna e la storia antica in Sicilia. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -955,11 +956,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Tuscany',
         cs: 'Kompletní průvodce nákupem v Toskánsku',
-        it: 'Guida Completa all\'Acquisto in Toscana'
+        it: 'Guida completa all\'acquisto in Toscana'
       },
       description: {
         en: 'Discover the rolling hills, vineyards, and historic cities of Tuscany. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte zvlněné kopce, vinice a historická města Toskánska. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Objevte zvlněné kopce, vinice a historická města Toskánska. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri le dolci colline, i vigneti e le città storiche della Toscana. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -969,11 +970,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Trentino-Alto Adige',
         cs: 'Kompletní průvodce nákupem v Trentino-Alto Adige',
-        it: 'Guida Completa all\'Acquisto in Trentino-Alto Adige'
+        it: 'Guida completa all\'acquisto in Trentino-Alto Adige'
       },
       description: {
         en: 'Explore the Dolomites, alpine lakes, and unique dual culture in Trentino-Alto Adige. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte Dolomity, alpská jezera a jedinečnou dvojí kulturu v Trentino-Alto Adige. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Prozkoumejte Dolomity, alpská jezera a jedinečnou dvojí kulturu v Trentino-Alto Adige. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora le Dolomiti, i laghi alpini e la cultura duale unica in Trentino-Alto Adige. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -983,11 +984,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Umbria',
         cs: 'Kompletní průvodce nákupem v Umbrii',
-        it: 'Guida Completa all\'Acquisto in Umbria'
+        it: 'Guida completa all\'acquisto in Umbria'
       },
       description: {
         en: 'Discover the green heart of Italy with medieval hill towns in Umbria. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte zelené srdce Itálie se středověkými městy na kopcích v Umbrii. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Objevte zelené srdce Itálie se středověkými městy na kopcích v Umbrii. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri il cuore verde d\'Italia con le città medievali sui colli in Umbria. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -997,11 +998,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Valle d\'Aosta',
         cs: 'Kompletní průvodce nákupem v Valle d\'Aosta',
-        it: 'Guida Completa all\'Acquisto in Valle d\'Aosta'
+        it: 'Guida completa all\'acquisto in Valle d\'Aosta'
       },
       description: {
         en: 'Explore the smallest region with highest peaks and alpine charm in Valle d\'Aosta. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Prozkoumejte nejmenší region s nejvyššími vrcholy a alpským kouzlem v Valle d\'Aosta. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Prozkoumejte nejmenší region s nejvyššími vrcholy a alpským kouzlem v Valle d\'Aosta. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Esplora la regione più piccola con le vette più alte e il fascino alpino in Valle d\'Aosta. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -1011,11 +1012,11 @@ export default function HomePage() {
       title: {
         en: 'Complete Guide to Buying in Veneto',
         cs: 'Kompletní průvodce nákupem v Benátsku',
-        it: 'Guida Completa all\'Acquisto in Veneto'
+        it: 'Guida completa all\'acquisto in Veneto'
       },
       description: {
         en: 'Discover Venice, Verona, and the diverse landscapes of Veneto. Learn about property prices, legal requirements, and the best areas to invest.',
-        cs: 'Objevte Benátky, Veronu a rozmanité krajiny Benátska. Zjistěte o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
+        cs: 'Objevte Benátky, Veronu a rozmanité krajiny Benátska. Zjistěte více o cenách nemovitostí, právních požadavcích a nejlepších oblastech k investici.',
         it: 'Scopri Venezia, Verona e i paesaggi diversi del Veneto. Impara sui prezzi immobiliari, requisiti legali e le migliori aree in cui investire.'
       },
       image: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -1028,11 +1029,11 @@ export default function HomePage() {
       title: {
         en: 'Villa vs House: Which is Right for You?',
         cs: 'Vila vs dům: Co je pro vás to pravé?',
-        it: 'Villa vs Casa: Quale è Giusto per Te?'
+        it: 'Villa vs casa: quale è giusto per te?'
       },
       description: {
         en: 'Learn the key differences between Italian villas and houses. From architectural styles to investment potential, make an informed decision.',
-        cs: 'Poznejte klíčové rozdíly mezi italskými vilami a domy. Od architektonických stylů po investiční potenciál, učinit informované rozhodnutí.',
+        cs: 'Poznejte klíčové rozdíly mezi italskými vilami a domy. Od architektonických stylů po investiční potenciál udělejte informované rozhodnutí.',
         it: 'Impara le principali differenze tra ville e case italiane. Dagli stili architettonici al potenziale di investimento, prendi una decisione informata.'
       },
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -1042,11 +1043,11 @@ export default function HomePage() {
       title: {
         en: 'Restoring Italian Farmhouses: A Complete Guide',
         cs: 'Obnova italských statků: Kompletní průvodce',
-        it: 'Ristrutturare le Masserie Italiane: Una Guida Completa'
+        it: 'Ristrutturare le masserie italiane: una guida completa'
       },
       description: {
         en: 'Transform a traditional farmhouse into your dream home. Learn about restoration costs, permits, and the charm of rural Italian living.',
-        cs: 'Proměňte tradiční statek ve svůj vysněný domov. Zjistěte o nákladech na rekonstrukci, povoleních a kouzlu venkovského italského života.',
+        cs: 'Proměňte tradiční statek ve svůj vysněný domov. Zjistěte více o nákladech na rekonstrukci, povoleních a kouzlu venkovského italského života.',
         it: 'Trasforma una masseria tradizionale nella casa dei tuoi sogni. Impara sui costi di ristrutturazione, permessi e il fascino della vita rurale italiana.'
       },
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -1056,7 +1057,7 @@ export default function HomePage() {
       title: {
         en: 'Apartment Living in Italian Cities',
         cs: 'Bydlení v bytech v italských městech',
-        it: 'Vita in Appartamento nelle Città Italiane'
+        it: 'Vita in appartamento nelle città italiane'
       },
       description: {
         en: 'Discover the benefits of city living in Italy. From Milan to Florence, explore modern apartments and historic palazzos.',
@@ -1070,11 +1071,11 @@ export default function HomePage() {
       title: {
         en: 'Commercial Property in Italy: Investment Guide',
         cs: 'Komerční nemovitosti v Itálii: Investiční průvodce',
-        it: 'Immobili Commerciali in Italia: Guida agli Investimenti'
+        it: 'Immobili commerciali in Italia: guida agli investimenti'
       },
       description: {
         en: 'Explore commercial real estate opportunities. From restaurants to retail spaces, learn about Italy\'s business property market.',
-        cs: 'Prozkoumejte příležitosti komerčních nemovitostí. Od restaurací po maloobchodní prostory, zjistěte o italském trhu s obchodními nemovitostmi.',
+        cs: 'Prozkoumejte příležitosti komerčních nemovitostí. Od restaurací po maloobchodní prostory, zjistěte více o italském trhu s obchodními nemovitostmi.',
         it: 'Esplora le opportunità immobiliari commerciali. Dai ristoranti agli spazi retail, impara sul mercato immobiliare commerciale italiano.'
       },
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
@@ -1252,6 +1253,31 @@ export default function HomePage() {
     setUser(authUser)
     setIsAuthModalOpen(false)
     loadFavorites()
+
+    if (postAuthRedirect) {
+      const nextPath = postAuthRedirect
+      setPostAuthRedirect('')
+      window.location.href = nextPath
+    }
+  }
+
+  const handleAuthModalClose = () => {
+    setIsAuthModalOpen(false)
+    setPostAuthRedirect('')
+  }
+
+  const handleStartFinder = () => {
+    const targetPath = '/dashboard/intake-form'
+    if (user) {
+      window.location.href = targetPath
+      return
+    }
+    setPostAuthRedirect(targetPath)
+    setIsAuthModalOpen(true)
+  }
+
+  const handleBookCall = () => {
+    window.location.href = '/book-call'
   }
 
   return (
@@ -1288,6 +1314,139 @@ export default function HomePage() {
       
       {/* Navigation */}
       <Navigation />
+
+      {/* Intro Section - Not a Real Estate Agency */}
+        <section className="bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10 pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-10 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Left Side - Text Content */}
+            <div className="space-y-4 sm:space-y-6 animate-on-scroll slide-left">
+                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                  <span className="block">
+                    {language === 'cs' ? 'Pomáháme Čechům koupit dům v Itálii.' :
+                     language === 'it' ? 'Aiutiamo i cechi a comprare casa in Italia.' :
+                     'We help Czechs buy a home in Italy.'}
+                  </span>
+                  <span className="block text-xl sm:text-2xl md:text-4xl lg:text-5xl font-semibold text-slate-700 mt-2">
+                    {language === 'cs' ? 'Bez stresu.' :
+                     language === 'it' ? 'Senza stress.' :
+                     'Stress-free.'}
+                  </span>
+                  <span className="block text-xl sm:text-2xl md:text-4xl lg:text-5xl font-semibold text-slate-700">
+                    {language === 'cs' ? 'S jasným postupem.' :
+                     language === 'it' ? 'Con un percorso chiaro.' :
+                     'With a clear process.'}
+                   </span>
+                 </h1>
+                <div className="pt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  <Link href="/process">
+                    <Button
+                      className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl w-full sm:w-auto"
+                    >
+                      {language === 'cs' ? 'O našem procesu' :
+                       language === 'it' ? 'Sul nostro processo' :
+                       'About Our Process'}
+                    </Button>
+                  </Link>
+                  <Link href="/contact">
+                    <Button
+                      className="text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl w-full sm:w-auto"
+                      style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
+                    >
+                      {language === 'cs' ? 'Konzultace zdarma' :
+                       language === 'it' ? 'Consulenza gratuita' :
+                       'Free Consultation'}
+                    </Button>
+                  </Link>
+                </div>
+            </div>
+
+            {/* Right Side - Animated Image Tiles - Hidden on small mobile */}
+            <div className="hidden md:flex relative h-[400px] lg:h-[500px] items-center justify-center animate-on-scroll slide-right">
+              <ImageReveal
+                leftImage="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=800&q=80"
+                middleImage="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80"
+                rightImage="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section - merged under intro */}
+      <section className="pt-0 sm:pt-1 pb-16 sm:pb-20 bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-2">
+            {/* Step 1 */}
+            <div className="text-center group">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
+                <span className="text-2xl font-bold text-white">1</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                {language === 'cs' ? 'ZADÁNÍ & NABÍDKA' :
+                 language === 'it' ? 'ESIGENZE & PROPOSTA' :
+                 'BRIEF & PROPOSAL'}
+              </h3>
+              <p className="text-gray-600 text-base whitespace-pre-line">
+                {language === 'cs' ? 'Vy řeknete, co hledáte. My připravíme řešení.\nŘídíme proces a připravujeme nabídky.' :
+                 language === 'it' ? 'Voi ci dite cosa cercate. Noi prepariamo la soluzione.\nGestiamo il processo e prepariamo le proposte.' :
+                 'You tell us what you are looking for. We prepare the solution.\nWe manage the process and prepare the proposals.'}
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="text-center group">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
+                <span className="text-2xl font-bold text-white">2</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                {language === 'cs' ? 'Prohlédněte Všechny Nemovitosti' :
+                 language === 'it' ? 'Sfoglia Tutte le Proprietà' :
+                 'Browse All Properties'}
+              </h3>
+              <p className="text-gray-600 text-base whitespace-pre-line">
+                {language === 'cs' ? 'Procházejte naše rozsáhlé portfolio nemovitostí napříč všemi regiony Itálie.' :
+                 language === 'it' ? 'Sfoglia il nostro vasto portafoglio di proprietà in tutte le regioni d\'Italia.' :
+                 'Browse our extensive portfolio of properties across all Italian regions.'}
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="text-center group">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
+                <span className="text-2xl font-bold text-white">3</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                {language === 'cs' ? 'PODPIS & PŘEVOD' :
+                 language === 'it' ? 'FIRMA & TRASFERIMENTO' :
+                 'SIGNING & TRANSFER'}
+              </h3>
+              <p className="text-gray-600 text-base whitespace-pre-line">
+                {language === 'cs' ? 'My hlídáme formality. Vy podepisujete bez stresu.\nOrganizace podpisu, převod vlastnictví a zápis do katastru.' :
+                 language === 'it' ? 'Noi controlliamo le formalità. Voi firmate senza stress.\nOrganizzazione della firma, trasferimento di proprietà e registrazione catastale.' :
+                 'We handle the formalities. You sign without stress.\nSigning coordination, ownership transfer, and land registry filing.'}
+              </p>
+            </div>
+
+            {/* Step 4 */}
+            <div className="text-center group">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
+                <span className="text-2xl font-bold text-white">4</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                {language === 'cs' ? 'PÉČE PO KOUPI' :
+                 language === 'it' ? 'ASSISTENZA DOPO L\'ACQUISTO' :
+                 'POST-PURCHASE SUPPORT'}
+              </h3>
+              <p className="text-gray-600 text-base whitespace-pre-line">
+                {language === 'cs' ? 'Jsme s vámi i po koupi.\nDlouhodobá asistence v Itálii.' :
+                 language === 'it' ? 'Siamo con voi anche dopo l\'acquisto.\nAssistenza a lungo termine in Italia.' :
+                 'We stay with you even after the purchase.\nLong-term assistance in Italy.'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section 
@@ -1400,134 +1559,38 @@ export default function HomePage() {
               </div>
             </div>
             
-            {/* Quick Search Keywords - Enhanced Colors & Animations */}
+            {/* Quick Search Keywords */}
             <div 
               className="w-full max-w-2xl mx-auto mt-3 sm:mt-6 px-2 sm:px-0 hidden sm:block"
             >
               <div className="flex flex-wrap justify-center gap-1 sm:gap-1.5" data-testid="quick-search-keywords">
-                {/* Property Types - Luxury Theme */}
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '1.6s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('villa')}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
+                {[
+                  { label: 'Piscina', href: '/properties?amenity=pool' },
+                  { label: 'Giardino', href: '/properties?amenity=garden' },
+                  { label: 'Mare', href: '/properties?amenity=sea_view' },
+                  { label: 'Montagna', href: '/properties?search=mountain' }
+                ].map((keyword, index) => (
+                  <div
+                    key={keyword.label}
+                    className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`}
+                    style={{
+                      animationDelay: startAnimations ? `${1.6 + (index * 0.1)}s` : '0s',
+                      animationFillMode: 'forwards'
+                    }}
                   >
-                    {language === 'cs' ? 'Vila' : (language === 'it' ? 'Villa' : 'Villa')}
-                  </button>
-                </div>
-                
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '1.7s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('apartment')}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'Byt' : (language === 'it' ? 'Appartamento' : 'Apartment')}
-                  </button>
-                </div>
-                
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '1.8s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('house')}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'Dům' : (language === 'it' ? 'Casa' : 'House')}
-                  </button>
-                </div>
-                
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '1.9s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('penthouse')}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'Penthouse' : (language === 'it' ? 'Attico' : 'Penthouse')}
-                  </button>
-                </div>
-                
-                {/* Popular Locations - Luxury Theme */}
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.0s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('Tuscany')}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'Toskánsko' : (language === 'it' ? 'Toscana' : 'Tuscany')}
-                  </button>
-                </div>
-                
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.1s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('Liguria')}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'Ligurie' : (language === 'it' ? 'Liguria' : 'Liguria')}
-                  </button>
-                </div>
-                
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.2s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('Milan')}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'Milán' : (language === 'it' ? 'Milano' : 'Milan')}
-                  </button>
-                </div>
-                
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.3s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('Puglia')}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'Puglie' : (language === 'it' ? 'Puglia' : 'Puglia')}
-                  </button>
-                </div>
-                
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.4s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('Sicilia')}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'Sicílie' : (language === 'it' ? 'Sicilia' : 'Sicily')}
-                  </button>
-                </div>
-                
-                {/* Price & Style - Luxury Theme */}
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.5s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('luxury')}
-                    className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'Luxusní' : (language === 'it' ? 'Lusso' : 'Luxury')}
-                  </button>
-                </div>
-                
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.6s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('beachfront')}
-                    className="text-base font-medium text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'U moře' : (language === 'it' ? 'Sul mare' : 'Beachfront')}
-                  </button>
-                </div>
-                
-                {/* Features - Luxury Theme */}
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.7s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('pool')}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'Bazén' : (language === 'it' ? 'Piscina' : 'Pool')}
-                  </button>
-                </div>
-                
-                <div className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`} style={{ animationDelay: startAnimations ? '2.8s' : '0s', animationFillMode: 'forwards' }}>
-                  <button
-                    onClick={() => setSearchQuery('garden')}
-                    className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                  >
-                    {language === 'cs' ? 'Zahrada' : (language === 'it' ? 'Giardino' : 'Garden')}
-                  </button>
-                </div>
+                    <button
+                      onClick={() => {
+                        window.location.href = keyword.href
+                      }}
+                      className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
+                    >
+                      {keyword.label}
+                    </button>
+                  </div>
+                ))}
               </div>
             </div>
-            
+
             {/* Trust Indicators - Subtle & Elegant */}
             <div 
               className={`transition-all duration-700 w-full max-w-3xl mx-auto mt-6 sm:mt-16 px-2 sm:px-4 ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
@@ -1535,108 +1598,66 @@ export default function HomePage() {
                 transitionDelay: startAnimations ? '2.9s' : '0s'
               }}
             >
-              <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-2 sm:gap-4">
-                {/* Legal Partner */}
-                <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full sm:w-auto" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  <Scale className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
-                  <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-semibold text-white leading-tight">
-                      {language === 'cs' ? 'Právní Partner' :
-                       language === 'it' ? 'Partner Legale' :
-                       'Legal Partner'}
-                    </span>
-                    <span className="text-[10px] text-white/90 leading-tight">
-                      {language === 'cs' ? 'Certifikovaní Právníci' :
-                       language === 'it' ? 'Avvocati Certificati' :
-                       'Certified Lawyers'}
-                    </span>
+              <div className="w-full max-w-2xl mx-auto">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-2">
+                  <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full max-w-[240px] cursor-pointer" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }} onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}>
+                    <Plane className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-xs font-semibold text-white leading-tight">
+                        {language === 'cs' ? 'Turistický partner' :
+                         language === 'it' ? 'Partner turistico' :
+                         'Travel partner'}
+                      </span>
+                      <span className="text-[10px] text-white/90 leading-tight">
+                        GetYourGuide
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full max-w-[240px] cursor-pointer" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }} onClick={() => window.open('https://www.booking.com/?aid=1522416&label=affnetcj-15735418_pub-7711899_site-101629596_pname-Creavita+sro_clkid-_cjevent-07f8c85d05dc11f181b503200a18b8f8&utm_source=affnetcj&utm_medium=bannerindex&utm_campaign=gb&utm_term=index-15735418&chal_t=1770657801471&force_referer=http%3A%2F%2Flocalhost%3A3000%2F&lang=cs&soz=1&lang_changed=1', '_blank')}>
+                    <Globe className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-xs font-semibold text-white leading-tight">
+                        {language === 'cs' ? 'Objevte Itálii' :
+                         language === 'it' ? 'Scopri l\'Italia' :
+                         'Discover Italy'}
+                      </span>
+                      <span className="text-[10px] text-white/90 leading-tight">
+                        Booking.com
+                      </span>
+                    </div>
                   </div>
                 </div>
-                
-                {/* Tour Partner */}
-                <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full sm:w-auto" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  <Globe className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
-                  <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-semibold text-white leading-tight">
-                      {language === 'cs' ? 'Turistický Partner' :
-                       language === 'it' ? 'Partner Turistico' :
-                       'Tour Partner'}
-                    </span>
-                    <span className="text-[10px] text-white/90 leading-tight">
-                      {language === 'cs' ? 'Místní Zkušenosti' :
-                       language === 'it' ? 'Esperienza Locale' :
-                       'Local Experience'}
-                    </span>
-                  </div>
-                </div>
-                
-                {/* Data Privacy */}
-                <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full sm:w-auto" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  <Lock className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
-                  <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-semibold text-white leading-tight">
-                      {language === 'cs' ? 'Ochrana dat' :
-                       language === 'it' ? 'Privacy dei Dati' :
-                       'Data Privacy'}
-                    </span>
-                    <span className="text-[10px] text-white/90 leading-tight">
-                      {language === 'cs' ? 'Soulad s GDPR' :
-                       language === 'it' ? 'Conforme al GDPR' :
-                       'GDPR Compliant'}
-                    </span>
-                  </div>
-                </div>
+
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Down Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
+          <div
+            className="flex flex-col items-center space-y-2 text-white/80 hover:text-white transition-colors duration-300 cursor-pointer group"
+            onClick={() => {
+              const nextSection = document.querySelector('[data-testid="main-content-container"]');
+              if (nextSection) {
+                // Use Lenis for smooth scrolling
+                window.lenis?.scrollTo(nextSection, { offset: -80 });
+              }
+            }}
+          >
+            <span className="text-base font-medium tracking-wide uppercase">
+              {language === 'cs' ? 'Přejděte dolů' :
+               language === 'it' ? 'Scorri per esplorare' :
+               'Scroll to explore'}
+            </span>
+            <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center group-hover:border-white transition-colors duration-300">
+              <div className="w-1 h-3 bg-white/60 rounded-full mt-2 group-hover:bg-white transition-colors duration-300 slow-bounce"></div>
             </div>
           </div>
         </div>
       </section>
 
-        {/* Intro Section - Not a Real Estate Agency */}
-        <section className="bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10 pt-12 sm:pt-16 md:pt-20 pb-12 sm:pb-20 overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Left Side - Text Content */}
-            <div className="space-y-4 sm:space-y-6 animate-on-scroll slide-left">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  {language === 'cs' ? 'Pomáháme Čechům koupit dům v Itálii. Bez stresu. Bez iluzí. S jasným postupem.' :
-                   language === 'it' ? 'Aiutiamo i cechi a comprare casa in Italia. Senza stress. Senza illusioni. Con un percorso chiaro.' :
-                   'We help Czechs buy a home in Italy. Stress-free. No illusions. With a clear process.'}
-                </h2>
-                <p className="text-base sm:text-xl text-gray-700 leading-relaxed">
-                  {language === 'cs' ? 'Praktické informace ještě předtím, než uděláte první rozhodnutí.' :
-                   language === 'it' ? 'Informazioni pratiche prima ancora di prendere la prima decisione.' :
-                   'Practical information before you make your first decision.'}
-              </p>
-              <div className="pt-2 sm:pt-4">
-                  <Link href="/process">
-                    <Button 
-                      className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl"
-                    >
-                      {language === 'cs' ? 'O našem procesu' : 
-                       language === 'it' ? 'Sul nostro processo' : 
-                       'About Our Process'}
-                    </Button>
-                  </Link>
-              </div>
-            </div>
-
-            {/* Right Side - Animated Image Tiles - Hidden on small mobile */}
-            <div className="hidden md:flex relative h-[400px] lg:h-[500px] items-center justify-center animate-on-scroll slide-right">
-              <ImageReveal
-                leftImage="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=800&q=80"
-                middleImage="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80"
-                rightImage="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80"
-              />
-            </div>
-          </div>
-        </div>
-        
-        {/* Scroll Down Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
-          <div 
-            className="flex flex-col items-center space-y-2 text-white/80 hover:text-white transition-colors duration-300 cursor-pointer group"
-            onClick={() => {
       <div className="container mx-auto px-4 pt-12 pb-8 bg-[#f7f4ed]" data-testid="main-content-container">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900" data-testid="section-description">
@@ -1646,31 +1667,33 @@ export default function HomePage() {
           </h2>
         </div>
         <p className="text-base sm:text-xl text-gray-700 max-w-3xl">
-          {language === 'cs' ? 'Rozhodnutí bez správných informací může stát čas, peníze i klid. Proto je důležité rozumět systému ještě před prvním krokem.' : language === 'it' ? 'Una decisione senza le giuste informazioni può costare tempo, denaro e serenità. Per questo è importante capire il sistema prima del primo passo.' : 'Decisions without the right information can cost time, money, and peace of mind. That's why it's important to understand the system before the first step.'}
+          {language === 'cs' ? 'Rozhodnutí bez správných informací může stát čas, peníze i klid. Proto je důležité rozumět systému ještě před prvním krokem.' : language === 'it' ? 'Una decisione senza le giuste informazioni può costare tempo, denaro e serenità. Per questo è importante capire il sistema prima del primo passo.' : "Decisions without the right information can cost time, money, and peace of mind. That's why it's important to understand the system before the first step."}
         </p>
 
         {/* Why Italy is Different - 5 cards */}
         <div className="mb-16 mt-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8" data-testid="why-italy-different-grid">
             {/* Card 1 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-blue-200 shadow-xl bg-gradient-to-br from-blue-50 to-white rounded-2xl flex flex-col h-full">
               <CardContent className="p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-4">
                   <h3 className="font-bold text-2xl leading-tight text-gray-900">
-                    {language === 'cs' ? 'Italský systém je jiný' :
-                     language === 'it' ? 'Il sistema italiano è diverso' :
-                     'The Italian system is different'}
+                    {language === 'cs' ? '🧾 Italský systém je jiný' :
+                     language === 'it' ? '🧾 Il sistema italiano funziona diversamente.' :
+                     '🧾 The Italian system is different'}
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    {language === 'cs' ? 'Pravidla, daně a procesy se liší od České republiky.' :
-                     language === 'it' ? 'Regole, tasse e processi differiscono dalla Repubblica Ceca.' :
-                     'Rules, taxes and processes differ from the Czech Republic.'}
+                    {language === 'cs' ? 'Pravidla, postupy a role se liší od Česka.' :
+                     language === 'it' ? 'In Italia nessuno coordina tutto automaticamente. Capire chi fa cosa è fondamentale.' :
+                     'Rules, processes, and roles differ from the Czech Republic.'}
                   </p>
                 </div>
                 <div className="pt-4 mt-auto">
-                  <Link href="https://new-domy-main-z3ex.vercel.app/process">
+                  <Link href="/guides/real-estate-purchase-system-italy">
                     <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
-                      {language === 'cs' ? 'O našem procesu' : language === 'it' ? 'Sul nostro processo' : 'About Our Process'}
+                      {language === 'cs' ? 'V?ce informac?' :
+                       language === 'it' ? 'Piu info' :
+                       'More info'}
                     </Button>
                   </Link>
                 </div>
@@ -1682,60 +1705,105 @@ export default function HomePage() {
               <CardContent className="p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-4">
                   <h3 className="font-bold text-2xl leading-tight text-gray-900">
-                    {language === 'cs' ? 'Cena není všechno' : language === 'it' ? 'Il prezzo non è tutto' : 'Price isn't everything'}
+                    {language === 'cs' ? '💰 Cena není všechno' :
+                     language === 'it' ? '💰 Il prezzo non è tutto' :
+                     '💰 Price is not everything'}
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    {language === 'cs' ? 'Skutečné náklady se ukazují až v detailu.' : language === 'it' ? 'I costi reali emergono nei dettagli.' : 'The real costs show up in the details.'}
+                    {language === 'cs' ? 'Daně, notář, poplatky a náklady navíc.' :
+                     language === 'it' ? 'Tasse, notaio, commissioni e costi extra.' :
+                     'Taxes, notary, fees, and extra costs.'}
                   </p>
                 </div>
                 <div className="pt-4 mt-auto">
                   <Link href="/guides/costs">
                     <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
-                      {language === 'it' ? 'Scopri di più' : language === 'cs' ? 'Zjistit více' : 'Learn more'}
+                      {language === 'cs' ? 'V?ce informac?' :
+                       language === 'it' ? 'Piu info' :
+                       'More info'}
                     </Button>
                   </Link>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Card 3 (placeholder) */}
+            {/* Card 3 */}
             <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full">
               <CardContent className="p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-4">
                   <h3 className="font-bold text-2xl leading-tight text-gray-900">
-                    {language === 'cs' ? 'Třetí karta' : language === 'it' ? 'Terza card' : 'Third card'}
+                    {language === 'cs' ? '⚠️ Nejčastější chyby Čechů' :
+                     language === 'it' ? '⚠️ Errori più comuni dei cechi' :
+                     '⚠️ Most common mistakes by Czechs'}
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    {language === 'cs' ? 'Obsah doplníme dle instrukcí.' : language === 'it' ? 'Contenuto da definire.' : 'Content to be defined.'}
+                    {language === 'cs' ? 'Omyly, které vedou ke zbytečným problémům.' :
+                     language === 'it' ? 'Errori che portano a problemi evitabili.' :
+                     'Mistakes that lead to avoidable problems.'}
                   </p>
+                </div>
+                <div className="pt-4 mt-auto">
+                  <Link href="/guides/mistakes">
+                    <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
+                      {language === 'cs' ? 'V?ce informac?' :
+                       language === 'it' ? 'Piu info' :
+                       'More info'}
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Card 4 (placeholder) */}
+            {/* Card 4 */}
             <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full">
               <CardContent className="p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-4">
                   <h3 className="font-bold text-2xl leading-tight text-gray-900">
-                    {language === 'cs' ? 'Čtvrtá karta' : language === 'it' ? 'Quarta card' : 'Fourth card'}
+                    {language === 'cs' ? '📍 Region rozhoduje' :
+                     language === 'it' ? '📍 La regione fa la differenza' :
+                     '📍 Region matters'}
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    {language === 'cs' ? 'Obsah doplníme dle instrukcí.' : language === 'it' ? 'Contenuto da definire.' : 'Content to be defined.'}
+                    {language === 'cs' ? 'Cena, životní styl, dostupnost i využití domu.' :
+                     language === 'it' ? 'Prezzo, stile di vita, accessibilità e uso della casa.' :
+                     'Price, lifestyle, accessibility, and home use.'}
                   </p>
+                </div>
+                <div className="pt-4 mt-auto">
+                  <Link href="/regions">
+                    <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
+                      {language === 'cs' ? 'V?ce informac?' :
+                       language === 'it' ? 'Piu info' :
+                       'More info'}
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Card 5 (placeholder) */}
+            {/* Card 5 */}
             <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full">
               <CardContent className="p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-4">
                   <h3 className="font-bold text-2xl leading-tight text-gray-900">
-                    {language === 'cs' ? 'Pátá karta' : language === 'it' ? 'Quinta card' : 'Fifth card'}
+                    {language === 'cs' ? '❓ Časté otázky' :
+                     language === 'it' ? '❓ Domande frequenti' :
+                     '❓ Frequently asked questions'}
                   </h3>
                   <p className="text-gray-600 text-base leading-relaxed">
-                    {language === 'cs' ? 'Obsah doplníme dle instrukcí.' : language === 'it' ? 'Contenuto da definire.' : 'Content to be defined.'}
+                    {language === 'cs' ? 'Rychlé odpovědi na to, co lidé řeší nejčastěji.' :
+                     language === 'it' ? 'Risposte rapide a ciò che le persone chiedono più spesso.' :
+                     'Quick answers to what people ask most often.'}
                   </p>
+                </div>
+                <div className="pt-4 mt-auto">
+                  <Link href="/faq">
+                    <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-base">
+                      {language === 'cs' ? 'V?ce informac?' :
+                       language === 'it' ? 'Piu info' :
+                       'More info'}
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
@@ -1749,19 +1817,20 @@ export default function HomePage() {
           {/* Main Premium Club Content */}
           <div className="text-center mb-8 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" style={{ color: '#c48759' }}>
-              {language === 'cs' ? 'Premium Club' :
-               language === 'it' ? 'Club Premium' :
-               'Premium Club'}
+              {language === 'cs' ? 'Jste si jisti koupí domu v Itálii?' :
+               language === 'it' ? 'Sei sicuro di comprare casa in Italia?' :
+               'Are you sure about buying a home in Italy?'}
             </h2>
             <p className="text-base sm:text-xl text-gray-200 max-w-3xl mx-auto mb-6 sm:mb-8 px-2">
-              {language === 'cs' ? 'Váš osobní průvodce nemovitostmi a životním stylem v Itálii' :
-               language === 'it' ? 'La tua guida personale a proprietà e stile di vita in Italia' :
-               'Your Personal Guide to Property & Lifestyle in Italy'}
+              {language === 'cs' ? 'Pak potřebujete víc než obecné informace' :
+               language === 'it' ? 'Allora ti serve di più che delle info generiche' :
+               'Then you need more than generic information'}
             </p>
             <Button 
               size="lg"
               className="font-semibold py-3 sm:py-4 px-6 sm:px-8 text-base sm:text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-white"
               style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
+              onClick={() => setIsAuthModalOpen(true)}
             >
               {language === 'cs' ? 'Připojit se zdarma' :
                language === 'it' ? 'Unisciti gratuitamente' :
@@ -1786,9 +1855,9 @@ export default function HomePage() {
                   
                   <div>
                     <h4 className="text-2xl font-bold mb-2" style={{ color: '#c48759' }}>
-                      {language === 'cs' ? 'PREMIUM CLUB' :
-                       language === 'it' ? 'CLUB PREMIUM' :
-                       'PREMIUM CLUB'}
+                      {language === 'cs' ? 'Premium' :
+                       language === 'it' ? 'Premium' :
+                       'Premium'}
                     </h4>
                     <p className="text-gray-300 text-base">
                       {language === 'cs' ? 'Exkluzivní členství' :
@@ -1801,33 +1870,33 @@ export default function HomePage() {
                     <div className="flex items-center space-x-3">
                       <Check className="h-5 w-5 text-slate-600" />
                       <span className="text-base" style={{ color: '#c48759' }}>
-                        {language === 'cs' ? 'Vlastní vyhledávač' :
-                         language === 'it' ? 'Ricerca Personalizzata' :
-                         'Custom Finder'}
+                        {language === 'cs' ? 'Personalizované vyhledávání' :
+                         language === 'it' ? 'Ricerca personalizzata' :
+                         'Personalized search'}
                       </span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Check className="h-5 w-5 text-slate-600" />
                       <span className="text-base" style={{ color: '#c48759' }}>
-                        {language === 'cs' ? 'Cestovní výhody' :
-                         language === 'it' ? 'Vantaggi di Viaggio' :
-                         'Travel Perks'}
+                        {language === 'cs' ? 'Privátní dashboard' :
+                         language === 'it' ? 'Dashboard privata' :
+                         'Private dashboard'}
                       </span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Check className="h-5 w-5 text-slate-600" />
                       <span className="text-base" style={{ color: '#c48759' }}>
-                        {language === 'cs' ? 'Insider blogy' :
-                         language === 'it' ? 'Blog Insider' :
-                         'Insider Blogs'}
+                        {language === 'cs' ? 'Prioritní komunikace' :
+                         language === 'it' ? 'Comunicazione prioritaria' :
+                         'Priority communication'}
                       </span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <Check className="h-5 w-5 text-slate-600" />
                       <span className="text-base" style={{ color: '#c48759' }}>
-                        {language === 'cs' ? 'Týdenní webináře' :
-                         language === 'it' ? 'Webinar Settimanali' :
-                         'Weekly Webinars'}
+                        {language === 'cs' ? 'Prémiový obsah' :
+                         language === 'it' ? 'Contenuti premium' :
+                         'Premium content'}
                       </span>
                     </div>
                   </div>
@@ -1852,9 +1921,9 @@ export default function HomePage() {
             <div className="lg:col-span-2">
               <div className="text-center mb-8">
                 <h3 className="text-3xl font-bold text-white mb-4">
-                  {language === 'cs' ? 'Exkluzivní Obsah' :
-                   language === 'it' ? 'Contenuto Esclusivo' :
-                   'Exclusive Content'}
+                  {language === 'cs' ? 'Exkluzivní obsah' :
+                   language === 'it' ? 'Contenuti esclusivi' :
+                   'Exclusive Contents'}
                 </h3>
                 <p className="text-lg text-gray-200">
                   {user 
@@ -1874,7 +1943,7 @@ export default function HomePage() {
                     title: {
                       en: 'How to Buy a House in Italy: Complete Guide',
                       cs: 'Jak koupit dům v Itálii: Kompletní průvodce',
-                      it: 'Come Acquistare una Casa in Italia: Guida Completa'
+                      it: 'Come acquistare una casa in Italia: guida completa'
                     },
                     excerpt: {
                       en: 'Everything you need to know about documents, taxes, and procedures for buying property in Italy.',
@@ -1890,7 +1959,7 @@ export default function HomePage() {
                     title: {
                       en: 'Most Common Czech Mistakes When Buying in Italy',
                       cs: 'Nejčastější chyby Čechů při koupi domu v Itálii',
-                      it: 'Errori Più Comuni dei Cechi nell\'Acquisto in Italia'
+                      it: 'Errori più comuni dei cechi nell\'acquisto in Italia'
                     },
                     excerpt: {
                       en: 'What to watch out for to avoid losing time and money. Problems arise from unfamiliarity, not carelessness.',
@@ -1906,7 +1975,7 @@ export default function HomePage() {
                     title: {
                       en: 'Investing in Italian Real Estate: Opportunities and Risks',
                       cs: 'Investice do italských nemovitostí: Příležitosti a rizika',
-                      it: 'Investire in Immobili Italiani: Opportunità e Rischi'
+                      it: 'Investire in immobili italiani: opportunità e rischi'
                     },
                     excerpt: {
                       en: 'In-depth analysis of the Italian real estate market and investment strategies.',
@@ -2004,7 +2073,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight">
-              {language === 'cs' ? 'Prozkoumejte Nejžádanější Regiony Itálie' :
+              {language === 'cs' ? 'Prozkoumejte nejžádanější regiony Itálie' :
                language === 'it' ? 'Esplora le Regioni Più Ricercate d\'Italia' : 
                'Explore Italy\'s Most Wanted Regions'}
             </h2>
@@ -2041,13 +2110,17 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €3,500-8,000/m²
+                    €3,500-8,000/m2
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    5-8% yield
+                    {language === 'cs' ? '5-8% výnos' :
+                     language === 'it' ? '5-8% rendita' :
+                     '5-8% yield'}
                   </span>
                   <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    EU resident
+                    {language === 'cs' ? 'Rezident EU' :
+                     language === 'it' ? 'residenti UE' :
+                     'EU resident'}
                   </span>
                 </div>
                 <Link 
@@ -2092,16 +2165,16 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €2,500-6,000/m²
+                    €2,500-6,000/m2
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
                     {language === 'cs' ? '4-7% výnos' :
-                     language === 'it' ? 'Rendimento 4-7%' :
+                     language === 'it' ? '4-7% rendita' :
                      '4-7% yield'}
                   </span>
                   <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
                     {language === 'cs' ? 'Rezident EU' :
-                     language === 'it' ? 'Residente UE' :
+                     language === 'it' ? 'residenti UE' :
                      'EU resident'}
                   </span>
                 </div>
@@ -2147,13 +2220,17 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €2,000-5,000/m²
+                    €2,000-5,000/m2
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    4-7% yield
+                    {language === 'cs' ? '4-7% výnos' :
+                     language === 'it' ? '4-7% rendita' :
+                     '4-7% yield'}
                   </span>
                   <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    EU resident
+                    {language === 'cs' ? 'Rezident EU' :
+                     language === 'it' ? 'residenti UE' :
+                     'EU resident'}
                   </span>
                 </div>
                 <Link 
@@ -2198,16 +2275,16 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €1,500-4,000/m²
+                    €1,500-4,000/m2
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
                     {language === 'cs' ? '6-10% výnos' :
-                     language === 'it' ? 'Rendimento 6-10%' :
+                     language === 'it' ? '6-10% rendita' :
                      '6-10% yield'}
                   </span>
                   <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
                     {language === 'cs' ? 'Rezident EU' :
-                     language === 'it' ? 'Residente UE' :
+                     language === 'it' ? 'residenti UE' :
                      'EU resident'}
                   </span>
                 </div>
@@ -2253,16 +2330,16 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €4,500-12,000/m²
+                    €4,500-12,000/m2
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
                     {language === 'cs' ? '3-6% výnos' :
-                     language === 'it' ? 'Rendimento 3-6%' :
+                     language === 'it' ? '3-6% rendita' :
                      '3-6% yield'}
                   </span>
                   <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
                     {language === 'cs' ? 'Rezident EU' :
-                     language === 'it' ? 'Residente UE' :
+                     language === 'it' ? 'residenti UE' :
                      'EU resident'}
                   </span>
                 </div>
@@ -2308,16 +2385,16 @@ export default function HomePage() {
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €3,000-12,000/m²
+                    €3,000-12,000/m2
                   </span>
                   <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
                     {language === 'cs' ? '4-6% výnos' :
-                     language === 'it' ? 'Rendimento 4-6%' :
+                     language === 'it' ? '4-6% rendita' :
                      '4-6% yield'}
                   </span>
                   <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
                     {language === 'cs' ? 'Rezident EU' :
-                     language === 'it' ? 'Residente UE' :
+                     language === 'it' ? 'residenti UE' :
                      'EU resident'}
                   </span>
                 </div>
@@ -2338,121 +2415,17 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-
-          <div className="text-center">
-            <button className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-8 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              {language === 'cs' ? 'Získejte kurátorované nabídky pro tento region' :
-               language === 'it' ? 'Ottieni offerte curate per questa regione' :
-               'Get curated listings for this region'}
-            </button>
-          </div>
         </div>
       </section>
 
-        {/* How It Works Section */}
-        <section className="py-20 bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-              {language === 'cs' ? 'Jak to Funguje' :
-               language === 'it' ? 'Come Funziona' :
-               'How It Works'}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {language === 'cs' ? 'Od prvního briefingu po podepsanou smlouvu — vaše cesta k vlastnictví v Itálii, zjednodušená.' :
-               language === 'it' ? 'Dal primo brief all\'atto firmato: il tuo percorso per possedere in Italia, semplificato.' :
-               'From first brief to signed deed—your path to owning in Italy, simplified.'}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {/* Step 1 */}
-              <div className="text-center group">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  <span className="text-2xl font-bold text-white">1</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'cs' ? 'Začněte Hledat' :
-                 language === 'it' ? 'Inizia la Ricerca' :
-                 'Start Your Search'}
-              </h3>
-              <p className="text-gray-600 text-base">
-                {language === 'cs' ? 'Vyplňte 60sekundový formulář nebo procházejte naše stávající nemovitosti.' :
-                 language === 'it' ? 'Compila il form di 60 secondi o sfoglia le nostre proprietà esistenti.' :
-                 'Fill out a 60-second form or browse our existing property listings.'}
-              </p>
-            </div>
-
-            {/* Step 2 */}
-              <div className="text-center group">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  <span className="text-2xl font-bold text-white">2</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'cs' ? 'Prohlédněte Všechny Nemovitosti' :
-                 language === 'it' ? 'Sfoglia Tutte le Proprietà' :
-                 'Browse All Properties'}
-              </h3>
-              <p className="text-gray-600 text-base">
-                {language === 'cs' ? 'Procházejte naše rozsáhlé portfolio nemovitostí napříč všemi regiony Itálie.' :
-                 language === 'it' ? 'Sfoglia il nostro vasto portafoglio di proprietà in tutte le regioni d\'Italia.' :
-                 'Browse our extensive portfolio of properties across all Italian regions.'}
-              </p>
-            </div>
-
-            {/* Step 3 */}
-              <div className="text-center group">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  <span className="text-2xl font-bold text-white">3</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'cs' ? 'Navštivte a Ověřte' :
-                 language === 'it' ? 'Visita e Verifica' :
-                 'Visit & Verify'}
-              </h3>
-              <p className="text-gray-600 text-base">
-                {language === 'cs' ? 'Zařídíme prohlídky a kontroly na místě za vás.' :
-                 language === 'it' ? 'Organizziamo visite e controlli sul posto per te.' :
-                 'We arrange viewings and on-site checks.'}
-              </p>
-            </div>
-
-            {/* Step 4 */}
-              <div className="text-center group">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  <span className="text-2xl font-bold text-white">4</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                {language === 'cs' ? 'Právní a Dokončení' :
-                 language === 'it' ? 'Legale e Chiusura' :
-                 'Legal & Close'}
-              </h3>
-              <p className="text-gray-600 text-base">
-                {language === 'cs' ? 'Naši partneři se starají o smlouvy, daně a dodržování předpisů.' :
-                 language === 'it' ? 'I nostri partner gestiscono contratti, tasse e conformità.' :
-                 'Our partners handle contracts, taxes, and compliance.'}
-              </p>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <Link href="/process">
-              <button className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-8 text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                {language === 'cs' ? 'Zobrazit celý proces' :
-                 language === 'it' ? 'Visualizza il processo completo' :
-                 'View Full Process'}
-              </button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
+      {SHOW_HOME_ARCHIVED_SECTIONS && (
+      <>
       {/* Recent Success Stories Section */}
       <section className="py-20 bg-[#f7f4ed]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-              {language === 'cs' ? 'Od Vyhledávání po Klíče v Ruce' :
+              {language === 'cs' ? 'Od vyhledávání po klíče v ruce' :
                language === 'it' ? 'Dalla Ricerca alle Chiavi in Mano' :
                'From Search to Keys in Hand'}
             </h2>
@@ -2483,7 +2456,7 @@ export default function HomePage() {
               <div className="p-6 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
-                    {language === 'cs' ? 'Obnovený Toskánský Statek' :
+                    {language === 'cs' ? 'Obnovený toskánský statek' :
                      language === 'it' ? 'Fattoria Toscana Restaurata' :
                      'Restored Tuscan Farmhouse'}
                   </h3>
@@ -2550,7 +2523,7 @@ export default function HomePage() {
               <div className="p-6 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
-                    {language === 'cs' ? 'Sicilský Barokní Palác' :
+                    {language === 'cs' ? 'Sicilský barokní palác' :
                      language === 'it' ? 'Palazzo Barocco Siciliano' :
                      'Sicilian Baroque Palazzo'}
                   </h3>
@@ -2617,7 +2590,7 @@ export default function HomePage() {
               <div className="p-6 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
-                    {language === 'cs' ? 'Pobřežní Apartmán v Ligurii' :
+                    {language === 'cs' ? 'Pobřežní apartmán v Ligurii' :
                      language === 'it' ? 'Appartamento Costiero Liguria' :
                      'Ligurian Coastal Apartment'}
                   </h3>
@@ -2673,7 +2646,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-              {language === 'cs' ? 'Kupování v Itálii: Proces, Úskalí a Čísla' :
+              {language === 'cs' ? 'Kupování v Itálii: proces, úskalí a čísla' :
                language === 'it' ? 'Acquistare in Italia: Il Processo, le Insidie e i Numeri' :
                'Buying in Italy: The Process, the Pitfalls, and the Numbers'}
             </h2>
@@ -2694,7 +2667,7 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  {language === 'cs' ? 'Příští Webinář' :
+                  {language === 'cs' ? 'Příští webinář' :
                    language === 'it' ? 'Prossimo Webinar' :
                    'Next Webinar'}
                 </h3>
@@ -2773,7 +2746,7 @@ export default function HomePage() {
             <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  {language === 'cs' ? 'Rezervujte si Místo' :
+                  {language === 'cs' ? 'Rezervujte si místo' :
                    language === 'it' ? 'Riserva il Tuo Posto' :
                    'Reserve Your Seat'}
                 </h3>
@@ -2934,7 +2907,7 @@ export default function HomePage() {
                   type="submit"
                   className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-6 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg"
                 >
-                  {language === 'cs' ? 'Rezervovat Místo' :
+                  {language === 'cs' ? 'Rezervovat místo' :
                    language === 'it' ? 'Riserva il Posto' :
                    'Reserve a Seat'}
                 </button>
@@ -2955,7 +2928,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-              {language === 'cs' ? 'Často Kladené Otázky' :
+              {language === 'cs' ? 'Často kladené otázky' :
                language === 'it' ? 'Domande Frequenti' :
                'Frequently Asked Questions'}
             </h2>
@@ -3023,7 +2996,7 @@ export default function HomePage() {
                   it: 'Opzioni di mutuo per non residenti?'
                 },
                 answer: {
-                  cs: 'Italské banky poskytují hypotéky nerezidentům, typicky až 50-60% hodnoty nemovitosti. Budete potřebovat doklad o příjmech, bankovní výpisy a dobrý kreditní skóre. Úrokové sazby jsou konkurenceschopné pro občany EU.',
+                  cs: 'Italské banky poskytují hypotéky nerezidentům, typicky až 50-60% hodnoty nemovitosti. Budete potřebovat doklad o příjmech, bankovní výpisy a dobré kreditní skóre. Úrokové sazby jsou konkurenceschopné pro občany EU.',
                   en: 'Italian banks offer mortgages to non-residents, typically up to 50-60% of property value. You\'ll need proof of income, bank statements, and good credit score. Interest rates are competitive for EU citizens.',
                   it: 'Le banche italiane offrono mutui ai non residenti, tipicamente fino al 50-60% del valore della proprietà. Avrai bisogno di prova di reddito, estratti conto bancari e un buon punteggio di credito. I tassi di interesse sono competitivi per i cittadini UE.'
                 }
@@ -3035,7 +3008,7 @@ export default function HomePage() {
                   it: 'Differenza tra contratto preliminare e rogito?'
                 },
                 answer: {
-                  cs: 'Předběžná smlouva (compromesso) je počáteční dohoda s zálohou (10-20%). Rogito je finální kupní smlouva u notáře, kde dochází k převodu vlastnictví a zaplatíte zbytek. Obě jsou právně závazné.',
+                  cs: 'Předběžná smlouva (compromesso) je počáteční dohoda se zálohou (10-20%). Rogito je finální kupní smlouva u notáře, kde dochází k převodu vlastnictví a zaplatíte zbytek. Obě jsou právně závazné.',
                   en: 'The preliminary contract (compromesso) is the initial agreement with a deposit (10-20%). The rogito is the final deed of sale with a notary where ownership transfers and you pay the balance. Both are legally binding.',
                   it: 'Il contratto preliminare (compromesso) è l\'accordo iniziale con un deposito (10-20%). Il rogito è l\'atto di vendita finale davanti al notaio dove avviene il trasferimento di proprietà e paghi il saldo. Entrambi sono legalmente vincolanti.'
                 }
@@ -3047,7 +3020,7 @@ export default function HomePage() {
                   it: 'Costi correnti (IMU, TARI, spese condominiali)?'
                 },
                 answer: {
-                  cs: 'Roční náklady zahrnují: IMU (obecní daň z nemovitosti, 0,4-1,06% katastrální hodnoty), TARI (daň z odpadu, €200-600/rok), poplatky za bytové družstvo (pokud se vztahují, €50-200/měsíc), energie a pojištění. Počítejte s 1-2% hodnoty nemovitosti ročně.',
+                  cs: 'Roční náklady zahrnují: IMU (obecní daň z nemovitosti, 0,4-1,06 % katastrální hodnoty), TARI (daň z odpadu, €200-600/rok), poplatky za bytové družstvo (pokud se vztahují, €50-200/měsíc), energie a pojištění. Počítejte s 1-2 % hodnoty nemovitosti ročně.',
                   en: 'Annual costs include: IMU (municipal property tax, 0.4-1.06% of cadastral value), TARI (waste tax, €200-600/year), condo fees (if applicable, €50-200/month), utilities, and insurance. Budget 1-2% of property value per year.',
                   it: 'I costi annuali includono: IMU (imposta municipale, 0,4-1,06% del valore catastale), TARI (tassa rifiuti, €200-600/anno), spese condominiali (se applicabili, €50-200/mese), utenze e assicurazione. Budget 1-2% del valore della proprietà all\'anno.'
                 }
@@ -3059,7 +3032,7 @@ export default function HomePage() {
                   it: 'Come funzionano gli affitti e i permessi per soggiorni brevi?'
                 },
                 answer: {
-                  cs: 'Krátkodobé pronájmy vyžadují registraci u místní obce a regionální identifikační kód (CIR/CIN). Musíte platit turistickou daň a dodržovat místní předpisy. Některé oblasti mají omezení. Provádíme vás procesem dodržování předpisů.',
+                  cs: 'Krátkodobé pronájmy vyžadují registraci u místní obce a regionální identifikační kód (CIR/CIN). Musíte platit turistickou daň a dodržovat místní předpisy. Některé oblasti mají omezení. Provázíme vás procesem dodržování předpisů.',
                   en: 'Short-term rentals require registration with local municipality and regional ID code (CIR/CIN). You must pay tourist tax and comply with local regulations. Some areas have restrictions. We guide you through compliance.',
                   it: 'Gli affitti brevi richiedono registrazione con il comune locale e codice identificativo regionale (CIR/CIN). Devi pagare l\'imposta di soggiorno (tassa turistica) e rispettare le normative locali. Alcune zone hanno restrizioni. Ti guidiamo attraverso la conformità.'
                 }
@@ -3126,12 +3099,16 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-white hover:bg-gray-100 text-slate-700 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg">
-                {language === 'cs' ? 'Připojte se k Webináři' :
+                {language === 'cs' ? 'Připojte se k webináři' :
                  language === 'it' ? 'Partecipa al Webinar' :
                  'Join the Webinar'}
               </button>
-              <button className="text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                {language === 'cs' ? 'Rezervovat Hovor' :
+              <button
+                className="text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
+                onClick={handleBookCall}
+              >
+                {language === 'cs' ? 'Rezervovat hovor' :
                  language === 'it' ? 'Prenota una Chiamata' :
                  'Book a Call'}
               </button>
@@ -3139,13 +3116,15 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </>
+      )}
 
       {/* Contact / Book a Call Section */}
       <section className="py-20 bg-[#f7f4ed]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
-              {language === 'cs' ? 'Začněte Svou Cestu' :
+              {language === 'cs' ? 'Začněte svou cestu' :
                language === 'it' ? 'Inizia il Tuo Viaggio' :
                'Start Your Journey'}
             </h2>
@@ -3158,7 +3137,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto mb-16">
             {/* Book a Free Consultation */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+            <div className="order-2 bg-white rounded-2xl p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-slate-700 to-slate-800 rounded-full mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3166,7 +3145,7 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  {language === 'cs' ? 'Rezervujte si Bezplatnou Konzultaci' :
+                  {language === 'cs' ? 'Rezervujte si bezplatnou konzultaci' :
                    language === 'it' ? 'Prenota una Consulenza Gratuita' :
                    'Book a Free Consultation'}
                 </h3>
@@ -3193,7 +3172,7 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-gray-700">
-                      {language === 'cs' ? 'Expertí, kteří mluví česky, anglicky a italsky' :
+                      {language === 'cs' ? 'Experti, kteří mluví česky, anglicky a italsky' :
                        language === 'it' ? 'Esperti che parlano ceco, inglese e italiano' :
                        'Experts who speak Czech, English, and Italian'}
                     </span>
@@ -3209,11 +3188,15 @@ export default function HomePage() {
                     </span>
                   </li>
                 </ul>
-                <button className="w-full text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                  {language === 'cs' ? 'Rezervovat Hovor' :
+                <Link
+                  href="/book-call"
+                  className="block w-full text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                  style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
+                >
+                  {language === 'cs' ? 'Rezervovat hovor' :
                    language === 'it' ? 'Prenota una Chiamata' :
                    'Book a Call'}
-                </button>
+                </Link>
                 <p className="text-xs text-gray-500 mt-4">
                   {language === 'cs' ? 'Dostupné pondělí-pátek, 9:00-18:00 CET' :
                    language === 'it' ? 'Disponibile dal lunedì al venerdì, 9:00-18:00 CET' :
@@ -3223,7 +3206,7 @@ export default function HomePage() {
             </div>
 
             {/* Start the Personal Property Finder */}
-            <div className="bg-gradient-to-br from-slate-700 via-slate-800 to-slate-600 rounded-2xl p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+            <div className="order-1 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-600 rounded-2xl p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-md rounded-full mb-6 border border-white/20">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -3231,7 +3214,7 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">
-                  {language === 'cs' ? 'Spustit Osobní Vyhledávač Nemovitostí' :
+                  {language === 'cs' ? 'Spustit osobní vyhledávač nemovitostí' :
                    language === 'it' ? 'Avvia il Personal Property Finder' :
                    'Start the Personal Property Finder'}
                 </h3>
@@ -3274,8 +3257,11 @@ export default function HomePage() {
                     </span>
                   </li>
                 </ul>
-                <button className="w-full bg-white hover:bg-gray-100 text-slate-700 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg">
-                  {language === 'cs' ? 'Spustit Vyhledávač' :
+                <button
+                  className="w-full bg-white hover:bg-gray-100 text-slate-700 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                  onClick={handleStartFinder}
+                >
+                  {language === 'cs' ? 'Spustit vyhledávač' :
                    language === 'it' ? 'Avvia il Finder' :
                    'Start the Finder'}
                 </button>
@@ -3288,67 +3274,81 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Trust Row */}
           <div className="border-t border-gray-300 pt-12">
-            <div className="text-center mb-8">
-              <p className="text-gray-600 text-base font-medium mb-6">
-                {language === 'cs' ? 'Důvěryhodní Partneři' :
-                 language === 'it' ? 'Partner di Fiducia' :
-                 'Trusted Partners'}
-              </p>
-            </div>
-            <div className="flex flex-wrap justify-center items-center gap-8">
-              <div className="flex items-center space-x-3 bg-white rounded-lg px-6 py-3 shadow-md border border-gray-200">
-                <svg className="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                </svg>
-                <div className="text-left">
-                  <p className="text-base font-semibold text-gray-900">
-                    {language === 'cs' ? 'Právní Partner' :
-                     language === 'it' ? 'Partner Legale' :
-                     'Legal Partner'}
-                  </p>
-                  <p className="text-xs text-gray-600">
-                    {language === 'cs' ? 'Certifikovaní Právníci' :
-                     language === 'it' ? 'Avvocati Certificati' :
-                     'Certified Lawyers'}
-                  </p>
+            <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl border border-gray-200 shadow-md p-6">
+                <h4 className="text-xl font-bold text-slate-800 mb-2">
+                  {language === 'cs'
+                    ? 'Poznejte ji dřív, než ji budete žít'
+                    : language === 'it'
+                    ? 'Scoprila prima di viverla'
+                    : 'Discover it before living it'}
+                </h4>
+                <p className="text-sm text-gray-500 mb-5">
+                  {language === 'cs'
+                    ? 'My i naši klienti se spoléháme na prověřené partnery.'
+                    : language === 'it'
+                    ? 'Noi e i nostri clienti ci affidiamo a partner sicuri.'
+                    : 'We and our clients rely on trusted partners.'}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 hover:bg-slate-50 cursor-pointer transition-colors" onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}>
+                    <Plane className="w-5 h-5 text-slate-700" />
+                    <div className="text-left">
+                      <p className="text-sm font-semibold text-gray-900">
+                        {language === 'cs' ? 'Turistický partner' :
+                         language === 'it' ? 'Partner turistico' :
+                         'Travel partner'}
+                      </p>
+                      <p className="text-xs text-gray-600">GetYourGuide</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 hover:bg-slate-50 cursor-pointer transition-colors" onClick={() => window.open('https://www.booking.com/?aid=1522416&label=affnetcj-15735418_pub-7711899_site-101629596_pname-Creavita+sro_clkid-_cjevent-07f8c85d05dc11f181b503200a18b8f8&utm_source=affnetcj&utm_medium=bannerindex&utm_campaign=gb&utm_term=index-15735418&chal_t=1770657801471&force_referer=http%3A%2F%2Flocalhost%3A3000%2F&lang=cs&soz=1&lang_changed=1', '_blank')}>
+                    <Globe className="w-5 h-5 text-slate-700" />
+                    <div className="text-left">
+                      <p className="text-sm font-semibold text-gray-900">
+                        {language === 'cs' ? 'Objevte Itálii' :
+                         language === 'it' ? 'Scopri l\'Italia' :
+                         'Discover Italy'}
+                      </p>
+                      <p className="text-xs text-gray-600">Booking.com</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              
-              <div className="flex items-center space-x-3 bg-white rounded-lg px-6 py-3 shadow-md border border-gray-200">
-                <svg className="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <div className="text-left">
-                  <p className="text-base font-semibold text-gray-900">
-                    {language === 'cs' ? 'Turistický Partner' :
-                     language === 'it' ? 'Partner Turistico' :
-                     'Tour Partner'}
-                  </p>
-                  <p className="text-xs text-gray-600">
-                    {language === 'cs' ? 'Místní Zkušenosti' :
-                     language === 'it' ? 'Esperienza Locale' :
-                     'Local Experience'}
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-3 bg-white rounded-lg px-6 py-3 shadow-md border border-gray-200">
-                <svg className="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-                <div className="text-left">
-                  <p className="text-base font-semibold text-gray-900">
-                    {language === 'cs' ? 'Ochrana dat' :
-                     language === 'it' ? 'Privacy dei Dati' :
-                     'Data Privacy'}
-                  </p>
-                  <p className="text-xs text-gray-600">
-                    {language === 'cs' ? 'Soulad s GDPR' :
-                     language === 'it' ? 'Conforme al GDPR' :
-                     'GDPR Compliant'}
-                  </p>
+
+              <div className="bg-white rounded-xl border border-gray-200 shadow-md p-6">
+                <h4 className="text-xl font-bold text-slate-800 mb-2">
+                  {language === 'cs'
+                    ? 'Začněte svou cestu'
+                    : language === 'it'
+                    ? 'Comincia il tuo viaggio'
+                    : 'Start your journey'}
+                </h4>
+                <p className="text-sm text-gray-500 mb-5">
+                  {language === 'cs'
+                    ? 'Napište nám nebo nám pošlete zprávu na WhatsApp.'
+                    : language === 'it'
+                    ? 'Scrivici o mandaci un messaggio su WhatsApp.'
+                    : 'Email us or send us a message on WhatsApp.'}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <a
+                    href="https://wa.me/420731450001"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-green-700 hover:bg-green-800 text-white px-4 py-3 text-sm font-medium transition-colors"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    WhatsApp
+                  </a>
+                  <a
+                    href="mailto:info@domyvitalii.cz"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-700 hover:bg-slate-800 text-white px-4 py-3 text-sm font-medium transition-colors"
+                  >
+                    <Mail className="w-4 h-4" />
+                    {language === 'cs' ? 'Napište nám' : language === 'it' ? 'Scrivici' : 'Email us'}
+                  </a>
                 </div>
               </div>
             </div>
@@ -3356,18 +3356,40 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="container mx-auto px-4 pb-10">
+        <div className="max-w-5xl mx-auto flex justify-center">
+          <button
+            className="flex items-center gap-2 rounded-lg px-4 py-2 shadow-lg border border-slate-200 transition-all duration-300 hover:scale-105 hover:shadow-xl group cursor-pointer w-auto bg-white"
+            onClick={() => { window.location.href = '/gdpr' }}
+          >
+            <Lock className="h-4 w-4 text-slate-700 transition-colors flex-shrink-0" />
+            <div className="flex flex-col min-w-0 text-center">
+              <span className="text-xs font-semibold text-slate-800 leading-tight">
+                {language === 'cs' ? 'Osobní údaje' :
+                 language === 'it' ? 'Dati personali' :
+                 'Personal data'}
+              </span>
+              <span className="text-[10px] text-slate-600 leading-tight">
+                GDPR
+              </span>
+            </div>
+          </button>
+        </div>
+      </div>
+
       {/* Footer */}
       <Footer language={language} />
       
       {/* Auth Modal */}
       <AuthModal 
         isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
+        onClose={handleAuthModalClose}
         onAuthSuccess={handleAuthSuccess}
       />
     </div>
   )
 }
+
 
 
 

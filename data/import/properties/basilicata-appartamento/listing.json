@@ -1,0 +1,118 @@
+{
+  "title_it": "Quadrilocale ristrutturato con box e posto auto nel centro di Matera",
+  "title_en": "Renovated Four-Room Apartment with Garage and Parking in Central Matera",
+  "title_cs": "Zrekonstruovany ctyrpokojovy byt s garazi a parkovanim v centru Matera",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Basilicata",
+  "city_it": "Matera",
+  "city_en": "Matera",
+  "city_cs": "Matera",
+  "address_it": "Via Fratelli Rosselli 29, Matera (MT), Basilicata",
+  "address_en": "Via Fratelli Rosselli 29, Matera (MT), Basilicata",
+  "address_cs": "Via Fratelli Rosselli 29, Matera (MT), Basilicata",
+  "price": 299000,
+  "rooms": 4,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "square_meters": 90,
+  "features": [
+    {
+      "it": "Appartamento ristrutturato in posizione centralissima",
+      "en": "Renovated apartment in a very central location",
+      "cs": "Zrekonstruovany byt v naprosto centralni poloze"
+    },
+    {
+      "it": "Primo piano in palazzina con ascensore",
+      "en": "First floor in a building with elevator",
+      "cs": "Prvni patro v dome s vytahem"
+    },
+    {
+      "it": "Soggiorno luminoso con cucinino",
+      "en": "Bright living room with kitchenette",
+      "cs": "Svetly obyvak s kuchynskym koutem"
+    },
+    {
+      "it": "Tre camere da letto e due bagni",
+      "en": "Three bedrooms and two bathrooms",
+      "cs": "Tri loznice a dve koupelny"
+    },
+    {
+      "it": "Balcone e lavanderia",
+      "en": "Balcony and laundry area",
+      "cs": "Balkon a pradelna"
+    },
+    {
+      "it": "Box auto di circa 17 m2 al piano terra",
+      "en": "Ground-floor garage of about 17 sqm",
+      "cs": "Garaz v prizemi o plose priblizne 17 m2"
+    },
+    {
+      "it": "Posto auto incluso",
+      "en": "Parking space included",
+      "cs": "Parkovaci misto v cene"
+    },
+    {
+      "it": "Climatizzazione Wi-Fi caldo/freddo e deumidificazione",
+      "en": "Wi-Fi hot-cold air conditioning and dehumidification",
+      "cs": "Wi-Fi klimatizace teplo/chlad a odvlhcovani"
+    },
+    {
+      "it": "Caldaia a condensazione e videocitofono",
+      "en": "Condensing boiler and video intercom",
+      "cs": "Kondenzacni kotel a videotelefon"
+    },
+    {
+      "it": "Venduto arredato con detrazioni fiscali residue",
+      "en": "Sold furnished with remaining tax deductions",
+      "cs": "Prodava se zarizeny se zbyvajicimi danovymi odpocty"
+    }
+  ],
+  "description_it": "In via Fratelli Rosselli, nel centro di Matera, proponiamo appartamento ristrutturato al primo piano di una palazzina servita da ascensore.\n\nLa casa e composta da ingresso, soggiorno luminoso con cucinino, tre camere da letto, due bagni, balcone e lavanderia, con distribuzione funzionale sia per uso familiare sia per investimento.\n\nTra le dotazioni principali: climatizzazione Wi-Fi caldo/freddo, sistema di deumidificazione, caldaia a condensazione, videocitofono e impianto domotico per apertura porta.\n\nCompletano la proprieta un posto auto e un box auto di circa 17 m2 al piano terra. L immobile viene venduto arredato e con detrazioni fiscali residue legate alla ristrutturazione.",
+  "description_en": "On Via Fratelli Rosselli, in central Matera, we offer a renovated apartment on the first floor of a building with elevator.\n\nThe property includes entrance hall, bright living room with kitchenette, three bedrooms, two bathrooms, balcony, and laundry area, with a practical layout for both family use and investment.\n\nMain equipment includes Wi-Fi hot-cold air conditioning, dehumidification system, condensing boiler, video intercom, and smart door-opening home automation.\n\nThe property also includes one parking space and a ground-floor garage of about 17 sqm. It is sold furnished and with remaining tax deductions linked to the completed renovation.",
+  "description_cs": "Ve Via Fratelli Rosselli v centru Matera nabizime zrekonstruovany byt v prvnim patre domu s vytahem.\n\nByt zahrnuje vstupni chodbu, svetly obyvak s kuchynskym koutem, tri loznice, dve koupelny, balkon a pradelnu, s praktickou dispozici vhodnou pro rodinne bydleni i investici.\n\nHlavni vybaveni: Wi-Fi klimatizace teplo/chlad, system odvlhcovani, kondenzacni kotel, videotelefon a domovni automatizace pro otevreni dveri.\n\nSoucasti nemovitosti je parkovaci misto a garaz v prizemi o plose priblizne 17 m2. Byt se prodava zarizeny a se zbyvajicimi danovymi odpocty po rekonstrukci.",
+  "seo_title_it": "Quadrilocale ristrutturato con box in vendita a Matera centro",
+  "seo_title_en": "Renovated Four-Room Apartment with Garage for Sale in Central Matera",
+  "seo_title_cs": "Zrekonstruovany ctyrpokojovy byt s garazi na prodej v centru Matera",
+  "seo_description_it": "Appartamento di 90 m2 a Matera centro: 4 locali, 3 camere, 2 bagni, balcone, lavanderia, posto auto e box di 17 m2 inclusi.",
+  "seo_description_en": "90 sqm apartment in central Matera: 4 rooms, 3 bedrooms, 2 bathrooms, balcony, laundry, parking space, and 17 sqm garage included.",
+  "seo_description_cs": "Byt 90 m2 v centru Matera: 4 mistnosti, 3 loznice, 2 koupelny, balkon, pradelna, parkovaci misto a garaz 17 m2 v cene.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "matera",
+    "via fratelli rosselli",
+    "quadrilocale",
+    "appartamento ristrutturato",
+    "box auto",
+    "basilicata"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/126049451/",
+  "lat": 40.6698,
+  "lng": 16.6051,
+  "yearBuilt": 0,
+  "lotSize": 0,
+  "parking": 2,
+  "image_urls": [
+    "https://pwm.im-cdn.it/image/1851558545/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851558815/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851559157/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851559325/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851558683/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851558729/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851558833/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851558905/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851558921/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851558935/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851558987/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851559011/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851559115/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851559137/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851558951/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851559031/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851559179/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851559195/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851558969/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851559253/xxl.jpg"
+  ]
+}

@@ -13,9 +13,7 @@ import {
   DropdownMenuSeparator, 
   DropdownMenuTrigger 
 } from '@/components/ui/dropdown-menu'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Menu, X, User, XCircle, Crown, LayoutDashboard, LogOut, Settings } from 'lucide-react'
-import { t } from '../lib/translations'
 import AuthModal from './AuthModal'
 import { supabase } from '@/lib/supabase'
 
@@ -134,6 +132,16 @@ export default function Navigation() {
     localStorage.setItem('premium-club-popup-dismissed', 'true')
   }
 
+  const navLabels = {
+    home: language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home',
+    properties: language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties',
+    regions: language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions',
+    about: language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About',
+    contact: language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact',
+    dashboard: language === 'cs' ? 'Nástěnka' : language === 'it' ? 'Cruscotto' : 'Dashboard',
+    admin: language === 'cs' ? 'Admin' : language === 'it' ? 'Amministrazione' : 'Admin'
+  }
+
   return (
     <>
     <nav 
@@ -167,13 +175,13 @@ export default function Navigation() {
             </Link>
             <div className="hidden lg:flex items-center space-x-0.5 xl:space-x-1" data-testid="nav-desktop-links">
               {[
-                { href: '/', label: t('nav.home', language), testId: 'nav-home-link' },
-                { href: '/properties', label: t('nav.properties', language), testId: 'nav-properties-link' },
-                { href: '/regions', label: t('nav.regions', language), testId: 'nav-regions-link' },
-                { href: '/process', label: language === 'cs' ? 'Jak koupit' : language === 'it' ? 'Come acquistare' : t('nav.process', language), testId: 'nav-process-link' },
+                { href: '/', label: navLabels.home, testId: 'nav-home-link' },
+                { href: '/process', label: language === 'cs' ? 'Náš proces' : language === 'it' ? 'Il nostro processo' : 'Our Process', testId: 'nav-process-link' },
+                { href: '/properties', label: navLabels.properties, testId: 'nav-properties-link' },
+                { href: '/regions', label: navLabels.regions, testId: 'nav-regions-link' },
                 { href: '/blog', label: language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles', testId: 'nav-blog-link' },
-                { href: '/about', label: t('nav.about', language), testId: 'nav-about-link' },
-                { href: '/contact', label: t('nav.contact', language), testId: 'nav-contact-link' },
+                { href: '/about', label: navLabels.about, testId: 'nav-about-link' },
+                { href: '/contact', label: navLabels.contact, testId: 'nav-contact-link' },
               ].map(({ href, label, testId }) => (
                 <Link 
                   key={href}
@@ -218,12 +226,9 @@ export default function Navigation() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="flex items-center gap-1 sm:gap-2 bg-transparent hover:bg-white/10 text-gray-200 hover:text-white rounded-full px-2 sm:px-3 py-1.5 sm:py-2 transition-all">
-                    <Avatar className="h-7 w-7 sm:h-8 sm:w-8 border border-white/20">
-                      <AvatarImage src={user.user_metadata?.avatar_url} />
-                      <AvatarFallback className="bg-white/10 text-white text-sm">
-                        {(user.user_metadata?.name || user.email || 'U').charAt(0).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
+                    <span className="h-7 w-7 sm:h-8 sm:w-8 border border-white/20 rounded-full bg-white/10 text-white text-sm inline-flex items-center justify-center">
+                      {(user.user_metadata?.name || user.email || 'U').charAt(0).toUpperCase()}
+                    </span>
                     <span className="text-sm font-medium hidden lg:inline-block max-w-[100px] truncate">
                       {user.user_metadata?.name || user.email}
                     </span>
@@ -240,14 +245,14 @@ export default function Navigation() {
                   <DropdownMenuItem className="focus:bg-white/10 focus:text-white cursor-pointer" asChild>
                     <Link href="/dashboard" className="flex w-full items-center">
                       <LayoutDashboard className="mr-2 h-4 w-4" />
-                      <span>{t('nav.dashboard', language)}</span>
+                      <span>{navLabels.dashboard}</span>
                     </Link>
                   </DropdownMenuItem>
                   {isAdmin && (
                     <DropdownMenuItem className="focus:bg-white/10 focus:text-white cursor-pointer" asChild>
                       <Link href="/admin" className="flex w-full items-center">
                         <Settings className="mr-2 h-4 w-4" />
-                        <span>{t('nav.admin', language)}</span>
+                        <span>{navLabels.admin}</span>
                       </Link>
                     </DropdownMenuItem>
                   )}
@@ -290,14 +295,14 @@ export default function Navigation() {
         >
           <div className="flex flex-col space-y-1 pt-4 pb-4 mt-3 border-t border-white/10" data-testid="mobile-menu-links">
             {[
-              { href: '/', label: t('nav.home', language), testId: 'mobile-home-link' },
-              { href: '/properties', label: t('nav.properties', language), testId: 'mobile-properties-link' },
-              { href: '/regions', label: t('nav.regions', language), testId: 'mobile-regions-link' },
-              { href: '/process', label: language === 'cs' ? 'Jak koupit' : language === 'it' ? 'Come acquistare' : t('nav.process', language), testId: 'mobile-process-link' },
+              { href: '/', label: navLabels.home, testId: 'mobile-home-link' },
+              { href: '/process', label: language === 'cs' ? 'Náš proces' : language === 'it' ? 'Il nostro processo' : 'Our Process', testId: 'mobile-process-link' },
+              { href: '/properties', label: navLabels.properties, testId: 'mobile-properties-link' },
+              { href: '/regions', label: navLabels.regions, testId: 'mobile-regions-link' },
               { href: '/blog', label: language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles', testId: 'mobile-blog-link' },
               { href: '/faq', label: 'FAQ', testId: 'mobile-faq-link' },
-              { href: '/about', label: t('nav.about', language), testId: 'mobile-about-link' },
-              { href: '/contact', label: t('nav.contact', language), testId: 'mobile-contact-link' },
+              { href: '/about', label: navLabels.about, testId: 'mobile-about-link' },
+              { href: '/contact', label: navLabels.contact, testId: 'mobile-contact-link' },
             ].map(({ href, label, testId }) => (
               <Link 
                 key={href}
@@ -320,7 +325,7 @@ export default function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
                 data-testid="mobile-dashboard-link"
               >
-                {t('nav.dashboard', language)}
+                {navLabels.dashboard}
               </Link>
             )}
             {user && isAdmin && (
@@ -330,7 +335,7 @@ export default function Navigation() {
                 onClick={() => setIsMenuOpen(false)}
                 data-testid="mobile-admin-link"
               >
-                {t('nav.admin', language)}
+                {navLabels.admin}
               </Link>
             )}
             {!user && (
@@ -382,7 +387,7 @@ export default function Navigation() {
           <div className="container mx-auto px-4 py-2">
             <div className="flex items-center justify-center relative">
               <Link 
-                href="/club" 
+                href="/premium" 
                 className="flex items-center gap-2 sm:gap-3 group hover:opacity-90 transition-opacity"
               >
                 <Crown className="h-4 w-4 sm:h-5 sm:w-5 text-white flex-shrink-0" />
@@ -407,3 +412,4 @@ export default function Navigation() {
     </>
   )
 }
+

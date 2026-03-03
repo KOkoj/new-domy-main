@@ -1,0 +1,627 @@
+[
+  {
+    "_id": "1",
+    "_type": "region",
+    "name": {
+      "en": "Tuscany - tradition, prestige and rental income",
+      "cs": "Toskánsko - tradice, prestiž a příjem z pronájmu",
+      "it": "Toscana - tradizione, prestigio e reddito da affitto"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Iconic region for foreign buyers. Higher prices than the south, but a strong rental market and stable long-term value.",
+      "cs": "Ikonický region pro zahraniční kupující. Vyšší ceny než na jihu, ale silný trh krátkodobých pronájmů a stabilní hodnota v čase.",
+      "it": "Regione iconica per acquirenti stranieri. Prezzi piu alti rispetto al sud, ma forte mercato affitti e valore stabile nel tempo."
+    },
+    "image": "/Toscana.png",
+    "propertyCount": 1250,
+    "averagePrice": 850000,
+    "priceRange": {
+      "min": 200000,
+      "max": 5000000
+    },
+    "topCities": [
+      "Florence",
+      "Siena",
+      "Pisa",
+      "Lucca",
+      "Arezzo"
+    ],
+    "highlights": [
+      "Wine regions",
+      "Historic cities",
+      "Art & culture",
+      "Countryside villas"
+    ],
+    "popularity": 5
+  },
+  {
+    "_id": "2",
+    "_type": "region",
+    "name": {
+      "en": "Lombardy",
+      "cs": "Lombardie",
+      "it": "Lombardia"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardy"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Economic powerhouse of Italy with Milan as its capital. Modern properties, business opportunities, and alpine retreats.",
+      "cs": "Ekonomická mocnost Itálie s Milánem jako hlavním městem.",
+      "it": "Potenza economica d'Italia con Milano come capitale."
+    },
+    "image": "/Lombardia.jpg",
+    "propertyCount": 2100,
+    "averagePrice": 1200000,
+    "priceRange": {
+      "min": 300000,
+      "max": 10000000
+    },
+    "topCities": [
+      "Milan",
+      "Bergamo",
+      "Brescia",
+      "Como"
+    ],
+    "highlights": [
+      "Business hub",
+      "Modern apartments",
+      "Lake properties",
+      "Alps access"
+    ],
+    "popularity": 5
+  },
+  {
+    "_id": "3",
+    "_type": "region",
+    "name": {
+      "en": "Veneto",
+      "cs": "Veneto",
+      "it": "Veneto"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "veneto"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Home to Venice, Verona, and Lake Garda. Rich history, romantic cities, and diverse landscapes from mountains to coast.",
+      "cs": "Domov Benátek, Verony a Lago di Garda s bohatou historií.",
+      "it": "Casa di Venezia, Verona e il Lago di Garda. Storia ricca, città romantiche e paesaggi diversi."
+    },
+    "image": "/Veneto.webp",
+    "propertyCount": 520,
+    "averagePrice": 680000,
+    "priceRange": {
+      "min": 200000,
+      "max": 4000000
+    },
+    "topCities": [
+      "Venice",
+      "Verona",
+      "Padua",
+      "Vicenza"
+    ],
+    "highlights": [
+      "Romantic cities",
+      "Lake Garda",
+      "Rich history",
+      "Diverse landscapes"
+    ],
+    "popularity": 5
+  },
+  {
+    "_id": "4",
+    "_type": "region",
+    "name": {
+      "en": "Lazio",
+      "cs": "Lazio",
+      "it": "Lazio"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Home to Rome, the Eternal City. Rich history, ancient monuments, and vibrant modern life in Italy's capital region.",
+      "cs": "Domov Říma, věčného města, s bohatou historií a antickými památkami.",
+      "it": "Casa di Roma, la Città Eterna. Storia ricca, monumenti antichi e vita moderna vibrante."
+    },
+    "image": "/Lazio.webp",
+    "propertyCount": 680,
+    "averagePrice": 750000,
+    "priceRange": {
+      "min": 250000,
+      "max": 5000000
+    },
+    "topCities": [
+      "Rome",
+      "Viterbo",
+      "Latina",
+      "Frosinone"
+    ],
+    "highlights": [
+      "Ancient history",
+      "Capital city",
+      "Cultural sites",
+      "Modern amenities"
+    ],
+    "popularity": 5
+  },
+  {
+    "_id": "5",
+    "_type": "region",
+    "name": {
+      "en": "Sicily",
+      "cs": "Sicílie",
+      "it": "Sicilia"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "sicilia"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Italy's largest island offering diverse landscapes from beaches to mountains, rich history, and excellent value properties.",
+      "cs": "Největší ostrov Itálie nabízející rozmanité krajiny od pláží po hory.",
+      "it": "La più grande isola d'Italia che offre paesaggi diversi dalle spiagge alle montagne."
+    },
+    "image": "/Sicilia.jpg",
+    "propertyCount": 890,
+    "averagePrice": 420000,
+    "priceRange": {
+      "min": 80000,
+      "max": 3000000
+    },
+    "topCities": [
+      "Palermo",
+      "Catania",
+      "Taormina",
+      "Syracuse"
+    ],
+    "highlights": [
+      "Affordable prices",
+      "Beach properties",
+      "Historic sites",
+      "Island lifestyle"
+    ],
+    "popularity": 4
+  },
+  {
+    "_id": "6",
+    "_type": "region",
+    "name": {
+      "en": "Liguria",
+      "cs": "Ligurie",
+      "it": "Liguria"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "liguria"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Italian Riviera with Cinque Terre, coastal charm, and colorful seaside villages. Perfect for coastal living enthusiasts.",
+      "cs": "Italská riviéra s Cinque Terre, pobřežním kouzlem a barevnými přímořskými vesnicemi.",
+      "it": "Riviera italiana con le Cinque Terre, fascino costiero e villaggi colorati."
+    },
+    "image": "/Liguria.webp",
+    "propertyCount": 420,
+    "averagePrice": 950000,
+    "priceRange": {
+      "min": 250000,
+      "max": 4500000
+    },
+    "topCities": [
+      "Genoa",
+      "Portofino",
+      "Cinque Terre",
+      "Sanremo"
+    ],
+    "highlights": [
+      "Coastal living",
+      "Cinque Terre",
+      "Seaside villas",
+      "Italian Riviera"
+    ],
+    "popularity": 4
+  },
+  {
+    "_id": "7",
+    "_type": "region",
+    "name": {
+      "en": "Campania",
+      "cs": "Kampánie",
+      "it": "Campania"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "campania"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Home to Naples, Pompeii, and the Amalfi Coast. Rich history, vibrant culture, and stunning coastal beauty.",
+      "cs": "Domov Neapole, Pompejí a Amalfského pobřeží s bohatou historií.",
+      "it": "Casa di Napoli, Pompei e la Costiera Amalfitana. Storia ricca, cultura vibrante e bellezza costiera mozzafiato."
+    },
+    "image": "/campania.avif",
+    "propertyCount": 450,
+    "averagePrice": 680000,
+    "priceRange": {
+      "min": 200000,
+      "max": 4000000
+    },
+    "topCities": [
+      "Naples",
+      "Salerno",
+      "Caserta",
+      "Avellino"
+    ],
+    "highlights": [
+      "Historic sites",
+      "Coastal beauty",
+      "Vibrant culture",
+      "UNESCO heritage"
+    ],
+    "popularity": 4
+  },
+  {
+    "_id": "8",
+    "_type": "region",
+    "name": {
+      "en": "Piedmont",
+      "cs": "Piemont",
+      "it": "Piemonte"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "piemonte"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Alpine beauty, world-class wines, and elegant cities. Home to Turin and the Langhe wine region.",
+      "cs": "Alpská krása, vína světové úrovně a elegantní města.",
+      "it": "Bellezza alpina, vini di classe mondiale e città eleganti."
+    },
+    "image": "/Piemonte.jpg",
+    "propertyCount": 320,
+    "averagePrice": 580000,
+    "priceRange": {
+      "min": 200000,
+      "max": 3000000
+    },
+    "topCities": [
+      "Turin",
+      "Alessandria",
+      "Asti",
+      "Cuneo"
+    ],
+    "highlights": [
+      "Alpine beauty",
+      "Wine regions",
+      "Elegant cities",
+      "Cultural heritage"
+    ],
+    "popularity": 4
+  },
+  {
+    "_id": "9",
+    "_type": "region",
+    "name": {
+      "en": "Sardinia",
+      "cs": "Sardinie",
+      "it": "Sardegna"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "sardegna"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Mediterranean island paradise with pristine beaches, ancient nuraghe towers, and unique culture.",
+      "cs": "Středomořský ostrovní ráj s nedotčenými plážemi a prastarými nuragskými věžemi.",
+      "it": "Paradiso dell'isola mediterranea con spiagge incontaminate e torri nuragiche antiche."
+    },
+    "image": "/Sardegna.jpg",
+    "propertyCount": 340,
+    "averagePrice": 480000,
+    "priceRange": {
+      "min": 150000,
+      "max": 2500000
+    },
+    "topCities": [
+      "Cagliari",
+      "Sassari",
+      "Olbia",
+      "Alghero"
+    ],
+    "highlights": [
+      "Pristine beaches",
+      "Ancient towers",
+      "Island culture",
+      "Mediterranean paradise"
+    ],
+    "popularity": 4
+  },
+  {
+    "_id": "10",
+    "_type": "region",
+    "name": {
+      "en": "Emilia-Romagna",
+      "cs": "Emilia-Romagna",
+      "it": "Emilia-Romagna"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "emilia-romagna"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Culinary capital of Italy with Bologna, Parma, and Modena. Rich food culture, historic cities, and excellent quality of life.",
+      "cs": "Kulinářské hlavní město Itálie s bohatou gastronomickou kulturou.",
+      "it": "Capitale culinaria d'Italia con Bologna, Parma e Modena. Ricca cultura alimentare e qualità di vita eccellente."
+    },
+    "image": "/Emilia-Romagna.jpg",
+    "propertyCount": 380,
+    "averagePrice": 520000,
+    "priceRange": {
+      "min": 180000,
+      "max": 2500000
+    },
+    "topCities": [
+      "Bologna",
+      "Parma",
+      "Modena",
+      "Ravenna"
+    ],
+    "highlights": [
+      "Food culture",
+      "Historic cities",
+      "Quality of life",
+      "Economic stability"
+    ],
+    "popularity": 4
+  },
+  {
+    "_id": "11",
+    "_type": "region",
+    "name": {
+      "en": "Puglia",
+      "cs": "Puglia",
+      "it": "Puglia"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "puglia"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Heel of Italy with whitewashed trulli houses, olive groves, and stunning Adriatic coastline. Authentic southern charm.",
+      "cs": "Podpatek Itálie s bílými domy trulli a úchvatným jadranským pobřežím.",
+      "it": "Tallone d'Italia con trulli imbiancati, uliveti e costa adriatica mozzafiato."
+    },
+    "image": "/Puglia.webp",
+    "propertyCount": 280,
+    "averagePrice": 350000,
+    "priceRange": {
+      "min": 100000,
+      "max": 2000000
+    },
+    "topCities": [
+      "Bari",
+      "Lecce",
+      "Taranto",
+      "Foggia"
+    ],
+    "highlights": [
+      "Trulli houses",
+      "Olive groves",
+      "Adriatic coast",
+      "Southern charm"
+    ],
+    "popularity": 4
+  },
+  {
+    "_id": "12",
+    "_type": "region",
+    "name": {
+      "en": "Umbria",
+      "cs": "Umbrie",
+      "it": "Umbria"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "umbria"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Green heart of Italy with medieval hill towns, spiritual heritage, and peaceful countryside. Perfect for authentic Italian living.",
+      "cs": "Zelené srdce Itálie se středověkými městečky a klidným venkovem.",
+      "it": "Cuore verde d'Italia con borghi medievali, patrimonio spirituale e campagna pacifica."
+    },
+    "image": "/Umbria.webp",
+    "propertyCount": 165,
+    "averagePrice": 420000,
+    "priceRange": {
+      "min": 150000,
+      "max": 1800000
+    },
+    "topCities": [
+      "Perugia",
+      "Assisi",
+      "Terni",
+      "Spoleto"
+    ],
+    "highlights": [
+      "Hill towns",
+      "Spiritual heritage",
+      "Green landscapes",
+      "Peaceful living"
+    ],
+    "popularity": 3
+  },
+  {
+    "_id": "13",
+    "_type": "region",
+    "name": {
+      "en": "Friuli Venezia Giulia",
+      "cs": "Friuli Venezia Giulia",
+      "it": "Friuli Venezia Giulia"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "friuli-venezia-giulia"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Where the Alps meet the Adriatic – close to Austria and Slovenia. Excellent accessibility from Czech Republic with diverse landscapes.",
+      "cs": "Kde se Alpy setkávají s Jadranem - blízko Rakouska a Slovinska. Vynikající dostupnost z ČR.",
+      "it": "Dove le Alpi incontrano l'Adriatico – vicino ad Austria e Slovenia. Eccellente accessibilità dalla Repubblica Ceca."
+    },
+    "image": "/Friuli-Venezia Giulia.avif",
+    "propertyCount": 180,
+    "averagePrice": 280000,
+    "priceRange": {
+      "min": 50000,
+      "max": 500000
+    },
+    "topCities": [
+      "Trieste",
+      "Udine",
+      "Gorizia",
+      "Pordenone"
+    ],
+    "highlights": [
+      "Close to CZ",
+      "Alps & sea",
+      "Wine culture",
+      "Affordable"
+    ],
+    "popularity": 5
+  },
+  {
+    "_id": "14",
+    "_type": "region",
+    "name": {
+      "en": "Calabria",
+      "cs": "Kalábrie",
+      "it": "Calabria"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "calabria"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "The toe of Italy's boot with stunning coastlines and remarkably affordable real estate. Beautiful beaches and authentic southern culture.",
+      "cs": "Špička italské boty s úchvatným pobřežím a pozoruhodně dostupnými nemovitostmi.",
+      "it": "La punta dello stivale italiano con coste mozzafiato e immobili sorprendentemente accessibili."
+    },
+    "image": "/calabria.jpg",
+    "propertyCount": 220,
+    "averagePrice": 150000,
+    "priceRange": {
+      "min": 20000,
+      "max": 250000
+    },
+    "topCities": [
+      "Tropea",
+      "Cosenza",
+      "Reggio Calabria",
+      "Catanzaro"
+    ],
+    "highlights": [
+      "Very affordable",
+      "Beautiful coast",
+      "Mild winters",
+      "Authentic culture"
+    ],
+    "popularity": 4
+  },
+  {
+    "_id": "15",
+    "_type": "region",
+    "name": {
+      "en": "Abruzzo",
+      "cs": "Abruzzo",
+      "it": "Abruzzo"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "abruzzo"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "The greenest region in Europe with national parks, mountains, and Adriatic coastline. Remarkably affordable property prices.",
+      "cs": "Nejzelenější region Evropy s národními parky, horami a jadranským pobřežím. Pozoruhodně dostupné ceny nemovitostí.",
+      "it": "La regione più verde d'Europa con parchi nazionali, montagne e costa adriatica. Prezzi immobiliari sorprendentemente accessibili."
+    },
+    "image": "/abruzzo.jpg",
+    "propertyCount": 150,
+    "averagePrice": 120000,
+    "priceRange": {
+      "min": 25000,
+      "max": 300000
+    },
+    "topCities": [
+      "L'Aquila",
+      "Pescara",
+      "Chieti",
+      "Teramo"
+    ],
+    "highlights": [
+      "National parks",
+      "Very affordable",
+      "Mountains & sea",
+      "Quiet life"
+    ],
+    "popularity": 4
+  },
+  {
+    "_id": "16",
+    "_type": "region",
+    "name": {
+      "en": "Trentino-Alto Adige",
+      "cs": "Trentino-Alto Adige",
+      "it": "Trentino-Alto Adige"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "trentino-alto-adige"
+    },
+    "country": "Italy",
+    "description": {
+      "en": "Italian Alps at their finest – skiing, hiking, and year-round mountain activities. Austrian and Italian culture blend beautifully.",
+      "cs": "Italské Alpy v nejlepší podobě - lyžování, turistika a celoroční horské aktivity. Rakouská a italská kultura se krásně prolínají.",
+      "it": "Le Alpi italiane al meglio – sci, escursionismo e attività montane tutto l'anno. Cultura austriaca e italiana si fondono splendidamente."
+    },
+    "image": "/Trentino-Alto Adige.jpg",
+    "propertyCount": 240,
+    "averagePrice": 450000,
+    "priceRange": {
+      "min": 100000,
+      "max": 1500000
+    },
+    "topCities": [
+      "Bolzano",
+      "Trento",
+      "Merano",
+      "Cortina"
+    ],
+    "highlights": [
+      "Skiing & hiking",
+      "Year-round use",
+      "Alpine lifestyle",
+      "High quality of life"
+    ],
+    "popularity": 4
+  }
+]

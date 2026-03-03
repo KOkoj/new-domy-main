@@ -65,6 +65,13 @@ export default function TimelineGuidePage() {
             </Link>
             
             <div className="flex items-center space-x-4">
+              <Link
+                href="/blog"
+                className="hidden md:inline-flex items-center text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg px-3 py-2 transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                {language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles'}
+              </Link>
               <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20">
                 <button onClick={() => handleLanguageChange('en')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}>EN</button>
                 <button onClick={() => handleLanguageChange('cs')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}>CS</button>

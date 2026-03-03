@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import { ArrowLeft, AlertTriangle, XCircle, CheckCircle, FileWarning } from 'lucide-react'
@@ -7,10 +7,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
 import { supabase } from '../../../lib/supabase'
 import AuthModal from '../../../components/AuthModal'
+import FreePdfUpsellModal from '../../../components/FreePdfUpsellModal'
 
 export default function MistakesGuidePage() {
   const [user, setUser] = useState(null)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const [isFreePdfUpsellOpen, setIsFreePdfUpsellOpen] = useState(false)
   const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
@@ -50,6 +52,64 @@ export default function MistakesGuidePage() {
     localStorage.setItem('preferred-language', newLanguage)
   }
 
+  const handleFreePdfDownload = () => {
+    if (typeof window !== 'undefined') {
+      window.open('/pdfs/errori-comuni.pdf', '_blank', 'noopener,noreferrer')
+    }
+
+    setIsFreePdfUpsellOpen(true)
+
+    fetch('/api/free-pdf/upsell', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        pdfKey: 'mistakes-guide',
+        language,
+        sourcePath: '/guides/mistakes'
+      }),
+      keepalive: true
+    }).catch((error) => {
+      console.error('[FREE PDF UPSELL] Trigger error:', error)
+    })
+  }
+
+  const upsellCopy =
+    language === 'cs'
+      ? {
+          title: 'Chcete i prémiové PDF?',
+          body: 'Bezplatné PDF jste už stáhli. Pokud chcete praktičtější a podrobnější materiál, můžete si odemknout také placené PDF.',
+          bullets: [
+            'konkrétní prevence častých chyb',
+            'jasnější práce s náklady a riziky',
+            'praktická struktura kroků a dokumentů'
+          ],
+          cta: 'Zobrazit prémiové PDF',
+          secondary: 'Později'
+        }
+      : language === 'it'
+        ? {
+            title: 'Vuoi anche il PDF premium?',
+            body: 'Hai già scaricato il PDF gratuito. Se vuoi un materiale più operativo e approfondito, puoi sbloccare anche il PDF a pagamento.',
+            bullets: [
+              'prevenzione concreta degli errori più comuni',
+              'gestione più chiara di costi e rischi',
+              'struttura pratica di passaggi e documenti'
+            ],
+            cta: 'Vedi il PDF premium',
+            secondary: 'Più tardi'
+          }
+        : {
+            title: 'Do you want the premium PDF too?',
+            body: 'You already downloaded the free PDF. If you want a more operational and detailed resource, you can also unlock the paid PDF.',
+            bullets: [
+              'concrete prevention of common mistakes',
+              'clearer handling of costs and risks',
+              'practical structure of steps and documents'
+            ],
+            cta: 'View premium PDF',
+            secondary: 'Later'
+          }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}>
@@ -65,6 +125,13 @@ export default function MistakesGuidePage() {
             </Link>
             
             <div className="flex items-center space-x-4">
+              <Link
+                href="/blog"
+                className="hidden md:inline-flex items-center text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg px-3 py-2 transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                {language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles'}
+              </Link>
               <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20">
                 <button onClick={() => handleLanguageChange('en')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}>EN</button>
                 <button onClick={() => handleLanguageChange('cs')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}>CS</button>
@@ -124,6 +191,12 @@ export default function MistakesGuidePage() {
               </CardContent>
             </Card>
 
+            <p className="text-slate-800 leading-relaxed mb-8 text-xl font-semibold whitespace-pre-line">
+              {language === 'cs' ? 'Mnoho těchto chyb se neprojeví hned. Často se odhalí ve chvíli, kdy už není možné se vrátit zpět.' :
+               language === 'it' ? 'Molti di questi errori non emergono subito.\nSpesso si scoprono quando tornare indietro non è più possibile.' :
+               'Many of these mistakes do not appear immediately. They are often discovered when going back is no longer possible.'}
+            </p>
+
             <div className="space-y-8">
               {/* Mistake 1 */}
               <Card className="bg-white/90 backdrop-blur-sm border-l-4 border-l-red-500">
@@ -178,6 +251,26 @@ export default function MistakesGuidePage() {
                            language === 'it' ? 'In Italia il controllo legale non è una formalità – è un passo fondamentale che non può essere saltato.' :
                            'In Italy, legal control is not a formality – it\'s a crucial step that cannot be skipped.'}
                     </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-slate-50 to-blue-50 border border-blue-200">
+                <CardContent className="p-6">
+                  <p className="text-slate-800 text-lg font-semibold leading-relaxed whitespace-pre-line">
+                    {language === 'cs' ? 'Právě v tomto kroku se většina zahraničních kupujících spoléhá na domněnky.\nV Itálii ale kontroly nefungují „automaticky“.' :
+                     language === 'it' ? 'Questo è uno dei passaggi in cui la maggior parte degli acquirenti stranieri si affida a supposizioni.\nIn Italia, però, le verifiche non funzionano “automaticamente”.' :
+                     'This is one of the steps where most foreign buyers rely on assumptions.\nIn Italy, however, checks do not work “automatically”.'}
+                  </p>
+                  <div className="mt-5">
+                    <Link href="https://new-domy-main-z3ex.vercel.app/guides/notary" target="_blank" rel="noopener noreferrer">
+                      <Button className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white">
+                        <FileWarning className="h-4 w-4 mr-2" />
+                        {language === 'cs' ? 'Zjistit roli notáře' :
+                         language === 'it' ? 'Approfondisci il ruolo del notaio' :
+                         'Learn the notary role'}
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
@@ -259,40 +352,59 @@ export default function MistakesGuidePage() {
                 </CardContent>
               </Card>
 
+              <Card className="bg-blue-50 border-blue-200">
+                <CardContent className="p-6">
+                  <p className="text-blue-900 font-semibold text-lg leading-relaxed mb-4">
+                    {language === 'cs' ? 'Chcete vědět víc o nejčastějších chybách?' :
+                     language === 'it' ? 'Vuoi saperne di più sugli errori comuni?' :
+                     'Want to learn more about common mistakes?'}
+                  </p>
+                  <Button
+                    onClick={handleFreePdfDownload}
+                    className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-500 hover:to-indigo-500 border border-blue-400/40 shadow-sm"
+                  >
+                    {language === 'cs' ? 'Stáhnout PDF' :
+                     language === 'it' ? 'Scarica il PDF' :
+                     'Download PDF'}
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <p className="text-slate-800 leading-relaxed text-lg font-semibold whitespace-pre-line">
+                {language === 'cs' ? 'Číst a informovat se je první krok.\nMnoho chyb ale nevzniká z nepozornosti,\nnýbrž z toho, že musíte sami řídit systém, který neznáte.' :
+                 language === 'it' ? 'Leggere e informarsi è il primo passo.\nMa molti errori non nascono dalla disattenzione,\nbensì dal dover gestire da soli un sistema che non si conosce.' :
+                 'Reading and informing yourself is the first step.\nBut many mistakes are not caused by carelessness,\nrather by having to manage alone a system you do not know.'}
+              </p>
+
               {/* How to Avoid */}
               <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
                 <CardHeader>
                   <CardTitle className="text-2xl flex items-center text-green-900">
                     <CheckCircle className="h-6 w-6 mr-3" />
-                    {language === 'cs' ? 'Jak se těmto chybám vyhnout?' :
-                     language === 'it' ? 'Come evitare questi errori?' :
-                     'How to Avoid These Mistakes?'}
+                    {language === 'cs' ? 'Jak těmto chybám opravdu předejít?' :
+                     language === 'it' ? 'Come evitare davvero questi errori?' :
+                     'How to Really Avoid These Mistakes?'}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-green-900 font-semibold mb-4">
-                    {language === 'cs' ? 'Klíčem je:' :
-                     language === 'it' ? 'La chiave è:' :
-                     'The key is:'}
-                  </p>
                   <ul className="space-y-3">
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-green-900">{language === 'cs' ? 'Dobrá příprava' : language === 'it' ? 'Buona preparazione' : 'Good preparation'}</span>
+                      <span className="text-green-900 font-semibold">{language === 'cs' ? 'Příprava' : language === 'it' ? 'Preparazione' : 'Preparation'}</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-green-900">{language === 'cs' ? 'Realistický rozpočet' : language === 'it' ? 'Budget realistico' : 'Realistic budget'}</span>
+                      <span className="text-green-900 font-semibold">{language === 'cs' ? 'Realistický rozpočet' : language === 'it' ? 'Budget realistico' : 'Realistic budget'}</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-green-900">{language === 'cs' ? 'Znalost celého procesu ještě před prvním rozhodnutím' : language === 'it' ? 'Conoscenza dell\'intero processo prima della prima decisione' : 'Knowledge of the entire process before the first decision'}</span>
+                      <span className="text-green-900 font-semibold">{language === 'cs' ? 'Doprovod během celého procesu' : language === 'it' ? 'Accompagnamento durante tutto il processo' : 'Guidance throughout the entire process'}</span>
                     </li>
                   </ul>
-                  <p className="text-green-900 mt-6 leading-relaxed">
-                    {language === 'cs' ? 'Vyhnout se těmto chybám je možné – pokud máte správné informace hned na začátku.' :
-                     language === 'it' ? 'Evitare questi errori è possibile – se avete le informazioni giuste fin dall\'inizio.' :
-                     'Avoiding these mistakes is possible – if you have the right information from the start.'}
+                  <p className="text-green-900 mt-6 leading-relaxed whitespace-pre-line">
+                    {language === 'cs' ? 'Proto naše služba nevznikla proto, aby jen „vysvětlovala, jak na to“, ale aby vás vedla krok za krokem a předcházela chybám dřív, než se stanou skutečným problémem.' :
+                     language === 'it' ? 'Per questo il nostro servizio non nasce per “spiegare come fare”,\nma per accompagnarvi passo dopo passo,\nevitando errori prima che diventino un problema reale.' :
+                     'That is why our service is not designed to simply “explain what to do”,\nbut to guide you step by step,\npreventing mistakes before they become a real problem.'}
                   </p>
                 </CardContent>
               </Card>
@@ -323,6 +435,16 @@ export default function MistakesGuidePage() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={(user) => setUser(user)}
+      />
+
+      <FreePdfUpsellModal
+        open={isFreePdfUpsellOpen}
+        onOpenChange={setIsFreePdfUpsellOpen}
+        language={language}
+        copy={upsellCopy}
+        user={user}
+        premiumProductKey="premium-domy"
+        sourcePath="/guides/mistakes"
       />
     </div>
   )

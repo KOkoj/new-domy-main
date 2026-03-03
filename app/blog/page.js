@@ -1,26 +1,41 @@
-'use client'
+﻿'use client'
 
-import { useState, useEffect } from 'react'
-import { Calendar, Clock, ChevronRight, BookOpen, Mail, MessageSquare } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
+import { Clock, ChevronRight, BookOpen, Mail, MessageSquare } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
 const ARTICLES = [
   {
+    slug: 'real-estate-purchase-system-italy',
+    title: {
+      en: "How the Italian Property Buying System Really Works (and Why It's Different from the Czech Republic)",
+      cs: 'Jak skute\u010dn\u011b funguje italsk\u00fd syst\u00e9m koup\u011b nemovitosti (a pro\u010d se li\u0161\u00ed od \u010desk\u00e9 republiky)',
+      it: 'Come funziona davvero il sistema di acquisto immobiliare in Italia (e perche e diverso dalla Repubblica Ceca)'
+    },
+    excerpt: {
+      en: 'How the Italian property buying system really works for foreign buyers, including roles, checks, timing, and risk control.',
+      cs: 'Jak v praxi funguje koupě nemovitosti v Itálii pro zahraniční kupující: role, kontroly, načasování a řízení rizik.',
+      it: 'Come funziona davvero l’acquisto immobiliare in Italia per chi compra dall’estero: ruoli, controlli, tempi e gestione del rischio.'
+    },
+    date: '2026-02-11',
+    readTime: '10 min',
+    category: { en: 'Blog', cs: 'Blog', it: 'Blog' },
+    link: '/guides/real-estate-purchase-system-italy'
+  },
+  {
     slug: 'costs-2026',
     title: {
       en: 'How Much Does Buying a House in Italy Really Cost in 2026',
-      cs: 'bum skutečně stojí koupě domu v Itálii v roce 2026',
+      cs: 'Kolik skutečně stojí koupě domu v Itálii v roce 2026',
       it: 'Quanto costa realmente acquistare una casa in Italia nel 2026'
     },
     excerpt: {
       en: 'An overview of real costs, taxes, and fees you need to account for before signing a contract. The purchase price is just the beginning.',
       cs: 'Přehled reálných nákladů, daní a poplatků, se kterými je nutné počítat ještě před podpisem smlouvy. Kupní cena je pouze začátek.',
-      it: 'Una panoramica dei costi reali, tasse e spese da considerare prima di firmare un contratto. Il prezzo di acquisto è solo l\'inizio.'
+      it: "Una panoramica dei costi reali, tasse e spese da considerare prima di firmare un contratto. Il prezzo di acquisto è solo l'inizio."
     },
     date: '2026-01-06',
     readTime: '8 min',
@@ -35,7 +50,7 @@ const ARTICLES = [
       it: 'Gli errori più comuni dei cechi quando acquistano una casa in Italia'
     },
     excerpt: {
-      en: 'What to watch out for so you don\'t waste time and money. The biggest problems arise not from carelessness but from unfamiliarity with the Italian system.',
+      en: "What to watch out for so you don't waste time and money. The biggest problems arise not from carelessness but from unfamiliarity with the Italian system.",
       cs: 'Na co si dát pozor, abyste neztratili čas a peníze. Největší problémy vznikají ne z nepozornosti, ale z neznalosti italského systému.',
       it: 'A cosa fare attenzione per non perdere tempo e denaro. I maggiori problemi non nascono dalla disattenzione ma dalla scarsa conoscenza del sistema italiano.'
     },
@@ -47,12 +62,12 @@ const ARTICLES = [
   {
     slug: 'one-euro-houses',
     title: {
-      en: '1 Euro Houses in Italy – Reality or Trap?',
-      cs: 'Dům za 1 euro v Itálii – realita nebo past?',
-      it: 'Case a 1 euro in Italia – realtà o trappola?'
+      en: '1 Euro Houses in Italy: Reality or Trap?',
+      cs: 'Dům za 1 euro v Itálii: realita nebo past?',
+      it: 'Case a 1 euro in Italia: realtà o trappola?'
     },
     excerpt: {
-      en: 'What do the 1 euro house offers really mean? We look at the conditions, hidden costs, and whether it\'s worth considering these offers seriously.',
+      en: "What do the 1 euro house offers really mean? We look at the conditions, hidden costs, and whether it's worth considering these offers seriously.",
       cs: 'Co skutečně znamenají nabídky domů za 1 euro? Podíváme se na podmínky, skryté náklady a zda stojí za to tyto nabídky brát vážně.',
       it: 'Cosa significano realmente le offerte di case a 1 euro? Esaminiamo le condizioni, i costi nascosti e se vale la pena considerare seriamente queste offerte.'
     },
@@ -69,9 +84,9 @@ const ARTICLES = [
       it: 'Come scegliere la regione giusta in Italia per acquistare una casa (mare, montagna, investimento)'
     },
     excerpt: {
-      en: 'Italy offers very different regions. Learn how to choose based on your goal – whether it\'s a vacation home, investment, or a place for a new life.',
-      cs: 'Itálie nabízí velmi odlišné regiony. Zjistěte, jak vybrat podle vašeho cíle – ať už jde o rekreační dům, investici nebo místo pro nový život.',
-      it: 'L\'Italia offre regioni molto diverse. Scopri come scegliere in base al tuo obiettivo – che si tratti di una casa vacanze, investimento o posto per una nuova vita.'
+      en: "Italy offers very different regions. Learn how to choose based on your goal, whether it's a vacation home, investment, or a place for a new life.",
+      cs: 'Itálie nabízí velmi odlišné regiony. Zjistěte, jak vybrat podle vašeho cíle, ať už jde o rekreační dům, investici nebo místo pro nový život.',
+      it: "L'Italia offre regioni molto diverse. Scopri come scegliere in base al tuo obiettivo, che si tratti di una casa vacanze, investimento o posto per una nuova vita."
     },
     date: '2026-01-20',
     readTime: '10 min',
@@ -88,7 +103,7 @@ const ARTICLES = [
     excerpt: {
       en: 'What to expect during property viewings in Italy, how to prepare, and what to look for. A practical guide from experience.',
       cs: 'Co očekávat při prohlídkách nemovitostí v Itálii, jak se připravit a na co se zaměřit. Praktický průvodce ze zkušenosti.',
-      it: 'Cosa aspettarsi durante le visite immobiliari in Italia, come prepararsi e a cosa prestare attenzione. Una guida pratica dall\'esperienza.'
+      it: "Cosa aspettarsi durante le visite immobiliari in Italia, come prepararsi e a cosa prestare attenzione. Una guida pratica dall'esperienza."
     },
     date: '2026-01-21',
     readTime: '6 min',
@@ -100,10 +115,10 @@ const ARTICLES = [
     title: {
       en: 'Notary in Italy: Role and Costs When Buying a House',
       cs: 'Notář v Itálii: role a náklady při koupi domu',
-      it: 'Il notaio in Italia: ruolo e costi nell\'acquisto di una casa'
+      it: "Il notaio in Italia: ruolo e costi nell'acquisto di una casa"
     },
     excerpt: {
-      en: 'The notary\'s role in Italy differs significantly from the Czech Republic. Learn what to expect, what they verify, and what they don\'t.',
+      en: "The notary's role in Italy differs significantly from the Czech Republic. Learn what to expect, what they verify, and what they don't.",
       cs: 'Role notáře v Itálii se výrazně liší od České republiky. Zjistěte, co očekávat, co notář kontroluje a co ne.',
       it: 'Il ruolo del notaio in Italia differisce significativamente dalla Repubblica Ceca. Scopri cosa aspettarti, cosa verifica e cosa no.'
     },
@@ -120,9 +135,9 @@ const ARTICLES = [
       it: 'Quanto tempo ci vuole per acquistare una casa in Italia e cosa ritarda di più il processo'
     },
     excerpt: {
-      en: 'A realistic look at the timeline of buying Italian property – from the first viewing to receiving the keys. What causes the most common delays.',
-      cs: 'Realistický pohled na časový plán koupě italské nemovitosti – od první prohlídky po předání klíčů. Co způsobuje nejčastější zdržení.',
-      it: 'Uno sguardo realistico alla tempistica dell\'acquisto di un immobile italiano – dalla prima visita alla consegna delle chiavi. Cosa causa i ritardi più comuni.'
+      en: 'A realistic look at the timeline of buying Italian property, from the first viewing to receiving the keys. What causes the most common delays.',
+      cs: 'Realistický pohled na časový plán koupě italské nemovitosti, od první prohlídky po předání klíčů. Co způsobuje nejčastější zdržení.',
+      it: "Uno sguardo realistico alla tempistica dell'acquisto di un immobile italiano, dalla prima visita alla consegna delle chiavi. Cosa causa i ritardi più comuni."
     },
     date: '2026-01-21',
     readTime: '8 min',
@@ -130,6 +145,12 @@ const ARTICLES = [
     link: '/guides/timeline'
   }
 ]
+
+function localize(value, language) {
+  if (!value) return ''
+  if (typeof value === 'string') return value
+  return value[language] || value.en || value.cs || value.it || ''
+}
 
 export default function BlogPage() {
   const [language, setLanguage] = useState('en')
@@ -150,12 +171,38 @@ export default function BlogPage() {
     return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
 
+  const hiddenArticleKeywords = [
+    'one-euro-houses',
+    'casa a 1 euro',
+    'case a 1 euro',
+    'lago di como',
+    'lake como',
+    'lago-di-como',
+    'toscana',
+    'tuscany'
+  ]
+
+  const normalizeForFilter = (value = '') =>
+    value
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+
+  const visibleArticles = useMemo(() => {
+    return ARTICLES.filter((article) => {
+      const articleText = normalizeForFilter(
+        [article.slug, article.link, article.title?.en, article.title?.it, article.title?.cs].join(' ')
+      )
+
+      return !hiddenArticleKeywords.some((keyword) => articleText.includes(normalizeForFilter(keyword)))
+    })
+  }, [])
+
   return (
     <div className="min-h-screen bg-[#faf8f5]">
       <Navigation />
 
       <div className="pt-28 md:pt-32 pb-12">
-        {/* Hero Section */}
         <div className="container mx-auto px-4 py-12 md:py-16 mb-4">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-6">
@@ -165,28 +212,62 @@ export default function BlogPage() {
               </span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-slate-800 leading-tight">
-              {language === 'cs' ? 'Články o koupi domu v Itálii' :
-               language === 'it' ? 'Articoli sull\'acquisto di una casa in Italia' :
-               'Articles About Buying a House in Italy'}
+              {language === 'cs'
+                ? 'Články o koupi domu v Itálii'
+                : language === 'it'
+                  ? "Articoli sull'acquisto di una casa in Italia"
+                  : 'Articles About Buying a House in Italy'}
             </h1>
             <p className="text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">
-              {language === 'cs' ? 'Praktické články, které vám pomohou se zorientovat v procesu koupě nemovitosti v Itálii.' :
-               language === 'it' ? 'Articoli pratici che vi aiuteranno a orientarvi nel processo di acquisto di un immobile in Italia.' :
-               'Practical articles to help you navigate the process of buying property in Italy.'}
+              {language === 'cs'
+                ? 'Praktické články, které vám pomohou zorientovat se v procesu koupě nemovitosti v Itálii.'
+                : language === 'it'
+                  ? "Articoli pratici per orientarti nel processo di acquisto di un immobile in Italia."
+                  : 'Practical articles to help you navigate the process of buying property in Italy.'}
             </p>
           </div>
         </div>
 
         <div className="container mx-auto px-4">
-          {/* Articles List */}
-          <div className="max-w-3xl mx-auto mb-20">
-            <div className="divide-y divide-gray-100">
-              {ARTICLES.map((article, index) => (
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-8 lg:gap-12 mb-20">
+            <aside className="lg:sticky lg:top-28 h-fit lg:-ml-3">
+              <div className="relative overflow-hidden rounded-2xl border border-amber-200/60 bg-gradient-to-br from-amber-50 via-white to-slate-50 p-5 shadow-md">
+                <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-orange-400 via-amber-300 to-orange-300" />
+                <div className="absolute -top-7 -right-8 h-20 w-20 rounded-full bg-orange-300/55 blur-xl" />
+                <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-slate-200/50 blur-xl" />
+                <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-white/80 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-amber-700 border border-amber-200 mb-3">
+                  FAQ
+                </div>
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center mb-3 shadow-sm">
+                  <MessageSquare className="h-4 w-4 text-white" />
+                </div>
+                <h3 className="text-base font-bold text-slate-800 mb-2">
+                  {language === 'cs' ? 'Máte dotazy?' : language === 'it' ? 'Hai domande?' : 'Have Questions?'}
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  {language === 'cs'
+                    ? 'Podívejte se na FAQ k nákupu nemovitosti v Itálii.'
+                    : language === 'it'
+                      ? "Consulta le FAQ sull'acquisto di immobili in Italia."
+                      : 'Read the FAQ about buying property in Italy.'}
+                </p>
+                <Link href="/faq" className="block">
+                  <Button className="w-full h-9 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white text-xs font-semibold rounded-lg shadow-sm">
+                    {language === 'cs' ? 'Přejít na FAQ' : language === 'it' ? 'Vai alle FAQ' : 'Go to FAQ'}
+                    <ChevronRight className="h-3.5 w-3.5 ml-1.5" />
+                  </Button>
+                </Link>
+              </div>
+            </aside>
+
+            <div className="min-w-0">
+              <div className="divide-y divide-gray-100">
+              {visibleArticles.map((article) => (
                 <Link key={article.slug} href={article.link} className="block group">
                   <article className="py-8 first:pt-4">
                     <div className="flex items-center gap-3 mb-3">
                       <span className="text-xs font-semibold uppercase tracking-wider text-copper-600 bg-copper-50 px-2.5 py-1 rounded-md">
-                        {article.category[language]}
+                        {localize(article.category, language)}
                       </span>
                       <span className="text-sm text-gray-400 flex items-center gap-1.5">
                         <Clock className="h-3.5 w-3.5" />
@@ -194,11 +275,9 @@ export default function BlogPage() {
                       </span>
                     </div>
                     <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-2.5 group-hover:text-slate-600 transition-colors leading-tight">
-                      {article.title[language]}
+                      {localize(article.title, language)}
                     </h2>
-                    <p className="text-gray-500 leading-relaxed mb-3">
-                      {article.excerpt[language]}
-                    </p>
+                    <p className="text-gray-500 leading-relaxed mb-3">{localize(article.excerpt, language)}</p>
                     <span className="text-sm font-medium text-slate-600 group-hover:text-copper-600 flex items-center gap-1 transition-colors">
                       {language === 'cs' ? 'Číst článek' : language === 'it' ? 'Leggi articolo' : 'Read Article'}
                       <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
@@ -206,11 +285,11 @@ export default function BlogPage() {
                   </article>
                 </Link>
               ))}
+              </div>
             </div>
           </div>
 
-          {/* CTA Section */}
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
               <div className="relative p-10 md:p-14 text-center">
@@ -218,14 +297,14 @@ export default function BlogPage() {
                   <BookOpen className="h-7 w-7 text-white" />
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
-                  {language === 'cs' ? 'Chcete vědět více?' :
-                   language === 'it' ? 'Vuoi saperne di più?' :
-                   'Want to Know More?'}
+                  {language === 'cs' ? 'Chcete vědět víc?' : language === 'it' ? 'Vuoi saperne di più?' : 'Want to Know More?'}
                 </h2>
                 <p className="text-gray-300 text-lg mb-8 leading-relaxed max-w-xl mx-auto">
-                  {language === 'cs' ? 'Každá situace je jiná. Rádi vám doporučíme správný další krok podle vašeho cíle, rozpočtu a plánu.' :
-                   language === 'it' ? 'Ogni situazione è diversa. Saremo lieti di consigliarvi il prossimo passo giusto in base al vostro obiettivo, budget e piano.' :
-                   'Every situation is different. We\'ll gladly recommend the right next step based on your goal, budget, and plan.'}
+                  {language === 'cs'
+                    ? 'Každá situace je jiná. Rádi vám doporučíme správný další krok podle vašeho cíle, rozpočtu a plánu.'
+                    : language === 'it'
+                      ? 'Ogni situazione è diversa. Ti consigliamo il prossimo passo giusto in base al tuo obiettivo, budget e piano.'
+                      : "Every situation is different. We'll gladly recommend the right next step based on your goal, budget, and plan."}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <a href="https://wa.me/420731450001" target="_blank" rel="noopener noreferrer">
@@ -234,8 +313,8 @@ export default function BlogPage() {
                       WhatsApp
                     </Button>
                   </a>
-                  <Button 
-                    size="lg" 
+                  <Button
+                    size="lg"
                     className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 hover:border-white/30 font-medium px-8 py-5 text-base transition-all duration-300 rounded-xl bg-transparent border"
                     onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}
                   >

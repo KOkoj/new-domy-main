@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -33,10 +33,79 @@ import {
   Calendar,
   Tag,
   ExternalLink,
-  Languages
+  Languages,
+  RefreshCcw
 } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { t } from '@/lib/translations'
+
+const DEFAULT_MILAN_PROPERTY = {
+  _id: 'new',
+  title: {
+    en: 'Finely Renovated Three-Room Apartment with Balcony in Milan',
+    cs: 'Peclive zrekonstruovany tripokojovy byt s balkonem v Milane',
+    it: 'Trilocale finemente ristrutturato con balcone a Milano'
+  },
+  slug: { current: '' },
+  propertyType: 'apartment',
+  price: { amount: 399000, currency: 'EUR' },
+  specifications: { rooms: 3, bedrooms: 2, bathrooms: 1, squareFootage: 105, yearBuilt: 1960 },
+  location: {
+    city: {
+      name: { en: 'Milan, Cimiano', cs: 'Milan, Cimiano', it: 'Milano, Cimiano' },
+      slug: { current: 'milano' },
+      region: {
+        name: { en: 'Lombardy', cs: 'Lombardie', it: 'Lombardia' },
+        country: { en: 'Italy', cs: 'Italie', it: 'Italia' }
+      }
+    },
+    address: {
+      en: 'Cimiano, Via Atene 6',
+      cs: 'Cimiano, Via Atene 6',
+      it: 'Cimiano, Via Atene 6'
+    }
+  },
+  status: 'available',
+  featured: false,
+  description: {
+    en: "FINELY RENOVATED THREE-ROOM APARTMENT WITH BALCONY\n\nAre you looking for a spacious, fully renovated property in an elegant and well-inhabited setting? ICONACASA MILANO CIMIANO offers for sale a 105 sqm ground-floor unit, with a balcony facing inward onto a well-maintained condominium garden.\n\nINTERIOR: entrance into a hallway with a spacious living area. Next is a separate eat-in kitchen with access to the balcony; a large windowed bathroom with bathtub and shower box; and, completing the property, two bedrooms, both with windows, one of which has a comfortable walk-in closet.\n\nEXTERIOR: well-inhabited 1960s building, private cellar on the S1 level, half-day concierge service, monthly condominium fees of 300 euro, no planned/approved works, and possibility to purchase a parking space/garage on the semi-basement level.\n\nLOCATION: well-served area, a short walk from the Coop shopping center and from the M2 Cimiano (Via Palmanova) and M2 Udine metro stops. Bus lines 44, 51, 53 and 56 provide quick and easy connections across the city and to major rail interchange points. Many services are available in the area. The East Ring Road, at the end of Via Palmanova, provides access to the motorway network. The area is rich in greenery and parks: Parco Lambro and Parco della Martesana can be reached in a few minutes.",
+    cs: "PECLIVE ZREKONSTRUOVANY TRIPOKOJOVY BYT S BALKONEM\n\nHledate prostorne reseni po kompletni rekonstrukci v reprezentativnim a dobre obydlenem prostredi? ICONACASA MILANO CIMIANO nabizi k prodeji jednotku o velikosti 105 m2 v prizemi, vybavenou balkonem s vnitrni orientaci do upraveneho kondominialniho zahradniho prostoru.\n\nINTERIER: vstup do chodby s prostornou denni casti. Nasleduje samostatna obyvatelna kuchyn s pristupem na balkon; velka koupelna s oknem, vanou a sprchovym koutem; a na zaver dve loznice, obe s oknem, z nichz jedna ma pohodlnou satnu.\n\nEXTERIER: dobre obydleny dum ze 60. let, sklepni koje v podlazi S1, sluzba vratneho pul dne, mesicni kondominialni poplatky 300 euro, zadne planovane/schvalene prace, moznost dokoupeni parkovaciho mista/garaze v polosuterenu.\n\nPOLOHA: velmi dobre obslouzena zona, par kroku od nakupniho centra Coop a od stanic metra M2 Cimiano (Via Palmanova) a M2 Udine.",
+    it: "TRILOCALE FINEMENTE RISTRUTTURATO CON BALCONE\n\nCerchi un'ampia soluzione completamente ristrutturata in un contesto signorile e ben abitato? ICONACASA MILANO CIMIANO propone in vendita una soluzione di 105 mq sita al piano terra, dotata di balcone con esposizione interna su giardino condominiale ben curato.\n\nINTERNO: ingresso su disimpegno con spaziosa zona giorno. A seguire cucina abitabile con affaccio sul balcone; ampio bagno finestrato con vasca e box doccia; due camere da letto entrambe finestrate, di cui una con comoda cabina armadio.\n\nESTERNO: stabile anni '60 ben abitato, cantina al piano S1 di pertinenza, servizio di portineria mezza giornata, spese condominiali di 300 euro mensili, nessun lavoro previsto/deliberato, possibilita di acquisto posto auto/box al piano seminterrato.\n\nPOSIZIONE: zona ben servita, a pochi passi da Coop e dalla metropolitana M2 Cimiano (Via Palmanova) e M2 Udine. Autobus 44, 51, 53, 56 con collegamenti rapidi verso la citta e i principali nodi ferroviari."
+  },
+  images: [
+    '/uploads/properties/lombardia-appartamento/01-bagno.png',
+    '/uploads/properties/lombardia-appartamento/02-cuci2.png',
+    '/uploads/properties/lombardia-appartamento/03-cucina.png',
+    '/uploads/properties/lombardia-appartamento/04-ext.png',
+    '/uploads/properties/lombardia-appartamento/05-letto.png',
+    '/uploads/properties/lombardia-appartamento/06-letto2.png',
+    '/uploads/properties/lombardia-appartamento/07-sogg.png',
+    '/uploads/properties/lombardia-appartamento/08-stanza.png',
+    '/uploads/properties/lombardia-appartamento/09-vera.png'
+  ],
+  mainImage: 0,
+  amenities: [
+    { name: { en: 'Renovated', cs: 'Po rekonstrukci', it: 'Ristrutturato' } },
+    { name: { en: 'Balcony', cs: 'Balkon', it: 'Balcone' } },
+    { name: { en: 'Cellar', cs: 'Sklep', it: 'Cantina' } },
+    { name: { en: 'Walk-in closet', cs: 'Satna', it: 'Cabina armadio' } },
+    { name: { en: 'Half-day concierge service', cs: 'Vratny pul dne', it: 'Portineria mezza giornata' } }
+  ],
+  seoTitle: {
+    en: 'Renovated 2-Bed Apartment with Balcony in Milan Cimiano',
+    cs: 'Zrekonstruovany byt 3+kk s balkonem v Milane Cimiano',
+    it: 'Trilocale ristrutturato con balcone a Milano Cimiano'
+  },
+  seoDescription: {
+    en: '105 sqm ground-floor three-room apartment in Milan Cimiano with balcony, separate kitchen, cellar and concierge service. Close to M2 Cimiano and M2 Udine.',
+    cs: 'Tripokojovy byt 105 m2 v prizemi v Milane Cimiano s balkonem, samostatnou kuchyni, sklepem a vratnym. Blizko metra M2 Cimiano a M2 Udine.',
+    it: 'Trilocale di 105 mq al piano terra a Milano Cimiano: balcone, cucina abitabile, cantina e servizio di portineria. Vicino a M2 Cimiano e M2 Udine.'
+  },
+  keywords: ['milano', 'cimiano', 'trilocale', 'ristrutturato'],
+  sourceUrl: '',
+  publishAt: null,
+  scheduledPublish: false
+}
 
 export default function ContentManagement() {
   const [activeTab, setActiveTab] = useState('properties')
@@ -53,6 +122,22 @@ export default function ContentManagement() {
   const [keywordInput, setKeywordInput] = useState('')
   const [translating, setTranslating] = useState({})
   const [language, setLanguage] = useState('cs')
+  const [editingRegion, setEditingRegion] = useState(null)
+  const [isRegionModalOpen, setIsRegionModalOpen] = useState(false)
+  const [syncingProperties, setSyncingProperties] = useState(false)
+  const [autoSyncAttempted, setAutoSyncAttempted] = useState(false)
+
+  const syncLabel = language === 'cs' ? 'Synchronizovat' : language === 'it' ? 'Sincronizza' : 'Sync'
+  const syncDoneMessage = (count) => {
+    if (count > 0) {
+      if (language === 'cs') return `Synchronizovano ${count} nemovitosti do admin panelu.`
+      if (language === 'it') return `Sincronizzate ${count} proprieta nel pannello admin.`
+      return `Synced ${count} properties into Admin panel.`
+    }
+    if (language === 'cs') return 'Nemovitosti v admin panelu jsou jiz synchronizovane.'
+    if (language === 'it') return 'Le proprieta nel pannello admin sono gia sincronizzate.'
+    return 'Admin properties were already in sync.'
+  }
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language') || 'cs'
@@ -76,34 +161,173 @@ export default function ContentManagement() {
     loadContent()
   }, [activeTab])
 
+  useEffect(() => {
+    // Safety net: if "new property" modal opens with an empty draft, prefill Milan template
+    if (isModalOpen && editingItem?._id === 'new' && !editingItem?.title?.en) {
+      setEditingItem(JSON.parse(JSON.stringify(DEFAULT_MILAN_PROPERTY)))
+    }
+  }, [isModalOpen, editingItem?._id, editingItem?.title?.en])
+
   const loadContent = async () => {
+    const loadPropertiesFallback = async () => {
+      const fallbackResponse = await fetch('/api/properties', { cache: 'no-store' })
+      if (!fallbackResponse.ok) return []
+      const fallbackData = await fallbackResponse.json()
+      return Array.isArray(fallbackData) ? fallbackData : []
+    }
+
     try {
       setLoading(true)
       setError(null)
 
       const type = activeTab === 'properties' ? 'properties' : 'regions'
-      const response = await fetch(`/api/content?type=${type}`)
+      const response = await fetch(`/api/content?type=${type}`, { cache: 'no-store' })
       const result = await response.json()
 
       if (!response.ok) {
         if (result.error === 'Sanity CMS not configured') {
           setSanityConfigured(false)
         }
+
+        // Secondary fallback for properties list used by admin
+        if (activeTab === 'properties') {
+          const fallbackProperties = await loadPropertiesFallback()
+          setProperties(fallbackProperties)
+          if (fallbackProperties.length > 0) {
+            return
+          }
+        }
+
         throw new Error(result.error || 'Failed to load content')
       }
 
       if (activeTab === 'properties') {
-        setProperties(result.properties || [])
+        const incoming = Array.isArray(result.properties) ? result.properties : []
+        if (incoming.length > 0) {
+          setProperties(incoming)
+        } else {
+          const fallbackProperties = await loadPropertiesFallback()
+          setProperties(fallbackProperties)
+        }
       } else {
         setRegions(result.regions || [])
       }
     } catch (err) {
       console.error('Error loading content:', err)
+
+      // Last-resort fallback for properties tab
+      if (activeTab === 'properties') {
+        try {
+          const fallbackProperties = await loadPropertiesFallback()
+          if (fallbackProperties.length > 0) {
+            setProperties(fallbackProperties)
+            setError(null)
+            return
+          }
+        } catch {
+          // keep original error below
+        }
+      }
+
       setError(err.message)
     } finally {
       setLoading(false)
     }
   }
+
+  const syncPropertiesFromPublicApi = async () => {
+    try {
+      setSyncingProperties(true)
+      setError(null)
+
+      // 1) Read visible/public properties (same source used by /properties page)
+      const publicResponse = await fetch('/api/properties', { cache: 'no-store' })
+      if (!publicResponse.ok) {
+        throw new Error('Failed to load public properties')
+      }
+      const publicProperties = await publicResponse.json()
+      if (!Array.isArray(publicProperties) || publicProperties.length === 0) {
+        throw new Error('No public properties found to sync')
+      }
+
+      // 2) Read current admin properties
+      const adminResponse = await fetch('/api/content?type=properties', { cache: 'no-store' })
+      const adminJson = await adminResponse.json().catch(() => ({}))
+      const current = Array.isArray(adminJson?.properties) ? adminJson.properties : []
+      const existingSlugs = new Set(
+        current
+          .map((item) => item?.slug?.current)
+          .filter(Boolean)
+      )
+
+      // 3) Create missing properties via admin API so they become editable from panel
+      let created = 0
+      for (const item of publicProperties) {
+        const slug = item?.slug?.current
+        if (!slug || existingSlugs.has(slug)) continue
+
+        const payload = {
+          title: item.title || { en: '', cs: '', it: '' },
+          propertyType: item.propertyType || 'apartment',
+          price: item.price || { amount: 0, currency: 'EUR' },
+          specifications: item.specifications || { rooms: 0, bedrooms: 0, bathrooms: 0, squareFootage: 0 },
+          location: item.location || {
+            city: {
+              name: { en: 'Italy', cs: 'Italie', it: 'Italia' },
+              slug: { current: 'italy' },
+              region: {
+                name: { en: 'Italy', cs: 'Italie', it: 'Italia' },
+                country: { en: 'Italy', cs: 'Italie', it: 'Italia' }
+              }
+            },
+            address: { en: '', cs: '', it: '' }
+          },
+          status: item.status || 'available',
+          featured: Boolean(item.featured),
+          description: item.description || { en: '', cs: '', it: '' },
+          images: item.images || [],
+          mainImage: item.mainImage ?? 0,
+          amenities: item.amenities || [],
+          seoTitle: item.seoTitle || { en: '', cs: '', it: '' },
+          seoDescription: item.seoDescription || { en: '', cs: '', it: '' },
+          keywords: item.keywords || [],
+          sourceUrl: item.sourceUrl || ''
+        }
+
+        const createResponse = await fetch('/api/content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'property', data: payload })
+        })
+        if (!createResponse.ok) {
+          const err = await createResponse.json().catch(() => ({}))
+          throw new Error(err?.error || 'Failed to create synced property')
+        }
+        created += 1
+      }
+
+      await loadContent()
+      setSuccess(syncDoneMessage(created))
+    } catch (err) {
+      console.error('Sync properties error:', err)
+      setError(err.message || 'Failed to sync properties')
+    } finally {
+      setSyncingProperties(false)
+    }
+  }
+
+  useEffect(() => {
+    if (
+      activeTab === 'properties' &&
+      !loading &&
+      !syncingProperties &&
+      properties.length === 0 &&
+      !autoSyncAttempted
+    ) {
+      setAutoSyncAttempted(true)
+      syncPropertiesFromPublicApi()
+    }
+  }, [activeTab, loading, syncingProperties, properties.length, autoSyncAttempted])
 
   const formatPrice = (price) => {
     if (!price || !price.amount) return 'N/A'
@@ -115,11 +339,31 @@ export default function ContentManagement() {
     }).format(price.amount)
   }
 
+  const getImageSrc = (image) => {
+    if (!image) return ''
+    if (typeof image === 'string') return image
+    return image.url || image.asset?.url || ''
+  }
+
   const handleEditProperty = (property) => {
     // Ensure all fields have proper defaults for editing
     setEditingItem({
       ...property,
       title: { en: '', cs: '', it: '', ...property.title },
+      price: { amount: 0, currency: 'EUR', ...(property.price || {}) },
+      specifications: { rooms: 0, bedrooms: 0, bathrooms: 0, squareFootage: 0, ...(property.specifications || {}) },
+      location: {
+        city: {
+          name: { en: '', cs: '', it: '', ...(property.location?.city?.name || {}) },
+          slug: property.location?.city?.slug || { current: '' },
+          region: property.location?.city?.region || {
+            name: { en: '', cs: '', it: '' },
+            country: { en: 'Italy', cs: 'Italie', it: 'Italia' }
+          }
+        },
+        address: { en: '', cs: '', it: '', ...(property.location?.address || {}) },
+        ...(property.location?.coordinates ? { coordinates: property.location.coordinates } : {})
+      },
       images: property.images || [],
       mainImage: property.mainImage ?? null,
       seoTitle: { en: '', cs: '', it: '', ...(property.seoTitle || {}) },
@@ -127,7 +371,9 @@ export default function ContentManagement() {
       keywords: property.keywords || [],
       publishAt: property.publishAt || null,
       scheduledPublish: property.scheduledPublish || false,
-      description: { en: '', cs: '', it: '', ...(property.description || {}) }
+      description: { en: '', cs: '', it: '', ...(property.description || {}) },
+      amenities: property.amenities || [],
+      sourceUrl: property.sourceUrl || ''
     })
     setKeywordInput('')
     setIsModalOpen(true)
@@ -290,11 +536,6 @@ export default function ContentManagement() {
   }
 
   const handleSaveProperty = async () => {
-    if (!sanityConfigured) {
-      setError('Sanity CMS is not configured. Please add Sanity credentials to your environment variables.')
-      return
-    }
-
     setSaving(true)
     setError(null)
     setSuccess(null)
@@ -317,6 +558,9 @@ export default function ContentManagement() {
               description: editingItem.description || { en: '', it: '' },
               images: editingItem.images || [],
               mainImage: editingItem.mainImage,
+              location: editingItem.location,
+              amenities: editingItem.amenities || [],
+              sourceUrl: editingItem.sourceUrl || '',
               seoTitle: editingItem.seoTitle || { en: '', it: '' },
               seoDescription: editingItem.seoDescription || { en: '', it: '' },
               keywords: editingItem.keywords || [],
@@ -357,6 +601,9 @@ export default function ContentManagement() {
               description: editingItem.description,
               images: editingItem.images,
               mainImage: editingItem.mainImage,
+              location: editingItem.location,
+              amenities: editingItem.amenities || [],
+              sourceUrl: editingItem.sourceUrl || '',
               seoTitle: editingItem.seoTitle,
               seoDescription: editingItem.seoDescription,
               keywords: editingItem.keywords,
@@ -393,11 +640,6 @@ export default function ContentManagement() {
       return
     }
 
-    if (!sanityConfigured) {
-      setError(t('admin.content.sanityNotConfigured', language))
-      return
-    }
-
     try {
       setError(null)
       const response = await fetch(`/api/content?type=property&id=${propertyId}`, {
@@ -416,27 +658,153 @@ export default function ContentManagement() {
   }
 
   const createNewProperty = () => {
-    setEditingItem({
-      _id: 'new',
-      title: { en: '', cs: '', it: '' },
-      slug: { current: '' },
-      propertyType: 'villa',
-      price: { amount: 0, currency: 'EUR' },
-      specifications: { bedrooms: 0, bathrooms: 0, squareFootage: 0 },
-      location: { city: { name: { en: '', cs: '', it: '' } } },
-      status: 'available',
-      featured: false,
-      description: { en: '', cs: '', it: '' },
-      images: [],
-      mainImage: null,
-      seoTitle: { en: '', cs: '', it: '' },
-      seoDescription: { en: '', cs: '', it: '' },
-      keywords: [],
-      publishAt: null,
-      scheduledPublish: false
-    })
+    setEditingItem(JSON.parse(JSON.stringify(DEFAULT_MILAN_PROPERTY)))
     setKeywordInput('')
     setIsModalOpen(true)
+  }
+
+  const normalizeRegionForEditing = (region = {}) => {
+    const topCities = Array.isArray(region.topCities) ? region.topCities : []
+    const highlights = Array.isArray(region.highlights) ? region.highlights : []
+
+    return {
+      ...region,
+      _id: region._id || 'new',
+      name: {
+        en: region?.name?.en || '',
+        cs: region?.name?.cs || '',
+        it: region?.name?.it || ''
+      },
+      slug: {
+        _type: 'slug',
+        current: region?.slug?.current || ''
+      },
+      country: region.country || 'Italy',
+      description: {
+        en: region?.description?.en || '',
+        cs: region?.description?.cs || '',
+        it: region?.description?.it || ''
+      },
+      image: region.image || '',
+      propertyCount: Number(region.propertyCount || 0),
+      averagePrice: Number(region.averagePrice || 0),
+      priceRange: {
+        min: Number(region?.priceRange?.min || 0),
+        max: Number(region?.priceRange?.max || 0)
+      },
+      topCities,
+      highlights,
+      topCitiesText: topCities.join(', '),
+      highlightsText: highlights.join(', '),
+      popularity: Number(region.popularity || 0)
+    }
+  }
+
+  const createNewRegion = () => {
+    setEditingRegion(
+      normalizeRegionForEditing({
+        _id: 'new',
+        name: { en: '', cs: '', it: '' },
+        slug: { _type: 'slug', current: '' },
+        country: 'Italy',
+        description: { en: '', cs: '', it: '' },
+        image: '',
+        propertyCount: 0,
+        averagePrice: 0,
+        priceRange: { min: 0, max: 0 },
+        topCities: [],
+        highlights: [],
+        popularity: 0
+      })
+    )
+    setIsRegionModalOpen(true)
+  }
+
+  const handleEditRegion = (region) => {
+    setEditingRegion(normalizeRegionForEditing(region))
+    setIsRegionModalOpen(true)
+  }
+
+  const handleSaveRegion = async () => {
+    if (!editingRegion) return
+
+    setSaving(true)
+    setError(null)
+    setSuccess(null)
+
+    try {
+      const payload = {
+        name: editingRegion.name,
+        slug: {
+          _type: 'slug',
+          current: editingRegion?.slug?.current || ''
+        },
+        country: editingRegion.country,
+        description: editingRegion.description,
+        image: editingRegion.image,
+        propertyCount: Number(editingRegion.propertyCount || 0),
+        averagePrice: Number(editingRegion.averagePrice || 0),
+        priceRange: {
+          min: Number(editingRegion?.priceRange?.min || 0),
+          max: Number(editingRegion?.priceRange?.max || 0)
+        },
+        topCities: (editingRegion.topCitiesText || '')
+          .split(',')
+          .map((item) => item.trim())
+          .filter(Boolean),
+        highlights: (editingRegion.highlightsText || '')
+          .split(',')
+          .map((item) => item.trim())
+          .filter(Boolean),
+        popularity: Number(editingRegion.popularity || 0)
+      }
+
+      const isNew = editingRegion._id === 'new'
+      const response = await fetch('/api/content', {
+        method: isNew ? 'POST' : 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(
+          isNew
+            ? { type: 'region', data: payload }
+            : { type: 'region', id: editingRegion._id, data: payload }
+        )
+      })
+
+      const result = await response.json()
+      if (!response.ok) {
+        throw new Error(result.error || (isNew ? 'Failed to create region' : 'Failed to update region'))
+      }
+
+      setSuccess(isNew ? 'Region created successfully.' : 'Region updated successfully.')
+      setIsRegionModalOpen(false)
+      setEditingRegion(null)
+      await loadContent()
+    } catch (err) {
+      console.error('Error saving region:', err)
+      setError(err.message)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const handleDeleteRegion = async (regionId) => {
+    if (!confirm(t('admin.content.deleteConfirm', language))) {
+      return
+    }
+
+    try {
+      setError(null)
+      const response = await fetch(`/api/content?type=region&id=${regionId}`, {
+        method: 'DELETE'
+      })
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || 'Failed to delete region')
+      setSuccess('Region deleted successfully.')
+      await loadContent()
+    } catch (err) {
+      console.error('Error deleting region:', err)
+      setError(err.message)
+    }
   }
 
   return (
@@ -505,10 +873,20 @@ export default function ContentManagement() {
         <TabsContent value="properties" className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold">{t('admin.content.propertyManagement', language)}</h2>
-            <Button onClick={createNewProperty}>
-              <Plus className="h-4 w-4 mr-2" />
-              {t('admin.content.addProperty', language)}
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" onClick={syncPropertiesFromPublicApi} disabled={syncingProperties}>
+                {syncingProperties ? (
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                ) : (
+                  <RefreshCcw className="h-4 w-4 mr-2" />
+                )}
+                {syncLabel}
+              </Button>
+              <Button onClick={createNewProperty}>
+                <Plus className="h-4 w-4 mr-2" />
+                {t('admin.content.addProperty', language)}
+              </Button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -575,16 +953,22 @@ export default function ContentManagement() {
                             <DollarSign className="h-4 w-4 mr-1" />
                             {formatPrice(property.price)}
                           </span>
+                            {property.specifications?.rooms !== undefined && (
+                          <span className="flex items-center">
+                            <Home className="h-4 w-4 mr-1" />
+                            {property.specifications.rooms} {language === 'cs' ? 'mistnosti' : language === 'it' ? 'locali' : 'rooms'}
+                          </span>
+                            )}
                             {property.specifications?.bedrooms !== undefined && (
                           <span className="flex items-center">
                             <Bed className="h-4 w-4 mr-1" />
-                            {property.specifications.bedrooms} beds
+                            {property.specifications.bedrooms} {language === 'cs' ? 'loznice' : language === 'it' ? 'camere' : 'beds'}
                           </span>
                             )}
                             {property.specifications?.bathrooms !== undefined && (
                           <span className="flex items-center">
                             <Bath className="h-4 w-4 mr-1" />
-                            {property.specifications.bathrooms} baths
+                            {property.specifications.bathrooms} {language === 'cs' ? 'koupelny' : language === 'it' ? 'bagni' : 'baths'}
                           </span>
                             )}
                         </div>
@@ -605,7 +989,6 @@ export default function ContentManagement() {
                           variant="outline" 
                           size="sm" 
                           onClick={() => handleEditProperty(property)}
-                          disabled={!sanityConfigured}
                         >
                         <Edit className="h-4 w-4" />
                       </Button>
@@ -613,7 +996,6 @@ export default function ContentManagement() {
                           variant="outline" 
                           size="sm" 
                           onClick={() => handleDeleteProperty(property._id)}
-                          disabled={!sanityConfigured}
                         >
                         <Trash2 className="h-4 w-4" />
                       </Button>
@@ -631,10 +1013,20 @@ export default function ContentManagement() {
                       : t('admin.content.configureSanity', language)}
                   </p>
                   {sanityConfigured && (
+                    <div className="flex items-center justify-center gap-2">
+                    <Button variant="outline" onClick={syncPropertiesFromPublicApi} disabled={syncingProperties}>
+                      {syncingProperties ? (
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      ) : (
+                        <RefreshCcw className="h-4 w-4 mr-2" />
+                      )}
+                      {syncLabel}
+                    </Button>
                     <Button onClick={createNewProperty}>
                       <Plus className="h-4 w-4 mr-2" />
                       {t('admin.content.addFirstProperty', language)}
                     </Button>
+                    </div>
                   )}
                 </div>
               )}
@@ -646,7 +1038,7 @@ export default function ContentManagement() {
         <TabsContent value="regions" className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold">{t('admin.content.regionManagement', language)}</h2>
-            <Button disabled={!sanityConfigured}>
+            <Button onClick={createNewRegion}>
               <Plus className="h-4 w-4 mr-2" />
               {t('admin.content.addRegion', language)}
             </Button>
@@ -681,10 +1073,10 @@ export default function ContentManagement() {
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <Button variant="outline" size="sm" disabled={!sanityConfigured}>
+                        <Button variant="outline" size="sm" onClick={() => handleEditRegion(region)}>
                         <Edit className="h-4 w-4" />
                       </Button>
-                        <Button variant="outline" size="sm" disabled={!sanityConfigured}>
+                        <Button variant="outline" size="sm" onClick={() => handleDeleteRegion(region._id)}>
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -860,7 +1252,7 @@ export default function ContentManagement() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-5 gap-4">
                   <div className="col-span-1">
                     <label className="text-sm font-medium mb-1 block">{t('admin.content.price', language)} *</label>
                     <Input
@@ -871,6 +1263,18 @@ export default function ContentManagement() {
                         price: { ...prev.price, amount: parseInt(e.target.value) || 0 }
                       }))}
                       placeholder="500000"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">{t('admin.content.rooms', language)}</label>
+                    <Input
+                      type="number"
+                      value={editingItem.specifications.rooms}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        specifications: { ...prev.specifications, rooms: parseInt(e.target.value) || 0 }
+                      }))}
+                      placeholder="4"
                     />
                   </div>
                   <div>
@@ -1004,7 +1408,7 @@ export default function ContentManagement() {
                           }`}
                         >
                           <img
-                            src={image.url || image.asset?.url}
+                            src={getImageSrc(image)}
                             alt={`Property ${index + 1}`}
                             className="w-full h-32 object-cover"
                           />
@@ -1342,7 +1746,7 @@ export default function ContentManagement() {
                 </Button>
                 <Button 
                   onClick={handleSaveProperty}
-                  disabled={saving || !sanityConfigured}
+                  disabled={saving}
                 >
                   {saving ? (
                     <>
@@ -1358,6 +1762,227 @@ export default function ContentManagement() {
                 </Button>
               </div>
             </Tabs>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isRegionModalOpen} onOpenChange={setIsRegionModalOpen}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">
+              {editingRegion?._id === 'new' ? 'Add New Region' : 'Edit Region'}
+            </DialogTitle>
+          </DialogHeader>
+          {editingRegion && (
+            <div className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Name (EN)</label>
+                  <Input
+                    value={editingRegion.name.en}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      name: { ...prev.name, en: e.target.value }
+                    }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Name (CS)</label>
+                  <Input
+                    value={editingRegion.name.cs}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      name: { ...prev.name, cs: e.target.value }
+                    }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Name (IT)</label>
+                  <Input
+                    value={editingRegion.name.it}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      name: { ...prev.name, it: e.target.value }
+                    }))}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Slug</label>
+                  <Input
+                    value={editingRegion.slug.current}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      slug: { ...prev.slug, current: e.target.value }
+                    }))}
+                    placeholder="toscana"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Country</label>
+                  <Input
+                    value={editingRegion.country}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      country: e.target.value
+                    }))}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium mb-1 block">Image URL / Path</label>
+                <Input
+                  value={editingRegion.image}
+                  onChange={(e) => setEditingRegion((prev) => ({
+                    ...prev,
+                    image: e.target.value
+                  }))}
+                  placeholder="/Toscana.png"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Description (EN)</label>
+                  <Textarea
+                    value={editingRegion.description.en}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      description: { ...prev.description, en: e.target.value }
+                    }))}
+                    rows={4}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Description (CS)</label>
+                  <Textarea
+                    value={editingRegion.description.cs}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      description: { ...prev.description, cs: e.target.value }
+                    }))}
+                    rows={4}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Description (IT)</label>
+                  <Textarea
+                    value={editingRegion.description.it}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      description: { ...prev.description, it: e.target.value }
+                    }))}
+                    rows={4}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Properties</label>
+                  <Input
+                    type="number"
+                    value={editingRegion.propertyCount}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      propertyCount: Number(e.target.value || 0)
+                    }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Avg Price</label>
+                  <Input
+                    type="number"
+                    value={editingRegion.averagePrice}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      averagePrice: Number(e.target.value || 0)
+                    }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Min Price</label>
+                  <Input
+                    type="number"
+                    value={editingRegion.priceRange.min}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      priceRange: { ...prev.priceRange, min: Number(e.target.value || 0) }
+                    }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Max Price</label>
+                  <Input
+                    type="number"
+                    value={editingRegion.priceRange.max}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      priceRange: { ...prev.priceRange, max: Number(e.target.value || 0) }
+                    }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Popularity (0-5)</label>
+                  <Input
+                    type="number"
+                    min="0"
+                    max="5"
+                    value={editingRegion.popularity}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      popularity: Number(e.target.value || 0)
+                    }))}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium mb-1 block">Top Cities (comma separated)</label>
+                <Input
+                  value={editingRegion.topCitiesText}
+                  onChange={(e) => setEditingRegion((prev) => ({
+                    ...prev,
+                    topCitiesText: e.target.value
+                  }))}
+                  placeholder="Florence, Siena, Pisa"
+                />
+              </div>
+
+              <div>
+                <label className="text-sm font-medium mb-1 block">Highlights (comma separated)</label>
+                <Input
+                  value={editingRegion.highlightsText}
+                  onChange={(e) => setEditingRegion((prev) => ({
+                    ...prev,
+                    highlightsText: e.target.value
+                  }))}
+                  placeholder="Wine regions, Historic cities"
+                />
+              </div>
+
+              <div className="flex justify-end space-x-2 pt-4 border-t">
+                <Button variant="outline" onClick={() => setIsRegionModalOpen(false)} disabled={saving}>
+                  {t('admin.content.cancel', language)}
+                </Button>
+                <Button onClick={handleSaveRegion} disabled={saving}>
+                  {saving ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      {t('admin.content.saving', language)}
+                    </>
+                  ) : (
+                    <>
+                      <Save className="h-4 w-4 mr-2" />
+                      {editingRegion._id === 'new' ? 'Create Region' : t('admin.content.saveChanges', language)}
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
           )}
         </DialogContent>
       </Dialog>

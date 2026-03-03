@@ -26,7 +26,6 @@ import AuthModal from '../../components/AuthModal';
 import Footer from '../../components/Footer';
 import RegionBanner from '../../components/RegionBanner';
 import Navigation from '@/components/Navigation';
-import { t } from '../../lib/translations';
 import { formatPriceCompact } from '../../lib/currency';
 
 // Format price with compact symbols (k, M) using shared currency utility
@@ -34,8 +33,87 @@ const formatPrice = (price, currency = 'EUR') => {
   return formatPriceCompact(price, currency)
 }
 
+const PROPERTY_TYPE_LABELS = {
+  apartment: { cs: 'Byt', it: 'Appartamento', en: 'Apartment' },
+  house: { cs: 'Samostatn\u00fd d\u016fm', it: 'Casa singola', en: 'Single House' },
+  villa: { cs: 'Vila', it: 'Villa', en: 'Villa' },
+  rustico: { cs: 'Rustiko', it: 'Rustico', en: 'Rustic House' }
+}
+
+const PROPERTY_TYPE_KEYWORDS = {
+  apartment: ['apartment', 'appartamento', 'flat', 'byt'],
+  house: ['house', 'home', 'casa', 'single', 'singola', 'detached', 'dum'],
+  villa: ['villa'],
+  rustico: ['rustico', 'casale', 'masseria', 'trullo', 'farmhouse', 'podere', 'borgo'],
+  commercial: ['commercial', 'commercio', 'komercni']
+}
+
+const normalizeText = (value) =>
+  String(value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+
+const hasKeyword = (text, keywords = []) => keywords.some((keyword) => text.includes(keyword))
+
+const resolvePropertyType = (rawType, context = '') => {
+  const normalizedType = normalizeText(rawType)
+  const normalizedContext = normalizeText(context)
+
+  if (
+    hasKeyword(normalizedType, PROPERTY_TYPE_KEYWORDS.rustico) ||
+    hasKeyword(normalizedContext, PROPERTY_TYPE_KEYWORDS.rustico)
+  ) {
+    return 'rustico'
+  }
+  if (
+    hasKeyword(normalizedType, PROPERTY_TYPE_KEYWORDS.villa) ||
+    hasKeyword(normalizedContext, PROPERTY_TYPE_KEYWORDS.villa)
+  ) {
+    return 'villa'
+  }
+  if (
+    hasKeyword(normalizedType, PROPERTY_TYPE_KEYWORDS.apartment) ||
+    hasKeyword(normalizedContext, PROPERTY_TYPE_KEYWORDS.apartment)
+  ) {
+    return 'apartment'
+  }
+  if (
+    hasKeyword(normalizedType, PROPERTY_TYPE_KEYWORDS.house) ||
+    hasKeyword(normalizedContext, PROPERTY_TYPE_KEYWORDS.house)
+  ) {
+    return 'house'
+  }
+  if (
+    hasKeyword(normalizedType, PROPERTY_TYPE_KEYWORDS.commercial) ||
+    hasKeyword(normalizedContext, PROPERTY_TYPE_KEYWORDS.commercial)
+  ) {
+    return 'house'
+  }
+
+  return 'house'
+}
+
+const getLocalizedValue = (value, language, fallback = '') => {
+  if (value && typeof value === 'object') {
+    return value[language] || value.en || value.it || value.cs || fallback
+  }
+  return value || fallback
+}
+
+const getPropertyTypeLabel = (propertyType, language) => {
+  const resolvedType = resolvePropertyType(propertyType, propertyType)
+  return PROPERTY_TYPE_LABELS[resolvedType]?.[language] || PROPERTY_TYPE_LABELS[resolvedType]?.en || resolvedType
+}
+
 // PropertyCard component matching homepage design
 function PropertyCard({ property, onFavorite, isFavorited, language, currency, onClick }) {
+  const roomsLabel = language === 'cs' ? 'm\u00edstnosti' : language === 'it' ? 'locali' : 'rooms'
+  const bedroomsLabel = language === 'cs' ? 'lo\u017enice' : language === 'it' ? 'camere' : 'bedrooms'
+  const viewDetailsLabel = PAGE_LABELS[language]?.viewDetails || PAGE_LABELS.en.viewDetails
+  const localizedTitle = getLocalizedValue(property.titleI18n || property.title, language, 'Untitled Property')
+  const localizedTypeLabel = getPropertyTypeLabel(property.type, language)
+
   const handleFavoriteClick = (e) => {
     e.preventDefault()
     e.stopPropagation()
@@ -69,7 +147,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
       <div className="relative overflow-hidden" data-testid="property-image-container">
         <img 
           src={property.image} 
-          alt={property.title}
+          alt={localizedTitle}
           className="w-full h-48 sm:h-64 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           data-testid="property-image"
         />
@@ -83,7 +161,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
             className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-3 py-1.5 text-xs font-medium shadow-lg rounded-lg capitalize backdrop-blur-sm border border-white/20 group-hover:shadow-xl pointer-events-none"
             data-testid="property-type-badge"
           >
-            {property.type}
+            {localizedTypeLabel}
           </Badge>
           
           <Button
@@ -126,7 +204,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
               className="font-bold text-base sm:text-lg leading-tight line-clamp-2 group-hover:text-slate-800 transition-colors duration-300 group-hover:tracking-wide"
               data-testid="property-title"
             >
-              {property.title}
+              {localizedTitle}
             </h3>
             
             <div className="flex items-center text-gray-500 text-xs sm:text-sm group-hover:text-gray-600 transition-colors duration-300" data-testid="property-location">
@@ -139,9 +217,9 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
           
           {/* Specifications */}
           <div className="flex items-center justify-between pt-2 sm:pt-3 border-t border-gray-100 text-xs sm:text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300" data-testid="property-specifications">
-            <span className="font-semibold" data-testid="bedrooms-count">{property.rooms} pokoje</span>
-            <span className="font-semibold" data-testid="bathrooms-count">{property.bathrooms} koup.</span>
-            <span className="font-semibold" data-testid="square-footage-count">{property.area} m²</span>
+            <span className="font-semibold" data-testid="rooms-count">{property.rooms} {roomsLabel}</span>
+            <span className="font-semibold" data-testid="bedrooms-count">{property.bedrooms} {bedroomsLabel}</span>
+            <span className="font-semibold" data-testid="square-footage-count">{property.area} m2</span>
           </div>
         </div>
         
@@ -150,7 +228,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
           <div 
             className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border-0 text-xs sm:text-sm flex items-center justify-center cursor-pointer"
           >
-            <span data-testid="view-details-text">Zobrazit detail</span>
+            <span data-testid="view-details-text">{viewDetailsLabel}</span>
             <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
           </div>
         </div>
@@ -165,41 +243,182 @@ const MapComponent = dynamic(() => import('../../components/PropertyMap'), {
     <div className="h-full bg-slate-50 flex items-center justify-center">
       <div className="text-center">
         <MapPin className="h-12 w-12 text-slate-800 mx-auto mb-2 animate-pulse" />
-        <p className="text-slate-800">Načítám mapu...</p>
+        <p className="text-slate-800">Loading map...</p>
       </div>
     </div>
   ),
   ssr: false
 });
 
-// Italian regions data
-const italianRegions = {
-  "Tuscany": { temp: "23°C", price: 4, distance: "1,250 km" },
-  "Lombardy": { temp: "20°C", price: 4, distance: "950 km" },
-  "Veneto": { temp: "22°C", price: 3, distance: "890 km" },
-  "Emilia-Romagna": { temp: "24°C", price: 3, distance: "1,100 km" },
-  "Liguria": { temp: "25°C", price: 4, distance: "1,200 km" },
-  "Piedmont": { temp: "19°C", price: 3, distance: "1,050 km" },
-  "Campania": { temp: "26°C", price: 2, distance: "1,450 km" },
-  "Sicily": { temp: "27°C", price: 2, distance: "1,750 km" }
+const REGION_LABEL_BY_SLUG = {
+  abruzzo: 'Abruzzo',
+  basilicata: 'Basilicata',
+  calabria: 'Calabria',
+  campania: 'Campania',
+  'emilia-romagna': 'Emilia-Romagna',
+  'friuli-venezia-giulia': 'Friuli-Venezia Giulia',
+  lazio: 'Lazio',
+  liguria: 'Liguria',
+  lombardy: 'Lombardy',
+  marche: 'Marche',
+  molise: 'Molise',
+  piemonte: 'Piedmont',
+  puglia: 'Puglia',
+  sardegna: 'Sardinia',
+  sicilia: 'Sicily',
+  toscana: 'Tuscany',
+  'trentino-alto-adige': 'Trentino-Alto Adige',
+  umbria: 'Umbria',
+  'valle-d-aosta': "Valle d'Aosta",
+  veneto: 'Veneto'
+};
+
+const REGION_SLUG_ALIASES = {
+  lombardia: 'lombardy',
+  piedmont: 'piemonte',
+  sicily: 'sicilia',
+  sardinia: 'sardegna',
+  tuscany: 'toscana',
+  'aosta-valley': 'valle-d-aosta',
+  'valle-daosta': 'valle-d-aosta'
+};
+
+const toRegionSlug = (value) => {
+  if (!value || typeof value !== 'string') return '';
+
+  const normalized = value
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/['’]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+  return REGION_SLUG_ALIASES[normalized] || normalized;
 };
 
 const propertyTypes = [
-  { id: 'apartment', name: 'Byt', icon: Building },
-  { id: 'house', name: 'Dům', icon: Home },
-  { id: 'villa', name: 'Vila', icon: Castle },
-  { id: 'commercial', name: 'Komerční', icon: Building2 }
+  { id: 'apartment', name: PROPERTY_TYPE_LABELS.apartment, icon: Building },
+  { id: 'house', name: PROPERTY_TYPE_LABELS.house, icon: Home },
+  { id: 'villa', name: PROPERTY_TYPE_LABELS.villa, icon: Castle },
+  { id: 'rustico', name: PROPERTY_TYPE_LABELS.rustico, icon: Building2 }
 ];
 
+const ROOM_LAYOUT_OPTIONS = [
+  { id: '1+kk', label: '1+kk', min: 1, max: 1 },
+  { id: '2+kk', label: '2+kk', min: 2, max: 2 },
+  { id: '3+kk', label: '3+kk', min: 3, max: 3 },
+  { id: '4+kk', label: '4+kk', min: 4, max: 4 },
+  { id: '5+kk+', label: '5+kk+', min: 5, max: null }
+];
+
+const PAGE_LABELS = {
+  cs: {
+    viewDetails: 'Zobrazit detail',
+    loadingMap: 'Na\u010d\u00edt\u00e1m mapu...',
+    showFilters: 'Zobrazit filtry',
+    hideFilters: 'Skr\u00fdt filtry',
+    title: 'Nemovitosti v It\u00e1lii',
+    propertiesCount: 'nemovitost\u00ed',
+    propertyType: 'Typ nemovitosti',
+    region: 'Region',
+    allRegions: 'V\u0161echny regiony',
+    layout: 'Dispozice',
+    priceRange: 'Cenov\u00e9 rozp\u011bt\u00ed (EUR)',
+    from: 'Od',
+    to: 'Do',
+    amenities: 'Vybaven\u00ed',
+    clearFilters: 'Vymazat filtry',
+    searchPlaceholder: 'Vyhledat nemovitosti...',
+    sortNewest: 'Nejnov\u011bj\u0161\u00ed',
+    sortCheapest: 'Nejlevn\u011bj\u0161\u00ed',
+    sortExpensive: 'Nejdra\u017e\u0161\u00ed',
+    showMap: 'Zobrazit mapu',
+    hideMap: 'Skr\u00fdt mapu',
+    loading: 'Na\u010d\u00edt\u00e1n\u00ed...',
+    loadMore: 'Na\u010d\u00edst dal\u0161\u00ed nemovitosti',
+    allShown: 'Zobrazili jste v\u0161echny nemovitosti'
+  },
+  it: {
+    viewDetails: 'Vedi dettagli',
+    loadingMap: 'Caricamento mappa...',
+    showFilters: 'Mostra filtri',
+    hideFilters: 'Nascondi filtri',
+    title: 'Proprieta in Italia',
+    propertiesCount: 'proprieta',
+    propertyType: 'Tipo di proprieta',
+    region: 'Regione',
+    allRegions: 'Tutte le regioni',
+    layout: 'Disposizione',
+    priceRange: 'Fascia di prezzo (EUR)',
+    from: 'Da',
+    to: 'A',
+    amenities: 'Servizi',
+    clearFilters: 'Cancella filtri',
+    searchPlaceholder: 'Cerca proprieta...',
+    sortNewest: 'Piu recenti',
+    sortCheapest: 'Prezzo piu basso',
+    sortExpensive: 'Prezzo piu alto',
+    showMap: 'Mostra mappa',
+    hideMap: 'Nascondi mappa',
+    loading: 'Caricamento...',
+    loadMore: 'Carica altre proprieta',
+    allShown: 'Hai visualizzato tutte le proprieta'
+  },
+  en: {
+    viewDetails: 'View details',
+    loadingMap: 'Loading map...',
+    showFilters: 'Show filters',
+    hideFilters: 'Hide filters',
+    title: 'Properties in Italy',
+    propertiesCount: 'properties',
+    propertyType: 'Property type',
+    region: 'Region',
+    allRegions: 'All regions',
+    layout: 'Layout',
+    priceRange: 'Price range (EUR)',
+    from: 'From',
+    to: 'To',
+    amenities: 'Amenities',
+    clearFilters: 'Clear filters',
+    searchPlaceholder: 'Search properties...',
+    sortNewest: 'Newest',
+    sortCheapest: 'Lowest price',
+    sortExpensive: 'Highest price',
+    showMap: 'Show map',
+    hideMap: 'Hide map',
+    loading: 'Loading...',
+    loadMore: 'Load more properties',
+    allShown: 'You have viewed all properties'
+  }
+}
+
+const matchesRoomLayout = (roomCount, selectedLayoutId) => {
+  if (!selectedLayoutId) return true
+
+  const selectedLayout = ROOM_LAYOUT_OPTIONS.find((option) => option.id === selectedLayoutId)
+  if (!selectedLayout) return true
+
+  const parsedRoomCount = Number(roomCount || 0)
+  if (!Number.isFinite(parsedRoomCount) || parsedRoomCount <= 0) return false
+
+  if (selectedLayout.max === null) {
+    return parsedRoomCount >= selectedLayout.min
+  }
+
+  return parsedRoomCount >= selectedLayout.min && parsedRoomCount <= selectedLayout.max
+}
+
 const amenities = [
-  { id: 'pool', name: 'Bazén' },
-  { id: 'garden', name: 'Zahrada' },
-  { id: 'parking', name: 'Parkování' },
-  { id: 'sea_view', name: 'Výhled na moře' },
-  { id: 'balcony', name: 'Balkon' },
-  { id: 'terrace', name: 'Terasa' },
-  { id: 'fireplace', name: 'Krb' },
-  { id: 'aircon', name: 'Klimatizace' }
+  { id: 'pool', name: { cs: 'Baz\u00e9n', it: 'Piscina', en: 'Pool' } },
+  { id: 'garden', name: { cs: 'Zahrada', it: 'Giardino', en: 'Garden' } },
+  { id: 'parking', name: { cs: 'Parkov\u00e1n\u00ed', it: 'Parcheggio', en: 'Parking' } },
+  { id: 'sea_view', name: { cs: 'V\u00fdhled na mo\u0159e', it: 'Vista mare', en: 'Sea view' } },
+  { id: 'balcony', name: { cs: 'Balkon', it: 'Balcone', en: 'Balcony' } },
+  { id: 'terrace', name: { cs: 'Terasa', it: 'Terrazza', en: 'Terrace' } },
+  { id: 'fireplace', name: { cs: 'Krb', it: 'Camino', en: 'Fireplace' } },
+  { id: 'aircon', name: { cs: 'Klimatizace', it: 'Aria condizionata', en: 'Air conditioning' } }
 ];
 
 // Map placeholder component
@@ -239,7 +458,6 @@ export default function PropertiesPage() {
     amenities: []
   });
   
-  const [selectedRegion, setSelectedRegion] = useState('Tuscany');
   const [showRegionBanner, setShowRegionBanner] = useState(false);
   const [sortBy, setSortBy] = useState('newest');
   const [selectedProperty, setSelectedProperty] = useState(null);
@@ -266,6 +484,7 @@ export default function PropertiesPage() {
   
   // Mobile filter state
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const pageLabels = PAGE_LABELS[language] || PAGE_LABELS.en;
 
   useEffect(() => {
     if (!supabase) return;
@@ -396,26 +615,61 @@ export default function PropertiesPage() {
         
         if (sanityProperties && Array.isArray(sanityProperties) && sanityProperties.length > 0) {
           // Transform Sanity data to match our property card format
-          const transformedProperties = sanityProperties.map((prop, index) => ({
-            id: prop._id || `sanity-${index}`,
-            title: prop.title?.en || prop.title?.it || prop.title || 'Untitled Property',
-            type: prop.propertyType ? prop.propertyType.charAt(0).toUpperCase() + prop.propertyType.slice(1) : 'Property',
-            region: prop.location?.city?.region?.name?.en || prop.location?.city?.name?.it || prop.location?.city?.name || 'Italy',
-            price: prop.price?.amount || 0,
-            rooms: prop.specifications?.bedrooms || 0,
-            bathrooms: prop.specifications?.bathrooms || 0,
-            area: prop.specifications?.squareFootage || 0,
-            image: prop.images?.[0]?.asset?.url || prop.images?.[0] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
-            location: prop.location?.coordinates 
-              ? [prop.location.coordinates.lat || prop.location.coordinates[1], prop.location.coordinates.lng || prop.location.coordinates[0]]
-              : [42.8333, 12.8333],
-            views: 0,
-            terrain: 'mountains',
-            amenities: prop.amenities?.map(a => a.name?.en?.toLowerCase().replace(/\s+/g, '_')) || [],
-            description: prop.description?.en || prop.description?.it || prop.description || '',
-            slug: prop.slug?.current || prop.slug || '',
-            sanityId: prop._id
-          }));
+          const transformedProperties = sanityProperties.map((prop, index) => {
+            const regionName =
+              prop.location?.city?.region?.name?.en ||
+              prop.location?.city?.region?.name?.it ||
+              prop.location?.city?.region?.name?.cs ||
+              prop.location?.city?.name?.it ||
+              prop.location?.city?.name ||
+              'Italy';
+
+            const regionSlug =
+              prop.location?.city?.region?.slug?.current ||
+              toRegionSlug(regionName);
+
+            const titleI18n = {
+              en: prop.title?.en || prop.title?.it || prop.title?.cs || (typeof prop.title === 'string' ? prop.title : ''),
+              it: prop.title?.it || prop.title?.en || prop.title?.cs || (typeof prop.title === 'string' ? prop.title : ''),
+              cs: prop.title?.cs || prop.title?.en || prop.title?.it || (typeof prop.title === 'string' ? prop.title : '')
+            };
+
+            const typeContext = [
+              prop.propertyType,
+              prop.slug?.current || prop.slug,
+              titleI18n.en,
+              titleI18n.it,
+              titleI18n.cs
+            ]
+              .filter(Boolean)
+              .join(' ');
+
+            const resolvedType = resolvePropertyType(prop.propertyType, typeContext);
+
+            return {
+              id: prop._id || `sanity-${index}`,
+              title: titleI18n.en || 'Untitled Property',
+              titleI18n,
+              type: resolvedType,
+              region: regionName,
+              regionSlug,
+              price: prop.price?.amount || 0,
+              rooms: prop.specifications?.rooms || prop.specifications?.bedrooms || 0,
+              bedrooms: prop.specifications?.bedrooms || 0,
+              bathrooms: prop.specifications?.bathrooms || 0,
+              area: prop.specifications?.squareFootage || 0,
+              image: prop.images?.[0]?.asset?.url || prop.images?.[0] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
+              location: prop.location?.coordinates
+                ? [prop.location.coordinates.lat || prop.location.coordinates[1], prop.location.coordinates.lng || prop.location.coordinates[0]]
+                : [42.8333, 12.8333],
+              views: 0,
+              terrain: 'mountains',
+              amenities: prop.amenities?.map(a => a.name?.en?.toLowerCase().replace(/\s+/g, '_')) || [],
+              description: prop.description?.en || prop.description?.it || prop.description || '',
+              slug: prop.slug?.current || prop.slug || '',
+              sanityId: prop._id
+            };
+          });
 
           setProperties(transformedProperties);
           setUseSanity(true);
@@ -437,14 +691,33 @@ export default function PropertiesPage() {
     }
   };
 
-  // Check for region parameter in URL
+  // Check URL parameters from homepage quick filters/search
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const regionParam = urlParams.get('region');
-    
+    const searchParam = urlParams.get('search');
+    const amenityParam = (urlParams.get('amenity') || '').toLowerCase();
+    const validAmenityIds = new Set(amenities.map((amenity) => amenity.id));
+    const nextFilters = {};
+
+    if (searchParam) {
+      nextFilters.search = searchParam.trim();
+    }
+
+    if (amenityParam && validAmenityIds.has(amenityParam)) {
+      nextFilters.amenities = [amenityParam];
+    }
+
     if (regionParam) {
-      setFilters(prev => ({ ...prev, region: regionParam }));
-      setShowRegionBanner(true);
+      const normalizedRegion = toRegionSlug(regionParam);
+      if (normalizedRegion) {
+        nextFilters.region = normalizedRegion;
+        setShowRegionBanner(true);
+      }
+    }
+
+    if (Object.keys(nextFilters).length > 0) {
+      setFilters((prev) => ({ ...prev, ...nextFilters }));
     }
   }, []);
 
@@ -493,16 +766,31 @@ export default function PropertiesPage() {
   // Filter properties
   const filteredProperties = useMemo(() => {
     return properties.filter(property => {
-      if (filters.search && !property.title.toLowerCase().includes(filters.search.toLowerCase())) {
+      const activeRegionSlug = toRegionSlug(filters.region);
+      const localizedTitle = getLocalizedValue(property.titleI18n || property.title, language, '');
+
+      if (filters.search) {
+        const searchQuery = filters.search.toLowerCase();
+        const searchableContent = [
+          localizedTitle,
+          property.description || '',
+          property.region || '',
+          ...(property.amenities || [])
+        ]
+          .join(' ')
+          .toLowerCase();
+
+        if (!searchableContent.includes(searchQuery)) {
+          return false;
+        }
+      }
+      if (filters.propertyType && resolvePropertyType(property.type, property.type) !== filters.propertyType) {
         return false;
       }
-      if (filters.propertyType && property.type.toLowerCase() !== filters.propertyType) {
+      if (activeRegionSlug && toRegionSlug(property.regionSlug || property.region) !== activeRegionSlug) {
         return false;
       }
-      if (filters.region && property.region !== filters.region) {
-        return false;
-      }
-      if (filters.rooms && property.rooms < parseInt(filters.rooms)) {
+      if (filters.rooms && !matchesRoomLayout(property.rooms, filters.rooms)) {
         return false;
       }
       if (filters.priceFrom && property.price < parseInt(filters.priceFrom)) {
@@ -519,7 +807,7 @@ export default function PropertiesPage() {
       }
       return true;
     });
-  }, [filters, properties]);
+  }, [filters, properties, language]);
 
   // Sort properties
   const sortedProperties = useMemo(() => {
@@ -611,7 +899,7 @@ export default function PropertiesPage() {
                 className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 rounded-xl shadow-lg"
               >
                 <SlidersHorizontal className="h-5 w-5 mr-2" />
-                {showMobileFilters ? 'Skrýt filtry' : 'Zobrazit filtry'}
+                {showMobileFilters ? pageLabels.hideFilters : pageLabels.showFilters}
               </Button>
             </div>
 
@@ -621,10 +909,10 @@ export default function PropertiesPage() {
                 {/* Header */}
                 <div className="p-6 border-b border-gray-200 bg-gradient-to-br from-gray-50 to-white rounded-t-2xl">
                   <h1 className="text-2xl font-bold text-gray-900 tracking-tight mb-2">
-                    Nemovitosti v Itálii
+                    {pageLabels.title}
                   </h1>
                   <span className="text-sm bg-slate-100 px-3 py-1.5 rounded-lg font-semibold text-slate-800">
-                    {sortedProperties.length} nemovitostí
+                    {sortedProperties.length} {pageLabels.propertiesCount}
                   </span>
                 </div>
 
@@ -632,7 +920,7 @@ export default function PropertiesPage() {
                 <div className="flex-1">
                   {/* Property Type */}
                   <div className="p-6 border-b border-gray-100">
-                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">Typ nemovitosti</h3>
+                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">{pageLabels.propertyType}</h3>
                     <div className="grid grid-cols-2 gap-3">
                       {propertyTypes.map(type => {
                         const Icon = type.icon;
@@ -650,7 +938,7 @@ export default function PropertiesPage() {
                             }`}
                           >
                             <Icon className="h-5 w-5" />
-                            <span className="text-xs font-semibold">{type.name}</span>
+                            <span className="text-xs font-semibold">{type.name[language] || type.name.en}</span>
                           </button>
                         );
                       })}
@@ -659,37 +947,37 @@ export default function PropertiesPage() {
 
                   {/* Region */}
                   <div className="p-6 border-b border-gray-100">
-                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">Region</h3>
+                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">{pageLabels.region}</h3>
                     <select
                       value={filters.region}
-                      onChange={(e) => setFilters(prev => ({ ...prev, region: e.target.value }))}
+                      onChange={(e) => setFilters(prev => ({ ...prev, region: toRegionSlug(e.target.value) }))}
                       className="w-full p-3 pr-10 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm hover:border-gray-400 transition-colors duration-200 font-medium text-gray-700 appearance-none bg-no-repeat bg-right-2 bg-[length:16px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQgNkw4IDEwTDEyIDYiIHN0cm9rZT0iIzY0NzQ4QiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K')]"
                     >
-                      <option value="">Všechny regiony</option>
-                      {Object.keys(italianRegions).map(region => (
-                        <option key={region} value={region}>{region}</option>
+                      <option value="">{pageLabels.allRegions}</option>
+                      {Object.entries(REGION_LABEL_BY_SLUG).map(([regionSlug, regionLabel]) => (
+                        <option key={regionSlug} value={regionSlug}>{regionLabel}</option>
                       ))}
                     </select>
                   </div>
 
                   {/* Rooms */}
                   <div className="p-6 border-b border-gray-100">
-                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">Počet pokojů</h3>
-                    <div className="flex space-x-2">
-                      {['1', '2', '3', '4+'].map(room => (
+                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">{pageLabels.layout}</h3>
+                    <div className="grid grid-cols-3 gap-2">
+                      {ROOM_LAYOUT_OPTIONS.map((layoutOption) => (
                         <button
-                          key={room}
-                          onClick={() => setFilters(prev => ({ 
-                            ...prev, 
-                            rooms: prev.rooms === room ? '' : room 
+                          key={layoutOption.id}
+                          onClick={() => setFilters(prev => ({
+                            ...prev,
+                            rooms: prev.rooms === layoutOption.id ? '' : layoutOption.id
                           }))}
-                          className={`flex-1 px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-sm ${
-                            filters.rooms === room 
-                              ? 'bg-gradient-to-br from-slate-700 to-slate-800 text-white border border-slate-700 shadow-lg' 
+                          className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-sm ${
+                            filters.rooms === layoutOption.id
+                              ? 'bg-gradient-to-br from-slate-700 to-slate-800 text-white border border-slate-700 shadow-lg'
                               : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:shadow-md'
                           }`}
                         >
-                          {room}kk
+                          {layoutOption.label}
                         </button>
                       ))}
                     </div>
@@ -697,18 +985,18 @@ export default function PropertiesPage() {
 
                   {/* Price Range */}
                   <div className="p-6 border-b border-gray-100">
-                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">Cenové rozpětí (EUR)</h3>
+                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">{pageLabels.priceRange}</h3>
                     <div className="space-y-3">
                       <Input
                         type="number"
-                        placeholder="Od"
+                        placeholder={pageLabels.from}
                         value={filters.priceFrom}
                         onChange={(e) => setFilters(prev => ({ ...prev, priceFrom: e.target.value }))}
                         className="border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm"
                       />
                       <Input
                         type="number"
-                        placeholder="Do"
+                        placeholder={pageLabels.to}
                         value={filters.priceTo}
                         onChange={(e) => setFilters(prev => ({ ...prev, priceTo: e.target.value }))}
                         className="border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm"
@@ -718,7 +1006,7 @@ export default function PropertiesPage() {
 
                   {/* Amenities */}
                   <div className="p-6">
-                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">Vybavení</h3>
+                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">{pageLabels.amenities}</h3>
                     <div className="space-y-3">
                       {amenities.map(amenity => (
                         <label key={amenity.id} className="flex items-center space-x-3 cursor-pointer group">
@@ -727,7 +1015,7 @@ export default function PropertiesPage() {
                             onCheckedChange={() => toggleAmenity(amenity.id)}
                             className="data-[state=checked]:bg-slate-700 data-[state=checked]:border-slate-700"
                           />
-                          <span className="text-sm text-gray-700 group-hover:text-slate-800 font-medium transition-colors duration-200">{amenity.name}</span>
+                          <span className="text-sm text-gray-700 group-hover:text-slate-800 font-medium transition-colors duration-200">{amenity.name[language] || amenity.name.en}</span>
                         </label>
                       ))}
                     </div>
@@ -742,7 +1030,7 @@ export default function PropertiesPage() {
                     onClick={clearFilters}
                   >
                     <X className="h-4 w-4 mr-2" />
-                    Vymazat filtry
+                    {pageLabels.clearFilters}
                   </Button>
                 </div>
               </div>
@@ -758,7 +1046,7 @@ export default function PropertiesPage() {
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-500" />
                     <Input
                       type="text"
-                      placeholder="Vyhledat nemovitosti..."
+                      placeholder={pageLabels.searchPlaceholder}
                       value={filters.search}
                       onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
                       className="pl-10 border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 rounded-lg shadow-sm w-full"
@@ -772,9 +1060,9 @@ export default function PropertiesPage() {
                       onChange={(e) => setSortBy(e.target.value)}
                       className="text-sm border border-gray-300 rounded-lg px-2 sm:px-3 py-2 pr-8 sm:pr-10 bg-white hover:border-gray-400 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm transition-colors duration-200 font-medium text-gray-700 appearance-none bg-no-repeat bg-right-2 bg-[length:16px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQgNkw4IDEwTDEyIDYiIHN0cm9rZT0iIzY0NzQ4QiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K')] flex-1 sm:flex-none"
                     >
-                      <option value="newest">Nejnovější</option>
-                      <option value="cheapest">Nejlevnější</option>
-                      <option value="expensive">Nejdražší</option>
+                      <option value="newest">{pageLabels.sortNewest}</option>
+                      <option value="cheapest">{pageLabels.sortCheapest}</option>
+                      <option value="expensive">{pageLabels.sortExpensive}</option>
                     </select>
 
 
@@ -788,7 +1076,7 @@ export default function PropertiesPage() {
                       } font-bold text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 transition-all duration-300 hover:scale-105 border-0 whitespace-nowrap`}
                     >
                       <MapIcon className="h-4 w-4 sm:h-5 sm:w-5 sm:mr-2" />
-                      <span className="hidden sm:inline">{showMap ? 'Skrýt mapu' : 'Zobrazit mapu'}</span>
+                      <span className="hidden sm:inline">{showMap ? pageLabels.hideMap : pageLabels.showMap}</span>
                     </Button>
                   </div>
                 </div>
@@ -835,17 +1123,17 @@ export default function PropertiesPage() {
                     {isLoadingMore ? (
                       <span className="flex items-center">
                         <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-slate-800 mr-3"></div>
-                        Načítání...
+                        {pageLabels.loading}
                       </span>
                     ) : (
-                      'Načíst další nemovitosti'
+                      pageLabels.loadMore
                     )}
                   </Button>
                 )}
                 
                 {!hasMoreProperties && displayedProperties.length > 0 && (
                   <p className="text-gray-500 font-medium">
-                    Zobrazili jste všechny nemovitosti ({displayedProperties.length})
+                    {pageLabels.allShown} ({displayedProperties.length})
                   </p>
                 )}
 

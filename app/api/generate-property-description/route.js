@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+﻿import { NextResponse } from 'next/server';
 import openai from '@/lib/openai';
 
 export const dynamic = 'force-dynamic';
