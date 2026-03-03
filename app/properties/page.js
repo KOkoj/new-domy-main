@@ -874,7 +874,7 @@ export default function PropertiesPage() {
       {/* Navigation */}
       <Navigation />
 
-      <div className="pt-24 sm:pt-28 lg:pt-32 pb-6 sm:pb-8">
+      <div className="pt-40 sm:pt-32 lg:pt-32 pb-6 sm:pb-8">
         <div className="container mx-auto px-3 sm:px-4">
           {/* Region Banner */}
           {showRegionBanner && filters.region && (

@@ -1450,7 +1450,7 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section 
-        className="relative min-h-[100dvh] overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 shadow-inner flex items-start sm:items-center justify-center" 
+        className="relative min-h-[82dvh] sm:min-h-[100dvh] overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 shadow-inner flex items-start sm:items-center justify-start sm:justify-center" 
         data-testid="hero-section"
       >
         {/* Hero Background Image Transition */}
@@ -1466,7 +1466,7 @@ export default function HomePage() {
         {/* Golden Accent Overlay - vibrant and noticeable */}
         <div className="absolute inset-0 z-10 bg-gradient-to-br from-copper-500/35 via-copper-400/25 to-copper-300/15 opacity-80"></div>
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-        <div className="container mx-auto px-3 sm:px-4 relative z-20 pt-20 sm:pt-24 md:pt-0" data-testid="hero-content-container">
+        <div className="container mx-auto px-3 sm:px-4 relative z-20 pt-16 sm:pt-24 md:pt-0 pb-4 sm:pb-0" data-testid="hero-content-container">
           <div className="text-center text-white space-y-4 sm:space-y-8 md:space-y-12" data-testid="hero-content">
             <div className="space-y-3 sm:space-y-6">
               <h2 
@@ -1593,7 +1593,7 @@ export default function HomePage() {
 
             {/* Trust Indicators - Subtle & Elegant */}
             <div 
-              className={`transition-all duration-700 w-full max-w-3xl mx-auto mt-6 sm:mt-16 px-2 sm:px-4 ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              className={`transition-all duration-700 w-full max-w-3xl mx-auto mt-4 sm:mt-16 px-2 sm:px-4 ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{
                 transitionDelay: startAnimations ? '2.9s' : '0s'
               }}
@@ -1658,7 +1658,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 pt-8 sm:pt-12 pb-8 bg-[#f7f4ed]" data-testid="main-content-container">
+      <div className="container mx-auto px-4 pt-5 sm:pt-12 pb-8 bg-[#f7f4ed]" data-testid="main-content-container">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-900" data-testid="section-description">
             {language === 'cs' ? 'Koupě domu v Itálii není jen o ceně' :
@@ -1671,26 +1671,26 @@ export default function HomePage() {
         </p>
 
         {/* Why Italy is Different - 5 cards */}
-        <div className="mb-12 sm:mb-16 mt-4 sm:mt-6">
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-8" data-testid="why-italy-different-grid">
+        <div className="mb-10 sm:mb-16 mt-3 sm:mt-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2.5 sm:gap-8" data-testid="why-italy-different-grid">
             {/* Card 1 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-blue-200 shadow-xl bg-gradient-to-br from-blue-50 to-white rounded-2xl flex flex-col h-full min-h-[220px] sm:min-h-[320px]">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-blue-200 shadow-xl bg-gradient-to-br from-blue-50 to-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.5rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-[13px] sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.25rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '🧾 Italský systém je jiný' :
                      language === 'it' ? '🧾 Il sistema italiano funziona diversamente.' :
                      '🧾 The Italian system is different'}
                   </h3>
-                  <p className="text-gray-600 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
+                  <p className="text-gray-600 text-[11px] sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                     {language === 'cs' ? 'Pravidla, postupy a role se liší od Česka.' :
                      language === 'it' ? 'In Italia nessuno coordina tutto automaticamente. Capire chi fa cosa è fondamentale.' :
                      'Rules, processes, and roles differ from the Czech Republic.'}
                   </p>
                 </div>
-                <div className="pt-4 mt-auto">
+                <div className="pt-2.5 sm:pt-4 mt-auto">
                   <Link href="/guides/real-estate-purchase-system-italy">
-                    <Button className="w-full min-h-[40px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-xs sm:text-base">
+                    <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
                       {language === 'cs' ? 'V?ce informac?' :
                        language === 'it' ? 'Piu info' :
                        'More info'}
@@ -1701,23 +1701,23 @@ export default function HomePage() {
             </Card>
 
             {/* Card 2 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[220px] sm:min-h-[320px]">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.5rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-[13px] sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.25rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '💰 Cena není všechno' :
                      language === 'it' ? '💰 Il prezzo non è tutto' :
                      '💰 Price is not everything'}
                   </h3>
-                  <p className="text-gray-600 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
+                  <p className="text-gray-600 text-[11px] sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                     {language === 'cs' ? 'Daně, notář, poplatky a náklady navíc.' :
                      language === 'it' ? 'Tasse, notaio, commissioni e costi extra.' :
                      'Taxes, notary, fees, and extra costs.'}
                   </p>
                 </div>
-                <div className="pt-4 mt-auto">
+                <div className="pt-2.5 sm:pt-4 mt-auto">
                   <Link href="/guides/costs">
-                    <Button className="w-full min-h-[40px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-xs sm:text-base">
+                    <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
                       {language === 'cs' ? 'V?ce informac?' :
                        language === 'it' ? 'Piu info' :
                        'More info'}
@@ -1728,23 +1728,23 @@ export default function HomePage() {
             </Card>
 
             {/* Card 3 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[220px] sm:min-h-[320px]">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.5rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-[13px] sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.25rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '⚠️ Nejčastější chyby Čechů' :
                      language === 'it' ? '⚠️ Errori più comuni dei cechi' :
                      '⚠️ Most common mistakes by Czechs'}
                   </h3>
-                  <p className="text-gray-600 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
+                  <p className="text-gray-600 text-[11px] sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                     {language === 'cs' ? 'Omyly, které vedou ke zbytečným problémům.' :
                      language === 'it' ? 'Errori che portano a problemi evitabili.' :
                      'Mistakes that lead to avoidable problems.'}
                   </p>
                 </div>
-                <div className="pt-4 mt-auto">
+                <div className="pt-2.5 sm:pt-4 mt-auto">
                   <Link href="/guides/mistakes">
-                    <Button className="w-full min-h-[40px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-xs sm:text-base">
+                    <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
                       {language === 'cs' ? 'V?ce informac?' :
                        language === 'it' ? 'Piu info' :
                        'More info'}
@@ -1755,23 +1755,23 @@ export default function HomePage() {
             </Card>
 
             {/* Card 4 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[220px] sm:min-h-[320px]">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.5rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-[13px] sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.25rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '📍 Region rozhoduje' :
                      language === 'it' ? '📍 La regione fa la differenza' :
                      '📍 Region matters'}
                   </h3>
-                  <p className="text-gray-600 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
+                  <p className="text-gray-600 text-[11px] sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                     {language === 'cs' ? 'Cena, životní styl, dostupnost i využití domu.' :
                      language === 'it' ? 'Prezzo, stile di vita, accessibilità e uso della casa.' :
                      'Price, lifestyle, accessibility, and home use.'}
                   </p>
                 </div>
-                <div className="pt-4 mt-auto">
+                <div className="pt-2.5 sm:pt-4 mt-auto">
                   <Link href="/regions">
-                    <Button className="w-full min-h-[40px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-xs sm:text-base">
+                    <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
                       {language === 'cs' ? 'V?ce informac?' :
                        language === 'it' ? 'Piu info' :
                        'More info'}
@@ -1782,23 +1782,23 @@ export default function HomePage() {
             </Card>
 
             {/* Card 5 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[220px] sm:min-h-[320px]">
+            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
               <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
                 <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-sm sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.5rem] sm:min-h-[4.5rem]">
+                  <h3 className="font-bold text-[13px] sm:text-2xl leading-tight text-gray-900 line-clamp-2 min-h-[2.25rem] sm:min-h-[4.5rem]">
                     {language === 'cs' ? '❓ Časté otázky' :
                      language === 'it' ? '❓ Domande frequenti' :
                      '❓ Frequently asked questions'}
                   </h3>
-                  <p className="text-gray-600 text-xs sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
+                  <p className="text-gray-600 text-[11px] sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
                     {language === 'cs' ? 'Rychlé odpovědi na to, co lidé řeší nejčastěji.' :
                      language === 'it' ? 'Risposte rapide a ciò che le persone chiedono più spesso.' :
                      'Quick answers to what people ask most often.'}
                   </p>
                 </div>
-                <div className="pt-4 mt-auto">
+                <div className="pt-2.5 sm:pt-4 mt-auto">
                   <Link href="/faq">
-                    <Button className="w-full min-h-[40px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-xs sm:text-base">
+                    <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
                       {language === 'cs' ? 'V?ce informac?' :
                        language === 'it' ? 'Piu info' :
                        'More info'}
@@ -1812,10 +1812,10 @@ export default function HomePage() {
       </div>
 
       {/* Premium Club Section */}{/* Premium Club Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-10 sm:py-20 overflow-hidden">
+      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-8 sm:py-20 overflow-hidden">
         <div className="container mx-auto px-4">
           {/* Main Premium Club Content */}
-          <div className="text-center mb-8 sm:mb-16 animate-on-scroll">
+          <div className="text-center mb-6 sm:mb-16 animate-on-scroll">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" style={{ color: '#c48759' }}>
               {language === 'cs' ? 'Jste si jisti koupí domu v Itálii?' :
                language === 'it' ? 'Sei sicuro di comprare casa in Italia?' :
@@ -1828,7 +1828,7 @@ export default function HomePage() {
             </p>
             <Button 
               size="lg"
-              className="font-semibold py-3 sm:py-4 px-6 sm:px-8 text-base sm:text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-white inline-flex items-center justify-center text-center leading-tight"
+              className="font-semibold py-2.5 sm:py-4 px-5 sm:px-8 text-sm sm:text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-white inline-flex items-center justify-center text-center leading-tight"
               style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
               onClick={() => setIsAuthModalOpen(true)}
             >
@@ -1839,7 +1839,7 @@ export default function HomePage() {
           </div>
 
           {/* Premium Card and Blogs Side by Side */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-8 mb-8 sm:mb-16">
             {/* Premium Card - Takes 1 column on large screens */}
             <div className="lg:col-span-1">
               <GlareCard 
@@ -1919,13 +1919,13 @@ export default function HomePage() {
 
             {/* Premium Blogs - Takes 2 columns on large screens */}
             <div className="lg:col-span-2">
-              <div className="text-center mb-5 sm:mb-8">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
+              <div className="text-center mb-4 sm:mb-8">
+                <h3 className="text-xl sm:text-3xl font-bold text-white mb-2.5 sm:mb-4">
                   {language === 'cs' ? 'Exkluzivní obsah' :
                    language === 'it' ? 'Contenuti esclusivi' :
                    'Exclusive Contents'}
                 </h3>
-                <p className="text-sm sm:text-lg text-gray-200">
+                <p className="text-xs sm:text-lg text-gray-200">
                   {user 
                     ? (language === 'cs' ? 'Vaše prémiové články a průvodci' :
                        language === 'it' ? 'I tuoi articoli e guide premium' :
@@ -1937,7 +1937,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 snap-x snap-mandatory">
+              <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-6 overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 snap-x snap-mandatory">
                 {[
                   {
                     title: {
@@ -1990,7 +1990,7 @@ export default function HomePage() {
                 ].map((article, index) => (
                   <div 
                     key={index} 
-                    className={`${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''} cursor-pointer min-w-[220px] sm:min-w-0 snap-start`}
+                    className={`${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''} cursor-pointer min-w-[188px] sm:min-w-0 snap-start`}
                     onClick={() => {
                       if (user) {
                         window.location.href = article.link
@@ -2000,7 +2000,7 @@ export default function HomePage() {
                     }}
                   >
                     <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-700 h-full relative group">
-                      <div className="aspect-[4/3] sm:aspect-video relative overflow-hidden">
+                      <div className="aspect-square sm:aspect-video relative overflow-hidden">
                         <img 
                           src={article.image} 
                           alt={article.title[language]} 
@@ -2022,11 +2022,11 @@ export default function HomePage() {
                           </div>
                         )}
                       </div>
-                      <div className="p-3 sm:p-6 relative">
-                        <h3 className="text-base sm:text-xl font-bold text-white mb-2 sm:mb-3 line-clamp-2">
+                      <div className="p-2.5 sm:p-6 relative">
+                        <h3 className="text-sm sm:text-xl font-bold text-white mb-1.5 sm:mb-3 line-clamp-2">
                           {article.title[language]}
                         </h3>
-                        <p className="text-gray-300 text-xs sm:text-base line-clamp-2">
+                        <p className="text-[11px] sm:text-base line-clamp-2 text-gray-300">
                           {article.excerpt[language]}
                         </p>
                         

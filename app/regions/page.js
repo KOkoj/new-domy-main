@@ -721,7 +721,7 @@ export default function RegionsPage() {
     <div className="min-h-screen bg-[#faf8f5]">
       <Navigation />
 
-      <div className="pt-32 pb-12">
+      <div className="pt-32 pb-10 sm:pb-12">
         <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm mb-8">
           <div className="container mx-auto px-4 py-12">
             <div className="text-center">
@@ -748,19 +748,19 @@ export default function RegionsPage() {
              'Buying a House in Italy - Prices, Regions, and Available Properties'}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">20</div>
+          <div className="flex md:grid md:grid-cols-4 gap-3 sm:gap-6 mb-10 sm:mb-12 overflow-x-auto md:overflow-visible pb-2 md:pb-0 snap-x snap-mandatory">
+            <Card className="min-w-[145px] sm:min-w-[170px] md:min-w-0 aspect-square md:aspect-auto snap-start bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
+              <CardContent className="p-4 sm:p-6 text-center h-full flex flex-col justify-center">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1.5 sm:mb-2">20</div>
                 <div className="text-xs md:text-sm text-blue-600/80 font-medium">
                   {language === 'cs' ? 'Italsk? regiony' : language === 'it' ? 'Regioni italiane' : 'Italian regions'}
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">
+            <Card className="min-w-[145px] sm:min-w-[170px] md:min-w-0 aspect-square md:aspect-auto snap-start bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
+              <CardContent className="p-4 sm:p-6 text-center h-full flex flex-col justify-center">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1.5 sm:mb-2">
                   {language === 'cs' ? '\u20AC2 150 / m\u00B2' : language === 'it' ? '\u20AC2.150 / m\u00B2' : '\u20AC2,150 / m\u00B2'}
                 </div>
                 <div className="text-xs md:text-sm text-blue-600/80 font-medium">
@@ -769,9 +769,9 @@ export default function RegionsPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">
+            <Card className="min-w-[145px] sm:min-w-[170px] md:min-w-0 aspect-square md:aspect-auto snap-start bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
+              <CardContent className="p-4 sm:p-6 text-center h-full flex flex-col justify-center">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1.5 sm:mb-2">
                   {language === 'cs' ? '\u20AC30 000+' : language === 'it' ? '\u20AC30.000+' : '\u20AC30,000+'}
                 </div>
                 <div className="text-xs md:text-sm text-blue-600/80 font-medium">
@@ -780,9 +780,9 @@ export default function RegionsPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-2">
+            <Card className="min-w-[145px] sm:min-w-[170px] md:min-w-0 aspect-square md:aspect-auto snap-start bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl">
+              <CardContent className="p-4 sm:p-6 text-center h-full flex flex-col justify-center">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent mb-1.5 sm:mb-2">
                   {language === 'cs' ? '+800 000' : language === 'it' ? '+800.000' : '+800,000'}
                 </div>
                 <div className="text-xs md:text-sm text-blue-600/80 font-medium">
@@ -795,47 +795,47 @@ export default function RegionsPage() {
           <div className="mb-12">
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
               <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
-                <CardTitle className="text-2xl font-bold text-slate-800">
+                <CardTitle className="text-xl sm:text-2xl font-bold text-slate-800">
                   {language === 'cs' ? 'Jak si vybrat region v Itálii?' :
                    language === 'it' ? 'Come scegliere la regione giusta in Italia per comprare casa?' :
                    'How to Choose a Region in Italy?'}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-8">
-                <p className="text-gray-600 mb-6 leading-relaxed whitespace-pre-line text-lg">
+              <CardContent className="p-5 sm:p-8">
+                <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed whitespace-pre-line text-base sm:text-lg">
                   {language === 'cs' ? 'Při výběru lokality doporučujeme zvážit zejména:' :
                    language === 'it' ? 'La scelta della regione e una decisione strategica.\nNon tutte le zone sono adatte allo stesso obiettivo:\ncasa vacanze, investimento, trasferimento permanente o affitto turistico.' :
                    'When choosing a location, we recommend considering especially:'}
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center"><MapPin className="h-5 w-5 text-slate-600" /></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-slate-100 rounded-lg flex items-center justify-center"><MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" /></div>
                     <div><h4 className="font-semibold text-slate-800 mb-2">{language === 'cs' ? 'Bydlen\u00ed u mo\u0159e, v hor\u00e1ch nebo ve m\u011bst\u011b?' : language === 'it' ? 'Volete abitare al mare, in montagna o in citta?' : 'Do you want to live by the sea, in the mountains, or in the city?'}</h4></div>
                   </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center"><Home className="h-5 w-5 text-slate-600" /></div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-slate-100 rounded-lg flex items-center justify-center"><Home className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" /></div>
                     <div><h4 className="font-semibold text-slate-800 mb-2">{language === 'cs' ? 'D\u016fm na dovolenou, investice, nebo nov\u00e1 \u017eivotn\u00ed etapa?' : language === 'it' ? 'Casa vacanze, investimento o nuova vita?' : 'Vacation home, investment, or a new life?'}</h4></div>
                   </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center"><TrendingUp className="h-5 w-5 text-slate-600" /></div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-slate-100 rounded-lg flex items-center justify-center"><TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" /></div>
                     <div><h4 className="font-semibold text-slate-800 mb-2">{language === 'cs' ? 'Dostupnost z \u010cR a infrastruktura' : language === 'it' ? 'Accessibilita dalla Repubblica Ceca e infrastruttura locale' : 'Accessibility from the Czech Republic and local infrastructure'}</h4></div>
                   </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center"><Star className="h-5 w-5 text-slate-600" /></div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-slate-100 rounded-lg flex items-center justify-center"><Star className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" /></div>
                     <div><h4 className="font-semibold text-slate-800 mb-2">{language === 'cs' ? 'Rozpo\u010det v\u010detn\u011b dan\u00ed a poplatk\u016f' : language === 'it' ? 'Budget con tasse e costi inclusi' : 'Budget including taxes and fees'}</h4></div>
                   </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center"><CheckCircle className="h-5 w-5 text-slate-600" /></div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-slate-100 rounded-lg flex items-center justify-center"><CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" /></div>
                     <div><h4 className="font-semibold text-slate-800 mb-2">{language === 'cs' ? 'Vlastn\u00ed u\u017e\u00edv\u00e1n\u00ed nebo pron\u00e1jem' : language === 'it' ? 'Uso personale o affitto' : 'Personal use or rental income'}</h4></div>
                   </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center"><Shield className="h-5 w-5 text-slate-600" /></div>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-slate-100 rounded-lg flex items-center justify-center"><Shield className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" /></div>
                     <div><h4 className="font-semibold text-slate-800 mb-2">{language === 'cs' ? 'Ka\u017ed\u00fd region m\u00e1 jin\u00e1 pravidla a \u017eivotn\u00ed styl' : language === 'it' ? 'Ogni regione ha regole e dinamiche diverse' : 'Each region has different legal and market dynamics'}</h4></div>
                   </div>
                 </div>
 
-                <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-xl">
+                <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-blue-50 border border-blue-200 rounded-xl">
                   <p className="text-blue-800 leading-relaxed whitespace-pre-line">
                     <strong>{language === 'cs' ? 'Nev\u00edte, kter\u00fd region vybrat?' : language === 'it' ? 'Non sapete quale regione scegliere?' : 'Not sure which region is most suitable for you?'}</strong>
                     <br />
@@ -856,24 +856,24 @@ export default function RegionsPage() {
 
           <div className="text-center">
             <Card className="max-w-3xl mx-auto bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
-              <CardContent className="p-12">
-                <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              <CardContent className="p-6 sm:p-12">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
                   {language === 'cs' ? 'Chcete region nejdrive poznat osobne?' : language === 'it' ? 'Volete conoscere prima la regione di persona?' : 'Want to Get to Know the Region Personally First?'}
                 </h3>
-                <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+                <p className="text-gray-600 mb-5 sm:mb-8 text-base sm:text-lg leading-relaxed">
                   {language === 'cs' ? 'Mnoho klientu před koupi region nejdrive navstivi osobne. Pro kratke pobyty muzete vyuzit Booking.com.' : language === 'it' ? "Molti clienti prima dell'acquisto visitano personalmente la regione. Per soggiorni brevi potete usare Booking.com." : 'Many clients visit the region in person before buying. For short stays, you can use Booking.com.'}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg"
+                    className="w-full sm:w-auto max-w-full whitespace-normal break-words text-center leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base transition-all duration-300 hover:scale-105 shadow-lg"
                     onClick={() => window.open('https://www.dpbolvw.net/click-101629596-15735418', '_blank')}
                   >
                     {language === 'cs' ? 'Najit ubytovani (Booking.com)' : language === 'it' ? 'Trova alloggio (Booking.com)' : 'Find Accommodation (Booking.com)'}
                   </Button>
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg"
+                    className="w-full sm:w-auto max-w-full whitespace-normal break-words text-center leading-tight bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base transition-all duration-300 hover:scale-105 shadow-lg"
                     onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}
                   >
                     {language === 'cs' ? 'V\u00fdlety a pr\u016fvodce (GetYourGuide)' : language === 'it' ? 'Escursioni e guide (GetYourGuide)' : 'Tours & Guides (GetYourGuide)'}
