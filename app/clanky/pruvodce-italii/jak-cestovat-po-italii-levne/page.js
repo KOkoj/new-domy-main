@@ -11,8 +11,16 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 const PUBLISHED_AT = '2026-03-12'
 
 const TRAVEL_PARTNER_LINKS = {
-  booking: 'https://www.dpbolvw.net/click-101629596-15735418',
+  booking: 'https://www.booking.com/searchresults.cs.html?ss=Italia&order=early_year_deals_upsorter&label=gen173rf-10Eg5kZWFscy1jYW1wYWlnbiiCAjjoB0gFWANoOogBAZgBM7gBF8gBDNgBA-gBAfgBAYgCAaICDm1lbWJlcnMuY2ouY29tqAIBuAKpjMzNBsACAdICJGQzM2IxZGFiLWM0NjUtNGRlMS04Zjc1LTEwNWQyNjJkZTAyM9gCAeACAQ&aid=304142&lang=cs&sb=1&src_elem=sb&dest_id=104&dest_type=country&ac_position=0&ac_click_type=b&ac_langcode=it&ac_suggestion_list_length=5&search_selected=true&search_pageview_id=fd70821489bb0dca&ac_meta=GhBmZDcwODIxNDg5YmIwZGNhIAAoATICaXQ6Bkl0YWxpYQ%3D%3D&checkin=2026-03-13&checkout=2026-03-14&group_adults=2&no_rooms=1&group_children=0&lpsrc=sb',
   getYourGuide: 'https://gyg.me/fnMmh4S3'
+}
+const CAR_RENT_PARTNER_LINKS = {
+  homepage: 'https://www.jdoqocy.com/click-101629596-17122732',
+  trackingPixel: 'https://www.ftjcfx.com/image-101629596-17122732'
+}
+const FLIGHTS_PARTNER_LINKS = {
+  homepage: 'https://www.dpbolvw.net/click-101629596-17053224',
+  trackingPixel: 'https://www.ftjcfx.com/image-101629596-17053224'
 }
 const SIDEBAR_TRAVEL_WIDGET = {
   href: 'https://www.kqzyfj.com/click-101629596-17122710',
@@ -338,7 +346,7 @@ function TravelPartnerCta({ title, text, bookingLabel, gygLabel }) {
   )
 }
 
-function TransportCard({ icon, title, text, official, examples }) {
+function TransportCard({ icon, title, text, official, examples, cta }) {
   const points = [...(official || []), ...(examples || [])]
 
   return (
@@ -351,6 +359,19 @@ function TransportCard({ icon, title, text, official, examples }) {
       </CardHeader>
       <CardContent className="space-y-3 text-slate-700 leading-relaxed">
         <p>{text}</p>
+        {cta ? (
+          <div className="rounded-lg border border-sky-200 bg-sky-50/70 p-3">
+            <p className="text-xs text-slate-700 mb-2">{cta.miniText}</p>
+            <Button asChild size="sm" className="bg-sky-700 hover:bg-sky-600 text-white">
+              <a href={cta.href} target="_top" rel="nofollow sponsored noopener noreferrer">
+                {cta.button}
+              </a>
+            </Button>
+            {cta.trackingPixel ? (
+              <img src={cta.trackingPixel} width="1" height="1" alt="" className="sr-only" />
+            ) : null}
+          </div>
+        ) : null}
         {points.length ? (
           <ul className="list-disc pl-6 space-y-1 text-slate-700">
             {points.map((item) => (
@@ -396,6 +417,18 @@ export default function CheapTravelItalyArticlePage() {
       : language === 'it'
         ? 'Prenotazioni verificate e in sicurezza.'
         : 'Verified booking and travel deal.'
+  const carCta =
+    language === 'cs'
+      ? { miniText: 'Hledate pronajem auta pro cestu po Italii?', button: 'Najit pronajem auta' }
+      : language === 'it'
+        ? { miniText: "Cerchi un'auto a noleggio per il viaggio?", button: 'Cerca auto a noleggio' }
+        : { miniText: 'Looking for a rental car for your route?', button: 'Find Car Rental' }
+  const flightCta =
+    language === 'cs'
+      ? { miniText: 'Hledate lety na vase terminy?', button: 'Hledat lety' }
+      : language === 'it'
+        ? { miniText: 'Cerchi voli per le tue date?', button: 'Cerca voli' }
+        : { miniText: 'Looking for flights for your dates?', button: 'Search Flights' }
 
   return (
     <div className="min-h-screen bg-[#faf8f5]">
@@ -465,9 +498,23 @@ export default function CheapTravelItalyArticlePage() {
             </Card>
 
             <TransportCard icon={<Train className="h-6 w-6" />} title={t.train.title} text={t.train.text} official={t.train.official} examples={t.train.examples} />
-            <TransportCard icon={<Car className="h-6 w-6" />} title={t.car.title} text={t.car.text} official={t.car.official} examples={t.car.examples} />
+            <TransportCard
+              icon={<Car className="h-6 w-6" />}
+              title={t.car.title}
+              text={t.car.text}
+              official={t.car.official}
+              examples={t.car.examples}
+              cta={{ ...carCta, href: CAR_RENT_PARTNER_LINKS.homepage, trackingPixel: CAR_RENT_PARTNER_LINKS.trackingPixel }}
+            />
             <TransportCard icon={<Bus className="h-6 w-6" />} title={t.bus.title} text={t.bus.text} official={t.bus.official} examples={t.bus.examples} />
-            <TransportCard icon={<Plane className="h-6 w-6" />} title={t.flight.title} text={t.flight.text} official={null} examples={t.flight.examples} />
+            <TransportCard
+              icon={<Plane className="h-6 w-6" />}
+              title={t.flight.title}
+              text={t.flight.text}
+              official={null}
+              examples={t.flight.examples}
+              cta={{ ...flightCta, href: FLIGHTS_PARTNER_LINKS.homepage, trackingPixel: FLIGHTS_PARTNER_LINKS.trackingPixel }}
+            />
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>

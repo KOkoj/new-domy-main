@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 const PUBLISHED_AT = '2026-03-12'
 
 const TRAVEL_PARTNER_LINKS = {
-  booking: 'https://www.dpbolvw.net/click-101629596-15735418',
+  booking: 'https://www.booking.com/searchresults.cs.html?ss=Italia&order=early_year_deals_upsorter&label=gen173rf-10Eg5kZWFscy1jYW1wYWlnbiiCAjjoB0gFWANoOogBAZgBM7gBF8gBDNgBA-gBAfgBAYgCAaICDm1lbWJlcnMuY2ouY29tqAIBuAKpjMzNBsACAdICJGQzM2IxZGFiLWM0NjUtNGRlMS04Zjc1LTEwNWQyNjJkZTAyM9gCAeACAQ&aid=304142&lang=cs&sb=1&src_elem=sb&dest_id=104&dest_type=country&ac_position=0&ac_click_type=b&ac_langcode=it&ac_suggestion_list_length=5&search_selected=true&search_pageview_id=fd70821489bb0dca&ac_meta=GhBmZDcwODIxNDg5YmIwZGNhIAAoATICaXQ6Bkl0YWxpYQ%3D%3D&checkin=2026-03-13&checkout=2026-03-14&group_adults=2&no_rooms=1&group_children=0&lpsrc=sb',
   getYourGuide: 'https://gyg.me/fnMmh4S3'
 }
 
@@ -463,9 +463,9 @@ export default function StayCheapItalyArticlePage() {
             </Card>
 
             <div className="flex justify-center">
-              <a href="https://www.kqzyfj.com/click-101629596-17227944" target="_top" rel="sponsored noopener noreferrer">
+              <a href="https://www.kqzyfj.com/click-101629596-17227946" target="_top" rel="sponsored noopener noreferrer">
                 <img
-                  src="https://www.tqlkg.com/image-101629596-17227944"
+                  src="https://www.ftjcfx.com/image-101629596-17227946"
                   width="660"
                   height="270"
                   alt=""
