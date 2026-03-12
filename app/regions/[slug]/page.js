@@ -974,6 +974,35 @@ export default function RegionDetailPage() {
             </div>
           </div>
 
+          {shouldShowRegionalWidget ? (
+            <div className="max-w-5xl mx-auto mb-12">
+              <Card className="bg-white/90 backdrop-blur-sm border border-orange-200 shadow-lg rounded-2xl overflow-hidden">
+                <CardContent className="p-6 md:p-8">
+                  <div
+                    data-gyg-href="https://widget.getyourguide.com/default/activities.frame"
+                    data-gyg-locale-code="cs-CZ"
+                    data-gyg-widget="activities"
+                    data-gyg-number-of-items="3"
+                    data-gyg-partner-id="H4OKCTR"
+                    {...widgetDataAttrs}
+                  >
+                    <span className="text-xs text-slate-600">
+                      Powered by{' '}
+                      <a
+                        target="_blank"
+                        rel="sponsored noopener noreferrer"
+                        href={widgetDestinationLink}
+                        className="underline underline-offset-2"
+                      >
+                        GetYourGuide
+                      </a>
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          ) : null}
+
           {/* Description */}
           <div className="max-w-5xl mx-auto mb-12">
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
