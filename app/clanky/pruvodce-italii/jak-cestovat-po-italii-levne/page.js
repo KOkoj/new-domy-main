@@ -14,6 +14,10 @@ const TRAVEL_PARTNER_LINKS = {
   booking: 'https://www.dpbolvw.net/click-101629596-15735418',
   getYourGuide: 'https://gyg.me/O0X6ZC2R'
 }
+const SIDEBAR_TRAVEL_WIDGET = {
+  href: 'https://www.kqzyfj.com/click-101629596-17122710',
+  image: 'https://www.tqlkg.com/image-101629596-17122710'
+}
 
 const CONTENT = {
   cs: {
@@ -380,6 +384,18 @@ export default function CheapTravelItalyArticlePage() {
   }, [])
 
   const t = CONTENT[language] || CONTENT.cs
+  const sidebarTitle =
+    language === 'cs'
+      ? 'Doporucena nabidka partnera'
+      : language === 'it'
+        ? 'Offerta partner consigliata'
+        : 'Recommended Partner Offer'
+  const sidebarText =
+    language === 'cs'
+      ? 'Overene rezervace a cestovni nabidky.'
+      : language === 'it'
+        ? 'Prenotazioni verificate e in sicurezza.'
+        : 'Verified booking and travel deal.'
 
   return (
     <div className="min-h-screen bg-[#faf8f5]">
@@ -387,7 +403,8 @@ export default function CheapTravelItalyArticlePage() {
 
       <main className="pt-28 pb-16">
         <div className="container mx-auto px-4">
-          <article className="max-w-4xl mx-auto space-y-8">
+          <div className="max-w-[1200px] mx-auto lg:grid lg:grid-cols-[minmax(0,1fr)_200px] lg:gap-8 xl:gap-12">
+            <article className="max-w-4xl lg:max-w-none space-y-8">
             <div className="flex flex-wrap gap-3">
               <Button asChild variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-100">
                 <Link href="/clanky/pruvodce-italii">
@@ -507,17 +524,35 @@ export default function CheapTravelItalyArticlePage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white border border-slate-200">
-              <CardHeader>
-                <CardTitle className="text-2xl">{t.conclusion.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-slate-700 leading-relaxed">
-                {t.conclusion.paragraphs.map((line) => (
-                  <p key={line}>{line}</p>
-                ))}
-              </CardContent>
-            </Card>
-          </article>
+              <Card className="bg-white border border-slate-200">
+                <CardHeader>
+                  <CardTitle className="text-2xl">{t.conclusion.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-slate-700 leading-relaxed">
+                  {t.conclusion.paragraphs.map((line) => (
+                    <p key={line}>{line}</p>
+                  ))}
+                </CardContent>
+              </Card>
+            </article>
+
+            <aside className="hidden lg:block">
+              <div className="sticky top-28 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <h3 className="text-sm font-semibold text-slate-900 mb-1">{sidebarTitle}</h3>
+                <p className="text-xs text-slate-600 mb-3">{sidebarText}</p>
+                <a href={SIDEBAR_TRAVEL_WIDGET.href} target="_top" rel="sponsored noopener noreferrer" className="block">
+                  <img
+                    src={SIDEBAR_TRAVEL_WIDGET.image}
+                    width="160"
+                    height="600"
+                    alt=""
+                    border="0"
+                    className="w-full h-auto rounded-md"
+                  />
+                </a>
+              </div>
+            </aside>
+          </div>
         </div>
       </main>
 
