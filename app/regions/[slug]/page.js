@@ -43,25 +43,25 @@ const REGION_GYG_LINKS = {
   sardegna: 'https://www.getyourguide.com/sardegna-l249/'
 }
 const REGION_GYG_WIDGET_CONFIGS = {
-  lombardia: { query: 'lombardia', destinationLink: 'https://www.getyourguide.com/lombardia-l310/' },
-  toscana: { locationId: '558', destinationLink: 'https://www.getyourguide.com/toscana-l558/' },
-  'trentino-alto-adige': { locationId: '2493', destinationLink: 'https://www.getyourguide.com/trentino-alto-adigesudtirol-l2493/' },
-  liguria: { locationId: '221', destinationLink: 'https://www.getyourguide.com/liguria-l221/' },
-  piemonte: { locationId: '598', destinationLink: 'https://www.getyourguide.com/piemonte-l598/' },
-  'friuli-venezia-giulia': { locationId: '1130', destinationLink: 'https://www.getyourguide.com/friuli-venezia-giulia-l1130/' },
-  veneto: { locationId: '222', destinationLink: 'https://www.getyourguide.com/veneto-l222/' },
-  'valle-d-aosta': { locationId: '2478', destinationLink: 'https://www.getyourguide.com/valle-d-aosta-l2478/' },
-  'emilia-romagna': { locationId: '252', destinationLink: 'https://www.getyourguide.com/emilia-romagna-l252/' },
-  marche: { locationId: '257', destinationLink: 'https://www.getyourguide.com/marche-l257/' },
-  umbria: { locationId: '1507', destinationLink: 'https://www.getyourguide.com/comune-di-perugia-l1507/' },
-  lazio: { locationId: '862', destinationLink: 'https://www.getyourguide.com/lazio-l862/' },
-  molise: { locationId: '197924', destinationLink: 'https://www.getyourguide.com/molise-l197924/' },
-  abruzzo: { locationId: '1174', destinationLink: 'https://www.getyourguide.com/abruzzo-l1174/' },
-  campania: { locationId: '156880', destinationLink: 'https://www.getyourguide.com/pompei-campania-l156880/' },
-  puglia: { locationId: '727', destinationLink: 'https://www.getyourguide.com/puglia-l727/' },
-  calabria: { locationId: '733', destinationLink: 'https://www.getyourguide.com/calabria-l733/' },
-  sicilia: { locationId: '65', destinationLink: 'https://www.getyourguide.com/sicilia-l65/' },
-  sardegna: { locationId: '249', destinationLink: 'https://www.getyourguide.com/sardegna-l249/' }
+  lombardia: { query: 'lombardia', secondaryQuery: 'milan', destinationLink: 'https://www.getyourguide.com/lombardia-l310/' },
+  toscana: { locationId: '558', secondaryQuery: 'florence', destinationLink: 'https://www.getyourguide.com/toscana-l558/' },
+  'trentino-alto-adige': { locationId: '2493', secondaryQuery: 'dolomites', destinationLink: 'https://www.getyourguide.com/trentino-alto-adigesudtirol-l2493/' },
+  liguria: { locationId: '221', secondaryQuery: 'cinque terre', destinationLink: 'https://www.getyourguide.com/liguria-l221/' },
+  piemonte: { locationId: '598', secondaryQuery: 'turin', destinationLink: 'https://www.getyourguide.com/piemonte-l598/' },
+  'friuli-venezia-giulia': { locationId: '1130', secondaryQuery: 'trieste', destinationLink: 'https://www.getyourguide.com/friuli-venezia-giulia-l1130/' },
+  veneto: { locationId: '222', secondaryQuery: 'venice', destinationLink: 'https://www.getyourguide.com/veneto-l222/' },
+  'valle-d-aosta': { locationId: '2478', secondaryQuery: 'aosta', destinationLink: 'https://www.getyourguide.com/valle-d-aosta-l2478/' },
+  'emilia-romagna': { locationId: '252', secondaryQuery: 'bologna', destinationLink: 'https://www.getyourguide.com/emilia-romagna-l252/' },
+  marche: { locationId: '257', secondaryQuery: 'ancona', destinationLink: 'https://www.getyourguide.com/marche-l257/' },
+  umbria: { locationId: '1507', secondaryQuery: 'assisi', destinationLink: 'https://www.getyourguide.com/comune-di-perugia-l1507/' },
+  lazio: { locationId: '862', secondaryQuery: 'rome', destinationLink: 'https://www.getyourguide.com/lazio-l862/' },
+  molise: { locationId: '197924', secondaryQuery: 'campobasso', destinationLink: 'https://www.getyourguide.com/molise-l197924/' },
+  abruzzo: { locationId: '1174', secondaryQuery: 'pescara', destinationLink: 'https://www.getyourguide.com/abruzzo-l1174/' },
+  campania: { locationId: '156880', secondaryQuery: 'naples', destinationLink: 'https://www.getyourguide.com/pompei-campania-l156880/' },
+  puglia: { locationId: '727', secondaryQuery: 'bari', destinationLink: 'https://www.getyourguide.com/puglia-l727/' },
+  calabria: { locationId: '733', secondaryQuery: 'tropea', destinationLink: 'https://www.getyourguide.com/calabria-l733/' },
+  sicilia: { locationId: '65', secondaryQuery: 'palermo', destinationLink: 'https://www.getyourguide.com/sicilia-l65/' },
+  sardegna: { locationId: '249', secondaryQuery: 'cagliari', destinationLink: 'https://www.getyourguide.com/sardegna-l249/' }
 }
 
 const REGION_DATA = {
@@ -737,10 +737,15 @@ export default function RegionDetailPage() {
   const gygLink = REGION_GYG_LINKS[canonicalSlug] || REGION_GYG_LINKS[rawSlug] || DEFAULT_GYG_LINK
   const widgetConfig = REGION_GYG_WIDGET_CONFIGS[canonicalSlug] || REGION_GYG_WIDGET_CONFIGS[rawSlug] || null
   const shouldShowRegionalWidget = Boolean(widgetConfig)
-  const widgetDataAttrs = widgetConfig
+  const topWidgetDataAttrs = widgetConfig
     ? (widgetConfig.query
       ? { 'data-gyg-q': widgetConfig.query }
       : { 'data-gyg-location-id': widgetConfig.locationId })
+    : {}
+  const bottomWidgetDataAttrs = widgetConfig
+    ? (widgetConfig.secondaryQuery
+      ? { 'data-gyg-q': widgetConfig.secondaryQuery }
+      : topWidgetDataAttrs)
     : {}
   const widgetDestinationLink = widgetConfig?.destinationLink || 'https://www.getyourguide.com/'
   const region = REGION_DATA[canonicalSlug] || REGION_DATA[rawSlug] || createPlaceholderRegion(canonicalSlug || rawSlug)
@@ -984,7 +989,7 @@ export default function RegionDetailPage() {
                     data-gyg-widget="activities"
                     data-gyg-number-of-items="3"
                     data-gyg-partner-id="H4OKCTR"
-                    {...widgetDataAttrs}
+                    {...topWidgetDataAttrs}
                   >
                     <span className="text-xs text-slate-600">
                       Powered by{' '}
@@ -1140,10 +1145,10 @@ export default function RegionDetailPage() {
                     <div
                       data-gyg-href="https://widget.getyourguide.com/default/activities.frame"
                       data-gyg-locale-code="cs-CZ"
-                      data-gyg-widget="activities"
-                      data-gyg-number-of-items="3"
-                      data-gyg-partner-id="H4OKCTR"
-                      {...widgetDataAttrs}
+                    data-gyg-widget="activities"
+                    data-gyg-number-of-items="3"
+                    data-gyg-partner-id="H4OKCTR"
+                      {...bottomWidgetDataAttrs}
                     >
                       <span className="text-xs text-slate-600">
                         Powered by{' '}
