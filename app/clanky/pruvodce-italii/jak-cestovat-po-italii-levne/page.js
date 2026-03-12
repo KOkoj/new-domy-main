@@ -23,8 +23,8 @@ const FLIGHTS_PARTNER_LINKS = {
   trackingPixel: 'https://www.ftjcfx.com/image-101629596-17053224'
 }
 const SIDEBAR_TRAVEL_WIDGET = {
-  href: 'https://www.kqzyfj.com/click-101629596-17122710',
-  image: 'https://www.tqlkg.com/image-101629596-17122710'
+  href: 'https://www.anrdoezrs.net/click-101629596-17061697',
+  image: 'https://www.ftjcfx.com/image-101629596-17061697'
 }
 
 const CONTENT = {
