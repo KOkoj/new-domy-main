@@ -1,13 +1,64 @@
 ﻿'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { Clock, ChevronRight, BookOpen, Mail, MessageSquare } from 'lucide-react'
+import { Clock, ChevronRight, BookOpen, Mail, MessageSquare, Compass } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
 const ARTICLES = [
+  {
+    slug: 'kolik-stoji-dovolena-v-italii-v-roce-2026',
+    title: {
+      en: 'How Much Does a Holiday in Italy Cost in 2026?',
+      cs: 'Kolik stojí dovolená v Itálii v roce 2026',
+      it: 'Quanto costa una vacanza in Italia nel 2026?'
+    },
+    excerpt: {
+      en: 'A practical breakdown of holiday costs in Italy in 2026: transport, accommodation, food, and realistic daily budgets.',
+      cs: 'Praktický přehled nákladů na dovolenou v Itálii v roce 2026: doprava, ubytování, jídlo a realistické denní rozpočty.',
+      it: 'Panoramica pratica dei costi di una vacanza in Italia nel 2026: trasporti, alloggio, cibo e budget giornalieri realistici.'
+    },
+    date: '2026-03-09',
+    readTime: '9 min',
+    category: { en: 'Travel', cs: 'Cestování', it: 'Viaggi' },
+    link: '/clanky/pruvodce-italii/kolik-stoji-dovolena-v-italii-v-roce-2026'
+  },
+  {
+    slug: 'nejkrasnejsi-mala-mesta-v-italii',
+    title: {
+      en: 'The Most Beautiful Small Towns in Italy',
+      cs: 'Nejkrásnější malá města v Itálii',
+      it: 'I borghi più belli d’Italia'
+    },
+    excerpt: {
+      en: 'A curated selection of charming Italian small towns that are ideal for slower travel and authentic local experiences.',
+      cs: 'Výběr kouzelných italských malých měst ideálních pro pomalejší cestování a autentický místní zážitek.',
+      it: 'Una selezione di piccoli borghi italiani ideali per un viaggio più lento e autentico.'
+    },
+    date: '2026-03-08',
+    readTime: '8 min',
+    category: { en: 'Travel', cs: 'Cestování', it: 'Viaggi' },
+    link: '/clanky/pruvodce-italii/nejkrasnejsi-mala-mesta-v-italii'
+  },
+  {
+    slug: 'rekonstrukce-domu-v-italii',
+    title: {
+      en: 'How much does house renovation in Italy cost?',
+      cs: 'Kolik stojí rekonstrukce domu v Itálii?',
+      it: 'Quanto costa ristrutturare una casa in Italia?'
+    },
+    excerpt: {
+      en: 'Indicative renovation ranges, key cost factors, and what to verify before buying an older property in Italy.',
+      cs: 'Orientační ceny rekonstrukce, hlavní faktory nákladů a co ověřit ještě před koupí starší nemovitosti v Itálii.',
+      it: 'Fasce orientative di ristrutturazione, fattori di costo principali e verifiche da fare prima di acquistare un immobile datato in Italia.'
+    },
+    date: '2026-03-10',
+    readTime: '8 min',
+    category: { en: 'Renovation', cs: 'Rekonstrukce', it: 'Ristrutturazione' },
+    link: '/guides/rekonstrukce-domu-v-italii'
+  },
   {
     slug: 'real-estate-purchase-system-italy',
     title: {
@@ -190,6 +241,10 @@ export default function BlogPage() {
 
   const visibleArticles = useMemo(() => {
     return ARTICLES.filter((article) => {
+      if (article.link?.startsWith('/clanky/pruvodce-italii')) {
+        return false
+      }
+
       const articleText = normalizeForFilter(
         [article.slug, article.link, article.title?.en, article.title?.it, article.title?.cs].join(' ')
       )
@@ -231,32 +286,62 @@ export default function BlogPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-8 lg:gap-12 mb-20">
             <aside className="lg:sticky lg:top-28 h-fit lg:-ml-3">
-              <div className="relative overflow-hidden rounded-2xl border border-amber-200/60 bg-gradient-to-br from-amber-50 via-white to-slate-50 p-5 shadow-md">
-                <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-orange-400 via-amber-300 to-orange-300" />
-                <div className="absolute -top-7 -right-8 h-20 w-20 rounded-full bg-orange-300/55 blur-xl" />
-                <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-slate-200/50 blur-xl" />
-                <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-white/80 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-amber-700 border border-amber-200 mb-3">
-                  FAQ
+              <div className="space-y-4">
+                <div className="relative overflow-hidden rounded-2xl border border-emerald-200/70 bg-gradient-to-br from-emerald-50 via-white to-amber-50 p-5 shadow-md">
+                  <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-300" />
+                  <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-emerald-300/45 blur-xl" />
+                  <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-amber-200/50 blur-xl" />
+                  <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-white/85 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-emerald-700 border border-emerald-200 mb-3">
+                    TIP
+                  </div>
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-700 to-teal-700 flex items-center justify-center mb-3 shadow-sm">
+                    <Compass className="h-4 w-4 text-white" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-800 mb-2">
+                    {language === 'cs' ? 'Tip: Cestování po Itálii' : language === 'it' ? 'Tip: Viaggiare in Italia' : 'Tip: Travel in Italy'}
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                    {language === 'cs'
+                      ? 'Nová sekce s články, praktickými tipy a zajímavostmi pro české cestovatele.'
+                      : language === 'it'
+                        ? 'Nuova sezione con articoli, consigli pratici e curiosità per chi vuole viaggiare in Italia.'
+                        : 'New section with articles, practical tips, and curiosities for people planning to travel in Italy.'}
+                  </p>
+                  <Link href="/clanky/pruvodce-italii" className="block">
+                    <Button className="w-full h-9 bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-600 hover:to-teal-600 text-white text-xs font-semibold rounded-lg shadow-sm">
+                      {language === 'cs' ? 'Otevřít sekci cestování' : language === 'it' ? 'Vai alla sezione viaggi' : 'Open travel section'}
+                      <ChevronRight className="h-3.5 w-3.5 ml-1.5" />
+                    </Button>
+                  </Link>
                 </div>
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center mb-3 shadow-sm">
-                  <MessageSquare className="h-4 w-4 text-white" />
+
+                <div className="relative overflow-hidden rounded-2xl border border-amber-200/60 bg-gradient-to-br from-amber-50 via-white to-slate-50 p-5 shadow-md">
+                  <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-orange-400 via-amber-300 to-orange-300" />
+                  <div className="absolute -top-7 -right-8 h-20 w-20 rounded-full bg-orange-300/55 blur-xl" />
+                  <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-slate-200/50 blur-xl" />
+                  <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-white/80 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-amber-700 border border-amber-200 mb-3">
+                    FAQ
+                  </div>
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center mb-3 shadow-sm">
+                    <MessageSquare className="h-4 w-4 text-white" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-800 mb-2">
+                    {language === 'cs' ? 'Máte dotazy?' : language === 'it' ? 'Hai domande?' : 'Have Questions?'}
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                    {language === 'cs'
+                      ? 'Podívejte se na FAQ k nákupu nemovitosti v Itálii.'
+                      : language === 'it'
+                        ? "Consulta le FAQ sull'acquisto di immobili in Italia."
+                        : 'Read the FAQ about buying property in Italy.'}
+                  </p>
+                  <Link href="/faq" className="block">
+                    <Button className="w-full h-9 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white text-xs font-semibold rounded-lg shadow-sm">
+                      {language === 'cs' ? 'Přejít na FAQ' : language === 'it' ? 'Vai alle FAQ' : 'Go to FAQ'}
+                      <ChevronRight className="h-3.5 w-3.5 ml-1.5" />
+                    </Button>
+                  </Link>
                 </div>
-                <h3 className="text-base font-bold text-slate-800 mb-2">
-                  {language === 'cs' ? 'Máte dotazy?' : language === 'it' ? 'Hai domande?' : 'Have Questions?'}
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                  {language === 'cs'
-                    ? 'Podívejte se na FAQ k nákupu nemovitosti v Itálii.'
-                    : language === 'it'
-                      ? "Consulta le FAQ sull'acquisto di immobili in Italia."
-                      : 'Read the FAQ about buying property in Italy.'}
-                </p>
-                <Link href="/faq" className="block">
-                  <Button className="w-full h-9 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white text-xs font-semibold rounded-lg shadow-sm">
-                    {language === 'cs' ? 'Přejít na FAQ' : language === 'it' ? 'Vai alle FAQ' : 'Go to FAQ'}
-                    <ChevronRight className="h-3.5 w-3.5 ml-1.5" />
-                  </Button>
-                </Link>
               </div>
             </aside>
 

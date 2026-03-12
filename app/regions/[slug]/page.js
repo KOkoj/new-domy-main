@@ -7,10 +7,62 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
+import Script from 'next/script'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import { REGION_DATA_OVERRIDES } from '../regionContent'
 import { REGION_CURIOSITIES } from '../regionCuriosities'
+
+const DEFAULT_BOOKING_LINK = 'https://www.dpbolvw.net/click-101629596-15735418'
+const REGION_BOOKING_LINKS = {
+  lombardia:
+    'https://www.booking.com/searchresults.cs.html?aid=1522416&label=affnetcj-15735418_pub-7711899_site-101629596_pname-Creavita+sro_clkid-_cjevent-23f68d511e0e11f183fd00400a18ba73&lang=cs&sid=f9245db3ab66c6aaf5f923e76887184f&sb=1&sb_lp=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.cs.html%3Faid%3D1522416%26label%3Daffnetcj-15735418_pub-7711899_site-101629596_pname-Creavita%2520sro_clkid-_cjevent-23f68d511e0e11f183fd00400a18ba73%26sid%3Df9245db3ab66c6aaf5f923e76887184f%26sb_price_type%3Dtotal%26&ss=Riva+del+Garda%2C+Trentino-Alto+Adige%2C+Italia&is_ski_area=&checkin_year=&checkin_month=&checkout_year=&checkout_month=&flex_window=0&efdco=1&group_adults=2&group_children=0&no_rooms=1&b_h4u_keep_filters=&from_sf=1&ss_raw=lago+di+garda&ac_position=1&ac_langcode=it&ac_click_type=b&ac_meta=GhA2YTdmNTcxNGExNmIwMjlmIAEoATICaXQ6DWxhZ28gZGkgZ2FyZGFAAEoAUAA%3D&dest_id=-126468&dest_type=city&place_id_lat=45.88506&place_id_lon=10.838951&search_pageview_id=8f4d570d21da0186&search_selected=true&search_pageview_id=8f4d570d21da0186&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0',
+  lombardy:
+    'https://www.booking.com/searchresults.cs.html?aid=1522416&label=affnetcj-15735418_pub-7711899_site-101629596_pname-Creavita+sro_clkid-_cjevent-23f68d511e0e11f183fd00400a18ba73&lang=cs&sid=f9245db3ab66c6aaf5f923e76887184f&sb=1&sb_lp=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.cs.html%3Faid%3D1522416%26label%3Daffnetcj-15735418_pub-7711899_site-101629596_pname-Creavita%2520sro_clkid-_cjevent-23f68d511e0e11f183fd00400a18ba73%26sid%3Df9245db3ab66c6aaf5f923e76887184f%26sb_price_type%3Dtotal%26&ss=Riva+del+Garda%2C+Trentino-Alto+Adige%2C+Italia&is_ski_area=&checkin_year=&checkin_month=&checkout_year=&checkout_month=&flex_window=0&efdco=1&group_adults=2&group_children=0&no_rooms=1&b_h4u_keep_filters=&from_sf=1&ss_raw=lago+di+garda&ac_position=1&ac_langcode=it&ac_click_type=b&ac_meta=GhA2YTdmNTcxNGExNmIwMjlmIAEoATICaXQ6DWxhZ28gZGkgZ2FyZGFAAEoAUAA%3D&dest_id=-126468&dest_type=city&place_id_lat=45.88506&place_id_lon=10.838951&search_pageview_id=8f4d570d21da0186&search_selected=true&search_pageview_id=8f4d570d21da0186&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0'
+}
+const DEFAULT_GYG_LINK = 'https://gyg.me/O0X6ZC2R'
+const REGION_GYG_LINKS = {
+  lombardia: 'https://gyg.me/tVi5p3To',
+  toscana: 'https://www.getyourguide.com/toscana-l558/',
+  'trentino-alto-adige': 'https://www.getyourguide.com/trentino-alto-adigesudtirol-l2493/',
+  liguria: 'https://www.getyourguide.com/liguria-l221/',
+  piemonte: 'https://www.getyourguide.com/piemonte-l598/',
+  'friuli-venezia-giulia': 'https://www.getyourguide.com/friuli-venezia-giulia-l1130/',
+  veneto: 'https://www.getyourguide.com/veneto-l222/',
+  'valle-d-aosta': 'https://www.getyourguide.com/valle-d-aosta-l2478/',
+  'emilia-romagna': 'https://www.getyourguide.com/emilia-romagna-l252/',
+  marche: 'https://www.getyourguide.com/marche-l257/',
+  umbria: 'https://www.getyourguide.com/comune-di-perugia-l1507/',
+  lazio: 'https://www.getyourguide.com/lazio-l862/',
+  molise: 'https://www.getyourguide.com/molise-l197924/',
+  abruzzo: 'https://www.getyourguide.com/abruzzo-l1174/',
+  campania: 'https://www.getyourguide.com/pompei-campania-l156880/',
+  puglia: 'https://www.getyourguide.com/puglia-l727/',
+  calabria: 'https://www.getyourguide.com/calabria-l733/',
+  sicilia: 'https://www.getyourguide.com/sicilia-l65/',
+  sardegna: 'https://www.getyourguide.com/sardegna-l249/'
+}
+const REGION_GYG_WIDGET_CONFIGS = {
+  lombardia: { query: 'lombardia', destinationLink: 'https://www.getyourguide.com/lombardia-l310/' },
+  toscana: { locationId: '558', destinationLink: 'https://www.getyourguide.com/toscana-l558/' },
+  'trentino-alto-adige': { locationId: '2493', destinationLink: 'https://www.getyourguide.com/trentino-alto-adigesudtirol-l2493/' },
+  liguria: { locationId: '221', destinationLink: 'https://www.getyourguide.com/liguria-l221/' },
+  piemonte: { locationId: '598', destinationLink: 'https://www.getyourguide.com/piemonte-l598/' },
+  'friuli-venezia-giulia': { locationId: '1130', destinationLink: 'https://www.getyourguide.com/friuli-venezia-giulia-l1130/' },
+  veneto: { locationId: '222', destinationLink: 'https://www.getyourguide.com/veneto-l222/' },
+  'valle-d-aosta': { locationId: '2478', destinationLink: 'https://www.getyourguide.com/valle-d-aosta-l2478/' },
+  'emilia-romagna': { locationId: '252', destinationLink: 'https://www.getyourguide.com/emilia-romagna-l252/' },
+  marche: { locationId: '257', destinationLink: 'https://www.getyourguide.com/marche-l257/' },
+  umbria: { locationId: '1507', destinationLink: 'https://www.getyourguide.com/comune-di-perugia-l1507/' },
+  lazio: { locationId: '862', destinationLink: 'https://www.getyourguide.com/lazio-l862/' },
+  molise: { locationId: '197924', destinationLink: 'https://www.getyourguide.com/molise-l197924/' },
+  abruzzo: { locationId: '1174', destinationLink: 'https://www.getyourguide.com/abruzzo-l1174/' },
+  campania: { locationId: '156880', destinationLink: 'https://www.getyourguide.com/pompei-campania-l156880/' },
+  puglia: { locationId: '727', destinationLink: 'https://www.getyourguide.com/puglia-l727/' },
+  calabria: { locationId: '733', destinationLink: 'https://www.getyourguide.com/calabria-l733/' },
+  sicilia: { locationId: '65', destinationLink: 'https://www.getyourguide.com/sicilia-l65/' },
+  sardegna: { locationId: '249', destinationLink: 'https://www.getyourguide.com/sardegna-l249/' }
+}
 
 const REGION_DATA = {
   'friuli-venezia-giulia': {
@@ -622,7 +674,15 @@ const REGION_BUYERS_GUIDANCE_IT = {
 }
 
 const BUYER_GUIDANCE_SLUG_ALIASES = {
-  lombardy: 'lombardia'
+  lombardy: 'lombardia',
+  tuscany: 'toscana',
+  piedmont: 'piemonte',
+  trentinoaltoadige: 'trentino-alto-adige',
+  'trentino-south-tyrol': 'trentino-alto-adige',
+  valledaosta: 'valle-d-aosta',
+  'aosta-valley': 'valle-d-aosta',
+  sicily: 'sicilia',
+  sardinia: 'sardegna'
 }
 
 function formatSlugName(slug = '') {
@@ -671,8 +731,19 @@ function createPlaceholderRegion(slug = '') {
 export default function RegionDetailPage() {
   const params = useParams()
   const [language, setLanguage] = useState('en')
-  const slug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug
-  const region = REGION_DATA[slug] || createPlaceholderRegion(slug)
+  const rawSlug = Array.isArray(params?.slug) ? params.slug[0] : (params?.slug || '')
+  const canonicalSlug = BUYER_GUIDANCE_SLUG_ALIASES[rawSlug] || rawSlug
+  const bookingLink = REGION_BOOKING_LINKS[canonicalSlug] || REGION_BOOKING_LINKS[rawSlug] || DEFAULT_BOOKING_LINK
+  const gygLink = REGION_GYG_LINKS[canonicalSlug] || REGION_GYG_LINKS[rawSlug] || DEFAULT_GYG_LINK
+  const widgetConfig = REGION_GYG_WIDGET_CONFIGS[canonicalSlug] || REGION_GYG_WIDGET_CONFIGS[rawSlug] || null
+  const shouldShowRegionalWidget = Boolean(widgetConfig)
+  const widgetDataAttrs = widgetConfig
+    ? (widgetConfig.query
+      ? { 'data-gyg-q': widgetConfig.query }
+      : { 'data-gyg-location-id': widgetConfig.locationId })
+    : {}
+  const widgetDestinationLink = widgetConfig?.destinationLink || 'https://www.getyourguide.com/'
+  const region = REGION_DATA[canonicalSlug] || REGION_DATA[rawSlug] || createPlaceholderRegion(canonicalSlug || rawSlug)
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')
@@ -714,7 +785,7 @@ export default function RegionDetailPage() {
           ? `${city} - Panoramica del mercato locale e del potenziale d'investimento`
           : `${city} - Local market overview and investment context`
     ))
-  const buyerGuidanceSlug = BUYER_GUIDANCE_SLUG_ALIASES[slug] || slug
+  const buyerGuidanceSlug = canonicalSlug
   const buyerGuidanceIt = REGION_BUYERS_GUIDANCE_IT[buyerGuidanceSlug]
   const regionName = region.name?.[language] || region.name?.en || 'this region'
   const buyersTitle =
@@ -1016,7 +1087,7 @@ export default function RegionDetailPage() {
                   <Button 
                     size="lg" 
                     className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg"
-                    onClick={() => window.open('https://www.dpbolvw.net/click-101629596-15735418', '_blank')}
+                    onClick={() => window.open(bookingLink, '_blank')}
                   >
                     <ExternalLink className="h-4 w-4 mr-2" />
                     {language === 'cs' ? 'Najít ubytování (Booking.com)' :
@@ -1027,7 +1098,7 @@ export default function RegionDetailPage() {
                     variant="outline"
                     size="lg" 
                     className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white border-orange-500 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105"
-                    onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}
+                    onClick={() => window.open(gygLink, '_blank')}
                   >
                     <ExternalLink className="h-4 w-4 mr-2" />
                     {language === 'cs' ? 'Výlety a průvodce (GetYourGuide)' :
@@ -1035,6 +1106,30 @@ export default function RegionDetailPage() {
                      'Tours & Guides (GetYourGuide)'}
                   </Button>
                 </div>
+                {shouldShowRegionalWidget ? (
+                  <div className="mt-6 rounded-xl border border-orange-200 bg-orange-50/70 p-3">
+                    <div
+                      data-gyg-href="https://widget.getyourguide.com/default/activities.frame"
+                      data-gyg-locale-code="cs-CZ"
+                      data-gyg-widget="activities"
+                      data-gyg-number-of-items="3"
+                      data-gyg-partner-id="H4OKCTR"
+                      {...widgetDataAttrs}
+                    >
+                      <span className="text-xs text-slate-600">
+                        Powered by{' '}
+                        <a
+                          target="_blank"
+                          rel="sponsored noopener noreferrer"
+                          href={widgetDestinationLink}
+                          className="underline underline-offset-2"
+                        >
+                          GetYourGuide
+                        </a>
+                      </span>
+                    </div>
+                  </div>
+                ) : null}
               </CardContent>
             </Card>
           </div>
@@ -1056,7 +1151,7 @@ export default function RegionDetailPage() {
                       {consultationLabel}
                     </Button>
                   </a>
-                  <Link href={`/properties?region=${slug}`}>
+                  <Link href={`/properties?region=${canonicalSlug || rawSlug}`}>
                     <Button
                       size="lg"
                       className="w-full sm:w-auto bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg"
@@ -1073,6 +1168,13 @@ export default function RegionDetailPage() {
       </div>
 
       <Footer language={language} />
+      {shouldShowRegionalWidget ? (
+        <Script
+          src="https://widget.getyourguide.com/dist/pa.umd.production.min.js"
+          strategy="afterInteractive"
+          data-gyg-partner-id="H4OKCTR"
+        />
+      ) : null}
     </div>
   )
 }

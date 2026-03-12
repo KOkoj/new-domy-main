@@ -529,7 +529,6 @@ function RegionCard({ region, language = 'en' }) {
           ? 'Prima di fare un\'offerta, eseguite sempre una due diligence tecnica e legale.'
           : 'Before making an offer, always complete technical and legal due diligence.'
       ))
-
   return (
     <Card className="group cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl h-full flex flex-col">
       {/* Image */}
@@ -602,6 +601,7 @@ function RegionCard({ region, language = 'en' }) {
             {warningText}
           </p>
         </div>
+
       </CardContent>
       
       <CardFooter className="pt-0 flex flex-col gap-2">

@@ -8,6 +8,21 @@ import Footer from '@/components/Footer'
 
 const GUIDES = [
   {
+    slug: 'rekonstrukce-domu-v-italii',
+    date: '2026-03-10',
+    readTime: '8 min',
+    title: {
+      en: 'How much does house renovation in Italy cost?',
+      cs: 'Kolik stojí rekonstrukce domu v Itálii?',
+      it: 'Quanto costa ristrutturare una casa in Italia?'
+    },
+    excerpt: {
+      en: 'Indicative price ranges, key cost drivers, and what to verify before purchase.',
+      cs: 'Orientační cenové pásmo, hlavní faktory nákladů a co ověřit před koupí.',
+      it: 'Fasce indicative di costo, fattori principali e verifiche da fare prima dell\'acquisto.'
+    }
+  },
+  {
     slug: 'real-estate-purchase-system-italy',
     date: '2026-02-11',
     readTime: '10 min',
