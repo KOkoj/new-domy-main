@@ -14,6 +14,10 @@ const TRAVEL_PARTNER_LINKS = {
   booking: 'https://www.dpbolvw.net/click-101629596-15735418',
   getYourGuide: 'https://gyg.me/O0X6ZC2R'
 }
+const FLIGHTS_PARTNER_LINKS = {
+  homepage: 'https://www.dpbolvw.net/click-101629596-17053224',
+  trackingPixel: 'https://www.ftjcfx.com/image-101629596-17053224'
+}
 
 const CONTENT = {
   cs: {
@@ -105,6 +109,10 @@ const CONTENT = {
       text: 'Rezervujte chytře a držte rozpočet pod kontrolou už od začátku cesty.',
       booking: 'Najít ubytování',
       gyg: 'Najít aktivity'
+    },
+    flightCta: {
+      miniText: 'Hledáte lety na vaše termíny?',
+      button: 'Hledat lety'
     },
     accommodationTitle: 'Na čem lidé při plánování nejčastěji přeplácí',
     accommodationIntro:
@@ -245,6 +253,10 @@ const CONTENT = {
       booking: 'Find Accommodation',
       gyg: 'Find Activities'
     },
+    flightCta: {
+      miniText: 'Looking for flights for your dates?',
+      button: 'Search Flights'
+    },
     accommodationTitle: 'Where Travelers Most Often Overspend',
     accommodationIntro:
       'Most overspending does not come from one huge mistake, but from several small decisions that add up quickly.',
@@ -379,6 +391,10 @@ const CONTENT = {
       text: 'Prenota in modo intelligente e tieni il budget sotto controllo fin dall’inizio.',
       booking: 'Trova alloggio',
       gyg: 'Trova attività'
+    },
+    flightCta: {
+      miniText: 'Cerchi voli per le tue date?',
+      button: 'Cerca voli'
     },
     accommodationTitle: 'Dove si Paga Più del Necessario',
     accommodationIntro:
@@ -583,6 +599,23 @@ export default function HolidayCostsItaly2026Page() {
                       <h3 className="font-semibold text-slate-900">{item.title}</h3>
                     </div>
                     <p className="text-slate-700 text-sm leading-relaxed">{item.text}</p>
+                    {item.icon === 'flight' ? (
+                      <div className="mt-3 rounded-lg border border-sky-200 bg-sky-50/70 p-3">
+                        <p className="text-xs text-slate-700 mb-2">{t.flightCta.miniText}</p>
+                        <Button asChild size="sm" className="bg-sky-700 hover:bg-sky-600 text-white">
+                          <a href={FLIGHTS_PARTNER_LINKS.homepage} target="_top" rel="nofollow sponsored noopener noreferrer">
+                            {t.flightCta.button}
+                          </a>
+                        </Button>
+                        <img
+                          src={FLIGHTS_PARTNER_LINKS.trackingPixel}
+                          width="1"
+                          height="1"
+                          alt=""
+                          className="sr-only"
+                        />
+                      </div>
+                    ) : null}
                     {item.examples?.length ? (
                       <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50/70 p-3">
                         <p className="text-[11px] font-semibold uppercase tracking-wide text-amber-800 mb-1">
