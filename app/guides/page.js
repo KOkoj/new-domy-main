@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
@@ -13,12 +13,12 @@ const GUIDES = [
     readTime: '8 min',
     title: {
       en: 'How much does house renovation in Italy cost?',
-      cs: 'Kolik stojí rekonstrukce domu v Itálii?',
+      cs: 'Kolik stojĂ­ rekonstrukce domu v ItĂˇlii?',
       it: 'Quanto costa ristrutturare una casa in Italia?'
     },
     excerpt: {
       en: 'Indicative price ranges, key cost drivers, and what to verify before purchase.',
-      cs: 'Orientační cenové pásmo, hlavní faktory nákladů a co ověřit před koupí.',
+      cs: 'OrientaÄŤnĂ­ cenovĂ© pĂˇsmo, hlavnĂ­ faktory nĂˇkladĹŻ a co ovÄ›Ĺ™it pĹ™ed koupĂ­.',
       it: 'Fasce indicative di costo, fattori principali e verifiche da fare prima dell\'acquisto.'
     }
   },
@@ -27,29 +27,14 @@ const GUIDES = [
     date: '2026-02-11',
     readTime: '10 min',
     title: {
-      en: 'How the Italian Property Buying System Really Works (and Why It’s Different from the Czech Republic)',
-      cs: 'Jak skutečně funguje italský systém koupě nemovitosti (a proč se liší od České republiky)',
-      it: 'Come funziona davvero il sistema di acquisto immobiliare in Italia (e perché è diverso dalla Repubblica Ceca)'
+      en: 'How the Italian Property Buying System Really Works (and Why Itâ€™s Different from the Czech Republic)',
+      cs: 'Jak skuteÄŤnÄ› funguje italskĂ˝ systĂ©m koupÄ› nemovitosti (a proÄŤ se liĹˇĂ­ od ÄŚeskĂ© republiky)',
+      it: 'Come funziona davvero il sistema di acquisto immobiliare in Italia (e perchĂ© Ă¨ diverso dalla Repubblica Ceca)'
     },
     excerpt: {
       en: 'Roles, checks, risks, and practical process logic for foreign buyers.',
-      cs: 'Role, kontroly, rizika a praktická logika procesu pro zahraniční kupující.',
-      it: 'Ruoli, controlli, rischi e logica pratica del processo per chi compra dall’estero.'
-    }
-  },
-  {
-    slug: 'timeline',
-    date: '2026-01-21',
-    readTime: '8 min',
-    title: {
-      en: 'How long does buying a house in Italy take',
-      cs: 'Jak dlouho trvá koupě domu v Itálii',
-      it: 'Quanto tempo ci vuole per acquistare casa in Italia'
-    },
-    excerpt: {
-      en: 'A realistic timeline from first viewing to key handover.',
-      cs: 'Realistický časový plán od první prohlídky po předání klíčů.',
-      it: 'Una timeline realistica dalla prima visita alla consegna delle chiavi.'
+      cs: 'Role, kontroly, rizika a praktickĂˇ logika procesu pro zahraniÄŤnĂ­ kupujĂ­cĂ­.',
+      it: 'Ruoli, controlli, rischi e logica pratica del processo per chi compra dallâ€™estero.'
     }
   },
   {
@@ -58,12 +43,12 @@ const GUIDES = [
     readTime: '7 min',
     title: {
       en: 'Notary in Italy: role and costs',
-      cs: 'Notář v Itálii: role a náklady',
+      cs: 'NotĂˇĹ™ v ItĂˇlii: role a nĂˇklady',
       it: 'Notaio in Italia: ruolo e costi'
     },
     excerpt: {
       en: 'What the notary verifies and what remains outside notarial scope.',
-      cs: 'Co notář ověřuje a co zůstává mimo notářský rozsah.',
+      cs: 'Co notĂˇĹ™ ovÄ›Ĺ™uje a co zĹŻstĂˇvĂˇ mimo notĂˇĹ™skĂ˝ rozsah.',
       it: 'Cosa verifica il notaio e cosa resta fuori dal suo ambito.'
     }
   },
@@ -73,12 +58,12 @@ const GUIDES = [
     readTime: '6 min',
     title: {
       en: 'How property viewings work in Italy',
-      cs: 'Jak probíhají prohlídky nemovitostí v Itálii',
+      cs: 'Jak probĂ­hajĂ­ prohlĂ­dky nemovitostĂ­ v ItĂˇlii',
       it: 'Come funzionano le visite immobiliari in Italia'
     },
     excerpt: {
       en: 'What to check during viewings and right after each visit.',
-      cs: 'Co kontrolovat během prohlídek a hned po nich.',
+      cs: 'Co kontrolovat bÄ›hem prohlĂ­dek a hned po nich.',
       it: 'Cosa controllare durante le visite e subito dopo.'
     }
   },
@@ -88,13 +73,13 @@ const GUIDES = [
     readTime: '7 min',
     title: {
       en: 'Most common mistakes when buying in Italy',
-      cs: 'Nejčastější chyby při koupi v Itálii',
-      it: 'Gli errori più comuni nell’acquisto in Italia'
+      cs: 'NejÄŤastÄ›jĹˇĂ­ chyby pĹ™i koupi v ItĂˇlii',
+      it: 'Gli errori piĂą comuni nellâ€™acquisto in Italia'
     },
     excerpt: {
       en: 'Typical pitfalls and how to avoid expensive errors.',
-      cs: 'Typické pasti a jak předejít drahým chybám.',
-      it: 'Le trappole più frequenti e come evitare errori costosi.'
+      cs: 'TypickĂ© pasti a jak pĹ™edejĂ­t drahĂ˝m chybĂˇm.',
+      it: 'Le trappole piĂą frequenti e come evitare errori costosi.'
     }
   },
   {
@@ -103,12 +88,12 @@ const GUIDES = [
     readTime: '8 min',
     title: {
       en: 'Real costs of buying a house in Italy',
-      cs: 'Reálné náklady na koupi domu v Itálii',
+      cs: 'ReĂˇlnĂ© nĂˇklady na koupi domu v ItĂˇlii',
       it: 'Costi reali per acquistare una casa in Italia'
     },
     excerpt: {
       en: 'The real cost structure beyond listing price.',
-      cs: 'Skutečná struktura nákladů nad rámec inzerované ceny.',
+      cs: 'SkuteÄŤnĂˇ struktura nĂˇkladĹŻ nad rĂˇmec inzerovanĂ© ceny.',
       it: 'La struttura reale dei costi oltre il prezzo di annuncio.'
     }
   }
@@ -121,9 +106,9 @@ const UI = {
     subtitle: 'Structured resources for foreign buyers, from first planning to final deed.'
   },
   cs: {
-    badge: 'Hub průvodců',
-    title: 'Všechny průvodce ke koupi nemovitosti v Itálii',
-    subtitle: 'Strukturované zdroje pro zahraniční kupující od prvního plánování až po finální podpis.'
+    badge: 'Hub prĹŻvodcĹŻ',
+    title: 'VĹˇechny prĹŻvodce ke koupi nemovitosti v ItĂˇlii',
+    subtitle: 'StrukturovanĂ© zdroje pro zahraniÄŤnĂ­ kupujĂ­cĂ­ od prvnĂ­ho plĂˇnovĂˇnĂ­ aĹľ po finĂˇlnĂ­ podpis.'
   },
   it: {
     badge: 'Hub guide',
@@ -212,3 +197,4 @@ export default function GuidesHubPage() {
     </div>
   )
 }
+

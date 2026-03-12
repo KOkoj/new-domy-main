@@ -178,23 +178,6 @@ const ARTICLES = [
     category: { en: 'Legal', cs: 'Právo', it: 'Legale' },
     link: '/guides/notary'
   },
-  {
-    slug: 'buying-timeline',
-    title: {
-      en: 'How Long Does Buying a House in Italy Take and What Delays the Process Most',
-      cs: 'Jak dlouho trvá koupě domu v Itálii a co celý proces nejčastěji zdržuje',
-      it: 'Quanto tempo ci vuole per acquistare una casa in Italia e cosa ritarda di più il processo'
-    },
-    excerpt: {
-      en: 'A realistic look at the timeline of buying Italian property, from the first viewing to receiving the keys. What causes the most common delays.',
-      cs: 'Realistický pohled na časový plán koupě italské nemovitosti, od první prohlídky po předání klíčů. Co způsobuje nejčastější zdržení.',
-      it: "Uno sguardo realistico alla tempistica dell'acquisto di un immobile italiano, dalla prima visita alla consegna delle chiavi. Cosa causa i ritardi più comuni."
-    },
-    date: '2026-01-21',
-    readTime: '8 min',
-    category: { en: 'Guide', cs: 'Průvodce', it: 'Guida' },
-    link: '/guides/timeline'
-  }
 ]
 
 function localize(value, language) {
@@ -417,3 +400,4 @@ export default function BlogPage() {
     </div>
   )
 }
+
