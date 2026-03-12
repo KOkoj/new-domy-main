@@ -234,8 +234,8 @@ const CONTENT = {
     factorsTitle: 'Cosa Incide di Più sul Costo dei Trasporti',
     factors: ['Stagione e anticipo di prenotazione.', 'Grandi città vs aree minori.', 'Numero di persone e durata della tratta.', 'Costo totale del percorso, non solo un biglietto.'],
     partnerTop: {
-      title: 'Pianifica trasporti e alloggio in anticipo',
-      text: 'Prezzi e disponibilità migliori arrivano spesso con prenotazione anticipata.',
+      title: 'Hai già un viaggio in programma?',
+      text: 'Prenota in sicurezza con i nostri partner ufficiali.',
       booking: 'Trova alloggio (Booking.com)',
       gyg: 'Trova attività (GetYourGuide)'
     },
