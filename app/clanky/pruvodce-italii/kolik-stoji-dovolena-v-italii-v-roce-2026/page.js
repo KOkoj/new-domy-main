@@ -565,6 +565,19 @@ export default function HolidayCostsItaly2026Page() {
               </CardContent>
             </Card>
 
+            <div className="flex justify-center">
+              <a href="https://www.anrdoezrs.net/click-101629596-17227920" target="_top" rel="sponsored noopener noreferrer">
+                <img
+                  src="https://www.lduhtrp.net/image-101629596-17227920"
+                  width="480"
+                  height="260"
+                  alt=""
+                  border="0"
+                  className="w-full max-w-[480px] h-auto rounded-xl"
+                />
+              </a>
+            </div>
+
             <Card className="bg-white border border-slate-200">
               <CardHeader>
                 <CardTitle className="text-2xl">{t.dailyBudgetTitle}</CardTitle>
