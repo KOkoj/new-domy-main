@@ -462,6 +462,19 @@ export default function StayCheapItalyArticlePage() {
               </CardContent>
             </Card>
 
+            <div className="flex justify-center">
+              <a href="https://www.kqzyfj.com/click-101629596-17227944" target="_top" rel="sponsored noopener noreferrer">
+                <img
+                  src="https://www.tqlkg.com/image-101629596-17227944"
+                  width="660"
+                  height="270"
+                  alt=""
+                  border="0"
+                  className="w-full max-w-[660px] h-auto rounded-xl"
+                />
+              </a>
+            </div>
+
             <Card className="bg-white border border-slate-200">
               <CardHeader>
                 <CardTitle className="text-2xl">{t.typesTitle}</CardTitle>
