@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 
 const TRAVEL_PARTNER_LINKS = {
   booking: 'https://www.dpbolvw.net/click-101629596-15735418',
-  getYourGuide: 'https://gyg.me/O0X6ZC2R'
+  getYourGuide: 'https://gyg.me/fnMmh4S3'
 }
 
 const ARTICLES = [
