@@ -321,6 +321,24 @@ export default function RealEstatePurchaseSystemItalyPage() {
   }, [])
 
   const t = CONTENT[language] || CONTENT.en
+  const articleImage =
+    language === 'cs'
+      ? {
+          src: '/house_tuscany_vineyards.jpg',
+          alt: 'Proces koupe nemovitosti v Italii',
+          caption: 'Italsky proces funguje spolehlive, kdyz je dobre koordinovany krok za krokem.'
+        }
+      : language === 'it'
+        ? {
+            src: '/house_tuscany_vineyards.jpg',
+            alt: 'Processo di acquisto immobiliare in Italia',
+            caption: 'Il sistema italiano funziona bene quando ogni fase viene coordinata con metodo.'
+          }
+        : {
+            src: '/house_tuscany_vineyards.jpg',
+            alt: 'Property buying process in Italy',
+            caption: 'The Italian system works reliably when each phase is coordinated step by step.'
+          }
 
   const handleIntakeCtaClick = async () => {
     if (isCtaLoading) return
@@ -386,6 +404,11 @@ export default function RealEstatePurchaseSystemItalyPage() {
                   <p key={line}>{line}</p>
                 ))}
               </div>
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+              <img src={articleImage.src} alt={articleImage.alt} className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+              <p className="text-sm text-slate-600 px-4 py-3">{articleImage.caption}</p>
             </div>
 
             <Box tone="warning">

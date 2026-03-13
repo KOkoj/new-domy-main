@@ -520,6 +520,24 @@ export default function MostBeautifulSmallTownsItalyPage() {
       : language === 'it'
         ? 'Prenotazioni verificate e in sicurezza.'
         : 'Verified booking and travel deal.'
+  const articleImage =
+    language === 'cs'
+      ? {
+          src: '/Umbria.webp',
+          alt: 'Male historicke mesto v Italii',
+          caption: 'Nejhezci italska mala mesta nabizi pomalejsi tempo, tradicni architekturu a autentickou atmosferu.'
+        }
+      : language === 'it'
+        ? {
+            src: '/Umbria.webp',
+            alt: 'Piccolo borgo storico in Italia',
+            caption: "I borghi piu belli d'Italia offrono ritmi lenti, architettura storica e un atmosfera autentica."
+          }
+        : {
+            src: '/Umbria.webp',
+            alt: 'Small historic town in Italy',
+            caption: "Italy's most beautiful small towns offer slower rhythms, historic architecture, and an authentic atmosphere."
+          }
 
   return (
     <div className="min-h-screen bg-[#faf8f5]">
@@ -573,6 +591,11 @@ export default function MostBeautifulSmallTownsItalyPage() {
               bookingLabel={t.partnerTop.booking}
               gygLabel={t.partnerTop.gyg}
             />
+
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+              <img src={articleImage.src} alt={articleImage.alt} className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+              <p className="text-sm text-slate-600 px-4 py-3">{articleImage.caption}</p>
+            </div>
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>

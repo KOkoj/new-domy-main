@@ -396,6 +396,24 @@ export default function StayCheapItalyArticlePage() {
   }, [])
 
   const t = CONTENT[language] || CONTENT.cs
+  const articleImage =
+    language === 'cs'
+      ? {
+          src: '/house_tuscany_vineyards.jpg',
+          alt: 'Ubytovani v Italii za rozumnou cenu',
+          caption: 'Mimo hlavni sezonu a mimo nejvice turisticka centra lze casto najit velmi dobry pomer ceny a kvality.'
+        }
+      : language === 'it'
+        ? {
+            src: '/house_tuscany_vineyards.jpg',
+            alt: 'Alloggi in Italia a buon prezzo',
+            caption: 'Fuori alta stagione e fuori dai centri piu turistici e spesso possibile trovare un ottimo rapporto qualita-prezzo.'
+          }
+        : {
+            src: '/house_tuscany_vineyards.jpg',
+            alt: 'Affordable stays in Italy',
+            caption: 'Outside peak season and away from the busiest tourist centers, you can often find excellent value for money.'
+          }
 
   return (
     <div className="min-h-screen bg-[#faf8f5]">
@@ -448,6 +466,11 @@ export default function StayCheapItalyArticlePage() {
               bookingLabel={t.partnerTop.booking}
               gygLabel={t.partnerTop.gyg}
             />
+
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+              <img src={articleImage.src} alt={articleImage.alt} className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+              <p className="text-sm text-slate-600 px-4 py-3">{articleImage.caption}</p>
+            </div>
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>

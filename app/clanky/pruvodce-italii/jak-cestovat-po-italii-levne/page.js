@@ -429,6 +429,24 @@ export default function CheapTravelItalyArticlePage() {
       : language === 'it'
         ? { miniText: 'Cerchi voli per le tue date?', button: 'Cerca voli' }
         : { miniText: 'Looking for flights for your dates?', button: 'Search Flights' }
+  const articleImage =
+    language === 'cs'
+      ? {
+          src: '/house_como.jpg',
+          alt: 'Cestovani po Italii mezi mesty',
+          caption: 'Nejlepsi pomer ceny a flexibility obvykle prinese kombinace vlaku, autobusu a vcasne rezervace.'
+        }
+      : language === 'it'
+        ? {
+            src: '/house_como.jpg',
+            alt: 'Viaggio tra citta in Italia',
+            caption: 'Il miglior equilibrio tra costo e flessibilita arriva spesso dalla combinazione di treno, bus e prenotazione anticipata.'
+          }
+        : {
+            src: '/house_como.jpg',
+            alt: 'Travel between cities in Italy',
+            caption: 'The best balance of cost and flexibility usually comes from combining trains, buses, and early booking.'
+          }
 
   return (
     <div className="min-h-screen bg-[#faf8f5]">
@@ -483,6 +501,11 @@ export default function CheapTravelItalyArticlePage() {
             </header>
 
             <TravelPartnerCta title={t.partnerTop.title} text={t.partnerTop.text} bookingLabel={t.partnerTop.booking} gygLabel={t.partnerTop.gyg} />
+
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+              <img src={articleImage.src} alt={articleImage.alt} className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+              <p className="text-sm text-slate-600 px-4 py-3">{articleImage.caption}</p>
+            </div>
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>

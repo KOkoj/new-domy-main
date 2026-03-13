@@ -505,6 +505,24 @@ export default function HolidayCostsItaly2026Page() {
   }, [])
 
   const t = CONTENT[language] || CONTENT.cs
+  const articleImage =
+    language === 'cs'
+      ? {
+          src: '/house_amalfi.jpg',
+          alt: 'Dovolena v Italii a planovani rozpoctu',
+          caption: 'Celkovy rozpocet na dovolenou nejvice ovlivni termin, region a zvoleny styl cestovani.'
+        }
+      : language === 'it'
+        ? {
+            src: '/house_amalfi.jpg',
+            alt: 'Vacanza in Italia e pianificazione del budget',
+            caption: 'Il budget finale di una vacanza dipende soprattutto da periodo, regione e stile di viaggio.'
+          }
+        : {
+            src: '/house_amalfi.jpg',
+            alt: 'Holiday budget planning in Italy',
+            caption: 'Your total holiday budget depends mostly on timing, region, and travel style.'
+          }
 
   return (
     <div className="min-h-screen bg-[#faf8f5]">
@@ -550,6 +568,11 @@ export default function HolidayCostsItaly2026Page() {
                 ))}
               </div>
             </header>
+
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+              <img src={articleImage.src} alt={articleImage.alt} className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+              <p className="text-sm text-slate-600 px-4 py-3">{articleImage.caption}</p>
+            </div>
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>

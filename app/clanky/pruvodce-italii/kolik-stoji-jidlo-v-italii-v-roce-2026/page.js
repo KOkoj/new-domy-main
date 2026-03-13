@@ -396,6 +396,24 @@ export default function FoodCostsItaly2026Page() {
   }, [])
 
   const t = CONTENT[language] || CONTENT.cs
+  const articleImage =
+    language === 'cs'
+      ? {
+          src: '/Sicilia.jpg',
+          alt: 'Jidlo v Italii a mistni restaurace',
+          caption: 'Nejlepsi ceny jidla obvykle najdete mimo hlavni turisticke zony a pri kombinaci supermarketu s lokalnimi podniky.'
+        }
+      : language === 'it'
+        ? {
+            src: '/Sicilia.jpg',
+            alt: 'Cibo in Italia tra ristoranti e mercati locali',
+            caption: 'I prezzi migliori si trovano spesso fuori dalle aree piu turistiche, alternando supermercati e locali del posto.'
+          }
+        : {
+            src: '/Sicilia.jpg',
+            alt: 'Food costs in Italy in local areas',
+            caption: 'The best food prices are often found outside the busiest tourist zones by mixing supermarkets with local spots.'
+          }
 
   return (
     <div className="min-h-screen bg-[#faf8f5]">
@@ -441,6 +459,11 @@ export default function FoodCostsItaly2026Page() {
                 ))}
               </div>
             </header>
+
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+              <img src={articleImage.src} alt={articleImage.alt} className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+              <p className="text-sm text-slate-600 px-4 py-3">{articleImage.caption}</p>
+            </div>
 
             <TravelPartnerCta
               title={t.partnerTop.title}
