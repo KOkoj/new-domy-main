@@ -1,0 +1,110 @@
+{
+  "title_it": "Trilocale arredato con terrazzo in centro a Tarvisio",
+  "title_en": "Furnished Two-Bedroom Apartment with Terrace in Central Tarvisio",
+  "title_cs": "Zařízený byt 3+kk s terasou v centru Tarvisia",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Friuli Venezia Giulia",
+  "city_it": "Tarvisio",
+  "city_en": "Tarvisio",
+  "city_cs": "Tarvisio",
+  "address_it": "Via Monteborgo 56, Centro, Tarvisio (UD), Friuli Venezia Giulia",
+  "address_en": "Via Monteborgo 56, Central Tarvisio (UD), Friuli Venezia Giulia",
+  "address_cs": "Via Monteborgo 56, centrum Tarvisio (UD), Furlansko-Julske Benatsko",
+  "price": 158000,
+  "rooms": 3,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "square_meters": 66,
+  "features": [
+    {
+      "it": "Secondo piano",
+      "en": "Second floor",
+      "cs": "2. patro"
+    },
+    {
+      "it": "Completamente arredato",
+      "en": "Fully furnished",
+      "cs": "Plně zarizeno"
+    },
+    {
+      "it": "Terrazzo/balcone",
+      "en": "Terrace/balcony",
+      "cs": "Terasa/balkon"
+    },
+    {
+      "it": "Cucina a vista con soggiorno",
+      "en": "Open kitchen with living room",
+      "cs": "Otevřená kuchyně s obývacím pokojem"
+    },
+    {
+      "it": "Bagno finestrato",
+      "en": "Windowed bathroom",
+      "cs": "Koupelna s oknem"
+    },
+    {
+      "it": "Riscaldamento autonomo a radiatori",
+      "en": "Independent radiator heating",
+      "cs": "Samostatné vytápění radiátory"
+    },
+    {
+      "it": "Spese condominiali circa 45 euro/mese",
+      "en": "Condominium fees about 45 euro/month",
+      "cs": "Poplatky za spolecenstvi cca 45 euro/mesic"
+    },
+    {
+      "it": "Classe energetica E",
+      "en": "Energy class E",
+      "cs": "Energeticka třída E"
+    },
+    {
+      "it": "Vicino alle piste da sci e alla pista ciclabile",
+      "en": "Close to ski slopes and cycle path",
+      "cs": "Blízko sjezdovek a cyklostezky"
+    }
+  ],
+  "description_it": "Tarvisio - In zona tranquilla e silenziosa, dove la montagna si vive tutto l anno, proponiamo in vendita accogliente appartamento arredato al secondo piano, a pochi minuti dalle piste da sci e nelle immediate vicinanze della pista ciclabile.\n\nL'immobile offre un ambiente caldo e funzionale, con cucina a vista e soggiorno, camera matrimoniale, cameretta, bagno finestrato, disimpegno e terrazzo, ideale per rilassarsi dopo una giornata all aria aperta.\n\nSoluzione ideale come casa vacanze in montagna, per settimane bianche, estati fresche o come investimento in una delle località più richieste del Friuli Venezia Giulia.",
+  "description_en": "Tarvisio - In a quiet and peaceful area, where mountain life can be enjoyed all year round, we offer a cozy furnished second-floor apartment, just a few minutes from the ski slopes and very close to the cycle path.\n\nThe property provides a warm and functional layout with open kitchen and living room, one double bedroom, one single bedroom, a windowed bathroom, hallway, and terrace, perfect for relaxing after outdoor activities.\n\nIdeal solution as a mountain holiday home, for winter ski weeks, cool summer stays, or as an investment in one of the most popular locations in Friuli Venezia Giulia.",
+  "description_cs": "Tarvisio - V klidné a tiché lokalitě, kde si lze horské prostředí užívat po celý rok, nabízíme útulný zařízený byt ve 2. patře, jen pár minut od sjezdovek a v bezprostřední blízkosti cyklostezky.\n\nNemovitost má praktické a prijemne usporadani: otevřená kuchyně s obývacím pokojem, jedna dvoulůžková ložnice, jedna menší ložnice, koupelna s oknem, chodba a terasa, ideální pro odpočinek po dni venku.\n\nSkvela volba jako horský rekreační byt, pro zimni pobyty, letni sezonu nebo jako investice v jedné z nejznamejsich lokalit ve Furlansko-Julskem Benatsku.",
+  "seo_title_it": "Trilocale arredato in vendita a Tarvisio centro con terrazzo",
+  "seo_title_en": "Furnished 2-Bedroom Apartment for Sale in Central Tarvisio",
+  "seo_title_cs": "Zařízený byt 3+kk na prodej v centru Tarvisia s terasou",
+  "seo_description_it": "Appartamento di 66 m2 nel centro di Tarvisio: 3 locali, 2 camere, terrazzo, arredato, vicino piste da sci e ciclabile. Ideale come casa vacanze o investimento.",
+  "seo_description_en": "66 sqm apartment in central Tarvisio: 3 rooms, 2 bedrooms, terrace, furnished, close to ski slopes and cycle path. Ideal as holiday home or investment.",
+  "seo_description_cs": "Byt 66 m2 v centru Tarvisia: 3 místností, 2 ložnice, terasa, zařízený, blízko sjezdovek a cyklostezky. Ideální jako horský apartman i investice.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "tarvisio",
+    "via monteborgo",
+    "trilocale",
+    "appartamento arredato",
+    "vicino piste sci",
+    "friuli venezia giulia"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/126049271/",
+  "lat": 46.5068,
+  "lng": 13.5683,
+  "yearBuilt": 0,
+  "lotSize": 0,
+  "parking": 0,
+  "image_urls": [
+    "https://pwm.im-cdn.it/image/1851550769/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550655/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550691/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550735/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550793/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550801/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550817/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550831/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550851/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550879/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550905/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550935/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550965/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851550991/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851551021/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851551047/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1851551071/xxl.jpg"
+  ]
+}

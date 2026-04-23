@@ -1,9 +1,18 @@
 import { NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import emailService from '@/lib/emailService'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
+
+function resolveBaseUrl(request) {
+  return (
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    request.headers.get('origin') ||
+    new URL(request.url).origin
+  )
+}
 
 async function createAuthClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -42,8 +51,9 @@ async function createAuthClient() {
 export async function POST(request) {
   try {
     const { name, email, password } = await request.json()
+    const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : ''
 
-    if (!name || !email || !password) {
+    if (!name || !normalizedEmail || !password) {
       return NextResponse.json(
         { error: 'Name, email and password are required' },
         { status: 400 }
@@ -59,10 +69,14 @@ export async function POST(request) {
       )
     }
 
+    const baseUrl = resolveBaseUrl(request)
+    const emailRedirectTo = `${baseUrl}/auth/callback?next=%2Fdashboard`
+
     const { data, error } = await supabase.auth.signUp({
-      email,
+      email: normalizedEmail,
       password,
       options: {
+        emailRedirectTo,
         data: {
           name
         }
@@ -74,6 +88,27 @@ export async function POST(request) {
       return applyCookies(
         NextResponse.json({ error: error.message }, { status })
       )
+    }
+
+    // Send welcome email after successful signup without blocking registration flow.
+    // Supabase may return an obfuscated user on duplicate signups in some configurations
+    // (identities can be empty), so avoid sending in that case.
+    const isLikelyNewUser =
+      !Array.isArray(data?.user?.identities) || data.user.identities.length > 0
+
+    if (isLikelyNewUser && data?.user?.email) {
+      try {
+        const displayName =
+          (typeof data.user.user_metadata?.name === 'string' && data.user.user_metadata.name.trim()) ||
+          name
+
+        await emailService.sendWelcomeEmail({
+          userEmail: data.user.email,
+          userName: displayName || 'there'
+        })
+      } catch (emailError) {
+        console.error('[SIGNUP] Welcome email failed:', emailError?.message || emailError)
+      }
     }
 
     return applyCookies(

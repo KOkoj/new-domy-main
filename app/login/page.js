@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -9,6 +10,7 @@ import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Mail, Lock, User, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
+import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -20,6 +22,7 @@ export default function LoginPage() {
   const searchParams = useSearchParams()
   const tabParam = searchParams.get('tab')
   const redirectParam = searchParams.get('redirect')
+  const errorParam = searchParams.get('error')
   const redirectPath = redirectParam && redirectParam.startsWith('/') ? redirectParam : '/dashboard'
 
   const [loginForm, setLoginForm] = useState({
@@ -78,6 +81,17 @@ export default function LoginPage() {
       setActiveTab(tabParam)
     }
   }, [tabParam])
+
+  useEffect(() => {
+    if (!errorParam) return
+
+    const callbackErrors = {
+      'auth-not-configured': 'Authentication is not configured on the server.',
+      'auth-callback-failed': 'Authentication confirmation failed. Please try logging in again.'
+    }
+
+    setError(callbackErrors[errorParam] || decodeURIComponent(errorParam))
+  }, [errorParam])
 
   // Check if user is already logged in
   useEffect(() => {
@@ -286,6 +300,8 @@ export default function LoginPage() {
                   >
                     {isLoading ? 'Signing in...' : 'Sign In'}
                   </Button>
+
+                  <FormPrivacyNotice language="en" purpose="account" className="bg-slate-900/60 border-amber-400/20" />
                 </form>
               </TabsContent>
 
@@ -383,12 +399,29 @@ export default function LoginPage() {
                   >
                     {isLoading ? 'Creating account...' : 'Create Account'}
                   </Button>
+
+                  <FormPrivacyNotice language="en" purpose="account" className="bg-slate-900/60 border-amber-400/20" />
                 </form>
               </TabsContent>
             </Tabs>
 
-            <div className="text-center text-sm text-gray-400 mt-6">
-              <p>By signing up, you agree to our Terms of Service and Privacy Policy.</p>
+            <div className="text-center text-sm text-gray-400 mt-6 space-y-1">
+              <p>
+                By signing up, you agree to our{' '}
+                <Link href="/terms" className="underline">
+                  Terms of Sale
+                </Link>{' '}
+                and{' '}
+                <Link href="/gdpr" className="underline">
+                  Privacy Notice
+                </Link>
+                .
+              </p>
+              <p>
+                <Link href="/cookies" className="underline">
+                  Cookie Policy
+                </Link>
+              </p>
             </div>
           </CardContent>
         </Card>

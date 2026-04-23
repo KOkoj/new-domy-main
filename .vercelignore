@@ -4,6 +4,13 @@
 # Dependencies
 node_modules
 
+# Local build output and caches
+.next
+tmp
+.asset-backup
+.emergent
+.git
+
 # Testing
 tests
 *.test.js
@@ -21,6 +28,8 @@ __pycache__
 !README.md
 
 # Development files
+.env
+.env.*
 .env.local
 .env*.local
 *.log

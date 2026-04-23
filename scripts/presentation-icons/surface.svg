@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+    <path d="M14 26V10m0 0h16m-16 0 10 10"/>
+    <path d="M50 38v16m0 0H34m16 0-10-10"/>
+    <path d="M50 14v12M50 14H38m12 0-8 8"/>
+    <path d="M14 50V38m0 12h12m-12 0 8-8"/>
+  </g>
+  <text x="32" y="36" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#111">m²</text>
+</svg>

@@ -1,0 +1,77 @@
+{
+  "title_it": "Bilocale ristrutturato con terrazzo a Roma Fonte Laurentina",
+  "title_en": "Renovated One-Bedroom Apartment with Terrace in Rome Fonte Laurentina",
+  "title_cs": "Zrekonstruovaný dvoupokojový byt s terasou v Římě Fonte Laurentina",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Lazio",
+  "city_it": "Roma",
+  "city_en": "Rome",
+  "city_cs": "Rim",
+  "address_it": "Viale Leonida Tonelli, Fonte Laurentina, Roma (RM), Lazio",
+  "address_en": "Viale Leonida Tonelli, Fonte Laurentina, Rome (RM), Lazio",
+  "address_cs": "Viale Leonida Tonelli, Fonte Laurentina, Rim (RM), Lazio",
+  "price": 239000,
+  "rooms": 2,
+  "bedrooms": 1,
+  "bathrooms": 1,
+  "square_meters": 60,
+  "features": [
+    {
+      "it": "Appartamento al primo piano in comprensorio costruito nel 2011",
+      "en": "First-floor apartment in a residential complex built-in 2011",
+      "cs": "Byt v prvním patře rezidenčního komplexu postaveného v roce 2011"
+    },
+    {
+      "it": "Completamente ristrutturato con finiture moderne",
+      "en": "Completely renovated with modern finishes",
+      "cs": "Kompletně zrekonstruovaný s moderními povrchy"
+    },
+    {
+      "it": "Soggiorno con angolo cottura e camera matrimoniale",
+      "en": "Living room with kitchenette and double bedroom",
+      "cs": "Obývák s kuchyňským koutem a dvoulůžková ložnice"
+    },
+    {
+      "it": "Terrazzo angolare vivibile con zona lavanderia",
+      "en": "Livable corner terrace with laundry area",
+      "cs": "Obyvatelná rohová terasa s pracovní části pro pradlo"
+    },
+    {
+      "it": "Doppia esposizione sud ovest",
+      "en": "Dual south-west exposure",
+      "cs": "Dvojita orientace na jihozápad"
+    },
+    {
+      "it": "Riscaldamento autonomo, tende da sole, grate e zanzariere",
+      "en": "Independent heating, sun awnings, security grilles, and mosquito screens",
+      "cs": "Samostatné vytápění, markyzy, bezpečnostní mříže a síťky proti hmyzu"
+    }
+  ],
+  "description_it": "A Fonte Laurentina, in viale Leonida Tonelli, proponiamo un bilocale di 60 m2 completamente ristrutturato, situato al primo piano di un comprensorio moderno realizzato nel 2011.\n\nL'appartamento offre un soggiorno luminoso con angolo cottura, una comoda camera matrimoniale e un bagno finestrato ben rifinito. Il vero punto di forza è il terrazzo angolare vivibile, ideale per pranzi e cene all'aperto, già dotato di zona lavanderia. La doppia esposizione sud ovest garantisce ottima luminosità durante l arco della giornata.\n\nLa proprietà dispone di riscaldamento autonomo, tende da sole, grate di protezione, zanzariere e predisposizione per aria condizionata. Soluzione adatta per giovani coppie, single o investimento a Roma.",
+  "description_en": "In Fonte Laurentina, on Viale Leonida Tonelli, we offer a fully renovated 60 sqm one-bedroom apartment on the first floor of a modern residential complex built-in 2011.\n\nThe apartment includes a bright living room with kitchenette, a comfortable double bedroom, and a well-finished windowed bathroom. Its main strength is the livable corner terrace, ideal for outdoor lunches and dinners and already equipped with a laundry area. The dual south-west exposure provides very good natural light throughout the day.\n\nThe property features independent heating, sun awnings, security grilles, mosquito screens, and pre-installation for air conditioning. It is suitable for young couples, single buyers, or investment use in Rome.",
+  "description_cs": "Ve čtvrti Fonte Laurentina na ulici Viale Leonida Tonelli nabízíme kompletně zrekonstruovaný dvoupokojový byt o velikosti 60 m2 v prvním patře moderního rezidenčního komplexu z roku 2011.\n\nByt zahrnuje světlý obývák s kuchyňským koutem, pohodlnou dvoulůžkovou ložnici a dobře provednou koupelnu s oknem. Hlavní předností je obyvatelná rohová terasa, ideální pro venkovní stolovani, která má i prostor pro pradlo. Dvojita orientace na jihozápad zajišťuje velmi dobře denní světlo po celý den.\n\nNemovitost má samostatné vytápění, markyzy, bezpečnostní mříže, síťky proti hmyzu a přípravu na klimatizaci. Je vhodná pro pár, jednotlivce i investiční využití v Římě.",
+  "seo_title_it": "Bilocale con terrazzo in vendita a Roma Fonte Laurentina",
+  "seo_title_en": "One-Bedroom Apartment with Terrace for Sale in Rome Fonte Laurentina",
+  "seo_title_cs": "Dvoupokojový byt s terasou na prodej v Římě Fonte Laurentina",
+  "seo_description_it": "Appartamento di 60 m2 a Roma: 2 locali, 1 camera, 1 bagno, terrazzo angolare vivibile e ristrutturazione recente.",
+  "seo_description_en": "60 sqm apartment in Rome: 2 rooms, 1 bedroom, 1 bathroom, livable corner terrace, and recent renovation.",
+  "seo_description_cs": "Byt 60 m2 v Římě: 2 místností, 1 ložnice, 1 koupelna, obyvatelná rohová terasa a nedávná rekonstrukce.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "roma",
+    "fonte laurentina",
+    "viale leonida tonelli",
+    "bilocale",
+    "terrazzo",
+    "lazio"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/126650815/",
+  "lat": 41.7941,
+  "lng": 12.4923,
+  "yearBuilt": 2011,
+  "lotSize": 0,
+  "parking": 0,
+  "image_urls": []
+}

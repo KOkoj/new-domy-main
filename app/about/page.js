@@ -11,14 +11,14 @@ import Footer from '@/components/Footer'
 const SERVICES = [
   {
     title: {
-      en: 'Understanding the Process',
-      cs: 'Vysvětlíme celý proces',
-      it: 'Spiegheremo l\'intero processo'
+      it: 'Orientamento strategico',
+      en: 'Strategic Orientation',
+      cs: 'Strategické směřování'
     },
     description: {
-      en: 'We explain the entire process of buying property in Italy step by step.',
-      cs: 'Vysvětlíme celý proces koupě nemovitosti v Itálii krok za krokem.',
-      it: 'Spieghiamo l\'intero processo di acquisto di un immobile in Italia passo dopo passo.'
+      it: 'Definiamo obiettivo, budget, tempi e rischio prima di ogni decisione.',
+      en: 'We define objective, budget, timing, and risk before any decision.',
+      cs: 'Před každým rozhodnutím definujeme cíl, rozpočet, čas a riziko.'
     },
     icon: <Globe className="h-7 w-7" />,
     color: 'from-blue-500/10 to-blue-600/10',
@@ -26,14 +26,14 @@ const SERVICES = [
   },
   {
     title: {
-      en: 'Avoiding Mistakes',
-      cs: 'Předejdeme chybám',
-      it: 'Eviteremo errori'
+      it: 'Metodo e controllo',
+      en: 'Method and Control',
+      cs: 'Metoda a kontrola'
     },
     description: {
-      en: 'We alert you to mistakes that cost Czechs time and money.',
-      cs: 'Upozorníme na chyby, které Čechy stojí čas i peníze.',
-      it: 'Vi avvisiamo sugli errori che costano tempo e denaro ai cechi.'
+      it: 'Lavoriamo con passaggi chiari per ridurre errori e costi inutili.',
+      en: 'We work with clear steps to reduce mistakes and unnecessary costs.',
+      cs: 'Pracujeme s jasnými kroky, aby se snížily chyby a zbytečné náklady.'
     },
     icon: <CheckCircle className="h-7 w-7" />,
     color: 'from-emerald-500/10 to-emerald-600/10',
@@ -41,14 +41,14 @@ const SERVICES = [
   },
   {
     title: {
-      en: 'Region Selection',
-      cs: 'Výběr regionu',
-      it: 'Selezione della regione'
+      it: 'Coordinamento operativo',
+      en: 'Operational Coordination',
+      cs: 'Operativní koordinace'
     },
     description: {
-      en: 'We help you choose the region and type of property that suits you.',
-      cs: 'Pomůžeme s výběrem regionu a typu nemovitosti, která vám vyhovuje.',
-      it: 'Ti aiutiamo a scegliere la regione e il tipo di proprietà adatto a te.'
+      it: 'Coordiniamo il contesto ceco e quello italiano con un flusso unico.',
+      en: 'We coordinate Czech and Italian context with one clear workflow.',
+      cs: 'Koordinujeme český a italský kontext v jednom jasném workflow.'
     },
     icon: <Users className="h-7 w-7" />,
     color: 'from-amber-500/10 to-amber-600/10',
@@ -56,14 +56,14 @@ const SERVICES = [
   },
   {
     title: {
-      en: 'Step-by-Step Guidance',
-      cs: 'Vedení krok za krokem',
-      it: 'Guida passo dopo passo'
+      it: 'Decisioni chiare',
+      en: 'Clear Decisions',
+      cs: 'Jasná rozhodnutí'
     },
     description: {
-      en: 'We guide you step by step to a safe purchase.',
-      cs: 'Provedeme vás krok za krokem až k bezpečné koupi.',
-      it: 'Ti guidiamo passo dopo passo verso un acquisto sicuro.'
+      it: 'Ogni scelta viene valutata in base a costi, responsabilità e impatto reale.',
+      en: 'Every choice is assessed on costs, responsibility, and real impact.',
+      cs: 'Každá volba se hodnotí podle nákladů, odpovědnosti a reálného dopadu.'
     },
     icon: <Heart className="h-7 w-7" />,
     color: 'from-rose-500/10 to-rose-600/10',
@@ -71,8 +71,75 @@ const SERVICES = [
   }
 ]
 
+const TEAM = [
+  {
+    name: 'Lucie Kucerova',
+    avatar: '/team/source/lucieprimo.jpeg',
+    role: {
+      it: 'CEO e Co-Founder',
+      en: 'CEO and Co-Founder',
+      cs: 'CEO a spoluzakladatelka'
+    },
+    description: {
+      it: "Ceca, originaria della Moravia, trasferita da oltre 20 anni a Praga. CEO aziendale, innamorata dell'Italia e dei viaggi.",
+      en: 'Czech, from Moravia, living in Prague for over 20 years. Company CEO, in love with Italy and travel.',
+      cs: 'Žije v Praze, ale Itálie je pro ni druhý domov. Už přes 20 let se tam vrací, zná prostředí, jazyk i místní realitu.'
+    }
+  },
+  {
+    name: 'Luca Croce',
+    avatar: '/team/source/lucaprimo.jpeg',
+    role: {
+      it: 'Co-Founder italiano',
+      en: 'Italian Co-Founder',
+      cs: 'Italský spoluzakladatel'
+    },
+    description: {
+      it: 'Italiano del sud, arrivato a Praga da 6 anni. Esperto di carbonara 😄. Amante dello sport e dei viaggi.',
+      en: 'Italian from the south, living in Prague for 6 years. A carbonara expert 😄. Loves sport and travel.',
+      cs: 'Ital z jihu Itálie, v Praze už 6 let. Expert na carbonaru 😄. Miluje sport a cestování.'
+    }
+  }
+]
+
+const WHO_FOR = [
+  {
+    icon: <Heart className="h-8 w-8" />,
+    title: { it: 'Casa per vacanze', en: 'Vacation Home', cs: 'Dům na dovolenou' },
+    desc: {
+      it: 'Per chi cerca una seconda casa in Italia con un piano concreto.',
+      en: 'For people looking for a second home in Italy with a concrete plan.',
+      cs: 'Pro lidi, kteří hledají druhý dům v Itálii s konkrétním plánem.'
+    },
+    gradient: 'from-rose-50 to-pink-50',
+    iconColor: 'text-rose-500'
+  },
+  {
+    icon: <Award className="h-8 w-8" />,
+    title: { it: 'Investimento', en: 'Investment', cs: 'Investice' },
+    desc: {
+      it: 'Per chi vuole valutare rendimento, liquidità e gestione del rischio.',
+      en: 'For people who want to evaluate yield, liquidity, and risk management.',
+      cs: 'Pro lidi, kteří chtějí hodnotit výnos, likviditu a riziko.'
+    },
+    gradient: 'from-amber-50 to-yellow-50',
+    iconColor: 'text-amber-500'
+  },
+  {
+    icon: <Globe className="h-8 w-8" />,
+    title: { it: 'Nuovo inizio', en: 'New Start', cs: 'Nový začátek' },
+    desc: {
+      it: 'Per chi pianifica un trasferimento stabile in Italia.',
+      en: 'For people planning a long-term relocation to Italy.',
+      cs: 'Pro lidi, kteří plánují dlouhodobý přesun do Itálie.'
+    },
+    gradient: 'from-blue-50 to-sky-50',
+    iconColor: 'text-blue-500'
+  }
+]
+
 export default function AboutPage() {
-  const [language, setLanguage] = useState('cs')
+  const [language, setLanguage] = useState('it')
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')
@@ -94,18 +161,17 @@ export default function AboutPage() {
     <div className="min-h-screen bg-[#faf8f5]">
       <Navigation />
 
-      {/* Hero Section - Full bleed with image background */}
       <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1920&q=80" 
-            alt="" 
+          <img
+            src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1920&q=80"
+            alt=""
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/80 to-slate-900/70" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 mb-6">
@@ -114,28 +180,26 @@ export default function AboutPage() {
                 {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About Us'}
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white leading-tight">
-              {language === 'cs' ? 'Průvodce koupí domu v Itálii' :
-               language === 'it' ? 'Guida all\'acquisto di una casa in Italia' :
-               'Guide to Buying a House in Italy'}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">
+              Domy v Itálii
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-2xl">
-              {language === 'cs' ? 'Jasně, prakticky a bez stresu. Pomáháme Čechům porozumět tomu, jak koupě nemovitosti v Itálii skutečně funguje – ještě předtím, než udělají první krok.' :
-               language === 'it' ? 'Chiaro, pratico e senza stress. Aiutiamo i cechi a capire come funziona realmente l\'acquisto di un immobile in Italia - prima ancora di fare il primo passo.' :
-               'Clear, practical and stress-free. We help Czechs understand how buying property in Italy really works - before they take the first step.'}
+            <p className="mt-4 text-lg md:text-2xl text-copper-100 max-w-3xl leading-relaxed font-semibold">
+              {language === 'cs'
+                ? 'Pomáháme Čechům splnit sen o vlastním domě v Itálii. V klidu, bez zbytečného stresu a s jasným postupem. Jsme s vámi od prvního výběru až po předání klíčů.'
+                : language === 'it'
+                ? 'Aiutiamo i cechi a realizzare il sogno di avere una casa in Italia. Con calma, senza stress inutile e con un percorso chiaro. Siamo al vostro fianco dalla prima selezione fino alla consegna delle chiavi.'
+                : 'We help Czech buyers achieve the dream of owning a home in Italy. Calmly, without unnecessary stress, and with a clear process. We stay with you from the first selection all the way to the handover of the keys.'}
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="mt-4 flex flex-col sm:flex-row gap-3">
               <Link href="/process">
                 <Button size="lg" className="bg-white text-slate-900 hover:bg-gray-100 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-[1.02] shadow-lg rounded-xl">
-                  {language === 'cs' ? 'Začít průvodce' : 
-                   language === 'it' ? 'Inizia la guida' : 
-                   'Start the Guide'}
+                  {language === 'cs' ? 'Zobrazit proces' : language === 'it' ? 'Vai al processo' : 'See the process'}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <Button 
-                variant="outline" 
-                size="lg" 
+              <Button
+                variant="outline"
+                size="lg"
                 className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 font-medium px-8 py-6 text-base transition-all duration-300 rounded-xl bg-transparent"
                 onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}
               >
@@ -147,84 +211,170 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Main content */}
       <div className="container mx-auto px-4 py-16 md:py-24">
-        {/* Our Approach - Alternating layout */}
         <div className="max-w-6xl mx-auto mb-24">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
-              {language === 'cs' ? 'Náš přístup' : 
-               language === 'it' ? 'Il nostro approccio' : 
-               'Our Approach'}
+              {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About Us'}
             </h2>
             <div className="w-16 h-1 bg-copper-400 mx-auto rounded-full"></div>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-copper-100/50 to-amber-100/50 rounded-3xl -z-10 rotate-1" />
-              <img 
-                src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=800&q=80" 
-                alt="Italian landscape" 
-                className="w-full h-80 md:h-96 object-cover rounded-2xl shadow-xl"
+              <img
+                src="/team/source/noi.jpeg"
+                alt={language === 'cs' ? 'Luca a Lucie spolu' : language === 'it' ? 'Luca e Lucie insieme' : 'Luca and Lucie together'}
+                className="w-full h-80 md:h-96 object-cover object-[46%_48%] rounded-2xl shadow-xl"
               />
             </div>
             <div className="space-y-6">
               <p className="text-gray-600 leading-relaxed text-lg">
-                {language === 'cs' ? 'Ať už vás láká jih nebo sever Itálie, moře nebo hory, klidná vesnice nebo historické město, pomůžeme vám zorientovat se a rozhodnout správně.' :
-                 language === 'it' ? 'Che tu sia attratto dal sud o dal nord Italia, dal mare o dalle montagne, da un tranquillo villaggio o da una città storica, ti aiuteremo a orientarti e decidere correttamente.' :
-                 'Whether you\'re drawn to southern or northern Italy, sea or mountains, quiet village or historic city, we\'ll help you navigate and decide correctly.'}
+                {language === 'cs'
+                  ? 'Nejsme klasická realitní kancelář. Jsme operativní partner, který pomáhá lidem pochopit reálný proces koupě domu v Itálii. Více než prodej služeb je pro nás důležité pomoci vám splnit sen a cítit se po celou dobu podporováni.'
+                  : language === 'it'
+                  ? 'Non siamo una classica agenzia immobiliare. Siamo un partner operativo per chi vuole capire il processo reale di acquisto in Italia. Più che vendere un servizio, vogliamo aiutarvi a realizzare un sogno sentendovi accompagnati in ogni fase.'
+                  : 'We are not a traditional real estate agency. We are an operational partner for buyers who want to understand the real process in Italy. More than selling a service, we want to help you realize a dream while feeling supported throughout the journey.'}
               </p>
               <p className="text-slate-800 leading-relaxed text-lg font-semibold">
-                {language === 'cs' ? 'Naše práce stojí na:' :
-                 language === 'it' ? 'Il nostro lavoro si basa su:' :
-                 'Our work is based on:'}
+                {language === 'cs' ? 'Naše principy:' : language === 'it' ? 'I nostri principi:' : 'Our principles:'}
               </p>
               <ul className="space-y-4">
                 {[
-                  { cs: 'Individuálním přístupu', it: 'Approccio individuale', en: 'Individual approach' },
-                  { cs: 'Znalosti italského prostředí', it: 'Conoscenza dell\'ambiente italiano', en: 'Knowledge of Italian environment' },
-                  { cs: 'Srozumitelném vysvětlení celého procesu krok za krokem', it: 'Spiegazione chiara dell\'intero processo passo dopo passo', en: 'Clear explanation of the entire process step by step' },
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start group">
-                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-50 flex items-center justify-center mr-3 mt-0.5 group-hover:bg-emerald-100 transition-colors">
+                  {
+                    it: 'Decisioni ponderate, non affrettate',
+                    en: 'Thoughtful decisions, not rushed ones',
+                    cs: 'Rozhodování s rozvahou, ne ve spěchu'
+                  },
+                  {
+                    it: 'Controllo accurato prima della firma',
+                    en: 'Thorough review before signing',
+                    cs: 'Důkladná kontrola před podpisem'
+                  },
+                  {
+                    it: 'Comunicazione chiara e aperta',
+                    en: 'Clear and open communication',
+                    cs: 'Jasná a otevřená komunikace'
+                  },
+                  {
+                    it: 'Assistenza personale in Italia',
+                    en: 'Personal assistance in Italy',
+                    cs: 'Osobní doprovod v Itálii'
+                  }
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-50 flex items-center justify-center mr-3 mt-0.5">
                       <CheckCircle className="h-4 w-4 text-emerald-600" />
                     </span>
                     <span className="text-gray-700 leading-relaxed text-lg">{item[language]}</span>
                   </li>
                 ))}
               </ul>
-              <div className="pt-4 pl-10">
-                <p className="text-slate-800 leading-relaxed text-lg font-semibold italic border-l-2 border-copper-300 pl-4">
-                  {language === 'cs' ? 'Jsme tady proto, abychom hájili vaše zájmy a předešli zbytečným chybám.' :
-                   language === 'it' ? 'Siamo qui per difendere i vostri interessi ed evitare errori inutili.' :
-                   'We are here to protect your interests and prevent unnecessary mistakes.'}
-                </p>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* Our Services - Card grid */}
+        <div className="mb-20">
+          <div className="max-w-3xl mx-auto">
+            <section className="rounded-2xl border border-slate-900 bg-slate-900 text-white p-4 md:p-6">
+              <h2 className="text-xl md:text-2xl font-semibold mb-3 text-white">
+                {language === 'cs'
+                  ? 'Co děláme jinak (a proč to chrání váš nákup)'
+                  : language === 'it'
+                    ? 'Cosa facciamo di diverso (e perché protegge il tuo acquisto)'
+                    : 'What we do differently (and why it protects your purchase)'}
+              </h2>
+              <p className="text-slate-300 mb-3 text-sm md:text-base">
+                {language === 'cs'
+                  ? 'Naše služba není jen překlad a není jen vyhledávání nabídek. Koordinujeme celý proces, abychom snížili slepá místa pro zahraniční kupce.'
+                  : language === 'it'
+                    ? 'Il nostro servizio non è solo traduzione e non è solo ricerca annunci. Coordiniamo tutto il processo per ridurre i punti ciechi tipici dei compratori esteri.'
+                    : 'Our service is not just translation and not just finding listings. We coordinate the entire process to reduce blind spots for foreign buyers.'}
+              </p>
+              <ul className="list-disc pl-5 space-y-1.5 text-slate-100 leading-relaxed mb-4 text-sm md:text-base">
+                {[
+                  language === 'cs' ? 'Strukturujeme cestu: co udělat jako první, co požadovat, co ověřit a kdy.' : language === 'it' ? 'Strutturiamo il percorso: cosa fare prima, cosa richiedere, cosa verificare e quando.' : 'We structure the path: what to do first, what to request, what to verify, and when.',
+                  language === 'cs' ? 'Snižujeme riziko: kontroly jsou prosazovány dříve, před jakýmkoli závazným závazkem.' : language === 'it' ? 'Riduciamo il rischio: anticipiamo i controlli prima di qualsiasi impegno vincolante.' : 'We reduce risk: checks are pushed earlier, before any binding commitment.',
+                  language === 'cs' ? 'Koordinujeme komunikaci: mezi prodejcem, agenturou, techniky, kancelářemi a kupujícím.' : language === 'it' ? 'Coordiniamo la comunicazione: tra venditore, agenzia, tecnici, uffici e acquirente.' : 'We coordinate communication: between seller, agency, technicians, offices, and buyer.',
+                  language === 'cs' ? 'Chráníme váš čas: méně slepých uliček a jasnější rozhodovací body.' : language === 'it' ? 'Proteggiamo il tuo tempo: meno vicoli ciechi e decisioni più chiare.' : 'We protect your time: fewer dead ends and clearer decision points.'
+                ].map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="border-l-4 border-copper-300 bg-white/10 rounded-r-lg px-3 py-2.5 text-slate-100 mb-4 font-medium text-sm md:text-base">
+                {language === 'cs'
+                  ? 'Než cokoliv podepíšete, nechte nás provést kontrolu rizik vašeho případu a identifikovat chybějící ochrany.'
+                  : language === 'it'
+                    ? 'Prima di firmare qualsiasi cosa, facciamo una risk review del tuo caso e individuiamo le protezioni mancanti.'
+                    : 'Before you sign anything, let us run a risk review on your case and identify missing protections.'}
+              </div>
+              <div className="flex flex-wrap gap-2.5">
+                <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold">
+                  <Link href="/process">
+                    {language === 'cs' ? 'Podívejte se na náš proces' : language === 'it' ? 'Vedi il nostro processo' : 'See Our Process'}
+                  </Link>
+                </Button>
+                <Button asChild size="sm" className="bg-amber-400 hover:bg-amber-500 text-slate-900 font-semibold">
+                  <Link href="/contact">
+                    {language === 'cs' ? 'Konzultace zdarma' : language === 'it' ? 'Consulenza gratuita' : 'Free Consultation'}
+                  </Link>
+                </Button>
+              </div>
+            </section>
+          </div>
+        </div>
+
         <div className="mb-24">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
-              {language === 'cs' ? 'Jak vám můžeme pomoci' : 
-               language === 'it' ? 'Come possiamo aiutarvi' : 
-               'How We Can Help You'}
+              {language === 'cs' ? 'Naše Tým' : language === 'it' ? 'Il team' : 'Our Team'}
             </h2>
             <div className="w-16 h-1 bg-copper-400 mx-auto mb-6 rounded-full"></div>
-            <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-              {language === 'cs' ? 'Nabízíme komplexní podporu, která vám pomůže orientovat se v celém procesu koupě nemovitosti v Itálii.' :
-               language === 'it' ? 'Offriamo supporto completo per aiutarvi a orientarvi nell\'intero processo di acquisto di un immobile in Italia.' :
-               'We provide comprehensive support to help you navigate the entire process of buying property in Italy.'}
+            <p className="text-gray-500 max-w-3xl mx-auto text-lg leading-relaxed">
+              {language === 'cs'
+                ? 'Italsko-český pohled v jednom projektu.'
+                : language === 'it'
+                ? 'Uno sguardo italo-ceco in un unico progetto.'
+                : 'An Italian-Czech perspective in one project.'}
             </p>
           </div>
-          
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {TEAM.map((member, index) => (
+              <Card key={index} className="bg-white border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 rounded-2xl group">
+                <CardHeader>
+                  <div className="mb-4 flex justify-center">
+                    <img
+                      src={member.avatar}
+                      alt={member.name}
+                      className="h-[210px] w-[210px] md:h-[230px] md:w-[230px] rounded-2xl object-cover transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1"
+                    />
+                  </div>
+                  <CardTitle className="text-slate-800 text-2xl">{member.name}</CardTitle>
+                  <p className="text-copper-700 font-semibold">{member.role[language]}</p>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 leading-relaxed">{member.description[language]}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+        </div>
+
+        <div className="mb-24">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
+              {language === 'cs' ? 'Co děláme v praxi' : language === 'it' ? 'Cosa facciamo in pratica' : 'What We Do in Practice'}
+            </h2>
+            <div className="w-16 h-1 bg-copper-400 mx-auto mb-6 rounded-full"></div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {SERVICES.map((service, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="group relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-gray-200"
               >
                 <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${service.color} mb-5`}>
@@ -237,46 +387,16 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Who is it for - Modern columns */}
         <div className="mb-24">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
-              {language === 'cs' ? 'Pro koho je služba určena' : 
-               language === 'it' ? 'Per chi è destinato il servizio' : 
-               'Who Is This Service For?'}
+              {language === 'cs' ? 'Pro koho je to' : language === 'it' ? 'Per chi è il servizio' : 'Who This Is For'}
             </h2>
             <div className="w-16 h-1 bg-copper-400 mx-auto mb-6 rounded-full"></div>
-            <p className="text-gray-500 max-w-3xl mx-auto text-lg leading-relaxed">
-              {language === 'cs' ? 'Pomáháme lidem, kteří o koupi domu v Itálii uvažují vážně a chtějí se rozhodnout s klidem a dostatkem informací.' :
-               language === 'it' ? 'Aiutiamo persone che stanno considerando seriamente l\'acquisto di una casa in Italia e vogliono decidere con calma e informazioni sufficienti.' :
-               'We help people who are seriously considering buying a house in Italy and want to decide with peace of mind and sufficient information.'}
-            </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              { 
-                icon: <Heart className="h-8 w-8" />,
-                title: { cs: 'Rekreační dům', it: 'Casa per vacanze', en: 'Vacation Home' },
-                desc: { cs: 'Hledáte místo pro odpočinek a dovolenou v Itálii.', it: 'Cercate un posto per riposare e vacanze in Italia.', en: 'Looking for a place to rest and vacation in Italy.' },
-                gradient: 'from-rose-50 to-pink-50',
-                iconColor: 'text-rose-500'
-              },
-              { 
-                icon: <Award className="h-8 w-8" />,
-                title: { cs: 'Investice', it: 'Investimento', en: 'Investment' },
-                desc: { cs: 'Chcete investovat do nemovitosti v Itálii.', it: 'Volete investire in un immobile in Italia.', en: 'Want to invest in Italian property.' },
-                gradient: 'from-amber-50 to-yellow-50',
-                iconColor: 'text-amber-500'
-              },
-              { 
-                icon: <Globe className="h-8 w-8" />,
-                title: { cs: 'Místo pro nový život', it: 'Posto per una nuova vita', en: 'Place for New Life' },
-                desc: { cs: 'Plánujete přestěhování a nový začátek v Itálii.', it: 'State pianificando un trasferimento e un nuovo inizio in Italia.', en: 'Planning to relocate and start anew in Italy.' },
-                gradient: 'from-blue-50 to-sky-50',
-                iconColor: 'text-blue-500'
-              },
-            ].map((item, index) => (
+            {WHO_FOR.map((item, index) => (
               <div key={index} className={`text-center p-8 rounded-2xl bg-gradient-to-br ${item.gradient} border border-gray-100 hover:shadow-md transition-all duration-300 group`}>
                 <div className={`w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-sm ${item.iconColor} group-hover:scale-110 transition-transform duration-300`}>
                   {item.icon}
@@ -288,39 +408,28 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Contact CTA */}
         <div className="max-w-4xl mx-auto">
           <div className="relative rounded-3xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-slate-800 to-slate-900" />
-            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
             <div className="relative p-10 md:p-16 text-center">
               <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">
-                {language === 'cs' ? 'Začněte správně' : 
-                 language === 'it' ? 'Inizia correttamente' : 
-                 'Start Correctly'}
+                {language === 'cs' ? 'Pojďme to probrat konkrétně' : language === 'it' ? 'Parliamone in modo concreto' : 'Let us discuss it concretely'}
               </h3>
               <p className="text-gray-300 mb-10 text-lg leading-relaxed max-w-2xl mx-auto">
-                {language === 'cs' ? 'Pokud jste na začátku, doporučujeme nejprve porozumět základům a reálným nákladům koupě domu v Itálii.' :
-                 language === 'it' ? 'Se siete all\'inizio, raccomandiamo prima di comprendere le basi e i costi reali dell\'acquisto di un immobile in Italia.' :
-                 'If you\'re at the beginning, we recommend first understanding the basics and real costs of buying a house in Italy.'}
+                {language === 'cs'
+                  ? 'Pokud jste na začátku, doporučujeme nejdříve nastavit plán a priority. Potom je každý další krok jednodušší.'
+                  : language === 'it'
+                  ? "Se sei all'inizio, conviene prima impostare metodo e priorità. Da lì in poi ogni passo diventa più semplice."
+                  : 'If you are at the beginning, start by setting method and priorities. Every next step becomes simpler.'}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/process">
-                  <Button size="lg" className="text-slate-900 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-[1.02] shadow-lg rounded-xl bg-white hover:bg-gray-100">
-                    {language === 'cs' ? 'Průvodce a zdroje' : 
-                     language === 'it' ? 'Guida e risorse' : 
-                     'Guide & Resources'}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="border-white/20 text-white hover:bg-white/10 hover:border-white/30 font-medium px-8 py-6 text-base transition-all duration-300 rounded-xl bg-transparent"
+              <div className="flex justify-center">
+                <Button
+                  size="lg"
+                  className="text-slate-900 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-[1.02] shadow-lg rounded-xl bg-white hover:bg-gray-100"
                   onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}
                 >
                   <Mail className="h-4 w-4 mr-2" />
-                  info@domyvitalii.cz
+                  {language === 'cs' ? 'Kontaktujte nás' : language === 'it' ? 'Contattaci' : 'Contact us'}
                 </Button>
               </div>
             </div>
@@ -332,3 +441,4 @@ export default function AboutPage() {
     </div>
   )
 }
+

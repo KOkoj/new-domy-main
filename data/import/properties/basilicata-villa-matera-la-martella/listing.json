@@ -1,0 +1,77 @@
+{
+  "title_it": "Villa ristrutturata con giardino e piscina a Matera",
+  "title_en": "Renovated Villa with Garden and Pool in Matera",
+  "title_cs": "Zrekonstruovaná vila se zahradou a bazénem v Matera",
+  "propertyType": "villa",
+  "propertyType_it": "villa",
+  "region_it": "Basilicata",
+  "city_it": "Matera",
+  "city_en": "Matera",
+  "city_cs": "Matera",
+  "address_it": "Via Tevere 7, La Martella, Matera (MT), Basilicata",
+  "address_en": "Via Tevere 7, La Martella, Matera (MT), Basilicata",
+  "address_cs": "Via Tevere 7, La Martella, Matera (MT), Basilicata",
+  "price": 279000,
+  "rooms": 5,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "square_meters": 140,
+  "features": [
+    {
+      "it": "Abitazione indipendente completamente ristrutturata",
+      "en": "Fully renovated detached home",
+      "cs": "Plně zrekonstruované samostatné bydlení"
+    },
+    {
+      "it": "Zona riservata e tranquilla nella frazione La Martella",
+      "en": "Private and quiet setting in La Martella district",
+      "cs": "Klidná a soukromá poloha ve čtvrti La Martella"
+    },
+    {
+      "it": "Tavernetta con camino e angolo bar",
+      "en": "Tavern room with fireplace and bar corner",
+      "cs": "Taverna s krbem a barovym koutem"
+    },
+    {
+      "it": "Riscaldamento a pavimento e climatizzazione canalizzata",
+      "en": "Underfloor heating and ducted air conditioning",
+      "cs": "Podlahové vytápění a kanalizovaná klimatizace"
+    },
+    {
+      "it": "Giardino privato con piscina",
+      "en": "Private garden with swimming pool",
+      "cs": "Soukromá zahrada s bazénem"
+    },
+    {
+      "it": "Impianto di antifurto e doppia esposizione",
+      "en": "Alarm system and dual exposure",
+      "cs": "Alarm a dvojita orientace"
+    }
+  ],
+  "description_it": "Nella frazione La Martella di Matera proponiamo una villa indipendente di circa 140 m2 commerciali, completamente ristrutturata e pronta per essere vissuta.\n\nGli interni offrono spazi ben distribuiti e finiture moderne. Accanto alla zona abitativa principale è presente una tavernetta ideale per momenti conviviali, arricchita da camino e angolo bar. Il comfort è elevato grazie al riscaldamento a pavimento, presente sia al piano terra sia nella tavernetta, alla climatizzazione canalizzata e al sistema di antifurto.\n\nAll'esterno la proprietà dispone di giardino privato con piscina, elemento di forte valore per chi cerca privacy e relax. Una soluzione completa, in contesto tranquillo ma ben collegato alla città di Matera.",
+  "description_en": "In La Martella, a district of Matera, we offer an independent villa of about 140 commercial sqm, fully renovated and ready to live in.\n\nThe interiors provide a well-distributed layout and modern finishes. Beside the main living area there is a tavern room ideal for entertaining, enhanced by a fireplace and bar corner. Comfort is high thanks to underfloor heating, available both on the ground floor and in the tavern room, ducted air conditioning, and an alarm system.\n\nOutside, the property includes a private garden with swimming pool, a strong asset for buyers looking for privacy and relaxation. This is a complete home in a quiet context still well connected to the city of Matera.",
+  "description_cs": "Ve čtvrti La Martella v Matera nabízíme samostatnou vilu o velikosti přibližně 140 m2 komerční plochy, po kompletní rekonstrukci a připravenou k okamžitému užívání.\n\nInteriér nabízí dobře rozvržené prostory a moderní povrchy. Vedle hlavní obytné části se nachází taverna ideální pro setkávání s rodinou a přáteli, doplněná krbem a barovym koutem. Vysoký komfort zajišťuje podlahové vytápění v přízemí i taverně, kanalizovaná klimatizace a alarm.\n\nVenku je k dispozici soukromá zahrada s bazénem, tedy silný benefit pro ty, kdo hledají soukromí a relax. Jde o kompletní řešení v klidném prostředí, které je stále dobře spojene s městem Matera.",
+  "seo_title_it": "Villa con piscina in vendita a Matera",
+  "seo_title_en": "Villa with Pool for Sale in Matera",
+  "seo_title_cs": "Vila s bazénem na prodej v Matera",
+  "seo_description_it": "Villa di 140 m2 a Matera: 5 locali, 3 camere, 2 bagni, tavernetta con camino, giardino privato e piscina.",
+  "seo_description_en": "140 sqm villa in Matera: 5 rooms, 3 bedrooms, 2 bathrooms, tavern room with fireplace, private garden, and pool.",
+  "seo_description_cs": "Vila 140 m2 v Matera: 5 místností, 3 ložnice, 2 koupelny, taverna s krbem, soukromá zahrada a bazén.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "matera",
+    "la martella",
+    "villa",
+    "piscina",
+    "giardino privato",
+    "basilicata"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/128073042/",
+  "lat": 40.6655,
+  "lng": 16.5366,
+  "yearBuilt": 0,
+  "lotSize": 0,
+  "parking": 0,
+  "image_urls": []
+}

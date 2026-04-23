@@ -1,10 +1,19 @@
 import { NextResponse } from 'next/server'
+import { requireAdminApiAccess } from '@/lib/adminAuth'
+import { ADMIN_LAUNCH_TOOLS_ENABLED, getAdminToolDisabledResponse } from '@/lib/featureFlags'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 // OpenAI Translation API
 export async function POST(request) {
+  if (!ADMIN_LAUNCH_TOOLS_ENABLED) {
+    return NextResponse.json(getAdminToolDisabledResponse(), { status: 503 })
+  }
+
+  const access = await requireAdminApiAccess()
+  if (!access.ok) return access.response
+
   try {
     const { text, sourceLang, targetLang, context } = await request.json()
 

@@ -1,0 +1,106 @@
+{
+  "title_it": "Casa semindipendente con giardino nel centro di Villa San Giovanni",
+  "title_en": "Semi-Detached House with Garden in Central Villa San Giovanni",
+  "title_cs": "Polosamostatny dům se zahradou v centru Villa San Giovanni",
+  "propertyType": "house",
+  "propertyType_it": "casa singola",
+  "region_it": "Calabria",
+  "city_it": "Villa San Giovanni",
+  "city_en": "Villa San Giovanni",
+  "city_cs": "Villa San Giovanni",
+  "address_it": "Via Torre Telegrafo 2, Centro, Villa San Giovanni (RC), Calabria",
+  "address_en": "Via Torre Telegrafo 2, Central Villa San Giovanni (RC), Calabria",
+  "address_cs": "Via Torre Telegrafo 2, centrum Villa San Giovanni (RC), Kalabrie",
+  "price": 80000,
+  "rooms": 3,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "square_meters": 90,
+  "features": [
+    {
+      "it": "Casa semindipendente su unico livello",
+      "en": "Semi-detached house on a single level",
+      "cs": "Polosamostatny dům na jednom podlaží"
+    },
+    {
+      "it": "Superficie catastale di circa 90 m2",
+      "en": "Cadastral area of about 90 sqm",
+      "cs": "Katastralni plocha přibližně 90 m2"
+    },
+    {
+      "it": "Giardino privato di circa 40 m2",
+      "en": "Private garden of about 40 sqm",
+      "cs": "Soukromá zahrada o ploše přibližně 40 m2"
+    },
+    {
+      "it": "Doppio ingresso da soggiorno e cucina",
+      "en": "Double entrance from living room and kitchen",
+      "cs": "Dvojity vstup z obývacího pokoje a kuchyně"
+    },
+    {
+      "it": "Due camere da letto e un bagno",
+      "en": "Two bedrooms and one bathroom",
+      "cs": "Dvě ložnice a jedna koupelna"
+    },
+    {
+      "it": "Vano deposito esterno",
+      "en": "External storage room",
+      "cs": "Venkovní skladovaci místnost"
+    },
+    {
+      "it": "Esposizione doppia",
+      "en": "Double exposure",
+      "cs": "Dvojita orientace"
+    },
+    {
+      "it": "Immobile da ristrutturare",
+      "en": "Property to be renovated",
+      "cs": "Nemovitost k rekonstrukci"
+    }
+  ],
+  "description_it": "A Villa San Giovanni, in via Torre Telegrafo, proponiamo casa semindipendente su unico livello in posizione centrale, a pochi passi dalla via Nazionale e dai principali servizi.\n\nL'immobile si sviluppa su circa 90 m2 e dispone di giardino privato di circa 40 m2. L'ingresso avviene da cancelletto su strada con accesso diretto all abitazione.\n\nLa distribuzione interna comprende soggiorno, cucina abitabile, due camere da letto, bagno e vano deposito esterno. Soggiorno e cucina hanno affaccio diretto sul giardino.\n\nLa soluzione necessita di interventi di ristrutturazione e rappresenta un opzione interessante per chi cerca una casa indipendente di piccola metratura con spazio esterno in area urbana ben servita.",
+  "description_en": "In Villa San Giovanni, on Via Torre Telegrafo, we offer a single-level semi-detached house in a central position, just a short walk from Via Nazionale and main daily services.\n\nThe property provides about 90 sqm and includes a private garden of around 40 sqm. Access is from a street gate with direct entrance to the house.\n\nInternal layout includes living room, separate eat-in kitchen, two bedrooms, one bathroom, and an external storage room. Both living room and kitchen open onto the private garden.\n\nThe property requires renovation works and is an interesting option for buyers looking for an independent small-size home with outdoor space in a well-served urban area.",
+  "description_cs": "Ve městě Villa San Giovanni, ve Via Torre Telegrafo, nabízíme polosamostatny dům na jednom podlaží v centrální poloze, jen pár minut pesky od via Nazionale a hlavních služeb.\n\nNemovitost má přibližně 90 m2 a soukromou zahradu o velikosti asi 40 m2. Vstup je přes branku z ulice s přímým přístupem do domu.\n\nDispozice zahrnuje obývací pokoj, samostatnou obytnou kuchyní, dvě ložnice, jednu koupelnu a venkovní sklad. Obývací pokoj i kuchyně maji přímý vstup do zahrady.\n\nNemovitost vyžaduje rekonstrukci a je zajímavou volbou pro kupující, kteří hledají menší nezávislé bydlení s venkovním prostorem v dobře obsluzene mestske části.",
+  "seo_title_it": "Casa semindipendente con giardino in vendita a Villa San Giovanni",
+  "seo_title_en": "Semi-Detached House with Garden for Sale in Villa San Giovanni",
+  "seo_title_cs": "Polosamostatny dům se zahradou na prodej ve Villa San Giovanni",
+  "seo_description_it": "Casa semindipendente di 90 m2 a Villa San Giovanni: 3 locali, 2 camere, 1 bagno, giardino privato 40 m2 e deposito esterno.",
+  "seo_description_en": "90 sqm semi-detached house in Villa San Giovanni: 3 rooms, 2 bedrooms, 1 bathroom, 40 sqm private garden, and external storage.",
+  "seo_description_cs": "Polosamostatny dům 90 m2 ve Villa San Giovanni: 3 místností, 2 ložnice, 1 koupelna, soukromá zahrada 40 m2 a venkovní sklad.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "villa san giovanni",
+    "via torre telegrafo",
+    "casa semindipendente",
+    "giardino privato",
+    "calabria",
+    "reggio calabria"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/116965793/",
+  "lat": 38.2287,
+  "lng": 15.6415,
+  "yearBuilt": 1967,
+  "lotSize": 40,
+  "parking": 0,
+  "image_urls": [
+    "https://pwm.im-cdn.it/image/1623571779/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571783/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571791/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571797/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571771/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571799/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571805/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571809/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571815/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571817/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571819/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571823/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571825/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571827/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571835/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571837/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571839/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1623571843/xxl.jpg"
+  ]
+}

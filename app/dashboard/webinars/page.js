@@ -148,7 +148,7 @@ export default function WebinarsPage() {
   const [loading, setLoading] = useState(true)
   const [upcomingWebinars, setUpcomingWebinars] = useState([])
   const [pastWebinars, setPastWebinars] = useState([])
-  const [language, setLanguage] = useState('cs')
+  const [language, setLanguage] = useState('en')
 
   useEffect(() => {
     loadWebinarData()

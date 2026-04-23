@@ -1,0 +1,77 @@
+{
+  "title_it": "Dimora storica ristrutturata nel centro storico di Lecce",
+  "title_en": "Renovated Historic Residence in Lecce Old Town",
+  "title_cs": "Zrekonstruované historické bydlení v centru Lecce",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Puglia",
+  "city_it": "Lecce",
+  "city_en": "Lecce",
+  "city_cs": "Lecce",
+  "address_it": "Piazzetta Arco di Prato 12, Lecce (LE), Puglia",
+  "address_en": "Piazzetta Arco di Prato 12, Lecce (LE), Apulia",
+  "address_cs": "Piazzetta Arco di Prato 12, Lecce (LE), Apulie",
+  "price": 280000,
+  "rooms": 5,
+  "bedrooms": 3,
+  "bathrooms": 4,
+  "square_meters": 162,
+  "features": [
+    {
+      "it": "Dimora storica del Settecento completamente ristrutturata",
+      "en": "18th-century historic residence fully renovated",
+      "cs": "Historické bydlení z 18. století po kompletní rekonstrukci"
+    },
+    {
+      "it": "Piano terra nel cuore del centro storico di Lecce",
+      "en": "Ground-floor property in the heart of Lecce old town",
+      "cs": "Přízemní nemovitost v samem srdci historického centra Lecce"
+    },
+    {
+      "it": "Zona giorno con angolo cottura a vista",
+      "en": "Living area with open kitchenette",
+      "cs": "Obytný prostor s otevřeným kuchyňským koutem"
+    },
+    {
+      "it": "Tre camere da letto ciascuna con bagno privato",
+      "en": "Three bedrooms each with private bathroom",
+      "cs": "Tři ložnice, každá s vlastní koupelnou"
+    },
+    {
+      "it": "Ulteriore bagno di servizio nella zona giorno",
+      "en": "Additional guest bathroom in the living area",
+      "cs": "Další servisní koupelna v denní části"
+    },
+    {
+      "it": "Ideale per abitazione di charme o struttura ricettiva",
+      "en": "Suitable as a charming residence or hospitality property",
+      "cs": "Vhodné jako stylove bydlení nebo ubytovaci nemovitost"
+    }
+  ],
+  "description_it": "Nel centro storico di Lecce, in Piazzetta Arco di Prato, proponiamo una dimora storica del 1700 completamente ristrutturata, pronta per essere abitata o valorizzata come struttura ricettiva di charme.\n\nLa proprietà si sviluppa al piano terra e offre circa 162 m2 ben distribuiti. L'ingresso conduce alla zona giorno con angolo cottura a vista e a un bagno di servizio. Un disimpegno accompagna alla zona notte composta da tre camere da letto, tutte dotate di bagno privato, soluzione ideale per garantire comfort e privacy sia nell'uso residenziale sia in quello turistico.\n\nIl contesto, il fascino storico e le condizioni eccellenti rendono l'immobile un investimento raro nel cuore di Lecce.",
+  "description_en": "In Lecce old town, in Piazzetta Arco di Prato, we offer a fully renovated 18th-century historic residence, ready to be lived in or enhanced as a charming hospitality property.\n\nThe property is arranged on the ground floor and offers about 162 sqm with a well-balanced layout. The entrance leads to the living area with open kitchenette and to a guest bathroom. A hallway then connects to the sleeping area composed of three bedrooms, each with its own private bathroom, an ideal setup for both residential use and hospitality operations.\n\nThe setting, historic character, and excellent conditions make this property a rare investment opportunity in the heart of Lecce.",
+  "description_cs": "V historickém centru Lecce na namesti Piazzetta Arco di Prato nabízíme historické bydlení z 18. století po kompletní rekonstrukci, pripravené k okamžitému užívání nebo k využití jako stylove ubytovani.\n\nNemovitost se nachází v přízemí a nabízí přibližně 162 m2 dobře rozlozene plochy. Vstup vede do denní části s otevřeným kuchyňským koutem a k servisní koupelne. Chodba dále navazuje na noční část se třemi ložnicemi, z nichz každá má vlastní koupelnu, což je ideální řešení jak pro bydlení, tak pro turistické využití.\n\nProstředí, historicky charakter a vyborny stav delaji z této nemovitosti výjimečnou investiční příležitost v samem centru Lecce.",
+  "seo_title_it": "Dimora storica in vendita nel centro storico di Lecce",
+  "seo_title_en": "Historic Residence for Sale in Lecce Old Town",
+  "seo_title_cs": "Historické bydlení na prodej v centru Lecce",
+  "seo_description_it": "Appartamento storico di 162 m2 a Lecce: 5 locali, 3 camere, 4 bagni, ristrutturato è ideale anche per B&B o casa vacanze.",
+  "seo_description_en": "162 sqm historic apartment in Lecce: 5 rooms, 3 bedrooms, 4 bathrooms, renovated and suitable also for B&B or holiday rental use.",
+  "seo_description_cs": "Historicky byt 162 m2 v Lecce: 5 místností, 3 ložnice, 4 koupelny, po rekonstrukci a vhodný i pro B&B nebo turistické pronajmy.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "lecce",
+    "centro storico",
+    "piazzetta arco di prato",
+    "dimora storica",
+    "bed and breakfast",
+    "puglia"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/115131331/",
+  "lat": 40.3544,
+  "lng": 18.1702,
+  "yearBuilt": 1700,
+  "lotSize": 0,
+  "parking": 0,
+  "image_urls": []
+}

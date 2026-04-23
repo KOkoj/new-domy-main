@@ -1,9 +1,17 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '../../../lib/supabase.js'
+import { requireAdminApiAccess } from '@/lib/adminAuth'
 
 export const dynamic = 'force-dynamic'
 
 export async function GET(request) {
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
+  const access = await requireAdminApiAccess()
+  if (!access.ok) return access.response
+
   try {
     console.log('=== DATABASE DEBUG ===')
     
@@ -66,6 +74,13 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  }
+
+  const access = await requireAdminApiAccess()
+  if (!access.ok) return access.response
+
   try {
     const { action } = await request.json()
     

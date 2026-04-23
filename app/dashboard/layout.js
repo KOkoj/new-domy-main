@@ -111,24 +111,26 @@ export default function DashboardLayout({ children }) {
   const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [userProfile, setUserProfile] = useState(null)
-  const [language, setLanguage] = useState('cs')
+  const [language, setLanguage] = useState(() => {
+    if (typeof window === 'undefined') return 'en'
+    const savedLanguage = localStorage.getItem('preferred-language')
+    return savedLanguage || 'en'
+  })
   const router = useRouter()
 
   useEffect(() => {
     checkUserAccess()
-    
-    // Load language preference
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
-    }
   }, [])
 
   const handleLanguageChange = (newLanguage) => {
     setLanguage(newLanguage)
-    localStorage.setItem('preferred-language', newLanguage)
-    window.dispatchEvent(new CustomEvent('languageChange', { detail: newLanguage }))
   }
+
+  useEffect(() => {
+    localStorage.setItem('preferred-language', language)
+    document.documentElement.lang = language
+    window.dispatchEvent(new CustomEvent('languageChange', { detail: language }))
+  }, [language])
 
   const checkUserAccess = async () => {
     try {

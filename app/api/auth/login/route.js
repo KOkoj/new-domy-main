@@ -42,8 +42,9 @@ async function createAuthClient() {
 export async function POST(request) {
   try {
     const { email, password } = await request.json()
+    const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : ''
 
-    if (!email || !password) {
+    if (!normalizedEmail || !password) {
       return NextResponse.json(
         { error: 'Email and password are required' },
         { status: 400 }
@@ -60,14 +61,18 @@ export async function POST(request) {
     }
 
     const { data, error } = await supabase.auth.signInWithPassword({
-      email,
+      email: normalizedEmail,
       password
     })
 
     if (error) {
       const status = error.status || 401
+      const message =
+        error.message === 'Email not confirmed'
+          ? 'Email not confirmed. Check your inbox and confirm the account before logging in.'
+          : error.message
       return applyCookies(
-        NextResponse.json({ error: error.message }, { status })
+        NextResponse.json({ error: message }, { status })
       )
     }
 

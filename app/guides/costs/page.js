@@ -1,17 +1,226 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { ArrowLeft, Euro, FileText, Home, Calculator, CheckCircle, AlertTriangle, Menu, X, User } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { AlertTriangle, ArrowLeft, Calculator, CheckCircle, Euro, FileText } from 'lucide-react'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import Link from 'next/link'
 import { supabase } from '../../../lib/supabase'
 import AuthModal from '../../../components/AuthModal'
+import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
+
+const COPY = {
+  cs: {
+    blogLabel: 'Články',
+    home: 'Domů',
+    guide: 'Průvodce',
+    page: 'Náklady',
+    title: 'Kolik skutečně stojí koupě domu v Itálii v roce 2026',
+    intro:
+      'V tomto článku shrnujeme reálné náklady, daně a poplatky, se kterými je potřeba počítat ještě před podpisem kupní smlouvy.',
+    overviewTitle: 'Rychlá orientace',
+    overviewBody:
+      'Kupní cena je jen začátek. Finální částka se mění podle daňového režimu, typu nemovitosti, struktury koupě i vedlejších nákladů spojených s aktem.',
+    lead:
+      'Mnoho kupujících vychází pouze z ceny v inzerátu. Právě tady ale často vznikají nepříjemná překvapení. Konečný rozpočet ovlivňují daně, notář, doprovodné služby i technické prověrky.',
+    firstSectionTitle: 'Cena nemovitosti není konečná částka',
+    firstSectionBody:
+      'Dvě nemovitosti se stejnou kupní cenou mohou mít velmi odlišné konečné náklady. Rozhoduje právní režim, stav dokumentace, typ prodávajícího i to, zda kupujete jako první nebo další nemovitost.',
+    firstSectionBullets: [
+      'daňový režim a typ prodávajícího',
+      'notářské náklady a registrace',
+      'extra notářské výdaje spojené s aktem',
+      'případné technické prověrky a opravy dokumentace'
+    ],
+    costTitle: 'Přehled nákladů',
+    costSubtitle:
+      'Níže najdete orientační strukturu hlavních položek, se kterými je potřeba při koupi počítat.',
+    costs: [
+      {
+        title: 'Daň z koupě - první nemovitost + rezidence',
+        description:
+          'Platí při koupi první nemovitosti v Itálii a při nastavení trvalé rezidence.',
+        price: 'EUR 2 % z katastrální hodnoty'
+      },
+      {
+        title: 'Daň z koupě - druhá nemovitost / bez rezidence',
+        description:
+          'Používá se tehdy, když nemovitost nebude vaší hlavní rezidencí.',
+        price: 'EUR 9 % z katastrální hodnoty'
+      },
+      {
+        title: 'DPH (nové / rekonstruované do 5 let) - koupě od stavební firmy',
+        description:
+          'Uplatní se hlavně při koupi od developera nebo stavební společnosti.',
+        price: '10 % nebo 4 % podle režimu'
+      },
+      {
+        title: 'Notářské výdaje',
+        description: 'Odměna notáře, ověření dokumentace a registrace aktu.',
+        price: 'EUR 2.500-4.500'
+      },
+      {
+        title: 'Extra notářské výdaje',
+        description: 'Překlad aktu, tlumočník, úschova kupní ceny.',
+        price: 'EUR 500-1.200'
+      },
+      {
+        title: 'Dodatečné náklady (zřídka nutné)',
+        description: 'Případné technické inspekce nebo úpravy v katastru.',
+        price: 'EUR 1.000-3.000'
+      }
+    ],
+    risksTitle: 'Jak se vyhnout nepříjemným překvapením',
+    risksLead: 'Nejlepší je mít:',
+    risks: [
+      'jasně spočítané hlavní daně ještě před podpisem',
+      'potvrzený notářský rozpočet a vedlejší výdaje',
+      'ověřený právní a technický stav nemovitosti',
+      'rezervu na položky, které v inzerátu nejsou vidět'
+    ]
+  },
+  it: {
+    blogLabel: 'Articoli',
+    home: 'Casa',
+    guide: 'Guida',
+    page: 'Costi',
+    title: 'Quanto costa davvero acquistare una casa in Italia nel 2026',
+    intro:
+      'In questo articolo analizziamo i costi reali, le imposte e le spese da considerare prima della firma.',
+    overviewTitle: 'Orientamento rapido',
+    overviewBody:
+      "Il prezzo dell'immobile è solo il punto di partenza. Il costo finale cambia in base al regime fiscale, al tipo di immobile, alla struttura dell'acquisto e alle spese accessorie legate all'atto.",
+    lead:
+      "Molti acquirenti partono solo dal prezzo dell'annuncio. Le sorprese arrivano dopo: imposte, notaio, servizi collegati all'atto e verifiche tecniche possono cambiare molto il totale.",
+    firstSectionTitle: "Il prezzo dell'immobile non è l'importo finale",
+    firstSectionBody:
+      "Due immobili con lo stesso prezzo possono avere costi finali molto diversi. Contano il regime giuridico, il tipo di venditore, la documentazione e il profilo dell'acquirente.",
+    firstSectionBullets: [
+      'regime fiscale e tipo di venditore',
+      'spese notarili e registrazione',
+      "spese extra notarili collegate all'atto",
+      'eventuali verifiche tecniche e correzioni documentali'
+    ],
+    costTitle: 'Panoramica dei costi',
+    costSubtitle:
+      'Qui sotto trovi la struttura orientativa delle principali voci di costo da considerare.',
+    costs: [
+      {
+        title: 'Imposta di acquisto - prima casa + residenza',
+        description:
+          "Si applica all'acquisto della prima proprietà in Italia con trasferimento della residenza.",
+        price: '2% del valore catastale'
+      },
+      {
+        title: 'Imposta di acquisto - seconda casa / senza residenza',
+        description:
+          "Si applica quando l'immobile non diventerà la residenza principale.",
+        price: '9% del valore catastale'
+      },
+      {
+        title: 'IVA (nuovi / ristrutturati entro 5 anni) - acquisto da impresa',
+        description:
+          'Riguarda soprattutto immobili nuovi o recentemente ristrutturati acquistati da un’impresa.',
+        price: '10% oppure 4% secondo il regime'
+      },
+      {
+        title: 'Spese notarili',
+        description: "Onorario del notaio, verifiche e registrazione dell'atto.",
+        price: 'EUR 2.500-4.500'
+      },
+      {
+        title: 'Spese extra notarili',
+        description: "Traduzione dell'atto, interprete, deposito del prezzo.",
+        price: 'EUR 500-1.200'
+      },
+      {
+        title: 'Costi aggiuntivi (raramente necessari)',
+        description: 'Eventuali ispezioni tecniche o aggiornamenti catastali.',
+        price: 'EUR 1.000-3.000'
+      }
+    ],
+    risksTitle: 'Come evitare brutte sorprese',
+    risksLead: 'La cosa migliore è avere:',
+    risks: [
+      'le imposte principali calcolate prima della firma',
+      'un preventivo notarile e le spese collegate già verificati',
+      "lo stato giuridico e tecnico dell'immobile controllato",
+      "un margine per i costi che non compaiono nell'annuncio"
+    ]
+  },
+  en: {
+    blogLabel: 'Articles',
+    home: 'Home',
+    guide: 'Guide',
+    page: 'Costs',
+    title: 'How Much Does Buying a House in Italy Really Cost in 2026',
+    intro:
+      'This article breaks down the real costs, taxes, and fees you should account for before signing.',
+    overviewTitle: 'Quick overview',
+    overviewBody:
+      'The property price is only the starting point. The final amount changes depending on the tax regime, property type, purchase structure, and extra expenses tied to the deed.',
+    lead:
+      'Many buyers look only at the listing price. That is usually where surprises begin. Taxes, notary fees, deed-related services, and technical checks can change the real total significantly.',
+    firstSectionTitle: 'The property price is not the final amount',
+    firstSectionBody:
+      'Two properties with the same purchase price can end up with very different final costs. The legal regime, seller type, documentation, and buyer profile all matter.',
+    firstSectionBullets: [
+      'tax regime and seller type',
+      'notary fees and registration',
+      'extra deed-related costs',
+      'technical checks and document corrections when needed'
+    ],
+    costTitle: 'Cost overview',
+    costSubtitle:
+      'Below is an indicative structure of the main cost items you should expect during the purchase.',
+    costs: [
+      {
+        title: 'Purchase tax - first home + residency',
+        description:
+          'Applies when buying a first property in Italy with residency established there.',
+        price: '2% of cadastral value'
+      },
+      {
+        title: 'Purchase tax - second home / no residency',
+        description:
+          'Applies when the property will not become your main residency.',
+        price: '9% of cadastral value'
+      },
+      {
+        title: 'VAT (new / renovated within 5 years) - purchase from construction company',
+        description:
+          'Mostly relevant when buying from a developer or building company.',
+        price: '10% or 4% depending on regime'
+      },
+      {
+        title: 'Notary fees',
+        description: 'Notary compensation, checks, and deed registration.',
+        price: 'EUR 2,500-4,500'
+      },
+      {
+        title: 'Extra notary-related expenses',
+        description: 'Deed translation, interpreter, purchase-price escrow.',
+        price: 'EUR 500-1,200'
+      },
+      {
+        title: 'Additional costs (rarely necessary)',
+        description: 'Potential technical inspections and cadastral updates.',
+        price: 'EUR 1,000-3,000'
+      }
+    ],
+    risksTitle: 'How to avoid unpleasant surprises',
+    risksLead: 'The safest setup is to have:',
+    risks: [
+      'your main taxes calculated before signing',
+      'the notary quote and related side costs already confirmed',
+      'the legal and technical status of the property verified',
+      'a reserve for costs that never appear in the listing'
+    ]
+  }
+}
 
 export default function CostsGuidePage() {
   const [user, setUser] = useState(null)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [language, setLanguage] = useState('cs')
 
@@ -25,18 +234,69 @@ export default function CostsGuidePage() {
 
   useEffect(() => {
     if (!supabase) return
+
     const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      setUser(user)
+      const {
+        data: { user: authUser }
+      } = await supabase.auth.getUser()
+      setUser(authUser)
     }
+
     checkUser()
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const {
+      data: { subscription }
+    } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user || null)
     })
 
     return () => subscription.unsubscribe()
   }, [])
+
+  const copy = COPY[language] || COPY.en
+  const articleImage =
+    language === 'cs'
+      ? {
+          src: '/articles/costs-money-house.jpg',
+          alt: 'Pár řeší peníze s modely domků v pozadí',
+          caption:
+            'Skutečné náklady začnou být jasné ve chvíli, kdy vedle ceny domu začnete řešit i všechny související výdaje.'
+        }
+      : language === 'it'
+        ? {
+            src: '/articles/costs-money-house.jpg',
+            alt: 'Coppia preoccupata per i soldi con modellini di case sullo sfondo',
+            caption:
+              'Il costo reale si capisce quando, oltre al prezzo della casa, inizi a considerare tutte le spese che la accompagnano.'
+          }
+        : {
+            src: '/articles/costs-money-house.jpg',
+            alt: 'Couple worried about money with house models in the background',
+            caption:
+              'The real cost becomes clear when you move beyond the house price and start counting every related expense.'
+          }
+
+  const launchCtaCopy =
+    language === 'cs'
+      ? {
+          title: 'Chcete přesnější odhad pro váš konkrétní případ?',
+          body:
+            'Podrobnější materiály doplníme později. Prozatím můžete pokračovat v bezplatných průvodcích nebo nám napsat pro orientační nasměrování.',
+          primary: 'Kontaktovat nás'
+        }
+      : language === 'it'
+        ? {
+            title: 'Vuoi una stima più precisa per il tuo caso?',
+            body:
+              'I materiali di approfondimento arriveranno più avanti. Per ora puoi continuare con le guide gratuite oppure scriverci per un primo orientamento.',
+            primary: 'Contattaci'
+          }
+        : {
+            title: 'Do you want a more precise estimate for your case?',
+            body:
+              'More detailed materials will be added later. For now, continue with the free guides or contact us for initial direction.',
+            primary: 'Contact us'
+          }
 
   const handleLogout = async () => {
     if (!supabase) return
@@ -46,43 +306,85 @@ export default function CostsGuidePage() {
     }
   }
 
-  const handleAuthSuccess = (user) => {
-    setUser(user)
-    setIsAuthModalOpen(false)
-  }
-
   const handleLanguageChange = (newLanguage) => {
     setLanguage(newLanguage)
     document.documentElement.lang = newLanguage
     localStorage.setItem('preferred-language', newLanguage)
   }
 
+  const handleAuthSuccess = (nextUser) => {
+    setUser(nextUser)
+    setIsAuthModalOpen(false)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
-      {/* Navigation - Same as other pages */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}>
-        <div className="container mx-auto px-4 pt-4 pb-3">
+      <nav
+        className="fixed left-0 right-0 top-0 z-50 overflow-visible border-b border-white/20 backdrop-blur-md shadow-lg"
+        style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}
+      >
+        <div className="container mx-auto px-4 pb-3 pt-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="relative overflow-visible">
-              <img 
-                src="/logo domy.svg" 
+              <img
+                src="/logo domy.svg"
                 alt="Domy v Itálii"
-                className="h-12 w-auto cursor-pointer" 
+                className="h-12 w-auto cursor-pointer"
                 style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))' }}
               />
             </Link>
-            
+
             <div className="flex items-center space-x-4">
-              {/* Language Selector */}
-              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20">
-                <button onClick={() => handleLanguageChange('en')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}>EN</button>
-                <button onClick={() => handleLanguageChange('cs')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}>CS</button>
-                <button onClick={() => handleLanguageChange('it')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'it' ? 'bg-white/20 text-white' : 'text-white/60'}`}>IT</button>
+              <Link
+                href="/blog"
+                className="hidden items-center rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                {copy.blogLabel}
+              </Link>
+
+              <div className="group flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-2 shadow-lg backdrop-blur-md">
+                <button
+                  onClick={() => handleLanguageChange('en')}
+                  className={`px-3 py-1 text-sm font-medium ${
+                    language === 'en' ? 'rounded-full bg-white/20 text-white' : 'text-white/60'
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => handleLanguageChange('cs')}
+                  className={`px-3 py-1 text-sm font-medium ${
+                    language === 'cs' ? 'rounded-full bg-white/20 text-white' : 'text-white/60'
+                  }`}
+                >
+                  CS
+                </button>
+                <button
+                  onClick={() => handleLanguageChange('it')}
+                  className={`px-3 py-1 text-sm font-medium ${
+                    language === 'it' ? 'rounded-full bg-white/20 text-white' : 'text-white/60'
+                  }`}
+                >
+                  IT
+                </button>
               </div>
 
-              {user && (
-                <Button variant="outline" onClick={handleLogout} className="bg-white/10 border-white/30 text-white">
+              {user ? (
+                <Button
+                  variant="outline"
+                  onClick={handleLogout}
+                  className="border-white/30 bg-white/10 text-white"
+                >
                   Logout
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  onClick={() => setIsAuthModalOpen(true)}
+                  className="border-white/30 bg-white/10 text-white"
+                >
+                  Login
                 </Button>
               )}
             </div>
@@ -90,243 +392,158 @@ export default function CostsGuidePage() {
         </div>
       </nav>
 
-      <div className="pt-28 pb-12">
-        {/* Breadcrumbs */}
-        <div className="container mx-auto px-4 mb-6">
+      <div className="pb-12 pt-28">
+        <div className="container mx-auto mb-6 px-4">
           <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <Link href="/" className="hover:text-slate-700">{language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home'}</Link>
+            <Link href="/" className="hover:text-slate-700">
+              {copy.home}
+            </Link>
             <span>/</span>
-            <Link href="/process" className="hover:text-slate-700">{language === 'cs' ? 'Průvodce' : language === 'it' ? 'Guida' : 'Guide'}</Link>
+            <Link href="/process" className="hover:text-slate-700">
+              {copy.guide}
+            </Link>
             <span>/</span>
-            <span className="text-slate-700 font-medium">
-              {language === 'cs' ? 'Náklady' : language === 'it' ? 'Costi' : 'Costs'}
-            </span>
+            <span className="font-medium text-slate-700">{copy.page}</span>
           </div>
         </div>
 
-        {/* Main Content */}
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            {/* Header */}
+          <div className="mx-auto max-w-4xl">
             <div className="mb-8">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {language === 'cs' ? 'Kolik skutečně stojí koupě domu v Itálii v roce 2026' :
-                 language === 'it' ? 'Quanto costa veramente acquistare una casa in Italia nel 2026' :
-                 'How Much Does Buying a House in Italy Really Cost in 2026'}
+              <Button
+                asChild
+                variant="outline"
+                className="mb-5 inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100"
+              >
+                <Link href="/blog">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  {copy.blogLabel}
+                </Link>
+              </Button>
+              <h1 className="mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
+                {copy.title}
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                {language === 'cs' ? 'V článku se podíváme na reálné náklady, daně a poplatky, se kterými je nutné počítat ještě před podpisem smlouvy.' :
-                 language === 'it' ? 'Nell\'articolo esamineremo i costi reali, le tasse e le spese che è necessario considerare prima di firmare il contratto.' :
-                 'In this article, we\'ll look at the real costs, taxes, and fees that need to be considered before signing the contract.'}
-              </p>
+              <p className="text-xl leading-relaxed text-gray-600">{copy.intro}</p>
             </div>
 
-            {/* Quick Overview Card */}
-            <Card className="bg-blue-50 border-blue-200 mb-8">
+            <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+              <img
+                src={articleImage.src}
+                alt={articleImage.alt}
+                className="h-64 w-full object-cover md:h-80"
+                loading="lazy"
+              />
+              <p className="px-4 py-3 text-sm text-slate-600">{articleImage.caption}</p>
+            </div>
+
+            <Card className="mb-8 border-green-200 bg-green-50">
               <CardContent className="p-6">
-                <h3 className="font-bold text-blue-900 mb-3 flex items-center">
-                  <AlertTriangle className="h-5 w-5 mr-2" />
-                  {language === 'cs' ? 'Rychlá orientace' :
-                   language === 'it' ? 'Orientamento rapido' :
-                   'Quick Overview'}
-                </h3>
-                <p className="text-blue-800 leading-relaxed">
-                  {language === 'cs' ? 'Tento článek vysvětluje reálné náklady koupě domu v Itálii – nejen cenu nemovitosti, ale i daně, notáře, poplatky a vedlejší výdaje. Pokud jste na začátku, doporučujeme začít také zde: Průvodce a zdroje ke koupi domu v Itálii.' :
-                   language === 'it' ? 'Questo articolo spiega i costi reali dell\'acquisto di una casa in Italia - non solo il prezzo dell\'immobile, ma anche tasse, notaio, spese e costi accessori. Se siete all\'inizio, raccomandiamo di iniziare anche qui: Guida e risorse per l\'acquisto di una casa in Italia.' :
-                   'This article explains the real costs of buying a house in Italy - not just the property price, but also taxes, notary, fees, and incidental expenses. If you\'re at the beginning, we also recommend starting here: Guide and resources for buying a house in Italy.'}
-                </p>
+                <h2 className="mb-3 flex items-center font-bold text-green-900">
+                  <AlertTriangle className="mr-2 h-5 w-5" />
+                  {copy.overviewTitle}
+                </h2>
+                <p className="leading-relaxed text-green-800">{copy.overviewBody}</p>
               </CardContent>
             </Card>
 
-            {/* Main Content Sections */}
+            <p className="mb-8 text-lg font-semibold leading-relaxed text-slate-800">{copy.lead}</p>
+
             <div className="space-y-8">
-              {/* Section 1 */}
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-2xl">
-                    {language === 'cs' ? 'Cena nemovitosti není konečná částka' :
-                     language === 'it' ? 'Il prezzo dell\'immobile non è l\'importo finale' :
-                     'Property Price Is Not the Final Amount'}
-                  </CardTitle>
+                  <CardTitle className="text-2xl">{copy.firstSectionTitle}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    {language === 'cs' ? 'Kupní cena domu nebo bytu je pouze začátek. Celkové náklady se skládají z několika položek, které se liší podle typu nemovitosti, regionu a způsobu koupě.' :
-                     language === 'it' ? 'Il prezzo di acquisto di una casa o appartamento è solo l\'inizio. I costi totali sono composti da diversi elementi, che variano in base al tipo di proprietà, regione e modalità di acquisto.' :
-                     'The purchase price of a house or apartment is just the beginning. Total costs consist of several items that vary according to property type, region, and purchase method.'}
-                  </p>
+                <CardContent className="space-y-4">
+                  <p className="leading-relaxed text-gray-700">{copy.firstSectionBody}</p>
+                  <ul className="space-y-2 text-gray-700">
+                    {copy.firstSectionBullets.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
 
-              {/* Cost Breakdown */}
-              <Card className="bg-white/90 backdrop-blur-sm">
+              <Card className="bg-white/95 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-2xl flex items-center">
-                    <Calculator className="h-6 w-6 mr-3" />
-                    {language === 'cs' ? 'Nejčastější náklady při koupi domu v Itálii' :
-                     language === 'it' ? 'Costi più comuni nell\'acquisto di una casa in Italia' :
-                     'Most Common Costs When Buying a House in Italy'}
-                  </CardTitle>
+                  <div className="flex items-center gap-3">
+                    <div className="rounded-full bg-amber-100 p-3 text-amber-700">
+                      <Calculator className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-2xl">{copy.costTitle}</CardTitle>
+                      <p className="mt-2 text-gray-600">{copy.costSubtitle}</p>
+                    </div>
+                  </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-slate-800">
-                          {language === 'cs' ? 'Daň z nabytí nemovitosti' :
-                           language === 'it' ? 'Imposta di acquisto immobiliare' :
-                           'Property Acquisition Tax'}
-                        </h4>
-                        <p className="text-gray-600">{language === 'cs' ? '2-10% hodnoty nemovitosti' : language === 'it' ? '2-10% del valore dell\'immobile' : '2-10% of property value'}</p>
+                <CardContent className="space-y-5">
+                  {copy.costs.map((item) => (
+                    <div
+                      key={item.title}
+                      className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm"
+                    >
+                      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                        <div className="md:max-w-[70%]">
+                          <h3 className="text-xl font-semibold text-slate-800">{item.title}</h3>
+                          <p className="mt-2 leading-relaxed text-slate-600">{item.description}</p>
+                        </div>
+                        <div className="text-right text-2xl font-bold text-slate-700">{item.price}</div>
                       </div>
                     </div>
+                  ))}
+                </CardContent>
+              </Card>
 
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-slate-800">
-                          {language === 'cs' ? 'Notářské poplatky' :
-                           language === 'it' ? 'Spese notarili' :
-                           'Notary Fees'}
-                        </h4>
-                        <p className="text-gray-600">{language === 'cs' ? '1-2,5% hodnoty nemovitosti' : language === 'it' ? '1-2,5% del valore dell\'immobile' : '1-2.5% of property value'}</p>
-                      </div>
+              <Card className="border-amber-200 bg-amber-50/80">
+                <CardContent className="p-6">
+                  <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div className="md:max-w-2xl">
+                      <h2 className="text-2xl font-bold text-slate-800">{launchCtaCopy.title}</h2>
+                      <p className="mt-2 leading-relaxed text-slate-700">{launchCtaCopy.body}</p>
                     </div>
-
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-slate-800">
-                          {language === 'cs' ? 'Poplatky realitní kanceláři' :
-                           language === 'it' ? 'Commissioni agenzia immobiliare' :
-                           'Real Estate Agency Fees'}
-                        </h4>
-                        <p className="text-gray-600">{language === 'cs' ? '3-4% hodnoty nemovitosti' : language === 'it' ? '3-4% del valore dell\'immobile' : '3-4% of property value'}</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-slate-800">
-                          {language === 'cs' ? 'Registrační a administrativní poplatky' :
-                           language === 'it' ? 'Spese di registrazione e amministrative' :
-                           'Registration and Administrative Fees'}
-                        </h4>
-                        <p className="text-gray-600">{language === 'cs' ? 'Cca €1 000-3 000' : language === 'it' ? 'Circa €1.000-3.000' : 'Approx €1,000-3,000'}</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-slate-800">
-                          {language === 'cs' ? 'Případné právní služby' :
-                           language === 'it' ? 'Eventuali servizi legali' :
-                           'Possible Legal Services'}
-                        </h4>
-                        <p className="text-gray-600">{language === 'cs' ? 'Podle potřeby' : language === 'it' ? 'A seconda delle necessità' : 'As needed'}</p>
-                      </div>
+                    <div className="flex justify-center">
+                      <Link href="/contact">
+                        <Button className="bg-slate-800 text-white hover:bg-slate-700">
+                          <FileText className="mr-2 h-4 w-4" />
+                          {launchCtaCopy.primary}
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Summary Card */}
-              <Card className="bg-gradient-to-br from-slate-700 to-slate-800 text-white">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-4">
-                    {language === 'cs' ? 'Kolik si připravit navíc?' :
-                     language === 'it' ? 'Quanto preparare in più?' :
-                     'How Much Extra to Prepare?'}
-                  </h3>
-                  <p className="text-slate-200 text-lg leading-relaxed mb-4">
-                    {language === 'cs' ? 'Obecně lze říci, že kromě ceny nemovitosti je rozumné počítat s rezervou přibližně 10–15 % z kupní ceny.' :
-                     language === 'it' ? 'In generale, oltre al prezzo dell\'immobile è ragionevole prevedere una riserva di circa il 10-15% del prezzo di acquisto.' :
-                     'Generally speaking, in addition to the property price, it\'s reasonable to budget for a reserve of approximately 10-15% of the purchase price.'}
-                  </p>
-                  <p className="text-slate-200 leading-relaxed">
-                    {language === 'cs' ? 'Každý případ je však individuální a přesná částka se může lišit.' :
-                     language === 'it' ? 'Tuttavia, ogni caso è individuale e l\'importo esatto può variare.' :
-                     'However, each case is individual and the exact amount may vary.'}
-                  </p>
-                </CardContent>
-              </Card>
-
-              {/* How to Avoid Surprises */}
-              <Card className="bg-white/90 backdrop-blur-sm">
+              <Card className="border-sky-200 bg-sky-50/80">
                 <CardHeader>
-                  <CardTitle className="text-2xl">
-                    {language === 'cs' ? 'Jak se vyhnout nepříjemným překvapením' :
-                     language === 'it' ? 'Come evitare spiacevoli sorprese' :
-                     'How to Avoid Unpleasant Surprises'}
-                  </CardTitle>
+                  <div className="flex items-center gap-3">
+                    <div className="rounded-full bg-sky-100 p-3 text-sky-700">
+                      <Euro className="h-5 w-5" />
+                    </div>
+                    <CardTitle className="text-2xl">{copy.risksTitle}</CardTitle>
+                  </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    {language === 'cs' ? 'Nejlepší cestou je mít:' :
-                     language === 'it' ? 'Il modo migliore è avere:' :
-                     'The best way is to have:'}
-                  </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">
-                        {language === 'cs' ? 'Přehled o celém procesu koupě' :
-                         language === 'it' ? 'Panoramica dell\'intero processo di acquisto' :
-                         'Overview of the entire purchase process'}
-                      </span>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">
-                        {language === 'cs' ? 'Jasno v reálných nákladech' :
-                         language === 'it' ? 'Chiarezza sui costi reali' :
-                         'Clarity on real costs'}
-                      </span>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">
-                        {language === 'cs' ? 'Podporu někoho, kdo zná italské prostředí' :
-                         language === 'it' ? 'Supporto di qualcuno che conosce l\'ambiente italiano' :
-                         'Support from someone who knows the Italian environment'}
-                      </span>
-                    </li>
+                  <p className="mb-4 font-semibold text-slate-800">{copy.risksLead}</p>
+                  <ul className="space-y-3 text-slate-700">
+                    {copy.risks.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-sky-700" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
-                  <p className="text-gray-700 leading-relaxed mt-4">
-                    {language === 'cs' ? 'Díky tomu se vyhnete chybám, zbytečným výdajům a stresu.' :
-                     language === 'it' ? 'Grazie a questo eviterete errori, spese inutili e stress.' :
-                     'Thanks to this, you will avoid mistakes, unnecessary expenses, and stress.'}
-                  </p>
                 </CardContent>
               </Card>
             </div>
 
-            {/* Navigation Footer */}
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Link href="/process">
-                <Button variant="outline" size="lg" className="w-full">
-                  <ArrowLeft className="h-5 w-5 mr-2" />
-                  {language === 'cs' ? 'Zpět na průvodce' :
-                   language === 'it' ? 'Torna alla guida' :
-                   'Back to Guide'}
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button size="lg" className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white">
-                  {language === 'cs' ? 'Kontaktujte nás' :
-                   language === 'it' ? 'Contattateci' :
-                   'Contact Us'}
-                </Button>
-              </Link>
-            </div>
+            <InformationalDisclaimer language={language} className="mt-14" />
           </div>
         </div>
       </div>
 
-      <AuthModal 
+      <AuthModal
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}

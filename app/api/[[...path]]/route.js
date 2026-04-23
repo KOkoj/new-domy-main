@@ -5,6 +5,7 @@ import { promises as fs } from 'fs'
 import path from 'path'
 import { client } from '../../../lib/sanity.js'
 import { FEATURED_PROPERTIES_QUERY, ALL_PROPERTIES_QUERY, PROPERTY_BY_SLUG_QUERY } from '../../../lib/sanity.js'
+import { requireAdminApiAccess } from '@/lib/adminAuth'
 
 // Force dynamic rendering - don't pre-render this route during build
 export const dynamic = 'force-dynamic'
@@ -60,11 +61,29 @@ async function getSupabaseClient() {
 async function readLocalPropertiesFromJson() {
   try {
     const raw = await fs.readFile(LOCAL_PROPERTIES_PATH, 'utf8')
-    const parsed = JSON.parse(raw)
+    const parsed = JSON.parse(raw.replace(/^\uFEFF/, ''))
     return Array.isArray(parsed) ? parsed : []
   } catch {
     return []
   }
+}
+
+function getPropertyMergeKey(property) {
+  return property?.slug?.current || property?._id || null
+}
+
+function mergePropertyCollections(primary = [], secondary = []) {
+  const merged = []
+  const seen = new Set()
+
+  for (const property of [...primary, ...secondary]) {
+    const key = getPropertyMergeKey(property)
+    if (key && seen.has(key)) continue
+    if (key) seen.add(key)
+    merged.push(property)
+  }
+
+  return merged
 }
 
 async function findLocalPropertyBySlug(slugOrId) {
@@ -101,9 +120,10 @@ export async function GET(request, { params }) {
       const search = searchParams.get('search')
 
       let properties = []
+      const localProperties = await readLocalPropertiesFromJson()
 
       if (!hasSanityConfig()) {
-        properties = await readLocalPropertiesFromJson()
+        properties = localProperties
       } else {
         let query = ALL_PROPERTIES_QUERY
         if (featured) {
@@ -111,14 +131,10 @@ export async function GET(request, { params }) {
         }
 
         console.log('Fetching properties from Sanity with query:', query)
-        properties = await client.fetch(query)
-        console.log(`Fetched ${properties.length} properties from Sanity`)
-
-        // Fallback to local store when Sanity returns no data
-        if (!Array.isArray(properties) || properties.length === 0) {
-          properties = await readLocalPropertiesFromJson()
-          console.log(`Fallback to local properties: ${properties.length} items`)
-        }
+        const sanityProperties = await client.fetch(query)
+        console.log(`Fetched ${Array.isArray(sanityProperties) ? sanityProperties.length : 0} properties from Sanity`)
+        properties = mergePropertyCollections(localProperties, Array.isArray(sanityProperties) ? sanityProperties : [])
+        console.log(`Merged properties total: ${properties.length}`)
       }
       
       // Apply additional filters if needed
@@ -241,6 +257,9 @@ export async function GET(request, { params }) {
 
     // Inquiries endpoints
     if (path[0] === 'inquiries') {
+      const access = await requireAdminApiAccess()
+      if (!access.ok) return access.response
+
       const { data: inquiries, error } = await supabase
         .from('inquiries')
         .select('*')

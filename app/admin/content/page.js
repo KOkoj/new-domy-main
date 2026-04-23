@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -34,35 +34,110 @@ import {
   Tag,
   ExternalLink,
   Languages,
-  FileText,
-  BookOpen,
-  Clock,
-  Link as LinkIcon,
-  Download
+  RefreshCcw
 } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { t } from '@/lib/translations'
+
+const DEFAULT_MILAN_PROPERTY = {
+  _id: 'new',
+  title: {
+    en: 'Finely Renovated Three-Room Apartment with Balcony in Milan',
+    cs: 'Pečlivě zrekonstruovaný třípokojový byt s balkonem v Miláně',
+    it: 'Trilocale finemente ristrutturato con balcone a Milano'
+  },
+  slug: { current: '' },
+  propertyType: 'apartment',
+  price: { amount: 399000, currency: 'EUR' },
+  specifications: { rooms: 3, bedrooms: 2, bathrooms: 1, squareFootage: 105, yearBuilt: 1960 },
+  location: {
+    city: {
+      name: { en: 'Milan, Cimiano', cs: 'Milan, Cimiano', it: 'Milano, Cimiano' },
+      slug: { current: 'milano' },
+      region: {
+        name: { en: 'Lombardy', cs: 'Lombardie', it: 'Lombardia' },
+        country: { en: 'Italy', cs: 'Italie', it: 'Italia' }
+      }
+    },
+    address: {
+      en: 'Cimiano, Via Atene 6',
+      cs: 'Cimiano, Via Atene 6',
+      it: 'Cimiano, Via Atene 6'
+    }
+  },
+  status: 'available',
+  featured: false,
+  description: {
+    en: "FINELY RENOVATED THREE-ROOM APARTMENT WITH BALCONY\n\nAre you looking for a spacious, fully renovated property in an elegant and well-inhabited setting? ICONACASA MILANO CIMIANO offers for sale a 105 sqm ground-floor unit, with a balcony facing inward onto a well-maintained condominium garden.\n\nINTERIOR: entrance into a hallway with a spacious living area. Next is a separate eat-in kitchen with access to the balcony; a large windowed bathroom with bathtub and shower box; and, completing the property, two bedrooms, both with windows, one of which has a comfortable walk-in closet.\n\nEXTERIOR: well-inhabited 1960s building, private cellar on the S1 level, half-day concierge service, monthly condominium fees of 300 euro, no planned/approved works, and possibility to purchase a parking space/garage on the semi-basement level.\n\nLOCATION: well-served area, a short walk from the Coop shopping center and from the M2 Cimiano (Via Palmanova) and M2 Udine metro stops. Bus lines 44, 51, 53 and 56 provide quick and easy connections across the city and to major rail interchange points. Many services are available in the area. The East Ring Road, at the end of Via Palmanova, provides access to the motorway network. The area is rich in greenery and parks: Parco Lambro and Parco della Martesana can be reached in a few minutes.",
+    cs: "PEČLIVĚ ZREKONSTRUOVANÝ TŘÍPOKOJOVÝ BYT S BALKONEM\n\nHledáte prostorné řešení po kompletní rekonstrukci v reprezentativním a dobře obydleném prostředí? ICONACASA MILANO CIMIANO nabízí k prodeji jednotku o velikosti 105 m2 v přízemí, vybavenou balkonem s vnitřní orientací do upraveného kondominiálního zahradního prostoru.\n\nINTERIÉR: vstup do chodby s prostornou denní částí. Následuje samostatná obytná kuchyň s přístupem na balkon; velká koupelna s oknem, vanou a sprchovým koutem; a na závěr dvě ložnice, obě s oknem, z nichž jedna má pohodlnou šatnu.\n\nEXTERIÉR: dobře obydlený dům ze 60. let, sklepní kóje v podlaží S1, služba vrátného půl dne, měsíční kondominiální poplatky 300 euro, žádné plánované/schválené práce, možnost dokoupení parkovacího místa/garáže v polosuterénu.\n\nPOLOHA: velmi dobře obsloužená zóna, pár kroků od nákupního centra Coop a od stanic metra M2 Cimiano (Via Palmanova) a M2 Udine.",
+    it: "TRILOCALE FINEMENTE RISTRUTTURATO CON BALCONE\n\nCerchi un'ampia soluzione completamente ristrutturata in un contesto signorile e ben abitato? ICONACASA MILANO CIMIANO propone in vendita una soluzione di 105 mq sita al piano terra, dotata di balcone con esposizione interna su giardino condominiale ben curato.\n\nINTERNO: ingresso su disimpegno con spaziosa zona giorno. A seguire cucina abitabile con affaccio sul balcone; ampio bagno finestrato con vasca e box doccia; due camere da letto entrambe finestrate, di cui una con comoda cabina armadio.\n\nESTERNO: stabile anni '60 ben abitato, cantina al piano S1 di pertinenza, servizio di portineria mezza giornata, spese condominiali di 300 euro mensili, nessun lavoro previsto/deliberato, possibilità di acquisto posto auto/box al piano seminterrato.\n\nPOSIZIONE: zona ben servita, a pochi passi da Coop e dalla metropolitana M2 Cimiano (Via Palmanova) e M2 Udine. Autobus 44, 51, 53, 56 con collegamenti rapidi verso la città e i principali nodi ferroviari."
+  },
+  images: [
+    '/uploads/properties/lombardia-appartamento/01-bagno.png',
+    '/uploads/properties/lombardia-appartamento/02-cuci2.png',
+    '/uploads/properties/lombardia-appartamento/03-cucina.png',
+    '/uploads/properties/lombardia-appartamento/04-ext.png',
+    '/uploads/properties/lombardia-appartamento/05-letto.png',
+    '/uploads/properties/lombardia-appartamento/06-letto2.png',
+    '/uploads/properties/lombardia-appartamento/07-sogg.png',
+    '/uploads/properties/lombardia-appartamento/08-stanza.png',
+    '/uploads/properties/lombardia-appartamento/09-vera.png'
+  ],
+  mainImage: 0,
+  amenities: [
+    { name: { en: 'Renovated', cs: 'Po rekonstrukci', it: 'Ristrutturato' } },
+    { name: { en: 'Balcony', cs: 'Balkon', it: 'Balcone' } },
+    { name: { en: 'Cellar', cs: 'Sklep', it: 'Cantina' } },
+    { name: { en: 'Walk-in closet', cs: 'Satna', it: 'Cabina armadio' } },
+    { name: { en: 'Half-day concierge service', cs: 'Vratny pul dne', it: 'Portineria mezza giornata' } }
+  ],
+  seoTitle: {
+    en: 'Renovated 2-Bed Apartment with Balcony in Milan Cimiano',
+    cs: 'Zrekonstruovaný být 3+kk s balkonem v Milane Cimiano',
+    it: 'Trilocale ristrutturato con balcone a Milano Cimiano'
+  },
+  seoDescription: {
+    en: '105 sqm ground-floor three-room apartment in Milan Cimiano with balcony, separate kitchen, cellar and concierge service. Close to M2 Cimiano and M2 Udine.',
+    cs: 'Třípokojový byt 105 m2 v přízemí v Miláně Cimiano s balkonem, samostatnou kuchyní, sklepem a vrátným. Blízko metra M2 Cimiano a M2 Udine.',
+    it: 'Trilocale di 105 mq al piano terra a Milano Cimiano: balcone, cucina abitabile, cantina e servizio di portineria. Vicino a M2 Cimiano e M2 Udine.'
+  },
+  keywords: ['milano', 'cimiano', 'trilocale', 'ristrutturato'],
+  sourceUrl: '',
+  publishAt: null,
+  scheduledPublish: false
+}
 
 export default function ContentManagement() {
   const [activeTab, setActiveTab] = useState('properties')
   const [properties, setProperties] = useState([])
   const [regions, setRegions] = useState([])
-  const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [editingItem, setEditingItem] = useState(null)
-  const [editingArticle, setEditingArticle] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isArticleModalOpen, setIsArticleModalOpen] = useState(false)
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
   const [sanityConfigured, setSanityConfigured] = useState(true)
   const [uploadingImage, setUploadingImage] = useState(false)
   const [keywordInput, setKeywordInput] = useState('')
-  const [tagInput, setTagInput] = useState('')
   const [translating, setTranslating] = useState({})
-  const [seeding, setSeeding] = useState(false)
   const [language, setLanguage] = useState('cs')
+  const [editingRegion, setEditingRegion] = useState(null)
+  const [isRegionModalOpen, setIsRegionModalOpen] = useState(false)
+  const [syncingProperties, setSyncingProperties] = useState(false)
+  const [autoSyncAttempted, setAutoSyncAttempted] = useState(false)
+
+  const syncLabel = language === 'cs' ? 'Synchronizovat' : language === 'it' ? 'Sincronizza' : 'Sync'
+  const syncDoneMessage = (count) => {
+    if (count > 0) {
+      if (language === 'cs') return `Synchronizovano ${count} nemovitostí do admin panelu.`
+      if (language === 'it') return `Sincronizzate ${count} proprietà nel pannello admin.`
+      return `Synced ${count} properties into Admin panel.`
+    }
+    if (language === 'cs') return 'Nemovitosti v admin panelu jsou jiz synchronizovane.'
+    if (language === 'it') return 'Le proprietà nel pannello admin sono già sincronizzate.'
+    return 'Admin properties were already in sync.'
+  }
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language') || 'cs'
@@ -86,37 +161,173 @@ export default function ContentManagement() {
     loadContent()
   }, [activeTab])
 
+  useEffect(() => {
+    // Safety net: if "new property" modal opens with an empty draft, prefill Milan template
+    if (isModalOpen && editingItem?._id === 'new' && !editingItem?.title?.en) {
+      setEditingItem(JSON.parse(JSON.stringify(DEFAULT_MILAN_PROPERTY)))
+    }
+  }, [isModalOpen, editingItem?._id, editingItem?.title?.en])
+
   const loadContent = async () => {
+    const loadPropertiesFallback = async () => {
+      const fallbackResponse = await fetch('/api/properties', { cache: 'no-store' })
+      if (!fallbackResponse.ok) return []
+      const fallbackData = await fallbackResponse.json()
+      return Array.isArray(fallbackData) ? fallbackData : []
+    }
+
     try {
       setLoading(true)
       setError(null)
 
-      const typeMap = { properties: 'properties', regions: 'regions', articles: 'articles' }
-      const type = typeMap[activeTab] || 'properties'
-      const response = await fetch(`/api/content?type=${type}`)
+      const type = activeTab === 'properties' ? 'properties' : 'regions'
+      const response = await fetch(`/api/content?type=${type}`, { cache: 'no-store' })
       const result = await response.json()
 
       if (!response.ok) {
         if (result.error === 'Sanity CMS not configured') {
           setSanityConfigured(false)
         }
+
+        // Secondary fallback for properties list used by admin
+        if (activeTab === 'properties') {
+          const fallbackProperties = await loadPropertiesFallback()
+          setProperties(fallbackProperties)
+          if (fallbackProperties.length > 0) {
+            return
+          }
+        }
+
         throw new Error(result.error || 'Failed to load content')
       }
 
       if (activeTab === 'properties') {
-        setProperties(result.properties || [])
-      } else if (activeTab === 'regions') {
+        const incoming = Array.isArray(result.properties) ? result.properties : []
+        if (incoming.length > 0) {
+          setProperties(incoming)
+        } else {
+          const fallbackProperties = await loadPropertiesFallback()
+          setProperties(fallbackProperties)
+        }
+      } else {
         setRegions(result.regions || [])
-      } else if (activeTab === 'articles') {
-        setArticles(result.articles || [])
       }
     } catch (err) {
       console.error('Error loading content:', err)
+
+      // Last-resort fallback for properties tab
+      if (activeTab === 'properties') {
+        try {
+          const fallbackProperties = await loadPropertiesFallback()
+          if (fallbackProperties.length > 0) {
+            setProperties(fallbackProperties)
+            setError(null)
+            return
+          }
+        } catch {
+          // keep original error below
+        }
+      }
+
       setError(err.message)
     } finally {
       setLoading(false)
     }
   }
+
+  const syncPropertiesFromPublicApi = async () => {
+    try {
+      setSyncingProperties(true)
+      setError(null)
+
+      // 1) Read visible/public properties (same source used by /properties page)
+      const publicResponse = await fetch('/api/properties', { cache: 'no-store' })
+      if (!publicResponse.ok) {
+        throw new Error('Failed to load public properties')
+      }
+      const publicProperties = await publicResponse.json()
+      if (!Array.isArray(publicProperties) || publicProperties.length === 0) {
+        throw new Error('No public properties found to sync')
+      }
+
+      // 2) Read current admin properties
+      const adminResponse = await fetch('/api/content?type=properties', { cache: 'no-store' })
+      const adminJson = await adminResponse.json().catch(() => ({}))
+      const current = Array.isArray(adminJson?.properties) ? adminJson.properties : []
+      const existingSlugs = new Set(
+        current
+          .map((item) => item?.slug?.current)
+          .filter(Boolean)
+      )
+
+      // 3) Create missing properties via admin API so they become editable from panel
+      let created = 0
+      for (const item of publicProperties) {
+        const slug = item?.slug?.current
+        if (!slug || existingSlugs.has(slug)) continue
+
+        const payload = {
+          title: item.title || { en: '', cs: '', it: '' },
+          propertyType: item.propertyType || 'apartment',
+          price: item.price || { amount: 0, currency: 'EUR' },
+          specifications: item.specifications || { rooms: 0, bedrooms: 0, bathrooms: 0, squareFootage: 0 },
+          location: item.location || {
+            city: {
+              name: { en: 'Italy', cs: 'Italie', it: 'Italia' },
+              slug: { current: 'italy' },
+              region: {
+                name: { en: 'Italy', cs: 'Italie', it: 'Italia' },
+                country: { en: 'Italy', cs: 'Italie', it: 'Italia' }
+              }
+            },
+            address: { en: '', cs: '', it: '' }
+          },
+          status: item.status || 'available',
+          featured: Boolean(item.featured),
+          description: item.description || { en: '', cs: '', it: '' },
+          images: item.images || [],
+          mainImage: item.mainImage ?? 0,
+          amenities: item.amenities || [],
+          seoTitle: item.seoTitle || { en: '', cs: '', it: '' },
+          seoDescription: item.seoDescription || { en: '', cs: '', it: '' },
+          keywords: item.keywords || [],
+          sourceUrl: item.sourceUrl || ''
+        }
+
+        const createResponse = await fetch('/api/content', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'property', data: payload })
+        })
+        if (!createResponse.ok) {
+          const err = await createResponse.json().catch(() => ({}))
+          throw new Error(err?.error || 'Failed to create synced property')
+        }
+        created += 1
+      }
+
+      await loadContent()
+      setSuccess(syncDoneMessage(created))
+    } catch (err) {
+      console.error('Sync properties error:', err)
+      setError(err.message || 'Failed to sync properties')
+    } finally {
+      setSyncingProperties(false)
+    }
+  }
+
+  useEffect(() => {
+    if (
+      activeTab === 'properties' &&
+      !loading &&
+      !syncingProperties &&
+      properties.length === 0 &&
+      !autoSyncAttempted
+    ) {
+      setAutoSyncAttempted(true)
+      syncPropertiesFromPublicApi()
+    }
+  }, [activeTab, loading, syncingProperties, properties.length, autoSyncAttempted])
 
   const formatPrice = (price) => {
     if (!price || !price.amount) return 'N/A'
@@ -128,11 +339,31 @@ export default function ContentManagement() {
     }).format(price.amount)
   }
 
+  const getImageSrc = (image) => {
+    if (!image) return ''
+    if (typeof image === 'string') return image
+    return image.url || image.asset?.url || ''
+  }
+
   const handleEditProperty = (property) => {
     // Ensure all fields have proper defaults for editing
     setEditingItem({
       ...property,
       title: { en: '', cs: '', it: '', ...property.title },
+      price: { amount: 0, currency: 'EUR', ...(property.price || {}) },
+      specifications: { rooms: 0, bedrooms: 0, bathrooms: 0, squareFootage: 0, ...(property.specifications || {}) },
+      location: {
+        city: {
+          name: { en: '', cs: '', it: '', ...(property.location?.city?.name || {}) },
+          slug: property.location?.city?.slug || { current: '' },
+          region: property.location?.city?.region || {
+            name: { en: '', cs: '', it: '' },
+            country: { en: 'Italy', cs: 'Italie', it: 'Italia' }
+          }
+        },
+        address: { en: '', cs: '', it: '', ...(property.location?.address || {}) },
+        ...(property.location?.coordinates ? { coordinates: property.location.coordinates } : {})
+      },
       images: property.images || [],
       mainImage: property.mainImage ?? null,
       seoTitle: { en: '', cs: '', it: '', ...(property.seoTitle || {}) },
@@ -140,7 +371,9 @@ export default function ContentManagement() {
       keywords: property.keywords || [],
       publishAt: property.publishAt || null,
       scheduledPublish: property.scheduledPublish || false,
-      description: { en: '', cs: '', it: '', ...(property.description || {}) }
+      description: { en: '', cs: '', it: '', ...(property.description || {}) },
+      amenities: property.amenities || [],
+      sourceUrl: property.sourceUrl || ''
     })
     setKeywordInput('')
     setIsModalOpen(true)
@@ -303,11 +536,6 @@ export default function ContentManagement() {
   }
 
   const handleSaveProperty = async () => {
-    if (!sanityConfigured) {
-      setError('Sanity CMS is not configured. Please add Sanity credentials to your environment variables.')
-      return
-    }
-
     setSaving(true)
     setError(null)
     setSuccess(null)
@@ -330,6 +558,9 @@ export default function ContentManagement() {
               description: editingItem.description || { en: '', it: '' },
               images: editingItem.images || [],
               mainImage: editingItem.mainImage,
+              location: editingItem.location,
+              amenities: editingItem.amenities || [],
+              sourceUrl: editingItem.sourceUrl || '',
               seoTitle: editingItem.seoTitle || { en: '', it: '' },
               seoDescription: editingItem.seoDescription || { en: '', it: '' },
               keywords: editingItem.keywords || [],
@@ -370,6 +601,9 @@ export default function ContentManagement() {
               description: editingItem.description,
               images: editingItem.images,
               mainImage: editingItem.mainImage,
+              location: editingItem.location,
+              amenities: editingItem.amenities || [],
+              sourceUrl: editingItem.sourceUrl || '',
               seoTitle: editingItem.seoTitle,
               seoDescription: editingItem.seoDescription,
               keywords: editingItem.keywords,
@@ -406,11 +640,6 @@ export default function ContentManagement() {
       return
     }
 
-    if (!sanityConfigured) {
-      setError(t('admin.content.sanityNotConfigured', language))
-      return
-    }
-
     try {
       setError(null)
       const response = await fetch(`/api/content?type=property&id=${propertyId}`, {
@@ -429,281 +658,152 @@ export default function ContentManagement() {
   }
 
   const createNewProperty = () => {
-    setEditingItem({
-      _id: 'new',
-      title: { en: '', cs: '', it: '' },
-      slug: { current: '' },
-      propertyType: 'villa',
-      price: { amount: 0, currency: 'EUR' },
-      specifications: { bedrooms: 0, bathrooms: 0, squareFootage: 0 },
-      location: { city: { name: { en: '', cs: '', it: '' } } },
-      status: 'available',
-      featured: false,
-      description: { en: '', cs: '', it: '' },
-      images: [],
-      mainImage: null,
-      seoTitle: { en: '', cs: '', it: '' },
-      seoDescription: { en: '', cs: '', it: '' },
-      keywords: [],
-      publishAt: null,
-      scheduledPublish: false
-    })
+    setEditingItem(JSON.parse(JSON.stringify(DEFAULT_MILAN_PROPERTY)))
     setKeywordInput('')
     setIsModalOpen(true)
   }
 
-  // === Article Handlers ===
-  const createNewArticle = () => {
-    setEditingArticle({
-      _id: 'new',
-      slug: '',
-      title: { en: '', cs: '', it: '' },
-      excerpt: { en: '', cs: '', it: '' },
-      date: new Date().toISOString().split('T')[0],
-      readTime: '',
-      category: { en: '', cs: '', it: '' },
-      author: '',
-      image: '',
-      content: { en: '', cs: '', it: '' },
-      tags: [],
-      link: '',
-      articleType: 'blog',
-      relatedRegions: []
-    })
-    setTagInput('')
-    setIsArticleModalOpen(true)
-  }
+  const normalizeRegionForEditing = (region = {}) => {
+    const topCities = Array.isArray(region.topCities) ? region.topCities : []
+    const highlights = Array.isArray(region.highlights) ? region.highlights : []
 
-  const handleEditArticle = (article) => {
-    setEditingArticle({
-      ...article,
-      title: { en: '', cs: '', it: '', ...article.title },
-      excerpt: { en: '', cs: '', it: '', ...article.excerpt },
-      category: { en: '', cs: '', it: '', ...(article.category || {}) },
-      content: { en: '', cs: '', it: '', ...(article.content || {}) },
-      tags: article.tags || [],
-      relatedRegions: article.relatedRegions || [],
-      link: article.link || '',
-      author: article.author || '',
-      image: article.image || '',
-    })
-    setTagInput('')
-    setIsArticleModalOpen(true)
-  }
-
-  const handleSaveArticle = async () => {
-    if (!sanityConfigured) {
-      setError('Sanity CMS is not configured.')
-      return
+    return {
+      ...region,
+      _id: region._id || 'new',
+      name: {
+        en: region?.name?.en || '',
+        cs: region?.name?.cs || '',
+        it: region?.name?.it || ''
+      },
+      slug: {
+        _type: 'slug',
+        current: region?.slug?.current || ''
+      },
+      country: region.country || 'Italy',
+      description: {
+        en: region?.description?.en || '',
+        cs: region?.description?.cs || '',
+        it: region?.description?.it || ''
+      },
+      image: region.image || '',
+      propertyCount: Number(region.propertyCount || 0),
+      averagePrice: Number(region.averagePrice || 0),
+      priceRange: {
+        min: Number(region?.priceRange?.min || 0),
+        max: Number(region?.priceRange?.max || 0)
+      },
+      topCities,
+      highlights,
+      topCitiesText: topCities.join(', '),
+      highlightsText: highlights.join(', '),
+      popularity: Number(region.popularity || 0)
     }
+  }
+
+  const createNewRegion = () => {
+    setEditingRegion(
+      normalizeRegionForEditing({
+        _id: 'new',
+        name: { en: '', cs: '', it: '' },
+        slug: { _type: 'slug', current: '' },
+        country: 'Italy',
+        description: { en: '', cs: '', it: '' },
+        image: '',
+        propertyCount: 0,
+        averagePrice: 0,
+        priceRange: { min: 0, max: 0 },
+        topCities: [],
+        highlights: [],
+        popularity: 0
+      })
+    )
+    setIsRegionModalOpen(true)
+  }
+
+  const handleEditRegion = (region) => {
+    setEditingRegion(normalizeRegionForEditing(region))
+    setIsRegionModalOpen(true)
+  }
+
+  const handleSaveRegion = async () => {
+    if (!editingRegion) return
 
     setSaving(true)
     setError(null)
     setSuccess(null)
 
     try {
-      if (editingArticle._id === 'new') {
-        const response = await fetch('/api/content', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            type: 'article',
-            data: {
-              slug: editingArticle.slug,
-              title: editingArticle.title,
-              excerpt: editingArticle.excerpt,
-              date: editingArticle.date,
-              readTime: editingArticle.readTime,
-              category: editingArticle.category,
-              author: editingArticle.author,
-              image: editingArticle.image,
-              content: editingArticle.content,
-              tags: editingArticle.tags,
-              link: editingArticle.link,
-              articleType: editingArticle.articleType,
-              relatedRegions: editingArticle.relatedRegions
-            }
-          })
-        })
-
-        const result = await response.json()
-        if (!response.ok) {
-          const errorMessage = result.details 
-            ? `${result.error}: ${result.details}`
-            : result.error || 'Failed to create article'
-          throw new Error(errorMessage)
-        }
-
-        setSuccess('Article created successfully!')
-      } else {
-        const response = await fetch('/api/content', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            type: 'article',
-            id: editingArticle._id,
-            data: {
-              slug: editingArticle.slug,
-              title: editingArticle.title,
-              excerpt: editingArticle.excerpt,
-              date: editingArticle.date,
-              readTime: editingArticle.readTime,
-              category: editingArticle.category,
-              author: editingArticle.author,
-              image: editingArticle.image,
-              content: editingArticle.content,
-              tags: editingArticle.tags,
-              link: editingArticle.link,
-              articleType: editingArticle.articleType,
-              relatedRegions: editingArticle.relatedRegions
-            }
-          })
-        })
-
-        const result = await response.json()
-        if (!response.ok) {
-          throw new Error(result.error || 'Failed to update article')
-        }
-
-        setSuccess('Article updated successfully!')
+      const payload = {
+        name: editingRegion.name,
+        slug: {
+          _type: 'slug',
+          current: editingRegion?.slug?.current || ''
+        },
+        country: editingRegion.country,
+        description: editingRegion.description,
+        image: editingRegion.image,
+        propertyCount: Number(editingRegion.propertyCount || 0),
+        averagePrice: Number(editingRegion.averagePrice || 0),
+        priceRange: {
+          min: Number(editingRegion?.priceRange?.min || 0),
+          max: Number(editingRegion?.priceRange?.max || 0)
+        },
+        topCities: (editingRegion.topCitiesText || '')
+          .split(',')
+          .map((item) => item.trim())
+          .filter(Boolean),
+        highlights: (editingRegion.highlightsText || '')
+          .split(',')
+          .map((item) => item.trim())
+          .filter(Boolean),
+        popularity: Number(editingRegion.popularity || 0)
       }
 
-      setIsArticleModalOpen(false)
-      setEditingArticle(null)
+      const isNew = editingRegion._id === 'new'
+      const response = await fetch('/api/content', {
+        method: isNew ? 'POST' : 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(
+          isNew
+            ? { type: 'region', data: payload }
+            : { type: 'region', id: editingRegion._id, data: payload }
+        )
+      })
+
+      const result = await response.json()
+      if (!response.ok) {
+        throw new Error(result.error || (isNew ? 'Failed to create region' : 'Failed to update region'))
+      }
+
+      setSuccess(isNew ? 'Region created successfully.' : 'Region updated successfully.')
+      setIsRegionModalOpen(false)
+      setEditingRegion(null)
       await loadContent()
     } catch (err) {
-      console.error('Error saving article:', err)
+      console.error('Error saving region:', err)
       setError(err.message)
     } finally {
       setSaving(false)
     }
   }
 
-  const handleDeleteArticle = async (articleId) => {
-    if (!confirm('Are you sure you want to delete this article? This action cannot be undone.')) {
+  const handleDeleteRegion = async (regionId) => {
+    if (!confirm(t('admin.content.deleteConfirm', language))) {
       return
     }
 
     try {
       setError(null)
-      const response = await fetch(`/api/content?type=article&id=${articleId}`, {
+      const response = await fetch(`/api/content?type=region&id=${regionId}`, {
         method: 'DELETE'
       })
-
       const result = await response.json()
-      if (!response.ok) throw new Error(result.error || 'Failed to delete article')
-
-      setSuccess('Article deleted successfully!')
+      if (!response.ok) throw new Error(result.error || 'Failed to delete region')
+      setSuccess('Region deleted successfully.')
       await loadContent()
     } catch (err) {
-      console.error('Error deleting article:', err)
+      console.error('Error deleting region:', err)
       setError(err.message)
-    }
-  }
-
-  const handleAddTag = () => {
-    if (!tagInput.trim()) return
-    setEditingArticle(prev => ({
-      ...prev,
-      tags: [...(prev.tags || []), tagInput.trim()]
-    }))
-    setTagInput('')
-  }
-
-  const handleRemoveTag = (index) => {
-    setEditingArticle(prev => ({
-      ...prev,
-      tags: prev.tags.filter((_, i) => i !== index)
-    }))
-  }
-
-  const handleSeedArticles = async () => {
-    if (!confirm('This will import all existing hardcoded articles into the CMS. Articles that already exist will be skipped. Continue?')) {
-      return
-    }
-
-    setSeeding(true)
-    setError(null)
-
-    try {
-      const response = await fetch('/api/seed-articles', {
-        method: 'POST'
-      })
-
-      const result = await response.json()
-      if (!response.ok) throw new Error(result.error || 'Failed to seed articles')
-
-      setSuccess(`Successfully imported ${result.created} articles! (${result.skipped} already existed)`)
-      await loadContent()
-    } catch (err) {
-      console.error('Error seeding articles:', err)
-      setError(err.message)
-    } finally {
-      setSeeding(false)
-    }
-  }
-
-  const handleArticleTranslate = async (field, sourceLang, targetLang) => {
-    const translationKey = `article-${field}-${targetLang}`
-    setTranslating(prev => ({ ...prev, [translationKey]: true }))
-
-    try {
-      let sourceText = ''
-      let context = ''
-      
-      if (field === 'title') {
-        sourceText = editingArticle.title[sourceLang]
-        context = 'Blog article title'
-      } else if (field === 'excerpt') {
-        sourceText = editingArticle.excerpt[sourceLang]
-        context = 'Blog article excerpt/summary'
-      } else if (field === 'content') {
-        sourceText = editingArticle.content[sourceLang]
-        context = 'Blog article content (HTML format, preserve HTML tags)'
-      } else if (field === 'category') {
-        sourceText = editingArticle.category[sourceLang]
-        context = 'Article category name'
-      }
-
-      if (!sourceText) {
-        setError('No text to translate')
-        setTranslating(prev => ({ ...prev, [translationKey]: false }))
-        return
-      }
-
-      const response = await fetch('/api/translate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          text: sourceText,
-          sourceLang,
-          targetLang,
-          context
-        })
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Translation failed')
-      }
-
-      const { translatedText } = await response.json()
-
-      setEditingArticle(prev => ({
-        ...prev,
-        [field]: {
-          ...prev[field],
-          [targetLang]: translatedText
-        }
-      }))
-
-      setSuccess('Translated successfully!')
-      setTimeout(() => setSuccess(null), 3000)
-    } catch (err) {
-      console.error('Translation error:', err)
-      setError(err.message || 'Translation failed')
-    } finally {
-      setTranslating(prev => ({ ...prev, [translationKey]: false }))
     }
   }
 
@@ -763,12 +863,8 @@ export default function ContentManagement() {
 
       {/* Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="properties">{t('admin.content.properties', language)}</TabsTrigger>
-          <TabsTrigger value="articles">
-            <FileText className="h-4 w-4 mr-1" />
-            {language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles'}
-          </TabsTrigger>
           <TabsTrigger value="regions">{t('admin.content.regions', language)}</TabsTrigger>
           <TabsTrigger value="settings">{t('admin.content.settings', language)}</TabsTrigger>
         </TabsList>
@@ -777,10 +873,20 @@ export default function ContentManagement() {
         <TabsContent value="properties" className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold">{t('admin.content.propertyManagement', language)}</h2>
-            <Button onClick={createNewProperty}>
-              <Plus className="h-4 w-4 mr-2" />
-              {t('admin.content.addProperty', language)}
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" onClick={syncPropertiesFromPublicApi} disabled={syncingProperties}>
+                {syncingProperties ? (
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                ) : (
+                  <RefreshCcw className="h-4 w-4 mr-2" />
+                )}
+                {syncLabel}
+              </Button>
+              <Button onClick={createNewProperty}>
+                <Plus className="h-4 w-4 mr-2" />
+                {t('admin.content.addProperty', language)}
+              </Button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -847,16 +953,22 @@ export default function ContentManagement() {
                             <DollarSign className="h-4 w-4 mr-1" />
                             {formatPrice(property.price)}
                           </span>
+                            {property.specifications?.rooms !== undefined && (
+                          <span className="flex items-center">
+                            <Home className="h-4 w-4 mr-1" />
+                            {property.specifications.rooms} {language === 'cs' ? 'mistnosti' : language === 'it' ? 'locali' : 'rooms'}
+                          </span>
+                            )}
                             {property.specifications?.bedrooms !== undefined && (
                           <span className="flex items-center">
                             <Bed className="h-4 w-4 mr-1" />
-                            {property.specifications.bedrooms} beds
+                            {property.specifications.bedrooms} {language === 'cs' ? 'loznice' : language === 'it' ? 'camere' : 'beds'}
                           </span>
                             )}
                             {property.specifications?.bathrooms !== undefined && (
                           <span className="flex items-center">
                             <Bath className="h-4 w-4 mr-1" />
-                            {property.specifications.bathrooms} baths
+                            {property.specifications.bathrooms} {language === 'cs' ? 'koupelny' : language === 'it' ? 'bagni' : 'baths'}
                           </span>
                             )}
                         </div>
@@ -877,7 +989,6 @@ export default function ContentManagement() {
                           variant="outline" 
                           size="sm" 
                           onClick={() => handleEditProperty(property)}
-                          disabled={!sanityConfigured}
                         >
                         <Edit className="h-4 w-4" />
                       </Button>
@@ -885,7 +996,6 @@ export default function ContentManagement() {
                           variant="outline" 
                           size="sm" 
                           onClick={() => handleDeleteProperty(property._id)}
-                          disabled={!sanityConfigured}
                         >
                         <Trash2 className="h-4 w-4" />
                       </Button>
@@ -903,201 +1013,21 @@ export default function ContentManagement() {
                       : t('admin.content.configureSanity', language)}
                   </p>
                   {sanityConfigured && (
+                    <div className="flex items-center justify-center gap-2">
+                    <Button variant="outline" onClick={syncPropertiesFromPublicApi} disabled={syncingProperties}>
+                      {syncingProperties ? (
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      ) : (
+                        <RefreshCcw className="h-4 w-4 mr-2" />
+                      )}
+                      {syncLabel}
+                    </Button>
                     <Button onClick={createNewProperty}>
                       <Plus className="h-4 w-4 mr-2" />
                       {t('admin.content.addFirstProperty', language)}
                     </Button>
-                  )}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        {/* Articles Tab */}
-        <TabsContent value="articles" className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold">
-              {language === 'cs' ? 'Správa článků' : language === 'it' ? 'Gestione articoli' : 'Article Management'}
-            </h2>
-            <div className="flex items-center space-x-2">
-              {articles.length === 0 && (
-                <Button 
-                  variant="outline" 
-                  onClick={handleSeedArticles}
-                  disabled={seeding || !sanityConfigured}
-                >
-                  {seeding ? (
-                    <>
-                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                      {language === 'cs' ? 'Importuji...' : 'Importing...'}
-                    </>
-                  ) : (
-                    <>
-                      <Download className="h-4 w-4 mr-2" />
-                      {language === 'cs' ? 'Importovat existující články' : language === 'it' ? 'Importa articoli esistenti' : 'Import Existing Articles'}
-                    </>
-                  )}
-                </Button>
-              )}
-              <Button onClick={createNewArticle} disabled={!sanityConfigured}>
-                <Plus className="h-4 w-4 mr-2" />
-                {language === 'cs' ? 'Přidat článek' : language === 'it' ? 'Aggiungi articolo' : 'Add Article'}
-              </Button>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <Card>
-              <CardContent className="p-6 text-center">
-                <FileText className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold">{articles.length}</div>
-                <div className="text-sm text-gray-600">
-                  {language === 'cs' ? 'Celkem článků' : language === 'it' ? 'Articoli totali' : 'Total Articles'}
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4 text-center">
-                <BookOpen className="h-8 w-8 text-slate-800 mx-auto mb-2" />
-                <div className="text-2xl font-bold">{articles.filter(a => a.articleType === 'blog').length}</div>
-                <div className="text-sm text-gray-600">
-                  {language === 'cs' ? 'Blogové články' : language === 'it' ? 'Articoli blog' : 'Blog Articles'}
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4 text-center">
-                <MapPin className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold">{articles.filter(a => a.articleType === 'region').length}</div>
-                <div className="text-sm text-gray-600">
-                  {language === 'cs' ? 'Regionální články' : language === 'it' ? 'Articoli regionali' : 'Region Articles'}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>
-                {language === 'cs' ? 'Všechny články' : language === 'it' ? 'Tutti gli articoli' : 'All Articles'}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6">
-              {loading ? (
-                <div className="flex items-center justify-center py-12">
-                  <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-                  <span className="ml-3 text-gray-600">
-                    {language === 'cs' ? 'Načítám články...' : 'Loading articles...'}
-                  </span>
-                </div>
-              ) : articles.length > 0 ? (
-                <div className="space-y-4">
-                  {articles.map((article) => (
-                    <div key={article._id} className="flex items-center justify-between p-5 border rounded-lg hover:bg-gray-50 transition-colors">
-                      <div className="flex items-center space-x-5 flex-1">
-                        <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          {article.image ? (
-                            <img src={article.image} alt="" className="w-16 h-16 object-cover rounded-lg" />
-                          ) : (
-                            <FileText className="h-7 w-7 text-gray-400" />
-                          )}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center space-x-2 mb-1.5">
-                            <h3 className="font-semibold text-gray-900 truncate">
-                              {article.title?.en || article.title?.cs || 'Untitled Article'}
-                            </h3>
-                            <Badge variant="secondary" className="capitalize text-xs">
-                              {article.articleType === 'region' 
-                                ? (language === 'cs' ? 'Region' : 'Region') 
-                                : 'Blog'}
-                            </Badge>
-                            {article.category?.en && (
-                              <Badge variant="outline" className="text-xs">
-                                {article.category[language] || article.category.en}
-                              </Badge>
-                            )}
-                          </div>
-                          <p className="text-sm text-gray-500 truncate mb-1">
-                            {article.excerpt?.[language] || article.excerpt?.en || ''}
-                          </p>
-                          <div className="flex items-center gap-3 text-xs text-gray-400">
-                            {article.date && (
-                              <span className="flex items-center gap-1">
-                                <Calendar className="h-3 w-3" />
-                                {article.date}
-                              </span>
-                            )}
-                            {article.readTime && (
-                              <span className="flex items-center gap-1">
-                                <Clock className="h-3 w-3" />
-                                {article.readTime}
-                              </span>
-                            )}
-                            {article.author && (
-                              <span>{article.author}</span>
-                            )}
-                            {article.link && (
-                              <span className="flex items-center gap-1 text-blue-500">
-                                <LinkIcon className="h-3 w-3" />
-                                {article.link}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-2 ml-4">
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          onClick={() => handleEditArticle(article)}
-                          disabled={!sanityConfigured}
-                        >
-                          <Edit className="h-4 w-4" />
-                        </Button>
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          onClick={() => handleDeleteArticle(article._id)}
-                          disabled={!sanityConfigured}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-12">
-                  <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">
-                    {language === 'cs' ? 'Žádné články nenalezeny' : language === 'it' ? 'Nessun articolo trovato' : 'No articles found'}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    {language === 'cs' 
-                      ? 'Importujte existující články nebo vytvořte nový.' 
-                      : 'Import existing articles or create a new one.'}
-                  </p>
-                  <div className="flex items-center justify-center gap-3">
-                    <Button variant="outline" onClick={handleSeedArticles} disabled={seeding || !sanityConfigured}>
-                      {seeding ? (
-                        <>
-                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                          {language === 'cs' ? 'Importuji...' : 'Importing...'}
-                        </>
-                      ) : (
-                        <>
-                          <Download className="h-4 w-4 mr-2" />
-                          {language === 'cs' ? 'Importovat existující' : 'Import Existing'}
-                        </>
-                      )}
-                    </Button>
-                    <Button onClick={createNewArticle} disabled={!sanityConfigured}>
-                      <Plus className="h-4 w-4 mr-2" />
-                      {language === 'cs' ? 'Vytvořit článek' : 'Create Article'}
-                    </Button>
-                  </div>
+                  )}
                 </div>
               )}
             </CardContent>
@@ -1108,7 +1038,7 @@ export default function ContentManagement() {
         <TabsContent value="regions" className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold">{t('admin.content.regionManagement', language)}</h2>
-            <Button disabled={!sanityConfigured}>
+            <Button onClick={createNewRegion}>
               <Plus className="h-4 w-4 mr-2" />
               {t('admin.content.addRegion', language)}
             </Button>
@@ -1143,10 +1073,10 @@ export default function ContentManagement() {
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
-                        <Button variant="outline" size="sm" disabled={!sanityConfigured}>
+                        <Button variant="outline" size="sm" onClick={() => handleEditRegion(region)}>
                         <Edit className="h-4 w-4" />
                       </Button>
-                        <Button variant="outline" size="sm" disabled={!sanityConfigured}>
+                        <Button variant="outline" size="sm" onClick={() => handleDeleteRegion(region._id)}>
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -1322,7 +1252,7 @@ export default function ContentManagement() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-5 gap-4">
                   <div className="col-span-1">
                     <label className="text-sm font-medium mb-1 block">{t('admin.content.price', language)} *</label>
                     <Input
@@ -1333,6 +1263,18 @@ export default function ContentManagement() {
                         price: { ...prev.price, amount: parseInt(e.target.value) || 0 }
                       }))}
                       placeholder="500000"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">{t('admin.content.rooms', language)}</label>
+                    <Input
+                      type="number"
+                      value={editingItem.specifications.rooms}
+                      onChange={(e) => setEditingItem(prev => ({
+                        ...prev,
+                        specifications: { ...prev.specifications, rooms: parseInt(e.target.value) || 0 }
+                      }))}
+                      placeholder="4"
                     />
                   </div>
                   <div>
@@ -1466,7 +1408,7 @@ export default function ContentManagement() {
                           }`}
                         >
                           <img
-                            src={image.url || image.asset?.url}
+                            src={getImageSrc(image)}
                             alt={`Property ${index + 1}`}
                             className="w-full h-32 object-cover"
                           />
@@ -1804,7 +1746,7 @@ export default function ContentManagement() {
                 </Button>
                 <Button 
                   onClick={handleSaveProperty}
-                  disabled={saving || !sanityConfigured}
+                  disabled={saving}
                 >
                   {saving ? (
                     <>
@@ -1824,528 +1766,223 @@ export default function ContentManagement() {
         </DialogContent>
       </Dialog>
 
-      {/* Article Edit Modal */}
-      <Dialog open={isArticleModalOpen} onOpenChange={setIsArticleModalOpen}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <Dialog open={isRegionModalOpen} onOpenChange={setIsRegionModalOpen}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl">
-              {editingArticle?._id === 'new' 
-                ? (language === 'cs' ? 'Nový článek' : language === 'it' ? 'Nuovo articolo' : 'New Article')
-                : (language === 'cs' ? 'Upravit článek' : language === 'it' ? 'Modifica articolo' : 'Edit Article')}
+              {editingRegion?._id === 'new' ? 'Add New Region' : 'Edit Region'}
             </DialogTitle>
           </DialogHeader>
-          {editingArticle && (
-            <Tabs defaultValue="basic" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="basic">
-                  {language === 'cs' ? 'Základní info' : 'Basic Info'}
-                </TabsTrigger>
-                <TabsTrigger value="content">
-                  {language === 'cs' ? 'Obsah' : language === 'it' ? 'Contenuto' : 'Content'}
-                </TabsTrigger>
-                <TabsTrigger value="meta">
-                  {language === 'cs' ? 'Meta & Tagy' : 'Meta & Tags'}
-                </TabsTrigger>
-              </TabsList>
-
-              {/* Basic Info Tab */}
-              <TabsContent value="basic" className="space-y-4 mt-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">
-                      {language === 'cs' ? 'Typ článku' : 'Article Type'} *
-                    </label>
-                    <Select
-                      value={editingArticle.articleType}
-                      onValueChange={(value) => setEditingArticle(prev => ({
-                        ...prev,
-                        articleType: value
-                      }))}
-                    >
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="blog">
-                          {language === 'cs' ? 'Blog článek' : 'Blog Article'}
-                        </SelectItem>
-                        <SelectItem value="region">
-                          {language === 'cs' ? 'Regionální článek' : 'Region Article'}
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">Slug *</label>
-                    <Input
-                      value={editingArticle.slug}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]+/g, '-')
-                      }))}
-                      placeholder="my-article-slug"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">
-                      {language === 'cs' ? 'Název (EN)' : 'Title (EN)'} *
-                    </label>
-                    <Input
-                      value={editingArticle.title.en}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        title: { ...prev.title, en: e.target.value }
-                      }))}
-                      placeholder="Article title in English"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <label className="text-sm font-medium block">
-                        {language === 'cs' ? 'Název (CS)' : 'Title (CS)'}
-                      </label>
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => handleArticleTranslate('title', 'en', 'cs')}
-                        disabled={!editingArticle.title.en || translating['article-title-cs']}
-                        className="h-6 text-xs px-2"
-                      >
-                        {translating['article-title-cs'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
-                      </Button>
-                    </div>
-                    <Input
-                      value={editingArticle.title.cs || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        title: { ...prev.title, cs: e.target.value }
-                      }))}
-                      placeholder="Název článku v češtině"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <label className="text-sm font-medium block">
-                        {language === 'cs' ? 'Název (IT)' : 'Title (IT)'}
-                      </label>
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => handleArticleTranslate('title', 'en', 'it')}
-                        disabled={!editingArticle.title.en || translating['article-title-it']}
-                        className="h-6 text-xs px-2"
-                      >
-                        {translating['article-title-it'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
-                      </Button>
-                    </div>
-                    <Input
-                      value={editingArticle.title.it || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        title: { ...prev.title, it: e.target.value }
-                      }))}
-                      placeholder="Titolo dell'articolo in italiano"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">
-                      {language === 'cs' ? 'Shrnutí (EN)' : 'Excerpt (EN)'}
-                    </label>
-                    <Textarea
-                      value={editingArticle.excerpt.en || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        excerpt: { ...prev.excerpt, en: e.target.value }
-                      }))}
-                      rows={3}
-                      placeholder="Brief summary in English..."
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <label className="text-sm font-medium block">
-                        {language === 'cs' ? 'Shrnutí (CS)' : 'Excerpt (CS)'}
-                      </label>
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => handleArticleTranslate('excerpt', 'en', 'cs')}
-                        disabled={!editingArticle.excerpt.en || translating['article-excerpt-cs']}
-                        className="h-6 text-xs px-2"
-                      >
-                        {translating['article-excerpt-cs'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
-                      </Button>
-                    </div>
-                    <Textarea
-                      value={editingArticle.excerpt.cs || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        excerpt: { ...prev.excerpt, cs: e.target.value }
-                      }))}
-                      rows={3}
-                      placeholder="Krátké shrnutí v češtině..."
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <label className="text-sm font-medium block">
-                        {language === 'cs' ? 'Shrnutí (IT)' : 'Excerpt (IT)'}
-                      </label>
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => handleArticleTranslate('excerpt', 'en', 'it')}
-                        disabled={!editingArticle.excerpt.en || translating['article-excerpt-it']}
-                        className="h-6 text-xs px-2"
-                      >
-                        {translating['article-excerpt-it'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
-                      </Button>
-                    </div>
-                    <Textarea
-                      value={editingArticle.excerpt.it || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        excerpt: { ...prev.excerpt, it: e.target.value }
-                      }))}
-                      rows={3}
-                      placeholder="Breve riassunto in italiano..."
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-4 gap-4">
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">
-                      {language === 'cs' ? 'Datum' : 'Date'}
-                    </label>
-                    <Input
-                      type="date"
-                      value={editingArticle.date || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        date: e.target.value
-                      }))}
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">
-                      {language === 'cs' ? 'Doba čtení' : 'Read Time'}
-                    </label>
-                    <Input
-                      value={editingArticle.readTime || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        readTime: e.target.value
-                      }))}
-                      placeholder="8 min"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">
-                      {language === 'cs' ? 'Autor' : 'Author'}
-                    </label>
-                    <Input
-                      value={editingArticle.author || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        author: e.target.value
-                      }))}
-                      placeholder="Maria Rossi"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">
-                      {language === 'cs' ? 'Odkaz' : 'Link'}
-                    </label>
-                    <Input
-                      value={editingArticle.link || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        link: e.target.value
-                      }))}
-                      placeholder="/guides/costs"
-                    />
-                  </div>
-                </div>
-
+          {editingRegion && (
+            <div className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="text-sm font-medium mb-1 block">
-                    {language === 'cs' ? 'URL obrázku' : 'Image URL'}
-                  </label>
+                  <label className="text-sm font-medium mb-1 block">Name (EN)</label>
                   <Input
-                    value={editingArticle.image || ''}
-                    onChange={(e) => setEditingArticle(prev => ({
+                    value={editingRegion.name.en}
+                    onChange={(e) => setEditingRegion((prev) => ({
                       ...prev,
-                      image: e.target.value
+                      name: { ...prev.name, en: e.target.value }
                     }))}
-                    placeholder="https://images.unsplash.com/..."
                   />
-                  {editingArticle.image && (
-                    <img src={editingArticle.image} alt="Preview" className="mt-2 h-32 object-cover rounded-lg" />
-                  )}
                 </div>
-
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">
-                      {language === 'cs' ? 'Kategorie (EN)' : 'Category (EN)'}
-                    </label>
-                    <Input
-                      value={editingArticle.category?.en || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        category: { ...prev.category, en: e.target.value }
-                      }))}
-                      placeholder="Guide"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <label className="text-sm font-medium block">
-                        {language === 'cs' ? 'Kategorie (CS)' : 'Category (CS)'}
-                      </label>
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => handleArticleTranslate('category', 'en', 'cs')}
-                        disabled={!editingArticle.category?.en || translating['article-category-cs']}
-                        className="h-6 text-xs px-2"
-                      >
-                        {translating['article-category-cs'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
-                      </Button>
-                    </div>
-                    <Input
-                      value={editingArticle.category?.cs || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        category: { ...prev.category, cs: e.target.value }
-                      }))}
-                      placeholder="Průvodce"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <label className="text-sm font-medium block">
-                        {language === 'cs' ? 'Kategorie (IT)' : 'Category (IT)'}
-                      </label>
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => handleArticleTranslate('category', 'en', 'it')}
-                        disabled={!editingArticle.category?.en || translating['article-category-it']}
-                        className="h-6 text-xs px-2"
-                      >
-                        {translating['article-category-it'] ? <Loader2 className="h-3 w-3 animate-spin" /> : <Languages className="h-3 w-3" />}
-                      </Button>
-                    </div>
-                    <Input
-                      value={editingArticle.category?.it || ''}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        category: { ...prev.category, it: e.target.value }
-                      }))}
-                      placeholder="Guida"
-                    />
-                  </div>
-                </div>
-              </TabsContent>
-
-              {/* Content Tab */}
-              <TabsContent value="content" className="space-y-4 mt-4">
-                <Alert className="mb-4">
-                  <Languages className="h-4 w-4" />
-                  <AlertDescription>
-                    <strong>
-                      {language === 'cs' ? 'AI Překlad:' : 'AI Translation:'}
-                    </strong>{' '}
-                    {language === 'cs' 
-                      ? 'Vyplňte anglický obsah a poté použijte tlačítka překladu pro automatický překlad.' 
-                      : 'Fill in the English content, then use the translate buttons. HTML tags are preserved.'}
-                  </AlertDescription>
-                </Alert>
-
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Content (English) - HTML</label>
+                  <label className="text-sm font-medium mb-1 block">Name (CS)</label>
+                  <Input
+                    value={editingRegion.name.cs}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      name: { ...prev.name, cs: e.target.value }
+                    }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Name (IT)</label>
+                  <Input
+                    value={editingRegion.name.it}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      name: { ...prev.name, it: e.target.value }
+                    }))}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Slug</label>
+                  <Input
+                    value={editingRegion.slug.current}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      slug: { ...prev.slug, current: e.target.value }
+                    }))}
+                    placeholder="toscana"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Country</label>
+                  <Input
+                    value={editingRegion.country}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      country: e.target.value
+                    }))}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium mb-1 block">Image URL / Path</label>
+                <Input
+                  value={editingRegion.image}
+                  onChange={(e) => setEditingRegion((prev) => ({
+                    ...prev,
+                    image: e.target.value
+                  }))}
+                  placeholder="/Toscana.png"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Description (EN)</label>
                   <Textarea
-                    value={editingArticle.content?.en || ''}
-                    onChange={(e) => setEditingArticle(prev => ({
+                    value={editingRegion.description.en}
+                    onChange={(e) => setEditingRegion((prev) => ({
                       ...prev,
-                      content: { ...(prev.content || {}), en: e.target.value }
+                      description: { ...prev.description, en: e.target.value }
                     }))}
-                    rows={10}
-                    placeholder="<h2>Article heading</h2>\n<p>Article content...</p>"
-                    className="resize-y font-mono text-sm"
+                    rows={4}
                   />
-                  <p className="text-xs text-gray-500 mt-1">
-                    {(editingArticle.content?.en || '').length} characters
-                  </p>
                 </div>
-
                 <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <label className="text-sm font-medium block">Content (Czech) - HTML</label>
-                    <Button
-                      type="button"
-                      size="sm"
-                      variant="outline"
-                      onClick={() => handleArticleTranslate('content', 'en', 'cs')}
-                      disabled={!editingArticle.content?.en || translating['article-content-cs']}
-                      className="h-7"
-                    >
-                      {translating['article-content-cs'] ? (
-                        <>
-                          <Loader2 className="h-3 w-3 mr-1 animate-spin" />
-                          {language === 'cs' ? 'Překládám...' : 'Translating...'}
-                        </>
-                      ) : (
-                        <>
-                          <Languages className="h-3 w-3 mr-1" />
-                          {language === 'cs' ? 'Přeložit z EN' : 'Translate from EN'}
-                        </>
-                      )}
-                    </Button>
-                  </div>
+                  <label className="text-sm font-medium mb-1 block">Description (CS)</label>
                   <Textarea
-                    value={editingArticle.content?.cs || ''}
-                    onChange={(e) => setEditingArticle(prev => ({
+                    value={editingRegion.description.cs}
+                    onChange={(e) => setEditingRegion((prev) => ({
                       ...prev,
-                      content: { ...(prev.content || {}), cs: e.target.value }
+                      description: { ...prev.description, cs: e.target.value }
                     }))}
-                    rows={10}
-                    placeholder="<h2>Nadpis článku</h2>\n<p>Obsah článku...</p>"
-                    className="resize-y font-mono text-sm"
+                    rows={4}
                   />
                 </div>
-
                 <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <label className="text-sm font-medium block">Content (Italian) - HTML</label>
-                    <Button
-                      type="button"
-                      size="sm"
-                      variant="outline"
-                      onClick={() => handleArticleTranslate('content', 'en', 'it')}
-                      disabled={!editingArticle.content?.en || translating['article-content-it']}
-                      className="h-7"
-                    >
-                      {translating['article-content-it'] ? (
-                        <>
-                          <Loader2 className="h-3 w-3 mr-1 animate-spin" />
-                          Translating...
-                        </>
-                      ) : (
-                        <>
-                          <Languages className="h-3 w-3 mr-1" />
-                          Translate from EN
-                        </>
-                      )}
-                    </Button>
-                  </div>
+                  <label className="text-sm font-medium mb-1 block">Description (IT)</label>
                   <Textarea
-                    value={editingArticle.content?.it || ''}
-                    onChange={(e) => setEditingArticle(prev => ({
+                    value={editingRegion.description.it}
+                    onChange={(e) => setEditingRegion((prev) => ({
                       ...prev,
-                      content: { ...(prev.content || {}), it: e.target.value }
+                      description: { ...prev.description, it: e.target.value }
                     }))}
-                    rows={10}
-                    placeholder="<h2>Titolo dell'articolo</h2>\n<p>Contenuto dell'articolo...</p>"
-                    className="resize-y font-mono text-sm"
+                    rows={4}
                   />
                 </div>
-              </TabsContent>
+              </div>
 
-              {/* Meta & Tags Tab */}
-              <TabsContent value="meta" className="space-y-4 mt-4">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Tags</label>
-                  <div className="flex gap-2 mb-2">
-                    <Input
-                      value={tagInput}
-                      onChange={(e) => setTagInput(e.target.value)}
-                      onKeyPress={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault()
-                          handleAddTag()
-                        }
-                      }}
-                      placeholder={language === 'cs' ? 'Zadejte tag a stiskněte Enter' : 'Enter tag and press Enter'}
-                    />
-                    <Button type="button" onClick={handleAddTag} variant="secondary">
-                      <Plus className="h-4 w-4 mr-1" />
-                      {language === 'cs' ? 'Přidat' : 'Add'}
-                    </Button>
-                  </div>
-                  {editingArticle.tags && editingArticle.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {editingArticle.tags.map((tag, index) => (
-                        <Badge key={index} variant="secondary" className="px-3 py-1">
-                          {tag}
-                          <button
-                            onClick={() => handleRemoveTag(index)}
-                            className="ml-2 hover:text-red-500"
-                          >
-                            <X className="h-3 w-3" />
-                          </button>
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
+                  <label className="text-sm font-medium mb-1 block">Properties</label>
+                  <Input
+                    type="number"
+                    value={editingRegion.propertyCount}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      propertyCount: Number(e.target.value || 0)
+                    }))}
+                  />
                 </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Avg Price</label>
+                  <Input
+                    type="number"
+                    value={editingRegion.averagePrice}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      averagePrice: Number(e.target.value || 0)
+                    }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Min Price</label>
+                  <Input
+                    type="number"
+                    value={editingRegion.priceRange.min}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      priceRange: { ...prev.priceRange, min: Number(e.target.value || 0) }
+                    }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Max Price</label>
+                  <Input
+                    type="number"
+                    value={editingRegion.priceRange.max}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      priceRange: { ...prev.priceRange, max: Number(e.target.value || 0) }
+                    }))}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium mb-1 block">Popularity (0-5)</label>
+                  <Input
+                    type="number"
+                    min="0"
+                    max="5"
+                    value={editingRegion.popularity}
+                    onChange={(e) => setEditingRegion((prev) => ({
+                      ...prev,
+                      popularity: Number(e.target.value || 0)
+                    }))}
+                  />
+                </div>
+              </div>
 
-                {editingArticle.articleType === 'region' && (
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">
-                      {language === 'cs' ? 'Související regiony (slug, oddělené čárkou)' : 'Related Regions (slugs, comma-separated)'}
-                    </label>
-                    <Input
-                      value={(editingArticle.relatedRegions || []).join(', ')}
-                      onChange={(e) => setEditingArticle(prev => ({
-                        ...prev,
-                        relatedRegions: e.target.value.split(',').map(s => s.trim()).filter(Boolean)
-                      }))}
-                      placeholder="lombardy, tuscany, liguria"
-                    />
-                  </div>
-                )}
-              </TabsContent>
+              <div>
+                <label className="text-sm font-medium mb-1 block">Top Cities (comma separated)</label>
+                <Input
+                  value={editingRegion.topCitiesText}
+                  onChange={(e) => setEditingRegion((prev) => ({
+                    ...prev,
+                    topCitiesText: e.target.value
+                  }))}
+                  placeholder="Florence, Siena, Pisa"
+                />
+              </div>
 
-              {/* Action Buttons */}
-              <div className="flex justify-end space-x-2 pt-6 border-t mt-6">
-                <Button variant="outline" onClick={() => setIsArticleModalOpen(false)} disabled={saving}>
-                  {language === 'cs' ? 'Zrušit' : 'Cancel'}
+              <div>
+                <label className="text-sm font-medium mb-1 block">Highlights (comma separated)</label>
+                <Input
+                  value={editingRegion.highlightsText}
+                  onChange={(e) => setEditingRegion((prev) => ({
+                    ...prev,
+                    highlightsText: e.target.value
+                  }))}
+                  placeholder="Wine regions, Historic cities"
+                />
+              </div>
+
+              <div className="flex justify-end space-x-2 pt-4 border-t">
+                <Button variant="outline" onClick={() => setIsRegionModalOpen(false)} disabled={saving}>
+                  {t('admin.content.cancel', language)}
                 </Button>
-                <Button 
-                  onClick={handleSaveArticle}
-                  disabled={saving || !sanityConfigured}
-                >
+                <Button onClick={handleSaveRegion} disabled={saving}>
                   {saving ? (
                     <>
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                      {language === 'cs' ? 'Ukládám...' : 'Saving...'}
+                      {t('admin.content.saving', language)}
                     </>
                   ) : (
                     <>
                       <Save className="h-4 w-4 mr-2" />
-                      {editingArticle._id === 'new' 
-                        ? (language === 'cs' ? 'Vytvořit článek' : 'Create Article')
-                        : (language === 'cs' ? 'Uložit změny' : 'Save Changes')}
+                      {editingRegion._id === 'new' ? 'Create Region' : t('admin.content.saveChanges', language)}
                     </>
                   )}
                 </Button>
               </div>
-            </Tabs>
+            </div>
           )}
         </DialogContent>
       </Dialog>

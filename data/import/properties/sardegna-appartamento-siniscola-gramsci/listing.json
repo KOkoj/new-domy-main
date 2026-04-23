@@ -1,0 +1,81 @@
+{
+  "title_it": "Trilocale ristrutturato con balcone a Siniscola",
+  "title_en": "Renovated Three-Room Apartment with Balcony in Siniscola",
+  "title_cs": "Zrekonstruovaný třípokojový byt s balkonem v Siniscola",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Sardegna",
+  "city_it": "Siniscola",
+  "city_en": "Siniscola",
+  "city_cs": "Siniscola",
+  "address_it": "Via Antonio Gramsci 111, Siniscola (NU), Sardegna",
+  "address_en": "Via Antonio Gramsci 111, Siniscola (NU), Sardinia",
+  "address_cs": "Via Antonio Gramsci 111, Siniscola (NU), Sardinie",
+  "price": 115000,
+  "rooms": 3,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "square_meters": 80,
+  "features": [
+    {
+      "it": "Appartamento al primo piano completamente ristrutturato e mai abitato",
+      "en": "First-floor apartment fully renovated and never inhabited",
+      "cs": "Byt v prvním patře po kompletní rekonstrukci, dosud neobývaný"
+    },
+    {
+      "it": "Zona centrale di Siniscola a pochi passi da servizi e negozi",
+      "en": "Central Siniscola location close to services and shops",
+      "cs": "Centrální poloha v Siniscola v pěší dostupností služeb a obchodu"
+    },
+    {
+      "it": "Soggiorno pranzo luminoso con cucina nuova appena installata",
+      "en": "Bright living-dining area with newly installed kitchen",
+      "cs": "Světlý obytný prostor s jídelnou a nové instalovanou kuchyní"
+    },
+    {
+      "it": "Balcone a servizio della zona giorno",
+      "en": "Balcony connected to the living area",
+      "cs": "Balkon navazující na denní část"
+    },
+    {
+      "it": "Due camere matrimoniali nuove e mai utilizzate",
+      "en": "Two new double bedrooms never used",
+      "cs": "Dvě nové dvoulůžkové ložnice dosud nepoužité"
+    },
+    {
+      "it": "Bagno completo con finiture moderne e ripostiglio",
+      "en": "Full bathroom with modern finishes and storage room",
+      "cs": "Kompletní koupelna s moderním vybavením a komora"
+    },
+    {
+      "it": "Split caldo freddo di ultima generazione",
+      "en": "Latest-generation hot-cold split air conditioning",
+      "cs": "Moderní klimatizace s rezimem teplo-chlad"
+    }
+  ],
+  "description_it": "Nel cuore di Siniscola, in via Antonio Gramsci, proponiamo un trilocale completamente ristrutturato, pari al nuovo e mai abitato, pronto per essere utilizzato senza interventi.\n\nL'ingresso al piano terra conduce con cura al primo piano, dove si apre una luminosa zona giorno con soggiorno pranzo, cucina nuova appena installata e balcone. La zona notte comprende due camere matrimoniali spaziose, entrambe nuove e mai utilizzate, oltre a un bagno completo rifinito con materiali moderni e a un pratico ripostiglio.\n\nLa posizione centrale, a pochi passi da supermercati, scuole, bar e servizi, rende la proprietà adatta sia come prima casa sia come soluzione comoda per chi cerca una casa chiavi in mano in Sardegna.",
+  "description_en": "In the heart of Siniscola, on Via Antonio Gramsci, we offer a fully renovated three-room apartment, like new and never inhabited, ready to use without further works.\n\nA well-kept ground-floor entrance leads to the first floor, where there is a bright living-dining area with a newly installed kitchen and a balcony. The sleeping area includes two spacious double bedrooms, both new and never used, plus a full bathroom finished with modern materials and a practical storage room.\n\nThe central location, within walking distance of supermarkets, schools, cafes, and daily services, makes this property suitable both as a primary residence and as an easy turnkey home in Sardinia.",
+  "description_cs": "V centru města Siniscola na ulici Via Antonio Gramsci nabízíme kompletně zrekonstruovaný třípokojový byt ve stavu jako nový, dosud neobývaný a připravený k okamžitému užívání bez dalších úprav.\n\nUdržovaný vstup v přízemí vede do prvního patra, kde se nachází světlá denní část s obývacím pokojem, jídelnou, novou kuchyní a balkonem. Noční část tvori dvě prostorné dvoulůžkové ložnice, obě nové a dosud nepoužité, dále plně vybavena koupelna s moderními materiály a praktická komora.\n\nCentrální poloha v pěší dostupností supermarketu, škol, baru a běžných služeb dělá z této nemovitosti vhodnou volbu jak pro vlastní bydlení, tak pro kupující, kteří hledají hotové bydlení na Sardinii.",
+  "seo_title_it": "Trilocale ristrutturato in vendita a Siniscola",
+  "seo_title_en": "Renovated Three-Room Apartment for Sale in Siniscola",
+  "seo_title_cs": "Zrekonstruovaný třípokojový byt na prodej v Siniscola",
+  "seo_description_it": "Appartamento di 80 m2 a Siniscola: 3 locali, 2 camere, 1 bagno, balcone, cucina nuova e ristrutturazione completa.",
+  "seo_description_en": "80 sqm apartment in Siniscola: 3 rooms, 2 bedrooms, 1 bathroom, balcony, new kitchen, and full renovation.",
+  "seo_description_cs": "Byt 80 m2 v Siniscola: 3 místností, 2 ložnice, 1 koupelna, balkon, nová kuchyně a kompletní rekonstrukce.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "siniscola",
+    "via antonio gramsci",
+    "appartamento ristrutturato",
+    "trilocale",
+    "sardegna"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/126672555/",
+  "lat": 40.5732,
+  "lng": 9.6903,
+  "yearBuilt": 0,
+  "lotSize": 0,
+  "parking": 0,
+  "image_urls": []
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+    <rect x="10" y="18" width="44" height="32" rx="6"/>
+    <path d="M10 26h44M20 14v8M44 14v8"/>
+  </g>
+  <text x="32" y="36" font-family="Segoe UI, Arial, sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#111">ROOMS</text>
+  <text x="32" y="46" font-family="Segoe UI, Arial, sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#111">AVAILABLE</text>
+</svg>

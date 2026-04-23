@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -8,8 +9,15 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react'
+import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 
-export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
+export default function AuthModal({
+  isOpen,
+  onClose,
+  onAuthSuccess,
+  title = 'Welcome',
+  message = ''
+}) {
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
@@ -215,8 +223,13 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
               data-testid="auth-modal-logo"
             />
             <DialogTitle className="text-xl font-bold">
-              Welcome
+              {title}
             </DialogTitle>
+            {message && (
+              <p className="text-sm text-slate-600 leading-relaxed">
+                {message}
+              </p>
+            )}
           </div>
         </DialogHeader>
 
@@ -285,6 +298,8 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? 'Signing in...' : 'Sign In'}
               </Button>
+
+              <FormPrivacyNotice language="en" purpose="account" />
 
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
@@ -396,12 +411,29 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? 'Creating account...' : 'Create Account'}
               </Button>
+
+              <FormPrivacyNotice language="en" purpose="account" />
             </form>
           </TabsContent>
         </Tabs>
 
-        <div className="text-center text-sm text-gray-600 mt-4">
-          <p>By signing up, you agree to our Terms of Service and Privacy Policy.</p>
+        <div className="text-center text-sm text-gray-600 mt-4 space-y-1">
+          <p>
+            By signing up, you agree to our{' '}
+            <Link href="/terms" className="underline">
+              Terms of Sale
+            </Link>{' '}
+            and{' '}
+            <Link href="/gdpr" className="underline">
+              Privacy Notice
+            </Link>
+            .
+          </p>
+          <p>
+            <Link href="/cookies" className="underline">
+              Cookie Policy
+            </Link>
+          </p>
         </div>
       </DialogContent>
     </Dialog>

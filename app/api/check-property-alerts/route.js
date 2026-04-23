@@ -2,10 +2,14 @@ import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { client } from '@/lib/sanity';
 import emailService from '@/lib/emailService';
+import { requireAdminApiAccess } from '@/lib/adminAuth'
 
 export const dynamic = 'force-dynamic'
 
 export async function POST(request) {
+  const access = await requireAdminApiAccess()
+  if (!access.ok) return access.response
+
   try {
     
     // Get all users with saved searches who have property alerts enabled

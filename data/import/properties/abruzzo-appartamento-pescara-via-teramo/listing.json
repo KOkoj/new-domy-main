@@ -1,0 +1,77 @@
+{
+  "title_it": "Quadrilocale con terrazza abitabile nel centro di Pescara",
+  "title_en": "Four-Room Apartment with Large Terrace in Central Pescara",
+  "title_cs": "Čtyřpokojový byt s velkou terasou v centru Pescary",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Abruzzo",
+  "city_it": "Pescara",
+  "city_en": "Pescara",
+  "city_cs": "Pescara",
+  "address_it": "Via Teramo, Pescara (PE), Abruzzo",
+  "address_en": "Via Teramo, Pescara (PE), Abruzzo",
+  "address_cs": "Via Teramo, Pescara (PE), Abruzzo",
+  "price": 260000,
+  "rooms": 4,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "square_meters": 139,
+  "features": [
+    {
+      "it": "Appartamento al primo piano in stabile di sette piani con ascensore",
+      "en": "First-floor apartment in a seven-storey building with elevator",
+      "cs": "Byt v prvním patře sedmipatrové budovy s výtahem"
+    },
+    {
+      "it": "Ampia metratura nel cuore di Pescara",
+      "en": "Large floor area in the heart of Pescara",
+      "cs": "Velkorysá plocha v samotnem srdci Pescary"
+    },
+    {
+      "it": "Soggiorno luminoso con balcone perimetrale",
+      "en": "Bright living room with wraparound balcony",
+      "cs": "Světlý obývák s obvodovym balkonem"
+    },
+    {
+      "it": "Cucina abitabile con accesso a terrazza riservata e ampia",
+      "en": "Eat-in kitchen with access to a large private terrace",
+      "cs": "Obyvatelná kuchyně se vstupem na velkou soukromou terasu"
+    },
+    {
+      "it": "Due camere matrimoniali di ampia metratura",
+      "en": "Two generously sized double bedrooms",
+      "cs": "Dvě prostorné dvoulůžkové ložnice"
+    },
+    {
+      "it": "Ottimo potenziale di personalizzazione",
+      "en": "Strong potential for customization",
+      "cs": "Výrazný potenciál pro úpravy podle vlastních představ"
+    }
+  ],
+  "description_it": "In via Teramo, in posizione centrale a Pescara, proponiamo un quadrilocale di 139 m2 al primo piano di uno stabile con ascensore, ideale per chi cerca spazio e una grande terrazza abitabile.\n\nL'appartamento si apre su un disimpegno che conduce a un soggiorno ampio e luminoso con accesso al balcone perimetrale. La cucina è separata, abitabile è collegata a una terrazza di proprietà riservata e di generose dimensioni, perfetta per pranzi e cene all'aperto. La zona notte comprende due camere matrimoniali di ampia metratura e un bagno finestrato.\n\nLa posizione vicina ai servizi e al centro cittadino, insieme alla metratura e alla possibilità di personalizzazione, rendono questa soluzione interessante sia per abitazione principale sia per chi cerca un appartamento centrale da valorizzare.",
+  "description_en": "On Via Teramo, in a central location in Pescara, we offer a 139 sqm four-room apartment on the first floor of a building with elevator, ideal for buyers seeking generous space and a large livable terrace.\n\nThe apartment opens onto a hallway leading to a large and bright living room with access to the wraparound balcony. The kitchen is separate, eat-in, and connected to a private terrace of generous size, perfect for outdoor lunches and dinners. The sleeping area includes two spacious double bedrooms and a windowed bathroom.\n\nIts location close to services and the city center, together with the floor area and customization potential, makes this a strong option both as a main residence and as a central apartment to enhance.",
+  "description_cs": "Na ulici Via Teramo v centrální části Pescary nabízíme čtyřpokojový byt o velikosti 139 m2 v prvním patře domu s výtahem, ideální pro ty, kdo hledají velký prostor a rozsáhlou obyvatelnou terasu.\n\nByt se otevírá do chodby, která vede do velkého a světlého obývacího pokoje se vstupem na obvodovy balkon. Kuchyňě je samostatná, obyvatelná a propojená s prostornou soukromou terasou, vhodnou pro venkovní stolovani. Noční část zahrnuje dvě prostorné dvoulůžkové ložnice a koupelnu s oknem.\n\nPoloha blízko služeb a centra města spolu s velkou plochou a možností dalšího přizpůsobení dělá z této nemovitosti zajímavou volbu jak pro vlastní bydlení, tak pro kupující, kteří chtějí centrální byt dále zhodnotit.",
+  "seo_title_it": "Quadrilocale con terrazza in vendita a Pescara centro",
+  "seo_title_en": "Four-Room Apartment with Terrace for Sale in Central Pescara",
+  "seo_title_cs": "Čtyřpokojový byt s terasou na prodej v centru Pescary",
+  "seo_description_it": "Appartamento di 139 m2 a Pescara: 4 locali, 2 camere, 1 bagno, balcone perimetrale e terrazza abitabile.",
+  "seo_description_en": "139 sqm apartment in Pescara: 4 rooms, 2 bedrooms, 1 bathroom, wraparound balcony, and livable terrace.",
+  "seo_description_cs": "Byt 139 m2 v Pescaře: 4 místností, 2 ložnice, 1 koupelna, obvodovy balkon a obyvatelná terasa.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "pescara",
+    "via teramo",
+    "quadrilocale",
+    "terrazza abitabile",
+    "zona centrale",
+    "abruzzo"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/127611620/",
+  "lat": 42.4666,
+  "lng": 14.2092,
+  "yearBuilt": 0,
+  "lotSize": 0,
+  "parking": 0,
+  "image_urls": []
+}

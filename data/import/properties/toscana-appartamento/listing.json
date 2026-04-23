@@ -1,0 +1,118 @@
+{
+  "title_it": "Bilocale ristrutturato con corte privata in Via della Scala a Firenze",
+  "title_en": "Renovated One-Bedroom Apartment with Private Courtyard in Via della Scala, Florence",
+  "title_cs": "Zrekonstruovaný byt 2+kk se soukromým dvorkem ve Via della Scala, Florencie",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Toscana",
+  "city_it": "Firenze",
+  "city_en": "Florence",
+  "city_cs": "Florencie",
+  "address_it": "Via della Scala, zona Santa Maria Novella - Stazione, Firenze, Toscana",
+  "address_en": "Via della Scala, Santa Maria Novella - Station area, Florence, Tuscany",
+  "address_cs": "Via della Scala, oblast Santa Maria Novella - nádraží, Florencie, Toskansko",
+  "price": 337000,
+  "rooms": 2,
+  "bedrooms": 1,
+  "bathrooms": 2,
+  "square_meters": 53,
+  "features": [
+    {
+      "it": "Piano terra",
+      "en": "Ground floor",
+      "cs": "Přízemí"
+    },
+    {
+      "it": "Ristrutturato",
+      "en": "Renovated",
+      "cs": "Po rekonstrukci"
+    },
+    {
+      "it": "Corte esterna privata di circa 10 m2",
+      "en": "Private outdoor courtyard of about 10 sqm",
+      "cs": "Soukromý venkovní dvorek o velikosti cca 10 m2"
+    },
+    {
+      "it": "Camera con bagno en suite",
+      "en": "Bedroom with en-suite bathroom",
+      "cs": "Ložnice s vlastní koupelnou"
+    },
+    {
+      "it": "Secondo bagno finestrato con box doccia",
+      "en": "Second bathroom with window and shower box",
+      "cs": "Druhá koupelna s oknem a sprchovým koutem"
+    },
+    {
+      "it": "Travi in legno a vista",
+      "en": "Exposed wooden beams",
+      "cs": "Přiznané dřevěné travy"
+    },
+    {
+      "it": "Aria condizionata e riscaldamento autonomo",
+      "en": "Air conditioning and independent heating",
+      "cs": "Klimatizace a samostatné vytápění"
+    },
+    {
+      "it": "Venduto arredato",
+      "en": "Sold furnished",
+      "cs": "Prodava se včetně vybavení"
+    },
+    {
+      "it": "Spese condominiali circa 40 euro/mese",
+      "en": "Condominium fees about 40 euro/month",
+      "cs": "Měsíční poplatky za spolecenstvi cca 40 euro"
+    }
+  ],
+  "description_it": "A due passi da Piazza Santa Maria Novella e dalla stazione centrale di Firenze, proponiamo in vendita un bilocale ristrutturato al piano terra, attualmente utilizzato per locazioni turistiche.\n\nL'immobile e composto da zona giorno con cucina separata e soggiorno con accesso diretto a una corte esterna privata di circa 10 m2, ideale per momenti di relax all'aperto.\n\nLa camera da letto dispone di bagno en suite, oltre a un secondo bagno principale finestrato con box doccia.\n\nL'appartamento e valorizzato da travi in legno a vista, e dotato di aria condizionata e riscaldamento autonomo. Le spese condominiali sono contenute.\n\nViene venduto completamente arredato, soluzione ideale sia per investimento sia per utilizzo personale nel centro storico di Firenze.",
+  "description_en": "Just a short walk from Piazza Santa Maria Novella and Florence central station, we offer a renovated ground-floor one-bedroom apartment, currently used for short-term tourist rentals.\n\nThe property includes a living area with separate kitchen and lounge with direct access to a private outdoor courtyard of about 10 sqm, ideal for relaxing moments outside.\n\nThe bedroom has an en-suite bathroom, plus a second main windowed bathroom with shower box.\n\nThe apartment features exposed wooden beams and includes air conditioning and independent heating. Condominium fees are low.\n\nIt is sold fully furnished, making it an excellent option both as an investment and as a personal residence in central Florence.",
+  "description_cs": "Jen pár minut od Piazza Santa Maria Novella a hlavního nádraží ve Florencii nabízíme zrekonstruovaný byt 2+kk v přízemí, aktualne využívaný pro krátkodobé turistické pronajmy.\n\nNemovitost má obytnou část se samostatnou kuchyní a obývacím pokojem s přímým vstupem na soukromý venkovní dvorek o velikosti přibližně 10 m2, ideální pro odpočinek.\n\nLožnice má vlastní koupelnu en suite, navíc je zde druhá hlavní koupelna s oknem a sprchovým koutem.\n\nByt zaujme priznanymi drevenymi travy a je vybaven klimatizaci i samostatným vytapenim. Měsíční poplatky jsou nízké.\n\nProdava se kompletně zařízený, jde o vybornou volbu jak pro investici, tak pro vlastní bydlení v centru Florencie.",
+  "seo_title_it": "Bilocale ristrutturato in vendita a Firenze Santa Maria Novella",
+  "seo_title_en": "Renovated One-Bedroom Apartment for Sale in Florence Santa Maria Novella",
+  "seo_title_cs": "Zrekonstruovaný byt 2+kk na prodej ve Florencii u Santa Maria Novella",
+  "seo_description_it": "Bilocale di 53 m2 in Via della Scala a Firenze: 2 bagni, corte privata di circa 10 m2, ristrutturato, arredato è ideale anche per investimento turistico.",
+  "seo_description_en": "53 sqm one-bedroom apartment in Via della Scala, Florence: 2 bathrooms, private courtyard about 10 sqm, renovated, furnished, and ideal for rental investment.",
+  "seo_description_cs": "Byt 2+kk o velikosti 53 m2 ve Via della Scala ve Florencii: 2 koupelny, soukromý dvorek cca 10 m2, po rekonstrukci, zařízený a vhodný i jako investice.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "firenze",
+    "via della scala",
+    "santa maria novella",
+    "bilocale ristrutturato",
+    "investimento turistico",
+    "toscana"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/120537500/",
+  "lat": 43.7758,
+  "lng": 11.2452,
+  "yearBuilt": 1800,
+  "lotSize": 0,
+  "parking": 0,
+  "image_urls": [
+    "https://pwm.im-cdn.it/image/1709633266/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633280/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633296/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633316/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633336/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633360/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633382/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633394/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633420/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633436/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633452/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633478/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633488/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633510/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633532/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633564/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633592/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633624/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633672/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633700/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633716/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633744/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633768/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633800/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1709633834/xxl.jpg"
+  ]
+}

@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 import { writeClient } from '@/lib/sanity'
+import { requireAdminApiAccess } from '@/lib/adminAuth'
+import { ADMIN_LAUNCH_TOOLS_ENABLED, getAdminToolDisabledResponse } from '@/lib/featureFlags'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -12,6 +14,13 @@ function isSanityConfigured() {
 }
 
 export async function POST(request) {
+  if (!ADMIN_LAUNCH_TOOLS_ENABLED) {
+    return NextResponse.json(getAdminToolDisabledResponse(), { status: 503 })
+  }
+
+  const access = await requireAdminApiAccess()
+  if (!access.ok) return access.response
+
   if (!isSanityConfigured()) {
     return NextResponse.json({ 
       error: 'Sanity CMS not configured properly. Ensure SANITY_API_TOKEN is set.' 
@@ -24,6 +33,14 @@ export async function POST(request) {
 
     if (!file) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 })
+    }
+
+    if (typeof file.size === 'number' && file.size > 10 * 1024 * 1024) {
+      return NextResponse.json({ error: 'File too large' }, { status: 413 })
+    }
+
+    if (typeof file.type !== 'string' || !file.type.startsWith('image/')) {
+      return NextResponse.json({ error: 'Only image uploads are allowed' }, { status: 400 })
     }
 
     // Convert file to buffer

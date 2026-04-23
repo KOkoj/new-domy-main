@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 
 const CONTACT_INFO = [
   {
@@ -112,7 +113,7 @@ const INQUIRY_TYPES = [
 ]
 
 export default function ContactPage() {
-  const [language, setLanguage] = useState('cs')
+  const [language, setLanguage] = useState('en')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -254,6 +255,13 @@ export default function ContactPage() {
                       </div>
                     </div>
                   ))}
+                  <p className="mt-3 text-xs text-slate-300 leading-relaxed">
+                    {language === 'cs'
+                      ? 'Prvni kontakt slouzi k zakladnimu zorientovani a nenahrazuje formalni posouzeni konkretniho pripadu.'
+                      : language === 'it'
+                        ? 'Il primo contatto serve per un orientamento iniziale e non sostituisce una valutazione formale del singolo caso.'
+                        : 'The first contact is for initial orientation and does not replace a formal assessment of an individual case.'}
+                  </p>
                 </CardContent>
               </Card>
 
@@ -337,7 +345,7 @@ export default function ContactPage() {
                   )}
 
                   {/* Contact Form */}
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form id="contact-form" onSubmit={handleSubmit} className="space-y-6">
                     {/* Name and Email Row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
@@ -432,6 +440,8 @@ export default function ContactPage() {
                         className="border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 resize-none"
                       />
                     </div>
+
+                    <FormPrivacyNotice language={language} purpose="contact" />
 
                     {/* Submit Button */}
                     <Button

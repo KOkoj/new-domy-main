@@ -1,0 +1,77 @@
+{
+  "title_it": "Quadrilocale con box e posto auto a San Severo",
+  "title_en": "Four-Room Apartment with Garage and Parking in San Severo",
+  "title_cs": "Čtyřpokojový byt s garáží a parkováním v San Severo",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Puglia",
+  "city_it": "San Severo",
+  "city_en": "San Severo",
+  "city_cs": "San Severo",
+  "address_it": "Via Carmicelli 18, San Severo (FG), Puglia",
+  "address_en": "Via Carmicelli 18, San Severo (FG), Apulia",
+  "address_cs": "Via Carmicelli 18, San Severo (FG), Apulie",
+  "price": 98000,
+  "rooms": 4,
+  "bedrooms": 3,
+  "bathrooms": 1,
+  "square_meters": 130,
+  "features": [
+    {
+      "it": "Appartamento al sesto piano in residence servito da ascensore",
+      "en": "Sixth-floor apartment in a residence served by elevator",
+      "cs": "Byt v šestém patře rezidenční budovy s výtahem"
+    },
+    {
+      "it": "Zona giorno luminosa con sala da pranzo e cucina a vista",
+      "en": "Bright living area with dining space and open kitchen",
+      "cs": "Světlá denní část s jídelnou a otevřenou kuchyní"
+    },
+    {
+      "it": "Balcone soleggiato collegato alla zona giorno e secondo balcone in camera matrimoniale",
+      "en": "Sunny balcony off the living area and second balcony in the main bedroom",
+      "cs": "Slunný balkon u denní části a druhý balkon u hlavní ložnice"
+    },
+    {
+      "it": "Tre camere da letto con spazi versatili",
+      "en": "Three bedrooms with flexible layout",
+      "cs": "Tři ložnice s variabilnim využitím"
+    },
+    {
+      "it": "Bagno finestrato con vasca",
+      "en": "Windowed bathroom with bathtub",
+      "cs": "Koupelna s oknem a vanou"
+    },
+    {
+      "it": "Box di circa 20 m2 e posto auto assegnato",
+      "en": "Garage of about 20 sqm and assigned parking space",
+      "cs": "Garáž o velikosti přibližně 20 m2 a vyhrazené parkovací místo"
+    }
+  ],
+  "description_it": "In via Carmicelli a San Severo proponiamo un quadrilocale di 130 m2 situato al sesto piano di un residence con ascensore, adatto a chi cerca una casa luminosa e già ben organizzata.\n\nL'ingresso apre su una zona giorno ariosa con sala da pranzo e cucina a vista, entrambe affacciate su un balcone soleggiato. La zona notte è ben separata e comprende tre camere da letto: una utilizzabile anche come studio o cabina armadio, una camera matrimoniale con balcone e una seconda cameretta. Completa il piano un bagno finestrato con vasca.\n\nLa proprietà include inoltre un box di circa 20 m2 e un posto auto assegnato, elementi molto utili in un contesto residenziale servito.",
+  "description_en": "On Via Carmicelli in San Severo we offer a 130 sqm four-room apartment on the sixth floor of a residence with elevator, suitable for buyers looking for a bright and well-organized home.\n\nThe entrance opens onto an airy living area with dining space and open kitchen, both connected to a sunny balcony. The sleeping area is well separated and includes three bedrooms: one also suitable as a study or walk-in closet, one main bedroom with balcony, and one additional bedroom. A windowed bathroom with bathtub completes the layout.\n\nThe property also includes a garage of about 20 sqm and an assigned parking space, both valuable features in a serviced residential context.",
+  "description_cs": "Na ulici Via Carmicelli v San Severo nabízíme čtyřpokojový byt o velikosti 130 m2 v šestém patře rezidenční budovy s výtahem, vhodný pro kupující hledající světlé a praktický uspořádané bydlení.\n\nVstup vede do vzdušné denní části s jídelnou a otevřenou kuchyní, obě propojené se slunným balkonem. Noční část je dobře oddělená a zahrnuje tři ložnice: jednu vhodnou i jako pracovna nebo šatna, hlavní ložnici s balkonem a další pokoj. Dispozici doplňuje koupelna s oknem a vanou.\n\nSoučástí nemovitosti je také garáž o velikosti přibližně 20 m2 a vyhrazené parkovací místo, což jsou v rezidenčním prostředí velmi užitečné prvky.",
+  "seo_title_it": "Quadrilocale con box in vendita a San Severo",
+  "seo_title_en": "Four-Room Apartment with Garage for Sale in San Severo",
+  "seo_title_cs": "Čtyřpokojový byt s garáží na prodej v San Severo",
+  "seo_description_it": "Appartamento di 130 m2 a San Severo: 4 locali, 3 camere, 1 bagno, balconi, box di 20 m2 e posto auto assegnato.",
+  "seo_description_en": "130 sqm apartment in San Severo: 4 rooms, 3 bedrooms, 1 bathroom, balconies, 20 sqm garage, and assigned parking.",
+  "seo_description_cs": "Byt 130 m2 v San Severo: 4 místností, 3 ložnice, 1 koupelna, balkony, garáž 20 m2 a vyhrazené parkování.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "san severo",
+    "via carmicelli",
+    "quadrilocale",
+    "box auto",
+    "posto auto",
+    "puglia"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/125387411/",
+  "lat": 41.691,
+  "lng": 15.3716,
+  "yearBuilt": 0,
+  "lotSize": 0,
+  "parking": 2,
+  "image_urls": []
+}

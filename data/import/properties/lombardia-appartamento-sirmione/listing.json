@@ -1,0 +1,105 @@
+{
+  "title_it": "Trilocale con giardino e posto auto a Sirmione",
+  "title_en": "Three-Room Apartment with Garden and Parking in Sirmione",
+  "title_cs": "Třípokojový byt se zahradou a parkováním v Sirmione",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Lombardia",
+  "city_it": "Sirmione",
+  "city_en": "Sirmione",
+  "city_cs": "Sirmione",
+  "address_it": "Via Giacomo Matteotti, Sirmione (BS), Lombardia",
+  "address_en": "Via Giacomo Matteotti, Sirmione (BS), Lombardy",
+  "address_cs": "Via Giacomo Matteotti, Sirmione (BS), Lombardie",
+  "price": 350000,
+  "rooms": 3,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "square_meters": 60,
+  "features": [
+    {
+      "it": "Appartamento trilocale al piano terra in contesto quadrifamiliare",
+      "en": "Ground-floor three-room apartment in a four-family residential context",
+      "cs": "Přízemní třípokojový byt v klidném domě se čtyřmi jednotkami"
+    },
+    {
+      "it": "Ingresso completamente indipendente",
+      "en": "Completely independent entrance",
+      "cs": "Zcela samostatný vstup"
+    },
+    {
+      "it": "Giardino esclusivo e patio piastrellato",
+      "en": "Private garden and tiled patio",
+      "cs": "Výhradní zahrada a dlážděné patio"
+    },
+    {
+      "it": "Cucina separata e finestrata",
+      "en": "Separate windowed kitchen",
+      "cs": "Samostatná kuchyně s oknem"
+    },
+    {
+      "it": "Bagno finestrato con box doccia ristrutturato",
+      "en": "Renovated windowed bathroom with shower box",
+      "cs": "Renovovana koupelna s oknem a sprchovým koutem"
+    },
+    {
+      "it": "Aria condizionata con pompa di calore",
+      "en": "Air conditioning with heat pump",
+      "cs": "Klimatizace s tepelným čerpadlem"
+    },
+    {
+      "it": "Impianto di videosorveglianza",
+      "en": "Video surveillance system",
+      "cs": "Kamerový zabezpečovací systém"
+    },
+    {
+      "it": "Posto auto con accesso carraio indipendente",
+      "en": "Parking space with independent driveway access",
+      "cs": "Parkovací místo s vlastním vjezdem"
+    },
+    {
+      "it": "Posizione comoda alla Spiaggia Brema, al porto Sirmione 2 e ai servizi",
+      "en": "Convenient location near Spiaggia Brema, Sirmione 2 port, and services",
+      "cs": "Výhodná poloha blízko Spiaggia Břemena, přístavu Sirmione 2 a služeb"
+    }
+  ],
+  "description_it": "A pochi minuti dalla Spiaggia Brema, dal porto Sirmione 2 e dal centro di Colombare di Sirmione, proponiamo luminoso appartamento trilocale al piano terra in tranquillo contesto quadrifamiliare.\n\nL'immobile dispone di ingresso indipendente, giardino esclusivo, patio piastrellato e posto auto con accesso carraio autonomo, elementi molto ricercati in questa zona del Lago di Garda. Gli spazi interni comprendono cucina separata e finestrata, soggiorno con zona pranzo, camera singola, camera matrimoniale e bagno finestrato con box doccia ristrutturato.\n\nLa proprietà è termoautonoma, dotata di aria condizionata con pompa di calore e impianto di videosorveglianza. Soluzione adatta sia come casa vacanza sia come investimento per affitti turistici.",
+  "description_en": "A few minutes from Spiaggia Brema, Sirmione 2 port, and the center of Colombare di Sirmione, we offer a bright ground-floor three-room apartment in a quiet four-family residential setting.\n\nThe property includes an independent entrance, private garden, tiled patio, and parking space with autonomous driveway access, all highly desirable features in this Lake Garda area. The internal layout includes a separate windowed kitchen, living room with dining area, one single bedroom, one double bedroom, and a renovated windowed bathroom with shower box.\n\nThe property has independent heating, air conditioning with heat pump, and a video surveillance system. It is suitable both as a holiday home and as an investment for tourist rentals.",
+  "description_cs": "Jen několik minut od pláže Spiaggia Břemena, přístavu Sirmione 2 a centra Colombare di Sirmione nabízíme světlý třípokojový byt v přízemí klidného domu se čtyřmi jednotkami.\n\nNemovitost má samostatný vstup, výhradní zahradu, dlážděné patio a parkovací místo s vlastním vjezdem, tedy prvky, které jsou v této části jezera Garda velmi žádané. Dispozice zahrnuje samostatnou kuchyní s oknem, obývák s jídelní části, jeden menší pokoj, jednu ložnici a renovovanou koupelnu s oknem a sprchovým koutem.\n\nByt má samostatné vytápění, klimatizaci s tepelným čerpadlem a kamerový systém. Je vhodný jak jako rekreační bydlení, tak jako investice pro turistické pronajmy.",
+  "seo_title_it": "Trilocale con giardino in vendita a Sirmione",
+  "seo_title_en": "Three-Room Apartment with Garden for Sale in Sirmione",
+  "seo_title_cs": "Třípokojový byt se zahradou na prodej v Sirmione",
+  "seo_description_it": "Trilocale a Sirmione: 3 locali, 2 camere, 1 bagno, giardino privato, patio, posto auto indipendente e aria condizionata con pompa di calore.",
+  "seo_description_en": "Three-room apartment in Sirmione: 3 rooms, 2 bedrooms, 1 bathroom, private garden, patio, independent parking space, and air conditioning with heat pump.",
+  "seo_description_cs": "Třípokojový byt v Sirmione: 3 místností, 2 ložnice, 1 koupelna, soukromá zahrada, patio, vlastní parkování a klimatizace s tepelným čerpadlem.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "sirmione",
+    "via giacomo matteotti",
+    "appartamento",
+    "giardino privato",
+    "posto auto",
+    "lago di garda"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/126704133/",
+  "lat": 45.4667,
+  "lng": 10.6027,
+  "yearBuilt": 0,
+  "lotSize": 0,
+  "parking": 1,
+  "image_urls": [
+    "https://pwm.im-cdn.it/image/1874142627/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1874142383/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1874142403/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1874142423/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1874142439/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1874142361/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1874142647/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1874142451/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1874142541/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1874142455/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1874142495/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1874142459/xxl.jpg"
+  ]
+}

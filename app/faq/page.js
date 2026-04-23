@@ -7,6 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
+import ProtectedContentLink from '@/components/ProtectedContentLink'
 
 const FAQ_ITEMS = [
   {
@@ -108,7 +110,7 @@ const FAQ_ITEMS = [
 ]
 
 export default function FAQPage() {
-  const [language, setLanguage] = useState('cs')
+  const [language, setLanguage] = useState('en')
   const [openIndex, setOpenIndex] = useState(null)
 
   useEffect(() => {
@@ -211,7 +213,7 @@ export default function FAQPage() {
               </CardHeader>
               <CardContent className="p-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Link href="/guides/mistakes" className="group">
+                  <ProtectedContentLink href="/guides/mistakes" language={language} className="group">
                     <div className="p-5 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-300 hover:shadow-md transition-all duration-300">
                       <h4 className="font-semibold text-slate-800 mb-2 group-hover:text-slate-900">
                         {language === 'cs' ? 'Nejčastější chyby Čechů' :
@@ -224,7 +226,7 @@ export default function FAQPage() {
                          'What to watch out for to avoid losing time and money.'}
                       </p>
                     </div>
-                  </Link>
+                  </ProtectedContentLink>
                   <Link href="/process" className="group">
                     <div className="p-5 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-300 hover:shadow-md transition-all duration-300">
                       <h4 className="font-semibold text-slate-800 mb-2 group-hover:text-slate-900">
@@ -253,7 +255,7 @@ export default function FAQPage() {
                       </p>
                     </div>
                   </Link>
-                  <Link href="/guides/costs" className="group">
+                  <ProtectedContentLink href="/guides/costs" language={language} className="group">
                     <div className="p-5 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-300 hover:shadow-md transition-all duration-300">
                       <h4 className="font-semibold text-slate-800 mb-2 group-hover:text-slate-900">
                         {language === 'cs' ? 'Náklady koupě' :
@@ -266,7 +268,7 @@ export default function FAQPage() {
                          'How much it really costs to buy a house in Italy.'}
                       </p>
                     </div>
-                  </Link>
+                  </ProtectedContentLink>
                 </div>
               </CardContent>
             </Card>
@@ -309,6 +311,12 @@ export default function FAQPage() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 pb-10">
+        <div className="max-w-5xl mx-auto">
+          <InformationalDisclaimer language={language} />
         </div>
       </div>
 

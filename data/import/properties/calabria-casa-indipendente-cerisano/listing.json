@@ -1,0 +1,76 @@
+{
+  "title_it": "Casa indipendente su tre livelli con terrazzo a Cerisano",
+  "title_en": "Three-Level Detached House with Terrace in Cerisano",
+  "title_cs": "Samostatný dům na třech podlažích s terasou v Cerisano",
+  "propertyType": "house",
+  "propertyType_it": "casa indipendente",
+  "region_it": "Calabria",
+  "city_it": "Cerisano",
+  "city_en": "Cerisano",
+  "city_cs": "Cerisano",
+  "address_it": "Via San Pietro, Cerisano (CS), Calabria",
+  "address_en": "Via San Pietro, Cerisano (CS), Calabria",
+  "address_cs": "Via San Pietro, Cerisano (CS), Kalabrie",
+  "price": 90000,
+  "rooms": 5,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "square_meters": 210,
+  "features": [
+    {
+      "it": "Villetta a schiera di circa 210 m2 sviluppata su tre livelli",
+      "en": "Townhouse of about 210 sqm arranged over three levels",
+      "cs": "Řadový dům o velikosti přibližně 210 m2 rozdělený do tři podlaží"
+    },
+    {
+      "it": "Ampio salone e cucina abitabile al piano terra",
+      "en": "Large living room and eat-in kitchen on the ground floor",
+      "cs": "Velký obývák a obyvatelná kuchyně v přízemí"
+    },
+    {
+      "it": "Tre camere da letto nella zona notte del primo piano",
+      "en": "Three bedrooms in the first-floor sleeping area",
+      "cs": "Tři ložnice v noční části v prvním patře"
+    },
+    {
+      "it": "Due bagni e bagno di servizio per gli ospiti",
+      "en": "Two bathrooms plus a guest service bathroom",
+      "cs": "Dvě koupelny a další servisní koupelna pro hosty"
+    },
+    {
+      "it": "Sottotetto con locale hobby per momenti conviviali",
+      "en": "Attic level with hobby room for entertaining",
+      "cs": "Podkroví s hobby místností vhodnou pro společné chvíle"
+    },
+    {
+      "it": "Balconi e terrazzo",
+      "en": "Balconies and terrace",
+      "cs": "Balkony a terasa"
+    }
+  ],
+  "description_it": "A Cerisano, in via San Pietro, proponiamo una casa indipendente di circa 210 m2 distribuita su tre livelli, adatta a chi cerca spazi generosi a un prezzo molto competitivo.\n\nIl piano terra si apre con un ingresso comodo che conduce a un ampio salone e a una cucina abitabile, completati da un bagno di servizio. Al primo piano si sviluppa la zona notte con tre camere da letto e due bagni. Il secondo livello ospita un sottotetto utilizzato come sala hobby, ideale per momenti conviviali o per ricavare uno spazio multifunzione.\n\nLa proprietà dispone inoltre di balconi e terrazzo, elementi che aumentano la vivibilità della casa e il suo potenziale come prima abitazione familiare.",
+  "description_en": "In Cerisano, on Via San Pietro, we offer a detached house of about 210 sqm arranged over three levels, suitable for buyers looking for generous space at a very competitive price.\n\nThe ground floor opens with a comfortable entrance leading to a large living room and an eat-in kitchen, completed by a guest service bathroom. The first floor hosts the sleeping area with three bedrooms and two bathrooms. The second level includes an attic currently used as a hobby room, ideal for entertaining or for creating a flexible extra space.\n\nThe property also features balconies and a terrace, which improve day-to-day usability and strengthen its appeal as a family primary residence.",
+  "description_cs": "V Cerisanu na ulici Via San Pietro nabízíme samostatný dům o velikosti přibližně 210 m2 rozdělený do tři podlaží, vhodný pro kupující, kteří hledají velkorysý prostor za velmi konkurencni cenu.\n\nPřízemí začíná pohodlným vstupem, který vede do velkého obývacího pokoje a obyvatelné kuchyně, doplněných servisní koupelnou. V prvním patře se nachází noční část se třemi ložnicemi a dvěmá koupelnami. Druhé podlaží tvoji podkroví využívané jako hobby místnost, ideální pro setkávání s přáteli nebo jako flexibilni víceúčelový prostor.\n\nNemovitost má také balkony a terasu, které zlepšují každodenní užívání domu a zvyšují jeho atraktivitu jako rodinného bydlení.",
+  "seo_title_it": "Casa indipendente con terrazzo in vendita a Cerisano",
+  "seo_title_en": "Detached House with Terrace for Sale in Cerisano",
+  "seo_title_cs": "Samostatný dům s terasou na prodej v Cerisano",
+  "seo_description_it": "Casa di 210 m2 a Cerisano: 5 locali, 3 camere, 2 bagni, cucina abitabile, sottotetto hobby, balconi e terrazzo.",
+  "seo_description_en": "210 sqm house in Cerisano: 5 rooms, 3 bedrooms, 2 bathrooms, eat-in kitchen, hobby attic, balconies, and terrace.",
+  "seo_description_cs": "Dům 210 m2 v Cerisano: 5 místností, 3 ložnice, 2 koupelny, obyvatelná kuchyně, hobby podkroví, balkony a terasa.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "cerisano",
+    "via san pietro",
+    "casa indipendente",
+    "terrazzo",
+    "calabria"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/127146791/",
+  "lat": 39.2749,
+  "lng": 16.1782,
+  "yearBuilt": 0,
+  "lotSize": 0,
+  "parking": 0,
+  "image_urls": []
+}

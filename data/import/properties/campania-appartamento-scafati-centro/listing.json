@@ -1,0 +1,77 @@
+{
+  "title_it": "Quadrilocale con terrazza panoramica nel centro di Scafati",
+  "title_en": "Four-Room Apartment with Panoramic Terrace in Central Scafati",
+  "title_cs": "Čtyřpokojový byt s panoramatickou terasou v centru Scafati",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Campania",
+  "city_it": "Scafati",
+  "city_en": "Scafati",
+  "city_cs": "Scafati",
+  "address_it": "Via Cesare Battisti, Scafati (SA), Campania",
+  "address_en": "Via Cesare Battisti, Scafati (SA), Campania",
+  "address_cs": "Via Cesare Battisti, Scafati (SA), Kampanie",
+  "price": 198000,
+  "rooms": 4,
+  "bedrooms": 3,
+  "bathrooms": 1,
+  "square_meters": 114,
+  "features": [
+    {
+      "it": "Appartamento di 114 m2 al terzo e ultimo piano in palazzo storico",
+      "en": "114 sqm apartment on the third and top floor of a historic building",
+      "cs": "Byt o velikosti 114 m2 ve třetím a posledním patře historické budovy"
+    },
+    {
+      "it": "Terrazzo di copertura panoramico di 114 m2",
+      "en": "Panoramic 114 sqm rooftop terrace",
+      "cs": "Panoramatická střešní terasa o velikosti 114 m2"
+    },
+    {
+      "it": "Zona giorno open space con cucina a vista",
+      "en": "Open-space living area with open kitchen",
+      "cs": "Otevřená denní část s kuchyní"
+    },
+    {
+      "it": "Tre camere da letto, studio e cabina armadio in camera matrimoniale",
+      "en": "Three bedrooms, study, and walk-in closet in the main bedroom",
+      "cs": "Tři ložnice, pracovna a šatna u hlavní ložnice"
+    },
+    {
+      "it": "Ristrutturazione recente con gres porcellanato e doppi vetri",
+      "en": "Recently renovated with porcelain stoneware and double glazing",
+      "cs": "Nedávná rekonstrukce s gresovou podlahou a dvojitým zasklením"
+    },
+    {
+      "it": "Riscaldamento autonomo e climatizzatori Daikin",
+      "en": "Independent heating and Daikin air conditioning",
+      "cs": "Samostatné vytápění a klimatizace Daikin"
+    }
+  ],
+  "description_it": "Nel centro storico di Scafati proponiamo un appartamento ristrutturato di 114 m2 al terzo e ultimo piano di un palazzo storico, con una rara terrazza di copertura panoramica della stessa superficie dell'abitazione.\n\nL'immobile si apre su una zona giorno open space con cucina a vista. La zona notte, separata da una porta in vetro, comprende tre camere da letto, uno studio, un bagno e una camera matrimoniale con cabina armadio. Gli ambienti sono luminosi e ben distribuiti, ideali per una famiglia o per chi lavora da casa.\n\nLa casa presenta finiture recenti, pavimentazione in gres porcellanato, infissi con doppio vetro, riscaldamento autonomo e climatizzatori Daikin. Soluzione interessante per chi vuole vivere il centro con ampi spazi interni ed esterni.",
+  "description_en": "In the historic center of Scafati we offer a renovated 114 sqm apartment on the third and top floor of a historic building, with a rare panoramic rooftop terrace equal in size to the apartment itself.\n\nThe property opens onto an open-space living area with open kitchen. The sleeping area, separated by a glass door, includes three bedrooms, a study, a bathroom, and a main bedroom with walk-in closet. The rooms are bright and well distributed, suitable for a family or for buyers working from home.\n\nThe home features recent finishes, porcelain stoneware flooring, double-glazed windows, independent heating, and Daikin air conditioning. It is a strong option for those who want central living with generous indoor and outdoor space.",
+  "description_cs": "V historickém centru Scafati nabízíme zrekonstruovaný byt o velikosti 114 m2 ve třetím a posledním patře historické budovy, s výjimečnou panoramatickou střešní terasou o stejné ploše jako samotny byt.\n\nNemovitost se otevírá do denní části typu open space s otevřenou kuchyní. Noční část oddělená skleněnými dvěřmi zahrnuje tři ložnice, pracovnu, koupelnu a hlavní ložnici se šatnou. Místností jsou světlé a dobře uspořádané, vhodné pro rodinu i pro kupující pracující z domova.\n\nByt má novější povrchy, gresovou podlahu, okna s dvojitým zasklením, samostatné vytápění a klimatizace Daikin. Jde o zajímavou volbu pro ty, kdo chtějí bydlet v centru a zároveň mít velkorysý vnitřní i venkovní prostor.",
+  "seo_title_it": "Quadrilocale con terrazza in vendita a Scafati centro",
+  "seo_title_en": "Four-Room Apartment with Terrace for Sale in Central Scafati",
+  "seo_title_cs": "Čtyřpokojový byt s terasou na prodej v centru Scafati",
+  "seo_description_it": "Appartamento di 114 m2 a Scafati: 4 locali, 3 camere, 1 bagno, studio, terrazza panoramica di copertura e finiture recenti.",
+  "seo_description_en": "114 sqm apartment in Scafati: 4 rooms, 3 bedrooms, 1 bathroom, study, panoramic rooftop terrace, and recent finishes.",
+  "seo_description_cs": "Byt 114 m2 ve Scafati: 4 místností, 3 ložnice, 1 koupelna, pracovna, panoramatická střešní terasa a novější vybavení.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "scafati",
+    "via cesare battisti",
+    "appartamento",
+    "terrazza panoramica",
+    "centro storico",
+    "campania"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/127194231/",
+  "lat": 40.7517,
+  "lng": 14.5256,
+  "yearBuilt": 0,
+  "lotSize": 0,
+  "parking": 0,
+  "image_urls": []
+}
