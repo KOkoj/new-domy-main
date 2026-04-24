@@ -43,11 +43,44 @@ function isMaintenanceBypassPath(pathname) {
 
 export async function proxy(request) {
   const requestHost = request.headers.get('host')
+  const pathname = request.nextUrl.pathname
+  const legacySearch = request.nextUrl.searchParams.get('s')
+  const legacyCategory = request.nextUrl.searchParams.get('id_kategorie')
 
   if (requestHost === 'domyvitalii.cz') {
     const redirectUrl = request.nextUrl.clone()
     redirectUrl.host = SITE_HOST
     redirectUrl.protocol = 'https'
+    return NextResponse.redirect(redirectUrl, 308)
+  }
+
+  if (pathname === '/' && legacySearch) {
+    const normalizedSearch = legacySearch.trim().toLowerCase()
+    const redirectMap = {
+      clanky: '/blog',
+      nabidka: '/properties',
+      regiony: '/regions',
+      proces: '/process',
+      kontakt: '/contact',
+      faq: '/faq'
+    }
+
+    if (redirectMap[normalizedSearch]) {
+      const redirectUrl = request.nextUrl.clone()
+      redirectUrl.pathname = redirectMap[normalizedSearch]
+      redirectUrl.search = ''
+      return NextResponse.redirect(redirectUrl, 308)
+    }
+
+    if (/^\d+$/.test(normalizedSearch)) {
+      return new NextResponse(null, { status: 410 })
+    }
+  }
+
+  if (pathname === '/' && legacyCategory === '10') {
+    const redirectUrl = request.nextUrl.clone()
+    redirectUrl.pathname = '/properties'
+    redirectUrl.search = ''
     return NextResponse.redirect(redirectUrl, 308)
   }
 

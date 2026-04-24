@@ -46,6 +46,25 @@
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/index.php',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/blog/regions',
+        destination: '/regions',
+        permanent: true,
+      },
+    ];
+  },
   turbopack: {}
 };
 module.exports = nextConfig;

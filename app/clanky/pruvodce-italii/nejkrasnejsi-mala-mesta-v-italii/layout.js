@@ -1,20 +1,23 @@
-﻿export const metadata = {
-  title: 'Nejkrásnější malá města v Itálii 2026 – datově podložený výběr borghi',
-  description:
-    'Datově podložený výběr nejkrásnějších malých měst v Itálii pro rok 2026: ověřené borghi, praktická logistika, orientační rozpočet a tipy pro chytřejší cestování.',
-  alternates: {
-    canonical: '/clanky/pruvodce-italii/nejkrasnejsi-mala-mesta-v-italii'
-  },
-  openGraph: {
-    title: 'Nejkrásnější malá města v Itálii 2026 – datově podložený výběr borghi',
-    description:
-      'Datově podložený výběr nejkrásnějších malých měst v Itálii pro rok 2026: ověřené borghi, praktická logistika, orientační rozpočet a tipy pro chytřejší cestování.',
-    url: 'https://www.domyvitalii.cz/clanky/pruvodce-italii/nejkrasnejsi-mala-mesta-v-italii',
-    type: 'article',
-    siteName: 'Domy v Itálii'
-  }
-}
+import JsonLd from '@/components/seo/JsonLd'
+import { getTravelArticleSeo } from '@/lib/seo/contentPages'
+import { buildArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
+
+const seo = getTravelArticleSeo('nejkrasnejsi-mala-mesta-v-italii')
+
+export const metadata = buildArticleMetadata(seo)
 
 export default function MostBeautifulSmallTownsItalyLayout({ children }) {
-  return children
+  return (
+    <>
+      <JsonLd
+        data={buildBreadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Průvodce Itálií', path: '/clanky/pruvodce-italii' },
+          { name: seo.title, path: seo.path }
+        ])}
+      />
+      <JsonLd data={buildArticleJsonLd(seo)} />
+      {children}
+    </>
+  )
 }

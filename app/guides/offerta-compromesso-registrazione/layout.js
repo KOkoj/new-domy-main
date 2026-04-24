@@ -1,20 +1,23 @@
-export const metadata = {
-  title: "Come fare un'offerta per comprare casa in Italia | Domy v Itálii",
-  description:
-    "Scopri come funziona in Italia la proposta d'acquisto, quando diventa vincolante, cosa inserire nel compromesso e come funziona la registrazione del preliminare.",
-  alternates: {
-    canonical: '/guides/offerta-compromesso-registrazione'
-  },
-  openGraph: {
-    title: "Come fare un'offerta per comprare casa in Italia | Domy v Itálii",
-    description:
-      "Guida pratica su proposta d'acquisto, compromesso e registrazione del preliminare in Italia per chi compra casa con più consapevolezza.",
-    url: 'https://www.domyvitalii.cz/guides/offerta-compromesso-registrazione',
-    type: 'article',
-    siteName: 'Domy v Itálii'
-  }
-}
+import JsonLd from '@/components/seo/JsonLd'
+import { getGuideSeo } from '@/lib/seo/contentPages'
+import { buildArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
+
+const seo = getGuideSeo('offerta-compromesso-registrazione')
+
+export const metadata = buildArticleMetadata(seo)
 
 export default function OfferCompromessoLayout({ children }) {
-  return children
+  return (
+    <>
+      <JsonLd
+        data={buildBreadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Guides', path: '/guides' },
+          { name: seo.title, path: seo.path }
+        ])}
+      />
+      <JsonLd data={buildArticleJsonLd(seo)} />
+      {children}
+    </>
+  )
 }

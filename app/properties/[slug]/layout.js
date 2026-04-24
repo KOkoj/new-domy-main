@@ -1,5 +1,7 @@
 import { getPropertyBySlug } from '@/lib/propertyApi'
 import { absoluteUrl } from '@/lib/siteConfig'
+import JsonLd from '@/components/seo/JsonLd'
+import { buildPropertyJsonLd } from '@/lib/seo/contentSeo'
 
 function getLocalizedValue(value, language = 'en', fallback = '') {
   if (value && typeof value === 'object') {
@@ -74,6 +76,19 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default function PropertyDetailLayout({ children }) {
-  return children
+export default async function PropertyDetailLayout({ children, params }) {
+  const rawSlug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug
+  const property = rawSlug ? await getPropertyBySlug(rawSlug) : null
+  const canonicalPath = property?.slug?.current
+    ? `/properties/${property.slug.current}`
+    : rawSlug
+    ? `/properties/${rawSlug}`
+    : null
+
+  return (
+    <>
+      <JsonLd data={buildPropertyJsonLd(property, canonicalPath)} />
+      {children}
+    </>
+  )
 }

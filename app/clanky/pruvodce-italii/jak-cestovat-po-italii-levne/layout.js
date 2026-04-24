@@ -1,20 +1,23 @@
-﻿export const metadata = {
-  title: 'Jak cestovat po Itálii levně v roce 2026 – vlak, auto, autobus nebo letadlo',
-  description:
-    'Praktický průvodce levným cestováním po Itálii v roce 2026: srovnání vlaku, auta, autobusu i letadla, orientační ceny a tipy bez zbytečných přeplatků.',
-  alternates: {
-    canonical: '/clanky/pruvodce-italii/jak-cestovat-po-italii-levne'
-  },
-  openGraph: {
-    title: 'Jak cestovat po Itálii levně v roce 2026 – vlak, auto, autobus nebo letadlo',
-    description:
-      'Praktický průvodce levným cestováním po Itálii v roce 2026: srovnání vlaku, auta, autobusu i letadla, orientační ceny a tipy bez zbytečných přeplatků.',
-    url: 'https://www.domyvitalii.cz/clanky/pruvodce-italii/jak-cestovat-po-italii-levne',
-    type: 'article',
-    siteName: 'Domy v Itálii'
-  }
-}
+import JsonLd from '@/components/seo/JsonLd'
+import { getTravelArticleSeo } from '@/lib/seo/contentPages'
+import { buildArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
+
+const seo = getTravelArticleSeo('jak-cestovat-po-italii-levne')
+
+export const metadata = buildArticleMetadata(seo)
 
 export default function JakCestovatPoItaliiLevneLayout({ children }) {
-  return children
+  return (
+    <>
+      <JsonLd
+        data={buildBreadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Průvodce Itálií', path: '/clanky/pruvodce-italii' },
+          { name: seo.title, path: seo.path }
+        ])}
+      />
+      <JsonLd data={buildArticleJsonLd(seo)} />
+      {children}
+    </>
+  )
 }

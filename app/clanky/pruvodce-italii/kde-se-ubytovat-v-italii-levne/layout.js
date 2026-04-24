@@ -1,20 +1,23 @@
-export const metadata = {
-  title: 'Kde se ubytovat v Itálii levně – hotel, B&B nebo agriturismo',
-  description:
-    'Praktický průvodce levným ubytováním v Itálii pro rok 2026: orientační ceny hotelů, B&B a agriturismo, sezónnost, chyby při rezervaci a tipy, jak ušetřit.',
-  alternates: {
-    canonical: '/clanky/pruvodce-italii/kde-se-ubytovat-v-italii-levne'
-  },
-  openGraph: {
-    title: 'Kde se ubytovat v Itálii levně – hotel, B&B nebo agriturismo',
-    description:
-      'Praktický průvodce levným ubytováním v Itálii pro rok 2026: orientační ceny hotelů, B&B a agriturismo, sezónnost, chyby při rezervaci a tipy, jak ušetřit.',
-    url: 'https://www.domyvitalii.cz/clanky/pruvodce-italii/kde-se-ubytovat-v-italii-levne',
-    type: 'article',
-    siteName: 'Domy v Itálii'
-  }
-}
+import JsonLd from '@/components/seo/JsonLd'
+import { getTravelArticleSeo } from '@/lib/seo/contentPages'
+import { buildArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
+
+const seo = getTravelArticleSeo('kde-se-ubytovat-v-italii-levne')
+
+export const metadata = buildArticleMetadata(seo)
 
 export default function StayCheapItalyLayout({ children }) {
-  return children
+  return (
+    <>
+      <JsonLd
+        data={buildBreadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Průvodce Itálií', path: '/clanky/pruvodce-italii' },
+          { name: seo.title, path: seo.path }
+        ])}
+      />
+      <JsonLd data={buildArticleJsonLd(seo)} />
+      {children}
+    </>
+  )
 }
