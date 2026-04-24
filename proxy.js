@@ -41,6 +41,10 @@ function isMaintenanceBypassPath(pathname) {
   )
 }
 
+function isVercelPreviewHost(hostname) {
+  return typeof hostname === 'string' && hostname.includes('vercel.app')
+}
+
 export async function proxy(request) {
   const requestHost = request.headers.get('host')
   const pathname = request.nextUrl.pathname
@@ -84,7 +88,11 @@ export async function proxy(request) {
     return NextResponse.redirect(redirectUrl, 308)
   }
 
-  if (PUBLIC_SITE_STANDBY && !isMaintenanceBypassPath(request.nextUrl.pathname)) {
+  if (
+    PUBLIC_SITE_STANDBY &&
+    !isVercelPreviewHost(requestHost) &&
+    !isMaintenanceBypassPath(request.nextUrl.pathname)
+  ) {
     const maintenanceUrl = request.nextUrl.clone()
     maintenanceUrl.pathname = '/maintenance'
     maintenanceUrl.search = ''
