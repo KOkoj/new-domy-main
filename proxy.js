@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { PUBLIC_SITE_STANDBY } from '@/lib/featureFlags'
+import { SITE_HOST } from '@/lib/siteConfig'
 
 function isProtectedContentPath(pathname) {
   if (pathname === '/regions') return false
@@ -41,6 +42,15 @@ function isMaintenanceBypassPath(pathname) {
 }
 
 export async function proxy(request) {
+  const requestHost = request.headers.get('host')
+
+  if (requestHost === 'domyvitalii.cz') {
+    const redirectUrl = request.nextUrl.clone()
+    redirectUrl.host = SITE_HOST
+    redirectUrl.protocol = 'https'
+    return NextResponse.redirect(redirectUrl, 308)
+  }
+
   if (PUBLIC_SITE_STANDBY && !isMaintenanceBypassPath(request.nextUrl.pathname)) {
     const maintenanceUrl = request.nextUrl.clone()
     maintenanceUrl.pathname = '/maintenance'
