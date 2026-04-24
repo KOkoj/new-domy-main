@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const metadata = {
   title: 'Stand-by | Domy v Italii',
-  description: 'The site is temporarily unavailable while we complete final updates.',
+  description: 'Web je dočasně nedostupný, zatímco dokončujeme finální úpravy.',
   robots: {
     index: false,
     follow: false
@@ -14,14 +14,14 @@ export default function MaintenancePage() {
     <main className="min-h-screen bg-slate-950 text-white">
       <div className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-6 py-16 text-center">
         <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-copper-300">
-          Temporary Stand-by
+          Dočasný režim stand-by
         </p>
         <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          We are finalizing the new site.
+          Dokončujeme nový web.
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-          Domy v Italii is temporarily unavailable while we complete final content, SEO, and launch checks.
-          The site will return shortly.
+          Domy v Itálii jsou dočasně nedostupné, zatímco dokončujeme finální obsah, SEO a kontrolu před
+          spuštěním. Web bude brzy znovu dostupný.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm text-slate-300">
           <a
