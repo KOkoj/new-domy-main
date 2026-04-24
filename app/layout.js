@@ -3,6 +3,8 @@ import './globals.css'
 import 'leaflet/dist/leaflet.css'
 import ScrollToTop from '@/components/ScrollToTop'
 import NavigationProgress from '@/components/NavigationProgress'
+import { PUBLIC_SITE_STANDBY } from '@/lib/featureFlags'
+import { SITE_NAME, SITE_URL } from '@/lib/siteConfig'
 
 const manrope = Manrope({
   subsets: ['latin', 'latin-ext'],
@@ -23,25 +25,66 @@ const sora = Sora({
 })
 
 export const metadata = {
-  title: 'Domy v Itálii - Průvodce koupí domu v Itálii pro Čechy',
-  description: 'Pomáháme Čechům s koupí nemovitosti v Itálii. Luxusní vily, byty a statky v nejkrásnějších italských regionech. Find your dream property in Italy.',
-  keywords: 'domy v Itálii, nemovitosti Itálie, koupě domu Itálie, Italian properties, real estate Italy, villas Italy',
+  metadataBase: new URL(SITE_URL),
+  title: 'Domy v Italii - Pruvodce koupi domu v Italii pro Cechy',
+  description: 'Pomahame Cechum s koupi nemovitosti v Italii. Luxusni vily, byty a statky v nejkrasnejsich italskych regionech.',
+  keywords: 'domy v Italii, nemovitosti Italie, koupe domu Italie, Italian properties, real estate Italy, villas Italy',
+  alternates: {
+    canonical: '/'
+  },
+  robots: PUBLIC_SITE_STANDBY
+    ? {
+        index: false,
+        follow: false
+      }
+    : {
+        index: true,
+        follow: true
+      },
   openGraph: {
-    title: 'Domy v Itálii - Průvodce koupí domu v Itálii',
-    description: 'Pomáháme Čechům s koupí nemovitosti v Itálii. Jasně, prakticky a bez stresu.',
-    url: 'https://www.domyvitalii.cz',
-    siteName: 'Domy v Itálii',
+    title: 'Domy v Italii - Pruvodce koupi domu v Italii',
+    description: 'Pomahame Cechum s koupi nemovitosti v Italii. Jasne, prakticky a bez stresu.',
+    url: SITE_URL,
+    siteName: SITE_NAME,
     locale: 'cs_CZ',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Domy v Italii - Pruvodce koupi domu v Italii',
+    description: 'Pomahame Cechum s koupi nemovitosti v Italii. Jasne, prakticky a bez stresu.'
   },
 }
 
 export default function RootLayout({ children }) {
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+    email: 'info@domyvitalii.cz'
+  }
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL
+  }
+
   return (
     <html lang="cs" className={`${manrope.variable} ${sora.variable} font-sans overflow-x-hidden`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <link rel="icon" href="/favicon.ico" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
       </head>
       <body className="antialiased overflow-x-hidden">
         <NavigationProgress />

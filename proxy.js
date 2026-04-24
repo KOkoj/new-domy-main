@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
+import { PUBLIC_SITE_STANDBY } from '@/lib/featureFlags'
 
 function isProtectedContentPath(pathname) {
   if (pathname === '/regions') return false
@@ -28,7 +29,25 @@ function buildLoginRedirect(request) {
   return loginUrl
 }
 
+function isMaintenanceBypassPath(pathname) {
+  return (
+    pathname === '/maintenance' ||
+    pathname.startsWith('/admin') ||
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/auth') ||
+    pathname.startsWith('/dashboard') ||
+    pathname.startsWith('/login')
+  )
+}
+
 export async function proxy(request) {
+  if (PUBLIC_SITE_STANDBY && !isMaintenanceBypassPath(request.nextUrl.pathname)) {
+    const maintenanceUrl = request.nextUrl.clone()
+    maintenanceUrl.pathname = '/maintenance'
+    maintenanceUrl.search = ''
+    return NextResponse.rewrite(maintenanceUrl)
+  }
+
   const response = NextResponse.next({
     request: {
       headers: request.headers
