@@ -231,9 +231,15 @@ export default function ProfileManagement() {
       {/* Profile Tabs */}
       <Tabs defaultValue="personal" className="w-full">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="personal">{t('club.profile.personalInfo', language)}</TabsTrigger>
-          <TabsTrigger value="preferences">{t('club.profile.preferences', language)}</TabsTrigger>
-          <TabsTrigger value="security">{t('club.profile.security', language)}</TabsTrigger>
+          <TabsTrigger value="personal" className="min-h-[44px] text-xs sm:text-sm px-1 sm:px-3">
+            <span className="truncate">{t('club.profile.personalInfo', language)}</span>
+          </TabsTrigger>
+          <TabsTrigger value="preferences" className="min-h-[44px] text-xs sm:text-sm px-1 sm:px-3">
+            <span className="truncate">{t('club.profile.preferences', language)}</span>
+          </TabsTrigger>
+          <TabsTrigger value="security" className="min-h-[44px] text-xs sm:text-sm px-1 sm:px-3">
+            <span className="truncate">{t('club.profile.security', language)}</span>
+          </TabsTrigger>
         </TabsList>
 
         {/* Personal Information */}
@@ -347,7 +353,7 @@ export default function ProfileManagement() {
               <div>
                 <Label className="text-base font-medium">{t('club.profile.priceRange', language)}</Label>
                 <p className="text-sm text-gray-600 mb-3">{t('club.profile.setBudget', language)}</p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="minPrice">{t('club.profile.minPrice', language)}</Label>
                     <Input
@@ -433,7 +439,7 @@ export default function ProfileManagement() {
                   />
                   <button
                     type="button"
-                    className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                    className="absolute right-0 top-0 h-full px-3 flex items-center justify-center min-w-[44px] text-gray-400 hover:text-gray-600"
                     onClick={() => setShowPasswords(prev => ({ ...prev, current: !prev.current }))}
                   >
                     {showPasswords.current ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -453,7 +459,7 @@ export default function ProfileManagement() {
                   />
                   <button
                     type="button"
-                    className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                    className="absolute right-0 top-0 h-full px-3 flex items-center justify-center min-w-[44px] text-gray-400 hover:text-gray-600"
                     onClick={() => setShowPasswords(prev => ({ ...prev, new: !prev.new }))}
                   >
                     {showPasswords.new ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -473,7 +479,7 @@ export default function ProfileManagement() {
                   />
                   <button
                     type="button"
-                    className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                    className="absolute right-0 top-0 h-full px-3 flex items-center justify-center min-w-[44px] text-gray-400 hover:text-gray-600"
                     onClick={() => setShowPasswords(prev => ({ ...prev, confirm: !prev.confirm }))}
                   >
                     {showPasswords.confirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}

@@ -218,8 +218,8 @@ export default function FavoritesManagement() {
     
     return (
       <Card className={`hover:shadow-lg transition-all duration-300 ${selectedProperties.has(property._id) ? 'ring-2 ring-blue-500' : ''}`}>
-        <div className={`${isGrid ? 'block' : 'flex'}`}>
-          <div className={`relative ${isGrid ? 'w-full h-48' : 'w-48 h-32 flex-shrink-0'}`}>
+        <div className={`${isGrid ? 'block' : 'flex flex-col sm:flex-row'}`}>
+          <div className={`relative ${isGrid ? 'w-full h-48' : 'w-full sm:w-48 h-48 sm:h-32 flex-shrink-0'}`}>
             <Image
               src={property.image}
               alt={property.title.en}
@@ -261,7 +261,7 @@ export default function FavoritesManagement() {
               </div>
             </div>
             
-            <div className="flex items-center space-x-4 text-sm text-gray-600 mb-3">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600 mb-3">
               <span className="flex items-center">
                 <Bed className="h-3 w-3 mr-1" />
                 {property.specifications.bedrooms} beds
@@ -325,9 +325,9 @@ export default function FavoritesManagement() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t('club.favoritesPage.title', language)}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{t('club.favoritesPage.title', language)}</h1>
           <p className="text-gray-600 mt-1">{favorites.length} {t('club.favoritesPage.savedProperties', language)}</p>
         </div>
         <div className="flex items-center space-x-2">

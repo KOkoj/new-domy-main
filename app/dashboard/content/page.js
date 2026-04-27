@@ -249,18 +249,18 @@ export default function ContentPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="videos" className="w-full">
-        <TabsList className="bg-white border-gray-200">
-          <TabsTrigger value="videos" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700">
-            <Video className="h-4 w-4 mr-2" />
-            {t('club.contentPage.videos', language)}
+        <TabsList className="grid w-full grid-cols-3 bg-white border-gray-200">
+          <TabsTrigger value="videos" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700 min-h-[44px]">
+            <Video className="h-4 w-4 mr-1 sm:mr-2 flex-shrink-0" />
+            <span className="truncate">{t('club.contentPage.videos', language)}</span>
           </TabsTrigger>
-          <TabsTrigger value="guides" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700">
-            <BookOpen className="h-4 w-4 mr-2" />
-            {t('club.contentPage.guides', language)}
+          <TabsTrigger value="guides" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700 min-h-[44px]">
+            <BookOpen className="h-4 w-4 mr-1 sm:mr-2 flex-shrink-0" />
+            <span className="truncate">{t('club.contentPage.guides', language)}</span>
           </TabsTrigger>
-          <TabsTrigger value="articles" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700">
-            <FileText className="h-4 w-4 mr-2" />
-            {t('club.contentPage.articles', language)}
+          <TabsTrigger value="articles" className="data-[state=active]:bg-copper-50 data-[state=active]:text-copper-700 min-h-[44px]">
+            <FileText className="h-4 w-4 mr-1 sm:mr-2 flex-shrink-0" />
+            <span className="truncate">{t('club.contentPage.articles', language)}</span>
           </TabsTrigger>
         </TabsList>
 
@@ -301,7 +301,7 @@ export default function ContentPage() {
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover group-hover:scale-105 transition-transform"
                   />
-                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-60 sm:opacity-0 group-hover:opacity-100 transition-opacity">
                     <Play className="h-16 w-16 text-white" />
                   </div>
                   <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs text-white">
@@ -341,27 +341,29 @@ export default function ContentPage() {
             return (
               <Card key={guide.id} className="bg-white border-gray-200 hover:shadow-md transition-all">
                 <CardContent className="p-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-copper-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon className="h-8 w-8 text-copper-600" />
-                    </div>
-                    <div className="flex-1">
-                      <Badge className="bg-copper-50 text-copper-700 border-copper-200 mb-2">
-                        {guide.category}
-                      </Badge>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">{guide.title}</h3>
-                      <p className="text-sm text-gray-500 mb-3">{guide.description}</p>
-                      <div className="flex items-center gap-4 text-xs text-gray-400">
-                        <span>{guide.pages} {t('club.contentPage.pages', language)}</span>
-                        <span className="flex items-center">
-                          <Download className="h-3 w-3 mr-1" />
-                          {guide.download_count || 0} {t('club.contentPage.downloads', language)}
-                        </span>
-                        <span>{formatDate(guide.published_at)}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                    <div className="flex items-start gap-4 flex-1 min-w-0">
+                      <div className="w-16 h-16 bg-copper-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon className="h-8 w-8 text-copper-600" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <Badge className="bg-copper-50 text-copper-700 border-copper-200 mb-2">
+                          {guide.category}
+                        </Badge>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-1">{guide.title}</h3>
+                        <p className="text-sm text-gray-500 mb-3">{guide.description}</p>
+                        <div className="flex flex-wrap items-center gap-3 text-xs text-gray-400">
+                          <span>{guide.pages} {t('club.contentPage.pages', language)}</span>
+                          <span className="flex items-center">
+                            <Download className="h-3 w-3 mr-1" />
+                            {guide.download_count || 0} {t('club.contentPage.downloads', language)}
+                          </span>
+                          <span>{formatDate(guide.published_at)}</span>
+                        </div>
                       </div>
                     </div>
                     <Button 
-                      className="bg-copper-600 hover:bg-copper-700 text-white"
+                      className="w-full sm:w-auto sm:flex-shrink-0 bg-copper-600 hover:bg-copper-700 text-white"
                       onClick={() => handleOpenItem(guide)}
                     >
                       <Download className="h-4 w-4 mr-2" />
@@ -394,8 +396,8 @@ export default function ContentPage() {
                 </Badge>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{article.title}</h3>
                 <p className="text-gray-500 mb-4 line-clamp-3">{article.description}</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4 text-sm text-gray-400">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-400">
                     <span>{article.author}</span>
                     <span className="flex items-center">
                       <Clock className="h-3 w-3 mr-1" />
@@ -407,7 +409,7 @@ export default function ContentPage() {
                     </span>
                     <span>{formatDate(article.published_at)}</span>
                   </div>
-                  <Button variant="outline" size="sm" className="bg-white border-gray-200 text-gray-600 hover:bg-gray-50">
+                  <Button variant="outline" size="sm" className="w-full sm:w-auto sm:flex-shrink-0 bg-white border-gray-200 text-gray-600 hover:bg-gray-50">
                     {t('club.contentPage.readArticle', language)} →
                   </Button>
                 </div>

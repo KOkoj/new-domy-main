@@ -213,9 +213,9 @@ export default function DashboardLayout({ children }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 home-page-custom-border">
+    <div className="min-h-screen bg-gray-50 home-page-custom-border overflow-x-hidden">
       
-      <div className="pt-16 lg:pt-0">
+      <div>
         {/* Mobile sidebar backdrop */}
         {sidebarOpen && (
           <div 
@@ -225,10 +225,10 @@ export default function DashboardLayout({ children }) {
         )}
 
         {/* Sidebar */}
-        <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        <div className={`fixed inset-y-0 left-0 z-50 w-64 max-w-[85vw] bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}>
-          <div className="flex flex-col h-full pt-16 lg:pt-0">
+          <div className="flex flex-col h-full">
             {/* Logo */}
             <div className="flex items-center justify-between h-16 px-6 border-b">
               <Link href="/dashboard" className="flex items-center space-x-2">
@@ -238,7 +238,7 @@ export default function DashboardLayout({ children }) {
                 <span className="font-bold text-gray-900">My Dashboard</span>
               </Link>
               <button 
-                className="lg:hidden" 
+                className="lg:hidden flex items-center justify-center min-w-[44px] min-h-[44px] rounded-md hover:bg-gray-100" 
                 onClick={() => setSidebarOpen(false)}
               >
                 <X className="h-5 w-5" />
@@ -246,7 +246,7 @@ export default function DashboardLayout({ children }) {
             </div>
 
             {/* Navigation */}
-            <nav className="flex-1 px-4 py-4 space-y-2">
+            <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
               {getDashboardMenuItems(language).map((item) => {
                 const Icon = item.icon
                 return (
@@ -303,24 +303,24 @@ export default function DashboardLayout({ children }) {
         {/* Main content */}
         <div className="lg:pl-64 flex flex-col min-h-screen">
           {/* Top Header (Desktop & Mobile) */}
-          <header className="bg-white border-b h-16 flex items-center justify-between px-6 sticky top-0 z-30">
-            <div className="flex items-center lg:hidden">
-              <button onClick={() => setSidebarOpen(true)} className="mr-4">
+          <header className="bg-white border-b h-16 flex items-center justify-between px-3 sm:px-6 sticky top-0 z-30">
+            <div className="flex items-center lg:hidden min-w-0">
+              <button onClick={() => setSidebarOpen(true)} className="mr-1 flex-shrink-0 flex items-center justify-center min-w-[44px] min-h-[44px] rounded-md hover:bg-gray-100">
                 <Menu className="h-6 w-6 text-gray-600" />
               </button>
-              <h1 className="font-semibold text-gray-900">Dashboard</h1>
+              <h1 className="font-semibold text-gray-900 truncate text-sm sm:text-base">Dashboard</h1>
             </div>
             
-              <h1 className="hidden lg:block text-gray-900 font-semibold">
+            <h1 className="hidden lg:block text-gray-900 font-semibold">
               {language === 'cs' ? 'Nástěnka' : (language === 'it' ? 'Cruscotto' : 'Dashboard')}
             </h1>
 
-            <div className="flex items-center space-x-4 ml-auto">
+            <div className="flex items-center gap-2 sm:gap-3 ml-auto flex-shrink-0">
               {/* Language Switcher */}
-              <div className="flex bg-gray-100 rounded-full p-1">
+              <div className="flex bg-gray-100 rounded-full p-0.5">
                 <button
                   onClick={() => handleLanguageChange('en')}
-                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                  className={`px-2 sm:px-3 py-1.5 rounded-full text-xs font-medium transition-all min-h-[36px] min-w-[32px] ${
                     language === 'en' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-900'
                   }`}
                 >
@@ -328,7 +328,7 @@ export default function DashboardLayout({ children }) {
                 </button>
                 <button
                   onClick={() => handleLanguageChange('cs')}
-                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                  className={`px-2 sm:px-3 py-1.5 rounded-full text-xs font-medium transition-all min-h-[36px] min-w-[32px] ${
                     language === 'cs' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-900'
                   }`}
                 >
@@ -336,7 +336,7 @@ export default function DashboardLayout({ children }) {
                 </button>
                 <button
                   onClick={() => handleLanguageChange('it')}
-                  className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                  className={`px-2 sm:px-3 py-1.5 rounded-full text-xs font-medium transition-all min-h-[36px] min-w-[32px] ${
                     language === 'it' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-900'
                   }`}
                 >
@@ -344,9 +344,9 @@ export default function DashboardLayout({ children }) {
                 </button>
               </div>
               
-              <div className="h-8 w-px bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200 hidden sm:block"></div>
               
-              <div className="flex items-center space-x-2">
+              <div className="hidden sm:flex items-center">
                 <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-sm">
                   {userProfile?.name?.charAt(0) || user?.email?.charAt(0) || 'U'}
                 </div>
@@ -355,7 +355,7 @@ export default function DashboardLayout({ children }) {
           </header>
 
           {/* Page content */}
-          <main className="flex-1 p-6">
+          <main className="flex-1 p-4 sm:p-6">
             {children}
           </main>
         </div>

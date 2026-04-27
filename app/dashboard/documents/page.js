@@ -291,36 +291,38 @@ export default function DocumentsPage() {
             return (
               <Card key={doc.id} className="bg-white border-gray-200 hover:shadow-md transition-all" data-testid={`document-${doc.id}`}>
                 <CardContent className="p-6" data-testid={`document-${doc.id}-content`}>
-                  <div className="flex items-center gap-4" data-testid={`document-${doc.id}-layout`}>
-                    {/* Icon */}
-                    <div className="flex-shrink-0 w-12 h-12 bg-copper-50 rounded-lg flex items-center justify-center" data-testid={`document-${doc.id}-icon-container`}>
-                      <Icon className="h-6 w-6 text-copper-600" data-testid={`document-${doc.id}-icon`} />
-                    </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-4" data-testid={`document-${doc.id}-layout`}>
+                    {/* Icon + Details row */}
+                    <div className="flex items-start gap-4 flex-1 min-w-0">
+                      <div className="flex-shrink-0 w-12 h-12 bg-copper-50 rounded-lg flex items-center justify-center" data-testid={`document-${doc.id}-icon-container`}>
+                        <Icon className="h-6 w-6 text-copper-600" data-testid={`document-${doc.id}-icon`} />
+                      </div>
 
-                    {/* Details */}
-                    <div className="flex-1 min-w-0" data-testid={`document-${doc.id}-details`}>
-                      <h3 className="font-semibold text-gray-900 mb-1" data-testid={`document-${doc.id}-name`}>{doc.name}</h3>
-                      <p className="text-sm text-gray-500 mb-2" data-testid={`document-${doc.id}-description`}>{doc.description}</p>
-                      <div className="flex items-center gap-3 text-xs text-gray-400" data-testid={`document-${doc.id}-metadata`}>
-                        <Badge variant="outline" className="border-copper-200 text-copper-600" data-testid={`document-${doc.id}-category`}>
-                          {doc.category}
-                        </Badge>
-                        <span data-testid={`document-${doc.id}-type`}>{doc.file_type}</span>
-                        <span data-testid={`document-${doc.id}-size`}>{doc.file_size}</span>
-                        <span className="flex items-center" data-testid={`document-${doc.id}-date`}>
-                          <Clock className="h-3 w-3 mr-1" data-testid={`document-${doc.id}-date-icon`} />
-                          {formatDate(doc.uploaded_at)}
-                        </span>
+                      {/* Details */}
+                      <div className="flex-1 min-w-0" data-testid={`document-${doc.id}-details`}>
+                        <h3 className="font-semibold text-gray-900 mb-1" data-testid={`document-${doc.id}-name`}>{doc.name}</h3>
+                        <p className="text-sm text-gray-500 mb-2" data-testid={`document-${doc.id}-description`}>{doc.description}</p>
+                        <div className="flex flex-wrap items-center gap-2 text-xs text-gray-400" data-testid={`document-${doc.id}-metadata`}>
+                          <Badge variant="outline" className="border-copper-200 text-copper-600" data-testid={`document-${doc.id}-category`}>
+                            {doc.category}
+                          </Badge>
+                          <span data-testid={`document-${doc.id}-type`}>{doc.file_type}</span>
+                          <span data-testid={`document-${doc.id}-size`}>{doc.file_size}</span>
+                          <span className="flex items-center" data-testid={`document-${doc.id}-date`}>
+                            <Clock className="h-3 w-3 mr-1" data-testid={`document-${doc.id}-date-icon`} />
+                            {formatDate(doc.uploaded_at)}
+                          </span>
+                        </div>
                       </div>
                     </div>
 
                     {/* Actions */}
-                    <div className="flex items-center gap-2" data-testid={`document-${doc.id}-actions`}>
+                    <div className="flex items-center gap-2 sm:flex-shrink-0" data-testid={`document-${doc.id}-actions`}>
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => handlePreview(doc)}
-                        className="bg-white border-gray-200 text-gray-600 hover:bg-gray-50"
+                        className="flex-1 sm:flex-none bg-white border-gray-200 text-gray-600 hover:bg-gray-50"
                         data-testid={`document-${doc.id}-preview`}
                       >
                         <Eye className="h-4 w-4 mr-2" data-testid={`document-${doc.id}-preview-icon`} />
@@ -329,7 +331,7 @@ export default function DocumentsPage() {
                       <Button
                         size="sm"
                         onClick={() => handleDownload(doc)}
-                        className="bg-copper-600 hover:bg-copper-700 text-white"
+                        className="flex-1 sm:flex-none bg-copper-600 hover:bg-copper-700 text-white"
                         data-testid={`document-${doc.id}-download`}
                       >
                         <Download className="h-4 w-4 mr-2" data-testid={`document-${doc.id}-download-icon`} />

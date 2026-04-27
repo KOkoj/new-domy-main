@@ -234,12 +234,12 @@ export default function SavedSearchesManagement() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t('club.searchesPage.title', language)}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{t('club.searchesPage.title', language)}</h1>
           <p className="text-gray-600 mt-1">{savedSearches.length} {t('club.searchesPage.savedCriteria', language)}</p>
         </div>
-        <Button onClick={createNewSearch}>
+        <Button onClick={createNewSearch} className="w-full sm:w-auto">
           <Plus className="h-4 w-4 mr-2" />
           {t('club.searchesPage.newSearch', language)}
         </Button>
@@ -251,9 +251,9 @@ export default function SavedSearchesManagement() {
           {savedSearches.map((search) => (
             <Card key={search.id} className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-2">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
                       <h3 className="text-lg font-semibold text-gray-900">{search.name}</h3>
                       <Badge variant={search.notifications ? 'default' : 'secondary'} className="text-xs">
                         {search.notifications ? (
@@ -266,7 +266,7 @@ export default function SavedSearchesManagement() {
                     
                     <p className="text-gray-600 text-sm mb-3">{formatFilters(search.filters)}</p>
                     
-                    <div className="flex items-center text-xs text-gray-500 space-x-4">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">
                       <span className="flex items-center">
                         <Calendar className="h-3 w-3 mr-1" />
                         Created: {new Date(search.createdAt).toLocaleDateString()}
@@ -278,7 +278,7 @@ export default function SavedSearchesManagement() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center space-x-2 ml-4">
+                  <div className="flex flex-wrap items-center gap-2 sm:flex-shrink-0">
                     <Button 
                       variant="outline" 
                       size="sm"
@@ -353,7 +353,7 @@ export default function SavedSearchesManagement() {
                 />
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium mb-1 block">Property Type</label>
                   <select
@@ -384,7 +384,7 @@ export default function SavedSearchesManagement() {
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium mb-1 block">Min Price (EUR)</label>
                   <Input
@@ -411,7 +411,7 @@ export default function SavedSearchesManagement() {
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-medium mb-1 block">Min Bedrooms</label>
                   <select

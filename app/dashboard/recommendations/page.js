@@ -272,12 +272,12 @@ export default function PropertyRecommendations() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t('club.recommendationsPage.title', language)}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{t('club.recommendationsPage.title', language)}</h1>
           <p className="text-gray-600 mt-1">{t('club.recommendationsPage.subtitle', language)}</p>
         </div>
-        <Button onClick={refreshRecommendations} disabled={loading}>
+        <Button onClick={refreshRecommendations} disabled={loading} className="w-full sm:w-auto">
           <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
           {loading ? t('club.recommendationsPage.updating', language) : t('club.recommendationsPage.refresh', language)}
         </Button>
@@ -287,13 +287,13 @@ export default function PropertyRecommendations() {
       <Alert>
         <Target className="h-4 w-4" />
         <AlertDescription>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <span>
               <strong>Personalization Active:</strong> Recommendations based on {userPreferences ? 'your preferences, ' : ''}
               favorites, searches, and browsing history.
             </span>
-            <Link href="/dashboard/profile">
-              <Button variant="outline" size="sm">
+            <Link href="/dashboard/profile" className="sm:flex-shrink-0">
+              <Button variant="outline" size="sm" className="w-full sm:w-auto">
                 <Settings className="h-4 w-4 mr-2" />
                 Update Preferences
               </Button>
@@ -399,7 +399,7 @@ export default function PropertyRecommendations() {
                   </div>
                   
                   {/* Property Specs */}
-                  <div className="flex items-center space-x-6 text-gray-600 mb-4">
+                  <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-4">
                     <span className="flex items-center">
                       <Bed className="h-4 w-4 mr-1" />
                       {property.specifications.bedrooms} beds
@@ -438,8 +438,8 @@ export default function PropertyRecommendations() {
                   </div>
                   
                   {/* Actions */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <div className="flex flex-wrap items-center gap-2">
                       <Link href={`/properties/${property.slug.current}`}>
                         <Button>
                           <Eye className="h-4 w-4 mr-2" />
@@ -454,21 +454,23 @@ export default function PropertyRecommendations() {
                     
                     {/* Feedback */}
                     {!feedbackGiven.has(property._id) && (
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center gap-2">
                         <span className="text-xs text-gray-600">Is this helpful?</span>
                         <Button 
                           variant="outline" 
                           size="sm"
                           onClick={() => giveFeedback(property._id, 'positive')}
+                          className="min-w-[44px] min-h-[44px]"
                         >
-                          <ThumbsUp className="h-3 w-3" />
+                          <ThumbsUp className="h-4 w-4" />
                         </Button>
                         <Button 
                           variant="outline" 
                           size="sm"
                           onClick={() => giveFeedback(property._id, 'negative')}
+                          className="min-w-[44px] min-h-[44px]"
                         >
-                          <ThumbsDown className="h-3 w-3" />
+                          <ThumbsDown className="h-4 w-4" />
                         </Button>
                       </div>
                     )}

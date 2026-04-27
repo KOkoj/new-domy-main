@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -166,6 +166,17 @@ export default function IntakeForm() {
   const [message, setMessage] = useState({ type: '', text: '' })
   const [showExtendedForm, setShowExtendedForm] = useState(false)
   const [language, setLanguage] = useState('en')
+  const extendedFormRef = useRef(null)
+
+  const handleToggleExtendedForm = () => {
+    const opening = !showExtendedForm
+    setShowExtendedForm(opening)
+    if (opening) {
+      setTimeout(() => {
+        extendedFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 50)
+    }
+  }
   
   const [formData, setFormData] = useState({
     // Personal Information
@@ -574,7 +585,7 @@ export default function IntakeForm() {
           <div data-testid="intake-form-regions-section">
             <Label className="text-gray-700 text-base font-medium" data-testid="intake-form-regions-label">{t('club.intakeFormPage.preferredRegions', language)} *</Label>
             <p className="text-sm text-gray-500 mb-3" data-testid="intake-form-regions-description">{t('club.intakeFormPage.selectUpTo5', language)}</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3" data-testid="intake-form-regions-grid">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3" data-testid="intake-form-regions-grid">
               {ITALIAN_REGIONS.map((region) => (
                 <button
                   key={region}
@@ -618,104 +629,80 @@ export default function IntakeForm() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4" data-testid="intake-form-specs-section">
             <div data-testid="intake-form-bedrooms-field">
               <Label htmlFor="minBedrooms" className="text-gray-700" data-testid="intake-form-bedrooms-label">{t('club.intakeFormPage.minBedrooms', language)}</Label>
-              <div className="relative">
+              <div className="flex items-center gap-2 mt-1">
+                <button
+                  type="button"
+                  onClick={() => handleChange('minBedrooms', String(Math.max(0, parseInt(formData.minBedrooms || 0) - 1)))}
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg text-gray-700 text-xl font-medium transition-colors"
+                  data-testid="intake-form-bedrooms-decrement"
+                >−</button>
                 <Input
                   id="minBedrooms"
                   type="number"
                   value={formData.minBedrooms}
                   onChange={(e) => handleChange('minBedrooms', e.target.value)}
-                  placeholder="e.g., 3"
-                  className="bg-white border-gray-200 text-gray-900 pr-16"
+                  placeholder="0"
+                  className="bg-white border-gray-200 text-gray-900 text-center"
                   data-testid="intake-form-bedrooms-input"
                 />
-                <div className="absolute right-1 top-1 bottom-1 flex flex-col">
-                  <button
-                    type="button"
-                    onClick={() => handleChange('minBedrooms', String(Math.max(0, parseInt(formData.minBedrooms || 0) + 1)))}
-                    className="flex-1 px-2 bg-copper-600 hover:bg-copper-700 text-white rounded-t transition-colors flex items-center justify-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="18 15 12 9 6 15"></polyline>
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleChange('minBedrooms', String(Math.max(0, parseInt(formData.minBedrooms || 0) - 1)))}
-                    className="flex-1 px-2 bg-copper-600 hover:bg-copper-700 text-white rounded-b transition-colors flex items-center justify-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => handleChange('minBedrooms', String(Math.max(0, parseInt(formData.minBedrooms || 0) + 1)))}
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center bg-copper-600 hover:bg-copper-700 text-white rounded-lg text-xl font-medium transition-colors"
+                  data-testid="intake-form-bedrooms-increment"
+                >+</button>
               </div>
             </div>
             <div data-testid="intake-form-bathrooms-field">
               <Label htmlFor="minBathrooms" className="text-gray-700" data-testid="intake-form-bathrooms-label">{t('club.intakeFormPage.minBathrooms', language)}</Label>
-              <div className="relative">
+              <div className="flex items-center gap-2 mt-1">
+                <button
+                  type="button"
+                  onClick={() => handleChange('minBathrooms', String(Math.max(0, parseInt(formData.minBathrooms || 0) - 1)))}
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg text-gray-700 text-xl font-medium transition-colors"
+                  data-testid="intake-form-bathrooms-decrement"
+                >−</button>
                 <Input
                   id="minBathrooms"
                   type="number"
                   value={formData.minBathrooms}
                   onChange={(e) => handleChange('minBathrooms', e.target.value)}
-                  placeholder="e.g., 2"
-                  className="bg-white border-gray-200 text-gray-900 pr-16"
+                  placeholder="0"
+                  className="bg-white border-gray-200 text-gray-900 text-center"
                   data-testid="intake-form-bathrooms-input"
                 />
-                <div className="absolute right-1 top-1 bottom-1 flex flex-col">
-                  <button
-                    type="button"
-                    onClick={() => handleChange('minBathrooms', String(Math.max(0, parseInt(formData.minBathrooms || 0) + 1)))}
-                    className="flex-1 px-2 bg-copper-600 hover:bg-copper-700 text-white rounded-t transition-colors flex items-center justify-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="18 15 12 9 6 15"></polyline>
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleChange('minBathrooms', String(Math.max(0, parseInt(formData.minBathrooms || 0) - 1)))}
-                    className="flex-1 px-2 bg-copper-600 hover:bg-copper-700 text-white rounded-b transition-colors flex items-center justify-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => handleChange('minBathrooms', String(Math.max(0, parseInt(formData.minBathrooms || 0) + 1)))}
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center bg-copper-600 hover:bg-copper-700 text-white rounded-lg text-xl font-medium transition-colors"
+                  data-testid="intake-form-bathrooms-increment"
+                >+</button>
               </div>
             </div>
             <div data-testid="intake-form-size-field">
               <Label htmlFor="minSquareMeters" className="text-gray-700" data-testid="intake-form-size-label">{t('club.intakeFormPage.minSquareMeters', language)}</Label>
-              <div className="relative">
+              <div className="flex items-center gap-2 mt-1">
+                <button
+                  type="button"
+                  onClick={() => handleChange('minSquareMeters', String(Math.max(0, parseInt(formData.minSquareMeters || 0) - 10)))}
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg text-gray-700 text-xl font-medium transition-colors"
+                  data-testid="intake-form-size-decrement"
+                >−</button>
                 <Input
                   id="minSquareMeters"
                   type="number"
                   value={formData.minSquareMeters}
                   onChange={(e) => handleChange('minSquareMeters', e.target.value)}
-                  placeholder="e.g., 200"
-                  className="bg-white border-gray-200 text-gray-900 pr-16"
+                  placeholder="0"
+                  className="bg-white border-gray-200 text-gray-900 text-center"
                   data-testid="intake-form-size-input"
                 />
-                <div className="absolute right-1 top-1 bottom-1 flex flex-col">
-                  <button
-                    type="button"
-                    onClick={() => handleChange('minSquareMeters', String(Math.max(0, parseInt(formData.minSquareMeters || 0) + 10)))}
-                    className="flex-1 px-2 bg-copper-600 hover:bg-copper-700 text-white rounded-t transition-colors flex items-center justify-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="18 15 12 9 6 15"></polyline>
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleChange('minSquareMeters', String(Math.max(0, parseInt(formData.minSquareMeters || 0) - 10)))}
-                    className="flex-1 px-2 bg-copper-600 hover:bg-copper-700 text-white rounded-b transition-colors flex items-center justify-center"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => handleChange('minSquareMeters', String(Math.max(0, parseInt(formData.minSquareMeters || 0) + 10)))}
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center bg-copper-600 hover:bg-copper-700 text-white rounded-lg text-xl font-medium transition-colors"
+                  data-testid="intake-form-size-increment"
+                >+</button>
               </div>
             </div>
           </div>
@@ -726,191 +713,191 @@ export default function IntakeForm() {
       {showExtendedForm && (
         <>
           {/* Location Preferences */}
-          <Card className="bg-slate-800 border-copper-400/20">
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2 text-white">
-            <MapPin className="h-5 w-5 text-copper-400" />
-            <span>{t('club.intakeFormPage.locationPreferences', language)}</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {/* Distance from Sea */}
-          <div>
-            <Label htmlFor="maxDistanceFromSea" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.distanceFromSea', language)}</Label>
-            <select
-              id="maxDistanceFromSea"
-              value={formData.maxDistanceFromSea}
-              onChange={(e) => handleChange('maxDistanceFromSea', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
-            >
-              <option value="">{t('club.intakeFormPage.selectDistance', language)}</option>
-              {DISTANCE_FROM_SEA.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* Distance from Airport */}
-          <div>
-            <Label htmlFor="maxDistanceFromAirport" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.distanceFromAirport', language)}</Label>
-            <select
-              id="maxDistanceFromAirport"
-              value={formData.maxDistanceFromAirport}
-              onChange={(e) => handleChange('maxDistanceFromAirport', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
-            >
-              <option value="">{t('club.intakeFormPage.selectAirportDistance', language)}</option>
-              {DISTANCE_FROM_AIRPORT.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* Distance from City */}
-          <div>
-            <Label htmlFor="maxDistanceFromCity" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.urbanRural', language)}</Label>
-            <select
-              id="maxDistanceFromCity"
-              value={formData.maxDistanceFromCity}
-              onChange={(e) => handleChange('maxDistanceFromCity', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
-            >
-              <option value="">{t('club.intakeFormPage.selectLocationType', language)}</option>
-              {DISTANCE_FROM_CITY.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* Proximity Preferences */}
-          <div>
-            <Label className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.importantProximity', language)}</Label>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
-              {PROXIMITY_PREFERENCES.map((proximity) => (
-                <button
-                  key={proximity}
-                  type="button"
-                  onClick={() => toggleArrayField('preferredProximity', proximity)}
-                  className={`p-3 rounded-lg border text-sm font-medium transition-all ${
-                    formData.preferredProximity.includes(proximity)
-                      ? 'bg-copper-400/20 border-copper-400 text-copper-400'
-                      : 'bg-slate-900 border-copper-400/20 text-gray-300 hover:bg-slate-700'
-                  }`}
+          <Card className="bg-white border-gray-200" ref={extendedFormRef}>
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2 text-gray-900">
+                <MapPin className="h-5 w-5 text-copper-600" />
+                <span>{t('club.intakeFormPage.locationPreferences', language)}</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Distance from Sea */}
+              <div>
+                <Label htmlFor="maxDistanceFromSea" className="text-gray-700 text-base font-medium">{t('club.intakeFormPage.distanceFromSea', language)}</Label>
+                <select
+                  id="maxDistanceFromSea"
+                  value={formData.maxDistanceFromSea}
+                  onChange={(e) => handleChange('maxDistanceFromSea', e.target.value)}
+                  className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                 >
-                  {proximity}
-                </button>
-              ))}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+                  <option value="">{t('club.intakeFormPage.selectDistance', language)}</option>
+                  {DISTANCE_FROM_SEA.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
 
-      {/* Property Characteristics */}
-      <Card className="bg-slate-800 border-copper-400/20">
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2 text-white">
-            <Home className="h-5 w-5 text-copper-400" />
-            <span>{t('club.intakeFormPage.propertyCharacteristics', language)}</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {/* Property Age */}
-          <div>
-            <Label htmlFor="propertyAge" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.propertyAge', language)}</Label>
-            <select
-              id="propertyAge"
-              value={formData.propertyAge}
-              onChange={(e) => handleChange('propertyAge', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
-            >
-              <option value="">{t('club.intakeFormPage.selectAge', language)}</option>
-              {PROPERTY_AGE_OPTIONS.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
+              {/* Distance from Airport */}
+              <div>
+                <Label htmlFor="maxDistanceFromAirport" className="text-gray-700 text-base font-medium">{t('club.intakeFormPage.distanceFromAirport', language)}</Label>
+                <select
+                  id="maxDistanceFromAirport"
+                  value={formData.maxDistanceFromAirport}
+                  onChange={(e) => handleChange('maxDistanceFromAirport', e.target.value)}
+                  className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
+                >
+                  <option value="">{t('club.intakeFormPage.selectAirportDistance', language)}</option>
+                  {DISTANCE_FROM_AIRPORT.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
 
-          {/* Property Condition */}
-          <div>
-            <Label htmlFor="propertyCondition" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.propertyCondition', language)}</Label>
-            <select
-              id="propertyCondition"
-              value={formData.propertyCondition}
-              onChange={(e) => handleChange('propertyCondition', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
-            >
-              <option value="">{t('club.intakeFormPage.selectCondition', language)}</option>
-              {PROPERTY_CONDITION_OPTIONS.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
+              {/* Distance from City */}
+              <div>
+                <Label htmlFor="maxDistanceFromCity" className="text-gray-700 text-base font-medium">{t('club.intakeFormPage.urbanRural', language)}</Label>
+                <select
+                  id="maxDistanceFromCity"
+                  value={formData.maxDistanceFromCity}
+                  onChange={(e) => handleChange('maxDistanceFromCity', e.target.value)}
+                  className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
+                >
+                  <option value="">{t('club.intakeFormPage.selectLocationType', language)}</option>
+                  {DISTANCE_FROM_CITY.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
 
-          {/* Renovation Willingness */}
-          <div>
-            <Label htmlFor="renovationWillingness" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.renovationWillingness', language)}</Label>
-            <select
-              id="renovationWillingness"
-              value={formData.renovationWillingness}
-              onChange={(e) => handleChange('renovationWillingness', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
-            >
-              <option value="">{t('club.intakeFormPage.selectRenovation', language)}</option>
-              {RENOVATION_WILLINGNESS.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
+              {/* Proximity Preferences */}
+              <div>
+                <Label className="text-gray-700 text-base font-medium">{t('club.intakeFormPage.importantProximity', language)}</Label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-2">
+                  {PROXIMITY_PREFERENCES.map((proximity) => (
+                    <button
+                      key={proximity}
+                      type="button"
+                      onClick={() => toggleArrayField('preferredProximity', proximity)}
+                      className={`p-3 rounded-lg border text-sm font-medium transition-all ${
+                        formData.preferredProximity.includes(proximity)
+                          ? 'bg-copper-50 border-copper-600 text-copper-700'
+                          : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
+                      }`}
+                    >
+                      {proximity}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
-          {/* Land Size */}
-          <div>
-            <Label htmlFor="landSize" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.landSize', language)}</Label>
-            <select
-              id="landSize"
-              value={formData.landSize}
-              onChange={(e) => handleChange('landSize', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
-            >
-              <option value="">{t('club.intakeFormPage.selectLandSize', language)}</option>
-              {LAND_SIZE_OPTIONS.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
+          {/* Property Characteristics */}
+          <Card className="bg-white border-gray-200">
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2 text-gray-900">
+                <Home className="h-5 w-5 text-copper-600" />
+                <span>{t('club.intakeFormPage.propertyCharacteristics', language)}</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Property Age */}
+              <div>
+                <Label htmlFor="propertyAge" className="text-gray-700 text-base font-medium">{t('club.intakeFormPage.propertyAge', language)}</Label>
+                <select
+                  id="propertyAge"
+                  value={formData.propertyAge}
+                  onChange={(e) => handleChange('propertyAge', e.target.value)}
+                  className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
+                >
+                  <option value="">{t('club.intakeFormPage.selectAge', language)}</option>
+                  {PROPERTY_AGE_OPTIONS.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
 
-          {/* Climate Preference */}
-          <div>
-            <Label htmlFor="climatePreference" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.climatePreference', language)}</Label>
-            <select
-              id="climatePreference"
-              value={formData.climatePreference}
-              onChange={(e) => handleChange('climatePreference', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
-            >
-              <option value="">{t('club.intakeFormPage.selectClimate', language)}</option>
-              {CLIMATE_PREFERENCES.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
+              {/* Property Condition */}
+              <div>
+                <Label htmlFor="propertyCondition" className="text-gray-700 text-base font-medium">{t('club.intakeFormPage.propertyCondition', language)}</Label>
+                <select
+                  id="propertyCondition"
+                  value={formData.propertyCondition}
+                  onChange={(e) => handleChange('propertyCondition', e.target.value)}
+                  className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
+                >
+                  <option value="">{t('club.intakeFormPage.selectCondition', language)}</option>
+                  {PROPERTY_CONDITION_OPTIONS.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
 
-          {/* Tourist Area Preference */}
-          <div>
-            <Label htmlFor="touristAreaPreference" className="text-gray-300 text-base font-medium">{t('club.intakeFormPage.touristArea', language)}</Label>
-            <select
-              id="touristAreaPreference"
-              value={formData.touristAreaPreference}
-              onChange={(e) => handleChange('touristAreaPreference', e.target.value)}
-              className="w-full mt-2 p-3 rounded-lg bg-slate-900 border border-copper-400/20 text-white"
-            >
-              <option value="">{t('club.intakeFormPage.selectTourist', language)}</option>
-              {TOURIST_AREA_PREFERENCES.map((option) => (
-                <option key={option} value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
-        </CardContent>
-      </Card>
+              {/* Renovation Willingness */}
+              <div>
+                <Label htmlFor="renovationWillingness" className="text-gray-700 text-base font-medium">{t('club.intakeFormPage.renovationWillingness', language)}</Label>
+                <select
+                  id="renovationWillingness"
+                  value={formData.renovationWillingness}
+                  onChange={(e) => handleChange('renovationWillingness', e.target.value)}
+                  className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
+                >
+                  <option value="">{t('club.intakeFormPage.selectRenovation', language)}</option>
+                  {RENOVATION_WILLINGNESS.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Land Size */}
+              <div>
+                <Label htmlFor="landSize" className="text-gray-700 text-base font-medium">{t('club.intakeFormPage.landSize', language)}</Label>
+                <select
+                  id="landSize"
+                  value={formData.landSize}
+                  onChange={(e) => handleChange('landSize', e.target.value)}
+                  className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
+                >
+                  <option value="">{t('club.intakeFormPage.selectLandSize', language)}</option>
+                  {LAND_SIZE_OPTIONS.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Climate Preference */}
+              <div>
+                <Label htmlFor="climatePreference" className="text-gray-700 text-base font-medium">{t('club.intakeFormPage.climatePreference', language)}</Label>
+                <select
+                  id="climatePreference"
+                  value={formData.climatePreference}
+                  onChange={(e) => handleChange('climatePreference', e.target.value)}
+                  className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
+                >
+                  <option value="">{t('club.intakeFormPage.selectClimate', language)}</option>
+                  {CLIMATE_PREFERENCES.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Tourist Area Preference */}
+              <div>
+                <Label htmlFor="touristAreaPreference" className="text-gray-700 text-base font-medium">{t('club.intakeFormPage.touristArea', language)}</Label>
+                <select
+                  id="touristAreaPreference"
+                  value={formData.touristAreaPreference}
+                  onChange={(e) => handleChange('touristAreaPreference', e.target.value)}
+                  className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
+                >
+                  <option value="">{t('club.intakeFormPage.selectTourist', language)}</option>
+                  {TOURIST_AREA_PREFERENCES.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+            </CardContent>
+          </Card>
         </>
       )}
 
@@ -1042,7 +1029,7 @@ export default function IntakeForm() {
       {/* Extended Form Toggle */}
       <Card className="bg-gradient-to-r from-copper-50 to-white border-copper-200">
         <CardContent className="py-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-1">{t('club.intakeFormPage.extendedForm', language)}</h3>
               <p className="text-gray-500 text-sm">
@@ -1051,12 +1038,12 @@ export default function IntakeForm() {
             </div>
             <Button
               type="button"
-              onClick={() => setShowExtendedForm(!showExtendedForm)}
-              className={`${
+              onClick={handleToggleExtendedForm}
+              className={`w-full sm:w-auto flex-shrink-0 transition-all duration-300 ${
                 showExtendedForm 
-                  ? 'bg-copper-600 hover:bg-copper-700' 
+                  ? 'bg-copper-600 hover:bg-copper-700 text-white' 
                   : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
-              } transition-all duration-300`}
+              }`}
             >
               {showExtendedForm ? t('club.intakeFormPage.hideExtended', language) : t('club.intakeFormPage.showExtended', language)}
             </Button>

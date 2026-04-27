@@ -17,7 +17,6 @@ import {
   Bed,
   Bath,
   ChevronRight,
-  Bell,
   Star,
   Settings,
   FileText,
@@ -246,21 +245,15 @@ export default function DashboardOverview() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            {t('club.welcomeBack', language)}, {user?.user_metadata?.name || 'User'}!
-          </h1>
-          <p className="text-gray-600 mt-1">{t('club.dashboardSubtitle', language)}</p>
-        </div>
-        <Button>
-          <Bell className="h-4 w-4 mr-2" />
-          {t('club.notifications', language)}
-        </Button>
+      <div>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+          {t('club.welcomeBack', language)}, {user?.user_metadata?.name || 'User'}!
+        </h1>
+        <p className="text-gray-600 mt-1">{t('club.dashboardSubtitle', language)}</p>
       </div>
 
       {/* Primary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Link href="/dashboard/favorites">
           <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
             <CardContent className="p-6">
@@ -425,7 +418,7 @@ export default function DashboardOverview() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <Card className="h-full">
-            <CardHeader className="flex flex-row items-center justify-between">
+            <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2">
               <CardTitle className="flex items-center space-x-2">
                 <Calendar className="h-5 w-5" />
                 <span>{t('club.upcomingWebinars', language)}</span>
@@ -438,10 +431,10 @@ export default function DashboardOverview() {
               {upcomingWebinars.length > 0 ? (
                 <div className="space-y-4">
                   {upcomingWebinars.map((webinar) => (
-                    <div key={webinar.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50">
+                    <div key={webinar.id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 border rounded-lg hover:bg-gray-50">
                       <div>
                         <h4 className="font-medium text-gray-900">{webinar.title}</h4>
-                        <div className="flex items-center space-x-4 text-xs text-gray-500 mt-1">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 mt-1">
                           <span className="flex items-center">
                             <Calendar className="h-3 w-3 mr-1" />
                             {formatDate(webinar.date)}
@@ -452,8 +445,8 @@ export default function DashboardOverview() {
                           </span>
                         </div>
                       </div>
-                      <Link href="/dashboard/webinars">
-                        <Button size="sm" variant="outline">{t('club.register', language)}</Button>
+                      <Link href="/dashboard/webinars" className="sm:flex-shrink-0">
+                        <Button size="sm" variant="outline" className="w-full sm:w-auto">{t('club.register', language)}</Button>
                       </Link>
                     </div>
                   ))}

@@ -98,8 +98,8 @@ export default function NotificationPreferences({ language = 'en' }) {
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="space-y-0.5">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="space-y-0.5 flex-1">
               <Label>{t('club.notificationsPage.emailNotifications', language)}</Label>
               <p className="text-sm text-muted-foreground">
                 {t('club.notificationsPage.emailNotificationsDesc', language)}
@@ -114,8 +114,8 @@ export default function NotificationPreferences({ language = 'en' }) {
           <div className="space-y-4 opacity-100 transition-opacity" style={{ 
             opacity: preferences.email_enabled ? 1 : 0.5 
           }}>
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="space-y-0.5 flex-1">
                 <Label>{t('club.notificationsPage.propertyAlerts', language)}</Label>
                 <p className="text-sm text-muted-foreground">
                   {t('club.notificationsPage.propertyAlertsDescription', language)}
@@ -128,8 +128,8 @@ export default function NotificationPreferences({ language = 'en' }) {
               />
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="space-y-0.5 flex-1">
                 <Label>{t('club.notificationsPage.inquiryResponses', language)}</Label>
                 <p className="text-sm text-muted-foreground">
                   {t('club.notificationsPage.inquiryResponsesDesc', language)}
@@ -142,8 +142,8 @@ export default function NotificationPreferences({ language = 'en' }) {
               />
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="space-y-0.5 flex-1">
                 <Label>{t('club.notificationsPage.onboardingEmails', language)}</Label>
                 <p className="text-sm text-muted-foreground">
                   {t('club.notificationsPage.onboardingEmailsDesc', language)}
@@ -156,8 +156,8 @@ export default function NotificationPreferences({ language = 'en' }) {
               />
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="space-y-0.5 flex-1">
                 <Label>{t('club.notificationsPage.marketingEmails', language)}</Label>
                 <p className="text-sm text-muted-foreground">
                   {t('club.notificationsPage.marketingEmailsDesc', language)}

@@ -382,7 +382,7 @@ END:VCALENDAR`
                         </span>
                       </div>
 
-                      <div className="flex items-center justify-between" data-testid={`webinar-upcoming-${webinar.id}-footer`}>
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" data-testid={`webinar-upcoming-${webinar.id}-footer`}>
                         <div className="flex items-center space-x-3" data-testid={`webinar-upcoming-${webinar.id}-speaker`}>
                           <div className="w-10 h-10 bg-gradient-to-br from-copper-500 to-copper-700 rounded-full flex items-center justify-center text-white font-bold" data-testid={`webinar-upcoming-${webinar.id}-speaker-avatar`}>
                             {webinar.speaker.name.charAt(0)}
@@ -393,7 +393,7 @@ END:VCALENDAR`
                           </div>
                         </div>
 
-                        <div className="flex items-center space-x-2" data-testid={`webinar-upcoming-${webinar.id}-actions`}>
+                        <div className="flex flex-wrap items-center gap-2" data-testid={`webinar-upcoming-${webinar.id}-actions`}>
                           {isRegistered && (
                             <>
                               <Button
@@ -494,7 +494,7 @@ END:VCALENDAR`
                       </span>
                     </div>
 
-                    <div className="flex items-center justify-between" data-testid={`webinar-past-${webinar.id}-footer`}>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" data-testid={`webinar-past-${webinar.id}-footer`}>
                       <div className="flex items-center space-x-3" data-testid={`webinar-past-${webinar.id}-speaker`}>
                         <div className="w-10 h-10 bg-gradient-to-br from-copper-500 to-copper-700 rounded-full flex items-center justify-center text-white font-bold" data-testid={`webinar-past-${webinar.id}-speaker-avatar`}>
                           {webinar.speaker.name.charAt(0)}
@@ -505,7 +505,7 @@ END:VCALENDAR`
                         </div>
                       </div>
 
-                      <div className="flex items-center space-x-2" data-testid={`webinar-past-${webinar.id}-actions`}>
+                      <div className="flex flex-wrap items-center gap-2" data-testid={`webinar-past-${webinar.id}-actions`}>
                         <Button
                           variant="outline"
                           size="sm"

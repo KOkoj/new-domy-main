@@ -365,7 +365,7 @@ export default function Navigation() {
               {['en', 'cs', 'it'].map((lang) => (
                 <button
                   key={lang}
-                  onClick={() => handleLanguageChange(lang)}
+                  onClick={() => { handleLanguageChange(lang); setIsMenuOpen(false) }}
                   className={`px-4 py-1.5 rounded-full text-sm font-medium leading-none cursor-pointer transition-all duration-200 ${
                     language === lang 
                       ? 'bg-copper-500/30 text-copper-200 ring-1 ring-copper-400/40' 

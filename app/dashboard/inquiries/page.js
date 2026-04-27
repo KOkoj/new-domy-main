@@ -193,13 +193,13 @@ export default function InquiriesManagement() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t('club.inquiriesPage.title', language)}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{t('club.inquiriesPage.title', language)}</h1>
           <p className="text-gray-600 mt-1">{inquiries.length} {t('club.inquiriesPage.inquiriesSent', language)}</p>
         </div>
-        <Link href="/properties">
-          <Button>
+        <Link href="/properties" className="sm:flex-shrink-0">
+          <Button className="w-full sm:w-auto">
             <Home className="h-4 w-4 mr-2" />
             {t('club.inquiriesPage.browseProperties', language)}
           </Button>
@@ -290,7 +290,7 @@ export default function InquiriesManagement() {
                             </Badge>
                           )}
                         </div>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
                           <span className="flex items-center">
                             <Home className="h-3 w-3 mr-1" />
                             {inquiry.property.location?.city?.name?.en}
@@ -324,7 +324,7 @@ export default function InquiriesManagement() {
                       </div>
                     )}
                     
-                    <div className="flex items-center space-x-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <Dialog>
                         <DialogTrigger asChild>
                           <Button variant="outline" size="sm" onClick={() => setSelectedInquiry(inquiry)}>
@@ -332,31 +332,31 @@ export default function InquiriesManagement() {
                             View Details
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-2xl">
+                        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
                           <DialogHeader>
                             <DialogTitle>Inquiry Details</DialogTitle>
                           </DialogHeader>
                           {selectedInquiry && (
                             <div className="space-y-6">
                               {/* Property Info */}
-                              <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 bg-gray-50 rounded-lg">
                                 <Image
                                   src={selectedInquiry.property.image}
                                   alt={selectedInquiry.property.title.en}
                                   width={64}
                                   height={64}
-                                  className="w-16 h-16 object-cover rounded-lg"
+                                  className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
                                 />
-                                <div>
+                                <div className="flex-1 min-w-0">
                                   <h4 className="font-semibold">{selectedInquiry.property.title.en}</h4>
                                   <p className="text-sm text-gray-600">{selectedInquiry.property.location?.city?.name?.en}</p>
                                   <p className="text-sm font-medium text-blue-600">
                                     {formatPrice(selectedInquiry.property.price)}
                                   </p>
                                 </div>
-                                <div className="ml-auto">
+                                <div className="sm:flex-shrink-0">
                                   <Link href={`/properties/${selectedInquiry.property.slug?.current || selectedInquiry.property._id}`}>
-                                    <Button size="sm">
+                                    <Button size="sm" className="w-full sm:w-auto">
                                       <Eye className="h-4 w-4 mr-1" />
                                       View Property
                                     </Button>
@@ -402,13 +402,13 @@ export default function InquiriesManagement() {
                               )}
                               
                               {/* Contact Info */}
-                              <div className="flex items-center space-x-4 p-4 bg-blue-50 rounded-lg">
-                                <div className="flex items-center space-x-2">
-                                  <Mail className="h-4 w-4 text-blue-600" />
-                                  <span className="text-sm">{selectedInquiry.email}</span>
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 bg-blue-50 rounded-lg">
+                                <div className="flex items-center space-x-2 min-w-0">
+                                  <Mail className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                                  <span className="text-sm truncate">{selectedInquiry.email}</span>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                  <Phone className="h-4 w-4 text-blue-600" />
+                                  <Phone className="h-4 w-4 text-blue-600 flex-shrink-0" />
                                   <span className="text-sm">Contact via inquiry system</span>
                                 </div>
                               </div>
@@ -418,14 +418,14 @@ export default function InquiriesManagement() {
                       </Dialog>
                       
                       <Link href={`/properties/${inquiry.property.slug?.current || inquiry.property._id}`}>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" className="w-full sm:w-auto">
                           <Home className="h-4 w-4 mr-1" />
                           View Property
                         </Button>
                       </Link>
                       
                       {inquiry.status === 'responded' && (
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" className="w-full sm:w-auto">
                           <Send className="h-4 w-4 mr-1" />
                           Follow Up
                         </Button>

@@ -764,9 +764,12 @@ export default function PropertyDetailPage() {
                 </div>
               ) : (
                 <div className="hidden sm:block bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 border border-white/20">
-                  <Link href="/login" className="text-xs font-medium text-white/90 hover:text-white transition-colors">
+                  <button
+                    onClick={() => setIsAuthModalOpen(true)}
+                    className="text-xs font-medium text-white/90 hover:text-white transition-colors cursor-pointer"
+                  >
                     {language === 'cs' ? 'Přihlásit' : language === 'it' ? 'Accedi' : 'Login'}
-                  </Link>
+                  </button>
                 </div>
               )}
 
@@ -855,13 +858,12 @@ export default function PropertyDetailPage() {
                   {language === 'cs' ? 'Odhlásit' : language === 'it' ? 'Esci' : 'Logout'}
                 </button>
               ) : (
-                <Link
-                  href="/login"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="px-3 py-2.5 rounded-lg text-base text-amber-300 hover:text-amber-200 hover:bg-white/5 transition-colors font-medium"
+                <button
+                  onClick={() => { setIsMenuOpen(false); setIsAuthModalOpen(true) }}
+                  className="px-3 py-2.5 rounded-lg text-base text-amber-300 hover:text-amber-200 hover:bg-white/5 transition-colors font-medium text-left cursor-pointer"
                 >
                   {language === 'cs' ? 'Přihlásit / Registrovat' : language === 'it' ? 'Accedi / Registrati' : 'Login / Register'}
-                </Link>
+                </button>
               )}
             </div>
           </div>
