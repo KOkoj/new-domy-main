@@ -10,7 +10,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react'
 import Image from 'next/image'
-import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import { t } from '@/lib/translations'
 
 export default function AuthModal({
@@ -220,24 +219,24 @@ export default function AuthModal({
   return (
     <Dialog open={isOpen} onOpenChange={handleClose} data-testid="auth-modal">
       <DialogContent
-        className="sm:max-w-sm w-full max-h-[90vh] overflow-y-auto"
+        className="sm:max-w-sm w-[calc(100%-2rem)] max-h-[90vh] overflow-y-auto p-4 gap-2"
         data-testid="auth-modal-content"
       >
         <DialogHeader data-testid="auth-modal-header">
-          <div className="text-center space-y-2" data-testid="auth-modal-title">
+          <div className="text-center space-y-1" data-testid="auth-modal-title">
             <Image
               src="/logo domy.svg"
               alt="Domy v Itálii"
-              width={48}
-              height={46}
-              className="h-12 w-auto mx-auto"
+              width={40}
+              height={38}
+              className="h-10 w-auto mx-auto"
               data-testid="auth-modal-logo"
             />
-            <DialogTitle className="text-lg font-bold">
+            <DialogTitle className="text-base font-bold">
               {displayTitle}
             </DialogTitle>
             {message && (
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-snug">
                 {message}
               </p>
             )}
@@ -250,8 +249,8 @@ export default function AuthModal({
             <TabsTrigger value="signup" data-testid="signup-tab">{tr('signup')}</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="login" className="space-y-3 mt-3" data-testid="login-tab-content">
-            <form onSubmit={handleLogin} className="space-y-3" data-testid="login-form">
+          <TabsContent value="login" className="space-y-2 mt-2" data-testid="login-tab-content">
+            <form onSubmit={handleLogin} className="space-y-2" data-testid="login-form">
               <div className="space-y-1" data-testid="login-email-field">
                 <Label htmlFor="login-email" className="text-sm" data-testid="login-email-label">{tr('email')}</Label>
                 <div className="relative" data-testid="login-email-input-container">
@@ -310,9 +309,7 @@ export default function AuthModal({
                 {isLoading ? tr('signingIn') : tr('signIn')}
               </Button>
 
-              <FormPrivacyNotice language={language} purpose="account" />
-
-              <div className="relative">
+              <div className="relative py-1">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t" />
                 </div>
@@ -334,8 +331,8 @@ export default function AuthModal({
             </form>
           </TabsContent>
 
-          <TabsContent value="signup" className="space-y-3 mt-3">
-            <form onSubmit={handleSignup} className="space-y-3">
+          <TabsContent value="signup" className="space-y-2 mt-2">
+            <form onSubmit={handleSignup} className="space-y-2">
               <div className="space-y-1">
                 <Label htmlFor="signup-name" className="text-sm">{tr('fullName')}</Label>
                 <div className="relative">
@@ -422,29 +419,24 @@ export default function AuthModal({
               <Button type="submit" className="w-full h-9 text-sm" disabled={isLoading}>
                 {isLoading ? tr('creatingAccount') : tr('createAccount')}
               </Button>
-
-              <FormPrivacyNotice language={language} purpose="account" />
             </form>
           </TabsContent>
         </Tabs>
 
-        <div className="text-center text-xs text-gray-600 mt-3 space-y-1">
-          <p>
-            {tr('termsText')}{' '}
-            <Link href="/terms" className="underline">
-              {tr('termsLink')}
-            </Link>{' '}
-            {tr('and')}{' '}
-            <Link href="/gdpr" className="underline">
-              {tr('privacyLink')}
-            </Link>
-            .
-          </p>
-          <p>
-            <Link href="/cookies" className="underline">
-              {tr('cookiePolicy')}
-            </Link>
-          </p>
+        <div className="text-center text-[11px] text-gray-600 leading-snug mt-2">
+          {tr('termsText')}{' '}
+          <Link href="/terms" className="underline">
+            {tr('termsLink')}
+          </Link>
+          , {' '}
+          <Link href="/gdpr" className="underline">
+            {tr('privacyLink')}
+          </Link>
+          {' '}{tr('and')}{' '}
+          <Link href="/cookies" className="underline">
+            {tr('cookiePolicy')}
+          </Link>
+          .
         </div>
       </DialogContent>
     </Dialog>

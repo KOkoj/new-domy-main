@@ -21,7 +21,7 @@ const t = {
   },
   en: {
     badge: 'Free forever',
-    heading: 'Klub pro klienty',
+    heading: 'Client Club',
     sub: 'An exclusive space for everyone thinking about buying property in Italy.',
     free: 'Registration is completely free and will remain free forever — no hidden fees, no subscription.',
     benefitsTitle: 'What you get with club access',
@@ -36,7 +36,7 @@ const t = {
   },
   it: {
     badge: 'Gratuito per sempre',
-    heading: 'Klub pro klienty',
+    heading: 'Club per clienti',
     sub: 'Uno spazio esclusivo per chi sta pensando di acquistare un immobile in Italia.',
     free: 'La registrazione è completamente gratuita e lo rimarrà per sempre — nessuna commissione nascosta, nessun abbonamento.',
     benefitsTitle: 'Cosa ottieni con l\'accesso al club',
@@ -57,7 +57,7 @@ export default function KlubInfoModal({ isOpen, onClose, onRegister, onLogin, la
   return (
     <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose() }}>
       <DialogContent className="max-w-lg w-full p-0 overflow-hidden border-0 bg-transparent shadow-2xl [&>button]:right-3 [&>button]:top-3 [&>button]:h-10 [&>button]:w-10 [&>button]:rounded-full [&>button]:bg-white/10 [&>button]:text-white [&>button]:opacity-80 [&>button]:hover:bg-white/20 [&>button]:hover:opacity-100">
-        <DialogTitle className="sr-only">Klub pro klienty</DialogTitle>
+        <DialogTitle className="sr-only">{lang.heading}</DialogTitle>
         <div className="bg-[#1a1a2e] rounded-2xl overflow-hidden">
 
           {/* Top accent bar */}
