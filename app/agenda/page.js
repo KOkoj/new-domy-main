@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Footer from '@/components/Footer'
 
 // Event Type Badge Component
 const EventBadge = ({ type }) => {
@@ -346,6 +347,7 @@ export default function AgendaPage() {
         </div>
         
       </div>
+      <Footer language="cs" />
     </div>
   )
 }

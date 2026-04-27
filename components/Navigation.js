@@ -299,11 +299,11 @@ export default function Navigation() {
         {/* Mobile menu */}
         <div 
           className={`lg:hidden overflow-hidden transition-all duration-200 ease-out ${
-            isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+            isMenuOpen ? 'max-h-[calc(100dvh-4rem)] opacity-100' : 'max-h-0 opacity-0'
           }`}
           data-testid="mobile-menu"
         >
-          <div className="flex flex-col space-y-1 pt-4 pb-4 mt-3 border-t border-white/10" data-testid="mobile-menu-links">
+          <div className="flex flex-col space-y-1 pt-4 pb-6 mt-3 border-t border-white/10 overflow-y-auto max-h-[calc(100dvh-6rem)]" data-testid="mobile-menu-links">
             {[
               { href: '/', label: navLabels.home, testId: 'mobile-home-link' },
               { href: '/process', label: language === 'cs' ? 'Náš proces' : language === 'it' ? 'Il nostro processo' : 'Our Process', testId: 'mobile-process-link' },

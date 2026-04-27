@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { supabase } from '../../../lib/supabase'
 import AuthModal from '../../../components/AuthModal'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
+import Footer from '@/components/Footer'
 
 const COPY = {
   cs: {
@@ -567,6 +568,8 @@ export default function NotaryGuidePage() {
           </div>
         </div>
       </div>
+
+      <Footer language={language} />
 
       <AuthModal
         isOpen={isAuthModalOpen}

@@ -16,6 +16,7 @@ import Image from "next/image";
 import { supabase } from "../../../lib/supabase";
 import AuthModal from "../../../components/AuthModal";
 import InformationalDisclaimer from "@/components/legal/InformationalDisclaimer";
+import Footer from "@/components/Footer";
 
 export default function InspectionsGuidePage() {
   const [user, setUser] = useState(null);
@@ -833,6 +834,8 @@ export default function InspectionsGuidePage() {
           <InformationalDisclaimer language={language} className="mt-14" />
         </div>
       </div>
+
+      <Footer language={language} />
 
       <AuthModal
         isOpen={isAuthModalOpen}

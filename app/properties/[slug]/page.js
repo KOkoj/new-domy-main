@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
-import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, User } from 'lucide-react'
+import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, User, X, ChevronLeft, ChevronRight, ZoomIn, Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -17,6 +18,7 @@ import { urlForImage } from '../../../lib/sanity'
 import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import AuthModal from '../../../components/AuthModal'
+import Footer from '@/components/Footer'
 
 function getPropertyStatusLabel(status, language) {
   if (status === 'sold') {
@@ -44,62 +46,250 @@ function getPropertyTypeLabel(propertyType, language) {
 }
 
 function ImageGallery({ images, title, status, language }) {
-  const [selectedImage, setSelectedImage] = useState(0)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
+  const [mounted, setMounted] = useState(false)
   const statusLabel = getPropertyStatusLabel(status, language)
+
+  useEffect(() => { setMounted(true) }, [])
+
+  const openLightbox = (index) => {
+    setLightboxIndex(index)
+    setLightboxOpen(true)
+  }
+
+  const closeLightbox = () => setLightboxOpen(false)
+
+  const prevImage = useCallback(() => {
+    setLightboxIndex((i) => (i - 1 + images.length) % images.length)
+  }, [images.length])
+
+  const nextImage = useCallback(() => {
+    setLightboxIndex((i) => (i + 1) % images.length)
+  }, [images.length])
+
+  useEffect(() => {
+    if (!lightboxOpen) return
+    const onKey = (e) => {
+      if (e.key === 'ArrowLeft') prevImage()
+      else if (e.key === 'ArrowRight') nextImage()
+      else if (e.key === 'Escape') closeLightbox()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [lightboxOpen, prevImage, nextImage])
+
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [lightboxOpen])
 
   if (!images || images.length === 0) {
     return (
-      <div className="h-96 w-full bg-gray-200 rounded-lg flex items-center justify-center">
+      <div className="aspect-[4/3] w-full bg-gray-200 rounded-xl flex items-center justify-center">
         <span className="text-gray-400">No images available</span>
       </div>
     )
   }
 
   return (
-    <div className="space-y-4">
-      <div className="relative h-96 overflow-hidden rounded-lg">
-        <Image
-          src={images[selectedImage]}
-          alt={title}
-          fill
-          sizes="(min-width: 1024px) 66vw, 100vw"
-          priority
-          className="object-cover"
-        />
-        {statusLabel && (
-          <div className="absolute left-4 top-4 z-10">
-            <span
-              className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg ${
-                status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'
-              }`}
-            >
-              {statusLabel}
-            </span>
+    <>
+      {/* Gallery mosaic */}
+      <div className="relative">
+        {images.length === 1 ? (
+          /* Single image — full width */
+          <div
+            className="relative aspect-[4/3] overflow-hidden rounded-xl cursor-zoom-in group"
+            onClick={() => openLightbox(0)}
+          >
+            <Image
+              src={images[0]}
+              alt={title}
+              fill
+              sizes="(min-width: 1024px) 66vw, 100vw"
+              priority
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+            {statusLabel && (
+              <div className="absolute left-4 top-4 z-10">
+                <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg ${status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'}`}>
+                  {statusLabel}
+                </span>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      {images.length > 1 && (
-        <div className="grid grid-cols-4 gap-2">
-          {images.map((image, index) => (
-            <button
-              key={index}
-              onClick={() => setSelectedImage(index)}
-              className={`cursor-pointer leading-none relative h-20 overflow-hidden rounded border-2 transition-colors ${
-                selectedImage === index ? 'border-blue-500' : 'border-gray-200 hover:border-gray-300'
-              }`}
+        ) : (
+          /* Multi-image mosaic: hero left + grid right */
+          <div className="grid grid-cols-[3fr_2fr] gap-2 rounded-xl overflow-hidden h-[260px] sm:h-[480px]">
+            {/* Hero */}
+            <div
+              className="relative overflow-hidden cursor-zoom-in group h-full"
+              onClick={() => openLightbox(0)}
             >
               <Image
-                src={image}
-                alt={`${title} - Image ${index + 1}`}
+                src={images[0]}
+                alt={title}
                 fill
-                sizes="(min-width: 1024px) 17vw, 25vw"
-                className="object-cover"
+                sizes="(min-width: 640px) 58vw, 75vw"
+                priority
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
+              {statusLabel && (
+                <div className="absolute left-4 top-4 z-10">
+                  <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg ${status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'}`}>
+                    {statusLabel}
+                  </span>
+                </div>
+              )}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+            </div>
+
+            {/* Right column: 2 stacked on mobile, 2×2 grid on sm+ */}
+            <div className="grid grid-cols-1 grid-rows-2 sm:grid-cols-2 sm:grid-rows-2 gap-2 h-full">
+              {[1, 2, 3, 4].map((slot) => {
+                const img = images[slot]
+                const mobileHide = slot >= 3 ? 'hidden sm:block' : ''
+                if (!img) {
+                  return <div key={slot} className={`bg-gray-100 ${mobileHide}`} />
+                }
+                const showOverlay = slot === 4 && images.length > 5
+                return (
+                  <div
+                    key={slot}
+                    className={`relative overflow-hidden cursor-zoom-in group ${mobileHide}`}
+                    onClick={() => openLightbox(slot)}
+                  >
+                    <Image
+                      src={img}
+                      alt={`${title} - ${slot + 1}`}
+                      fill
+                      sizes="(min-width: 640px) 20vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
+                    {showOverlay && (
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center pointer-events-none">
+                        <span className="text-white text-lg font-semibold">+{images.length - 5}</span>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* "Show all photos" button */}
+        {images.length > 1 && (
+          <button
+            onClick={() => openLightbox(0)}
+            className="absolute bottom-4 right-4 z-10 flex items-center gap-2 rounded-lg bg-white/95 border border-gray-200 px-4 py-2 text-sm font-medium text-gray-800 shadow-md hover:bg-white hover:shadow-lg transition-all duration-200"
+          >
+            <ZoomIn className="h-4 w-4" />
+            {language === 'cs'
+              ? `Všechny fotky (${images.length})`
+              : language === 'it'
+              ? `Tutte le foto (${images.length})`
+              : `All ${images.length} photos`}
+          </button>
+        )}
+      </div>
+
+      {/* Lightbox */}
+      {lightboxOpen && mounted && createPortal(
+        <div
+          style={{ position: 'fixed', inset: 0, zIndex: 9999 }}
+          className="flex items-center justify-center bg-black/90"
+          onClick={closeLightbox}
+        >
+          {/* Close */}
+          <button
+            className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/25 transition-colors"
+            onClick={closeLightbox}
+            aria-label="Close"
+          >
+            <X className="h-5 w-5" />
+          </button>
+
+          {/* Counter */}
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 rounded-full bg-black/50 px-4 py-1.5 text-sm text-white">
+            {lightboxIndex + 1} / {images.length}
+          </div>
+
+          {/* Prev */}
+          {images.length > 1 && (
+            <button
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-gray-900 shadow-xl hover:bg-gray-100 active:scale-95 transition-all"
+              onClick={(e) => { e.stopPropagation(); prevImage() }}
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="h-7 w-7" />
             </button>
-          ))}
+          )}
+
+          {/* Image */}
+          <div
+            className="relative max-h-[80vh] max-w-[90vw] w-full h-full flex items-center justify-center pb-20"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              key={lightboxIndex}
+              src={images[lightboxIndex]}
+              alt={`${title} - Image ${lightboxIndex + 1}`}
+              fill
+              sizes="90vw"
+              className="object-contain"
+              priority
+            />
+          </div>
+
+          {/* Next */}
+          {images.length > 1 && (
+            <button
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-gray-900 shadow-xl hover:bg-gray-100 active:scale-95 transition-all"
+              onClick={(e) => { e.stopPropagation(); nextImage() }}
+              aria-label="Next image"
+            >
+              <ChevronRight className="h-7 w-7" />
+            </button>
+          )}
+
+          {/* Thumbnail strip */}
+          {images.length > 1 && (
+            <div
+              className="absolute bottom-0 left-0 right-0 z-10 bg-black/60 px-4 py-3"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex gap-2 overflow-x-auto pb-1 justify-center">
+                {images.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setLightboxIndex(idx)}
+                    className={`relative flex-shrink-0 h-14 w-20 overflow-hidden rounded-sm transition-all duration-200 ${
+                      idx === lightboxIndex
+                        ? 'ring-2 ring-white scale-105 opacity-100'
+                        : 'opacity-40 hover:opacity-70'
+                    }`}
+                  >
+                    <Image
+                      src={img}
+                      alt={`${title} - ${idx + 1}`}
+                      fill
+                      sizes="80px"
+                      className="object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      , document.body)}
+    </>
   )
 }
 
@@ -174,7 +364,7 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
     <Card>
       <CardHeader>
         <CardTitle>
-          {language === 'cs' ? 'Kontaktovat agenta' : language === 'it' ? 'Contatta Agente' : 'Contact Agent'}
+          {language === 'cs' ? 'Kontaktovat nás' : language === 'it' ? 'Contatta Agente' : 'Contact Agent'}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -235,6 +425,7 @@ export default function PropertyDetailPage() {
   const [user, setUser] = useState(null)
   const [language, setLanguage] = useState('en')
   const [currency, setCurrency] = useState('EUR')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     if (slugParam) {
@@ -474,8 +665,9 @@ export default function PropertyDetailPage() {
     <div className="min-h-screen bg-[#f7f6f3]">
       {/* Modern Navigation - Fixed with smaller inline logo like About/Process pages */}
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}>
-        <div className="container mx-auto px-6 pt-4 pb-3 overflow-visible" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-4 sm:px-6 pt-4 pb-3 overflow-visible" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center justify-between">
+            {/* Logo + desktop nav links */}
             <div className="flex items-center space-x-8">
               <Link href="/" className="relative overflow-visible">
                 <Image
@@ -489,130 +681,187 @@ export default function PropertyDetailPage() {
                 />
               </Link>
               <div className="hidden md:flex space-x-6">
-                <Link href="/" className="text-gray-200 hover:text-copper-400 transition-colors">
+                <Link href="/" className="text-gray-200 hover:text-white transition-colors text-sm">
                   {language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home'}
                 </Link>
-                <Link href="/properties" className="text-gray-200 hover:text-copper-400 transition-colors border-b-2 border-white pb-1">
+                <Link href="/properties" className="text-white transition-colors border-b-2 border-white pb-1 text-sm">
                   {language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties'}
                 </Link>
-                <Link href="/regions" className="text-gray-200 hover:text-copper-400 transition-colors">
+                <Link href="/regions" className="text-gray-200 hover:text-white transition-colors text-sm">
                   {language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions'}
                 </Link>
-                <Link href="/about" className="text-gray-200 hover:text-copper-400 transition-colors">
+                <Link href="/about" className="text-gray-200 hover:text-white transition-colors text-sm">
                   {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About'}
                 </Link>
-                <Link href="/process" className="text-gray-200 hover:text-copper-400 transition-colors">
+                <Link href="/process" className="text-gray-200 hover:text-white transition-colors text-sm">
                   {language === 'cs' ? 'Proces' : language === 'it' ? 'Processo' : 'Process'}
                 </Link>
-                <Link href="/contact" className="text-gray-200 hover:text-copper-400 transition-colors">
+                <Link href="/contact" className="text-gray-200 hover:text-white transition-colors text-sm">
                   {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
                 </Link>
               </div>
             </div>
-            
-            <div className="flex items-center space-x-4">
-              {/* Language Selector */}
-              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-200 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
-                <button
-                  onClick={() => {
-                    setLanguage('en')
-                    document.documentElement.lang = 'en'
-                    localStorage.setItem('preferred-language', 'en')
-                    window.dispatchEvent(new CustomEvent('languageChange', { detail: 'en' }))
-                  }}
-                  className={`cursor-pointer leading-none px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'en' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => {
-                    setLanguage('cs')
-                    document.documentElement.lang = 'cs'
-                    localStorage.setItem('preferred-language', 'cs')
-                    window.dispatchEvent(new CustomEvent('languageChange', { detail: 'cs' }))
-                  }}
-                  className={`cursor-pointer leading-none px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'cs' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  CS
-                </button>
-                <button
-                  onClick={() => {
-                    setLanguage('it')
-                    document.documentElement.lang = 'it'
-                    localStorage.setItem('preferred-language', 'it')
-                    window.dispatchEvent(new CustomEvent('languageChange', { detail: 'it' }))
-                  }}
-                  className={`cursor-pointer leading-none px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    language === 'it' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  IT
-                </button>
+
+            {/* Desktop right-side controls */}
+            <div className="flex items-center gap-2">
+              {/* Language Selector — desktop only */}
+              <div className="hidden sm:flex items-center bg-white/10 rounded-full px-1 py-1 border border-white/15 gap-0.5">
+                {['en', 'cs', 'it'].map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => {
+                      setLanguage(lang)
+                      document.documentElement.lang = lang
+                      localStorage.setItem('preferred-language', lang)
+                      window.dispatchEvent(new CustomEvent('languageChange', { detail: lang }))
+                    }}
+                    className={`cursor-pointer px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                      language === lang
+                        ? 'bg-white/20 text-white shadow-sm'
+                        : 'text-white/50 hover:text-white/80 hover:bg-white/5'
+                    }`}
+                  >
+                    {lang.toUpperCase()}
+                  </button>
+                ))}
               </div>
 
-              {/* Currency Separator */}
-              <div className="w-px h-6 bg-gray-300 opacity-30"></div>
-
-              {/* Currency Buttons */}
-              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-200 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
-                <button
-                  onClick={() => handleCurrencyChange('EUR')}
-                  className={`cursor-pointer leading-none px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    currency === 'EUR' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  EUR
-                </button>
-                <button
-                  onClick={() => handleCurrencyChange('CZK')}
-                  className={`cursor-pointer leading-none px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 ${
-                    currency === 'CZK' 
-                      ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
-                  }`}
-                >
-                  CZK
-                </button>
+              {/* Currency Selector — desktop only */}
+              <div className="hidden sm:flex items-center bg-white/10 rounded-full px-1 py-1 border border-white/15 gap-0.5">
+                {['EUR', 'CZK'].map((cur) => (
+                  <button
+                    key={cur}
+                    onClick={() => handleCurrencyChange(cur)}
+                    className={`cursor-pointer px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                      currency === cur
+                        ? 'bg-white/20 text-white shadow-sm'
+                        : 'text-white/50 hover:text-white/80 hover:bg-white/5'
+                    }`}
+                  >
+                    {cur}
+                  </button>
+                ))}
               </div>
 
+              {/* Login / user — desktop only */}
               {user ? (
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center space-x-2">
-                    <User className="h-4 w-4 text-gray-200" />
-                    <span className="text-sm text-gray-200 hidden md:inline">
-                      {user.user_metadata?.name || user.email}
-                    </span>
-                  </div>
-                  <Button 
-                    variant="outline" 
+                <div className="hidden sm:flex items-center gap-2">
+                  <span className="text-xs text-gray-300 hidden md:inline truncate max-w-[100px]">
+                    {user.user_metadata?.name || user.email}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={async () => {
                       if (!supabase) return
                       await supabase.auth.signOut()
                       setUser(null)
                     }}
-                    className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-200 rounded-full px-4 py-2 text-sm"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 rounded-full text-xs px-3 py-1.5"
                   >
                     {language === 'cs' ? 'Odhlásit' : language === 'it' ? 'Esci' : 'Logout'}
                   </Button>
                 </div>
               ) : (
-                <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 shadow-lg border border-white/20">
-                  <Link href="/login" className="text-sm font-medium text-white/90 hover:text-white transition-colors">
+                <div className="hidden sm:block bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 border border-white/20">
+                  <Link href="/login" className="text-xs font-medium text-white/90 hover:text-white transition-colors">
                     {language === 'cs' ? 'Přihlásit' : language === 'it' ? 'Accedi' : 'Login'}
                   </Link>
                 </div>
+              )}
+
+              {/* Hamburger — mobile only */}
+              <button
+                className="md:hidden p-2 rounded-lg cursor-pointer text-gray-200 hover:text-white hover:bg-white/10 transition-colors"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile drawer */}
+          <div className={`md:hidden overflow-hidden transition-all duration-200 ease-out ${isMenuOpen ? 'max-h-[80dvh] opacity-100' : 'max-h-0 opacity-0'}`}>
+            <div className="flex flex-col space-y-1 pt-4 pb-6 mt-3 border-t border-white/10 overflow-y-auto">
+              {[
+                { href: '/', label: language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home' },
+                { href: '/properties', label: language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties' },
+                { href: '/regions', label: language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions' },
+                { href: '/about', label: language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About' },
+                { href: '/process', label: language === 'cs' ? 'Proces' : language === 'it' ? 'Processo' : 'Process' },
+                { href: '/contact', label: language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact' },
+              ].map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="px-3 py-2.5 rounded-lg text-base text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+                >
+                  {label}
+                </Link>
+              ))}
+
+              {/* Language + Currency in mobile menu */}
+              <div className="flex flex-wrap gap-3 pt-3 mt-2 border-t border-white/10 px-1">
+                <div className="flex items-center gap-1 bg-white/10 rounded-full px-1 py-1 border border-white/15">
+                  {['en', 'cs', 'it'].map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => {
+                        setLanguage(lang)
+                        document.documentElement.lang = lang
+                        localStorage.setItem('preferred-language', lang)
+                        window.dispatchEvent(new CustomEvent('languageChange', { detail: lang }))
+                      }}
+                      className={`cursor-pointer px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
+                        language === lang
+                          ? 'bg-white/20 text-white'
+                          : 'text-white/50 hover:text-white/80'
+                      }`}
+                    >
+                      {lang.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex items-center gap-1 bg-white/10 rounded-full px-1 py-1 border border-white/15">
+                  {['EUR', 'CZK'].map((cur) => (
+                    <button
+                      key={cur}
+                      onClick={() => handleCurrencyChange(cur)}
+                      className={`cursor-pointer px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
+                        currency === cur
+                          ? 'bg-white/20 text-white'
+                          : 'text-white/50 hover:text-white/80'
+                      }`}
+                    >
+                      {cur}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Login in mobile menu */}
+              {user ? (
+                <button
+                  onClick={async () => {
+                    if (!supabase) return
+                    await supabase.auth.signOut()
+                    setUser(null)
+                    setIsMenuOpen(false)
+                  }}
+                  className="px-3 py-2.5 rounded-lg text-base text-red-400 hover:text-red-300 hover:bg-white/5 transition-colors text-left"
+                >
+                  {language === 'cs' ? 'Odhlásit' : language === 'it' ? 'Esci' : 'Logout'}
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="px-3 py-2.5 rounded-lg text-base text-amber-300 hover:text-amber-200 hover:bg-white/5 transition-colors font-medium"
+                >
+                  {language === 'cs' ? 'Přihlásit / Registrovat' : language === 'it' ? 'Accedi / Registrati' : 'Login / Register'}
+                </Link>
               )}
             </div>
           </div>
@@ -636,15 +885,15 @@ export default function PropertyDetailPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-16 md:py-24" style={{ maxWidth: '1200px' }}>
+      <div className="container mx-auto px-4 sm:px-6 py-8 md:py-16 lg:py-24" style={{ maxWidth: '1200px' }}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* Property Header */}
             <div>
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <div className="flex items-center space-x-2 mb-2">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-4">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
                     <Badge variant="secondary" className="capitalize">
                       {getPropertyTypeLabel(property.propertyType, language)}
                     </Badge>
@@ -664,11 +913,11 @@ export default function PropertyDetailPage() {
                       }
                     </Badge>
                   </div>
-                  <h1 className="font-bold mb-2">
+                  <h1 className="font-bold mb-2 text-2xl sm:text-3xl leading-tight">
                     {getLocalizedText(property.title, 'Untitled Property')}
                   </h1>
                   <div className="flex items-center text-gray-600">
-                    <MapPin className="h-4 w-4 mr-1" />
+                    <MapPin className="h-4 w-4 mr-1 shrink-0" />
                     {googleMapsUrl ? (
                       <a
                         href={googleMapsUrl}
@@ -683,11 +932,11 @@ export default function PropertyDetailPage() {
                     )}
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">
+                <div className="sm:text-right shrink-0">
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">
                     {formatPrice(property.price)}
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center sm:justify-end gap-2 flex-wrap">
                     <Button variant="outline" size="sm">
                       <Share2 className="h-4 w-4 mr-1" />
                       {language === 'cs' ? 'Sdílet' : language === 'it' ? 'Condividi' : 'Share'}
@@ -895,6 +1144,8 @@ export default function PropertyDetailPage() {
           </div>
         </div>
       </div>
+
+      <Footer language={language} />
 
       <AuthModal
         isOpen={isAuthModalOpen}

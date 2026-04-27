@@ -976,7 +976,7 @@ export default function HomePage() {
               <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: '#c78b5a' }}>
                 {language === 'cs' ? 'Jak to funguje' : language === 'it' ? 'Come funziona' : 'How it works'}
               </p>
-              <h2 className="font-bold text-gray-900 text-xl sm:text-2xl">
+              <h2 className="font-bold text-gray-900 text-2xl sm:text-2xl">
                 {language === 'cs' ? 'Čtyři kroky od prvního hovoru k předání klíčů.' :
                  language === 'it' ? 'Quattro passi dalla prima chiamata alla consegna delle chiavi.' :
                  'Four steps from the first call to handing over the keys.'}
@@ -1013,10 +1013,10 @@ export default function HomePage() {
               },
             ].map(({ n, href, label, sub }) => (
               <Link key={n} href={href} className="group bg-white hover:bg-gray-50 transition-colors duration-150 p-5 sm:p-6 flex flex-col gap-3">
-                <span className="font-black text-gray-100 group-hover:text-gray-200 transition-colors leading-none" style={{ fontSize: '2.5rem' }}>{n}</span>
+                <span className="font-black text-gray-300 group-hover:text-gray-400 transition-colors leading-none" style={{ fontSize: '2.5rem' }}>{n}</span>
                 <div>
-                  <p className="font-bold text-gray-900 text-sm sm:text-base leading-snug mb-1">{label}</p>
-                  <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">{sub}</p>
+                  <p className="font-bold text-gray-900 text-base sm:text-base leading-snug mb-1">{label}</p>
+                  <p className="text-gray-400 text-sm sm:text-sm leading-relaxed">{sub}</p>
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition-all mt-auto" />
               </Link>
@@ -1038,17 +1038,17 @@ export default function HomePage() {
               <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: '#c78b5a' }}>
                 {language === 'cs' ? 'Než začnete' : language === 'it' ? 'Prima di iniziare' : 'Before you start'}
               </p>
-              <h2 className="font-bold text-gray-900 mb-3 text-xl sm:text-2xl leading-snug" data-testid="section-description">
+              <h2 className="font-bold text-gray-900 mb-3 text-2xl sm:text-2xl leading-snug" data-testid="section-description">
                 {language === 'cs' ? 'Koupě domu v Itálii není jen o ceně.' :
                  language === 'it' ? "L'acquisto di una casa in Italia non riguarda solo il prezzo." :
                  "Buying a home in Italy isn't just about price."}
               </h2>
-              <p className="text-gray-500 text-sm leading-relaxed mb-5">
+              <p className="text-gray-500 text-base leading-relaxed mb-5">
                 {language === 'cs' ? 'Rozhodnutí bez správných informací může stát čas, peníze i klid. Proto je důležité rozumět systému ještě před prvním krokem.' :
                  language === 'it' ? 'Una decisione senza le giuste informazioni può costare tempo, denaro e serenità. Per questo è importante capire il sistema prima del primo passo.' :
                  "Decisions without the right information can cost time, money, and peace of mind. That's why it's important to understand the system before the first step."}
               </p>
-              <Link href="/guides" className="inline-flex items-center gap-1.5 font-semibold text-sm" style={{ color: '#c78b5a' }}>
+              <Link href="/guides" className="inline-flex items-center gap-1.5 font-semibold text-base" style={{ color: '#c78b5a' }}>
                 {language === 'cs' ? 'Prozkoumat průvodce' : language === 'it' ? 'Esplora le guide' : 'Explore the guides'}
                 <ChevronRight className="h-4 w-4" />
               </Link>
@@ -1072,7 +1072,7 @@ export default function HomePage() {
                 const inner = (
                   <div key={href} className="py-4 flex items-center gap-4 group cursor-pointer">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: bg }}>{icon}</div>
-                    <span className="flex-1 font-semibold text-gray-800 text-sm sm:text-base group-hover:text-gray-900 transition-colors">{label}</span>
+                    <span className="flex-1 font-semibold text-gray-800 text-base sm:text-base group-hover:text-gray-900 transition-colors">{label}</span>
                     <ChevronRight className="h-4 w-4 flex-shrink-0 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition-all" />
                   </div>
                 )

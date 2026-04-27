@@ -7,6 +7,7 @@ import { ArrowLeft, Calendar, Clock, Hammer, Euro, AlertTriangle, CheckCircle } 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
+import Footer from '@/components/Footer'
 
 const CONTENT = {
   cs: {
@@ -634,6 +635,7 @@ export default function RenovationGuideItalyPage() {
           <InformationalDisclaimer language={language} className="mt-14" />
         </div>
       </div>
+      <Footer language={language} />
     </div>
   )
 }

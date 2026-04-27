@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
 import Image from 'next/image'
+import Footer from '@/components/Footer'
 import Navigation from '../../../../components/Navigation'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 
@@ -293,6 +294,7 @@ export default function RegionBlogPage() {
           </div>
         </div>
       </div>
+      <Footer language={language} />
     </div>
   )
 }

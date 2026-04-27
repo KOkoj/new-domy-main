@@ -11,6 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { supabase } from '../../lib/supabase'
 import { getPurchaseLegalCopy } from '@/lib/purchaseLegal'
+import Footer from '@/components/Footer'
 
 const AuthModal = dynamic(() => import('../../components/AuthModal'), { ssr: false })
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
@@ -554,6 +555,8 @@ export default function PremiumLandingPage() {
           </div>
         </div>
       </div>
+
+      <Footer language={language} />
 
       <AuthModal
         isOpen={isAuthModalOpen}

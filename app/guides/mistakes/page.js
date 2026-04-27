@@ -9,6 +9,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { supabase } from '../../../lib/supabase'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
+import Footer from '@/components/Footer'
 
 const AuthModal = dynamic(() => import('../../../components/AuthModal'), { ssr: false })
 const FreePdfUpsellModal = dynamic(() => import('../../../components/FreePdfUpsellModal'), { ssr: false })
@@ -469,6 +470,8 @@ export default function MistakesGuidePage() {
           </div>
         </div>
       </div>
+
+      <Footer language={language} />
 
       <AuthModal 
         isOpen={isAuthModalOpen}

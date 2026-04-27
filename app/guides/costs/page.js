@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { supabase } from '../../../lib/supabase'
 import AuthModal from '../../../components/AuthModal'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
+import Footer from '@/components/Footer'
 
 const COPY = {
   cs: {
@@ -542,6 +543,8 @@ export default function CostsGuidePage() {
           </div>
         </div>
       </div>
+
+      <Footer language={language} />
 
       <AuthModal
         isOpen={isAuthModalOpen}

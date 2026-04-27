@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { PREMIUM_PDFS_ENABLED } from '@/lib/featureFlags'
+import Footer from '@/components/Footer'
 
 const PRODUCT_LABELS = {
   'premium-notary': {
@@ -216,6 +217,7 @@ export default function PremiumSuccessPage() {
           </Card>
         </div>
       </div>
+      <Footer language={language} />
     </div>
   )
 }

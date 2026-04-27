@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import InformationalDisclaimer from "@/components/legal/InformationalDisclaimer";
 import PremiumPdfComingSoonTrigger from "@/components/PremiumPdfComingSoonTrigger";
+import Footer from "@/components/Footer";
 
 const PDF_URL = "/pdfs/visite%20nuovo%20sito.pdf";
 
@@ -162,6 +163,7 @@ export default function InspectionsFreePdfLandingPage() {
           </CardContent>
         </Card>
       </div>
+      <Footer language={language} />
     </div>
   );
 }
