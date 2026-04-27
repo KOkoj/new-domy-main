@@ -25,6 +25,7 @@ import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
 
@@ -474,40 +475,40 @@ export default function ProcessPage() {
       <div className="pt-32 pb-12">
         {/* Hero Section */}
         <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm mb-12">
-          <div className="container mx-auto px-4 py-16">
+          <div className="container mx-auto px-6 py-16 md:py-24" style={{maxWidth:"1200px"}}>
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent px-2">
+              <h1 className="font-extrabold mb-8 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent px-2">
                 {language === 'cs' ? 'Jak koupit dům v Itálii - Náš proces.' :
                  language === 'it' ? 'Come acquistare una casa in Italia - Il nostro processo.' :
                  'How to Buy a House in Italy - Our Process.'}
               </h1>
               <div className="max-w-3xl mx-auto text-left space-y-4 px-4 mb-8">
-                <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-600 leading-[1.75]">
                   {language === 'cs' ? 'Plánujete koupit dům nebo byt v Itálii a chcete mít jistotu, že celý proces proběhne správně a bez zbytečných komplikací?' :
                    language === 'it' ? 'State pianificando l\'acquisto di una casa o di un appartamento in Italia e volete avere la certezza che l\'intero processo si svolga correttamente e senza complicazioni inutili?' :
                    'Are you planning to buy a house or apartment in Italy and want to be sure the entire process runs correctly and without unnecessary complications?'}
                 </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-gray-600 leading-[1.75]">
                   {language === 'cs' ? 'Koupě nemovitosti v Itálii funguje trochu jinak než v České republice. Postup je odlišný, jednotlivé kroky na sebe navazují jinak a pro kupujícího může být někdy těžké se v tom zorientovat.' :
                    language === 'it' ? 'L\'acquisto di un immobile in Italia funziona in modo un po\' diverso rispetto alla Repubblica Ceca. La procedura è differente, le singole fasi si susseguono in modo diverso e per un acquirente può essere a volte difficile orientarsi.' :
                    'Buying property in Italy works a little differently than in the Czech Republic. The procedure is different, the individual steps follow one another differently, and for a buyer it can sometimes be difficult to navigate.'}
                 </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-gray-600 leading-[1.75]">
                   {language === 'cs' ? 'Právě proto jsme tu my.' :
                    language === 'it' ? 'Ed è proprio per questo che ci siamo noi.' :
                    'That is exactly why we are here.'}
                 </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-gray-600 leading-[1.75]">
                   {language === 'cs' ? 'Pomůžeme vám vybrat nemovitost podle vašich představ, vysvětlíme všechny kroky a budeme vám k dispozici během celého procesu – od prvního výběru až po převzetí klíčů.' :
                    language === 'it' ? 'Vi aiuteremo a scegliere l\'immobile in base alle vostre esigenze, vi spiegheremo tutti i passaggi e saremo a vostra disposizione durante tutto il percorso, dalla prima selezione fino alla consegna delle chiavi.' :
                    'We help you choose a property that matches your expectations, explain every step, and stay available throughout the entire process, from the first selection to receiving the keys.'}
                 </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-gray-600 leading-[1.75]">
                   {language === 'cs' ? 'Hlídáme důležité detaily, vysvětlujeme souvislosti a pomáháme vám projít celým procesem v klidu a s jistotou.' :
                    language === 'it' ? 'Controlliamo i dettagli importanti, spieghiamo i collegamenti tra i vari passaggi e vi aiutiamo ad affrontare tutto il processo con tranquillità e sicurezza.' :
                    'We watch the important details, explain the context behind each step, and help you go through the whole process calmly and with confidence.'}
                 </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-gray-600 leading-[1.75]">
                   {language === 'cs' ? 'Níže uvidíte přehled jednotlivých kroků, jak spolupráce s námi probíhá.' :
                    language === 'it' ? 'Qui sotto vedrete una panoramica dei singoli passaggi di come si svolge la collaborazione con noi.' :
                    'Below you will see an overview of the individual steps and how working with us unfolds.'}
@@ -539,7 +540,7 @@ export default function ProcessPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6">
           {/* What You'll Learn Section */}
           <div className="max-w-5xl mx-auto mb-16">
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
@@ -554,7 +555,7 @@ export default function ProcessPage() {
                 <div className="space-y-4">
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-gray-700 leading-[1.75]">
                       {language === 'cs' ? 'Jaké jsou reálné náklady, daně a poplatky (nejen kupní cena)' :
                        language === 'it' ? 'Quali sono i costi reali, tasse e spese (non solo il prezzo di acquisto)' :
                        'What are the real costs, taxes and fees (not just the purchase price)'}
@@ -563,7 +564,7 @@ export default function ProcessPage() {
 
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-gray-700 leading-[1.75]">
                       {language === 'cs' ? 'Jaká je skutečná role realitní kanceláře a notáře' :
                        language === 'it' ? 'Qual è il ruolo reale dell\'agenzia immobiliare e del notaio' :
                        'What is the actual role of the real estate agency and notary'}
@@ -572,7 +573,7 @@ export default function ProcessPage() {
 
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-gray-700 leading-[1.75]">
                       {language === 'cs' ? 'Na co si dát pozor ještě před podpisem jakékoliv smlouvy' :
                        language === 'it' ? 'A cosa fare attenzione prima di firmare qualsiasi contratto' :
                        'What to watch out for before signing any contract'}
@@ -581,7 +582,7 @@ export default function ProcessPage() {
 
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-gray-700 leading-[1.75]">
                       {language === 'cs' ? 'Jaké jsou časové rámce italské byrokracie' :
                        language === 'it' ? 'Le tempistiche della burocrazia italiana' :
                        'The timelines of Italian bureaucracy'}
@@ -590,7 +591,7 @@ export default function ProcessPage() {
 
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-gray-700 leading-[1.75]">
                       {language === 'cs' ? 'Které kontroly jsou povinné a které ne' :
                        language === 'it' ? 'Quali controlli sono obbligatori e quali no' :
                        'Which checks are mandatory and which are not'}
@@ -599,7 +600,7 @@ export default function ProcessPage() {
 
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-gray-700 leading-[1.75]">
                       {language === 'cs' ? 'Jaké jsou rozdíly oproti České republice' :
                        language === 'it' ? 'Le differenze con la Repubblica Ceca' :
                        'Differences compared to the Czech Republic'}
@@ -608,7 +609,7 @@ export default function ProcessPage() {
                 </div>
 
                 <div className="mt-8 p-6 bg-slate-50 border border-slate-200 rounded-xl">
-                  <p className="text-slate-700 leading-relaxed">
+                  <p className="text-slate-700 leading-[1.75]">
                     <strong>
                       {language === 'cs' ? 'Tento obsah je určen speciálně pro české zájemce o nemovitosti v Itálii' :
                        language === 'it' ? 'Questo contenuto è pensato specificamente per gli acquirenti cechi interessati agli immobili in Italia' :
@@ -629,8 +630,9 @@ export default function ProcessPage() {
             <div className="space-y-4 sm:space-y-8">
               {visibleProcessSteps.map((step, index) => (
                 <Card 
-                  key={index} 
-                  className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden"
+                  key={index}
+                  id={`step-${index + 1}`}
+                  className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden scroll-mt-28"
                 >
                   <CardHeader className="p-4 sm:p-6 bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
                     <div className="flex items-start gap-3 sm:gap-6">
@@ -658,7 +660,7 @@ export default function ProcessPage() {
                     </div>
                   </CardHeader>
                   <CardContent className="p-4 sm:p-6">
-                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 sm:mb-6">
+                    <p className="text-sm sm:text-base text-gray-600 leading-[1.75] mb-4 sm:mb-6">
                       {step.description[language]}
                     </p>
                     
@@ -681,13 +683,13 @@ export default function ProcessPage() {
                       <div className="mt-3 sm:mt-4">
                         {step.ctaHref.startsWith('/guides/') ? (
                           <ProtectedContentLink href={step.ctaHref} language={language}>
-                            <Button className="min-h-[40px] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm px-4">
+                            <Button className="min-h-[44px] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm px-4">
                               {step.ctaLabel?.[language] || (language === 'cs' ? 'Zjistit více' : language === 'it' ? 'Scopri di più' : 'Learn more')}
                             </Button>
                           </ProtectedContentLink>
                         ) : (
                           <Link href={step.ctaHref}>
-                          <Button className="min-h-[40px] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm px-4">
+                          <Button className="min-h-[44px] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm px-4">
                             {step.ctaLabel?.[language] || (language === 'cs' ? 'Zjistit více' : language === 'it' ? 'Scopri di più' : 'Learn more')}
                           </Button>
                           </Link>
@@ -754,7 +756,7 @@ export default function ProcessPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-8">
-                    <p className="text-gray-600 mb-6 leading-relaxed">
+                    <p className="text-gray-600 mb-6 leading-[1.75]">
                       {language === 'cs' ? 'Kromě kupní ceny nemovitosti, zde jsou typické dodatečné náklady spojené s koupí italské nemovitosti:' :
                        language === 'it' ? 'Oltre al prezzo di acquisto dell\'immobile, ecco i costi aggiuntivi tipici associati all\'acquisto di una proprietà italiana:' :
                        'In addition to the property purchase price, here are the typical additional costs associated with buying Italian property:'}
@@ -802,12 +804,12 @@ export default function ProcessPage() {
             <Card className="bg-gradient-to-br from-slate-700 to-slate-800 text-white shadow-2xl rounded-2xl overflow-hidden">
               <CardContent className="p-12">
                 <Key className="h-16 w-16 mx-auto mb-6 opacity-90" />
-                <h2 className="text-3xl font-bold mb-4">
+                <h2 className="font-bold mb-8">
                   {language === 'cs' ? 'Jak pokračovat dál?' :
                    language === 'it' ? 'Come procedere?' :
                    'How to Proceed?'}
                 </h2>
-                <p className="text-slate-200 text-lg mb-8 leading-relaxed">
+                <p className="text-slate-200 text-lg mb-8 leading-[1.75]">
                   {language === 'cs' ? 'Podle vaší aktuální situace doporučujeme pokračovat jednou z těchto cest:' :
                    language === 'it' ? 'In base alla vostra situazione attuale, consigliamo di proseguire con uno di questi percorsi:' :
                    'Based on your current situation, we recommend continuing with one of these paths:'}
@@ -816,7 +818,7 @@ export default function ProcessPage() {
                   <Link href="/contact">
                     <Button
                       size="lg"
-                      className="bg-white hover:bg-gray-100 text-slate-800 font-semibold px-6 py-6 text-sm transition-all duration-300 hover:scale-105 shadow-lg w-full"
+                      className="bg-white hover:bg-gray-100 text-slate-800 font-semibold px-6 py-6 text-sm transition-all duration-300 shadow-lg w-full"
                     >
                       <Mail className="h-5 w-5 mr-2" />
                       {language === 'cs' ? 'Bezplatná konzultace' :
@@ -827,7 +829,7 @@ export default function ProcessPage() {
                   <Link href="/contact#contact-form">
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold px-6 py-6 text-sm transition-all duration-300 hover:scale-105 shadow-lg w-full"
+                      className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold px-6 py-6 text-sm transition-all duration-300 shadow-lg w-full"
                     >
                       {language === 'cs' ? 'Vyplnit formulář' :
                        language === 'it' ? 'Compila il form' :
@@ -837,7 +839,7 @@ export default function ProcessPage() {
                   <Link href="/properties">
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold px-6 py-6 text-sm transition-all duration-300 hover:scale-105 shadow-lg w-full"
+                      className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold px-6 py-6 text-sm transition-all duration-300 shadow-lg w-full"
                     >
                       {language === 'cs' ? 'Zobrazit nemovitosti' :
                        language === 'it' ? 'Vedi le proprietà' :
@@ -848,7 +850,7 @@ export default function ProcessPage() {
                   <Link href="/faq">
                     <Button
                       size="lg"
-                      className="bg-white/10 border border-white/30 hover:bg-white/20 text-white font-semibold px-6 py-6 text-sm transition-all duration-300 hover:scale-105 shadow-lg w-full"
+                      className="bg-white/10 border border-white/30 hover:bg-white/20 text-white font-semibold px-6 py-6 text-sm transition-all duration-300 shadow-lg w-full"
                     >
                       {'FAQ'}
                       <ChevronRight className="h-5 w-5 ml-2" />
@@ -868,7 +870,7 @@ export default function ProcessPage() {
                    language === 'it' ? 'Volete conoscere l\'Italia di persona prima dell\'acquisto?' :
                    'Want to Experience Italy Personally Before Buying?'}
                 </h3>
-                <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                <p className="text-gray-600 mb-6 text-lg leading-[1.75]">
                   {language === 'cs' ? 'Mnoho našich klientů si před finálním rozhodnutím vybírá region osobně – udělají si krátký pobyt, projdou okolí, porovnají lokality i styl života.' :
                    language === 'it' ? 'Molti dei nostri clienti prima della decisione finale scelgono la regione di persona - fanno un breve soggiorno, esplorano i dintorni, confrontano località e stile di vita.' :
                    'Many of our clients choose their region personally before the final decision - they take a short stay, explore the surroundings, compare locations and lifestyle.'}
@@ -876,7 +878,7 @@ export default function ProcessPage() {
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 sm:items-center sm:justify-center">
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg w-full sm:w-auto"
+                    className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg w-full sm:w-auto"
                     onClick={() => window.open('https://www.dpbolvw.net/click-101629596-15735418', '_blank')}
                   >
                     {language === 'cs' ? 'Najít ubytování v Itálii (Booking.com)' :
@@ -885,7 +887,7 @@ export default function ProcessPage() {
                   </Button>
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg w-full sm:w-auto"
+                    className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg w-full sm:w-auto"
                     onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}
                   >
                     {language === 'cs' ? 'Výlety a průvodce (GetYourGuide)' :
@@ -900,12 +902,13 @@ export default function ProcessPage() {
       </div>
 
       {/* Footer */}
-      <div className="container mx-auto px-4 pb-10">
+      <div className="container mx-auto px-6 pb-16 md:pb-24" style={{maxWidth:"1200px"}}>
         <div className="max-w-5xl mx-auto">
           <InformationalDisclaimer language={language} />
         </div>
       </div>
 
+      <PropertySlider language={language} />
       <Footer language={language} />
     </div>
   )

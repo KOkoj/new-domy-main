@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react'
+import Image from 'next/image'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 
 export default function AuthModal({
@@ -16,13 +17,18 @@ export default function AuthModal({
   onClose,
   onAuthSuccess,
   title = 'Welcome',
-  message = ''
+  message = '',
+  defaultTab = 'login'
 }) {
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
-  const [activeTab, setActiveTab] = useState('login')
+  const [activeTab, setActiveTab] = useState(defaultTab)
+
+  useEffect(() => {
+    if (isOpen) setActiveTab(defaultTab)
+  }, [isOpen, defaultTab])
 
   const [loginForm, setLoginForm] = useState({
     email: '',
@@ -216,10 +222,12 @@ export default function AuthModal({
       <DialogContent className="sm:max-w-md" data-testid="auth-modal-content">
         <DialogHeader data-testid="auth-modal-header">
           <div className="text-center space-y-4" data-testid="auth-modal-title">
-            <img 
-              src="/logo domy.svg" 
+            <Image
+              src="/logo domy.svg"
               alt="Domy v Itálii"
-              className="h-16 w-auto mx-auto" 
+              width={64}
+              height={61}
+              className="h-16 w-auto mx-auto"
               data-testid="auth-modal-logo"
             />
             <DialogTitle className="text-xl font-bold">

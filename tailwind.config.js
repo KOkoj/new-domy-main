@@ -106,7 +106,19 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       maxWidth: {
+        '720': '720px',
+        '1200': '1200px',
         '1400': '1400px',
+      },
+      fontSize: {
+        'hero': ['clamp(3rem, 6vw, 4.5rem)', { lineHeight: '1.05', fontWeight: '800' }],
+        '17': ['1.0625rem', { lineHeight: '1.75' }],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
+        '24': '6rem',
+        '28': '7rem',
       },
       keyframes: {
         'accordion-down': {
@@ -129,8 +141,8 @@ module.exports = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-up': 'fade-up 0.5s ease-out',
-        'fade-in': 'fade-in 0.4s ease-out',
+        'fade-up': 'fade-up 0.35s ease-out',
+        'fade-in': 'fade-in 0.3s ease-out',
       },
     },
   },

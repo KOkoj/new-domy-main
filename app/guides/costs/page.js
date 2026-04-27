@@ -323,7 +323,7 @@ export default function CostsGuidePage() {
         className="fixed left-0 right-0 top-0 z-50 overflow-visible border-b border-white/20 backdrop-blur-md shadow-lg"
         style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}
       >
-        <div className="container mx-auto px-4 pb-3 pt-4">
+        <div className="container mx-auto px-6 pb-3 pt-4" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center justify-between">
             <Link href="/" className="relative overflow-visible">
               <img
@@ -346,7 +346,7 @@ export default function CostsGuidePage() {
               <div className="group flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-2 shadow-lg backdrop-blur-md">
                 <button
                   onClick={() => handleLanguageChange('en')}
-                  className={`px-3 py-1 text-sm font-medium ${
+                  className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 text-sm font-medium ${
                     language === 'en' ? 'rounded-full bg-white/20 text-white' : 'text-white/60'
                   }`}
                 >
@@ -354,7 +354,7 @@ export default function CostsGuidePage() {
                 </button>
                 <button
                   onClick={() => handleLanguageChange('cs')}
-                  className={`px-3 py-1 text-sm font-medium ${
+                  className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 text-sm font-medium ${
                     language === 'cs' ? 'rounded-full bg-white/20 text-white' : 'text-white/60'
                   }`}
                 >
@@ -362,7 +362,7 @@ export default function CostsGuidePage() {
                 </button>
                 <button
                   onClick={() => handleLanguageChange('it')}
-                  className={`px-3 py-1 text-sm font-medium ${
+                  className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 text-sm font-medium ${
                     language === 'it' ? 'rounded-full bg-white/20 text-white' : 'text-white/60'
                   }`}
                 >
@@ -392,8 +392,8 @@ export default function CostsGuidePage() {
         </div>
       </nav>
 
-      <div className="pb-12 pt-28">
-        <div className="container mx-auto mb-6 px-4">
+      <div className="pb-16 pt-28 md:pb-24">
+        <div className="container mx-auto mb-6 px-6" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Link href="/" className="hover:text-slate-700">
               {copy.home}
@@ -407,8 +407,8 @@ export default function CostsGuidePage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-4xl">
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+          <div className="mx-auto max-w-4xl" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="mb-8">
               <Button
                 asChild
@@ -420,10 +420,10 @@ export default function CostsGuidePage() {
                   {copy.blogLabel}
                 </Link>
               </Button>
-              <h1 className="mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
+              <h1 className="mb-8 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text font-bold text-transparent">
                 {copy.title}
               </h1>
-              <p className="text-xl leading-relaxed text-gray-600">{copy.intro}</p>
+              <p className="leading-relaxed text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.intro}</p>
             </div>
 
             <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white">
@@ -451,10 +451,10 @@ export default function CostsGuidePage() {
             <div className="space-y-8">
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{copy.firstSectionTitle}</CardTitle>
+                  <CardTitle className="mb-8">{copy.firstSectionTitle}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="leading-relaxed text-gray-700">{copy.firstSectionBody}</p>
+                  <p className="leading-relaxed text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.firstSectionBody}</p>
                   <ul className="space-y-2 text-gray-700">
                     {copy.firstSectionBullets.map((item) => (
                       <li key={item} className="flex items-start gap-3">
@@ -473,8 +473,8 @@ export default function CostsGuidePage() {
                       <Calculator className="h-5 w-5" />
                     </div>
                     <div>
-                      <CardTitle className="text-2xl">{copy.costTitle}</CardTitle>
-                      <p className="mt-2 text-gray-600">{copy.costSubtitle}</p>
+                      <CardTitle className="mb-8">{copy.costTitle}</CardTitle>
+                      <p className="mt-2 text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.costSubtitle}</p>
                     </div>
                   </div>
                 </CardHeader>
@@ -521,7 +521,7 @@ export default function CostsGuidePage() {
                     <div className="rounded-full bg-sky-100 p-3 text-sky-700">
                       <Euro className="h-5 w-5" />
                     </div>
-                    <CardTitle className="text-2xl">{copy.risksTitle}</CardTitle>
+                    <CardTitle className="mb-8">{copy.risksTitle}</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>

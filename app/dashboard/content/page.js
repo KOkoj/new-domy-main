@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -293,10 +294,12 @@ export default function ContentPage() {
                 onClick={() => handleOpenItem(video)}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={video.thumbnail_url || '/placeholder-video.jpg'} 
+                  <Image
+                    src={video.thumbnail_url || '/placeholder-video.jpg'}
                     alt={video.title || 'Video'}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover group-hover:scale-105 transition-transform"
                   />
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <Play className="h-16 w-16 text-white" />

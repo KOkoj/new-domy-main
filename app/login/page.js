@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -217,12 +218,15 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <img 
-            src="/logo domy.svg" 
+          <Image
+            src="/logo domy.svg"
             alt="Domy v Itálii"
-            className="h-16 w-auto mx-auto mb-4" 
+            width={64}
+            height={61}
+            priority
+            className="h-16 w-auto mx-auto mb-4"
           />
-          <h1 className="text-2xl font-bold text-white">Welcome to Premium Club</h1>
+          <h1 className="text-2xl font-bold text-white">Welcome to Klub pro klienty</h1>
           <p className="text-gray-400 mt-2">Sign in to access exclusive features</p>
         </div>
 
@@ -271,7 +275,7 @@ export default function LoginPage() {
                       />
                       <button
                         type="button"
-                        className="absolute right-3 top-3 text-gray-400 hover:text-white"
+                        className="absolute right-3 top-3 text-gray-400 hover:text-white cursor-pointer leading-none"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -354,7 +358,7 @@ export default function LoginPage() {
                       />
                       <button
                         type="button"
-                        className="absolute right-3 top-3 text-gray-400 hover:text-white"
+                        className="absolute right-3 top-3 text-gray-400 hover:text-white cursor-pointer leading-none"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}

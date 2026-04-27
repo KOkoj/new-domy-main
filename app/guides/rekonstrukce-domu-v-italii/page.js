@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, Calendar, Clock, Hammer, Euro, AlertTriangle, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -434,7 +435,7 @@ export default function RenovationGuideItalyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}>
-        <div className="container mx-auto px-4 pt-4 pb-3">
+        <div className="container mx-auto px-6 pt-4 pb-3" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center justify-between">
             <Link href="/" className="relative overflow-visible">
               <img
@@ -455,17 +456,17 @@ export default function RenovationGuideItalyPage() {
               </Link>
 
               <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20">
-                <button onClick={() => handleLanguageChange('en')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}>EN</button>
-                <button onClick={() => handleLanguageChange('cs')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}>CS</button>
-                <button onClick={() => handleLanguageChange('it')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'it' ? 'bg-white/20 text-white' : 'text-white/60'}`}>IT</button>
+                <button onClick={() => handleLanguageChange('en')} className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}>EN</button>
+                <button onClick={() => handleLanguageChange('cs')} className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}>CS</button>
+                <button onClick={() => handleLanguageChange('it')} className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'it' ? 'bg-white/20 text-white' : 'text-white/60'}`}>IT</button>
               </div>
             </div>
           </div>
         </div>
       </nav>
 
-      <div className="pt-28 pb-12">
-        <div className="container mx-auto px-4 mb-6">
+      <div className="pt-28 pb-16 md:pb-24">
+        <div className="container mx-auto px-6 mb-6" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Link href="/" className="hover:text-slate-700">{t.breadcrumb.home}</Link>
             <span>/</span>
@@ -475,8 +476,8 @@ export default function RenovationGuideItalyPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+          <div className="max-w-4xl mx-auto" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="mb-8">
               <Button asChild variant="outline" className="mb-5 inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100">
                 <Link href="/blog">
@@ -488,7 +489,7 @@ export default function RenovationGuideItalyPage() {
                 <Hammer className="h-3.5 w-3.5" />
                 {t.category}
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              <h1 className="font-bold mb-8 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
                 {t.title}
               </h1>
               <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-6">
@@ -501,7 +502,7 @@ export default function RenovationGuideItalyPage() {
                   {t.readTime}
                 </span>
               </div>
-              <div className="space-y-3 text-gray-700 leading-relaxed text-lg">
+              <div className="space-y-3 text-gray-500 leading-relaxed text-lg" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                 {t.intro.map((line) => (
                   <p key={line}>{line}</p>
                 ))}
@@ -524,10 +525,10 @@ export default function RenovationGuideItalyPage() {
 
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{t.section1.title}</CardTitle>
+                  <CardTitle className="mb-8">{t.section1.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3 text-gray-700 leading-relaxed">
+                  <div className="space-y-3 text-gray-500 leading-relaxed" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {t.section1.paragraphs.map((line) => (
                       <p key={line}>{line}</p>
                     ))}
@@ -537,10 +538,10 @@ export default function RenovationGuideItalyPage() {
                       <li key={item} className="text-gray-700">• {item}</li>
                     ))}
                   </ul>
-                  <p className="text-gray-700 leading-relaxed mt-4">{t.section1.outro}</p>
+                  <p className="text-gray-500 leading-relaxed mt-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{t.section1.outro}</p>
 
                   <div className="mt-6 rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=80" alt={t.section1.imageAlt} className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+                    <Image src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=80" alt={t.section1.imageAlt} width={1400} height={800} sizes="(min-width: 768px) 768px, 100vw" className="w-full h-64 md:h-80 object-cover" />
                     <p className="text-sm text-slate-600 px-4 py-3">{t.section1.imageCaption}</p>
                   </div>
                 </CardContent>
@@ -548,13 +549,13 @@ export default function RenovationGuideItalyPage() {
 
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-2xl flex items-center">
+                  <CardTitle className="flex items-center mb-8">
                     <Euro className="h-6 w-6 mr-3" />
                     {t.section2.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">{t.section2.intro}</p>
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{t.section2.intro}</p>
                   <div className="space-y-4">
                     {t.section2.items.map((item) => (
                       <div key={item.title} className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
@@ -576,15 +577,15 @@ export default function RenovationGuideItalyPage() {
 
               <Card className="bg-white/90 backdrop-blur-sm border-l-4 border-l-blue-500">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{t.section3.title}</CardTitle>
+                  <CardTitle className="mb-8">{t.section3.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">{t.section3.intro}</p>
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{t.section3.intro}</p>
                   <div className="space-y-4">
                     {t.section3.factors.map((factor) => (
                       <div key={factor.title} className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
                         <h3 className="font-semibold text-slate-800 mb-1">{factor.title}</h3>
-                        <p className="text-gray-700">{factor.text}</p>
+                        <p className="text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{factor.text}</p>
                       </div>
                     ))}
                   </div>
@@ -595,10 +596,10 @@ export default function RenovationGuideItalyPage() {
 
               <Card className="bg-white/90 backdrop-blur-sm border-l-4 border-l-amber-500">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{t.section4.title}</CardTitle>
+                  <CardTitle className="mb-8">{t.section4.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3 text-gray-700 leading-relaxed">
+                  <div className="space-y-3 text-gray-500 leading-relaxed" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {t.section4.text.map((line) => (
                       <p key={line}>{line}</p>
                     ))}
@@ -615,7 +616,7 @@ export default function RenovationGuideItalyPage() {
 
               <Card className="bg-amber-50 border-amber-200">
                 <CardHeader>
-                  <CardTitle className="text-2xl flex items-center text-amber-900">
+                  <CardTitle className="flex items-center mb-8 text-amber-900">
                     <AlertTriangle className="h-6 w-6 mr-3" />
                     {t.section5.title}
                   </CardTitle>

@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =============================================
+   DESIGN SYSTEM — Typography Scale
+   h1: 2.8rem / 800  | h2: 2rem / 700  | h3: 1.5rem / 600
+   body: 1.0625rem (17px) / line-height 1.75
+   small: 0.875rem
+   ============================================= */
+
 :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -14,7 +21,7 @@
     --secondary: 210 40% 96%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 0 0% 29%;  /* #4a4a4a */
     --accent: 210 40% 96%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
@@ -72,58 +79,110 @@
   }
 
 @layer base {
-  /* Sora font for headings */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-sora), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-weight: 600;
+  /* =============================================
+     LINE-HEIGHT SYSTEM
+     h1, h2:    1.1
+     h3, h4:    1.3
+     h5, h6:    1.4
+     body / p:  1.75
+     nav links: 1   (applied inline per nav)
+     buttons:   1   (applied in button.jsx via leading-none)
+     ============================================= */
+
+  /* ---- Headings ---- */
+  h1 {
+    font-family: var(--font-sora), system-ui, sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.1;
     text-wrap: balance;
-    word-break: normal;
-    overflow-wrap: normal;
-    hyphens: none;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
   }
-  
-  /* Manrope font for body text and all other elements */
-  body, p, div, span, a, button, input, select, textarea {
-    font-family: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  h2 {
+    font-family: var(--font-sora), system-ui, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    text-wrap: balance;
+    color: #1a1a1a;
+    letter-spacing: -0.01em;
   }
-  
-  /* Prevent orphaned words and improve text wrapping */
-  p {
-    text-wrap: pretty;
-    word-break: normal;
-    overflow-wrap: normal;
-    hyphens: none;
+  h3 {
+    font-family: var(--font-sora), system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-wrap: balance;
   }
-  
+  h4 {
+    font-family: var(--font-sora), system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+  h5, h6 {
+    font-family: var(--font-sora), system-ui, sans-serif;
+    font-weight: 600;
+    line-height: 1.4;
+    text-wrap: balance;
+  }
+
+  /* ---- Body ---- */
   body {
-    @apply bg-background text-foreground overflow-x-hidden;
+    @apply bg-background overflow-x-hidden;
+    font-family: var(--font-manrope), system-ui, sans-serif;
+    font-size: 1.0625rem; /* 17px */
+    line-height: 1.75;
+    color: #2d2d2d;
     max-width: 100vw;
   }
-  
-  /* Prevent horizontal overflow on all elements */
-  *, *::before, *::after {
-    max-width: 100%;
+
+  p {
+    font-family: var(--font-manrope), system-ui, sans-serif;
+    line-height: 1.75;
+    color: #4a4a4a;
+    text-wrap: pretty;
+    margin-bottom: 0;
   }
-  
-  /* Allow specific elements to exceed parent width when needed */
+
+  li {
+    line-height: 1.75;
+  }
+
+  small {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* ---- Uppercase label letter-spacing ---- */
+  .uppercase {
+    letter-spacing: 0.08em;
+  }
+
+  /* ---- Font families ---- */
+  *, *::before, *::after {
+    font-family: var(--font-manrope), system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sora), system-ui, sans-serif;
+  }
+
   img, video, canvas, svg {
     max-width: 100%;
     height: auto;
   }
-  
-  /* Ensure all text elements use Manrope unless specifically overridden */
-  *, *::before, *::after {
-    font-family: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ---- Buttons: inherit line-height: 1 from button.jsx leading-none ---- */
+  button, [role="button"] {
+    cursor: pointer;
+    line-height: 1;
   }
-  
-  /* Override for headings to use Sora */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-sora), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-  }
-  
-  /* Ensure specific elements use the correct fonts */
-  p, div, span, a, button, input, select, textarea, label {
-    font-family: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+
+  /* ---- Links ---- */
+  a {
+    transition: color 0.2s ease;
   }
 }
 
@@ -222,23 +281,23 @@
   }
 }
 
+/* Tablet: mobile heading scale (no !important needed — more specific than @layer base) */
+@media (max-width: 768px) {
+  h1 { font-size: 2rem;   line-height: 1.1; }
+  h2 { font-size: 1.6rem; line-height: 1.1; }
+  h3 { font-size: 1.25rem; }
+}
+
 /* Extra small screens */
 @media (max-width: 480px) {
   .container {
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
-  
-  /* Reduce font sizes on very small screens */
-  h1 {
-    font-size: 1.75rem !important;
-  }
-  h2 {
-    font-size: 1.5rem !important;
-  }
-  h3 {
-    font-size: 1.25rem !important;
-  }
+
+  h1 { font-size: 1.75rem; line-height: 1.1; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.2rem; }
 }
 
 /* Animation for property cards */
@@ -254,24 +313,17 @@
 }
 
 .fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp 0.35s ease-out;
 }
 
-/* Slow bounce animation for scroll indicator */
-@keyframes slowBounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-8px);
-  }
-  60% {
-    transform: translateY(-4px);
-  }
+/* Scroll indicator — subtle fade pulse (replaces old bounce) */
+@keyframes subtlePulse {
+  0%, 100% { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0.6; transform: translateY(4px); }
 }
 
 .slow-bounce {
-  animation: slowBounce 2s ease-in-out infinite;
+  animation: subtlePulse 1.8s ease-in-out infinite;
 }
 
 /* Fade in animation for loading screen */
@@ -287,7 +339,7 @@
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.4s ease-out;
 }
 
 /* Character-by-character fade in animation for hero title */
@@ -306,25 +358,16 @@
   animation: charFadeIn 0.3s ease-out forwards;
 }
 
-/* Keyword pop animation */
+/* Keyword fade in (replaced bouncy overshoot) */
 @keyframes keywordPop {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 .animate-keyword-pop {
   opacity: 0;
-  transform: scale(0);
-  animation: keywordPop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  transform: scale(0.9);
+  animation: keywordPop 0.25s ease-out forwards;
 }
 
 /* Scroll-triggered animations */
@@ -336,8 +379,7 @@
 .animate-on-scroll.animate-in {
   opacity: 1 !important;
   transform: translateY(0) !important;
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
   animation: none !important;
 }
 
@@ -350,8 +392,7 @@
 .animate-on-scroll.slide-left.animate-in {
   opacity: 1 !important;
   transform: translateX(0) !important;
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
   animation: none !important;
 }
 
@@ -364,8 +405,7 @@
 .animate-on-scroll.slide-right.animate-in {
   opacity: 1 !important;
   transform: translateX(0) !important;
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
   animation: none !important;
 }
 
@@ -378,8 +418,7 @@
 .animate-on-scroll.scale-in.animate-in {
   opacity: 1 !important;
   transform: scale(1) !important;
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
   animation: none !important;
 }
 
@@ -391,7 +430,7 @@
 
 .animate-on-scroll.fade-in-only.animate-in {
   opacity: 1 !important;
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.4s ease-out;
   animation: none !important;
 }
 
@@ -402,7 +441,7 @@
 }
 
 .animate-on-scroll.stagger-children.animate-in > * {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.35s ease-out forwards;
 }
 
 .animate-on-scroll.stagger-children.animate-in > *:nth-child(1) { animation-delay: 0.1s; }
@@ -470,10 +509,7 @@ input[type="number"] {
   transform: scale(1.02);
 }
 
-/* Smooth link transitions globally */
-a {
-  transition: color 0.2s ease;
-}
+/* Link transitions are set in @layer base above */
 
 /* Focus styles for accessibility */
 button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible {
@@ -496,10 +532,91 @@ button:focus:not(:focus-visible), a:focus:not(:focus-visible) {
   font-family: var(--font-manrope), sans-serif;
 }
 
+/* ==============================================
+   LAYOUT UTILITIES
+   ============================================== */
+
+/* Section padding: 96px desktop / 64px mobile */
+.section-padding {
+  padding-top: 6rem;   /* 96px */
+  padding-bottom: 6rem;
+}
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 4rem;   /* 64px */
+    padding-bottom: 4rem;
+  }
+}
+
+/* Main content wrapper: 1200px centered */
+.content-wrapper {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Prose / text-heavy sections: 720px max-width */
+.prose-max {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section heading gap: 32px below heading before first content */
+.section-heading-gap {
+  margin-bottom: 2rem;  /* 32px */
+}
+
+/* Alternating section backgrounds */
+.section-bg-white {
+  background-color: #ffffff;
+}
+.section-bg-light {
+  background-color: #f7f6f3;  /* very warm light grey, not stark */
+}
+
+/* ==============================================
+   CARD SYSTEM
+   ============================================== */
+
+/* Base card: 32px padding, 16px radius */
+.ds-card {
+  padding: 2rem;        /* 32px */
+  border-radius: 1rem;  /* 16px */
+  background: #ffffff;
+}
+
+/* Card grid gap: 24px minimum */
+.ds-card-grid {
+  display: grid;
+  gap: 1.5rem;         /* 24px */
+}
+
+/* Card heading */
+.ds-card h3,
+.ds-card h4 {
+  font-weight: 700;
+  margin-bottom: 0.75rem;  /* 12px */
+  color: #1a1a1a;
+}
+
+/* Card body text */
+.ds-card p {
+  line-height: 1.7;
+  color: #4a4a4a;
+}
+
 /* Ensure proper font loading and fallbacks */
 html {
   font-family: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
+
+/* ---- Muted body text colour ----
+   Body and paragraph base colors are set in @layer base above.
+   Individual sections use inline color: '#4a4a4a' where needed. */
 
 /* Debug font loading - removed in production */
 

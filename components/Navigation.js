@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -24,6 +25,7 @@ export default function Navigation() {
   const [user, setUser] = useState(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const [authModalDefaultTab, setAuthModalDefaultTab] = useState('login')
   const [language, setLanguage] = useState('en')
   const [isPopupBarVisible, setIsPopupBarVisible] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
@@ -121,7 +123,6 @@ export default function Navigation() {
 
   const handleLanguageChange = (newLanguage) => {
     setLanguage(newLanguage)
-    console.log(`Language changed to: ${newLanguage}`)
     document.documentElement.lang = newLanguage
     localStorage.setItem('preferred-language', newLanguage)
     
@@ -148,7 +149,7 @@ export default function Navigation() {
     <>
     <nav 
       ref={navRef}
-      className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-all duration-500 ease-out ${
+      className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-all duration-300 ease-out ${
         isScrolled 
           ? 'shadow-lg backdrop-blur-xl' 
           : ''
@@ -163,13 +164,13 @@ export default function Navigation() {
         <div className="flex items-center justify-between" data-testid="nav-content">
           <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-8" data-testid="nav-brand-links">
             <Link href="/" data-testid="nav-brand-link" className="relative overflow-visible">
-              <img 
-                src="/logo domy.svg" 
+              <Image
+                src="/logo domy.svg"
                 alt="Domy v Italii"
-                className={`w-auto cursor-pointer z-30 transition-all duration-500 ease-out relative sm:absolute top-0 left-0 ${isScrolled ? 'h-12 sm:h-16 md:h-24' : 'h-14 sm:h-20 md:h-32'}`}
-                style={{ 
-                  filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))'
-                }}
+                width={120}
+                height={115}
+                priority
+                className={`w-auto cursor-pointer z-30 transition-all duration-300 ease-out relative sm:absolute top-0 left-0 drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)] ${isScrolled ? 'h-12 sm:h-16 md:h-24' : 'h-14 sm:h-20 md:h-32'}`}
                 data-testid="nav-brand-logo"
               />
               <div className="hidden sm:block h-12 w-24"></div>
@@ -187,7 +188,7 @@ export default function Navigation() {
                 <Link 
                   key={href}
                   href={href} 
-                  className={`relative px-2 xl:px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap ${
+                  className={`relative px-2 xl:px-3 py-2 text-sm font-medium leading-none rounded-lg transition-all duration-200 whitespace-nowrap ${
                     isActive(href) 
                       ? 'text-white bg-white/10' 
                       : 'text-gray-300 hover:text-white hover:bg-white/5'
@@ -265,20 +266,28 @@ export default function Navigation() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <button
-                onClick={() => setIsAuthModalOpen(true)}
-                className="hidden sm:flex items-center gap-1.5 bg-white/10 backdrop-blur-md rounded-full px-3 py-1.5 lg:px-4 lg:py-2 text-xs lg:text-sm font-medium text-white/90 hover:text-white hover:bg-white/20 border border-white/15 transition-all duration-200"
-                data-testid="login-button"
-              >
-                <User className="h-3.5 w-3.5" />
-                <span className="hidden lg:inline">{language === 'cs' ? 'Přihlásit' : (language === 'it' ? 'Accedi' : 'Login')}</span>
-                <span className="lg:hidden">{language === 'cs' ? 'Přihlásit' : (language === 'it' ? 'Accedi' : 'Login')}</span>
-              </button>
+              <div className="hidden sm:flex items-center gap-2">
+                <button
+                  onClick={() => { setAuthModalDefaultTab('login'); setIsAuthModalOpen(true) }}
+                  className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md rounded-full px-3 py-1.5 lg:px-4 lg:py-2 text-xs lg:text-sm font-medium leading-none cursor-pointer text-white/90 hover:text-white hover:bg-white/20 border border-white/15 transition-all duration-200"
+                  data-testid="login-button"
+                >
+                  <User className="h-3.5 w-3.5" />
+                  <span>{language === 'cs' ? 'Přihlásit' : (language === 'it' ? 'Accedi' : 'Login')}</span>
+                </button>
+                <button
+                  onClick={() => { setAuthModalDefaultTab('signup'); setIsAuthModalOpen(true) }}
+                  className="flex items-center gap-1.5 bg-copper-500/80 backdrop-blur-md rounded-full px-3 py-1.5 lg:px-4 lg:py-2 text-xs lg:text-sm font-medium leading-none cursor-pointer text-white hover:bg-copper-400 border border-copper-400/50 transition-all duration-200"
+                  data-testid="register-button"
+                >
+                  <span>{language === 'cs' ? 'Registrovat' : (language === 'it' ? 'Registrati' : 'Register')}</span>
+                </button>
+              </div>
             )}
             
             {/* Mobile menu button */}
             <button
-              className="lg:hidden"
+              className="lg:hidden p-2 rounded-lg cursor-pointer text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               data-testid="mobile-menu-button"
             >
@@ -289,7 +298,7 @@ export default function Navigation() {
         
         {/* Mobile menu */}
         <div 
-          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`lg:hidden overflow-hidden transition-all duration-200 ease-out ${
             isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
           }`}
           data-testid="mobile-menu"
@@ -345,7 +354,7 @@ export default function Navigation() {
                   setIsMenuOpen(false)
                   setIsAuthModalOpen(true)
                 }}
-                className="px-3 py-2.5 rounded-lg text-base text-copper-300 hover:text-copper-200 hover:bg-white/5 transition-colors text-left font-medium"
+                className="px-3 py-2.5 rounded-lg text-base leading-none cursor-pointer text-copper-300 hover:text-copper-200 hover:bg-white/5 transition-colors text-left font-medium"
                 data-testid="mobile-login-link"
               >
                 {language === 'cs' ? 'Přihlásit / Registrovat' : (language === 'it' ? 'Accedi / Registrati' : 'Login / Register')}
@@ -357,7 +366,7 @@ export default function Navigation() {
                 <button
                   key={lang}
                   onClick={() => handleLanguageChange(lang)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium leading-none cursor-pointer transition-all duration-200 ${
                     language === lang 
                       ? 'bg-copper-500/30 text-copper-200 ring-1 ring-copper-400/40' 
                       : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
@@ -375,6 +384,7 @@ export default function Navigation() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
+        defaultTab={authModalDefaultTab}
       />
       
       {/* Premium Club Popup Bar - inside nav so it flows directly below */}
@@ -392,15 +402,15 @@ export default function Navigation() {
                 className="flex items-center gap-2 sm:gap-3 group hover:opacity-90 transition-opacity"
               >
                 <Crown className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-white/90 flex-shrink-0" />
-                <span className="text-white/90 font-normal text-[10px] sm:text-[11px] md:text-xs">
-                  {language === 'cs' ? 'Premium Club - Zaregistrujte se zdarma nyní' :
-                   language === 'it' ? 'Club Premium - Registrati gratuitamente ora' :
-                   'Premium Club - Register for Free Now'}
+                <span className="text-white/90 font-normal text-xs">
+                  {language === 'cs' ? 'Klub pro klienty - Zaregistrujte se zdarma nyní' :
+                   language === 'it' ? 'Klub pro klienty - Registrati gratuitamente ora' :
+                   'Klub pro klienty - Register for Free Now'}
                 </span>
               </PremiumPdfComingSoonTrigger>
               <button
                 onClick={handleClosePopup}
-                className="absolute right-0 p-0.5 sm:p-1 hover:bg-white/15 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white/40"
+                className="absolute right-0 p-1 sm:p-1.5 cursor-pointer hover:bg-white/15 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-white/40"
                 aria-label="Close popup"
               >
                 <XCircle className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-white/90" />

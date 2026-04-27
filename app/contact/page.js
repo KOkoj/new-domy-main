@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 
 const CONTACT_INFO = [
@@ -192,7 +193,7 @@ export default function ContactPage() {
 
       <main className="pt-28 md:pt-32 pb-12">
         {/* Hero Section */}
-        <section className="container mx-auto px-4 py-12 md:py-16 mb-4">
+        <section className="container mx-auto px-6 py-16 md:py-24 mb-4" style={{ maxWidth: '1200px' }}>
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-6">
               <Mail className="h-4 w-4 text-slate-500" />
@@ -200,12 +201,12 @@ export default function ContactPage() {
                 {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-slate-800 leading-tight">
+            <h1 className="font-extrabold mb-6 text-slate-800">
               {language === 'cs' ? 'Kontaktujte nás' :
                language === 'it' ? 'Contattaci' :
                'Contact Us'}
             </h1>
-            <p className="text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg text-gray-500 leading-[1.75] max-w-2xl mx-auto">
               {language === 'cs' ? 'Přemýšlíte o koupi domu v Itálii? Napište nám – ozveme se vám s praktickými informacemi a navrhneme další krok.' :
                language === 'it' ? 'Stai pensando di acquistare una casa in Italia? Scrivici - ti contatteremo con informazioni pratiche e suggeriremo il prossimo passo.' :
                'Thinking about buying a house in Italy? Write to us - we\'ll get back to you with practical information and suggest the next step.'}
@@ -214,7 +215,7 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Content */}
-        <section className="container mx-auto px-4">
+        <section className="container mx-auto px-6 pb-16 md:pb-24" style={{ maxWidth: '1200px' }}>
           {/* Contact Information and Form Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             {/* Contact Information Sidebar */}
@@ -448,7 +449,7 @@ export default function ContactPage() {
                       type="submit"
                       disabled={isSubmitting}
                       size="lg"
-                      className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg"
+                      className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-6 text-base transition-all duration-300 shadow-lg"
                     >
                       {isSubmitting ? (
                         <span className="animate-pulse">
@@ -476,21 +477,21 @@ export default function ContactPage() {
                    language === 'it' ? 'Esplora le nostre proprietà' :
                    'Explore Our Properties'}
                 </h3>
-                <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+                <p className="text-gray-600 mb-8 text-lg leading-[1.75]">
                   {language === 'cs' ? 'Prohlédněte si naši rozsáhlou sbírku italských nemovitostí, od útulných bytů po luxusní vily.' :
                    language === 'it' ? 'Sfoglia la nostra vasta collezione di proprietà italiane, da appartamenti accoglienti a ville di lusso.' :
                    'Browse our extensive collection of Italian properties, from cozy apartments to luxury villas.'}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/properties" className="w-full sm:w-auto">
-                    <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg">
+                    <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg">
                       {language === 'cs' ? 'Zobrazit nemovitosti' :
                        language === 'it' ? 'Visualizza proprietà' :
                        'View Properties'}
                     </Button>
                   </Link>
                   <Link href="/regions" className="w-full sm:w-auto">
-                    <Button variant="outline" size="lg" className="w-full sm:w-auto border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105">
+                    <Button variant="outline" size="lg" className="w-full sm:w-auto border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300">
                       {language === 'cs' ? 'Procházet regiony' :
                        language === 'it' ? 'Sfoglia regioni' :
                        'Browse Regions'}
@@ -504,6 +505,7 @@ export default function ContactPage() {
       </main>
 
       {/* Footer */}
+      <PropertySlider language={language} />
       <Footer language={language} />
     </div>
   )

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const ITALIAN_REGIONS = [
   {
@@ -378,13 +379,15 @@ function RegionCard({ region, language = 'en' }) {
   }
 
   return (
-    <Card className="group cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl h-full flex flex-col">
+    <Card className="group cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-200 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl h-full flex flex-col">
       {/* Image */}
       <div className="relative h-48 overflow-hidden">
-        <img 
-          src={region.image} 
+        <Image
+          src={region.image}
           alt={region.name[language]}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          fill
+          sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+          className="object-cover group-hover:scale-105 transition-transform duration-200"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
         
@@ -482,7 +485,7 @@ function RegionCard({ region, language = 'en' }) {
           }}
         >
           <Button 
-            className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 transition-all duration-300 hover:scale-105"
+              className="w-full"
           >
             {language === 'cs' ? 'Zobrazit nemovitosti' : 
              language === 'it' ? 'Visualizza proprietà' : 
@@ -512,12 +515,12 @@ export default function RegionCards({ language = 'en', showAll = false }) {
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <h2 className="font-bold text-gray-900 mb-8">
           {language === 'cs' ? 'Italské regiony' : 
            language === 'it' ? 'Regioni Italiane' : 
            'Italian Regions'}
         </h2>
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+        <p className="text-gray-500 max-w-2xl mx-auto" style={{ fontSize: '1.0625rem', lineHeight: '1.75' }}>
           {language === 'cs' ? 'Objevte rozmanitost italských regionů - od alpských vrcholů po středomořské pobřeží. Každý region nabízí jedinečnou kulturu, krajinu a příležitosti k investicím.' :
            language === 'it' ? 'Scopri la diversità delle regioni italiane - dalle vette alpine alle coste mediterranee. Ogni regione offre cultura, paesaggio e opportunità di investimento uniche.' :
            'Discover the diversity of Italian regions - from Alpine peaks to Mediterranean coasts. Each region offers unique culture, landscape, and investment opportunities.'}
@@ -542,7 +545,7 @@ export default function RegionCards({ language = 'en', showAll = false }) {
             <Button 
               size="lg" 
               variant="outline"
-              className="px-8 py-3 border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all duration-300"
+              className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-colors duration-200"
             >
               {language === 'cs' ? 'Zobrazit všechny regiony' : 
                language === 'it' ? 'Visualizza tutte le regioni' : 

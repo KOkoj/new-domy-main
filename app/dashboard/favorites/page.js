@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -219,10 +220,12 @@ export default function FavoritesManagement() {
       <Card className={`hover:shadow-lg transition-all duration-300 ${selectedProperties.has(property._id) ? 'ring-2 ring-blue-500' : ''}`}>
         <div className={`${isGrid ? 'block' : 'flex'}`}>
           <div className={`relative ${isGrid ? 'w-full h-48' : 'w-48 h-32 flex-shrink-0'}`}>
-            <img 
-              src={property.image} 
+            <Image
+              src={property.image}
               alt={property.title.en}
-              className="w-full h-full object-cover rounded-t-lg"
+              fill
+              sizes={isGrid ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : "192px"}
+              className="object-cover rounded-t-lg"
             />
             {property.featured && (
               <Badge className="absolute top-3 left-3 bg-yellow-500">Featured</Badge>

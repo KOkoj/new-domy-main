@@ -1,14 +1,17 @@
 ﻿'use client'
 
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { ArrowLeft, AlertTriangle, XCircle, CheckCircle, FileWarning } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
+import Image from 'next/image'
 import { supabase } from '../../../lib/supabase'
-import AuthModal from '../../../components/AuthModal'
-import FreePdfUpsellModal from '../../../components/FreePdfUpsellModal'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
+
+const AuthModal = dynamic(() => import('../../../components/AuthModal'), { ssr: false })
+const FreePdfUpsellModal = dynamic(() => import('../../../components/FreePdfUpsellModal'), { ssr: false })
 
 export default function MistakesGuidePage() {
   const [user, setUser] = useState(null)
@@ -133,13 +136,16 @@ export default function MistakesGuidePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}>
-        <div className="container mx-auto px-4 pt-4 pb-3">
+        <div className="container mx-auto px-6 pt-4 pb-3" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center justify-between">
             <Link href="/" className="relative overflow-visible">
-              <img 
-                src="/logo domy.svg" 
+              <Image
+                src="/logo domy.svg"
                 alt="Domy v Itálii"
-                className="h-12 w-auto cursor-pointer" 
+                width={48}
+                height={46}
+                priority
+                className="h-12 w-auto cursor-pointer"
                 style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))' }}
               />
             </Link>
@@ -153,9 +159,9 @@ export default function MistakesGuidePage() {
                 {language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles'}
               </Link>
               <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20">
-                <button onClick={() => handleLanguageChange('en')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}>EN</button>
-                <button onClick={() => handleLanguageChange('cs')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}>CS</button>
-                <button onClick={() => handleLanguageChange('it')} className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'it' ? 'bg-white/20 text-white' : 'text-white/60'}`}>IT</button>
+                <button onClick={() => handleLanguageChange('en')} className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}>EN</button>
+                <button onClick={() => handleLanguageChange('cs')} className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}>CS</button>
+                <button onClick={() => handleLanguageChange('it')} className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'it' ? 'bg-white/20 text-white' : 'text-white/60'}`}>IT</button>
               </div>
               {user && (
                 <Button variant="outline" onClick={handleLogout} className="bg-white/10 border-white/30 text-white">
@@ -167,8 +173,8 @@ export default function MistakesGuidePage() {
         </div>
       </nav>
 
-      <div className="pt-28 pb-12">
-        <div className="container mx-auto px-4 mb-6">
+      <div className="pt-28 pb-16 md:pb-24">
+        <div className="container mx-auto px-6 mb-6" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Link href="/" className="hover:text-slate-700">{language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home'}</Link>
             <span>/</span>
@@ -180,8 +186,8 @@ export default function MistakesGuidePage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+          <div className="max-w-4xl mx-auto" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="mb-8">
               <Button asChild variant="outline" className="mb-5 inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100">
                 <Link href="/blog">
@@ -189,12 +195,12 @@ export default function MistakesGuidePage() {
                   {language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles'}
                 </Link>
               </Button>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              <h1 className="font-bold mb-8 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
                 {language === 'cs' ? 'Nejčastější chyby, které Češi dělají při koupi domu v Itálii' :
                  language === 'it' ? 'Gli errori più comuni che i cechi commettono nell\'acquisto di una casa in Italia' :
                  'Most Common Mistakes Czechs Make When Buying a House in Italy'}
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-gray-500 leading-relaxed" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                 {language === 'cs' ? 'Při koupi domu v Itálii Češi velmi často opakují stejné chyby. Ne proto, že by byli neopatrní, ale proto, že neznají místní pravidla, procesy a souvislosti.' :
                  language === 'it' ? 'Nell\'acquisto di una casa in Italia, i cechi ripetono molto spesso gli stessi errori. Non perché siano incauti, ma perché non conoscono le regole, i processi e i contesti locali.' :
                  'When buying a house in Italy, Czechs very often repeat the same mistakes. Not because they are careless, but because they don\'t know the local rules, processes, and contexts.'}
@@ -202,7 +208,7 @@ export default function MistakesGuidePage() {
             </div>
 
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-8">
-              <img src={articleImage.src} alt={articleImage.alt} className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+              <Image src={articleImage.src} alt={articleImage.alt} width={1400} height={800} sizes="(min-width: 768px) 768px, 100vw" className="w-full h-64 md:h-80 object-cover" />
               <p className="text-sm text-slate-600 px-4 py-3">{articleImage.caption}</p>
             </div>
 
@@ -232,7 +238,7 @@ export default function MistakesGuidePage() {
               {/* Mistake 1 */}
               <Card className="bg-white/90 backdrop-blur-sm border-l-4 border-l-red-500">
                 <CardHeader>
-                  <CardTitle className="text-2xl flex items-center">
+                  <CardTitle className="flex items-center mb-8">
                     <XCircle className="h-6 w-6 mr-3 text-red-600" />
                     {language === 'cs' ? '1. Spoléhání se pouze na cenu nemovitosti' :
                      language === 'it' ? '1. Affidarsi solo al prezzo dell\'immobile' :
@@ -240,7 +246,7 @@ export default function MistakesGuidePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === 'cs' ? 'Jednou z nejčastějších chyb je zaměření se pouze na kupní cenu. Kupující často podceňují další povinné náklady:' :
                      language === 'it' ? 'Uno degli errori più comuni è concentrarsi solo sul prezzo di acquisto. Gli acquirenti spesso sottovalutano altri costi obbligatori:' :
                      'One of the most common mistakes is focusing only on the purchase price. Buyers often underestimate other mandatory costs:'}
@@ -252,9 +258,9 @@ export default function MistakesGuidePage() {
                   </ul>
                   <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                     <p className="text-blue-900 font-semibold">
-                      ⚠️ {language === 'cs' ? 'Cena na inzerátu není konečná cena.' :
-                           language === 'it' ? 'Il prezzo nell\'annuncio non è il prezzo finale.' :
-                           'The price in the listing is not the final price.'}
+                      {language === 'cs' ? 'Cena na inzerátu není konečná cena.' :
+                       language === 'it' ? 'Il prezzo nell\'annuncio non è il prezzo finale.' :
+                       'The price in the listing is not the final price.'}
                     </p>
                   </div>
                 </CardContent>
@@ -263,7 +269,7 @@ export default function MistakesGuidePage() {
               {/* Mistake 2 */}
               <Card className="bg-white/90 backdrop-blur-sm border-l-4 border-l-orange-500">
                 <CardHeader>
-                  <CardTitle className="text-2xl flex items-center">
+                  <CardTitle className="flex items-center mb-8">
                     <XCircle className="h-6 w-6 mr-3 text-orange-600" />
                     {language === 'cs' ? '2. Podcenění právní kontroly' :
                      language === 'it' ? '2. Sottovalutazione del controllo legale' :
@@ -271,16 +277,16 @@ export default function MistakesGuidePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === 'cs' ? 'Neověření vlastnických práv, případných dluhů nebo zástav, stavebních povolení a souladu s katastrem může vést k vážným problémům i dlouho po podpisu smlouvy.' :
                      language === 'it' ? 'La mancata verifica dei diritti di proprietà, eventuali debiti o gravami, permessi edilizi e conformità catastale può portare a seri problemi anche molto tempo dopo la firma del contratto.' :
                      'Failure to verify property rights, possible debts or liens, building permits, and cadastral compliance can lead to serious problems long after signing the contract.'}
                   </p>
                   <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
                     <p className="text-yellow-900 font-semibold">
-                      ⚠️ {language === 'cs' ? 'V Itálii není právní kontrola formalita – je to zásadní krok, který nelze vynechat.' :
-                           language === 'it' ? 'In Italia il controllo legale non è una formalità – è un passo fondamentale che non può essere saltato.' :
-                           'In Italy, legal control is not a formality – it\'s a crucial step that cannot be skipped.'}
+                      {language === 'cs' ? 'V Itálii není právní kontrola formalita – je to zásadní krok, který nelze vynechat.' :
+                       language === 'it' ? 'In Italia il controllo legale non è una formalità – è un passo fondamentale che non può essere saltato.' :
+                       'In Italy, legal control is not a formality – it\'s a crucial step that cannot be skipped.'}
                     </p>
                   </div>
                 </CardContent>
@@ -309,7 +315,7 @@ export default function MistakesGuidePage() {
               {/* Mistake 3 */}
               <Card className="bg-white/90 backdrop-blur-sm border-l-4 border-l-yellow-500">
                 <CardHeader>
-                  <CardTitle className="text-2xl flex items-center">
+                  <CardTitle className="flex items-center mb-8">
                     <XCircle className="h-6 w-6 mr-3 text-yellow-600" />
                     {language === 'cs' ? '3. Neznalost místních pravidel a rozdílů' :
                      language === 'it' ? '3. Ignoranza delle regole e differenze locali' :
@@ -317,12 +323,12 @@ export default function MistakesGuidePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === 'cs' ? 'Postupy v Itálii se liší region od regionu a nefungují stejně jako v České republice. To, co je běžné doma, zde často neplatí vůbec.' :
                      language === 'it' ? 'Le procedure in Italia variano da regione a regione e non funzionano allo stesso modo della Repubblica Ceca. Ciò che è comune a casa spesso qui non vale affatto.' :
                      'Procedures in Italy vary from region to region and don\'t work the same as in the Czech Republic. What is common at home often doesn\'t apply here at all.'}
                   </p>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-gray-500 leading-relaxed" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === 'cs' ? 'Ignorování místních zvyklostí vede ke zdržení, chybám a stresu.' :
                      language === 'it' ? 'Ignorare le usanze locali porta a ritardi, errori e stress.' :
                      'Ignoring local customs leads to delays, mistakes, and stress.'}
@@ -333,7 +339,7 @@ export default function MistakesGuidePage() {
               {/* Mistake 4 */}
               <Card className="bg-white/90 backdrop-blur-sm border-l-4 border-l-purple-500">
                 <CardHeader>
-                  <CardTitle className="text-2xl flex items-center">
+                  <CardTitle className="flex items-center mb-8">
                     <XCircle className="h-6 w-6 mr-3 text-purple-600" />
                     {language === 'cs' ? '4. Chybějící dlouhodobý plán' :
                      language === 'it' ? '4. Mancanza di piano a lungo termine' :
@@ -341,7 +347,7 @@ export default function MistakesGuidePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === 'cs' ? 'Mnoho kupujících řeší jen samotnou koupi, ale ne:' :
                      language === 'it' ? 'Molti acquirenti si occupano solo dell\'acquisto stesso, ma non di:' :
                      'Many buyers only deal with the purchase itself, but not:'}
@@ -351,7 +357,7 @@ export default function MistakesGuidePage() {
                     <li className="text-gray-700">• {language === 'cs' ? 'Možnosti pronájmu' : language === 'it' ? 'Possibilità di affitto' : 'Rental possibilities'}</li>
                     <li className="text-gray-700">• {language === 'cs' ? 'Dlouhodobé daňové povinnosti' : language === 'it' ? 'Obblighi fiscali a lungo termine' : 'Long-term tax obligations'}</li>
                   </ul>
-                  <p className="text-gray-700 leading-relaxed mt-4">
+                  <p className="text-gray-500 leading-relaxed mt-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === 'cs' ? 'Bez realistického plánu se i dobrá koupě může časem stát zátěží.' :
                      language === 'it' ? 'Senza un piano realistico, anche un buon acquisto può diventare un peso nel tempo.' :
                      'Without a realistic plan, even a good purchase can become a burden over time.'}
@@ -362,7 +368,7 @@ export default function MistakesGuidePage() {
               {/* Mistake 5 */}
               <Card className="bg-white/90 backdrop-blur-sm border-l-4 border-l-blue-500">
                 <CardHeader>
-                  <CardTitle className="text-2xl flex items-center">
+                  <CardTitle className="flex items-center mb-8">
                     <XCircle className="h-6 w-6 mr-3 text-blue-600" />
                     {language === 'cs' ? '5. Komunikace bez místní znalosti' :
                      language === 'it' ? '5. Comunicazione senza conoscenza locale' :
@@ -370,12 +376,12 @@ export default function MistakesGuidePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === 'cs' ? 'Jazyková bariéra a neznalost místního prostředí často vedou k nedorozuměním, špatným rozhodnutím a zbytečnému stresu.' :
                      language === 'it' ? 'La barriera linguistica e la mancanza di conoscenza dell\'ambiente locale spesso portano a incomprensioni, decisioni sbagliate e stress inutile.' :
                      'Language barrier and lack of local environmental knowledge often lead to misunderstandings, bad decisions, and unnecessary stress.'}
                   </p>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-gray-500 leading-relaxed" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === 'cs' ? 'V Itálii hraje osobní přístup a kontext mnohem větší roli, než se na první pohled zdá.' :
                      language === 'it' ? 'In Italia l\'approccio personale e il contesto giocano un ruolo molto più importante di quanto sembri a prima vista.' :
                      'In Italy, personal approach and context play a much bigger role than it seems at first glance.'}
@@ -410,7 +416,7 @@ export default function MistakesGuidePage() {
               {/* How to Avoid */}
               <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
                 <CardHeader>
-                  <CardTitle className="text-2xl flex items-center text-green-900">
+                  <CardTitle className="flex items-center mb-8 text-green-900">
                     <CheckCircle className="h-6 w-6 mr-3" />
                     {language === 'cs' ? 'Jak těmto chybám opravdu předejít?' :
                      language === 'it' ? 'Come evitare davvero questi errori?' :
@@ -443,7 +449,7 @@ export default function MistakesGuidePage() {
 
             <InformationalDisclaimer language={language} className="mt-14" />
 
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link href="/process">
                 <Button variant="outline" size="lg" className="w-full">
                   <ArrowLeft className="h-5 w-5 mr-2" />

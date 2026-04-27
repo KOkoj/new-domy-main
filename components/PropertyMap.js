@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { MapPin } from 'lucide-react';
+import 'leaflet/dist/leaflet.css';
 
 const PropertyMap = ({ 
   properties = [], 
@@ -196,8 +196,7 @@ const PropertyMap = ({
     <div className="h-full w-full relative">
       <div 
         ref={mapRef} 
-        className="h-full w-full z-0"
-        style={{ minHeight: '300px' }}
+        className="h-full w-full z-0 min-h-[300px]"
       />
     </div>
   );

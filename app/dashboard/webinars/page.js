@@ -464,7 +464,7 @@ END:VCALENDAR`
                   {/* Video Thumbnail */}
                   <div className="flex-shrink-0" data-testid={`webinar-past-${webinar.id}-thumbnail-container`}>
                     <div className="w-48 h-28 bg-gray-100 rounded-lg flex items-center justify-center relative overflow-hidden group cursor-pointer" data-testid={`webinar-past-${webinar.id}-thumbnail`}>
-                      <Play className="h-12 w-12 text-copper-600 group-hover:scale-110 transition-transform" data-testid={`webinar-past-${webinar.id}-play-icon`} />
+                      <Play className="h-12 w-12 text-copper-600" data-testid={`webinar-past-${webinar.id}-play-icon`} />
                       <div className="absolute bottom-2 right-2 bg-black/70 px-2 py-1 rounded text-xs text-white" data-testid={`webinar-past-${webinar.id}-duration-badge`}>
                         {webinar.duration}
                       </div>

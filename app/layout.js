@@ -1,6 +1,5 @@
 ﻿import { Manrope, Sora } from 'next/font/google'
 import './globals.css'
-import 'leaflet/dist/leaflet.css'
 import ScrollToTop from '@/components/ScrollToTop'
 import NavigationProgress from '@/components/NavigationProgress'
 import { PUBLIC_SITE_STANDBY } from '@/lib/featureFlags'

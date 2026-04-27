@@ -8,8 +8,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
 import Script from 'next/script'
+import Image from 'next/image'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import { REGION_DATA_OVERRIDES } from '../regionContent'
 import { REGION_CURIOSITIES } from '../regionCuriosities'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
@@ -1261,11 +1263,14 @@ export default function RegionDetailPage() {
       <div className="pt-32 pb-12">
         {/* Hero with Region Image */}
         <div className="relative mb-8">
-          <div className="h-64 md:h-96 overflow-hidden">
-            <img 
-              src={region.image} 
-              alt={region.name[language]} 
-              className="w-full h-full object-cover"
+          <div className="relative h-64 md:h-96 overflow-hidden">
+            <Image
+              src={region.image}
+              alt={region.name[language]}
+              fill
+              sizes="100vw"
+              priority
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           </div>
@@ -1276,7 +1281,7 @@ export default function RegionDetailPage() {
                   <MapPin className="h-3.5 w-3.5 mr-1" />
                   {language === 'cs' ? 'Region Itálie' : language === 'it' ? 'Regione d\'Italia' : 'Italian Region'}
                 </Badge>
-                <h1 className="text-3xl md:text-5xl font-bold text-white mb-3 drop-shadow-lg">
+                <h1 className="font-bold text-white mb-3 drop-shadow-lg">
                   {region.name[language]}
                 </h1>
                 <p className="text-lg md:text-xl text-white/90 drop-shadow-md max-w-2xl">
@@ -1287,12 +1292,12 @@ export default function RegionDetailPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
           {/* Quick Stats */}
           <div className="max-w-5xl mx-auto mb-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl">
-                <CardContent className="p-6 text-center">
+                <CardContent className="p-8 text-center">
                   <Euro className="h-8 w-8 text-slate-600 mx-auto mb-3" />
                   <p className="text-sm text-gray-500 mb-1">
                     {language === 'cs' ? 'Cenové rozpětí' : language === 'it' ? 'Fascia di prezzo' : 'Price Range'}
@@ -1308,7 +1313,7 @@ export default function RegionDetailPage() {
                 </CardContent>
               </Card>
               <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl">
-                <CardContent className="p-6 text-center">
+                <CardContent className="p-8 text-center">
                   <Home className="h-8 w-8 text-slate-600 mx-auto mb-3" />
                   <p className="text-sm text-gray-500 mb-1">
                     {language === 'cs' ? 'Nejvhodnější pro' : language === 'it' ? 'Ideale per' : 'Best For'}
@@ -1321,7 +1326,7 @@ export default function RegionDetailPage() {
                 </CardContent>
               </Card>
               <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl">
-                <CardContent className="p-6 text-center">
+                <CardContent className="p-8 text-center">
                   <MapPin className="h-8 w-8 text-slate-600 mx-auto mb-3" />
                   <p className="text-sm text-gray-500 mb-1">
                     {language === 'cs' ? 'Hlavní města' : language === 'it' ? 'Città principali' : 'Top Cities'}
@@ -1335,7 +1340,7 @@ export default function RegionDetailPage() {
           {shouldShowRegionalWidget ? (
             <div className="max-w-5xl mx-auto mb-12">
               <Card className="bg-white/90 backdrop-blur-sm border border-orange-200 shadow-lg rounded-2xl overflow-hidden">
-                <CardContent className="p-6 md:p-8">
+                <CardContent className="p-8">
                   <div
                     data-gyg-href="https://widget.getyourguide.com/default/activities.frame"
                     data-gyg-locale-code="cs-CZ"
@@ -1381,7 +1386,7 @@ export default function RegionDetailPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {region.highlights[language].map((highlight, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
@@ -1479,7 +1484,7 @@ export default function RegionDetailPage() {
                     <p key={index}>{line}</p>
                   ))}
                 </div>
-                <div className="mt-8 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4">
+                <div className="mt-8 rounded-2xl border border-slate-200 bg-[#f7f6f3] px-5 py-4">
                   <p className="text-lg font-semibold text-slate-800">
                     {language === 'cs'
                       ? 'Chcete tato města navštívit pohodlně?'
@@ -1500,7 +1505,7 @@ export default function RegionDetailPage() {
                     href={REGION_WIDGET_LINK}
                     target="_blank"
                     rel="nofollow sponsored noopener noreferrer"
-                    className="block w-[40%] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-transform duration-300 hover:scale-[1.01] hover:shadow-md"
+                    className="block w-[40%] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-transform duration-300 hover:shadow-md"
                   >
                     <img
                       src={REGION_WIDGET_IMAGE}
@@ -1532,7 +1537,7 @@ export default function RegionDetailPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg"
+                    className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg"
                     onClick={() => window.open(bookingLink, '_blank')}
                   >
                     <ExternalLink className="h-4 w-4 mr-2" />
@@ -1543,7 +1548,7 @@ export default function RegionDetailPage() {
                   <Button 
                     variant="outline"
                     size="lg" 
-                    className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white border-orange-500 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105"
+                    className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white border-orange-500 font-semibold px-8 py-6 text-base transition-all duration-300"
                     onClick={() => window.open(gygLink, '_blank')}
                   >
                     <ExternalLink className="h-4 w-4 mr-2" />
@@ -1572,7 +1577,7 @@ export default function RegionDetailPage() {
           <div className="max-w-4xl mx-auto text-center">
             <Card className="bg-gradient-to-br from-slate-700 to-slate-800 text-white shadow-2xl rounded-2xl overflow-hidden">
               <CardContent className="p-12">
-                <h2 className="text-3xl font-bold mb-4">
+                <h2 className="font-bold mb-8">
                   {finalCtaTitle}
                 </h2>
                 <p className="text-slate-200 text-lg mb-8 leading-relaxed">
@@ -1580,14 +1585,14 @@ export default function RegionDetailPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/contact">
-                    <Button size="lg" title={consultationLabel} className="w-full sm:w-auto bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg">
+                    <Button size="lg" title={consultationLabel} className="w-full sm:w-auto bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg">
                       {contactFormLabel}
                     </Button>
                   </Link>
                   <Link href={`/properties?region=${canonicalSlug || rawSlug}`}>
                     <Button
                       size="lg"
-                      className="w-full sm:w-auto bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-105 shadow-lg"
+                      className="w-full sm:w-auto bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg"
                     >
                       <Home className="h-5 w-5 mr-2" />
                       {finalPropertiesLabel}
@@ -1604,6 +1609,7 @@ export default function RegionDetailPage() {
         </div>
       </div>
 
+      <PropertySlider language={language} />
       <Footer language={language} />
       {shouldShowRegionalWidget ? (
         <Script

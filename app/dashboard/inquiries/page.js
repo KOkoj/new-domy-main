@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -266,9 +267,11 @@ export default function InquiriesManagement() {
               <CardContent className="p-6">
                 <div className="flex items-start space-x-4">
                   {/* Property Image */}
-                  <img 
-                    src={inquiry.property.image} 
+                  <Image
+                    src={inquiry.property.image}
                     alt={inquiry.property.title.en}
+                    width={80}
+                    height={80}
                     className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
                   />
                   
@@ -337,9 +340,11 @@ export default function InquiriesManagement() {
                             <div className="space-y-6">
                               {/* Property Info */}
                               <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-                                <img 
-                                  src={selectedInquiry.property.image} 
+                                <Image
+                                  src={selectedInquiry.property.image}
                                   alt={selectedInquiry.property.title.en}
+                                  width={64}
+                                  height={64}
                                   className="w-16 h-16 object-cover rounded-lg"
                                 />
                                 <div>

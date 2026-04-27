@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -385,9 +386,11 @@ export default function DashboardOverview() {
             <div className="space-y-4">
               {SAMPLE_RECOMMENDATIONS.map((property) => (
                 <div key={property._id} className="flex items-center space-x-4 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                  <img 
-                    src={property.image} 
+                  <Image
+                    src={property.image}
                     alt={property.title[language] || property.title.en}
+                    width={64}
+                    height={64}
                     className="w-16 h-16 object-cover rounded-lg"
                   />
                   <div className="flex-1">

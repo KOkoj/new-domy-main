@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -343,10 +344,12 @@ export default function PropertyRecommendations() {
               <div className="flex flex-col lg:flex-row">
                 {/* Property Image */}
                 <div className="lg:w-80 h-64 lg:h-auto relative">
-                  <img 
-                    src={property.image} 
+                  <Image
+                    src={property.image}
                     alt={property.title.en}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(min-width: 1024px) 320px, 100vw"
+                    className="object-cover"
                   />
                   <div className="absolute top-4 left-4 flex flex-col space-y-2">
                     <Badge className={`${getMatchScoreColor(property.matchScore)} font-bold`}>

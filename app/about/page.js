@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 
 const SERVICES = [
   {
@@ -95,9 +96,9 @@ const TEAM = [
       cs: 'Italský spoluzakladatel'
     },
     description: {
-      it: 'Italiano del sud, arrivato a Praga da 6 anni. Esperto di carbonara 😄. Amante dello sport e dei viaggi.',
-      en: 'Italian from the south, living in Prague for 6 years. A carbonara expert 😄. Loves sport and travel.',
-      cs: 'Ital z jihu Itálie, v Praze už 6 let. Expert na carbonaru 😄. Miluje sport a cestování.'
+      it: 'Italiano del sud, arrivato a Praga da 6 anni. Esperto di carbonara e amante dello sport e dei viaggi.',
+      en: 'Italian from the south, living in Prague for 6 years. A carbonara expert who loves sport and travel.',
+      cs: 'Ital z jihu Itálie, v Praze už 6 let. Expert na carbonaru, miluje sport a cestování.'
     }
   }
 ]
@@ -161,7 +162,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-[#faf8f5]">
       <Navigation />
 
-      <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden">
+      <section className="relative pt-28 pb-24 md:pt-36 md:pb-32 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1920&q=80"
@@ -172,7 +173,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 relative z-10" style={{ maxWidth: '1200px' }}>
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 mb-6">
               <Sparkles className="h-4 w-4 text-copper-300" />
@@ -180,10 +181,10 @@ export default function AboutPage() {
                 {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About Us'}
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">
+            <h1 className="font-extrabold text-white">
               Domy v Itálii
             </h1>
-            <p className="mt-4 text-lg md:text-2xl text-copper-100 max-w-3xl leading-relaxed font-semibold">
+            <p className="mt-4 text-lg md:text-2xl text-copper-100 max-w-3xl leading-[1.75] font-semibold">
               {language === 'cs'
                 ? 'Pomáháme Čechům splnit sen o vlastním domě v Itálii. V klidu, bez zbytečného stresu a s jasným postupem. Jsme s vámi od prvního výběru až po předání klíčů.'
                 : language === 'it'
@@ -192,7 +193,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-4 flex flex-col sm:flex-row gap-3">
               <Link href="/process">
-                <Button size="lg" className="bg-white text-slate-900 hover:bg-gray-100 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-[1.02] shadow-lg rounded-xl">
+                <Button size="lg" className="bg-white text-slate-900 hover:bg-gray-100 font-semibold px-8 py-6 text-base transition-all duration-200 shadow-lg rounded-xl">
                   {language === 'cs' ? 'Zobrazit proces' : language === 'it' ? 'Vai al processo' : 'See the process'}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -200,7 +201,7 @@ export default function AboutPage() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 font-medium px-8 py-6 text-base transition-all duration-300 rounded-xl bg-transparent"
+                className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 font-medium px-8 py-6 text-base transition-all duration-200 rounded-xl bg-transparent"
                 onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}
               >
                 <Mail className="h-4 w-4 mr-2" />
@@ -211,10 +212,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="container mx-auto px-6 py-16 md:py-24" style={{maxWidth:"1200px"}}>
         <div className="max-w-6xl mx-auto mb-24">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
+            <h2 className="font-bold mb-8 text-slate-800">
               {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About Us'}
             </h2>
             <div className="w-16 h-1 bg-copper-400 mx-auto rounded-full"></div>
@@ -230,14 +231,14 @@ export default function AboutPage() {
               />
             </div>
             <div className="space-y-6">
-              <p className="text-gray-600 leading-relaxed text-lg">
+              <p className="text-gray-600 leading-[1.75] text-lg">
                 {language === 'cs'
                   ? 'Nejsme klasická realitní kancelář. Jsme operativní partner, který pomáhá lidem pochopit reálný proces koupě domu v Itálii. Více než prodej služeb je pro nás důležité pomoci vám splnit sen a cítit se po celou dobu podporováni.'
                   : language === 'it'
                   ? 'Non siamo una classica agenzia immobiliare. Siamo un partner operativo per chi vuole capire il processo reale di acquisto in Italia. Più che vendere un servizio, vogliamo aiutarvi a realizzare un sogno sentendovi accompagnati in ogni fase.'
                   : 'We are not a traditional real estate agency. We are an operational partner for buyers who want to understand the real process in Italy. More than selling a service, we want to help you realize a dream while feeling supported throughout the journey.'}
               </p>
-              <p className="text-slate-800 leading-relaxed text-lg font-semibold">
+              <p className="text-slate-800 leading-[1.75] text-lg font-semibold">
                 {language === 'cs' ? 'Naše principy:' : language === 'it' ? 'I nostri principi:' : 'Our principles:'}
               </p>
               <ul className="space-y-4">
@@ -267,7 +268,7 @@ export default function AboutPage() {
                     <span className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-50 flex items-center justify-center mr-3 mt-0.5">
                       <CheckCircle className="h-4 w-4 text-emerald-600" />
                     </span>
-                    <span className="text-gray-700 leading-relaxed text-lg">{item[language]}</span>
+                    <span className="text-gray-700 leading-[1.75] text-lg">{item[language]}</span>
                   </li>
                 ))}
               </ul>
@@ -278,7 +279,7 @@ export default function AboutPage() {
         <div className="mb-20">
           <div className="max-w-3xl mx-auto">
             <section className="rounded-2xl border border-slate-900 bg-slate-900 text-white p-4 md:p-6">
-              <h2 className="text-xl md:text-2xl font-semibold mb-3 text-white">
+              <h2 className="text-xl font-semibold mb-4 text-white">
                 {language === 'cs'
                   ? 'Co děláme jinak (a proč to chrání váš nákup)'
                   : language === 'it'
@@ -292,7 +293,7 @@ export default function AboutPage() {
                     ? 'Il nostro servizio non è solo traduzione e non è solo ricerca annunci. Coordiniamo tutto il processo per ridurre i punti ciechi tipici dei compratori esteri.'
                     : 'Our service is not just translation and not just finding listings. We coordinate the entire process to reduce blind spots for foreign buyers.'}
               </p>
-              <ul className="list-disc pl-5 space-y-1.5 text-slate-100 leading-relaxed mb-4 text-sm md:text-base">
+              <ul className="list-disc pl-5 space-y-1.5 text-slate-100 leading-[1.75] mb-4 text-sm md:text-base">
                 {[
                   language === 'cs' ? 'Strukturujeme cestu: co udělat jako první, co požadovat, co ověřit a kdy.' : language === 'it' ? 'Strutturiamo il percorso: cosa fare prima, cosa richiedere, cosa verificare e quando.' : 'We structure the path: what to do first, what to request, what to verify, and when.',
                   language === 'cs' ? 'Snižujeme riziko: kontroly jsou prosazovány dříve, před jakýmkoli závazným závazkem.' : language === 'it' ? 'Riduciamo il rischio: anticipiamo i controlli prima di qualsiasi impegno vincolante.' : 'We reduce risk: checks are pushed earlier, before any binding commitment.',
@@ -327,11 +328,11 @@ export default function AboutPage() {
 
         <div className="mb-24">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
+            <h2 className="font-bold mb-8 text-slate-800">
               {language === 'cs' ? 'Naše Tým' : language === 'it' ? 'Il team' : 'Our Team'}
             </h2>
             <div className="w-16 h-1 bg-copper-400 mx-auto mb-6 rounded-full"></div>
-            <p className="text-gray-500 max-w-3xl mx-auto text-lg leading-relaxed">
+            <p className="text-gray-500 max-w-3xl mx-auto text-lg leading-[1.75]">
               {language === 'cs'
                 ? 'Italsko-český pohled v jednom projektu.'
                 : language === 'it'
@@ -348,14 +349,14 @@ export default function AboutPage() {
                     <img
                       src={member.avatar}
                       alt={member.name}
-                      className="h-[210px] w-[210px] md:h-[230px] md:w-[230px] rounded-2xl object-cover transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1"
+                      className="h-52 w-52 md:h-56 md:w-56 rounded-2xl object-cover transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1"
                     />
                   </div>
                   <CardTitle className="text-slate-800 text-2xl">{member.name}</CardTitle>
                   <p className="text-copper-700 font-semibold">{member.role[language]}</p>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 leading-relaxed">{member.description[language]}</p>
+                  <p className="text-gray-600 leading-[1.75]">{member.description[language]}</p>
                 </CardContent>
               </Card>
             ))}
@@ -365,7 +366,7 @@ export default function AboutPage() {
 
         <div className="mb-24">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
+            <h2 className="font-bold mb-8 text-slate-800">
               {language === 'cs' ? 'Co děláme v praxi' : language === 'it' ? 'Cosa facciamo in pratica' : 'What We Do in Practice'}
             </h2>
             <div className="w-16 h-1 bg-copper-400 mx-auto mb-6 rounded-full"></div>
@@ -381,7 +382,7 @@ export default function AboutPage() {
                   <span className={service.iconColor}>{service.icon}</span>
                 </div>
                 <h3 className="text-xl font-bold text-slate-800 mb-3">{service.title[language]}</h3>
-                <p className="text-gray-500 leading-relaxed">{service.description[language]}</p>
+                <p className="text-gray-500 leading-[1.75]">{service.description[language]}</p>
               </div>
             ))}
           </div>
@@ -389,7 +390,7 @@ export default function AboutPage() {
 
         <div className="mb-24">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
+            <h2 className="font-bold mb-8 text-slate-800">
               {language === 'cs' ? 'Pro koho je to' : language === 'it' ? 'Per chi è il servizio' : 'Who This Is For'}
             </h2>
             <div className="w-16 h-1 bg-copper-400 mx-auto mb-6 rounded-full"></div>
@@ -398,11 +399,11 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {WHO_FOR.map((item, index) => (
               <div key={index} className={`text-center p-8 rounded-2xl bg-gradient-to-br ${item.gradient} border border-gray-100 hover:shadow-md transition-all duration-300 group`}>
-                <div className={`w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-sm ${item.iconColor} group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-sm ${item.iconColor} transition-transform duration-300`}>
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-slate-800">{item.title[language]}</h3>
-                <p className="text-gray-500 leading-relaxed">{item.desc[language]}</p>
+                <p className="text-gray-500 leading-[1.75]">{item.desc[language]}</p>
               </div>
             ))}
           </div>
@@ -415,7 +416,7 @@ export default function AboutPage() {
               <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">
                 {language === 'cs' ? 'Pojďme to probrat konkrétně' : language === 'it' ? 'Parliamone in modo concreto' : 'Let us discuss it concretely'}
               </h3>
-              <p className="text-gray-300 mb-10 text-lg leading-relaxed max-w-2xl mx-auto">
+              <p className="text-gray-300 mb-10 text-lg leading-[1.75] max-w-2xl mx-auto">
                 {language === 'cs'
                   ? 'Pokud jste na začátku, doporučujeme nejdříve nastavit plán a priority. Potom je každý další krok jednodušší.'
                   : language === 'it'
@@ -425,7 +426,7 @@ export default function AboutPage() {
               <div className="flex justify-center">
                 <Button
                   size="lg"
-                  className="text-slate-900 font-semibold px-8 py-6 text-base transition-all duration-300 hover:scale-[1.02] shadow-lg rounded-xl bg-white hover:bg-gray-100"
+                  className="text-slate-900 font-semibold px-8 py-6 text-base transition-all duration-200 shadow-lg rounded-xl bg-white hover:bg-gray-100"
                   onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}
                 >
                   <Mail className="h-4 w-4 mr-2" />
@@ -437,6 +438,7 @@ export default function AboutPage() {
         </div>
       </div>
 
+      <PropertySlider language={language} />
       <Footer language={language} />
     </div>
   )

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const REGION_DATA = {
   'abruzzo': {
@@ -357,11 +358,13 @@ function RegionBanner({ regionSlug, language = 'en', onClose }) {
   return (
     <div className="relative mb-8 overflow-hidden rounded-2xl shadow-lg">
       {/* Background Image with Overlay */}
-      <div className="relative h-[320px] md:h-[280px]">
-        <img 
-          src={region.image} 
+      <div className="relative h-80 md:h-72">
+        <Image
+          src={region.image}
           alt={region.name[language]}
-          className="w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/40" />
         
@@ -369,7 +372,7 @@ function RegionBanner({ regionSlug, language = 'en', onClose }) {
         {onClose && (
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-10 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full p-2 text-white hover:bg-white/30 transition-all duration-300 hover:scale-110"
+            className="absolute top-4 right-4 z-10 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full p-2 text-white hover:bg-white/30 transition-colors duration-200"
             aria-label="Close banner"
           >
             <X className="h-4 w-4" />
@@ -389,7 +392,7 @@ function RegionBanner({ regionSlug, language = 'en', onClose }) {
                   <span className="text-sm font-medium">{region.country}</span>
                 </div>
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
+              <h1 className="font-bold text-white mb-2 tracking-tight">
                 {region.name[language]}
               </h1>
               <p className="text-sm md:text-base text-white/90 leading-relaxed max-w-2xl">

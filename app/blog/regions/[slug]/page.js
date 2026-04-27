@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
+import Image from 'next/image'
 import Navigation from '../../../../components/Navigation'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 
@@ -118,8 +119,8 @@ export default function RegionBlogPage() {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navigation />
-        <div className="container mx-auto px-4 py-20 text-center">
-          <h1 className="text-2xl font-bold text-gray-900">
+        <div className="container mx-auto px-6 py-20 text-center" style={{ maxWidth: '1200px' }}>
+          <h1 className="font-bold text-gray-900">
             Blog post not found
           </h1>
           <Link href="/regions">
@@ -136,7 +137,7 @@ export default function RegionBlogPage() {
       
       {/* Article Header */}
       <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-6 py-16 md:py-24" style={{ maxWidth: '1200px' }}>
           <div className="max-w-4xl mx-auto">
             {/* Breadcrumb + Back to Articles */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
@@ -177,12 +178,12 @@ export default function RegionBlogPage() {
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="font-bold text-gray-900 mb-8 leading-tight">
               {blogData.title[language]}
             </h1>
 
             {/* Excerpt */}
-            <p className="text-xl text-gray-600 leading-relaxed mb-8">
+            <p className="text-gray-500 leading-relaxed mb-8" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
               {blogData.excerpt[language]}
             </p>
 
@@ -216,22 +217,27 @@ export default function RegionBlogPage() {
       </div>
 
       {/* Featured Image */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 py-8" style={{ maxWidth: '1200px' }}>
         <div className="max-w-4xl mx-auto">
-          <img 
-            src={blogData.image} 
+          <Image
+            src={blogData.image}
             alt={blogData.title[language]}
+            width={1200}
+            height={600}
+            sizes="(min-width: 1024px) 1024px, 100vw"
+            priority
             className="w-full h-96 object-cover rounded-2xl shadow-lg"
           />
         </div>
       </div>
 
       {/* Article Content */}
-      <div className="container mx-auto px-4 pb-12">
+      <div className="container mx-auto px-6 pb-16 md:pb-24" style={{ maxWidth: '1200px' }}>
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
             <div 
               className="prose prose-lg max-w-none"
+              style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}
               dangerouslySetInnerHTML={{ __html: blogData.content[language] }}
             />
             <InformationalDisclaimer language={language} className="mt-10" />
@@ -241,9 +247,9 @@ export default function RegionBlogPage() {
 
       {/* Related Regions */}
       <div className="bg-white border-t">
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-6 py-16 md:py-24" style={{ maxWidth: '1200px' }}>
           <div className="max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Explore More Regions</h3>
+            <h3 className="font-bold text-gray-900 mb-8">Explore More Regions</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {blogData.relatedRegions.map((regionSlug, index) => (
                 <Link key={index} href={`/blog/regions/${regionSlug}`}>
@@ -264,7 +270,7 @@ export default function RegionBlogPage() {
 
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-800">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-6 py-16 md:py-24" style={{ maxWidth: '1200px' }}>
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               {language === 'cs' ? 'Připraveni najít svůj domov v Itálii?' : 

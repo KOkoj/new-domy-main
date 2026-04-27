@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import Image from "next/image";
 import { supabase } from "../../../lib/supabase";
 import AuthModal from "../../../components/AuthModal";
 import InformationalDisclaimer from "@/components/legal/InformationalDisclaimer";
@@ -87,7 +88,7 @@ export default function InspectionsGuidePage() {
         className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20"
         style={{ backgroundColor: "rgba(14, 21, 46, 0.9)" }}
       >
-        <div className="container mx-auto px-4 pt-4 pb-3">
+        <div className="container mx-auto px-6 pt-4 pb-3" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center justify-between">
             <Link href="/" className="relative overflow-visible">
               <img
@@ -109,19 +110,19 @@ export default function InspectionsGuidePage() {
               <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20">
                 <button
                   onClick={() => handleLanguageChange("en")}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${language === "en" ? "bg-white/20 text-white" : "text-white/60"}`}
+                  className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === "en" ? "bg-white/20 text-white" : "text-white/60"}`}
                 >
                   EN
                 </button>
                 <button
                   onClick={() => handleLanguageChange("cs")}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${language === "cs" ? "bg-white/20 text-white" : "text-white/60"}`}
+                  className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === "cs" ? "bg-white/20 text-white" : "text-white/60"}`}
                 >
                   CS
                 </button>
                 <button
                   onClick={() => handleLanguageChange("it")}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${language === "it" ? "bg-white/20 text-white" : "text-white/60"}`}
+                  className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === "it" ? "bg-white/20 text-white" : "text-white/60"}`}
                 >
                   IT
                 </button>
@@ -140,8 +141,8 @@ export default function InspectionsGuidePage() {
         </div>
       </nav>
 
-      <div className="pt-28 pb-12">
-        <div className="container mx-auto px-4 mb-6">
+      <div className="pt-28 pb-16 md:pb-24">
+        <div className="container mx-auto px-6 mb-6" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Link href="/" className="hover:text-slate-700">
               {language === "cs" ? "Domů" : language === "it" ? "Casa" : "Home"}
@@ -165,8 +166,8 @@ export default function InspectionsGuidePage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+          <div className="max-w-4xl mx-auto" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="mb-8">
               <Button
                 asChild
@@ -178,14 +179,14 @@ export default function InspectionsGuidePage() {
                   {language === "cs" ? "Články" : language === "it" ? "Articoli" : "Articles"}
                 </Link>
               </Button>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              <h1 className="font-bold mb-8 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
                 {language === "cs"
                   ? "Jak probíhají prohlídky nemovitostí v Itálii"
                   : language === "it"
                     ? "Come funzionano le visite immobiliari in Italia"
                     : "How Property Inspections Work in Italy"}
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-gray-500 leading-relaxed" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                 {language === "cs"
                   ? "Jak probíhají prohlídky nemovitostí v Itálii, co se při nich kontroluje a proč jsou klíčové ještě před zapojením notáře."
                   : language === "it"
@@ -195,7 +196,7 @@ export default function InspectionsGuidePage() {
             </div>
 
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-8">
-              <img src={articleImage.src} alt={articleImage.alt} className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+              <Image src={articleImage.src} alt={articleImage.alt} width={1400} height={800} sizes="(min-width: 768px) 768px, 100vw" className="w-full h-64 md:h-80 object-cover" />
               <p className="px-4 py-3 text-sm text-slate-600">{articleImage.caption}</p>
             </div>
 
@@ -231,7 +232,7 @@ export default function InspectionsGuidePage() {
               {/* Purpose */}
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-2xl flex items-center">
+                  <CardTitle className="flex items-center mb-8">
                     <Eye className="h-6 w-6 mr-3" />
                     {language === "cs"
                       ? "Co je cílem prohlídky nemovitosti"
@@ -241,7 +242,7 @@ export default function InspectionsGuidePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === "cs"
                       ? "Cílem prohlídky není jen zjistit, zda se vám dům líbí, ale především:"
                       : language === "it"
@@ -290,7 +291,7 @@ export default function InspectionsGuidePage() {
                       </span>
                     </div>
                   </div>
-                  <p className="text-gray-700 leading-relaxed mt-5">
+                  <p className="text-gray-500 leading-relaxed mt-5" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === "cs"
                       ? "V Itálii není prohlídka jen estetické posouzení. Je to první skutečný okamžik konkrétního ověření před převzetím finančního závazku."
                       : language === "it"
@@ -303,7 +304,7 @@ export default function InspectionsGuidePage() {
               {/* How Inspections Work */}
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-2xl">
+                  <CardTitle className="mb-8">
                     {language === "cs"
                       ? "Jak obvykle probíhá prohlídka v Itálii"
                       : language === "it"
@@ -312,7 +313,7 @@ export default function InspectionsGuidePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === "cs"
                       ? "Ve většině případů kvůli vzdálenosti probíhá jedna návštěva, při které se hodnotí:"
                       : language === "it"
@@ -328,7 +329,7 @@ export default function InspectionsGuidePage() {
                             ? "Stato generale dell'immobile"
                             : "Overall property condition"}
                       </p>
-                      <p className="text-gray-700 text-sm">
+                      <p className="text-gray-500 text-sm" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                         {language === "cs"
                           ? "Skutečný stav interiéru i exteriéru, vlhkost, praskliny a práce nutné v krátkodobém horizontu."
                           : language === "it"
@@ -345,7 +346,7 @@ export default function InspectionsGuidePage() {
                             ? "Distribuzione, misure e luminosità"
                             : "Layout, measurements, and natural light"}
                       </p>
-                      <p className="text-gray-700 text-sm">
+                      <p className="text-gray-500 text-sm" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                         {language === "cs"
                           ? "Praktické ověření prostoru: užitná plocha, dispozice místností, orientace a celková obyvatelnost."
                           : language === "it"
@@ -362,14 +363,14 @@ export default function InspectionsGuidePage() {
                             ? "Impianti e stato tecnico"
                             : "Systems and technical condition"}
                       </p>
-                      <p className="text-gray-700 text-sm">
+                      <p className="text-gray-500 text-sm" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                         {language === "cs"
                           ? "Vizuální kontrola elektroinstalace, vody, vytápění, oken a celkové údržby."
                           : language === "it"
                             ? "Controllo visivo di impianto elettrico, idraulico, riscaldamento, infissi e manutenzione complessiva."
                             : "Visual check of electrical, plumbing, heating, windows, and overall maintenance."}
                       </p>
-                      <p className="text-gray-700 text-sm mt-2">
+                      <p className="text-gray-500 text-sm mt-2" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                         {language === "cs"
                           ? "Je důležité zjistit, zda mají instalace certifikaci, zda existují prohlášení o shodě a zda byly případné minulé práce řádně povoleny."
                           : language === "it"
@@ -386,7 +387,7 @@ export default function InspectionsGuidePage() {
                             ? "Contesto, accessi e documenti disponibili"
                             : "Area, access, and available documents"}
                       </p>
-                      <p className="text-gray-700 text-sm">
+                      <p className="text-gray-500 text-sm" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                         {language === "cs"
                           ? "Lokalita, hluk, parkování, poplatky SVJ a první vyjasnění technické a právní dokumentace."
                           : language === "it"
@@ -401,7 +402,7 @@ export default function InspectionsGuidePage() {
               {/* What to Check */}
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-2xl flex items-center">
+                  <CardTitle className="flex items-center mb-8">
                     <FileSearch className="h-6 w-6 mr-3" />
                     {language === "cs"
                       ? "Co se při prohlídce skutečně ověřuje"
@@ -411,7 +412,7 @@ export default function InspectionsGuidePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === "cs"
                       ? "Během prohlídek se řeší zejména:"
                       : language === "it"
@@ -490,10 +491,10 @@ export default function InspectionsGuidePage() {
                   <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                     <p className="text-red-900 font-semibold whitespace-pre-line">
                       {language === "cs"
-                        ? "⚠️ Notář nekontroluje technický stav nemovitosti a neprovádí fyzickou prohlídku.\nSpoléhat se výhradně na notáře je jedna z nejčastějších chyb zahraničních kupujících."
+                        ? "Notář nekontroluje technický stav nemovitosti a neprovádí fyzickou prohlídku.\nSpoléhat se výhradně na notáře je jedna z nejčastějších chyb zahraničních kupujících."
                         : language === "it"
-                          ? "⚠️ Il notaio non controlla lo stato tecnico dell’immobile e non effettua sopralluoghi.\nAffidarsi esclusivamente al notaio è uno degli errori più comuni degli acquirenti stranieri."
-                          : "⚠️ The notary does not check the technical condition of the property and does not perform on-site inspections.\nRelying exclusively on the notary is one of the most common mistakes foreign buyers make."}
+                          ? "Il notaio non controlla lo stato tecnico dell’immobile e non effettua sopralluoghi.\nAffidarsi esclusivamente al notaio è uno degli errori più comuni degli acquirenti stranieri."
+                          : "The notary does not check the technical condition of the property and does not perform on-site inspections.\nRelying exclusively on the notary is one of the most common mistakes foreign buyers make."}
                     </p>
                     <div className="mt-4">
                       <Link href="/guides/notary">
@@ -566,7 +567,7 @@ export default function InspectionsGuidePage() {
 
               <Card className="bg-white/90 backdrop-blur-sm border-l-4 border-l-teal-500">
                 <CardHeader>
-                  <CardTitle className="text-2xl">
+                  <CardTitle className="mb-8">
                     {language === "cs"
                       ? "Jak zorganizovat cestu na prohlídky"
                       : language === "it"
@@ -575,7 +576,7 @@ export default function InspectionsGuidePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === "cs"
                       ? "Pokud plánujete cestu do Itálie kvůli prohlídkám nemovitostí:"
                       : language === "it"
@@ -608,7 +609,7 @@ export default function InspectionsGuidePage() {
                           : "set aside at least 2–3 days to compare multiple properties"}
                     </li>
                   </ul>
-                  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <Link
                       href="https://www.booking.com/"
                       target="_blank"
@@ -664,7 +665,7 @@ export default function InspectionsGuidePage() {
 
               <Card className="bg-white/90 backdrop-blur-sm border-l-4 border-l-amber-500">
                 <CardHeader>
-                  <CardTitle className="text-2xl">
+                  <CardTitle className="mb-8">
                     {language === "cs"
                       ? "Proč mnoho zahraničních kupujících podceňuje prohlídku"
                       : language === "it"
@@ -673,7 +674,7 @@ export default function InspectionsGuidePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === "cs"
                       ? "Velmi často kupující ze zahraničí:"
                       : language === "it"
@@ -714,7 +715,7 @@ export default function InspectionsGuidePage() {
                           : "do not know which technical questions to ask"}
                     </li>
                   </ul>
-                  <p className="text-gray-700 leading-relaxed mt-4">
+                  <p className="text-gray-500 leading-relaxed mt-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
                     {language === "cs"
                       ? "V těchto podmínkách je snadné soustředit se na emoce a přehlédnout zásadní prvky."
                       : language === "it"
@@ -796,7 +797,7 @@ export default function InspectionsGuidePage() {
                           : "assess risks before signing any offer"}
                     </li>
                   </ul>
-                  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <Link href="/process">
                       <Button variant="outline" size="lg" className="w-full">
                         <ArrowLeft className="h-5 w-5 mr-2" />
@@ -827,7 +828,7 @@ export default function InspectionsGuidePage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 pb-10">
+      <div className="container mx-auto px-6 pb-10" style={{ maxWidth: '1200px' }}>
         <div className="max-w-6xl mx-auto">
           <InformationalDisclaimer language={language} className="mt-14" />
         </div>
@@ -841,3 +842,4 @@ export default function InspectionsGuidePage() {
     </div>
   );
 }
+

@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
 
@@ -139,18 +140,18 @@ export default function FAQPage() {
 
       <div className="pt-28 md:pt-32 pb-12">
         {/* Hero Section */}
-        <div className="container mx-auto px-4 py-12 md:py-16 mb-8">
+        <div className="container mx-auto px-6 py-16 md:py-24 mb-8" style={{ maxWidth: '1200px' }}>
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-6">
               <HelpCircle className="h-4 w-4 text-slate-500" />
               <span className="text-sm text-slate-600 font-medium">FAQ</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-slate-800 leading-tight">
+            <h1 className="font-extrabold mb-6 text-slate-800">
               {language === 'cs' ? 'Časté dotazy ke koupi domu v Itálii' :
                language === 'it' ? 'Domande frequenti sull\'acquisto di una casa in Italia' :
                'FAQ - Buying a House in Italy'}
             </h1>
-            <p className="text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg text-gray-500 leading-[1.75] max-w-2xl mx-auto">
               {language === 'cs' ? 'Koupě nemovitosti v Itálii vyvolává u českých zájemců mnoho otázek. Proces se v mnoha ohledech liší od České republiky.' :
                language === 'it' ? 'L\'acquisto di un immobile in Italia solleva molte domande tra gli interessati cechi. Il processo differisce per molti aspetti dalla Repubblica Ceca.' :
                'Buying property in Italy raises many questions for Czech interested buyers. The process differs in many ways from the Czech Republic.'}
@@ -158,7 +159,7 @@ export default function FAQPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
           {/* FAQ Accordion */}
           <div className="max-w-3xl mx-auto mb-20">
             <div className="space-y-3">
@@ -171,7 +172,7 @@ export default function FAQPage() {
                 >
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full text-left p-5 md:p-6 flex items-start justify-between gap-4"
+                    className="w-full text-left p-5 md:p-6 flex items-start justify-between gap-4 cursor-pointer leading-none hover:opacity-80"
                   >
                     <div className="flex items-start gap-4">
                       <span className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-colors duration-200 ${
@@ -191,7 +192,7 @@ export default function FAQPage() {
                     openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                   }`}>
                     <div className="px-5 md:px-6 pb-6 pl-[4.25rem] md:pl-[4.75rem]">
-                      <p className="text-gray-500 leading-relaxed text-base">
+                      <p className="text-gray-500 leading-[1.75] text-base">
                         {item.answer[language]}
                       </p>
                     </div>
@@ -287,14 +288,14 @@ export default function FAQPage() {
                    language === 'it' ? 'Hai una domanda specifica?' :
                    'Have a Specific Question?'}
                 </h2>
-                <p className="text-gray-300 text-lg mb-8 leading-relaxed max-w-xl mx-auto">
+                <p className="text-gray-300 text-lg mb-8 leading-[1.75] max-w-xl mx-auto">
                   {language === 'cs' ? 'Napište nám – poradíme individuálně podle vaší situace.' :
                    language === 'it' ? 'Scriveteci – vi consiglieremo individualmente in base alla vostra situazione.' :
                    'Write to us – we\'ll advise you individually based on your situation.'}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <a href="https://wa.me/420731450001" target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="w-full sm:w-auto bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-5 text-base transition-all duration-300 hover:scale-[1.02] shadow-lg rounded-xl">
+                    <Button size="lg" className="w-full sm:w-auto bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-5 text-base transition-all duration-300 shadow-lg rounded-xl">
                       <MessageSquare className="h-5 w-5 mr-2" />
                       WhatsApp
                     </Button>
@@ -314,12 +315,13 @@ export default function FAQPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 pb-10">
+      <div className="container mx-auto px-6 pb-10">
         <div className="max-w-5xl mx-auto">
           <InformationalDisclaimer language={language} />
         </div>
       </div>
 
+      <PropertySlider language={language} />
       <Footer language={language} />
     </div>
   )

@@ -2,31 +2,14 @@
   // Removed 'output: standalone' for Vercel deployment
   // Vercel handles builds automatically
   images: {
-    unoptimized: true, // Set to false to enable Vercel's image optimization
+    unoptimized: false,
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        pathname: '**',
-      },
+      { protocol: 'https', hostname: 'cdn.sanity.io',       pathname: '**' },
+      { protocol: 'https', hostname: 'images.unsplash.com', pathname: '**' },
+      { protocol: 'https', hostname: 'pwm.im-cdn.it',       pathname: '**' },
+      { protocol: 'https', hostname: 'img4.idealista.it',   pathname: '**' },
+      { protocol: 'https', hostname: '**.supabase.co',      pathname: '/storage/v1/object/public/**' },
     ],
-  },
-  serverExternalPackages: ['mongodb'],
-  webpack(config, { dev }) {
-    if (dev) {
-      // Reduce CPU/memory from file watching
-      config.watchOptions = {
-        poll: 2000, // check every 2 seconds
-        aggregateTimeout: 300, // wait before rebuilding
-        ignored: ['**/node_modules'],
-      };
-    }
-    return config;
   },
   onDemandEntries: {
     maxInactiveAge: 10000,
@@ -64,8 +47,7 @@
         permanent: true,
       },
     ];
-  },
-  turbopack: {}
+  }
 };
 module.exports = nextConfig;
 

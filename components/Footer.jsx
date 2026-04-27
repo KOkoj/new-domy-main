@@ -104,7 +104,7 @@ export default function Footer({ language = 'en' }) {
               <p className="text-xs text-gray-500">{companyInfo.companyId}</p>
               <p className="text-xs text-gray-500">{companyInfo.vatId}</p>
               <p className="text-xs text-gray-500">{companyInfo.representedBy}</p>
-              <p className="mx-auto pt-1 text-center text-xs leading-snug text-gray-500 md:mx-0 md:max-w-[22rem] md:text-left">{companyInfo.tradeName}</p>
+              <p className="mx-auto pt-1 text-center text-xs leading-snug text-gray-500 md:mx-0 md:max-w-sm md:text-left">{companyInfo.tradeName}</p>
             </div>
           </div>
 

@@ -284,7 +284,7 @@ export default function NotaryGuidePage() {
         className="fixed left-0 right-0 top-0 z-50 overflow-visible border-b border-white/20 backdrop-blur-md shadow-lg"
         style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}
       >
-        <div className="container mx-auto px-4 pb-3 pt-4">
+        <div className="container mx-auto px-6 pb-3 pt-4" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center justify-between">
             <Link href="/" className="relative overflow-visible">
               <img
@@ -306,19 +306,19 @@ export default function NotaryGuidePage() {
               <div className="group flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-2 shadow-lg backdrop-blur-md">
                 <button
                   onClick={() => handleLanguageChange('en')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}
+                  className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}
                 >
                   EN
                 </button>
                 <button
                   onClick={() => handleLanguageChange('cs')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}
+                  className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}
                 >
                   CS
                 </button>
                 <button
                   onClick={() => handleLanguageChange('it')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'it' ? 'bg-white/20 text-white' : 'text-white/60'}`}
+                  className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'it' ? 'bg-white/20 text-white' : 'text-white/60'}`}
                 >
                   IT
                 </button>
@@ -333,8 +333,8 @@ export default function NotaryGuidePage() {
         </div>
       </nav>
 
-      <div className="pb-12 pt-28">
-        <div className="container mx-auto mb-6 px-4">
+      <div className="pb-16 pt-28 md:pb-24">
+        <div className="container mx-auto mb-6 px-6" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Link href="/" className="hover:text-slate-700">{copy.home}</Link>
             <span>/</span>
@@ -344,8 +344,8 @@ export default function NotaryGuidePage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-4xl">
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+          <div className="mx-auto max-w-4xl" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="mb-8">
               <Button
                 asChild
@@ -357,10 +357,10 @@ export default function NotaryGuidePage() {
                   {copy.blogLabel}
                 </Link>
               </Button>
-              <h1 className="mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
+              <h1 className="mb-8 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text font-bold text-transparent">
                 {copy.title}
               </h1>
-              <p className="text-xl leading-relaxed text-gray-600">{copy.intro}</p>
+              <p className="leading-relaxed text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.intro}</p>
             </div>
 
             <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white">
@@ -384,13 +384,13 @@ export default function NotaryGuidePage() {
             <div className="space-y-8">
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-2xl">
+                  <CardTitle className="flex items-center mb-8">
                     <Scale className="mr-3 h-6 w-6" />
                     {copy.roleTitle}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="mb-4 leading-relaxed text-gray-700">{copy.roleBody}</p>
+                  <p className="mb-4 leading-relaxed text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.roleBody}</p>
                   <div className="space-y-3">
                     {copy.roleChecks.map((item) => (
                       <div key={item} className="flex items-start space-x-3">
@@ -415,22 +415,22 @@ export default function NotaryGuidePage() {
 
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{copy.whenTitle}</CardTitle>
+                  <CardTitle className="mb-8">{copy.whenTitle}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="mb-4 leading-relaxed text-gray-700">{copy.whenBody}</p>
+                  <p className="mb-4 leading-relaxed text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.whenBody}</p>
                   <ul className="ml-6 space-y-2">
                     {copy.whenBullets.map((item) => (
                       <li key={item} className="text-gray-700">- {item}</li>
                     ))}
                   </ul>
-                  <p className="mt-4 whitespace-pre-line leading-relaxed text-gray-700">{copy.whenClosing}</p>
+                  <p className="mt-4 whitespace-pre-line leading-relaxed text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.whenClosing}</p>
                 </CardContent>
               </Card>
 
               <Card className="border-l-4 border-l-green-500 bg-white/90 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-2xl">
+                  <CardTitle className="flex items-center mb-8">
                     <Shield className="mr-3 h-6 w-6 text-green-600" />
                     {copy.checksTitle}
                   </CardTitle>
@@ -449,28 +449,28 @@ export default function NotaryGuidePage() {
                     <h4 className="mb-3 font-bold text-red-900">{copy.checksNoTitle}</h4>
                     <p className="leading-relaxed text-red-800">{copy.checksNoBody}</p>
                   </div>
-                  <p className="mt-4 leading-relaxed text-gray-700">{copy.checksClosing}</p>
+                  <p className="mt-4 leading-relaxed text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.checksClosing}</p>
                 </CardContent>
               </Card>
 
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-2xl">
+                  <CardTitle className="flex items-center mb-8">
                     <Euro className="mr-3 h-6 w-6" />
                     {copy.chooseTitle}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="mb-4 leading-relaxed text-gray-700">{copy.chooseLead}</p>
+                  <p className="mb-4 leading-relaxed text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.chooseLead}</p>
                   <div className="space-y-4">
                     <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
                       <p className="mb-2 font-semibold text-slate-800">{copy.chooseBuyerTitle}</p>
-                      <p className="text-sm text-gray-700">{copy.chooseBuyerBody}</p>
+                      <p className="text-sm text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.chooseBuyerBody}</p>
                     </div>
 
                     <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
                       <p className="mb-2 font-semibold text-slate-800">{copy.choosePayTitle}</p>
-                      <p className="text-sm text-gray-700">{copy.choosePayBody}</p>
+                      <p className="text-sm text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.choosePayBody}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -504,7 +504,7 @@ export default function NotaryGuidePage() {
                     </ul>
                   </div>
                   <p className="mt-6 leading-relaxed text-slate-200">{copy.costsClosing}</p>
-                  <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
+                  <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
                     <div>
                       <Link href="/contact">
                         <Button className="w-full border border-amber-200/70 bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 text-amber-950 shadow-sm hover:from-amber-200 hover:via-yellow-200 hover:to-amber-300">
@@ -551,7 +551,7 @@ export default function NotaryGuidePage() {
 
             <InformationalDisclaimer language={language} className="mt-14" />
 
-            <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
               <Link href="/process">
                 <Button variant="outline" size="lg" className="w-full">
                   <ArrowLeft className="mr-2 h-5 w-5" />

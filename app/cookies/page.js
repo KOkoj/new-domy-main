@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Navigation from '../../components/Navigation'
 import Footer from '../../components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 const CONTENT = {
@@ -168,6 +169,7 @@ export default function CookiesPage() {
         </div>
       </main>
 
+      <PropertySlider language={language} />
       <Footer language={language} />
     </div>
   )

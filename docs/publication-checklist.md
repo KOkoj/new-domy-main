@@ -4,7 +4,7 @@ This project is technically prepared for launch, but a few release actions must 
 
 ## 1. Remove stand-by mode
 
-- Set `PUBLIC_SITE_STANDBY = false` in `lib/featureFlags.js`
+- Set `PUBLIC_SITE_STANDBY=false` in the production environment variables
 - Run `npm run build`
 - Deploy production to Vercel
 

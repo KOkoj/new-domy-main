@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -57,10 +58,13 @@ function ImageGallery({ images, title, status, language }) {
   return (
     <div className="space-y-4">
       <div className="relative h-96 overflow-hidden rounded-lg">
-        <img 
-          src={images[selectedImage]} 
+        <Image
+          src={images[selectedImage]}
           alt={title}
-          className="w-full h-full object-cover"
+          fill
+          sizes="(min-width: 1024px) 66vw, 100vw"
+          priority
+          className="object-cover"
         />
         {statusLabel && (
           <div className="absolute left-4 top-4 z-10">
@@ -80,14 +84,16 @@ function ImageGallery({ images, title, status, language }) {
             <button
               key={index}
               onClick={() => setSelectedImage(index)}
-              className={`relative h-20 overflow-hidden rounded border-2 transition-colors ${
+              className={`cursor-pointer leading-none relative h-20 overflow-hidden rounded border-2 transition-colors ${
                 selectedImage === index ? 'border-blue-500' : 'border-gray-200 hover:border-gray-300'
               }`}
             >
-              <img 
-                src={image} 
+              <Image
+                src={image}
                 alt={`${title} - Image ${index + 1}`}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(min-width: 1024px) 17vw, 25vw"
+                className="object-cover"
               />
             </button>
           ))}
@@ -410,9 +416,9 @@ export default function PropertyDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+    <div className="min-h-screen bg-[#f7f6f3] flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">
             {language === 'cs' ? 'Načítání nemovitosti...' : language === 'it' ? 'Caricamento proprietà...' : 'Loading property...'}
           </p>
@@ -423,9 +429,9 @@ export default function PropertyDetailPage() {
 
   if (!property) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">
+    <div className="min-h-screen bg-[#f7f6f3] flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold mb-4">
             {language === 'cs' ? 'Nemovitost nenalezena' : language === 'it' ? 'Proprietà non trovata' : 'Property Not Found'}
           </h1>
           <p className="text-gray-600 mb-4">
@@ -465,17 +471,20 @@ export default function PropertyDetailPage() {
     : ''
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f7f6f3]">
       {/* Modern Navigation - Fixed with smaller inline logo like About/Process pages */}
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}>
-        <div className="container mx-auto px-4 pt-4 pb-3 overflow-visible">
+        <div className="container mx-auto px-6 pt-4 pb-3 overflow-visible" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <Link href="/" className="relative overflow-visible">
-                <img 
-                  src="/logo domy.svg" 
+                <Image
+                  src="/logo domy.svg"
                   alt="Domy v Itálii"
-                  className="h-12 w-auto cursor-pointer" 
+                  width={48}
+                  height={46}
+                  priority
+                  className="h-12 w-auto cursor-pointer"
                   style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))' }}
                 />
               </Link>
@@ -503,7 +512,7 @@ export default function PropertyDetailPage() {
             
             <div className="flex items-center space-x-4">
               {/* Language Selector */}
-              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
+              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-200 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
                 <button
                   onClick={() => {
                     setLanguage('en')
@@ -511,7 +520,7 @@ export default function PropertyDetailPage() {
                     localStorage.setItem('preferred-language', 'en')
                     window.dispatchEvent(new CustomEvent('languageChange', { detail: 'en' }))
                   }}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
+                  className={`cursor-pointer leading-none px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 ${
                     language === 'en' 
                       ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
                       : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
@@ -526,7 +535,7 @@ export default function PropertyDetailPage() {
                     localStorage.setItem('preferred-language', 'cs')
                     window.dispatchEvent(new CustomEvent('languageChange', { detail: 'cs' }))
                   }}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
+                  className={`cursor-pointer leading-none px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 ${
                     language === 'cs' 
                       ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
                       : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
@@ -541,7 +550,7 @@ export default function PropertyDetailPage() {
                     localStorage.setItem('preferred-language', 'it')
                     window.dispatchEvent(new CustomEvent('languageChange', { detail: 'it' }))
                   }}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
+                  className={`cursor-pointer leading-none px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 ${
                     language === 'it' 
                       ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
                       : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
@@ -555,10 +564,10 @@ export default function PropertyDetailPage() {
               <div className="w-px h-6 bg-gray-300 opacity-30"></div>
 
               {/* Currency Buttons */}
-              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-300 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
+              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20 transition-all duration-200 hover:shadow-xl hover:bg-white/20 hover:px-6 w-auto gap-2">
                 <button
                   onClick={() => handleCurrencyChange('EUR')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
+                  className={`cursor-pointer leading-none px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 ${
                     currency === 'EUR' 
                       ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
                       : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
@@ -568,7 +577,7 @@ export default function PropertyDetailPage() {
                 </button>
                 <button
                   onClick={() => handleCurrencyChange('CZK')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 ${
+                  className={`cursor-pointer leading-none px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 ${
                     currency === 'CZK' 
                       ? 'bg-white/20 text-white shadow-md backdrop-blur-sm' 
                       : 'text-white/60 hover:text-white/90 hover:bg-white/5 opacity-0 group-hover:opacity-100 absolute group-hover:relative group-hover:mx-1'
@@ -615,7 +624,7 @@ export default function PropertyDetailPage() {
       
       {/* Breadcrumb */}
       <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-6 py-4" style={{ maxWidth: '1200px' }}>
           <div className="flex items-center space-x-4">
             <Link href="/properties">
               <Button variant="outline" size="sm">
@@ -627,7 +636,7 @@ export default function PropertyDetailPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 py-16 md:py-24" style={{ maxWidth: '1200px' }}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
@@ -655,7 +664,7 @@ export default function PropertyDetailPage() {
                       }
                     </Badge>
                   </div>
-                  <h1 className="text-3xl font-bold mb-2">
+                  <h1 className="font-bold mb-2">
                     {getLocalizedText(property.title, 'Untitled Property')}
                   </h1>
                   <div className="flex items-center text-gray-600">
@@ -704,7 +713,7 @@ export default function PropertyDetailPage() {
             />
 
             {/* Property Details */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
               <div className="text-center p-4 bg-white rounded-lg border">
                 <Home className="h-6 w-6 mx-auto mb-2 text-blue-600" />
                 <div className="text-2xl font-bold">{specifications.rooms || specifications.bedrooms || 0}</div>
@@ -785,7 +794,7 @@ export default function PropertyDetailPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-6">
                   {specifications.yearBuilt && (
                     <div>
                       <span className="text-sm text-gray-600">

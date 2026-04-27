@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { BookOpen, Clock, ChevronRight } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import { Button } from '@/components/ui/button'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
@@ -228,19 +229,19 @@ export default function PruvodceItaliiPage() {
     <div className="min-h-screen bg-[#faf8f5]">
       <Navigation />
 
-      <main className="pt-28 md:pt-32 pb-12">
-        <div className="container mx-auto px-4 py-12 md:py-16 mb-4">
+      <main className="pt-28 md:pt-32 pb-16 md:pb-24">
+        <div className="container mx-auto px-6 py-16 md:py-24 mb-4" style={{ maxWidth: '1200px' }}>
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-6">
               <BookOpen className="h-4 w-4 text-slate-500" />
               <span className="text-sm text-slate-600 font-medium">{t.badge}</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-slate-800 leading-tight">{t.title}</h1>
+            <h1 className="font-bold mb-8 text-slate-800 leading-tight">{t.title}</h1>
             <p className="text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">{t.description}</p>
           </div>
         </div>
 
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)] gap-8 lg:gap-12">
             <aside className="lg:sticky lg:top-28 h-fit">
               <div className="relative overflow-hidden rounded-2xl border border-amber-200/60 bg-gradient-to-br from-amber-50 via-white to-slate-50 p-5 shadow-md">
@@ -251,26 +252,26 @@ export default function PruvodceItaliiPage() {
                 <p className="relative z-10 text-xs text-slate-600 leading-relaxed mb-4">{t.partnerText}</p>
 
                 <div className="relative z-10 space-y-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">{t.flightsLabel}</p>
-                  <Button asChild className="w-full h-10 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white text-xs font-semibold rounded-lg shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{t.flightsLabel}</p>
+                  <Button asChild className="w-full min-h-[44px] bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white text-xs font-semibold rounded-lg shadow-sm">
                     <a href={TRAVEL_PARTNER_LINKS.booking} target="_blank" rel="nofollow sponsored noopener noreferrer">
                       {t.booking}
                     </a>
                   </Button>
-                  <p className="pt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">{t.activitiesLabel}</p>
-                  <Button asChild className="w-full h-10 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white text-xs font-semibold rounded-lg shadow-sm">
+                  <p className="pt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">{t.activitiesLabel}</p>
+                  <Button asChild className="w-full min-h-[44px] bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white text-xs font-semibold rounded-lg shadow-sm">
                     <a href={TRAVEL_PARTNER_LINKS.getYourGuide} target="_blank" rel="nofollow sponsored noopener noreferrer">
                       {t.gyg}
                     </a>
                   </Button>
 
                   <div className="pt-2 border-t border-amber-200/70">
-                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-slate-500">{t.insuranceLabel}</p>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{t.insuranceLabel}</p>
                     <a
                       href={TRAVEL_PARTNER_LINKS.axaBannerClick}
                       target="_blank"
                       rel="nofollow sponsored noopener noreferrer"
-                      className="block overflow-hidden rounded-xl border border-amber-200/80 bg-white shadow-sm transition-transform duration-300 hover:scale-[1.01] hover:shadow-md"
+                      className="block overflow-hidden rounded-xl border border-amber-200/80 bg-white shadow-sm transition-transform duration-300 hover:shadow-md"
                     >
                       <img
                         src={TRAVEL_PARTNER_LINKS.axaBannerImage}
@@ -286,7 +287,7 @@ export default function PruvodceItaliiPage() {
 
               <div className="relative overflow-hidden rounded-2xl border border-slate-200/70 bg-gradient-to-br from-slate-50 via-white to-copper-50 p-5 shadow-md">
                 <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-slate-700 via-slate-500 to-copper-400" />
-                <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-white/85 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-700 border border-slate-200 mb-3">
+                <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-white/85 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-slate-700 border border-slate-200 mb-3">
                   GUIDE
                 </div>
                 <h3 className="text-base font-bold text-slate-800 mb-2">
@@ -300,7 +301,7 @@ export default function PruvodceItaliiPage() {
                       : 'See also the articles about buying, costs, the notary, and the full process.'}
                 </p>
                 <Link href="/blog" className="block">
-                  <Button className="w-full h-9 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-lg shadow-sm">
+                  <Button className="w-full min-h-[44px] bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-lg shadow-sm">
                     {language === 'cs' ? 'Otevrit clanky o koupi' : language === 'it' ? 'Vai agli articoli acquisto' : 'Open buying articles'}
                     <ChevronRight className="h-3.5 w-3.5 ml-1.5" />
                   </Button>
@@ -313,12 +314,12 @@ export default function PruvodceItaliiPage() {
                 {visibleArticles.map((article) => (
                   <ProtectedContentLink key={article.slug} href={article.link} language={language} className="block group">
                     <article className="py-8 first:pt-4">
-                      <div className="grid gap-5 md:grid-cols-[220px_minmax(0,1fr)] md:items-center">
+                      <div className="grid gap-6 md:grid-cols-[220px_minmax(0,1fr)] md:items-center">
                         <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
                           <img
                             src={article.image}
                             alt={localize(article.imageAlt, language) || localize(article.title, language)}
-                            className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-40"
+                            className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105 md:h-40"
                             loading="lazy"
                           />
                         </div>
@@ -332,7 +333,7 @@ export default function PruvodceItaliiPage() {
                               {article.readTime}
                             </span>
                           </div>
-                          <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-2.5 group-hover:text-slate-600 transition-colors leading-tight">
+                          <h2 className="font-bold text-slate-800 mb-8 group-hover:text-slate-600 transition-colors leading-tight">
                             {localize(article.title, language)}
                           </h2>
                           <p className="text-gray-500 leading-relaxed mb-3">{localize(article.excerpt, language)}</p>
@@ -351,12 +352,13 @@ export default function PruvodceItaliiPage() {
         </div>
       </main>
 
-      <div className="container mx-auto px-4 pb-10">
+      <div className="container mx-auto px-6 pb-10" style={{ maxWidth: '1200px' }}>
         <div className="max-w-5xl mx-auto">
           <InformationalDisclaimer language={language} className="mt-14" />
         </div>
       </div>
 
+      <PropertySlider language={language} />
       <Footer language={language} />
     </div>
   )

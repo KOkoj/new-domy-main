@@ -130,11 +130,8 @@ export async function GET(request, { params }) {
           query = FEATURED_PROPERTIES_QUERY
         }
 
-        console.log('Fetching properties from Sanity with query:', query)
         const sanityProperties = await client.fetch(query)
-        console.log(`Fetched ${Array.isArray(sanityProperties) ? sanityProperties.length : 0} properties from Sanity`)
         properties = mergePropertyCollections(localProperties, Array.isArray(sanityProperties) ? sanityProperties : [])
-        console.log(`Merged properties total: ${properties.length}`)
       }
       
       // Apply additional filters if needed
@@ -289,7 +286,6 @@ export async function POST(request, { params }) {
 
     // Toggle favorite
     if (path[0] === 'favorites' && path[1] === 'toggle') {
-      console.log('Toggle favorite request received', body)
       if (!supabase) {
         console.error('Database not configured')
         return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
@@ -303,7 +299,6 @@ export async function POST(request, { params }) {
       }
 
       const { listingId } = body
-      console.log(`Toggling favorite for user ${user.id} and listing ${listingId}`)
       
       // Check if already favorited (snake_case)
       const { data: existing, error: checkError } = await supabase
@@ -331,7 +326,6 @@ export async function POST(request, { params }) {
           return NextResponse.json({ error: error.message }, { status: 500 })
         }
         
-        console.log('Favorite removed')
         return NextResponse.json({ favorited: false })
       } else {
         // Add to favorites
@@ -344,7 +338,6 @@ export async function POST(request, { params }) {
           return NextResponse.json({ error: error.message }, { status: 500 })
         }
         
-        console.log('Favorite added')
         return NextResponse.json({ favorited: true })
       }
     }

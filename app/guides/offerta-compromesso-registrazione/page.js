@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, Calendar, Clock, CheckCircle, AlertTriangle, FileText, Shield, Landmark } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import { Button } from '@/components/ui/button'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 
@@ -442,9 +443,9 @@ export default function OfferCompromessoRegistrationPage() {
     <div className="min-h-screen bg-[#faf8f5]">
       <Navigation />
 
-      <main className="pt-28 pb-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto space-y-6">
+      <main className="pt-28 pb-16 md:pb-24">
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+          <div className="max-w-4xl mx-auto space-y-6" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <Button asChild variant="outline" className="inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100">
               <Link href="/blog">
                 <ArrowLeft className="h-4 w-4 mr-2" />
@@ -456,7 +457,7 @@ export default function OfferCompromessoRegistrationPage() {
               <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-100 border border-slate-200 text-slate-700 mb-4">
                 {t.category}
               </span>
-              <h1 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight mb-5">{t.title}</h1>
+              <h1 className="font-bold text-slate-900 leading-tight mb-8">{t.title}</h1>
               <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-6">
                 <span className="inline-flex items-center">
                   <Calendar className="h-4 w-4 mr-1.5" />
@@ -626,6 +627,7 @@ export default function OfferCompromessoRegistrationPage() {
         </section>
       </main>
 
+      <PropertySlider language={language} />
       <Footer language={language} />
     </div>
   )

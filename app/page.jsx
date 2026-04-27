@@ -1,546 +1,24 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Image from 'next/image'
 import Lenis from 'lenis'
-import { Heart, Search, MapPin, ChevronRight, ChevronDown, Eye, Bed, Bath, Square, Car, Phone, Mail, MessageCircle, Crown, Gem, Target, Shield, Check, Plane, Globe, Lock, XCircle } from 'lucide-react'
+import { Search, MapPin, ChevronRight, Mail, MessageCircle, Check, Plane, Globe, Lock, Banknote, AlertTriangle, HelpCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { DualRangeSlider } from '@/components/ui/dual-range-slider'
-import ImageReveal from '@/components/ui/image-tiles'
 import { GlareCard } from '@/components/ui/premium-card'
 import BackgroundImageTransition from '@/components/BackgroundImageTransition'
-import AuthModal from '@/components/AuthModal'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
+
+const AuthModal = dynamic(() => import('@/components/AuthModal'), { ssr: false })
+const KlubInfoModal = dynamic(() => import('@/components/KlubInfoModal'), { ssr: false })
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import Navigation from '../components/Navigation'
 import { supabase } from '../lib/supabase'
 import { t } from '../lib/translations'
-import { CURRENCY_RATES, CURRENCY_SYMBOLS, formatPrice as formatPriceUtil } from '../lib/currency'
-import { urlForImage } from '../lib/sanity'
-
-// Property of the Day Data
-const PROPERTY_OF_THE_DAY = {
-  id: "featured-property-1",
-  title: {
-    en: "Luxury Tuscan Villa with Panoramic Views",
-    cs: "Luxusní toskánská vila s panoramatickými výhledy",
-    it: "Lussuosa Villa Toscana con Viste Panoramiche"
-  },
-  location: {
-    city: "Florence",
-    region: "Tuscany", 
-    country: "Italy"
-  },
-  price: {
-    amount: 2500000,
-    currency: "EUR"
-  },
-  specifications: {
-    bedrooms: 5,
-    bathrooms: 4,
-    area: 450,
-    parking: 2,
-    yearBuilt: 2018
-  },
-  featuredAmenities: [
-    {
-      en: "Swimming Pool",
-      cs: "Bazén",
-      it: "Piscina"
-    },
-    {
-      en: "Wine Cellar",
-      cs: "Vinný sklep",
-      it: "Cantina"
-    },
-    {
-      en: "Garden Terrace",
-      cs: "Zahradní terasa",
-      it: "Terrazza Giardino"
-    },
-    {
-      en: "Mountain Views",
-      cs: "Výhled na hory",
-      it: "Vista Montagne"
-    },
-    {
-      en: "Fireplace",
-      cs: "Krb",
-      it: "Caminetto"
-    },
-    {
-      en: "Air Conditioning",
-      cs: "Klimatizace",
-      it: "Aria Condizionata"
-    }
-  ],
-  description: {
-    en: "This stunning Tuscan villa offers breathtaking panoramic views of the rolling hills and vineyards. The property features a modern open-plan design with traditional Italian architectural elements, creating the perfect blend of contemporary luxury and timeless charm.",
-    cs: "Tato úchvatná toskánská vila nabízí dechberoucí panoramatické výhledy na zvlněné kopce a vinice. Nemovitost má moderní otevřený design s tradičními italskými architektonickými prvky, vytvářející dokonalou kombinaci současného luxusu a nadčasového kouzla.",
-    it: "Questa splendida villa toscana offre viste panoramiche mozzafiato sulle dolci colline e vigneti. La proprietà presenta un design moderno open-space con elementi architettonici italiani tradizionali, creando la perfetta fusione tra lusso contemporaneo e fascino senza tempo."
-  },
-  images: [
-    "/house_tuscany_vineyards.jpg",
-    "/house_tuscany_vineyards.jpg", 
-    "/house_tuscany_vineyards.jpg"
-  ],
-  status: "featured",
-  views: 1247,
-  agent: {
-    name: "Marco Rossi",
-    phone: "+39 123 456 789"
-  }
-}
-
-// Italian regions for location dropdown
-const ITALIAN_REGIONS = [
-  'Abruzzo', 'Basilicata', 'Calabria', 'Campania', 'Emilia-Romagna',
-  'Friuli-Venezia Giulia', 'Lazio', 'Liguria', 'Lombardia', 'Marche',
-  'Molise', 'Piemonte', 'Puglia', 'Sardegna', 'Sicilia', 'Toscana',
-  'Trentino-Alto Adige', 'Umbria', 'Valle d\'Aosta', 'Veneto'
-]
-
-// Custom Dropdown Component
-function CustomDropdown({ value, options, onChange, placeholder, className = "", testId }) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [selectedLabel, setSelectedLabel] = useState('')
-
-  useEffect(() => {
-    const selected = options.find(opt => opt.value === value)
-    setSelectedLabel(selected ? selected.label : placeholder)
-  }, [value, options, placeholder])
-
-  const handleSelect = (optionValue, optionLabel) => {
-    onChange(optionValue)
-    setSelectedLabel(optionLabel)
-    setIsOpen(false)
-  }
-
-  return (
-    <div className={`relative ${className}`} data-testid={testId}>
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full px-3 py-2 text-base bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
-        data-testid={`${testId}-trigger`}
-      >
-        <span className="truncate">{selectedLabel}</span>
-        <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
-      
-      {isOpen && (
-        <>
-          <div 
-            className="fixed inset-0 z-10" 
-            onClick={() => setIsOpen(false)}
-          />
-          <div 
-            className="absolute z-20 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-96 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
-            data-testid={`${testId}-content`}
-            style={{ 
-              scrollbarWidth: 'thin',
-              scrollbarColor: '#d1d5db transparent'
-            }}
-          >
-            {options.map((option) => (
-              <button
-                key={option.value}
-                type="button"
-                onClick={() => handleSelect(option.value, option.label)}
-                className="w-full px-3 py-2 text-base text-left hover:bg-gray-100 focus:outline-none focus:bg-gray-100 first:rounded-t-md last:rounded-b-md truncate"
-                data-testid={`${testId}-option-${option.value}`}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  )
-}
-
-
-function PropertyCard({ property, onFavorite, isFavorited, language, currency }) {
-  const formatPrice = (price) => {
-    return formatPriceUtil(price, currency, language)
-  }
-
-  const handleFavoriteClick = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    onFavorite(property._id)
-  }
-
-  // Construct the href with slug safeguard
-  const propertyHref = property.slug?.current 
-    ? `/properties/${property.slug.current}` 
-    : property.slug 
-    ? `/properties/${property.slug}` 
-    : '#'
-
-  return (
-    <Card 
-      className="group relative cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-100 shadow-lg bg-white rounded-2xl flex flex-col h-full hover:border-blue-200/50"
-      data-testid="property-card"
-      data-property-id={property._id}
-      data-property-type={property.propertyType}
-      data-property-featured={property.featured}
-    >
-      <Link 
-        href={propertyHref}
-        className="absolute inset-0 z-10"
-        data-testid="property-card-link"
-      >
-        <span className="sr-only">View property details</span>
-      </Link>
-
-      <div className="relative overflow-hidden" data-testid="property-image-container">
-        <img 
-          src={(typeof property.images?.[0] === 'string' ? property.images[0] : property.images?.[0]?.url) || '/placeholder-property.jpg'} 
-          alt={typeof property.title === 'object' ? (property.title?.[language] || property.title?.en) : property.title}
-          className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-          data-testid="property-image"
-        />
-        
-        {/* Gradient overlay for better contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-800/30 via-transparent to-transparent group-hover:from-slate-800/40 transition-all duration-300" />
-        
-        {/* Featured badge - subtle top center */}
-        {property.featured && (
-          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-20">
-            <Badge 
-              className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-3 py-1.5 text-xs font-medium shadow-lg rounded-lg backdrop-blur-sm border border-white/20 pointer-events-none"
-              data-testid="featured-badge"
-            >
-              ⭐ {t('property.featured', language)}
-          </Badge>
-          </div>
-        )}
-
-        {/* Top badges and favorite button */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20">
-          <Badge 
-            className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-3 py-1.5 text-xs font-medium shadow-lg rounded-lg capitalize backdrop-blur-sm border border-white/20 group-hover:shadow-xl pointer-events-none"
-            data-testid="property-type-badge"
-          >
-            {property.propertyType}
-          </Badge>
-          
-          <Button
-            variant="ghost"
-            size="icon"
-            className={`p-2.5 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg backdrop-blur-sm border border-white/20 relative z-30 ${
-              isFavorited 
-                ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white hover:shadow-red-500/25' 
-                : 'bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:shadow-slate-500/25'
-            }`}
-            onClick={handleFavoriteClick}
-            data-testid="favorite-button"
-            data-property-id={property._id}
-            data-favorited={isFavorited}
-          >
-            <Heart className={`h-4 w-4 ${isFavorited ? 'fill-current' : ''}`} />
-          </Button>
-        </div>
-        
-        {/* Price overlay */}
-        <div className="absolute bottom-4 left-4">
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2.5 shadow-lg hover:bg-white/20 hover:scale-105 transition-all duration-300 group-hover:shadow-xl group-hover:bg-white/15">
-            <span 
-              className="text-2xl font-bold text-white"
-              data-testid="property-price"
-              data-price={typeof property.price === 'object' ? property.price.amount : property.price}
-              data-currency={typeof property.price === 'object' ? property.price.currency : 'EUR'}
-            >
-            {formatPrice(typeof property.price === 'number' ? { amount: property.price, currency: 'EUR' } : property.price)}
-          </span>
-        </div>
-        </div>
-      </div>
-      
-            <CardContent className="p-6 flex flex-col flex-1">
-              {/* Content area that grows */}
-              <div className="flex-1 space-y-3">
-          {/* Title and location */}
-          <div className="space-y-2">
-            <h3 
-              className="font-bold text-lg leading-tight line-clamp-2 group-hover:text-slate-800 transition-colors duration-300 group-hover:tracking-wide"
-              data-testid="property-title"
-            >
-              {typeof property.title === 'object' ? (property.title?.[language] || property.title?.en || 'Property Title') : (property.title || 'Property Title')}
-            </h3>
-            
-            <div className="flex items-center text-gray-500 text-base group-hover:text-gray-600 transition-colors duration-300" data-testid="property-location">
-              <div className="p-1 bg-slate-100 rounded-lg mr-2 group-hover:bg-slate-200 transition-colors duration-300">
-                <MapPin className="h-4 w-4 text-slate-600 group-hover:text-slate-700 transition-colors duration-300" />
-              </div>
-              <span className="font-medium" data-testid="property-city">{property.location?.city?.name?.[language] || property.location?.city?.name?.en}</span>
-              <span data-testid="property-region">, {property.location?.city?.region?.name?.[language] || property.location?.city?.region?.name?.en}</span>
-            </div>
-          </div>
-          
-          
-          {/* Specifications - simplified text only */}
-          <div className="flex items-center justify-between pt-3 border-t border-gray-100 text-base text-gray-600 group-hover:text-gray-700 transition-colors duration-300" data-testid="property-specifications">
-            {(property.specifications.rooms || property.specifications.bedrooms) && (
-              <span className="font-semibold" data-testid="rooms-count">{property.specifications.rooms || property.specifications.bedrooms} {t('property.rooms', language)}</span>
-            )}
-            {property.specifications.bedrooms && (
-              <span className="font-semibold" data-testid="bedrooms-count">{property.specifications.bedrooms} {t('property.beds', language)}</span>
-            )}
-
-          {property.specifications.squareFootage && (
-              <span className="font-semibold" data-testid="square-footage-count">{property.specifications.squareFootage} m²</span>
-            )}
-          </div>
-            </div>
-        
-        {/* Enhanced CTA button - always at bottom */}
-        <div className="pt-4 mt-auto" data-testid="property-footer">
-          <div 
-            className="w-full text-white font-semibold py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border-0 text-base flex items-center justify-center cursor-pointer"
-            style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
-          >
-            <span data-testid="view-details-text">{t('property.viewDetails', language)}</span>
-            <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  )
-}
-
-function PropertyOfTheDay({ property, language, currency }) {
-  const formatPrice = (price) => {
-    return formatPriceUtil(price, currency, language)
-  }
-
-  return (
-    <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border-0" data-testid="property-of-the-day">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]">
-        {/* Left Side - Enhanced Image */}
-        <div className="relative group overflow-hidden h-full">
-          <div className="relative h-full min-h-[250px] sm:min-h-[300px] lg:min-h-[400px]">
-            <img 
-              src={(typeof property.images?.[0] === 'string' ? property.images[0] : property.images?.[0]?.url) || '/placeholder-property.jpg'}  
-              alt={property.title[language] || property.title.en}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              data-testid="property-of-day-image"
-            />
-            
-            {/* Gradient overlay for better text contrast */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            
-            {/* Property of the Day Badge */}
-            <div className="absolute top-6 left-6">
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 px-4 py-2 text-base font-semibold shadow-lg rounded-lg">
-                <span className="flex items-center">
-                  <span className="text-yellow-300 mr-2">⭐</span>
-                  {t('property.propertyOfTheDay', language)}
-                </span>
-              </div>
-            </div>
-            
-            {/* Views Counter */}
-            <div className="absolute top-6 right-6">
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 px-3 py-2 text-xs font-medium shadow-lg rounded-lg">
-                <Eye className="h-4 w-4 inline mr-1" />
-                {property.views}
-              </div>
-            </div>
-            
-            {/* Property Title Overlay */}
-            <div className="absolute bottom-6 left-6 max-w-md">
-              <h2 className="text-2xl lg:text-3xl font-bold text-white leading-tight drop-shadow-lg" data-testid="property-of-day-title">
-                {property.title[language] || property.title.en}
-              </h2>
-            </div>
-            
-            {/* Price Overlay */}
-            <div className="absolute top-6 right-6">
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 px-4 py-3 text-2xl font-bold shadow-lg rounded-lg">
-                {formatPrice(property.price)}
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Right Side - Detailed Content */}
-        <div className="p-4 lg:p-6 flex flex-col justify-between">
-          {/* Header */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2 text-base text-gray-600">
-              <MapPin className="h-4 w-4 text-slate-700" />
-              <span>{property.location.city}, {property.location.region}</span>
-            </div>
-            
-            
-            {/* Specifications */}
-            <div className="grid grid-cols-2 gap-4 py-4 border-y border-gray-100">
-              <div className="flex items-center space-x-2">
-                <Bed className="h-5 w-5 text-slate-700" />
-                <span className="font-semibold text-gray-700">{property.specifications.bedrooms} {t('property.beds', language)}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Bath className="h-5 w-5 text-slate-700" />
-                <span className="font-semibold text-gray-700">{property.specifications.bathrooms} {t('property.baths', language)}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Square className="h-5 w-5 text-slate-700" />
-                <span className="font-semibold text-gray-700">{property.specifications.area} m²</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Car className="h-5 w-5 text-slate-700" />
-                <span className="font-semibold text-gray-700">{property.specifications.parking} {t('property.parking', language)}</span>
-              </div>
-            </div>
-            
-            {/* Featured Amenities */}
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-gray-900">
-                {t('property.featuredAmenities', language)}
-              </h3>
-              <div className="grid grid-cols-2 gap-2">
-                {property.featuredAmenities.map((amenity, index) => (
-                  <div key={index} className="flex items-center space-x-2 text-base text-gray-600">
-                    <span className="text-slate-700">•</span>
-                    <span>{amenity[language] || amenity.en}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Description */}
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-gray-900">
-                {t('property.propertyDescription', language)}
-              </h3>
-              <p className="text-gray-700 leading-relaxed">
-                {property.description[language] || property.description.en}
-              </p>
-            </div>
-          </div>
-          
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-6">
-            <Button className="flex-1 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-              <Eye className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform duration-200" />
-              {t('property.viewFullDetails', language)}
-            </Button>
-            <Button variant="outline" className="flex-1 border-slate-600 text-slate-700 hover:bg-slate-700 hover:text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95 group">
-              <Phone className="h-5 w-5 mr-2 group-hover:scale-110 transition-transform duration-200" />
-              {t('property.contactAgent', language)}
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function SearchFilters({ filters, onFilterChange, language }) {
-  return (
-    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100" data-testid="search-filters-card">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] gap-6" data-testid="search-filters-grid">
-          <div className="flex items-center gap-3" data-testid="location-filter-container">
-            <label className="text-base font-medium text-slate-700 whitespace-nowrap min-w-0 flex-shrink-0" data-testid="location-filter-label">{t('filters.location', language)}:</label>
-            <div className="flex-1">
-              <CustomDropdown
-                value={filters.location || 'all'}
-                options={[
-                  { value: 'all', label: t('filters.anyType', language) },
-                  ...ITALIAN_REGIONS.map(region => ({ value: region, label: region }))
-                ]}
-                onChange={(value) => onFilterChange('location', value === 'all' ? '' : value)}
-                placeholder={t('filters.location', language)}
-                testId="location-filter"
-              />
-            </div>
-          </div>
-          <div className="flex items-center gap-3" data-testid="property-type-filter-container">
-            <label className="text-base font-medium text-slate-700 whitespace-nowrap min-w-0 flex-shrink-0" data-testid="property-type-filter-label">{t('filters.propertyType', language)}:</label>
-            <div className="flex-1">
-              <CustomDropdown
-                value={filters.type || 'all'}
-                options={[
-                  { value: 'all', label: t('filters.anyType', language) },
-                  { value: 'villa', label: t('filters.villa', language) },
-                  { value: 'house', label: t('filters.house', language) },
-                  { value: 'apartment', label: t('filters.apartment', language) },
-                  { value: 'commercial', label: t('filters.commercial', language) }
-                ]}
-                onChange={(value) => onFilterChange('type', value === 'all' ? undefined : value)}
-                placeholder={t('filters.anyType', language)}
-                testId="property-type-select"
-              />
-            </div>
-        </div>
-            <div className="flex items-center gap-3" data-testid="price-range-filter-container">
-             <label className="text-base font-medium text-slate-700 whitespace-nowrap min-w-0 flex-shrink-0" data-testid="price-range-filter-label">
-               Price Range:
-             </label>
-             <div className="flex-1">
-               <DualRangeSlider
-                 value={[filters.minPrice || 50000, filters.maxPrice || 2000000]}
-                 onValueChange={(values) => {
-                   onFilterChange('minPrice', values[0])
-                   onFilterChange('maxPrice', values[1])
-                 }}
-                 min={50000}
-                 max={2000000}
-                 step={10000}
-                 className="w-full"
-                 data-testid="price-range-slider"
-               />
-             </div>
-             <div className="text-xs text-gray-600 whitespace-nowrap">
-               €{(filters.minPrice || 50000).toLocaleString()} - €{(filters.maxPrice || 2000000).toLocaleString()}
-             </div>
-           </div>
-           <div className="flex items-center" data-testid="filter-actions-container">
-             <Button 
-               className="bg-slate-700 hover:bg-slate-600 text-white text-base py-2 px-4 rounded-lg transition-colors duration-200"
-               onClick={() => {
-                 const hasActiveFilters = 
-                   (filters.location && filters.location !== '' && filters.location !== null) || 
-                   (filters.type && filters.type !== 'all' && filters.type !== null) || 
-                   (filters.minPrice && filters.minPrice !== null) || 
-                   (filters.maxPrice && filters.maxPrice !== null)
-                 
-                 if (hasActiveFilters) {
-                   // Clear filters
-                   onFilterChange('location', null)
-                   onFilterChange('type', null)
-                   onFilterChange('minPrice', null)
-                   onFilterChange('maxPrice', null)
-                 } else {
-                   // Apply filters logic - you can replace this with actual filter application
-                   console.log('Applying filters:', filters)
-                 }
-               }}
-               data-testid="filter-action-button"
-             >
-               {(() => {
-                 const hasActiveFilters = 
-                   (filters.location && filters.location !== '' && filters.location !== null) || 
-                   (filters.type && filters.type !== 'all' && filters.type !== null) || 
-                   (filters.minPrice && filters.minPrice !== null) || 
-                   (filters.maxPrice && filters.maxPrice !== null)
-                 return hasActiveFilters ? 'Clear Filters' : 'Apply Filters'
-               })()}
-             </Button>
-           </div>
-      </div>
-    </div>
-  )
-}
 
 export default function HomePage() {
   const SHOW_HOME_ARCHIVED_SECTIONS = false
@@ -575,6 +53,8 @@ export default function HomePage() {
   const [startAnimations, setStartAnimations] = useState(false)
   
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const [isKlubModalOpen, setIsKlubModalOpen] = useState(false)
+  const [authModalTab, setAuthModalTab] = useState('signup')
   const [postAuthRedirect, setPostAuthRedirect] = useState('')
 
   useEffect(() => {
@@ -603,11 +83,9 @@ export default function HomePage() {
 
   const loadProperties = async () => {
     try {
-      console.log('Fetching properties in Homepage...')
       const response = await fetch('/api/properties')
       if (response.ok) {
         const sanityProperties = await response.json()
-        console.log('Homepage received properties:', sanityProperties?.length || 0)
         if (sanityProperties && Array.isArray(sanityProperties) && sanityProperties.length > 0) {
           setProperties(sanityProperties)
           setFilteredProperties(sanityProperties)
@@ -618,7 +96,6 @@ export default function HomePage() {
         console.error('Homepage fetch failed:', response.status, response.statusText)
       }
     } catch (error) {
-      console.log('Could not load properties from Sanity:', error)
       // Properties will remain empty array if fetch fails
     }
   }
@@ -1189,7 +666,7 @@ export default function HomePage() {
 
   const handleFavorite = async (propertyId) => {
     if (!user) {
-      setIsAuthModalOpen(true)
+      setIsKlubModalOpen(true)
       return
     }
 
@@ -1226,11 +703,6 @@ export default function HomePage() {
 
   const handleLanguageChange = (newLanguage) => {
     setLanguage(newLanguage)
-    console.log(`Language changed to: ${newLanguage}`)
-    // Here you would typically:
-    // 1. Update the document language
-    // 2. Trigger a re-render with new language content
-    // 3. Save language preference to localStorage
     document.documentElement.lang = newLanguage
     localStorage.setItem('preferred-language', newLanguage)
   }
@@ -1238,7 +710,6 @@ export default function HomePage() {
   const handleCurrencyChange = (newCurrency) => {
     setCurrency(newCurrency)
     localStorage.setItem('preferred-currency', newCurrency)
-    console.log(`Currency changed to: ${newCurrency}`)
   }
 
   const handleLogout = async () => {
@@ -1274,7 +745,7 @@ export default function HomePage() {
       return
     }
     setPostAuthRedirect(targetPath)
-    setIsAuthModalOpen(true)
+    setIsKlubModalOpen(true)
   }
 
   const handleBookCall = () => {
@@ -1285,13 +756,15 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#f7f4ed] home-page-custom-border overflow-x-hidden" data-testid="homepage-container">
       {/* Loading Screen */}
       {isLoading && (
-        <div className="fixed inset-0 z-[100] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center transition-opacity duration-1000 ease-in-out">
+        <div className="fixed inset-0 z-[100] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center transition-opacity duration-300 ease-in-out">
           <div className="text-center animate-fade-in">
             {/* Logo */}
             <div className="mb-8 animate-pulse">
-              <img 
-                src="/logo domy.svg" 
-                alt="Domy v Itálii" 
+              <Image
+                src="/logo domy.svg"
+                alt="Domy v Itálii"
+                width={96}
+                height={92}
                 className="w-24 h-24 mx-auto opacity-90"
               />
             </div>
@@ -1316,555 +789,309 @@ export default function HomePage() {
       {/* Navigation */}
       <Navigation />
 
-      {/* Intro Section - Not a Real Estate Agency */}
-        <section className="bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10 pt-36 sm:pt-32 md:pt-36 pb-6 sm:pb-10 overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Left Side - Text Content */}
-            <div className="space-y-4 sm:space-y-6 animate-on-scroll slide-left">
-                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  <span className="block">
-                    {language === 'cs' ? 'Pomáháme Čechům koupit dům v Itálii.' :
-                     language === 'it' ? 'Aiutiamo i cechi a comprare casa in Italia.' :
-                     'We help Czechs buy a home in Italy.'}
-                  </span>
-                  <span className="block text-xl sm:text-2xl md:text-4xl lg:text-5xl font-semibold text-slate-700 mt-2">
-                    {language === 'cs' ? 'Bez stresu.' :
-                     language === 'it' ? 'Senza stress.' :
-                     'Stress-free.'}
-                  </span>
-                  <span className="block text-xl sm:text-2xl md:text-4xl lg:text-5xl font-semibold text-slate-700">
-                    {language === 'cs' ? 'S jasným postupem.' :
-                     language === 'it' ? 'Con un percorso chiaro.' :
-                     'With a clear process.'}
-                   </span>
-                 </h1>
-                <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
-                  {language === 'cs'
-                    ? 'Právní, technická i praktická podpora během celého procesu.'
-                    : language === 'it'
-                      ? 'Supporto legale, tecnico e pratico durante tutto il processo.'
-                      : 'Legal, technical, and practical support throughout the entire process.'}
-                </p>
-                <div className="pt-6 sm:pt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                  <Link href="/process">
-                    <Button
-                      className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl w-full sm:w-auto inline-flex items-center justify-center text-center leading-tight"
-                    >
-                      {language === 'cs' ? 'O našem procesu' :
-                       language === 'it' ? 'Sul nostro processo' :
-                       'About Our Process'}
-                    </Button>
-                  </Link>
-                  <Link href="/contact">
-                    <Button
-                      className="text-white hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl w-full sm:w-auto inline-flex items-center justify-center text-center leading-tight"
-                      style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
-                    >
-                      {language === 'cs' ? 'Konzultace zdarma' :
-                       language === 'it' ? 'Consulenza gratuita' :
-                       'Free Consultation'}
-                    </Button>
-                  </Link>
-                </div>
-            </div>
-
-            {/* Right Side - Animated Image Tiles - Hidden on small mobile */}
-            <div className="hidden md:flex relative h-[400px] lg:h-[500px] items-center justify-center animate-on-scroll slide-right">
-              <ImageReveal
-                leftImage="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=800&q=80"
-                middleImage="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80"
-                rightImage="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section - merged under intro */}
-      <section className="pt-0 sm:pt-1 pb-10 sm:pb-16 bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-2">
-            {/* Step 1 */}
-            <div className="text-center group rounded-xl bg-white/80 p-3 sm:p-4 shadow-sm">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                <span className="text-2xl font-bold text-white">1</span>
-              </div>
-              <h3 className="text-sm sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4 uppercase tracking-wide">
-                {language === 'cs' ? 'ZADÁNÍ & NABÍDKA' :
-                 language === 'it' ? 'ESIGENZE & PROPOSTA' :
-                 'BRIEF & PROPOSAL'}
-              </h3>
-              <p className="text-gray-600 text-xs sm:text-base whitespace-pre-line leading-relaxed">
-                {language === 'cs' ? 'Vy řeknete, co hledáte. My připravíme řešení.\nŘídíme proces a připravujeme nabídky.' :
-                 language === 'it' ? 'Voi ci dite cosa cercate. Noi prepariamo la soluzione.\nGestiamo il processo e prepariamo le proposte.' :
-                 'You tell us what you are looking for. We prepare the solution.\nWe manage the process and prepare the proposals.'}
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="text-center group rounded-xl bg-white/80 p-3 sm:p-4 shadow-sm">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                <span className="text-2xl font-bold text-white">2</span>
-              </div>
-              <h3 className="text-sm sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4 uppercase tracking-wide">
-                {language === 'cs' ? 'Výběr nemovitosti' :
-                 language === 'it' ? "Scelta dell'immobile" :
-                 'Property Selection'}
-              </h3>
-              <p className="text-gray-600 text-xs sm:text-base whitespace-pre-line leading-relaxed">
-                {language === 'cs' ? 'Představíme nabídku a řídíme komunikaci s italskými stranami.' :
-                 language === 'it' ? "Introduciamo l'offerta e gestiamo la comunicazione con le parti italiane." :
-                 'We present the offer and manage communication with the Italian parties.'}
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="text-center group rounded-xl bg-white/80 p-3 sm:p-4 shadow-sm">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                <span className="text-2xl font-bold text-white">3</span>
-              </div>
-              <h3 className="text-sm sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4 uppercase tracking-wide">
-                {language === 'cs' ? 'PODPIS & PŘEVOD' :
-                 language === 'it' ? 'FIRMA & TRASFERIMENTO' :
-                 'SIGNING & TRANSFER'}
-              </h3>
-              <p className="text-gray-600 text-xs sm:text-base whitespace-pre-line leading-relaxed">
-                {language === 'cs' ? 'My hlídáme formality. Vy podepisujete bez stresu.\nOrganizace podpisu, převod vlastnictví a zápis do katastru.' :
-                 language === 'it' ? 'Noi controlliamo le formalità. Voi firmate senza stress.\nOrganizzazione della firma, trasferimento di proprietà e registrazione catastale.' :
-                 'We handle the formalities. You sign without stress.\nSigning coordination, ownership transfer, and land registry filing.'}
-              </p>
-            </div>
-
-            {/* Step 4 */}
-            <div className="text-center group rounded-xl bg-white/80 p-3 sm:p-4 shadow-sm">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}>
-                <span className="text-2xl font-bold text-white">4</span>
-              </div>
-              <h3 className="text-sm sm:text-xl font-bold text-gray-900 mb-2 sm:mb-4 uppercase tracking-wide">
-                {language === 'cs' ? 'PÉČE PO KOUPI' :
-                 language === 'it' ? 'ASSISTENZA DOPO L\'ACQUISTO' :
-                 'POST-PURCHASE SUPPORT'}
-              </h3>
-              <p className="text-gray-600 text-xs sm:text-base whitespace-pre-line leading-relaxed">
-                {language === 'cs' ? 'Jsme s vámi i po koupi.\nDlouhodobá asistence v Itálii.' :
-                 language === 'it' ? 'Siamo con voi anche dopo l\'acquisto.\nAssistenza a lungo termine in Italia.' :
-                 'We stay with you even after the purchase.\nLong-term assistance in Italy.'}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Hero Section */}
-      <section 
-        className="relative min-h-[82dvh] sm:min-h-[100dvh] overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 shadow-inner flex items-start sm:items-center justify-start sm:justify-center" 
+      <section
+        className="relative w-full overflow-hidden flex items-center justify-center"
+        style={{ height: '100vh', minHeight: '100vh' }}
         data-testid="hero-section"
       >
-        {/* Hero Background Image Transition */}
+        {/* Full-bleed background photo */}
         <BackgroundImageTransition
           images={heroBackgroundImages}
           transitionDuration={6000}
           fadeDuration={1500}
           className="z-0"
         />
-        
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-br from-black/60 via-black/75 to-black/50"></div>
-        {/* Golden Accent Overlay - vibrant and noticeable */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-br from-copper-500/35 via-copper-400/25 to-copper-300/15 opacity-80"></div>
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-        <div className="container mx-auto px-3 sm:px-4 relative z-20 pt-16 sm:pt-24 md:pt-0 pb-4 sm:pb-0" data-testid="hero-content-container">
-          <div className="text-center text-white space-y-4 sm:space-y-8 md:space-y-12" data-testid="hero-content">
-            <div className="space-y-3 sm:space-y-6">
-              <h2 
-                className="font-bold leading-tight tracking-tight text-3xl sm:text-4xl md:text-6xl lg:text-7xl px-1" 
-                style={{ 
-                  textShadow: '0 4px 8px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4)',
-                  textWrap: 'balance',
-                  wordBreak: 'normal',
-                  overflowWrap: 'normal',
-                  hyphens: 'none'
-                }}
-                data-testid="hero-title"
-              >
-                {startAnimations ? (
-                  t('hero.title', language).split(' ').map((word, wordIndex, words) => {
-                    const charsBefore = words.slice(0, wordIndex).join(' ').length + (wordIndex > 0 ? wordIndex : 0);
-                    return (
-                      <span key={wordIndex} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
-                        {word.split('').map((char, charIndex) => (
-                          <span
-                            key={charIndex}
-                            className="inline-block animate-char-fade-in"
-                            style={{ 
-                              animationDelay: `${(charsBefore + charIndex) * 0.05}s`,
-                              opacity: 0,
-                              animationFillMode: 'forwards'
-                            }}
-                          >
-                            {char}
-                          </span>
-                        ))}
-                        {wordIndex < words.length - 1 && '\u00A0'}
-                      </span>
-                    );
-                  })
-                ) : (
-                  <span style={{ opacity: 0 }}>{t('hero.title', language)}</span>
-                )}
-              </h2>
-              <p 
-                className={`text-gray-100 max-w-4xl mx-auto leading-relaxed font-light italic transition-all duration-700 text-base sm:text-lg md:text-2xl lg:text-3xl ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                style={{ 
-                  marginTop: '5px',
-                  textShadow: '0 3px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3)',
-                  transitionDelay: startAnimations ? '1s' : '0s'
-                }}
-                data-testid="hero-subtitle"
-              >
-                {language === 'cs'
-                  ? 'Služba určená českým klientům'
-                  : language === 'it'
-                    ? 'Servizio dedicato ai clienti cechi'
-                    : 'Service dedicated to Czech clients'}
-              </p>
-              <p
-                className={`max-w-3xl mx-auto text-[13px] sm:text-base md:text-lg text-gray-200/95 transition-all duration-700 ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}
-                style={{ transitionDelay: startAnimations ? '1.15s' : '0s' }}
-              >
-                {language === 'cs'
-                  ? 'Právní, technická i praktická podpora během celého procesu.'
-                  : language === 'it'
-                    ? 'Supporto legale, tecnico e pratico durante tutto il processo.'
-                    : 'Legal, technical, and practical support throughout the entire process.'}
-              </p>
-            </div>
-            
-            {/* Enhanced Search Container */}
-            <div 
-              className={`transition-all duration-700 w-full max-w-md sm:max-w-lg mx-auto mt-4 sm:mt-8 px-2 sm:px-0 ${startAnimations ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`}
-              style={{
-                transitionDelay: startAnimations ? '1.3s' : '0s'
-              }}
-              data-testid="hero-search-container"
-            >
-              <div className="bg-white/95 backdrop-blur-sm rounded-full sm:rounded-[99px] p-1 sm:p-1.5 shadow-2xl border border-white/20 hover:shadow-3xl transition-all duration-300 group">
-                <div className="flex items-center gap-1 sm:gap-1.5">
-                  <div className="flex-1 relative group min-w-0">
-                    <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 transition-colors duration-200 group-focus-within:text-blue-600" />
-              <input 
-                      type="text"
-                      placeholder={t('hero.searchPlaceholder', language)} 
-                      className="w-full pl-9 sm:pl-11 pr-2 sm:pr-4 py-2 sm:py-2.5 text-sm sm:text-base bg-transparent border-none outline-none text-gray-800 rounded-full placeholder-gray-500 focus:bg-blue-50/30 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 hover:bg-gray-50/50"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                      data-testid="hero-search-input"
-                    />
-                  </div>
-                  <Button 
-                    size="sm" 
-                    className="px-3 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white rounded-full font-medium text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 h-[36px] sm:h-[40px] flex items-center gap-1 sm:gap-2 focus:outline-none focus:ring-0 focus-visible:ring-0 flex-shrink-0" 
-                    data-testid="hero-search-button"
-                    onClick={() => {
-                      const searchParams = new URLSearchParams()
-                      if (searchQuery.trim()) {
-                        searchParams.set('search', searchQuery.trim())
-                      }
-                      window.location.href = `/properties?${searchParams.toString()}`
-                    }}
-                  >
-                    <Search className="h-4 w-4" />
-                    <span className="hidden sm:inline">{t('hero.searchButton', language)}</span>
-              </Button>
-                </div>
-              </div>
-            </div>
-            
-            {/* Quick Search Keywords */}
-            <div 
-              className="w-full max-w-2xl mx-auto mt-3 sm:mt-6 px-2 sm:px-0 hidden sm:block"
-            >
-              <div className="flex flex-wrap justify-center gap-1 sm:gap-1.5" data-testid="quick-search-keywords">
-                {[
-                  { label: language === 'cs' ? 'Bazén' : language === 'it' ? 'Piscina' : 'Pool', href: '/properties?amenity=pool' },
-                  { label: language === 'cs' ? 'Zahrada' : language === 'it' ? 'Giardino' : 'Garden', href: '/properties?amenity=garden' },
-                  { label: language === 'cs' ? 'Moře' : language === 'it' ? 'Mare' : 'Sea', href: '/properties?amenity=sea_view' },
-                  { label: language === 'cs' ? 'Hory' : language === 'it' ? 'Montagna' : 'Mountain', href: '/properties?search=mountain' }
-                ].map((keyword, index) => (
-                  <div
-                    key={keyword.href}
-                    className={`bg-white/15 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-white/30 transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-xl ${startAnimations ? 'animate-keyword-pop' : 'opacity-0 scale-0'}`}
-                    style={{
-                      animationDelay: startAnimations ? `${1.6 + (index * 0.1)}s` : '0s',
-                      animationFillMode: 'forwards'
-                    }}
-                  >
-                    <button
-                      onClick={() => {
-                        window.location.href = keyword.href
-                      }}
-                      className="text-base font-semibold text-white/90 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full px-1 py-0.5"
-                    >
-                      {keyword.label}
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Trust Indicators - Subtle & Elegant */}
-            <div 
-              className={`transition-all duration-700 w-full max-w-3xl mx-auto mt-4 sm:mt-16 px-2 sm:px-4 ${startAnimations ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-              style={{
-                transitionDelay: startAnimations ? '2.9s' : '0s'
-              }}
-            >
-              <div className="w-full max-w-3xl mx-auto">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-2">
-                  <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full max-w-[210px] cursor-pointer" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }} onClick={() => window.open('https://www.dpbolvw.net/click-101629596-17053224', '_blank')}>
-                    <Plane className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
-                    <div className="flex flex-col min-w-0">
-                      <span className="text-xs font-semibold text-white leading-tight">
-                        {language === 'cs' ? 'Lety' :
-                         language === 'it' ? 'Voli' :
-                         'Flights'}
-                      </span>
-                      <span className="hidden text-xs font-semibold text-white leading-tight">
-                        {language === 'cs' ? 'Turistický partner' :
-                         language === 'it' ? 'Voli' :
-                         'Flights'}
-                      </span>
-                      <span className="text-[10px] text-white/90 leading-tight">
-                        {language === 'cs' ? 'Vyhledat letenky' :
-                         language === 'it' ? 'Cerca voli' :
-                         'Search flights'}
-                      </span>
-                    </div>
-                  </div>
+        {/* Gradient overlay — light at top so photo has presence, strong where text sits */}
+        <div
+          className="absolute inset-0 z-10"
+          style={{
+            background: 'linear-gradient(170deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.62) 45%, rgba(0,0,0,0.80) 100%)',
+          }}
+        />
 
-                  <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full max-w-[210px] cursor-pointer" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }} onClick={() => window.open('https://www.booking.com/?aid=1522416&label=affnetcj-15735418_pub-7711899_site-101629596_pname-Creavita+sro_clkid-_cjevent-07f8c85d05dc11f181b503200a18b8f8&utm_source=affnetcj&utm_medium=bannerindex&utm_campaign=gb&utm_term=index-15735418&chal_t=1770657801471&force_referer=http%3A%2F%2Flocalhost%3A3000%2F&lang=cs&soz=1&lang_changed=1', '_blank')}>
-                    <Globe className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
-                    <div className="flex flex-col min-w-0">
-                      <span className="text-xs font-semibold text-white leading-tight">
-                        {language === 'cs' ? 'Ubytování' :
-                         language === 'it' ? 'Alloggio' :
-                         'Accommodation'}
-                      </span>
-                      <span className="hidden text-xs font-semibold text-white leading-tight">
-                        {language === 'cs' ? 'Objevte Itálii' :
-                         language === 'it' ? 'Alloggio' :
-                         'Accommodation'}
-                      </span>
-                      <span className="text-[10px] text-white/90 leading-tight">
-                        Booking.com
-                      </span>
-                    </div>
-                  </div>
+        {/* Hero content — centered horizontally and vertically */}
+        <div className="relative z-20 text-center text-white px-4 sm:px-6 max-w-4xl mx-auto w-full">
+          <h1
+            className="font-extrabold text-white mb-3"
+            style={{
+              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              fontWeight: 800,
+              lineHeight: 1.1,
+              textShadow: '0 2px 10px rgba(0,0,0,0.6)',
+              textWrap: 'balance',
+            }}
+            data-testid="hero-title"
+          >
+            {language === 'cs' ? 'Pomáháme Čechům koupit dům v Itálii.' :
+             language === 'it' ? 'Aiutiamo i cechi a comprare casa in Italia.' :
+             'We help Czechs buy a home in Italy.'}
+          </h1>
 
-                  <div className="flex items-center gap-2 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 shadow-lg border border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl group w-full max-w-[210px] cursor-pointer" style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }} onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}>
-                    <MapPin className="h-4 w-4 text-white group-hover:text-white transition-colors flex-shrink-0" />
-                    <div className="flex flex-col min-w-0">
-                      <span className="text-xs font-semibold text-white leading-tight">
-                        {language === 'cs' ? 'Místní zážitky' :
-                         language === 'it' ? 'Attività locali' :
-                         'Local activities'}
-                      </span>
-                      <span className="text-[10px] text-white/90 leading-tight">
-                        GetYourGuide
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-        {/* Scroll Down Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 hidden sm:block">
-          <div
-            className="flex flex-col items-center space-y-2 text-white/80 hover:text-white transition-colors duration-300 cursor-pointer group"
-            onClick={() => {
-              const nextSection = document.querySelector('[data-testid="main-content-container"]');
-              if (nextSection) {
-                // Use Lenis for smooth scrolling
-                window.lenis?.scrollTo(nextSection, { offset: -80 });
-              }
+          <p
+            className="mb-9"
+            style={{
+              fontSize: 'clamp(1.375rem, 2.5vw, 1.875rem)',
+              fontWeight: 600,
+              color: 'rgba(255,255,255,0.90)',
+              textShadow: '0 1px 6px rgba(0,0,0,0.5)',
+              lineHeight: 1.35,
             }}
           >
-            <span className="text-base font-medium tracking-wide uppercase">
-              {language === 'cs' ? 'Přejděte dolů' :
-               language === 'it' ? 'Scorri per esplorare' :
-               'Scroll to explore'}
+            {language === 'cs' ? 'Bez stresu. S jasným postupem.' :
+             language === 'it' ? 'Senza stress. Con un percorso chiaro.' :
+             'Stress-free. With a clear process.'}
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button
+              className="w-full sm:w-auto font-semibold transition-all duration-200"
+              style={{
+                background: 'linear-gradient(to right, rgba(199,137,91,1), rgb(153,105,69))',
+                color: 'white',
+                padding: '14px 32px',
+                borderRadius: '8px',
+                border: 'none',
+                fontSize: '1rem',
+                cursor: 'pointer',
+                boxShadow: '0 4px 14px rgba(0,0,0,0.35)',
+                transition: 'filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
+              }}
+              onClick={() => { window.location.href = '/contact'; }}
+              onMouseEnter={e => {
+                e.currentTarget.style.filter = 'brightness(1.12)';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.4)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.filter = '';
+                e.currentTarget.style.transform = '';
+                e.currentTarget.style.boxShadow = '0 4px 14px rgba(0,0,0,0.35)';
+              }}
+            >
+              {language === 'cs' ? 'Konzultace zdarma' :
+               language === 'it' ? 'Consulenza gratuita' :
+               'Free Consultation'}
+            </button>
+            <button
+              className="w-full sm:w-auto font-semibold backdrop-blur-sm"
+              style={{
+                border: '2px solid rgba(255,255,255,0.80)',
+                color: 'white',
+                backgroundColor: 'rgba(255,255,255,0.18)',
+                padding: '14px 32px',
+                borderRadius: '8px',
+                fontSize: '1rem',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.30)';
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,1)';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.18)';
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.80)';
+                e.currentTarget.style.transform = '';
+                e.currentTarget.style.boxShadow = '';
+              }}
+              onClick={() => { window.location.href = '/process'; }}
+            >
+              {language === 'cs' ? 'O našem procesu' :
+               language === 'it' ? 'Sul nostro processo' :
+               'About Our Process'}
+            </button>
+          </div>
+
+          <div
+            className="mt-5 mx-auto inline-block backdrop-blur-sm"
+            style={{
+              borderTop: '1px solid rgba(255,255,255,0.22)',
+              borderBottom: '1px solid rgba(255,255,255,0.22)',
+              backgroundColor: 'rgba(0,0,0,0.35)',
+              padding: '8px 20px',
+            }}
+          >
+            <p
+              style={{
+                fontSize: 'clamp(0.875rem, 1.3vw, 1rem)',
+                fontWeight: 400,
+                color: 'rgba(255,255,255,0.95)',
+                letterSpacing: '0.02em',
+                margin: 0,
+              }}
+            >
+              {language === 'cs' ? 'Právní, technická i praktická podpora během celého procesu.' :
+               language === 'it' ? 'Supporto legale, tecnico e pratico durante tutto il processo.' :
+               'Legal, technical, and practical support throughout the entire process.'}
+            </p>
+          </div>
+
+          {/* Search shortcut */}
+          <Link
+            href="/properties"
+            className="mt-8 flex items-center gap-2 mx-auto w-fit text-white/80 hover:text-white transition-colors duration-200 group"
+          >
+            <Search className="h-4 w-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+            <span style={{ fontSize: '0.9375rem', fontWeight: 500, letterSpacing: '0.01em' }}>
+              {language === 'cs' ? 'Prohledat vybrané nemovitosti' :
+               language === 'it' ? 'Sfoglia gli immobili disponibili' :
+               'Browse available properties'}
             </span>
-            <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center group-hover:border-white transition-colors duration-300">
-              <div className="w-1 h-3 bg-white/60 rounded-full mt-2 group-hover:bg-white transition-colors duration-300 slow-bounce"></div>
+            <ChevronRight className="h-4 w-4 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200" />
+          </Link>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 hidden sm:block">
+          <div
+            className="flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer"
+            onClick={() => {
+              const next = document.querySelector('[data-testid="how-it-works-section"]');
+              if (next) window.lenis?.scrollTo(next, { offset: -80 });
+            }}
+          >
+            <span className="text-sm font-medium tracking-widest uppercase">
+              {language === 'cs' ? 'Přejděte dolů' :
+               language === 'it' ? 'Scorri' :
+               'Scroll'}
+            </span>
+            <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-white/50 rounded-full mt-2 slow-bounce"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 pt-5 sm:pt-12 pb-8 bg-[#f7f4ed]" data-testid="main-content-container">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-900" data-testid="section-description">
-            {language === 'cs' ? 'Koupě domu v Itálii není jen o ceně' :
-             language === 'it' ? 'L\'acquisto di una casa in Italia non riguarda solo il prezzo' :
-             'Buying a home in Italy isn\'t just about price'}
-          </h2>
+      {/* How It Works Section */}
+      <section className="bg-white border-b border-gray-100" data-testid="how-it-works-section">
+        <div className="container mx-auto px-6 py-10 sm:py-14" style={{ maxWidth: '1200px' }}>
+
+          {/* Header row */}
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-8">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: '#c78b5a' }}>
+                {language === 'cs' ? 'Jak to funguje' : language === 'it' ? 'Come funziona' : 'How it works'}
+              </p>
+              <h2 className="font-bold text-gray-900 text-xl sm:text-2xl">
+                {language === 'cs' ? 'Čtyři kroky od prvního hovoru k předání klíčů.' :
+                 language === 'it' ? 'Quattro passi dalla prima chiamata alla consegna delle chiavi.' :
+                 'Four steps from the first call to handing over the keys.'}
+              </h2>
+            </div>
+            <Link href="/process" className="inline-flex items-center gap-1.5 text-sm font-semibold whitespace-nowrap flex-shrink-0" style={{ color: '#c78b5a' }}>
+              {language === 'cs' ? 'Celý proces' : language === 'it' ? 'Processo completo' : 'Full process'}
+              <ChevronRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          {/* Steps — horizontal on desktop, 2-col grid on mobile */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 rounded-xl overflow-hidden border border-gray-100">
+            {[
+              {
+                n: '01', href: '/process#step-1',
+                label: language === 'cs' ? 'Zadání & nabídka' : language === 'it' ? 'Esigenze & proposta' : 'Brief & Proposal',
+                sub: language === 'cs' ? 'Vy řeknete, co hledáte. My připravíme řešení.' : language === 'it' ? 'Ci dite cosa cercate. Noi prepariamo la soluzione.' : 'You tell us what you need. We prepare the solution.',
+              },
+              {
+                n: '02', href: '/process#step-2',
+                label: language === 'cs' ? 'Výběr nemovitosti' : language === 'it' ? "Scelta dell'immobile" : 'Property Selection',
+                sub: language === 'cs' ? 'Představíme nabídku a řídíme komunikaci s italskými stranami.' : language === 'it' ? "Introduciamo l'offerta e gestiamo la comunicazione." : 'We present options and handle Italian-side communication.',
+              },
+              {
+                n: '03', href: '/process#step-3',
+                label: language === 'cs' ? 'Podpis & převod' : language === 'it' ? 'Firma & trasferimento' : 'Signing & Transfer',
+                sub: language === 'cs' ? 'My hlídáme formality. Vy podepisujete bez stresu.' : language === 'it' ? 'Controlliamo le formalità. Firmate senza stress.' : 'We handle the formalities. You sign without stress.',
+              },
+              {
+                n: '04', href: '/process#step-4',
+                label: language === 'cs' ? 'Péče po koupi' : language === 'it' ? "Assistenza post-acquisto" : 'Post-Purchase Support',
+                sub: language === 'cs' ? 'Jsme s vámi i po koupi.' : language === 'it' ? "Siamo con voi anche dopo l'acquisto." : 'We stay with you after the purchase.',
+              },
+            ].map(({ n, href, label, sub }) => (
+              <Link key={n} href={href} className="group bg-white hover:bg-gray-50 transition-colors duration-150 p-5 sm:p-6 flex flex-col gap-3">
+                <span className="font-black text-gray-100 group-hover:text-gray-200 transition-colors leading-none" style={{ fontSize: '2.5rem' }}>{n}</span>
+                <div>
+                  <p className="font-bold text-gray-900 text-sm sm:text-base leading-snug mb-1">{label}</p>
+                  <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">{sub}</p>
+                </div>
+                <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition-all mt-auto" />
+              </Link>
+            ))}
+          </div>
+
         </div>
-        <p className="text-sm sm:text-xl text-gray-700 max-w-3xl">
-          {language === 'cs' ? 'Rozhodnutí bez správných informací může stát čas, peníze i klid. Proto je důležité rozumět systému ještě před prvním krokem.' : language === 'it' ? 'Una decisione senza le giuste informazioni può costare tempo, denaro e serenità. Per questo è importante capire il sistema prima del primo passo.' : "Decisions without the right information can cost time, money, and peace of mind. That's why it's important to understand the system before the first step."}
-        </p>
+      </section>
 
-        {/* Why Italy is Different - 5 cards */}
-        <div className="mb-10 sm:mb-16 mt-3 sm:mt-6">
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2.5 sm:gap-8" data-testid="why-italy-different-grid">
-            {/* Card 1 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-blue-200 shadow-xl bg-gradient-to-br from-blue-50 to-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
-              <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
-                <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-[12px] sm:text-2xl leading-snug text-gray-900 min-h-[2.8rem] sm:min-h-[4.75rem] flex items-start">
-                    {language === 'cs' ? 'Italský systém je jiný' :
-                     language === 'it' ? 'Il sistema italiano funziona diversamente.' :
-                     'The Italian system is different'}
-                  </h3>
-                  <p className="text-gray-600 text-[11px] sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
-                    {language === 'cs' ? 'Pravidla, postupy a role se liší od Česka.' :
-                     language === 'it' ? 'In Italia nessuno coordina tutto automaticamente. Capire chi fa cosa è fondamentale.' :
-                     'Rules, processes, and roles differ from the Czech Republic.'}
-                  </p>
-                </div>
-                <div className="pt-2.5 sm:pt-4 mt-auto">
-                  <ProtectedContentLink href="/guides/real-estate-purchase-system-italy" language={language}>
-                    <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
-                      {language === 'cs' ? 'Objevte systém' :
-                       language === 'it' ? 'Scopri il sistema' :
-                       'Discover the system'}
-                    </Button>
-                  </ProtectedContentLink>
-                </div>
-              </CardContent>
-            </Card>
+      {/* What you need to know Section */}
+      <section className="py-10 sm:py-14" data-testid="main-content-container" style={{ background: '#f7f4ed' }}>
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
 
-            {/* Card 2 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
-              <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
-                <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-[12px] sm:text-2xl leading-snug text-gray-900 min-h-[2.8rem] sm:min-h-[4.75rem] flex items-start">
-                    {language === 'cs' ? '💰 Cena není všechno' :
-                     language === 'it' ? '💰 Il prezzo non è tutto' :
-                     '💰 Price is not everything'}
-                  </h3>
-                  <p className="text-gray-600 text-[11px] sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
-                    {language === 'cs' ? 'Daně, notář, poplatky a náklady navíc.' :
-                     language === 'it' ? 'Tasse, notaio, commissioni e costi extra.' :
-                     'Taxes, notary, fees, and extra costs.'}
-                  </p>
-                </div>
-                <div className="pt-2.5 sm:pt-4 mt-auto">
-                  <ProtectedContentLink href="/guides/costs" language={language}>
-                    <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
-                      {language === 'cs' ? 'Spočítejte reálné náklady' :
-                       language === 'it' ? 'Calcola i costi reali' :
-                       'Calculate real costs'}
-                    </Button>
-                  </ProtectedContentLink>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Asymmetric two-column layout */}
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
 
-            {/* Card 3 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
-              <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
-                <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-[12px] sm:text-2xl leading-snug text-gray-900 min-h-[2.8rem] sm:min-h-[4.75rem] flex items-start">
-                    {language === 'cs' ? '⚠️ Nejčastější chyby Čechů' :
-                     language === 'it' ? '⚠️ Errori più comuni dei cechi' :
-                     '⚠️ Most common mistakes by Czechs'}
-                  </h3>
-                  <p className="text-gray-600 text-[11px] sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
-                    {language === 'cs' ? 'Omyly, které vedou ke zbytečným problémům.' :
-                     language === 'it' ? 'Errori che portano a problemi evitabili.' :
-                     'Mistakes that lead to avoidable problems.'}
-                  </p>
-                </div>
-                <div className="pt-2.5 sm:pt-4 mt-auto">
-                  <ProtectedContentLink href="/guides/mistakes" language={language}>
-                    <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
-                      {language === 'cs' ? 'Vyhněte se těmto chybám' :
-                       language === 'it' ? 'Evita questi errori' :
-                       'Avoid these mistakes'}
-                    </Button>
-                  </ProtectedContentLink>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Left: editorial block */}
+            <div className="lg:w-2/5 lg:sticky lg:top-24 lg:self-start">
+              <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: '#c78b5a' }}>
+                {language === 'cs' ? 'Než začnete' : language === 'it' ? 'Prima di iniziare' : 'Before you start'}
+              </p>
+              <h2 className="font-bold text-gray-900 mb-3 text-xl sm:text-2xl leading-snug" data-testid="section-description">
+                {language === 'cs' ? 'Koupě domu v Itálii není jen o ceně.' :
+                 language === 'it' ? "L'acquisto di una casa in Italia non riguarda solo il prezzo." :
+                 "Buying a home in Italy isn't just about price."}
+              </h2>
+              <p className="text-gray-500 text-sm leading-relaxed mb-5">
+                {language === 'cs' ? 'Rozhodnutí bez správných informací může stát čas, peníze i klid. Proto je důležité rozumět systému ještě před prvním krokem.' :
+                 language === 'it' ? 'Una decisione senza le giuste informazioni può costare tempo, denaro e serenità. Per questo è importante capire il sistema prima del primo passo.' :
+                 "Decisions without the right information can cost time, money, and peace of mind. That's why it's important to understand the system before the first step."}
+              </p>
+              <Link href="/guides" className="inline-flex items-center gap-1.5 font-semibold text-sm" style={{ color: '#c78b5a' }}>
+                {language === 'cs' ? 'Prozkoumat průvodce' : language === 'it' ? 'Esplora le guide' : 'Explore the guides'}
+                <ChevronRight className="h-4 w-4" />
+              </Link>
+            </div>
 
-            {/* Card 4 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
-              <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
-                <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-[12px] sm:text-2xl leading-snug text-gray-900 min-h-[2.8rem] sm:min-h-[4.75rem] flex items-start">
-                    {language === 'cs' ? '📍 Region rozhoduje' :
-                     language === 'it' ? '📍 La regione fa la differenza' :
-                     '📍 Region matters'}
-                  </h3>
-                  <p className="text-gray-600 text-[11px] sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
-                    {language === 'cs' ? 'Cena, životní styl, dostupnost i využití domu.' :
-                     language === 'it' ? 'Prezzo, stile di vita, accessibilità e uso della casa.' :
-                     'Price, lifestyle, accessibility, and home use.'}
-                  </p>
-                </div>
-                <div className="pt-2.5 sm:pt-4 mt-auto">
-                  <Link href="/regions">
-                    <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
-                      {language === 'cs' ? 'Vyberte správný region' :
-                       language === 'it' ? 'Scegli la regione giusta' :
-                       'Choose the right region'}
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Right: compact vertical list */}
+            <div className="lg:w-3/5 divide-y divide-gray-200" data-testid="why-italy-different-grid">
 
-            {/* Card 5 */}
-            <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden border border-gray-200 shadow-lg bg-white rounded-2xl flex flex-col h-full min-h-[198px] sm:min-h-[320px]">
-              <CardContent className="p-3 sm:p-6 flex flex-col flex-1">
-                <div className="flex-1 space-y-2 sm:space-y-4">
-                  <h3 className="font-bold text-[12px] sm:text-2xl leading-snug text-gray-900 min-h-[2.8rem] sm:min-h-[4.75rem] flex items-start">
-                    {language === 'cs' ? '❓ Časté otázky' :
-                     language === 'it' ? '❓ Domande frequenti' :
-                     '❓ Frequently asked questions'}
-                  </h3>
-                  <p className="text-gray-600 text-[11px] sm:text-base leading-relaxed line-clamp-3 sm:line-clamp-none">
-                    {language === 'cs' ? 'Rychlé odpovědi na to, co lidé řeší nejčastěji.' :
-                     language === 'it' ? 'Risposte rapide a ciò che le persone chiedono più spesso.' :
-                     'Quick answers to what people ask most often.'}
-                  </p>
-                </div>
-                <div className="pt-2.5 sm:pt-4 mt-auto">
-                  <Link href="/faq">
-                    <Button className="w-full min-h-[36px] sm:min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-1.5 sm:py-2.5 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 text-[11px] sm:text-base">
-                      {language === 'cs' ? 'Přečtěte si FAQ' :
-                       language === 'it' ? 'Leggi le FAQ' :
-                       'Read the FAQs'}
-                    </Button>
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
+              {[
+                { icon: <Globe className="h-4 w-4 text-white" />, bg: 'linear-gradient(135deg,#3b82f6,#1d4ed8)', href: '/guides/real-estate-purchase-system-italy', protected: true,
+                  label: language === 'cs' ? 'Italský systém je jiný' : language === 'it' ? 'Il sistema italiano funziona diversamente' : 'The Italian system is different' },
+                { icon: <Banknote className="h-4 w-4 text-white" />, bg: 'linear-gradient(135deg,#c78b5a,#99694b)', href: '/guides/costs', protected: true,
+                  label: language === 'cs' ? 'Cena není všechno' : language === 'it' ? 'Il prezzo non è tutto' : 'Price is not everything' },
+                { icon: <AlertTriangle className="h-4 w-4 text-white" />, bg: 'linear-gradient(135deg,#f59e0b,#b45309)', href: '/guides/mistakes', protected: true,
+                  label: language === 'cs' ? 'Nejčastější chyby Čechů' : language === 'it' ? 'Errori più comuni dei cechi' : 'Most common mistakes by Czechs' },
+                { icon: <MapPin className="h-4 w-4 text-white" />, bg: 'linear-gradient(135deg,#10b981,#065f46)', href: '/regions', protected: false,
+                  label: language === 'cs' ? 'Region rozhoduje' : language === 'it' ? 'La regione fa la differenza' : 'Region matters' },
+                { icon: <HelpCircle className="h-4 w-4 text-white" />, bg: 'linear-gradient(135deg,#6366f1,#4338ca)', href: '/faq', protected: false,
+                  label: language === 'cs' ? 'Časté otázky' : language === 'it' ? 'Domande frequenti' : 'Frequently asked questions' },
+              ].map(({ icon, bg, href, protected: isProtected, label }) => {
+                const inner = (
+                  <div key={href} className="py-4 flex items-center gap-4 group cursor-pointer">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: bg }}>{icon}</div>
+                    <span className="flex-1 font-semibold text-gray-800 text-sm sm:text-base group-hover:text-gray-900 transition-colors">{label}</span>
+                    <ChevronRight className="h-4 w-4 flex-shrink-0 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition-all" />
+                  </div>
+                )
+                return isProtected
+                  ? <ProtectedContentLink key={href} href={href} language={language}>{inner}</ProtectedContentLink>
+                  : <Link key={href} href={href}>{inner}</Link>
+              })}
+
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Premium Club Section */}{/* Premium Club Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-8 sm:py-20 overflow-hidden">
-        <div className="container mx-auto px-4">
+      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 sm:py-24 overflow-hidden">
+        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
           {/* Main Premium Club Content */}
           <div className="text-center mb-6 sm:mb-16 animate-on-scroll">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" style={{ color: '#c48759' }}>
+            <h2 className="font-bold mb-8" style={{ color: '#c48759', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)' }}>
               {language === 'cs' ? 'Jste si jisti koupí domu v Itálii?' :
                language === 'it' ? 'Sei sicuro di comprare casa in Italia?' :
                'Are you sure about buying a home in Italy?'}
@@ -1876,9 +1103,9 @@ export default function HomePage() {
             </p>
             <Button 
               size="lg"
-              className="font-semibold py-2.5 sm:py-4 px-5 sm:px-8 text-sm sm:text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-white inline-flex items-center justify-center text-center leading-tight"
+              className="font-semibold py-2.5 sm:py-4 px-5 sm:px-8 text-sm sm:text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-200 text-white inline-flex items-center justify-center text-center leading-tight"
               style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
-              onClick={() => setIsAuthModalOpen(true)}
+              onClick={() => setIsKlubModalOpen(true)}
             >
               {language === 'cs' ? 'Připojit se zdarma' :
                language === 'it' ? 'Unisciti gratuitamente' :
@@ -1898,14 +1125,12 @@ export default function HomePage() {
               >
                 <div className="text-center space-y-4 sm:space-y-6">
                   <div className="flex items-center justify-center mx-auto">
-                    <img src="/logo domy.svg" alt="Logo" className="h-14 w-14 sm:h-16 sm:w-16" />
+                    <Image src="/logo domy.svg" alt="Logo Domy v Itálii" width={64} height={61} className="h-14 w-14 sm:h-16 sm:w-16" />
                   </div>
                   
                   <div>
                     <h4 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2" style={{ color: '#c48759' }}>
-                      {language === 'cs' ? 'Premium' :
-                       language === 'it' ? 'Premium' :
-                       'Premium'}
+                      Klub pro klienty
                     </h4>
                     <p className="text-gray-300 text-sm sm:text-base">
                       {language === 'cs' ? 'Exkluzivní členství' :
@@ -2038,21 +1263,23 @@ export default function HomePage() {
                 ].map((article, index) => (
                   <div 
                     key={index} 
-                    className={`${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''} cursor-pointer min-w-[188px] sm:min-w-0 snap-start`}
+                    className={`${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''} cursor-pointer min-w-48 sm:min-w-0 snap-start`}
                     onClick={() => {
                       if (user) {
                         window.location.href = article.link
                       } else {
-                        setIsAuthModalOpen(true)
+                        setIsKlubModalOpen(true)
                       }
                     }}
                   >
                     <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-700 h-full relative group">
                       <div className="aspect-square sm:aspect-video relative overflow-hidden">
-                        <img 
-                          src={article.image} 
-                          alt={article.title[language]} 
-                          className="w-full h-full object-cover"
+                        <Image
+                          src={article.image}
+                          alt={article.title[language]}
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
@@ -2065,7 +1292,7 @@ export default function HomePage() {
                           <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
                             <span className="flex items-center gap-1 bg-black/50 backdrop-blur-sm text-white text-xs font-medium px-2 py-1 rounded-full border border-white/10">
                               <Lock className="h-3 w-3" />
-                              Premium
+                              Klub pro klienty
                             </span>
                           </div>
                         )}
@@ -2074,7 +1301,7 @@ export default function HomePage() {
                         <h3 className="text-sm sm:text-xl font-bold text-white mb-1.5 sm:mb-3 line-clamp-2">
                           {article.title[language]}
                         </h3>
-                        <p className="text-[11px] sm:text-base line-clamp-2 text-gray-300">
+                        <p className="text-xs sm:text-base line-clamp-2 text-gray-300">
                           {article.excerpt[language]}
                         </p>
                         
@@ -2085,7 +1312,7 @@ export default function HomePage() {
                             <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-slate-800 via-slate-800/95 to-transparent pointer-events-none" />
                             {/* Register prompt */}
                             <div className="relative z-10 pt-6 flex items-center justify-center">
-                              <span className="flex max-w-full items-center justify-center gap-2 px-2 text-center text-[11px] sm:text-sm font-semibold leading-tight group-hover:scale-105 transition-transform" style={{ color: '#c48759' }}>
+                              <span className="flex max-w-full items-center justify-center gap-2 px-2 text-center text-xs sm:text-sm font-semibold leading-tight" style={{ color: '#c48759' }}>
                                 <Lock className="h-3.5 w-3.5" />
                                 {language === 'cs' ? 'Zaregistrujte se pro čtení' :
                                  language === 'it' ? 'Registrati per leggere' :
@@ -2117,10 +1344,10 @@ export default function HomePage() {
       </section>
 
       {/* Featured Regions Section */}
-      <section className="py-12 sm:py-20 bg-[#f7f4ed] overflow-hidden">
-        <div className="container mx-auto px-4">
+      <section className="py-16 sm:py-24 bg-[#f7f4ed] overflow-hidden">
+        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
           <div className="text-center mb-8 sm:mb-16 animate-on-scroll">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight">
+            <h2 className="font-bold text-gray-900 mb-8">
               {language === 'cs' ? 'Prozkoumejte nejžádanější regiony Itálie' :
                language === 'it' ? 'Esplora le Regioni Più Ricercate d\'Italia' : 
                'Explore Italy\'s Most Wanted Regions'}
@@ -2141,10 +1368,12 @@ export default function HomePage() {
             {/* Sardegna */}
             <div className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
-                <img 
-                  src="/Sardegna.jpg" 
-                  alt="Sardegna" 
-                  className="w-full h-full object-cover"
+                <Image
+                  src="/Sardegna.jpg"
+                  alt="Sardegna"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -2184,7 +1413,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
                     {language === 'cs' ? 'Zobrazit nabídky ze Sardinie' :
                      language === 'it' ? 'Visualizza offerte per la Sardegna' :
                      'View offers from Sardinia'}
@@ -2196,10 +1425,12 @@ export default function HomePage() {
             {/* Tuscany */}
             <div className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
-                <img 
-                  src="/Toscana.png" 
-                  alt="Tuscany" 
-                  className="w-full h-full object-cover"
+                <Image
+                  src="/Toscana.png"
+                  alt="Tuscany"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -2239,7 +1470,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
                     {language === 'cs' ? 'Zobrazit nabídky z Toskánska' :
                      language === 'it' ? 'Visualizza offerte per la Toscana' :
                      'View offers from Tuscany'}
@@ -2251,10 +1482,12 @@ export default function HomePage() {
             {/* Emilia-Romagna */}
             <div className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
-                <img 
-                  src="/Emilia-Romagna.jpg" 
-                  alt="Emilia-Romagna" 
-                  className="w-full h-full object-cover"
+                <Image
+                  src="/Emilia-Romagna.jpg"
+                  alt="Emilia-Romagna"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -2294,7 +1527,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
                     {language === 'cs' ? 'Zobrazit nabídky z Emilia-Romagna' :
                      language === 'it' ? 'Visualizza offerte per l\'Emilia-Romagna' :
                      'View offers from Emilia-Romagna'}
@@ -2306,10 +1539,12 @@ export default function HomePage() {
             {/* Sicily */}
             <div className="hidden sm:block bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
-                <img 
-                  src="/Sicilia.jpg" 
-                  alt="Sicily" 
-                  className="w-full h-full object-cover"
+                <Image
+                  src="/Sicilia.jpg"
+                  alt="Sicily"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -2349,7 +1584,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
                     {language === 'cs' ? 'Zobrazit nabídky ze Sicílie' :
                      language === 'it' ? 'Visualizza offerte per la Sicilia' :
                      'View offers from Sicily'}
@@ -2361,10 +1596,12 @@ export default function HomePage() {
             {/* Trentino-Alto Adige */}
             <div className="hidden sm:block bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
-                <img 
-                  src="/Trentino-Alto Adige.jpg" 
-                  alt="Trentino-Alto Adige" 
-                  className="w-full h-full object-cover"
+                <Image
+                  src="/Trentino-Alto Adige.jpg"
+                  alt="Trentino-Alto Adige"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -2404,7 +1641,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
                     {language === 'cs' ? 'Zobrazit nabídky z Trentino-Alto Adige' :
                      language === 'it' ? 'Visualizza offerte per il Trentino-Alto Adige' :
                      'View offers from Trentino-Alto Adige'}
@@ -2416,10 +1653,12 @@ export default function HomePage() {
             {/* Lazio (Rome) */}
             <div className="hidden sm:block bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
               <div className="aspect-video relative overflow-hidden">
-                <img 
-                  src="/Lazio.webp" 
-                  alt="Rome" 
-                  className="w-full h-full object-cover"
+                <Image
+                  src="/Lazio.webp"
+                  alt="Lazio (Rome)"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -2459,7 +1698,7 @@ export default function HomePage() {
                     document.body.scrollTop = 0;
                   }}
                 >
-                  <button className="w-full min-h-[42px] inline-flex items-center justify-center text-center leading-tight bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300 hover:scale-105">
+                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
                     {language === 'cs' ? 'Zobrazit nabídky z Lazia' :
                      language === 'it' ? 'Visualizza offerte per il Lazio' :
                      'View offers from Lazio'}
@@ -2471,7 +1710,7 @@ export default function HomePage() {
           <div className="text-center mb-8 sm:mb-0">
             <Link
               href="/regions"
-              className="inline-flex min-h-[42px] items-center justify-center rounded-lg bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-3 text-sm sm:text-base font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-slate-600 hover:to-slate-700"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-3 text-sm sm:text-base font-semibold text-white shadow-lg transition-all duration-300 hover:from-slate-600 hover:to-slate-700"
             >
               {language === 'cs' ? 'Prozkoumat regiony' :
                language === 'it' ? 'Visita le regioni' :
@@ -2484,29 +1723,31 @@ export default function HomePage() {
       {SHOW_HOME_ARCHIVED_SECTIONS && (
       <>
       {/* Recent Success Stories Section */}
-      <section className="py-14 sm:py-20 bg-[#f7f4ed]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-10 sm:mb-16 animate-on-scroll">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+      <section className="py-16 sm:py-24 bg-white">
+        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
+          <div className="text-center mb-8 sm:mb-12 animate-on-scroll" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <h2 className="font-bold text-gray-900 mb-4">
               {language === 'cs' ? 'Od vyhledávání po klíče v ruce' :
                language === 'it' ? 'Dalla Ricerca alle Chiavi in Mano' :
                'From Search to Keys in Hand'}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-gray-500" style={{ fontSize: '1.0625rem', lineHeight: '1.75' }}>
               {language === 'cs' ? 'Skutečné výsledky od kupujících jako jste vy.' :
                language === 'it' ? 'Risultati reali da acquirenti come te.' :
                'Real results from buyers like you.'}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {/* Success Story 1 */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 flex flex-col">
+            <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-200 border border-gray-100 flex flex-col">
               <div className="aspect-video relative overflow-hidden flex-shrink-0">
-                <img 
-                  src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                  alt="Tuscan farmhouse renovation" 
-                  className="w-full h-full object-cover"
+                <Image
+                  src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Tuscan farmhouse renovation"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -2516,7 +1757,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <div className="p-6 flex flex-col h-full">
+              <div className="p-8 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
                     {language === 'cs' ? 'Obnovený toskánský statek' :
@@ -2559,7 +1800,7 @@ export default function HomePage() {
                     </ul>
                   </div>
                 </div>
-                <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105 mt-auto">
+                <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-6 rounded-lg text-base transition-colors duration-200 mt-auto">
                   {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
                    language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
@@ -2568,12 +1809,14 @@ export default function HomePage() {
             </div>
 
             {/* Success Story 2 */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 flex flex-col">
+            <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-200 border border-gray-100 flex flex-col">
               <div className="aspect-video relative overflow-hidden flex-shrink-0">
-                <img 
-                  src="https://images.unsplash.com/photo-1520637836862-4d197d17c93a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                  alt="Sicilian palazzo" 
-                  className="w-full h-full object-cover"
+                <Image
+                  src="https://images.unsplash.com/photo-1520637836862-4d197d17c93a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Sicilian palazzo"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -2583,7 +1826,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <div className="p-6 flex flex-col h-full">
+              <div className="p-8 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
                     {language === 'cs' ? 'Sicilský barokní palác' :
@@ -2626,7 +1869,7 @@ export default function HomePage() {
                     </ul>
                   </div>
                 </div>
-                <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105 mt-auto">
+                <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 mt-auto">
                   {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
                    language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
@@ -2635,12 +1878,14 @@ export default function HomePage() {
             </div>
 
             {/* Success Story 3 */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200 flex flex-col">
+            <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-200 border border-gray-100 flex flex-col">
               <div className="aspect-video relative overflow-hidden flex-shrink-0">
-                <img 
-                  src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                  alt="Ligurian coastal apartment" 
-                  className="w-full h-full object-cover"
+                <Image
+                  src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Ligurian coastal apartment"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -2650,7 +1895,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <div className="p-6 flex flex-col h-full">
+              <div className="p-8 flex flex-col h-full">
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
                     {language === 'cs' ? 'Pobřežní apartmán v Ligurii' :
@@ -2693,7 +1938,7 @@ export default function HomePage() {
                     </ul>
                   </div>
                 </div>
-                <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 hover:scale-105 mt-auto">
+                <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 mt-auto">
                   {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
                    language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
@@ -2705,15 +1950,15 @@ export default function HomePage() {
       </section>
 
       {/* Weekly Webinar Section */}
-      <section className="pt-10 sm:pt-14 pb-16 sm:pb-20 bg-[#f7f4ed]">
-        <div className="container mx-auto px-4">
+      <section className="py-16 sm:py-24 bg-[#f7f6f3]">
+        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
           <div className="text-center mb-10 sm:mb-16 animate-on-scroll">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+            <h2 className="font-bold text-gray-900 mb-8">
               {language === 'cs' ? 'Kupování v Itálii: proces, úskalí a čísla' :
                language === 'it' ? 'Acquistare in Italia: Il Processo, le Insidie e i Numeri' :
                'Buying in Italy: The Process, the Pitfalls, and the Numbers'}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-gray-500 max-w-2xl mx-auto" style={{fontSize:"1.0625rem",lineHeight:"1.75"}}>
               {language === 'cs' ? 'Kupování v Itálii: proces, úskalí a čísla — živě, každý týden.' :
                language === 'it' ? 'Acquistare in Italia: il processo, le insidie e i numeri — dal vivo, ogni settimana.' :
                'Buying in Italy: the process, the pitfalls, and the numbers—live, every week.'}
@@ -2798,9 +2043,9 @@ export default function HomePage() {
 
               <div className="mt-8 p-4 bg-slate-50 rounded-lg border border-slate-200">
                 <p className="text-base text-slate-800 font-medium">
-                  {language === 'cs' ? 'Zdarma pro členy Premium Clubu. Omezený počet míst.' :
-                   language === 'it' ? 'Gratuito per i membri del Premium Club. Posti limitati.' :
-                   'Free for Premium Club members. Limited seats.'}
+                  {language === 'cs' ? 'Zdarma pro členy Klubu pro klienty. Omezený počet míst.' :
+                   language === 'it' ? 'Gratuito per i membri del Klub pro klienty. Posti limitati.' :
+                   'Free for Klub pro klienty members. Limited seats.'}
                 </p>
               </div>
             </div>
@@ -2814,9 +2059,9 @@ export default function HomePage() {
                    'Reserve Your Seat'}
                 </h3>
                 <p className="text-gray-600">
-                  {language === 'cs' ? 'Nemůžete se zúčastnit? Získejte nahrávku přes Premium Club.' :
-                   language === 'it' ? 'Non riesci a partecipare? Ricevi la registrazione tramite Premium Club.' :
-                   'Can\'t make it? Get the recording via Premium Club.'}
+                  {language === 'cs' ? 'Nemůžete se zúčastnit? Získejte nahrávku přes Klub pro klienty.' :
+                   language === 'it' ? 'Non riesci a partecipare? Ricevi la registrazione tramite Klub pro klienty.' :
+                   'Can\'t make it? Get the recording via Klub pro klienty.'}
                 </p>
               </div>
 
@@ -2968,7 +2213,7 @@ export default function HomePage() {
 
                 <button 
                   type="submit"
-                  className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-6 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                  className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-6 rounded-lg text-lg transition-all duration-200 hover:shadow-lg shadow-lg"
                 >
                   {language === 'cs' ? 'Rezervovat místo' :
                    language === 'it' ? 'Riserva il Posto' :
@@ -2989,15 +2234,15 @@ export default function HomePage() {
       </section>
 
         {/* FAQ Section */}
-        <section className="py-20 bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-orange-50/10">
-        <div className="container mx-auto px-4">
+        <section className="py-16 sm:py-24 bg-white">
+        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
           <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+            <h2 className="font-bold text-gray-900 mb-8">
               {language === 'cs' ? 'Často kladené otázky' :
                language === 'it' ? 'Domande Frequenti' :
                'Frequently Asked Questions'}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-gray-500 max-w-2xl mx-auto" style={{fontSize:"1.0625rem",lineHeight:"1.75"}}>
               {language === 'cs' ? 'Odpovědi, které potřebujete před rozhodnutím.' :
                language === 'it' ? 'Le risposte di cui hai bisogno prima di decidere.' :
                'The answers you need before you decide.'}
@@ -3163,13 +2408,13 @@ export default function HomePage() {
                'Still have a question?'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white hover:bg-gray-100 text-slate-700 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg">
+              <button className="bg-white hover:bg-gray-100 text-slate-700 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-200 shadow-lg">
                 {language === 'cs' ? 'Připojte se k webináři' :
                  language === 'it' ? 'Partecipa al Webinar' :
                  'Join the Webinar'}
               </button>
               <button
-                className="text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                className="text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-200 shadow-lg"
                 style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
                 onClick={handleBookCall}
               >
@@ -3185,15 +2430,15 @@ export default function HomePage() {
       )}
 
       {/* Contact / Book a Call Section */}
-      <section className="py-20 bg-[#f7f4ed]">
-        <div className="container mx-auto px-4">
+      <section className="py-16 sm:py-24 bg-[#f7f6f3]">
+        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
           <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+            <h2 className="font-bold text-gray-900 mb-8">
               {language === 'cs' ? 'Začněte svou cestu' :
                language === 'it' ? 'Inizia il Tuo Viaggio' :
                'Start Your Journey'}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-gray-500 max-w-2xl mx-auto" style={{fontSize:"1.0625rem",lineHeight:"1.75"}}>
               {language === 'cs' ? 'Vyberte si, jak chcete pokračovat. Jsme tu, abychom vás provedli každým krokem procesu.' :
                language === 'it' ? 'Scegli come vuoi procedere. Siamo qui per guidarti in ogni fase del processo.' :
                'Choose how you want to proceed. We\'re here to guide you through every step of the process.'}
@@ -3255,7 +2500,7 @@ export default function HomePage() {
                 </ul>
                 <Link
                   href="/book-call"
-                  className="block w-full text-white font-semibold py-3 sm:py-4 px-8 rounded-lg text-base sm:text-lg transition-all duration-300 hover:scale-105 shadow-lg text-center leading-tight"
+                  className="block w-full text-white font-semibold py-3 sm:py-4 px-8 rounded-lg text-base sm:text-lg transition-all duration-200 hover:shadow-lg shadow-lg text-center leading-tight"
                   style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
                 >
                   {language === 'cs' ? 'Rezervovat hovor' :
@@ -3316,14 +2561,14 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-gray-200">
-                      {language === 'cs' ? 'Bezplatný přístup k Premium Clubu' :
-                       language === 'it' ? 'Accesso gratuito al Premium Club' :
-                       'Free Premium Club access included'}
+                      {language === 'cs' ? 'Bezplatný přístup do Klubu pro klienty' :
+                       language === 'it' ? 'Accesso gratuito al Klub pro klienty' :
+                       'Free Klub pro klienty access included'}
                     </span>
                   </li>
                 </ul>
                 <button
-                  className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-tight bg-transparent hover:bg-white/10 text-white border border-white/45 font-semibold py-3 sm:py-4 px-8 rounded-lg text-base sm:text-lg transition-all duration-300 shadow-sm"
+                  className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-transparent hover:bg-white/10 text-white border border-white/45 font-semibold py-3 sm:py-4 px-8 rounded-lg text-base sm:text-lg transition-all duration-300 shadow-sm"
                   onClick={handleStartFinder}
                 >
                   {language === 'cs' ? 'Spustit vyhledávač' :
@@ -3357,7 +2602,7 @@ export default function HomePage() {
                     : 'We and our clients rely on trusted partners.'}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 hover:bg-slate-50 cursor-pointer transition-colors" onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}>
+                  <div role="button" tabIndex={0} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}>
                     <Plane className="w-5 h-5 text-slate-700" />
                     <div className="text-left">
                       <p className="text-sm font-semibold text-gray-900">
@@ -3368,7 +2613,7 @@ export default function HomePage() {
                       <p className="text-xs text-gray-600">GetYourGuide</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 hover:bg-slate-50 cursor-pointer transition-colors" onClick={() => window.open('https://www.booking.com/?aid=1522416&label=affnetcj-15735418_pub-7711899_site-101629596_pname-Creavita+sro_clkid-_cjevent-07f8c85d05dc11f181b503200a18b8f8&utm_source=affnetcj&utm_medium=bannerindex&utm_campaign=gb&utm_term=index-15735418&chal_t=1770657801471&force_referer=http%3A%2F%2Flocalhost%3A3000%2F&lang=cs&soz=1&lang_changed=1', '_blank')}>
+                  <div role="button" tabIndex={0} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open('https://www.booking.com/?aid=1522416&label=affnetcj-15735418_pub-7711899_site-101629596_pname-Creavita+sro_clkid-_cjevent-07f8c85d05dc11f181b503200a18b8f8&utm_source=affnetcj&utm_medium=bannerindex&utm_campaign=gb&utm_term=index-15735418&chal_t=1770657801471&force_referer=http%3A%2F%2Flocalhost%3A3000%2F&lang=cs&soz=1&lang_changed=1', '_blank')}>
                     <Globe className="w-5 h-5 text-slate-700" />
                     <div className="text-left">
                       <p className="text-sm font-semibold text-gray-900">
@@ -3421,10 +2666,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 pb-10">
+      <div className="container mx-auto px-6 pb-16 md:pb-24" style={{maxWidth:"1200px"}}>
         <div className="max-w-5xl mx-auto flex justify-center">
           <button
-            className="flex items-center gap-2 rounded-lg px-4 py-2 shadow-lg border border-slate-200 transition-all duration-300 hover:scale-105 hover:shadow-xl group cursor-pointer w-auto bg-white"
+            className="flex items-center gap-2 rounded-lg px-4 py-2 shadow-lg border border-slate-200 transition-shadow duration-200 hover:shadow-xl group cursor-pointer w-auto bg-white"
             onClick={() => { window.location.href = '/gdpr' }}
           >
             <Lock className="h-4 w-4 text-slate-700 transition-colors flex-shrink-0" />
@@ -3434,7 +2679,7 @@ export default function HomePage() {
                  language === 'it' ? 'Dati personali' :
                  'Personal data'}
               </span>
-              <span className="text-[10px] text-slate-600 leading-tight">
+              <span className="text-xs text-slate-600 leading-tight">
                 GDPR
               </span>
             </div>
@@ -3442,17 +2687,39 @@ export default function HomePage() {
         </div>
       </div>
 
+      <PropertySlider language={language} />
       {/* Footer */}
       <Footer language={language} />
       
+      {/* Klub pro klienty info modal (middle step before auth) */}
+      <KlubInfoModal
+        isOpen={isKlubModalOpen}
+        language={language}
+        onClose={() => setIsKlubModalOpen(false)}
+        onRegister={() => {
+          setIsKlubModalOpen(false)
+          setAuthModalTab('signup')
+          setIsAuthModalOpen(true)
+        }}
+        onLogin={() => {
+          setIsKlubModalOpen(false)
+          setAuthModalTab('login')
+          setIsAuthModalOpen(true)
+        }}
+      />
+
       {/* Auth Modal */}
       <AuthModal 
         isOpen={isAuthModalOpen}
         onClose={handleAuthModalClose}
         onAuthSuccess={handleAuthSuccess}
+        defaultTab={authModalTab}
         title={language === 'cs' ? 'Přihlášení vyžadováno' : language === 'it' ? 'Accesso richiesto' : 'Login required'}
         message={language === 'cs' ? 'Pro uložení nemovitosti do oblíbených se prosím přihlaste nebo si vytvořte bezplatný účet.' : language === 'it' ? 'Per salvare una proprietà nei preferiti devi accedere o creare un account gratuito.' : 'To save a property to your favorites, please log in or create a free account.'}
       />
     </div>
   )
 }
+
+
+

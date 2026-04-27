@@ -1,24 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import AuthModal from '@/components/AuthModal'
 
-const AUTH_COPY = {
-  en: {
-    title: 'Login required',
-    message: 'To read this content, please log in or create a free account.'
-  },
-  cs: {
-    title: 'Vyžaduje se přihlášení',
-    message: 'Pro čtení tohoto obsahu se prosím přihlaste nebo si vytvořte bezplatný účet.'
-  },
-  it: {
-    title: 'Accesso richiesto',
-    message: 'Per leggere questo contenuto devi accedere o creare un account gratuito.'
-  }
-}
+const AuthModal = dynamic(() => import('@/components/AuthModal'), { ssr: false })
+const KlubInfoModal = dynamic(() => import('@/components/KlubInfoModal'), { ssr: false })
 
 export default function ProtectedContentLink({
   href,
@@ -29,8 +17,9 @@ export default function ProtectedContentLink({
 }) {
   const router = useRouter()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [klubOpen, setKlubOpen] = useState(false)
   const [authOpen, setAuthOpen] = useState(false)
-  const copy = AUTH_COPY[language] || AUTH_COPY.en
+  const [authTab, setAuthTab] = useState('signup')
 
   useEffect(() => {
     let mounted = true
@@ -63,7 +52,7 @@ export default function ProtectedContentLink({
       return
     }
 
-    setAuthOpen(true)
+    setKlubOpen(true)
   }
 
   const handleAuthSuccess = () => {
@@ -77,12 +66,28 @@ export default function ProtectedContentLink({
       <Link href={href} className={className} onClick={handleClick} {...props}>
         {children}
       </Link>
+
+      <KlubInfoModal
+        isOpen={klubOpen}
+        language={language}
+        onClose={() => setKlubOpen(false)}
+        onRegister={() => {
+          setKlubOpen(false)
+          setAuthTab('signup')
+          setAuthOpen(true)
+        }}
+        onLogin={() => {
+          setKlubOpen(false)
+          setAuthTab('login')
+          setAuthOpen(true)
+        }}
+      />
+
       <AuthModal
         isOpen={authOpen}
+        defaultTab={authTab}
         onClose={() => setAuthOpen(false)}
         onAuthSuccess={handleAuthSuccess}
-        title={copy.title}
-        message={copy.message}
       />
     </>
   )

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { ArrowLeft, CheckCircle } from 'lucide-react'
@@ -9,8 +10,9 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { supabase } from '../../lib/supabase'
-import AuthModal from '../../components/AuthModal'
 import { getPurchaseLegalCopy } from '@/lib/purchaseLegal'
+
+const AuthModal = dynamic(() => import('../../components/AuthModal'), { ssr: false })
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import { PREMIUM_PDFS_ENABLED } from '@/lib/featureFlags'
@@ -215,7 +217,7 @@ export default function PremiumLandingPage() {
   if (!PREMIUM_PDFS_ENABLED) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
-        <div className="container mx-auto px-4 py-20">
+        <div className="container mx-auto px-6 py-16 md:py-24" style={{maxWidth:"1200px"}}>
           <div className="max-w-3xl mx-auto">
             <Card className="bg-white/95 border-gray-200 shadow-xl">
               <CardHeader>
@@ -224,7 +226,7 @@ export default function PremiumLandingPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-slate-700 leading-relaxed">
+                <p className="text-slate-700 leading-[1.75]">
                   {language === 'cs'
                     ? 'Tuto cast zatim nezverejnujeme. Pri spusteni webu zustane sekce premium vypnuta a bude oznacena jako pripravovana.'
                     : language === 'it'
@@ -330,7 +332,7 @@ export default function PremiumLandingPage() {
         className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg border-b border-white/20"
         style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}
       >
-        <div className="container mx-auto px-4 pt-4 pb-3">
+          <div className="container mx-auto px-6 pt-4 pb-3">
           <div className="flex items-center justify-between">
             <Link href="/" className="relative">
               <img
@@ -352,19 +354,19 @@ export default function PremiumLandingPage() {
               <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20">
                 <button
                   onClick={() => handleLanguageChange('en')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}
+                  className={`px-3 py-1 rounded-full text-sm font-medium cursor-pointer leading-none hover:opacity-80 ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}
                 >
                   EN
                 </button>
                 <button
                   onClick={() => handleLanguageChange('cs')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}
+                  className={`px-3 py-1 rounded-full text-sm font-medium cursor-pointer leading-none hover:opacity-80 ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}
                 >
                   CS
                 </button>
                 <button
                   onClick={() => handleLanguageChange('it')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium ${language === 'it' ? 'bg-white/20 text-white' : 'text-white/60'}`}
+                  className={`px-3 py-1 rounded-full text-sm font-medium cursor-pointer leading-none hover:opacity-80 ${language === 'it' ? 'bg-white/20 text-white' : 'text-white/60'}`}
                 >
                   IT
                 </button>
@@ -375,7 +377,7 @@ export default function PremiumLandingPage() {
       </nav>
 
       <div className="pt-32 pb-14">
-        <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <Card className="bg-white/95 border-gray-200 shadow-xl">
               <CardHeader className="pb-2">
@@ -384,12 +386,12 @@ export default function PremiumLandingPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                <h1 className="text-3xl md:text-4xl font-bold leading-tight text-slate-900">
+                <h1 className="font-extrabold leading-tight text-slate-900">
                   {t.title}
                 </h1>
 
-                <p className="text-lg text-gray-700 leading-relaxed">{t.intro}</p>
-                <p className="text-gray-700 leading-relaxed">{t.body}</p>
+                <p className="text-lg text-gray-700 leading-[1.75]">{t.intro}</p>
+                <p className="text-gray-700 leading-[1.75]">{t.body}</p>
                 <InformationalDisclaimer language={language} variant="pdf" />
 
                 <div className="space-y-3">
@@ -401,7 +403,7 @@ export default function PremiumLandingPage() {
                   ))}
                 </div>
 
-                <p className="text-gray-700 leading-relaxed">{t.trust}</p>
+                <p className="text-gray-700 leading-[1.75]">{t.trust}</p>
 
                 <div className="p-5 rounded-xl border border-amber-200 bg-amber-50">
                   <p className="text-amber-900 text-sm mb-2">
@@ -456,7 +458,7 @@ export default function PremiumLandingPage() {
                       </label>
                     </div>
 
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                    <p className="text-xs text-slate-600 leading-relaxed">
                       {t.digitalRightsInfo}
                     </p>
 
@@ -519,7 +521,7 @@ export default function PremiumLandingPage() {
                       />
                     </div>
 
-                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                    <p className="text-xs text-slate-600 leading-relaxed">
                       {t.billingHelper}
                     </p>
                     <FormPrivacyNotice language={language} purpose="purchase" />
@@ -528,7 +530,7 @@ export default function PremiumLandingPage() {
                   <PremiumPdfComingSoonTrigger
                     language={language}
                     disabled={isLoadingCheckout}
-                    className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-full md:w-auto bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 text-amber-950 hover:from-amber-200 hover:via-yellow-200 hover:to-amber-300 border border-amber-200/70"
+                    className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 min-h-[44px] px-4 py-2 w-full md:w-auto bg-gradient-to-r from-amber-300 via-yellow-300 to-amber-400 text-amber-950 hover:from-amber-200 hover:via-yellow-200 hover:to-amber-300 border border-amber-200/70"
                   >
                     {isLoadingCheckout ? t.loading : `${t.cta} (${currentPrice.discounted} Kč)`}
                   </PremiumPdfComingSoonTrigger>

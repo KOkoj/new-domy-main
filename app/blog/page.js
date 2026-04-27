@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
 
@@ -319,8 +320,8 @@ export default function BlogPage() {
     <div className="min-h-screen bg-[#faf8f5]">
       <Navigation />
 
-      <div className="pt-28 md:pt-32 pb-12">
-        <div className="container mx-auto px-4 py-12 md:py-16 mb-4">
+      <div className="pt-28 md:pt-32 pb-16 md:pb-24">
+        <div className="container mx-auto px-6 py-16 md:py-24 mb-4" style={{ maxWidth: '1200px' }}>
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-6">
               <BookOpen className="h-4 w-4 text-slate-500" />
@@ -328,14 +329,14 @@ export default function BlogPage() {
                 {language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles'}
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-slate-800 leading-tight">
+            <h1 className="font-bold mb-8 text-slate-800">
               {language === 'cs'
                 ? 'Články o koupi domu v Itálii'
                 : language === 'it'
                   ? "Articoli sull'acquisto di una casa in Italia"
                   : 'Articles About Buying a House in Italy'}
             </h1>
-            <p className="text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg text-gray-500 leading-[1.75] max-w-2xl mx-auto">
               {language === 'cs'
                 ? 'Praktické články, které vám pomohou zorientovat se v procesu koupě nemovitosti v Itálii.'
                 : language === 'it'
@@ -345,7 +346,7 @@ export default function BlogPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-8 lg:gap-12 mb-20">
             <aside className="lg:sticky lg:top-28 h-fit lg:-ml-3">
               <div className="space-y-4">
@@ -353,7 +354,7 @@ export default function BlogPage() {
                   <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-300" />
                   <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-emerald-300/45 blur-xl" />
                   <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-amber-200/50 blur-xl" />
-                  <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-white/85 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-emerald-700 border border-emerald-200 mb-3">
+                  <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-white/85 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-700 border border-emerald-200 mb-3">
                     TIP
                   </div>
                   <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-700 to-teal-700 flex items-center justify-center mb-3 shadow-sm">
@@ -370,7 +371,7 @@ export default function BlogPage() {
                         : 'New section with articles, practical tips, and curiosities for people planning to travel in Italy.'}
                   </p>
                   <Link href="/clanky/pruvodce-italii" className="block">
-                    <Button className="w-full h-9 bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-600 hover:to-teal-600 text-white text-xs font-semibold rounded-lg shadow-sm">
+                    <Button className="w-full min-h-[44px] bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-600 hover:to-teal-600 text-white text-xs font-semibold rounded-lg shadow-sm">
                       {language === 'cs' ? 'Otevřít sekci cestování' : language === 'it' ? 'Vai alla sezione viaggi' : 'Open travel section'}
                       <ChevronRight className="h-3.5 w-3.5 ml-1.5" />
                     </Button>
@@ -381,7 +382,7 @@ export default function BlogPage() {
                   <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-orange-400 via-amber-300 to-orange-300" />
                   <div className="absolute -top-7 -right-8 h-20 w-20 rounded-full bg-orange-300/55 blur-xl" />
                   <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-slate-200/50 blur-xl" />
-                  <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-white/80 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-amber-700 border border-amber-200 mb-3">
+                  <div className="relative z-10 inline-flex items-center gap-2 rounded-full bg-white/80 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-amber-700 border border-amber-200 mb-3">
                     FAQ
                   </div>
                   <div className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center mb-3 shadow-sm">
@@ -398,7 +399,7 @@ export default function BlogPage() {
                         : 'Read the FAQ about buying property in Italy.'}
                   </p>
                   <Link href="/faq" className="block">
-                    <Button className="w-full h-9 bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white text-xs font-semibold rounded-lg shadow-sm">
+                    <Button className="w-full min-h-[44px] bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white text-xs font-semibold rounded-lg shadow-sm">
                       {language === 'cs' ? 'Přejít na FAQ' : language === 'it' ? 'Vai alle FAQ' : 'Go to FAQ'}
                       <ChevronRight className="h-3.5 w-3.5 ml-1.5" />
                     </Button>
@@ -412,12 +413,12 @@ export default function BlogPage() {
               {visibleArticles.map((article) => (
                 <ProtectedContentLink key={article.slug} href={article.link} language={language} className="block group">
                   <article className="py-8 first:pt-4">
-                    <div className="grid gap-5 md:grid-cols-[220px_minmax(0,1fr)] md:items-center">
+                    <div className="grid gap-6 md:grid-cols-[220px_minmax(0,1fr)] md:items-center">
                       <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
                         <img
                           src={article.image}
                           alt={localize(article.imageAlt, language) || localize(article.title, language)}
-                          className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-40"
+                          className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105 md:h-40"
                           loading="lazy"
                         />
                       </div>
@@ -431,10 +432,10 @@ export default function BlogPage() {
                             {article.readTime}
                           </span>
                         </div>
-                        <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-2.5 group-hover:text-slate-600 transition-colors leading-tight">
+                        <h2 className="font-bold text-slate-800 mb-8 group-hover:text-slate-600 transition-colors leading-tight">
                           {localize(article.title, language)}
                         </h2>
-                        <p className="text-gray-500 leading-relaxed mb-3">{localize(article.excerpt, language)}</p>
+                        <p className="text-gray-500 leading-[1.75] mb-3">{localize(article.excerpt, language)}</p>
                         <span className="text-sm font-medium text-slate-600 group-hover:text-copper-600 flex items-center gap-1 transition-colors">
                           {language === 'cs' ? 'Číst článek' : language === 'it' ? 'Leggi articolo' : 'Read Article'}
                           <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
@@ -455,10 +456,10 @@ export default function BlogPage() {
                 <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-6">
                   <BookOpen className="h-7 w-7 text-white" />
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
+                <h2 className="font-bold mb-8 text-white">
                   {language === 'cs' ? 'Chcete vědět víc?' : language === 'it' ? 'Vuoi saperne di più?' : 'Want to Know More?'}
                 </h2>
-                <p className="text-gray-300 text-lg mb-8 leading-relaxed max-w-xl mx-auto">
+                <p className="text-gray-300 text-lg mb-8 leading-[1.75] max-w-xl mx-auto">
                   {language === 'cs'
                     ? 'Každá situace je jiná. Rádi vám doporučíme správný další krok podle vašeho cíle, rozpočtu a plánu.'
                     : language === 'it'
@@ -467,14 +468,14 @@ export default function BlogPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <a href="https://wa.me/420731450001" target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="w-full sm:w-auto bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-5 text-base transition-all duration-300 hover:scale-[1.02] shadow-lg rounded-xl">
+                    <Button size="lg" className="w-full sm:w-auto bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-5 text-base transition-all duration-200 shadow-lg rounded-xl">
                       <MessageSquare className="h-5 w-5 mr-2" />
                       WhatsApp
                     </Button>
                   </a>
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 hover:border-white/30 font-medium px-8 py-5 text-base transition-all duration-300 rounded-xl bg-transparent border"
+                    className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 hover:border-white/30 font-medium px-8 py-5 text-base transition-all duration-200 rounded-xl bg-transparent border"
                     onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}
                   >
                     <Mail className="h-5 w-5 mr-2" />
@@ -487,12 +488,13 @@ export default function BlogPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 pb-10">
+      <div className="container mx-auto px-6 pb-10" style={{ maxWidth: '1200px' }}>
         <div className="max-w-5xl mx-auto">
           <InformationalDisclaimer language={language} />
         </div>
       </div>
 
+      <PropertySlider language={language} />
       <Footer language={language} />
     </div>
   )

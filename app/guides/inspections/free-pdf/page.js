@@ -93,7 +93,7 @@ export default function InspectionsFreePdfLandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 px-4 py-10 sm:py-16">
+    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 px-6 py-16 md:py-24">
       <div className="max-w-2xl mx-auto">
         <div className="mb-5 sm:mb-6">
           <Link
@@ -111,12 +111,12 @@ export default function InspectionsFreePdfLandingPage() {
               <FileText className="h-3.5 w-3.5" />
               PDF
             </div>
-            <CardTitle className="text-2xl sm:text-3xl font-bold text-slate-900 mt-3">
+            <CardTitle className="font-bold text-slate-900 mt-3 mb-8">
               {copy.title}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-5 sm:space-y-6">
-            <p className="text-slate-700 leading-relaxed text-sm sm:text-base">{copy.intro}</p>
+            <p className="text-gray-500 leading-relaxed text-sm sm:text-base" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.intro}</p>
 
             <Button
               onClick={handleDownload}

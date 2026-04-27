@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, Calendar, Clock, MapPin } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
@@ -470,14 +472,14 @@ function TravelPartnerCta({ title, text, bookingLabel, gygLabel }) {
     <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
       <CardContent className="p-6 md:p-8">
         <h3 className="text-2xl font-bold mb-3 text-slate-800">{title}</h3>
-        <p className="text-gray-600 mb-5 leading-relaxed">{text}</p>
+        <p className="text-gray-500 mb-5 leading-relaxed" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{text}</p>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-          <Button asChild className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-6 py-5 text-sm transition-all duration-300 hover:scale-[1.02] shadow-lg w-full sm:w-auto">
+          <Button asChild className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-6 py-5 text-sm transition-all duration-300 shadow-lg w-full sm:w-auto">
             <a href={TRAVEL_PARTNER_LINKS.booking} target="_blank" rel="nofollow sponsored noopener noreferrer">
               {bookingLabel}
             </a>
           </Button>
-          <Button asChild className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold px-6 py-5 text-sm transition-all duration-300 hover:scale-[1.02] shadow-lg w-full sm:w-auto">
+          <Button asChild className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold px-6 py-5 text-sm transition-all duration-300 shadow-lg w-full sm:w-auto">
             <a href={TRAVEL_PARTNER_LINKS.getYourGuide} target="_blank" rel="nofollow sponsored noopener noreferrer">
               {gygLabel}
             </a>
@@ -544,8 +546,8 @@ export default function MostBeautifulSmallTownsItalyPage() {
     <div className="min-h-screen bg-[#faf8f5]">
       <Navigation />
 
-      <main className="pt-28 pb-16">
-        <div className="container mx-auto px-4">
+      <main className="pt-28 pb-16 md:pb-24">
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
           <div className="max-w-[1200px] mx-auto lg:grid lg:grid-cols-[minmax(0,1fr)_200px] lg:gap-8 xl:gap-12">
             <article className="max-w-4xl lg:max-w-none space-y-8">
             <Button asChild variant="outline" className="inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100">
@@ -561,7 +563,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
                 {t.badge}
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight mb-4">{t.title}</h1>
+              <h1 className="font-bold text-slate-900 leading-tight mb-8">{t.title}</h1>
 
               <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-6">
                 <span className="inline-flex items-center">
@@ -589,13 +591,13 @@ export default function MostBeautifulSmallTownsItalyPage() {
             />
 
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
-              <img src={articleImage.src} alt={articleImage.alt} className="w-full h-64 md:h-80 object-cover" loading="lazy" />
+              <Image src={articleImage.src} alt={articleImage.alt} width={1400} height={800} sizes="(min-width: 768px) 768px, 100vw" className="w-full h-64 md:h-80 object-cover" />
               <p className="text-sm text-slate-600 px-4 py-3">{articleImage.caption}</p>
             </div>
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>
-                <CardTitle className="text-2xl">{t.whyTitle}</CardTitle>
+                <CardTitle className="mb-8">{t.whyTitle}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-6 space-y-2 text-slate-700">
@@ -608,7 +610,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>
-                <CardTitle className="text-2xl">{t.townsTitle}</CardTitle>
+                <CardTitle className="mb-8">{t.townsTitle}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {t.towns.map((town) => (
@@ -634,7 +636,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>
-                <CardTitle className="text-2xl">{t.budgetTitle}</CardTitle>
+                <CardTitle className="mb-8">{t.budgetTitle}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-sm text-slate-500">{t.budgetNote}</p>
@@ -654,7 +656,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>
-                <CardTitle className="text-2xl">{t.tipsTitle}</CardTitle>
+                <CardTitle className="mb-8">{t.tipsTitle}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-6 space-y-2 text-slate-700">
@@ -667,7 +669,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>
-                <CardTitle className="text-2xl">{t.seasonTitle}</CardTitle>
+                <CardTitle className="mb-8">{t.seasonTitle}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-6 space-y-2 text-slate-700">
@@ -680,7 +682,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>
-                <CardTitle className="text-2xl">{t.logisticsTitle}</CardTitle>
+                <CardTitle className="mb-8">{t.logisticsTitle}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-6 space-y-2 text-slate-700">
@@ -693,7 +695,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>
-                <CardTitle className="text-2xl">{t.overspendTitle}</CardTitle>
+                <CardTitle className="mb-8">{t.overspendTitle}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-6 space-y-2 text-slate-700">
@@ -706,7 +708,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
 
             <Card className="bg-slate-50 border-slate-200">
               <CardHeader>
-                <CardTitle className="text-2xl">{t.sourcesTitle}</CardTitle>
+                <CardTitle className="mb-8">{t.sourcesTitle}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-6 space-y-2 text-slate-700">
@@ -719,7 +721,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
 
             <Card className="bg-amber-50 border-amber-200">
               <CardContent className="p-6 md:p-8">
-                <h2 className="text-2xl font-semibold text-amber-950 mb-3">{t.bridgeTitle}</h2>
+                <h2 className="font-semibold text-amber-950 mb-8">{t.bridgeTitle}</h2>
                 <p className="text-amber-950 leading-relaxed mb-5">{t.bridgeText}</p>
                 <Button asChild className="bg-slate-800 hover:bg-slate-700 text-white">
                   <Link href="/regiony">{t.bridgeButton}</Link>
@@ -729,7 +731,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
 
               <Card className="bg-white border border-slate-200">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{t.conclusionTitle}</CardTitle>
+                  <CardTitle className="mb-8">{t.conclusionTitle}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3 text-slate-700 leading-relaxed">
                   {t.conclusion.map((line) => (
@@ -760,6 +762,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
         </div>
       </main>
 
+      <PropertySlider language={language} />
       <Footer language={language} />
     </div>
   )

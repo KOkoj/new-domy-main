@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { BookOpen, Clock, ChevronRight } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
 
@@ -157,14 +158,14 @@ export default function GuidesHubPage() {
       <Navigation />
 
       <main className="pt-28 pb-14">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-5">
                 <BookOpen className="h-4 w-4 text-slate-600" />
                 <span className="text-sm text-slate-700 font-medium">{copy.badge}</span>
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">{copy.title}</h1>
+              <h1 className="font-bold text-slate-900 mb-8">{copy.title}</h1>
               <p className="text-slate-600 text-lg">{copy.subtitle}</p>
             </div>
 
@@ -177,7 +178,7 @@ export default function GuidesHubPage() {
                   className="block bg-white border border-slate-200 rounded-xl p-5 hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center justify-between gap-4 mb-2">
-                    <h2 className="text-xl font-semibold text-slate-900">{localize(guide.title, language)}</h2>
+                    <h2 className="font-semibold text-slate-900">{localize(guide.title, language)}</h2>
                     <ChevronRight className="h-5 w-5 text-slate-400 flex-shrink-0" />
                   </div>
                   <p className="text-slate-600 mb-3">{localize(guide.excerpt, language)}</p>
@@ -195,12 +196,13 @@ export default function GuidesHubPage() {
         </div>
       </main>
 
-      <div className="container mx-auto px-4 pb-10">
+      <div className="container mx-auto px-6 pb-10" style={{ maxWidth: '1200px' }}>
         <div className="max-w-5xl mx-auto">
           <InformationalDisclaimer language={language} />
         </div>
       </div>
 
+      <PropertySlider language={language} />
       <Footer language={language} />
     </div>
   )

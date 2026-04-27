@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PropertySlider from '@/components/PropertySlider'
 import { supabase } from '@/lib/supabase'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 
@@ -137,8 +138,8 @@ export default function BookCallPage() {
       <Navigation />
 
       <main className="pt-28 md:pt-32 pb-12">
-        <section className="container mx-auto px-4 py-8">
-          <div className="max-w-3xl mx-auto text-center mb-8">
+        <section className="container mx-auto px-6 py-8" style={{ maxWidth: '1200px' }}>
+          <div className="max-w-3xl mx-auto text-center mb-8" style={{ maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
             <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
               {language === 'cs'
                 ? 'Naplánujte si hovor'
@@ -313,6 +314,7 @@ export default function BookCallPage() {
         </section>
       </main>
 
+      <PropertySlider language={language} />
       <Footer language={language} />
     </div>
   )
