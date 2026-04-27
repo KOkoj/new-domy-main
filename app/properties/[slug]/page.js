@@ -598,6 +598,22 @@ export default function PropertyDetailPage() {
     localStorage.setItem('preferred-currency', newCurrency)
   }
 
+  const handleShare = async () => {
+    const url = window.location.href
+    const title = property?.title || property?.name || 'Property'
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url })
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          await navigator.clipboard.writeText(url)
+        }
+      }
+    } else {
+      await navigator.clipboard.writeText(url)
+    }
+  }
+
   // Helper function to get localized text
   const getLocalizedText = (field, fallback = 'Not specified') => {
     if (!field) return fallback
@@ -939,7 +955,7 @@ export default function PropertyDetailPage() {
                     {formatPrice(property.price)}
                   </div>
                   <div className="flex items-center sm:justify-end gap-2 flex-wrap">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" onClick={handleShare}>
                       <Share2 className="h-4 w-4 mr-1" />
                       {language === 'cs' ? 'Sdílet' : language === 'it' ? 'Condividi' : 'Share'}
                     </Button>

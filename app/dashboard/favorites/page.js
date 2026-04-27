@@ -215,6 +215,21 @@ export default function FavoritesManagement() {
 
   const PropertyCard = ({ favorite, isGrid = true }) => {
     const { property } = favorite
+
+    const handleShare = async () => {
+      const url = `${window.location.origin}/properties/${property.slug?.current || property._id}`
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: property.title?.en || 'Property', url })
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            await navigator.clipboard.writeText(url)
+          }
+        }
+      } else {
+        await navigator.clipboard.writeText(url)
+      }
+    }
     
     return (
       <Card className={`hover:shadow-lg transition-all duration-300 ${selectedProperties.has(property._id) ? 'ring-2 ring-blue-500' : ''}`}>
@@ -297,7 +312,7 @@ export default function FavoritesManagement() {
               <Button variant="outline" size="sm" onClick={() => removeFavorite(favorite.id, property._id)}>
                 <Trash2 className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={handleShare}>
                 <Share2 className="h-4 w-4" />
               </Button>
             </div>
