@@ -385,6 +385,7 @@ export default function Navigation() {
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
         defaultTab={authModalDefaultTab}
+        language={language}
       />
       
       {/* Premium Club Popup Bar - inside nav so it flows directly below */}

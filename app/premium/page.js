@@ -562,6 +562,7 @@ export default function PremiumLandingPage() {
           setUser(currentUser)
           setIsAuthModalOpen(false)
         }}
+        language={language}
       />
     </div>
   )

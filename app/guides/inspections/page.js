@@ -838,6 +838,7 @@ export default function InspectionsGuidePage() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={(user) => setUser(user)}
+        language={language}
       />
     </div>
   );

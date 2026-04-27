@@ -11,14 +11,16 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react'
 import Image from 'next/image'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
+import { t } from '@/lib/translations'
 
 export default function AuthModal({
   isOpen,
   onClose,
   onAuthSuccess,
-  title = 'Welcome',
+  title = '',
   message = '',
-  defaultTab = 'login'
+  defaultTab = 'login',
+  language = 'en'
 }) {
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
@@ -41,6 +43,8 @@ export default function AuthModal({
     password: '',
     confirmPassword: ''
   })
+
+  const tr = (key) => t(`auth.${key}`, language)
 
   const loginViaServer = async (email, password) => {
     const response = await fetch('/api/auth/login', {
@@ -91,7 +95,7 @@ export default function AuthModal({
     setError('')
 
     if (!loginForm.email || !loginForm.password) {
-      setError('Please fill in all fields')
+      setError(tr('fillAllFields'))
       setIsLoading(false)
       return
     }
@@ -103,21 +107,20 @@ export default function AuthModal({
         return
       }
 
-      setSuccess('Login successful!')
-      
-      // Ensure profile exists (fallback)
+      setSuccess(tr('loginSuccess'))
+
       try {
         await fetch('/api/profile', { method: 'POST' })
       } catch (profileError) {
         console.warn('Profile check/creation failed:', profileError)
       }
-      
+
       setTimeout(() => {
         onAuthSuccess?.(result.user)
         onClose()
       }, 1000)
     } catch (err) {
-      setError('Unable to connect to authentication service. Please try again.')
+      setError(tr('connectionError'))
     } finally {
       setIsLoading(false)
     }
@@ -129,19 +132,19 @@ export default function AuthModal({
     setError('')
 
     if (!signupForm.name || !signupForm.email || !signupForm.password) {
-      setError('Please fill in all fields')
+      setError(tr('fillAllFields'))
       setIsLoading(false)
       return
     }
 
     if (signupForm.password !== signupForm.confirmPassword) {
-      setError('Passwords do not match')
+      setError(tr('passwordsDoNotMatch'))
       setIsLoading(false)
       return
     }
 
     if (signupForm.password.length < 6) {
-      setError('Password must be at least 6 characters')
+      setError(tr('passwordTooShort'))
       setIsLoading(false)
       return
     }
@@ -159,13 +162,8 @@ export default function AuthModal({
       }
 
       const hasSession = Boolean(result.hasSession)
-      setSuccess(
-        hasSession
-          ? 'Account created successfully! Redirecting...'
-          : 'Account created successfully! Please check your email to confirm your account.'
-      )
+      setSuccess(hasSession ? tr('accountCreatedSession') : tr('accountCreatedEmail'))
 
-      // Try to create profile manually as fallback
       try {
         await fetch('/api/profile', { method: 'POST' })
       } catch (profileError) {
@@ -184,7 +182,7 @@ export default function AuthModal({
         }, 3000)
       }
     } catch (err) {
-      setError('Unable to connect to authentication service. Please try again.')
+      setError(tr('connectionError'))
     } finally {
       setIsLoading(false)
     }
@@ -195,12 +193,12 @@ export default function AuthModal({
     setError('')
 
     if (!loginForm.email) {
-      setError('Please enter your email address')
+      setError(tr('fillAllFields'))
       setIsLoading(false)
       return
     }
 
-    setError('Magic Link is temporarily unavailable. Please use email and password login.')
+    setError(tr('magicLinkUnavailable'))
     setIsLoading(false)
   }
 
@@ -217,24 +215,29 @@ export default function AuthModal({
     onClose()
   }
 
+  const displayTitle = title || tr('login')
+
   return (
     <Dialog open={isOpen} onOpenChange={handleClose} data-testid="auth-modal">
-      <DialogContent className="sm:max-w-md" data-testid="auth-modal-content">
+      <DialogContent
+        className="sm:max-w-sm w-full max-h-[90vh] overflow-y-auto"
+        data-testid="auth-modal-content"
+      >
         <DialogHeader data-testid="auth-modal-header">
-          <div className="text-center space-y-4" data-testid="auth-modal-title">
+          <div className="text-center space-y-2" data-testid="auth-modal-title">
             <Image
               src="/logo domy.svg"
               alt="Domy v Itálii"
-              width={64}
-              height={61}
-              className="h-16 w-auto mx-auto"
+              width={48}
+              height={46}
+              className="h-12 w-auto mx-auto"
               data-testid="auth-modal-logo"
             />
-            <DialogTitle className="text-xl font-bold">
-              {title}
+            <DialogTitle className="text-lg font-bold">
+              {displayTitle}
             </DialogTitle>
             {message && (
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 {message}
               </p>
             )}
@@ -243,21 +246,21 @@ export default function AuthModal({
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full" data-testid="auth-tabs">
           <TabsList className="grid w-full grid-cols-2" data-testid="auth-tabs-list">
-            <TabsTrigger value="login" data-testid="login-tab">Login</TabsTrigger>
-            <TabsTrigger value="signup" data-testid="signup-tab">Sign Up</TabsTrigger>
+            <TabsTrigger value="login" data-testid="login-tab">{tr('login')}</TabsTrigger>
+            <TabsTrigger value="signup" data-testid="signup-tab">{tr('signup')}</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="login" className="space-y-4" data-testid="login-tab-content">
-            <form onSubmit={handleLogin} className="space-y-4" data-testid="login-form">
-              <div className="space-y-2" data-testid="login-email-field">
-                <Label htmlFor="login-email" data-testid="login-email-label">Email</Label>
+          <TabsContent value="login" className="space-y-3 mt-3" data-testid="login-tab-content">
+            <form onSubmit={handleLogin} className="space-y-3" data-testid="login-form">
+              <div className="space-y-1" data-testid="login-email-field">
+                <Label htmlFor="login-email" className="text-sm" data-testid="login-email-label">{tr('email')}</Label>
                 <div className="relative" data-testid="login-email-input-container">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                   <Input
                     id="login-email"
                     type="email"
-                    placeholder="your.email@example.com"
-                    className="pl-10"
+                    placeholder={tr('emailPlaceholder')}
+                    className="pl-10 h-9 text-sm"
                     value={loginForm.email}
                     onChange={(e) => setLoginForm(prev => ({ ...prev, email: e.target.value }))}
                     disabled={isLoading}
@@ -266,15 +269,15 @@ export default function AuthModal({
                 </div>
               </div>
 
-              <div className="space-y-2" data-testid="login-password-field">
-                <Label htmlFor="login-password" data-testid="login-password-label">Password</Label>
+              <div className="space-y-1" data-testid="login-password-field">
+                <Label htmlFor="login-password" className="text-sm" data-testid="login-password-label">{tr('password')}</Label>
                 <div className="relative" data-testid="login-password-input-container">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                   <Input
                     id="login-password"
                     type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    className="pl-10 pr-10"
+                    placeholder={tr('passwordPlaceholder')}
+                    className="pl-10 pr-10 h-9 text-sm"
                     value={loginForm.password}
                     onChange={(e) => setLoginForm(prev => ({ ...prev, password: e.target.value }))}
                     disabled={isLoading}
@@ -282,7 +285,7 @@ export default function AuthModal({
                   />
                   <button
                     type="button"
-                    className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
                     onClick={() => setShowPassword(!showPassword)}
                     data-testid="login-password-toggle"
                   >
@@ -292,56 +295,56 @@ export default function AuthModal({
               </div>
 
               {error && (
-                <Alert variant="destructive">
-                  <AlertDescription>{error}</AlertDescription>
+                <Alert variant="destructive" className="py-2">
+                  <AlertDescription className="text-xs">{error}</AlertDescription>
                 </Alert>
               )}
 
               {success && (
-                <Alert>
-                  <AlertDescription className="text-slate-800">{success}</AlertDescription>
+                <Alert className="py-2">
+                  <AlertDescription className="text-xs text-slate-800">{success}</AlertDescription>
                 </Alert>
               )}
 
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Signing in...' : 'Sign In'}
+              <Button type="submit" className="w-full h-9 text-sm" disabled={isLoading}>
+                {isLoading ? tr('signingIn') : tr('signIn')}
               </Button>
 
-              <FormPrivacyNotice language="en" purpose="account" />
+              <FormPrivacyNotice language={language} purpose="account" />
 
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-background px-2 text-muted-foreground">Or</span>
+                  <span className="bg-background px-2 text-muted-foreground">{tr('or')}</span>
                 </div>
               </div>
 
-              <Button 
-                type="button" 
-                variant="outline" 
-                className="w-full" 
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full h-9 text-sm"
                 onClick={handleMagicLink}
                 disabled={isLoading}
               >
                 <Mail className="w-4 h-4 mr-2" />
-                Send Magic Link
+                {tr('sendMagicLink')}
               </Button>
             </form>
           </TabsContent>
 
-          <TabsContent value="signup" className="space-y-4">
-            <form onSubmit={handleSignup} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="signup-name">Full Name</Label>
+          <TabsContent value="signup" className="space-y-3 mt-3">
+            <form onSubmit={handleSignup} className="space-y-3">
+              <div className="space-y-1">
+                <Label htmlFor="signup-name" className="text-sm">{tr('fullName')}</Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <User className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                   <Input
                     id="signup-name"
                     type="text"
-                    placeholder="Your full name"
-                    className="pl-10"
+                    placeholder={tr('fullNamePlaceholder')}
+                    className="pl-10 h-9 text-sm"
                     value={signupForm.name}
                     onChange={(e) => setSignupForm(prev => ({ ...prev, name: e.target.value }))}
                     disabled={isLoading}
@@ -349,15 +352,15 @@ export default function AuthModal({
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="signup-email">Email</Label>
+              <div className="space-y-1">
+                <Label htmlFor="signup-email" className="text-sm">{tr('email')}</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                   <Input
                     id="signup-email"
                     type="email"
-                    placeholder="your.email@example.com"
-                    className="pl-10"
+                    placeholder={tr('emailPlaceholder')}
+                    className="pl-10 h-9 text-sm"
                     value={signupForm.email}
                     onChange={(e) => setSignupForm(prev => ({ ...prev, email: e.target.value }))}
                     disabled={isLoading}
@@ -365,22 +368,22 @@ export default function AuthModal({
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="signup-password">Password</Label>
+              <div className="space-y-1">
+                <Label htmlFor="signup-password" className="text-sm">{tr('password')}</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                   <Input
                     id="signup-password"
                     type={showPassword ? "text" : "password"}
-                    placeholder="Create a password (min 6 characters)"
-                    className="pl-10 pr-10"
+                    placeholder={tr('passwordMinLength')}
+                    className="pl-10 pr-10 h-9 text-sm"
                     value={signupForm.password}
                     onChange={(e) => setSignupForm(prev => ({ ...prev, password: e.target.value }))}
                     disabled={isLoading}
                   />
                   <button
                     type="button"
-                    className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -388,15 +391,15 @@ export default function AuthModal({
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="signup-confirm">Confirm Password</Label>
+              <div className="space-y-1">
+                <Label htmlFor="signup-confirm" className="text-sm">{tr('confirmPassword')}</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
                   <Input
                     id="signup-confirm"
                     type="password"
-                    placeholder="Confirm your password"
-                    className="pl-10"
+                    placeholder={tr('confirmPasswordPlaceholder')}
+                    className="pl-10 h-9 text-sm"
                     value={signupForm.confirmPassword}
                     onChange={(e) => setSignupForm(prev => ({ ...prev, confirmPassword: e.target.value }))}
                     disabled={isLoading}
@@ -405,41 +408,41 @@ export default function AuthModal({
               </div>
 
               {error && (
-                <Alert variant="destructive">
-                  <AlertDescription>{error}</AlertDescription>
+                <Alert variant="destructive" className="py-2">
+                  <AlertDescription className="text-xs">{error}</AlertDescription>
                 </Alert>
               )}
 
               {success && (
-                <Alert>
-                  <AlertDescription className="text-slate-800">{success}</AlertDescription>
+                <Alert className="py-2">
+                  <AlertDescription className="text-xs text-slate-800">{success}</AlertDescription>
                 </Alert>
               )}
 
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Creating account...' : 'Create Account'}
+              <Button type="submit" className="w-full h-9 text-sm" disabled={isLoading}>
+                {isLoading ? tr('creatingAccount') : tr('createAccount')}
               </Button>
 
-              <FormPrivacyNotice language="en" purpose="account" />
+              <FormPrivacyNotice language={language} purpose="account" />
             </form>
           </TabsContent>
         </Tabs>
 
-        <div className="text-center text-sm text-gray-600 mt-4 space-y-1">
+        <div className="text-center text-xs text-gray-600 mt-3 space-y-1">
           <p>
-            By signing up, you agree to our{' '}
+            {tr('termsText')}{' '}
             <Link href="/terms" className="underline">
-              Terms of Sale
+              {tr('termsLink')}
             </Link>{' '}
-            and{' '}
+            {tr('and')}{' '}
             <Link href="/gdpr" className="underline">
-              Privacy Notice
+              {tr('privacyLink')}
             </Link>
             .
           </p>
           <p>
             <Link href="/cookies" className="underline">
-              Cookie Policy
+              {tr('cookiePolicy')}
             </Link>
           </p>
         </div>

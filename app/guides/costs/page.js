@@ -547,6 +547,7 @@ export default function CostsGuidePage() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
+        language={language}
       />
     </div>
   )

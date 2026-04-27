@@ -474,6 +474,7 @@ export default function MistakesGuidePage() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={(user) => setUser(user)}
+        language={language}
       />
 
       <FreePdfUpsellModal

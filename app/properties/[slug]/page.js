@@ -900,6 +900,7 @@ export default function PropertyDetailPage() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
+        language={language}
         title={language === 'cs' ? 'Přihlášení vyžadováno' : language === 'it' ? 'Accesso richiesto' : 'Login required'}
         message={language === 'cs' ? 'Pro uložení nemovitosti do oblíbených se prosím přihlaste nebo si vytvořte bezplatný účet.' : language === 'it' ? 'Per salvare una proprietà nei preferiti devi accedere o creare un account gratuito.' : 'To save a property to your favorites, please log in or create a free account.'}
       />

@@ -572,6 +572,7 @@ export default function NotaryGuidePage() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={(nextUser) => setUser(nextUser)}
+        language={language}
       />
     </div>
   )
