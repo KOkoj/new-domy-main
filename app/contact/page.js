@@ -491,7 +491,7 @@ export default function ContactPage() {
                     </Button>
                   </Link>
                   <Link href="/regions" className="w-full sm:w-auto">
-                    <Button variant="outline" size="lg" className="w-full sm:w-auto border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300">
+                    <Button variant="outline" size="lg" className="w-full sm:w-auto border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:text-slate-700 hover:border-slate-400 font-semibold px-8 py-6 text-base transition-all duration-300">
                       {language === 'cs' ? 'Procházet regiony' :
                        language === 'it' ? 'Sfoglia regioni' :
                        'Browse Regions'}

@@ -216,7 +216,7 @@ export default function DocumentsPage() {
                   className={`whitespace-nowrap ${
                     selectedCategory === category
                       ? 'bg-copper-600 text-white border-copper-600'
-                      : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
+                      : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-600'
                   }`}
                   data-testid={`documents-category-${category.toLowerCase().replace(/\s+/g, '-')}`}
                 >
@@ -322,7 +322,7 @@ export default function DocumentsPage() {
                         variant="outline"
                         size="sm"
                         onClick={() => handlePreview(doc)}
-                        className="flex-1 sm:flex-none bg-white border-gray-200 text-gray-600 hover:bg-gray-50"
+                        className="flex-1 sm:flex-none bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-600"
                         data-testid={`document-${doc.id}-preview`}
                       >
                         <Eye className="h-4 w-4 mr-2" data-testid={`document-${doc.id}-preview-icon`} />

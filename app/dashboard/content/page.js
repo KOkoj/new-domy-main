@@ -277,7 +277,7 @@ export default function ContentPage() {
                 className={`whitespace-nowrap ${
                   selectedVideoCategory === category
                     ? 'bg-copper-600 text-white border-copper-600'
-                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
+                    : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-600'
                 }`}
               >
                 {category === 'All' ? t('club.contentPage.all', language) : category}
@@ -409,7 +409,7 @@ export default function ContentPage() {
                     </span>
                     <span>{formatDate(article.published_at)}</span>
                   </div>
-                  <Button variant="outline" size="sm" className="w-full sm:w-auto sm:flex-shrink-0 bg-white border-gray-200 text-gray-600 hover:bg-gray-50">
+                  <Button variant="outline" size="sm" className="w-full sm:w-auto sm:flex-shrink-0 bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-600">
                     {t('club.contentPage.readArticle', language)} →
                   </Button>
                 </div>

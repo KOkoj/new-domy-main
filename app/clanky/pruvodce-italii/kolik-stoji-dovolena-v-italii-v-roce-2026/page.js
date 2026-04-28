@@ -534,7 +534,7 @@ export default function HolidayCostsItaly2026Page() {
       <main className="pt-28 pb-16 md:pb-24">
         <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
           <article className="max-w-4xl mx-auto space-y-8" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
-            <Button asChild variant="outline" className="inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100">
+            <Button asChild variant="outline" className="inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-700">
               <Link href="/clanky/pruvodce-italii">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 {t.navArticles}

@@ -540,7 +540,7 @@ export default function PremiumLandingPage() {
                     <p className="text-blue-900 font-semibold mb-1">{t.paymentNoticeTitle}</p>
                     <p className="text-blue-900 text-sm leading-relaxed mb-3">{t.paymentNoticeBody}</p>
                     <Link href="/gdpr">
-                      <Button variant="outline" className="border-blue-300 text-blue-900 hover:bg-blue-100">
+                      <Button variant="outline" className="border-blue-300 text-blue-900 hover:bg-blue-100 hover:text-blue-900">
                         {t.paymentNoticeCta}
                       </Button>
                     </Link>

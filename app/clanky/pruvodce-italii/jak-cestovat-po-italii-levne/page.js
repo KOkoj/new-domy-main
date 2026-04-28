@@ -459,7 +459,7 @@ export default function CheapTravelItalyArticlePage() {
         <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
           <div className="max-w-[1200px] mx-auto lg:grid lg:grid-cols-[minmax(0,1fr)_200px] lg:gap-8 xl:gap-12">
             <article className="max-w-4xl lg:max-w-none space-y-8">
-            <Button asChild variant="outline" className="inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100">
+            <Button asChild variant="outline" className="inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-700">
               <Link href="/clanky/pruvodce-italii">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 {t.navArticles}

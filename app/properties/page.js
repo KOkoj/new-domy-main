@@ -1402,7 +1402,7 @@ export default function PropertiesPage() {
                       >
                         <Button
                           variant="outline"
-                          className="w-full sm:w-auto font-semibold px-6 py-6 rounded-xl border-slate-300 text-slate-800 hover:bg-slate-50 shadow-sm hover:shadow-md transition-all duration-200"
+                          className="w-full sm:w-auto font-semibold px-6 py-6 rounded-xl border-slate-300 text-slate-800 hover:bg-slate-50 hover:text-slate-800 shadow-sm hover:shadow-md transition-all duration-200"
                           data-testid="empty-state-whatsapp-cta"
                         >
                           <MessageCircle className="h-5 w-5 mr-2" />

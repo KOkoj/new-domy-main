@@ -545,7 +545,7 @@ export default function RegionCards({ language = 'en', showAll = false }) {
             <Button 
               size="lg" 
               variant="outline"
-              className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-colors duration-200"
+              className="border-2 border-slate-300 text-slate-700 hover:bg-slate-50 hover:text-slate-700 hover:border-slate-400 transition-colors duration-200"
             >
               {language === 'cs' ? 'Zobrazit všechny regiony' : 
                language === 'it' ? 'Visualizza tutte le regioni' : 

@@ -10,13 +10,12 @@ import Image from 'next/image'
 import { supabase } from '../../../lib/supabase'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import Footer from '@/components/Footer'
+import Navigation from '@/components/Navigation'
 
-const AuthModal = dynamic(() => import('../../../components/AuthModal'), { ssr: false })
 const FreePdfUpsellModal = dynamic(() => import('../../../components/FreePdfUpsellModal'), { ssr: false })
 
 export default function MistakesGuidePage() {
   const [user, setUser] = useState(null)
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [isFreePdfUpsellOpen, setIsFreePdfUpsellOpen] = useState(false)
   const [language, setLanguage] = useState('cs')
 
@@ -26,6 +25,13 @@ export default function MistakesGuidePage() {
       setLanguage(savedLanguage)
       document.documentElement.lang = savedLanguage
     }
+
+    const handleLanguageChange = (event) => {
+      setLanguage(event.detail)
+      document.documentElement.lang = event.detail
+    }
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
 
   useEffect(() => {
@@ -42,20 +48,6 @@ export default function MistakesGuidePage() {
 
     return () => subscription.unsubscribe()
   }, [])
-
-  const handleLogout = async () => {
-    if (!supabase) return
-    const { error } = await supabase.auth.signOut()
-    if (!error) {
-      setUser(null)
-    }
-  }
-
-  const handleLanguageChange = (newLanguage) => {
-    setLanguage(newLanguage)
-    document.documentElement.lang = newLanguage
-    localStorage.setItem('preferred-language', newLanguage)
-  }
 
   const handleFreePdfDownload = () => {
     if (typeof window !== 'undefined') {
@@ -136,43 +128,7 @@ export default function MistakesGuidePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}>
-        <div className="container mx-auto px-6 pt-4 pb-3" style={{ maxWidth: '1200px' }}>
-          <div className="flex items-center justify-between">
-            <Link href="/" className="relative overflow-visible">
-              <Image
-                src="/logo domy.svg"
-                alt="Domy v Itálii"
-                width={48}
-                height={46}
-                priority
-                className="h-12 w-auto cursor-pointer"
-                style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))' }}
-              />
-            </Link>
-            
-            <div className="flex items-center space-x-4">
-              <Link
-                href="/blog"
-                className="hidden items-center text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg px-3 py-2 transition-colors"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                {language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles'}
-              </Link>
-              <div className="group flex items-center bg-white/10 backdrop-blur-md rounded-full px-3 py-2 shadow-lg border border-white/20">
-                <button onClick={() => handleLanguageChange('en')} className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'en' ? 'bg-white/20 text-white' : 'text-white/60'}`}>EN</button>
-                <button onClick={() => handleLanguageChange('cs')} className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'cs' ? 'bg-white/20 text-white' : 'text-white/60'}`}>CS</button>
-                <button onClick={() => handleLanguageChange('it')} className={`cursor-pointer leading-none hover:opacity-80 px-3 py-1 rounded-full text-sm font-medium ${language === 'it' ? 'bg-white/20 text-white' : 'text-white/60'}`}>IT</button>
-              </div>
-              {user && (
-                <Button variant="outline" onClick={handleLogout} className="bg-white/10 border-white/30 text-white">
-                  Logout
-                </Button>
-              )}
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       <div className="pt-28 pb-16 md:pb-24">
         <div className="container mx-auto px-6 mb-6" style={{ maxWidth: '1200px' }}>
@@ -190,7 +146,7 @@ export default function MistakesGuidePage() {
         <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
           <div className="max-w-4xl mx-auto" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="mb-8">
-              <Button asChild variant="outline" className="mb-5 inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100">
+              <Button asChild variant="outline" className="mb-5 inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-700">
                 <Link href="/blog">
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   {language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles'}
@@ -472,13 +428,6 @@ export default function MistakesGuidePage() {
       </div>
 
       <Footer language={language} />
-
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        onAuthSuccess={(user) => setUser(user)}
-        language={language}
-      />
 
       <FreePdfUpsellModal
         open={isFreePdfUpsellOpen}

@@ -573,7 +573,7 @@ export default function RegionsListingClient({ initialRegions }) {
                       </Button>
                     </a>
                     <Link href="/contact" className="w-full sm:w-auto">
-                      <Button variant="outline" className="w-full border-blue-300 bg-white text-blue-900 hover:bg-blue-100">
+                      <Button variant="outline" className="w-full border-blue-300 bg-white text-blue-900 hover:bg-blue-100 hover:text-blue-900">
                         {language === 'cs' ? 'Kontaktní formulář' : language === 'it' ? 'Modulo di contatto' : 'Contact form'}
                       </Button>
                     </Link>
