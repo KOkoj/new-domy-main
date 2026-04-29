@@ -81,7 +81,6 @@ export default function ArticlePaywallGate() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [authOpen, setAuthOpen] = useState(false)
   const [authTab, setAuthTab] = useState('signup')
-  const [dismissed, setDismissed] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -116,14 +115,12 @@ export default function ArticlePaywallGate() {
         if (mounted) setAuthChecked(true)
       })
 
-    setDismissed(false)
-
     return () => {
       mounted = false
     }
   }, [isProtected, pathname])
 
-  const isLocked = isProtected && authChecked && !isAuthenticated && !dismissed
+  const isLocked = isProtected && authChecked && !isAuthenticated
 
   // Lock scroll and tag the document so global CSS can apply scroll-lock styles.
   useEffect(() => {
@@ -207,6 +204,23 @@ export default function ArticlePaywallGate() {
       window.location.reload()
     }
   }
+  const handleClose = () => {
+    if (typeof window === 'undefined') return
+    // Try to navigate to the previous page within our own site. If there's no
+    // valid history entry (direct link, new tab, external referrer), fall back
+    // to a safe landing page so the user never sees the gated article.
+    const sameOriginReferrer =
+      typeof document !== 'undefined' &&
+      document.referrer &&
+      document.referrer.startsWith(window.location.origin) &&
+      document.referrer !== window.location.href
+
+    if (sameOriginReferrer && window.history.length > 1) {
+      window.history.back()
+      return
+    }
+    window.location.href = '/'
+  }
 
   return (
     <>
@@ -258,7 +272,7 @@ export default function ArticlePaywallGate() {
                       </span>
                     </div>
                     <button
-                      onClick={() => setDismissed(true)}
+                      onClick={handleClose}
                       aria-label="Close"
                       className="rounded-full p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors flex-shrink-0"
                     >
@@ -303,7 +317,7 @@ export default function ArticlePaywallGate() {
                     </Button>
                   </div>
                   <button
-                    onClick={() => setDismissed(true)}
+                    onClick={handleClose}
                     className="mt-3 w-full flex items-center justify-center gap-1.5 text-sm text-slate-400 hover:text-slate-600 transition-colors"
                     data-testid="paywall-close-button"
                   >
