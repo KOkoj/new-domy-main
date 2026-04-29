@@ -75,7 +75,6 @@ export default function RootLayout({ children }) {
     <html lang="cs" className={`${manrope.variable} ${sora.variable} font-sans overflow-x-hidden`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <link rel="icon" href="/favicon.ico" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
