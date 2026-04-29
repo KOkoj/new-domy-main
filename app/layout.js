@@ -1,11 +1,11 @@
-﻿import { Manrope, Sora } from 'next/font/google'
+import { Manrope, Sora } from 'next/font/google'
 import './globals.css'
 import ScrollToTop from '@/components/ScrollToTop'
 import NavigationProgress from '@/components/NavigationProgress'
 import ArticlePaywallGate from '@/components/ArticlePaywallGate'
 import { PUBLIC_SITE_STANDBY } from '@/lib/featureFlags'
 import { SITE_NAME, SITE_URL } from '@/lib/siteConfig'
-import { Analytics } from '@vercel/analytics/react'
+import { Analytics } from '@vercel/analytics/next'
 
 const manrope = Manrope({
   subsets: ['latin', 'latin-ext'],
