@@ -42,6 +42,10 @@ const PROPERTY_TYPE_LABELS = {
 }
 
 function getPropertyTypeLabel(propertyType, language) {
+  if (propertyType && typeof propertyType === 'object') {
+    return propertyType[language] || propertyType.en || propertyType.it || propertyType.cs || '-'
+  }
+
   const key = String(propertyType || '').toLowerCase()
   return PROPERTY_TYPE_LABELS[key]?.[language] || PROPERTY_TYPE_LABELS[key]?.en || propertyType || '-'
 }
@@ -602,9 +606,32 @@ export default function PropertyDetailClient({ initialProperty = null }) {
 
   // Helper function to get localized text
   const getLocalizedText = (field, fallback = 'Not specified') => {
-    if (!field) return fallback
-    if (typeof field === 'string') return field
-    return field[language] || field['en'] || field['it'] || field['cs'] || Object.values(field)[0] || fallback
+    if (field === null || field === undefined || field === '') return fallback
+    if (typeof field === 'string' || typeof field === 'number' || typeof field === 'boolean') {
+      return String(field)
+    }
+    if (typeof field !== 'object') return fallback
+
+    const candidates = [
+      field[language],
+      field.en,
+      field.it,
+      field.cs,
+      ...Object.values(field)
+    ]
+
+    for (const candidate of candidates) {
+      if (candidate === null || candidate === undefined || candidate === '') continue
+      if (typeof candidate === 'string' || typeof candidate === 'number' || typeof candidate === 'boolean') {
+        return String(candidate)
+      }
+      if (typeof candidate === 'object' && candidate !== field) {
+        const resolved = getLocalizedText(candidate, '')
+        if (resolved) return resolved
+      }
+    }
+
+    return fallback
   }
 
   if (loading) {
@@ -913,7 +940,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                         ? (language === 'cs' ? 'Rezervováno' : language === 'it' ? 'Riservato' : 'Reserved')
                         : property.status === 'sold'
                         ? (language === 'cs' ? 'Prodáno' : language === 'it' ? 'Venduto' : 'Sold')
-                        : property.status
+                        : getLocalizedText(property.status, '')
                       }
                     </Badge>
                   </div>
@@ -969,34 +996,34 @@ export default function PropertyDetailClient({ initialProperty = null }) {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
               <div className="text-center p-4 bg-white rounded-lg border">
                 <Home className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                <div className="text-2xl font-bold">{specifications.rooms || specifications.bedrooms || 0}</div>
+                <div className="text-2xl font-bold">{getLocalizedText(specifications.rooms || specifications.bedrooms, '0')}</div>
                 <div className="text-sm text-gray-600">
                   {language === 'cs' ? 'Mistnosti' : language === 'it' ? 'Locali' : 'Rooms'}
                 </div>
               </div>
               <div className="text-center p-4 bg-white rounded-lg border">
                 <Bed className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                <div className="text-2xl font-bold">{specifications.bedrooms || 0}</div>
+                <div className="text-2xl font-bold">{getLocalizedText(specifications.bedrooms, '0')}</div>
                 <div className="text-sm text-gray-600">
                   {language === 'cs' ? 'Ložnice' : language === 'it' ? 'Camere' : 'Bedrooms'}
                 </div>
               </div>
               <div className="text-center p-4 bg-white rounded-lg border">
                 <Bath className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                <div className="text-2xl font-bold">{specifications.bathrooms || 0}</div>
+                <div className="text-2xl font-bold">{getLocalizedText(specifications.bathrooms, '0')}</div>
                 <div className="text-sm text-gray-600">
                   {language === 'cs' ? 'Koupelny' : language === 'it' ? 'Bagni' : 'Bathrooms'}
                 </div>
               </div>
               <div className="text-center p-4 bg-white rounded-lg border">
                 <Square className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                <div className="text-2xl font-bold">{specifications.squareFootage || 0}</div>
+                <div className="text-2xl font-bold">{getLocalizedText(specifications.squareFootage, '0')}</div>
                 <div className="text-sm text-gray-600">m²</div>
               </div>
               {specifications.parking && (
                 <div className="text-center p-4 bg-white rounded-lg border">
                   <Car className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                  <div className="text-2xl font-bold">{specifications.parking}</div>
+                  <div className="text-2xl font-bold">{getLocalizedText(specifications.parking, '')}</div>
                   <div className="text-sm text-gray-600">
                     {language === 'cs' ? 'Parkování' : language === 'it' ? 'Parcheggio' : 'Parking'}
                   </div>
@@ -1053,7 +1080,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                       <span className="text-sm text-gray-600">
                         {language === 'cs' ? 'Rok výstavby:' : language === 'it' ? 'Anno di costruzione:' : 'Year Built:'}
                       </span>
-                      <span className="ml-2 font-medium">{specifications.yearBuilt}</span>
+                      <span className="ml-2 font-medium">{getLocalizedText(specifications.yearBuilt, '')}</span>
                     </div>
                   )}
                   {specifications.renovated && (
@@ -1061,7 +1088,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                       <span className="text-sm text-gray-600">
                         {language === 'cs' ? 'Rekonstrukce:' : language === 'it' ? 'Ristrutturato:' : 'Renovated:'}
                       </span>
-                      <span className="ml-2 font-medium">{specifications.renovated}</span>
+                      <span className="ml-2 font-medium">{getLocalizedText(specifications.renovated, '')}</span>
                     </div>
                   )}
                   {specifications.lotSize && (
@@ -1108,13 +1135,13 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                         {property.developer.contact.phone && (
                           <div className="flex items-center space-x-2 text-sm">
                             <Phone className="h-4 w-4 text-gray-600" />
-                            <span>{property.developer.contact.phone}</span>
+                            <span>{getLocalizedText(property.developer.contact.phone, '')}</span>
                           </div>
                         )}
                         {property.developer.contact.email && (
                           <div className="flex items-center space-x-2 text-sm">
                             <Mail className="h-4 w-4 text-gray-600" />
-                            <span>{property.developer.contact.email}</span>
+                            <span>{getLocalizedText(property.developer.contact.email, '')}</span>
                           </div>
                         )}
                       </div>

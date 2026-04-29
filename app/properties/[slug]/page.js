@@ -83,11 +83,11 @@ function PropertySeoContent({ property }) {
         {formattedPrice ? <p>Cena: {formattedPrice}</p> : null}
         {description ? <p>{description}</p> : null}
         <ul>
-          {specs.bedrooms ? <li>Loznice: {specs.bedrooms}</li> : null}
-          {specs.bathrooms ? <li>Koupelny: {specs.bathrooms}</li> : null}
-          {specs.rooms ? <li>Mistnosti: {specs.rooms}</li> : null}
-          {specs.squareFootage ? <li>Plocha: {specs.squareFootage} m2</li> : null}
-          {specs.parking ? <li>Parkovani: {specs.parking}</li> : null}
+          {specs.bedrooms ? <li>Loznice: {getLocalized(specs.bedrooms, 'cs', '')}</li> : null}
+          {specs.bathrooms ? <li>Koupelny: {getLocalized(specs.bathrooms, 'cs', '')}</li> : null}
+          {specs.rooms ? <li>Mistnosti: {getLocalized(specs.rooms, 'cs', '')}</li> : null}
+          {specs.squareFootage ? <li>Plocha: {getLocalized(specs.squareFootage, 'cs', '')} m2</li> : null}
+          {specs.parking ? <li>Parkovani: {getLocalized(specs.parking, 'cs', '')}</li> : null}
         </ul>
         {Array.isArray(property.amenities) && property.amenities.length > 0 ? (
           <>
