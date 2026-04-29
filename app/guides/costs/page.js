@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { AlertTriangle, Calculator, CheckCircle, Euro, FileText } from 'lucide-react'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import Footer from '@/components/Footer'

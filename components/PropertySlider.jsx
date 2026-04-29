@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight, MapPin, Bed, Bath, Square } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import PropertyImage from '@/components/PropertyImage'
+import { getPropertyImage } from '@/lib/getPropertyImage'
 
 const LABELS = {
   cs: {
@@ -86,10 +87,7 @@ function transformProperty(prop, index) {
     bedrooms: prop.specifications?.bedrooms || 0,
     bathrooms: prop.specifications?.bathrooms || 0,
     area: prop.specifications?.squareFootage || 0,
-    image:
-      prop.images?.[0]?.asset?.url ||
-      prop.images?.[0] ||
-      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=400&fit=crop',
+    image: getPropertyImage(prop),
     status: prop.status || 'available',
     slug: prop.slug?.current || prop.slug || prop._id || '',
     featured: prop.featured || false,
@@ -124,7 +122,7 @@ function SlideCard({ property, language, labels }) {
       </Link>
 
       <div className="relative overflow-hidden flex-shrink-0 h-52">
-        <Image
+        <PropertyImage
           src={property.image}
           alt={title}
           fill

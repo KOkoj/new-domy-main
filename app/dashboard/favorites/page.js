@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
+import PropertyImage from '@/components/PropertyImage'
+import { getPropertyImage } from '@/lib/getPropertyImage'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -108,7 +109,7 @@ export default function FavoritesManagement() {
                   } 
                 } 
               },
-              image: prop.images?.[0]?.asset?.url || prop.images?.[0] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
+              image: getPropertyImage(prop),
               slug: { current: prop.slug?.current || prop.slug || '' },
               featured: prop.featured || false
             }))
@@ -235,7 +236,7 @@ export default function FavoritesManagement() {
       <Card className={`hover:shadow-lg transition-all duration-300 ${selectedProperties.has(property._id) ? 'ring-2 ring-blue-500' : ''}`}>
         <div className={`${isGrid ? 'block' : 'flex flex-col sm:flex-row'}`}>
           <div className={`relative ${isGrid ? 'w-full h-48' : 'w-full sm:w-48 h-48 sm:h-32 flex-shrink-0'}`}>
-            <Image
+            <PropertyImage
               src={property.image}
               alt={property.title.en}
               fill

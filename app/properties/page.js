@@ -3,7 +3,6 @@
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import Image from 'next/image';
 import { 
   Search, 
   SearchX,
@@ -30,6 +29,8 @@ import { supabase } from '../../lib/supabase';
 import Footer from '../../components/Footer';
 import RegionBanner from '../../components/RegionBanner';
 import Navigation from '@/components/Navigation';
+import PropertyImage from '@/components/PropertyImage';
+import { getPropertyImage } from '@/lib/getPropertyImage';
 import { formatPriceCompact } from '../../lib/currency';
 
 const AuthModal = dynamic(() => import('../../components/AuthModal'), { ssr: false });
@@ -164,7 +165,7 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
       </Link>
 
       <div className="relative overflow-hidden h-48 sm:h-64" data-testid="property-image-container">
-        <Image
+        <PropertyImage
           src={property.image}
           alt={localizedTitle}
           fill
@@ -718,7 +719,7 @@ export default function PropertiesPage() {
               bedrooms: prop.specifications?.bedrooms || 0,
               bathrooms: prop.specifications?.bathrooms || 0,
               area: prop.specifications?.squareFootage || 0,
-              image: prop.images?.[0]?.asset?.url || prop.images?.[0] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop',
+              image: getPropertyImage(prop),
               location: prop.location?.coordinates
                 ? [prop.location.coordinates.lat || prop.location.coordinates[1], prop.location.coordinates.lng || prop.location.coordinates[0]]
                 : [42.8333, 12.8333],

@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
+import PropertyImage from '@/components/PropertyImage'
+import { getPropertyImageList } from '@/lib/getPropertyImage'
 import { useParams } from 'next/navigation'
 import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, User, X, ChevronLeft, ChevronRight, ZoomIn, Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -14,7 +16,6 @@ import { Separator } from '@/components/ui/separator'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import Link from 'next/link'
 import { supabase } from '../../../lib/supabase'
-import { urlForImage } from '../../../lib/sanity'
 import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import AuthModal from '../../../components/AuthModal'
@@ -106,7 +107,7 @@ function ImageGallery({ images, title, status, language }) {
             className="relative aspect-[4/3] overflow-hidden rounded-xl cursor-zoom-in group"
             onClick={() => openLightbox(0)}
           >
-            <Image
+            <PropertyImage
               src={images[0]}
               alt={title}
               fill
@@ -130,7 +131,7 @@ function ImageGallery({ images, title, status, language }) {
               className="relative overflow-hidden cursor-zoom-in group h-full"
               onClick={() => openLightbox(0)}
             >
-              <Image
+              <PropertyImage
                 src={images[0]}
                 alt={title}
                 fill
@@ -163,7 +164,7 @@ function ImageGallery({ images, title, status, language }) {
                     className={`relative overflow-hidden cursor-zoom-in group ${mobileHide}`}
                     onClick={() => openLightbox(slot)}
                   >
-                    <Image
+                    <PropertyImage
                       src={img}
                       alt={`${title} - ${slot + 1}`}
                       fill
@@ -236,7 +237,7 @@ function ImageGallery({ images, title, status, language }) {
             className="relative max-h-[80vh] max-w-[90vw] w-full h-full flex items-center justify-center pb-20"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
+            <PropertyImage
               key={lightboxIndex}
               src={images[lightboxIndex]}
               alt={`${title} - Image ${lightboxIndex + 1}`}
@@ -275,7 +276,7 @@ function ImageGallery({ images, title, status, language }) {
                         : 'opacity-40 hover:opacity-70'
                     }`}
                   >
-                    <Image
+                    <PropertyImage
                       src={img}
                       alt={`${title} - ${idx + 1}`}
                       fill
@@ -497,22 +498,7 @@ export default function PropertyDetailPage() {
             description: sanityProperty.description,
             specifications: sanityProperty.specifications,
             location: sanityProperty.location,
-            images: sanityProperty.images?.map(img => {
-              // Handle different image structures
-              if (typeof img === 'string') return img
-              if (img.url) return img.url
-              if (img.asset?.url) return img.asset.url
-              
-              // Try using Sanity image builder
-              try {
-                const url = urlForImage(img)?.url()
-                if (url) return url
-              } catch (e) {
-                console.error('Error generating image URL:', e)
-              }
-              
-              return null
-            }).filter(Boolean) || [],
+            images: getPropertyImageList(sanityProperty),
             amenities: sanityProperty.amenities || [],
             developer: sanityProperty.developer,
             status: sanityProperty.status || 'available',

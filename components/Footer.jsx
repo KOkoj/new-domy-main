@@ -49,7 +49,7 @@ export default function Footer({ language = 'en' }) {
 
   const companyInfoByLanguage = {
     cs: {
-      registeredOffice: 'Sídlo: Láskova 1802/3, 148 00 Praha 4 - Chodov',
+      registeredOffice: 'Sídlo: Vodičkova 37, Palác Langhans, 110 00 Praha 1',
       billingAddress: 'Fakturační adresa: shodná se sídlem',
       companyId: 'IČ: 07136943',
       vatId: 'DIČ: CZ07136943',
@@ -58,7 +58,7 @@ export default function Footer({ language = 'en' }) {
         'Poskytovatel poskytuje své služby také pod obchodním označením "Domy v Itálii", které slouží jako komunikační a marketingová značka jeho činnosti.',
     },
     it: {
-      registeredOffice: 'Sede legale: Láskova 1802/3, 148 00 Praha 4 - Chodov',
+      registeredOffice: 'Sede legale: Vodičkova 37, Palác Langhans, 110 00 Praha 1',
       billingAddress: 'Indirizzo di fatturazione: uguale alla sede legale',
       companyId: 'N. identificativo: 07136943',
       vatId: 'P. IVA: CZ07136943',
@@ -67,7 +67,7 @@ export default function Footer({ language = 'en' }) {
         'Il fornitore presta i propri servizi anche con la denominazione commerciale "Domy v Itálii", utilizzata come marchio di comunicazione e marketing della sua attività.',
     },
     en: {
-      registeredOffice: 'Registered office: Láskova 1802/3, 148 00 Prague 4 - Chodov',
+      registeredOffice: 'Registered office: Vodičkova 37, Palác Langhans, 110 00 Praha 1',
       billingAddress: 'Billing address: same as registered office',
       companyId: 'Company ID: 07136943',
       vatId: 'VAT ID: CZ07136943',

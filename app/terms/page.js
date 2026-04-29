@@ -15,7 +15,7 @@ const CONTENT = {
       {
         title: '1. Venditore',
         paragraphs: [
-          'Il venditore è Creavita s.r.o., Laskova 1802/3, 148 00 Praha 4 - Chodov, Repubblica Ceca, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
+          'Il venditore è Creavita s.r.o., Vodičkova 37, Palác Langhans, 110 00 Praha 1, Repubblica Ceca, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
         ]
       },
       {
@@ -80,7 +80,7 @@ const CONTENT = {
       {
         title: '1. Seller',
         paragraphs: [
-          'The seller is Creavita s.r.o., Laskova 1802/3, 148 00 Praha 4 - Chodov, Czech Republic, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
+          'The seller is Creavita s.r.o., Vodičkova 37, Palác Langhans, 110 00 Praha 1, Czech Republic, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
         ]
       },
       {
@@ -145,7 +145,7 @@ const CONTENT = {
       {
         title: '1. Prodávající',
         paragraphs: [
-          'Prodávajícím je Creavita s.r.o., Laskova 1802/3, 148 00 Praha 4 - Chodov, Česká republika, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
+          'Prodávajícím je Creavita s.r.o., Vodičkova 37, Palác Langhans, 110 00 Praha 1, Česká republika, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
         ]
       },
       {

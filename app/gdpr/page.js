@@ -15,7 +15,7 @@ const CONTENT = {
       {
         title: '1. Titolare del trattamento',
         paragraphs: [
-          'Il titolare del trattamento è Creavita s.r.o., Laskova 1802/3, 148 00 Praha 4 - Chodov, Repubblica Ceca, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
+          'Il titolare del trattamento è Creavita s.r.o., Vodičkova 37, Palác Langhans, 110 00 Praha 1, Repubblica Ceca, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
         ]
       },
       {
@@ -90,7 +90,7 @@ const CONTENT = {
       {
         title: '1. Data controller',
         paragraphs: [
-          'The data controller is Creavita s.r.o., Laskova 1802/3, 148 00 Praha 4 - Chodov, Czech Republic, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
+          'The data controller is Creavita s.r.o., Vodičkova 37, Palác Langhans, 110 00 Praha 1, Czech Republic, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
         ]
       },
       {
@@ -165,7 +165,7 @@ const CONTENT = {
       {
         title: '1. Správce údajů',
         paragraphs: [
-          'Správcem osobních údajů je Creavita s.r.o., Laskova 1802/3, 148 00 Praha 4 - Chodov, Česká republika, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
+          'Správcem osobních údajů je Creavita s.r.o., Vodičkova 37, Palác Langhans, 110 00 Praha 1, Česká republika, ID 07136943, VAT CZ07136943, email: info@domyvitalii.cz.'
         ]
       },
       {

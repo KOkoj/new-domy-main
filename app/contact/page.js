@@ -45,9 +45,9 @@ const CONTACT_INFO = [
       it: 'Ufficio'
     },
     value: {
-      en: 'Creavita s.r.o., Láskova 1802/3, 148 00 Praha 4 - Chodov',
-      cs: 'Creavita s.r.o., Láskova 1802/3, 148 00 Praha 4 - Chodov',
-      it: 'Creavita s.r.o., Láskova 1802/3, 148 00 Praga 4 - Chodov'
+      en: 'Creavita s.r.o., Vodičkova 37, Palác Langhans, 110 00 Praha 1',
+      cs: 'Creavita s.r.o., Vodičkova 37, Palác Langhans, 110 00 Praha 1',
+      it: 'Creavita s.r.o., Vodičkova 37, Palác Langhans, 110 00 Praha 1'
     },
     link: null
   },
