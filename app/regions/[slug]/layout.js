@@ -146,7 +146,103 @@ export default async function RegionDetailLayout({ children, params }) {
     <>
       {placeJsonLd ? <JsonLd data={placeJsonLd} /> : null}
       <JsonLd data={webPageJsonLd} />
+      <RegionSeoContent region={region} canonicalSlug={canonicalSlug || rawSlug} />
       {children}
     </>
+  )
+}
+
+// Off-screen, server-rendered SEO content that gives Googlebot the full
+// region buying guide on the first byte. Visible UI is unchanged - the
+// existing client component renders the rich interactive layout below.
+function RegionSeoContent({ region, canonicalSlug }) {
+  if (!region) return null
+
+  const nameCs = region?.name?.cs || region?.name?.en || canonicalSlug
+  const taglineCs = region?.tagline?.cs || region?.tagline?.en || ''
+  const descriptionCs = (region?.description?.cs || region?.description?.en || '').replace(/\\n/g, ' ')
+  const highlightsCs = Array.isArray(region?.highlights?.cs)
+    ? region.highlights.cs
+    : Array.isArray(region?.highlights?.en)
+    ? region.highlights.en
+    : []
+  const priceNotesCs = Array.isArray(region?.priceNotes?.cs)
+    ? region.priceNotes.cs
+    : Array.isArray(region?.priceNotes?.en)
+    ? region.priceNotes.en
+    : []
+  const bestForListCs = Array.isArray(region?.bestForList?.cs)
+    ? region.bestForList.cs
+    : Array.isArray(region?.bestForList?.en)
+    ? region.bestForList.en
+    : []
+  const topCitiesCs = Array.isArray(region?.topCitiesDetailed?.cs)
+    ? region.topCitiesDetailed.cs
+    : Array.isArray(region?.topCitiesDetailed?.en)
+    ? region.topCitiesDetailed.en
+    : []
+
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: '-10000px',
+        top: 'auto',
+        width: '1px',
+        height: '1px',
+        overflow: 'hidden'
+      }}
+    >
+      <article>
+        <h1>{nameCs}: pruvodce koupi nemovitosti v Italii</h1>
+        {taglineCs ? <p>{taglineCs}</p> : null}
+        {descriptionCs ? <p>{descriptionCs}</p> : null}
+        {region?.priceRange ? (
+          <p>
+            <strong>Cenove rozpeti:</strong> {region.priceRange}
+          </p>
+        ) : null}
+        {priceNotesCs.length > 0 ? (
+          <>
+            <h2>Ceny v regionu {nameCs}</h2>
+            <ul>
+              {priceNotesCs.map((note, idx) => (
+                <li key={idx}>{note}</li>
+              ))}
+            </ul>
+          </>
+        ) : null}
+        {topCitiesCs.length > 0 ? (
+          <>
+            <h2>Hlavni mesta a oblasti</h2>
+            <ul>
+              {topCitiesCs.map((city, idx) => (
+                <li key={idx}>{city}</li>
+              ))}
+            </ul>
+          </>
+        ) : null}
+        {highlightsCs.length > 0 ? (
+          <>
+            <h2>Klicove vyhody</h2>
+            <ul>
+              {highlightsCs.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+          </>
+        ) : null}
+        {bestForListCs.length > 0 ? (
+          <>
+            <h2>Pro koho je {nameCs} idealni</h2>
+            <ul>
+              {bestForListCs.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+          </>
+        ) : null}
+      </article>
+    </div>
   )
 }

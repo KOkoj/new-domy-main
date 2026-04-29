@@ -1,10 +1,12 @@
-import { Manrope, Sora } from 'next/font/google'
+﻿import { Manrope, Sora } from 'next/font/google'
+import { cookies } from 'next/headers'
 import './globals.css'
 import ScrollToTop from '@/components/ScrollToTop'
 import NavigationProgress from '@/components/NavigationProgress'
 import ArticlePaywallGate from '@/components/ArticlePaywallGate'
 import { PUBLIC_SITE_STANDBY } from '@/lib/featureFlags'
 import { SITE_NAME, SITE_URL } from '@/lib/siteConfig'
+import { readLanguageFromCookies } from '@/lib/userPreferences'
 import { Analytics } from '@vercel/analytics/next'
 
 const manrope = Manrope({
@@ -57,7 +59,14 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // Read the language preference cookie on the server so the very first
+  // server-rendered HTML carries the correct lang attribute. Search engines
+  // use this to identify content language and to surface region-appropriate
+  // results.
+  const cookieStore = await cookies()
+  const language = readLanguageFromCookies(cookieStore)
+
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -76,7 +85,7 @@ export default function RootLayout({ children }) {
   const GA_MEASUREMENT_ID = 'G-XXXXXXX'
 
   return (
-    <html lang="cs" className={`${manrope.variable} ${sora.variable} font-sans overflow-x-hidden`}>
+    <html lang={language} className={`${manrope.variable} ${sora.variable} font-sans overflow-x-hidden`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <script

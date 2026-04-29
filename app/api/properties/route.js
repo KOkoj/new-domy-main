@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server'
 import { getAllProperties } from '@/lib/propertyApi'
 
-// Cache the properties response at the edge for one hour. Browser-side fetches
-// hit a CDN-cached payload and Server Components can reuse the same data
-// during their render without each one hitting Sanity directly.
-export const revalidate = 3600
+// The route reads URL search params at runtime, so it has to remain dynamic.
+// We still set strong CDN cache headers so identical query strings are served
+// from the edge for one hour. This is the equivalent of ISR for an API route
+// that varies by query parameters.
+export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 export async function GET(request) {

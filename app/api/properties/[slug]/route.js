@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getPropertyBySlug } from '@/lib/propertyApi'
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 export async function GET(request, { params }) {

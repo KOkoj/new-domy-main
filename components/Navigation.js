@@ -19,6 +19,7 @@ import AuthModal from './AuthModal'
 import PremiumPdfComingSoonTrigger from '@/components/PremiumPdfComingSoonTrigger'
 import { PREMIUM_PDFS_ENABLED } from '@/lib/featureFlags'
 import { supabase } from '@/lib/supabase'
+import { readLanguageFromBrowser, persistLanguage, DEFAULT_LANGUAGE, getInitialLanguage } from '@/lib/userPreferences'
 
 export default function Navigation() {
   const pathname = usePathname()
@@ -26,7 +27,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [authModalDefaultTab, setAuthModalDefaultTab] = useState('login')
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState(getInitialLanguage)
   const [isPopupBarVisible, setIsPopupBarVisible] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -38,13 +39,10 @@ export default function Navigation() {
   }
 
   useEffect(() => {
-    // Load saved language preference
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
-      document.documentElement.lang = savedLanguage
-    }
-    
+    const savedLanguage = readLanguageFromBrowser()
+    setLanguage(savedLanguage)
+    document.documentElement.lang = savedLanguage
+
     // Check if popup bar was dismissed
     const popupDismissed = localStorage.getItem('premium-club-popup-dismissed')
     if (popupDismissed === 'true') {
@@ -124,9 +122,8 @@ export default function Navigation() {
   const handleLanguageChange = (newLanguage) => {
     setLanguage(newLanguage)
     document.documentElement.lang = newLanguage
-    localStorage.setItem('preferred-language', newLanguage)
-    
-    // Dispatch custom event for pages to listen to
+    persistLanguage(newLanguage)
+
     window.dispatchEvent(new CustomEvent('languageChange', { detail: newLanguage }))
   }
 

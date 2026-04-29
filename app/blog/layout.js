@@ -1,24 +1,36 @@
-import { absoluteUrl } from '@/lib/siteConfig'
+import { absoluteUrl, SITE_NAME } from '@/lib/siteConfig'
+
+const TITLE_CS = 'Pruvodci a clanky o Italii | ' + SITE_NAME
+const DESCRIPTION_CS =
+  'Pruvodci a clanky o Italii pro kupujici nemovitosti i cestovatele: ceny, regiony, pravni proces, prakticke planovani a mistni kontext.'
 
 export const metadata = {
-  title: 'Italy guides and articles | Domy v Italii',
-  description:
-    'Guides and articles about Italy for buyers and travelers: costs, regions, legal process, practical planning, and local context.',
+  title: TITLE_CS,
+  description: DESCRIPTION_CS,
+  keywords:
+    'clanky Italie, pruvodce Italii, koupit nemovitost v Italii, dovolena v Italii, rekonstrukce v Italii, italske regiony, italian buying guide',
   alternates: {
-    canonical: '/blog'
+    canonical: '/blog',
+    languages: {
+      'cs-CZ': '/blog',
+      en: '/blog',
+      'it-IT': '/blog',
+      'x-default': '/blog'
+    }
   },
   openGraph: {
-    title: 'Italy guides and articles | Domy v Italii',
-    description:
-      'Guides and articles about Italy for buyers and travelers: costs, regions, legal process, practical planning, and local context.',
+    title: TITLE_CS,
+    description: DESCRIPTION_CS,
     url: absoluteUrl('/blog'),
-    type: 'website'
+    type: 'website',
+    siteName: SITE_NAME,
+    locale: 'cs_CZ',
+    alternateLocale: ['en_US', 'it_IT']
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Italy guides and articles | Domy v Italii',
-    description:
-      'Guides and articles about Italy for buyers and travelers: costs, regions, legal process, practical planning, and local context.'
+    title: TITLE_CS,
+    description: DESCRIPTION_CS
   }
 }
 
