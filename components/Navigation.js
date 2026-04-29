@@ -285,6 +285,18 @@ export default function Navigation() {
               </div>
             )}
             
+            {/* Mobile dashboard shortcut — visible when logged in, below lg */}
+            {user && (
+              <Link
+                href="/dashboard"
+                className="lg:hidden flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-1.5 text-xs font-medium text-white/90 hover:text-white hover:bg-white/20 border border-white/15 transition-all duration-200"
+                data-testid="mobile-dashboard-button"
+              >
+                <LayoutDashboard className="h-3.5 w-3.5" />
+                <span>{navLabels.dashboard}</span>
+              </Link>
+            )}
+
             {/* Mobile menu button */}
             <button
               className="lg:hidden p-2 rounded-lg cursor-pointer text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200"

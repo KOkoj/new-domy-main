@@ -677,3 +677,25 @@ html {
   --tw-ring-color: rgba(199, 137, 91, 0.8) !important;
   box-shadow: 0 0 0 2px rgba(199, 137, 91, 0.6) !important;
 }
+
+/* =============================================
+   Article Paywall Gate
+   When <ArticlePaywallGate /> is active for a logged-out visitor on a
+   protected article (regions, guides, klub articles), we render the page
+   so they see a teaser, then a fixed bottom overlay (70vh) blurs the rest
+   and surfaces the register/login CTA card.
+
+   `data-paywall="active"` is toggled on <body> by ArticlePaywallGate.
+   ============================================= */
+body[data-paywall='active'] {
+  /* Reserve room at the bottom for the fixed paywall card so the article's
+     own footer doesn't sit behind it once the visitor scrolls. */
+  padding-bottom: 360px;
+}
+
+/* On iOS / safe-area devices, add the home-indicator inset on top. */
+@supports (padding: max(0px)) {
+  body[data-paywall='active'] {
+    padding-bottom: max(360px, calc(360px + env(safe-area-inset-bottom)));
+  }
+}

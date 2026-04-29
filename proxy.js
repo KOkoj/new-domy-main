@@ -3,33 +3,6 @@ import { createServerClient } from '@supabase/ssr'
 import { PUBLIC_SITE_STANDBY } from '@/lib/featureFlags'
 import { SITE_HOST } from '@/lib/siteConfig'
 
-function isProtectedContentPath(pathname) {
-  if (pathname === '/regions') return false
-  if (pathname.startsWith('/regions/')) return true
-
-  if (pathname === '/clanky/pruvodce-italii') return false
-  if (pathname.startsWith('/clanky/pruvodce-italii/')) return true
-
-  if (pathname === '/blog') return false
-  if (pathname.startsWith('/blog/regions/')) return true
-
-  if (pathname === '/guides') return false
-  if (pathname.startsWith('/guides/')) return true
-
-  return false
-}
-
-function buildLoginRedirect(request) {
-  const loginUrl = request.nextUrl.clone()
-  loginUrl.pathname = '/login'
-  loginUrl.search = ''
-  loginUrl.searchParams.set(
-    'redirect',
-    `${request.nextUrl.pathname}${request.nextUrl.search}`
-  )
-  return loginUrl
-}
-
 function isMaintenanceBypassPath(pathname) {
   return (
     pathname === '/maintenance' ||
@@ -99,17 +72,13 @@ export async function proxy(request) {
     return NextResponse.rewrite(maintenanceUrl)
   }
 
-  const response = NextResponse.next({
-    request: {
-      headers: request.headers
-    }
-  })
+  let supabaseResponse = NextResponse.next({ request })
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   if (!supabaseUrl || !supabaseAnonKey) {
-    return response
+    return supabaseResponse
   }
 
   const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
@@ -117,30 +86,32 @@ export async function proxy(request) {
       getAll() {
         return request.cookies.getAll()
       },
+      // Mirror cookies onto BOTH the incoming request and the outgoing response
+      // so that Supabase reads the freshest session within this same request.
+      // Without updating request cookies, a refreshed (single-use) refresh
+      // token can be re-read in its old form and invalidated, terminating the
+      // user's session prematurely.
       setAll(cookiesToSet) {
-        for (const cookie of cookiesToSet) {
-          response.cookies.set(cookie.name, cookie.value, cookie.options)
+        for (const { name, value } of cookiesToSet) {
+          request.cookies.set(name, value)
+        }
+        supabaseResponse = NextResponse.next({ request })
+        for (const { name, value, options } of cookiesToSet) {
+          supabaseResponse.cookies.set(name, value, options)
         }
       }
     }
   })
 
-  // Forces Supabase SSR to revalidate and refresh auth cookies when needed.
-  const {
-    data: { user }
-  } = await supabase.auth.getUser()
+  // IMPORTANT: Do not run code between createServerClient and getUser().
+  // A simple mistake could cause hard-to-debug random logouts.
+  // We only call getUser() to refresh auth cookies if needed; gating of
+  // protected articles is handled client-side by <ArticlePaywallGate /> so
+  // logged-out visitors can see a teaser + register CTA instead of being
+  // bounced to /login.
+  await supabase.auth.getUser()
 
-  if (isProtectedContentPath(request.nextUrl.pathname) && !user) {
-    const redirectResponse = NextResponse.redirect(buildLoginRedirect(request))
-
-    for (const cookie of response.cookies.getAll()) {
-      redirectResponse.cookies.set(cookie)
-    }
-
-    return redirectResponse
-  }
-
-  return response
+  return supabaseResponse
 }
 
 export const config = {
