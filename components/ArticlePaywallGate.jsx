@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
-import { Crown, Lock, Check } from 'lucide-react'
+import { Crown, Lock, Check, X, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const AuthModal = dynamic(() => import('@/components/AuthModal'), { ssr: false })
@@ -37,7 +37,8 @@ const COPY = {
       'Aktualizace o italském realitním trhu'
     ],
     register: 'Registrovat zdarma',
-    login: 'Přihlásit se'
+    login: 'Přihlásit se',
+    close: 'Zavřít a vrátit se'
   },
   en: {
     badge: 'Klub pro klienty',
@@ -51,7 +52,8 @@ const COPY = {
       'Italian property market updates'
     ],
     register: 'Register for free',
-    login: 'Log in'
+    login: 'Log in',
+    close: 'Close and go back'
   },
   it: {
     badge: 'Klub pro klienty',
@@ -65,7 +67,8 @@ const COPY = {
       'Aggiornamenti sul mercato immobiliare italiano'
     ],
     register: 'Registrati gratis',
-    login: 'Accedi'
+    login: 'Accedi',
+    close: 'Chiudi e torna indietro'
   }
 }
 
@@ -78,6 +81,7 @@ export default function ArticlePaywallGate() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [authOpen, setAuthOpen] = useState(false)
   const [authTab, setAuthTab] = useState('signup')
+  const [dismissed, setDismissed] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -112,12 +116,14 @@ export default function ArticlePaywallGate() {
         if (mounted) setAuthChecked(true)
       })
 
+    setDismissed(false)
+
     return () => {
       mounted = false
     }
   }, [isProtected, pathname])
 
-  const isLocked = isProtected && authChecked && !isAuthenticated
+  const isLocked = isProtected && authChecked && !isAuthenticated && !dismissed
 
   // Lock scroll and tag the document so global CSS can apply scroll-lock styles.
   useEffect(() => {
@@ -239,16 +245,25 @@ export default function ArticlePaywallGate() {
                   data-paywall-scrollable="true"
                 >
                   <div className="flex items-center justify-between gap-3 mb-3">
-                    <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 border border-amber-200 px-3 py-1">
-                      <Crown className="h-3.5 w-3.5 text-amber-600" />
-                      <span className="text-[11px] uppercase tracking-wider text-amber-700 font-semibold">
-                        {copy.badge}
+                    <div className="flex items-center gap-2">
+                      <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 border border-amber-200 px-3 py-1">
+                        <Crown className="h-3.5 w-3.5 text-amber-600" />
+                        <span className="text-[11px] uppercase tracking-wider text-amber-700 font-semibold">
+                          {copy.badge}
+                        </span>
+                      </div>
+                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700">
+                        <Lock className="h-3 w-3" />
+                        {copy.free}
                       </span>
                     </div>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700">
-                      <Lock className="h-3 w-3" />
-                      {copy.free}
-                    </span>
+                    <button
+                      onClick={() => setDismissed(true)}
+                      aria-label="Close"
+                      className="rounded-full p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors flex-shrink-0"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
                   </div>
 
                   <h2 className="text-lg sm:text-xl font-bold leading-tight mb-2 text-slate-800">
@@ -287,6 +302,14 @@ export default function ArticlePaywallGate() {
                       {copy.login}
                     </Button>
                   </div>
+                  <button
+                    onClick={() => setDismissed(true)}
+                    className="mt-3 w-full flex items-center justify-center gap-1.5 text-sm text-slate-400 hover:text-slate-600 transition-colors"
+                    data-testid="paywall-close-button"
+                  >
+                    <ArrowLeft className="h-3.5 w-3.5" />
+                    {copy.close}
+                  </button>
                 </div>
               </div>
             </div>
