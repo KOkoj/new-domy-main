@@ -1102,7 +1102,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    <h4 className="font-semibold">{property.developer.name}</h4>
+                    <h4 className="font-semibold">{getLocalizedText(property.developer.name, '')}</h4>
                     {property.developer.contact && (
                       <div className="space-y-2">
                         {property.developer.contact.phone && (
