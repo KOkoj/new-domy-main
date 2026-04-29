@@ -37,8 +37,7 @@ const COPY = {
       'Aktualizace o italském realitním trhu'
     ],
     register: 'Registrovat zdarma',
-    login: 'Přihlásit se',
-    haveAccount: 'Už jste členem?'
+    login: 'Přihlásit se'
   },
   en: {
     badge: 'Klub pro klienty',
@@ -52,8 +51,7 @@ const COPY = {
       'Italian property market updates'
     ],
     register: 'Register for free',
-    login: 'Log in',
-    haveAccount: 'Already a member?'
+    login: 'Log in'
   },
   it: {
     badge: 'Klub pro klienty',
@@ -67,8 +65,7 @@ const COPY = {
       'Aggiornamenti sul mercato immobiliare italiano'
     ],
     register: 'Registrati gratis',
-    login: 'Accedi',
-    haveAccount: 'Sei già membro?'
+    login: 'Accedi'
   }
 }
 
@@ -122,19 +119,66 @@ export default function ArticlePaywallGate() {
 
   const isLocked = isProtected && authChecked && !isAuthenticated
 
-  // Tag the document so global CSS can apply the teaser/blur effects to the page.
+  // Lock scroll and tag the document so global CSS can apply scroll-lock styles.
   useEffect(() => {
     if (typeof document === 'undefined') return
-    if (isLocked) {
-      document.body.dataset.paywall = 'active'
-      document.documentElement.dataset.paywall = 'active'
-    } else {
-      delete document.body.dataset.paywall
-      delete document.documentElement.dataset.paywall
+    if (!isLocked) return
+
+    document.body.dataset.paywall = 'active'
+    document.documentElement.dataset.paywall = 'active'
+
+    // Defensive scroll lock — works even if a smooth-scroll library (Lenis,
+    // locomotive, etc.) is hijacking native scroll. We pin the page at the
+    // top and intercept wheel/touch/key inputs that would scroll the article.
+    window.scrollTo(0, 0)
+
+    const preventScrollEvent = (event) => {
+      // Allow scroll inside the paywall card itself (so on tiny screens the
+      // visitor can still reach the buttons if the card overflows).
+      const target = event.target
+      if (target && typeof target.closest === 'function') {
+        if (target.closest('[data-paywall-scrollable="true"]')) return
+        if (target.closest('[role="dialog"]')) return
+      }
+      event.preventDefault()
     }
+
+    const preventScrollKeys = (event) => {
+      const blockedKeys = [
+        'ArrowUp',
+        'ArrowDown',
+        'PageUp',
+        'PageDown',
+        'Home',
+        'End',
+        ' '
+      ]
+      if (blockedKeys.includes(event.key)) {
+        const target = event.target
+        if (target && typeof target.closest === 'function') {
+          if (target.closest('[role="dialog"]')) return
+          if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return
+        }
+        event.preventDefault()
+      }
+    }
+
+    const enforceScrollTop = () => {
+      if (window.scrollY > 0) window.scrollTo(0, 0)
+    }
+
+    window.addEventListener('wheel', preventScrollEvent, { passive: false })
+    window.addEventListener('touchmove', preventScrollEvent, { passive: false })
+    window.addEventListener('keydown', preventScrollKeys)
+    window.addEventListener('scroll', enforceScrollTop, { passive: true })
+
     return () => {
       delete document.body.dataset.paywall
       delete document.documentElement.dataset.paywall
+      window.removeEventListener('wheel', preventScrollEvent)
+      window.removeEventListener('touchmove', preventScrollEvent)
+      window.removeEventListener('keydown', preventScrollKeys)
+      window.removeEventListener('scroll', enforceScrollTop)
     }
   }, [isLocked])
 
@@ -162,66 +206,74 @@ export default function ArticlePaywallGate() {
     <>
       {isLocked && (
         <>
+          {/* Blur + fade overlay sitting over the article content. */}
           <div
             aria-hidden="true"
             className="fixed inset-x-0 bottom-0 z-40 pointer-events-none"
-            style={{ height: '70vh' }}
+            style={{ height: '60vh' }}
           >
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  'linear-gradient(to bottom, rgba(14,21,46,0) 0%, rgba(14,21,46,0.55) 35%, rgba(14,21,46,0.92) 70%, rgba(14,21,46,1) 100%)',
-                backdropFilter: 'blur(14px)',
-                WebkitBackdropFilter: 'blur(14px)',
+                  'linear-gradient(to bottom, rgba(247,244,237,0) 0%, rgba(247,244,237,0.65) 30%, rgba(247,244,237,0.95) 65%, rgba(247,244,237,1) 100%)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 maskImage:
-                  'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 100%)',
+                  'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 100%)',
                 WebkitMaskImage:
-                  'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 35%, rgba(0,0,0,1) 100%)'
+                  'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 100%)'
               }}
             />
           </div>
 
-          <div className="fixed inset-x-0 bottom-0 z-50 pointer-events-none px-4 pb-6 sm:pb-8">
+          {/* CTA card pinned to the bottom of the viewport. */}
+          <div
+            className="fixed inset-x-0 bottom-0 z-50 pointer-events-none px-4 pb-4 sm:pb-6"
+            data-paywall-scrollable="true"
+          >
             <div className="container mx-auto">
-              <div className="max-w-2xl mx-auto pointer-events-auto">
-                <div className="rounded-2xl border border-amber-400/25 bg-[#0e152e]/95 backdrop-blur-md shadow-[0_20px_60px_rgba(0,0,0,0.55)] p-5 sm:p-7 text-white">
+              <div className="max-w-xl mx-auto pointer-events-auto">
+                <div
+                  className="rounded-2xl bg-white border border-amber-200/70 shadow-[0_20px_60px_-15px_rgba(15,23,42,0.35)] p-5 sm:p-6 max-h-[80vh] overflow-y-auto"
+                  data-paywall-scrollable="true"
+                >
                   <div className="flex items-center justify-between gap-3 mb-3">
-                    <div className="flex items-center gap-2">
-                      <Crown className="h-4 w-4 text-amber-400" />
-                      <span className="text-[11px] sm:text-xs uppercase tracking-wider text-amber-300 font-semibold">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 border border-amber-200 px-3 py-1">
+                      <Crown className="h-3.5 w-3.5 text-amber-600" />
+                      <span className="text-[11px] uppercase tracking-wider text-amber-700 font-semibold">
                         {copy.badge}
                       </span>
                     </div>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/20 border border-amber-400/40 px-2.5 py-0.5 text-[11px] font-semibold text-amber-300">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700">
                       <Lock className="h-3 w-3" />
                       {copy.free}
                     </span>
                   </div>
 
-                  <h2 className="text-lg sm:text-2xl font-bold leading-tight mb-2">
+                  <h2 className="text-lg sm:text-xl font-bold leading-tight mb-2 text-slate-800">
                     {copy.title}
                   </h2>
-                  <p className="text-sm sm:text-[15px] text-gray-300 leading-relaxed mb-4">
+                  <p className="text-sm text-slate-600 leading-relaxed mb-4">
                     {copy.subtitle}
                   </p>
 
-                  <ul className="space-y-1.5 mb-5">
+                  <ul className="space-y-1.5 mb-4 sm:mb-5">
                     {copy.benefits.map((benefit) => (
                       <li
                         key={benefit}
-                        className="flex items-start gap-2 text-sm text-gray-200"
+                        className="flex items-start gap-2 text-sm text-slate-700"
                       >
-                        <Check className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
+                        <Check className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
                         <span>{benefit}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3">
+                  <div className="flex flex-col sm:flex-row gap-2.5">
                     <Button
                       onClick={handleOpenSignup}
-                      className="bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold flex-1 h-11"
+                      className="bg-amber-500 hover:bg-amber-600 text-white font-semibold flex-1 h-11 shadow-sm"
                       data-testid="paywall-register-button"
                     >
                       {copy.register}
@@ -229,7 +281,7 @@ export default function ArticlePaywallGate() {
                     <Button
                       onClick={handleOpenLogin}
                       variant="outline"
-                      className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white flex-1 h-11"
+                      className="border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900 flex-1 h-11"
                       data-testid="paywall-login-button"
                     >
                       {copy.login}

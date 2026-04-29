@@ -682,20 +682,19 @@ html {
    Article Paywall Gate
    When <ArticlePaywallGate /> is active for a logged-out visitor on a
    protected article (regions, guides, klub articles), we render the page
-   so they see a teaser, then a fixed bottom overlay (70vh) blurs the rest
-   and surfaces the register/login CTA card.
+   so they see a teaser of the top, then lock scroll. The fixed bottom
+   overlay (~55vh) blurs the rest and surfaces the register/login CTA card.
 
-   `data-paywall="active"` is toggled on <body> by ArticlePaywallGate.
+   `data-paywall="active"` is toggled on <html> and <body> by ArticlePaywallGate.
    ============================================= */
+html[data-paywall='active'],
 body[data-paywall='active'] {
-  /* Reserve room at the bottom for the fixed paywall card so the article's
-     own footer doesn't sit behind it once the visitor scrolls. */
-  padding-bottom: 360px;
+  overflow: hidden !important;
+  height: 100vh;
+  height: 100dvh;
 }
 
-/* On iOS / safe-area devices, add the home-indicator inset on top. */
-@supports (padding: max(0px)) {
-  body[data-paywall='active'] {
-    padding-bottom: max(360px, calc(360px + env(safe-area-inset-bottom)));
-  }
+body[data-paywall='active'] {
+  /* Disable touch panning on mobile so the visitor can't scroll past the gate. */
+  touch-action: none;
 }
