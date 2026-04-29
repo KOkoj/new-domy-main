@@ -6,11 +6,29 @@ import PropertyDetailClient from './PropertyDetailClient'
 export const revalidate = 3600
 
 function getLocalized(value, language = 'cs', fallback = '') {
-  if (!value) return fallback
+  if (value === null || value === undefined || value === '') return fallback
   if (typeof value === 'string') return value
-  if (typeof value === 'object') {
-    return value[language] || value.cs || value.en || value.it || Object.values(value)[0] || fallback
+  if (typeof value === 'number' || typeof value === 'boolean') return String(value)
+  if (typeof value !== 'object') return fallback
+
+  const candidates = [
+    value[language],
+    value.cs,
+    value.en,
+    value.it,
+    ...Object.values(value)
+  ]
+
+  for (const candidate of candidates) {
+    if (candidate === null || candidate === undefined || candidate === '') continue
+    if (typeof candidate === 'string') return candidate
+    if (typeof candidate === 'number' || typeof candidate === 'boolean') return String(candidate)
+    if (typeof candidate === 'object' && candidate !== value) {
+      const resolved = getLocalized(candidate, language, '')
+      if (resolved) return resolved
+    }
   }
+
   return fallback
 }
 
@@ -93,9 +111,13 @@ function PropertySeoContent({ property }) {
           <>
             <h2>Vybaveni</h2>
             <ul>
-              {property.amenities.map((amenity, index) => (
-                <li key={index}>{getLocalized(amenity, 'cs', String(amenity))}</li>
-              ))}
+              {property.amenities.map((amenity, index) => {
+                const label =
+                  typeof amenity === 'string'
+                    ? amenity
+                    : getLocalized(amenity?.name ?? amenity, 'cs', '')
+                return label ? <li key={index}>{label}</li> : null
+              })}
             </ul>
           </>
         ) : null}
