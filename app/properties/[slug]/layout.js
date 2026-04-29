@@ -1,7 +1,24 @@
-import { getPropertyBySlug } from '@/lib/propertyApi'
+import { getPropertyBySlug, getAllProperties } from '@/lib/propertyApi'
 import { absoluteUrl } from '@/lib/siteConfig'
 import JsonLd from '@/components/seo/JsonLd'
 import { buildPropertyJsonLd } from '@/lib/seo/contentSeo'
+
+// Re-fetch fresh listings every hour. Properties newly added after a deploy
+// are still rendered on demand and then cached.
+export const revalidate = 3600
+
+export async function generateStaticParams() {
+  try {
+    const properties = await getAllProperties(new URLSearchParams())
+    return properties
+      .map((property) => property?.slug?.current)
+      .filter(Boolean)
+      .map((slug) => ({ slug }))
+  } catch (error) {
+    console.error('generateStaticParams (properties) failed:', error)
+    return []
+  }
+}
 
 function getLocalizedValue(value, language = 'en', fallback = '') {
   if (value && typeof value === 'object') {
@@ -30,7 +47,8 @@ function getImage(property) {
 }
 
 export async function generateMetadata({ params }) {
-  const rawSlug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug
+  const resolved = typeof params?.then === 'function' ? await params : params
+  const rawSlug = Array.isArray(resolved?.slug) ? resolved.slug[0] : resolved?.slug
   const property = rawSlug ? await getPropertyBySlug(rawSlug) : null
 
   if (!property) {
@@ -77,7 +95,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function PropertyDetailLayout({ children, params }) {
-  const rawSlug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug
+  const resolved = typeof params?.then === 'function' ? await params : params
+  const rawSlug = Array.isArray(resolved?.slug) ? resolved.slug[0] : resolved?.slug
   const property = rawSlug ? await getPropertyBySlug(rawSlug) : null
   const canonicalPath = property?.slug?.current
     ? `/properties/${property.slug.current}`

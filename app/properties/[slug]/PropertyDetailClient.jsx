@@ -416,11 +416,11 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
   )
 }
 
-export default function PropertyDetailPage() {
+export default function PropertyDetailClient({ initialProperty = null }) {
   const routeParams = useParams()
   const slugParam = Array.isArray(routeParams?.slug) ? routeParams.slug[0] : routeParams?.slug
-  const [property, setProperty] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [property, setProperty] = useState(initialProperty)
+  const [loading, setLoading] = useState(!initialProperty)
   const [isFavorited, setIsFavorited] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [user, setUser] = useState(null)
@@ -429,7 +429,7 @@ export default function PropertyDetailPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
-    if (slugParam) {
+    if (!initialProperty && slugParam) {
       loadProperty(slugParam)
     }
 

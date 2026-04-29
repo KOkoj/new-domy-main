@@ -48,8 +48,10 @@ export default function HomePage() {
   // FAQ accordion state
   const [openFaqIndex, setOpenFaqIndex] = useState(null)
   
-  // Loading state
-  const [isLoading, setIsLoading] = useState(true)
+  // Animations begin as soon as the component is mounted in the browser.
+  // We no longer gate the entire page behind an artificial loading overlay
+  // because it hurts perceived performance and prevents Googlebot from
+  // seeing meaningful content on first paint.
   const [startAnimations, setStartAnimations] = useState(false)
   
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
@@ -136,18 +138,8 @@ export default function HomePage() {
     }
   }, [])
 
-  // Handle loading state
   useEffect(() => {
-    // Simulate loading time for smooth transition
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-      // Start animations after a short delay to ensure loading screen is gone
-      setTimeout(() => {
-        setStartAnimations(true)
-      }, 300)
-    }, 1500) // 1.5 seconds loading time
-
-    return () => clearTimeout(timer)
+    setStartAnimations(true)
   }, [])
 
   // Scroll-triggered animations using Intersection Observer
@@ -754,38 +746,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#f7f4ed] home-page-custom-border overflow-x-hidden" data-testid="homepage-container">
-      {/* Loading Screen */}
-      {isLoading && (
-        <div className="fixed inset-0 z-[100] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center transition-opacity duration-300 ease-in-out">
-          <div className="text-center animate-fade-in">
-            {/* Logo */}
-            <div className="mb-8 animate-pulse">
-              <Image
-                src="/logo domy.svg"
-                alt="Domy v Itálii"
-                width={96}
-                height={92}
-                className="w-24 h-24 mx-auto opacity-90"
-              />
-            </div>
-            
-            {/* Loading Text */}
-            <h2 className="text-2xl font-bold text-white mb-4 tracking-wide">
-              {language === 'cs' ? 'Načítání...' : 
-               language === 'it' ? 'Caricamento...' : 
-               'Loading...'}
-            </h2>
-            
-            {/* Loading Animation */}
-            <div className="flex justify-center space-x-2">
-              <div className="w-3 h-3 bg-white/80 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-              <div className="w-3 h-3 bg-white/80 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-              <div className="w-3 h-3 bg-white/80 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-            </div>
-          </div>
-        </div>
-      )}
-      
       {/* Navigation */}
       <Navigation />
 
