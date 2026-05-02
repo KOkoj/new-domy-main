@@ -6,8 +6,11 @@
     remotePatterns: [
       { protocol: 'https', hostname: 'cdn.sanity.io',       pathname: '**' },
       { protocol: 'https', hostname: 'images.unsplash.com', pathname: '**' },
-      { protocol: 'https', hostname: 'pwm.im-cdn.it',       pathname: '**' },
-      { protocol: 'https', hostname: 'img4.idealista.it',   pathname: '**' },
+      // Idealista and im-cdn.it both shard images across multiple
+      // subdomains (img1..imgN, pwm/etc). Whitelist all of them so every
+      // image variant resolves through the next/image optimizer.
+      { protocol: 'https', hostname: '**.im-cdn.it',        pathname: '**' },
+      { protocol: 'https', hostname: '**.idealista.it',     pathname: '**' },
       { protocol: 'https', hostname: '**.supabase.co',      pathname: '/storage/v1/object/public/**' },
     ],
   },
