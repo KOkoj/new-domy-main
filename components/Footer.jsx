@@ -39,6 +39,7 @@ export default function Footer({ language = 'en' }) {
   const supportLinks = [
     { href: '/contact', label: footerLabels.contactUs, testId: 'footer-contact-link' },
     { href: '/about', label: language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About Us', testId: 'footer-about-link' },
+    { href: '/reference', label: language === 'cs' ? 'Reference' : language === 'it' ? 'Referenze' : 'References', testId: 'footer-reference-link' },
     { href: '/faq', label: footerLabels.faq, testId: 'footer-faq-link' },
     { href: '/guides/costs', label: language === 'cs' ? 'Náklady koupě' : language === 'it' ? 'Costi di acquisto' : 'Purchase Costs', protected: true },
     { href: '/guides/mistakes', label: language === 'cs' ? 'Časté chyby' : language === 'it' ? 'Errori comuni' : 'Common Mistakes', protected: true },

@@ -137,6 +137,7 @@ export default function Navigation() {
     properties: language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties',
     regions: language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions',
     about: language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About',
+    reference: language === 'cs' ? 'Reference' : language === 'it' ? 'Referenze' : 'References',
     contact: language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact',
     dashboard: language === 'cs' ? 'Nástěnka' : language === 'it' ? 'Cruscotto' : 'Dashboard',
     admin: language === 'cs' ? 'Admin' : language === 'it' ? 'Amministrazione' : 'Admin'
@@ -180,6 +181,7 @@ export default function Navigation() {
                 { href: '/regions', label: navLabels.regions, testId: 'nav-regions-link' },
                 { href: '/blog', label: language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles', testId: 'nav-blog-link' },
                 { href: '/about', label: navLabels.about, testId: 'nav-about-link' },
+                { href: '/reference', label: navLabels.reference, testId: 'nav-reference-link' },
                 { href: '/contact', label: navLabels.contact, testId: 'nav-contact-link' },
               ].map(({ href, label, testId }) => (
                 <Link 
@@ -321,6 +323,7 @@ export default function Navigation() {
               { href: '/blog', label: language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles', testId: 'mobile-blog-link' },
               { href: '/faq', label: 'FAQ', testId: 'mobile-faq-link' },
               { href: '/about', label: navLabels.about, testId: 'mobile-about-link' },
+              { href: '/reference', label: navLabels.reference, testId: 'mobile-reference-link' },
               { href: '/contact', label: navLabels.contact, testId: 'mobile-contact-link' },
             ].map(({ href, label, testId }) => (
               <Link 

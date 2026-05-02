@@ -27,10 +27,7 @@ export default function HomePageClient({ initialProperties = [] }) {
   
   // Background images for hero section
   const heroBackgroundImages = [
-    { src: "/hero bg/hero-background.jpg", alt: "Hero background image" },
-    { src: "/hero bg/pexels-catalin-todosia-876894548-34149286.jpg", alt: "Colorful street with umbrellas" },
-    { src: "/hero bg/pexels-maegan-white-363530-981686.jpg", alt: "Beautiful Italian landscape" },
-    { src: "/hero bg/pexels-pixabay-51947.jpg", alt: "Italian countryside view" }
+    { src: "/hero bg/hero-background.jpg", alt: "Hero background image" }
   ]
   const [filteredProperties, setFilteredProperties] = useState(initialProperties)
   const [favorites, setFavorites] = useState(new Set())
@@ -980,6 +977,55 @@ export default function HomePageClient({ initialProperties = [] }) {
             ))}
           </div>
 
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="bg-[#faf8f5] border-b border-gray-100 py-10 sm:py-14" data-testid="testimonials-section">
+        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-8">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: '#c78b5a' }}>
+                {language === 'cs' ? 'Reference' : language === 'it' ? 'Referenze' : 'References'}
+              </p>
+              <h2 className="font-bold text-gray-900 text-2xl sm:text-2xl">
+                {language === 'cs' ? 'Co říkají naši klienti.' :
+                 language === 'it' ? 'Cosa dicono i nostri clienti.' :
+                 'What our clients say.'}
+              </h2>
+            </div>
+            <Link href="/reference" className="inline-flex items-center gap-1.5 text-sm font-semibold whitespace-nowrap flex-shrink-0" style={{ color: '#c78b5a' }}>
+              {language === 'cs' ? 'Všechny reference' : language === 'it' ? 'Tutte le referenze' : 'All references'}
+              <ChevronRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {[
+              {
+                name: 'Adéla Babišová', tag: 'Umbria',
+                quote: <>Moje <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">nejlepší rozhodnutí</span> bylo spojit síly s Domy v Itálii a nechat si krýt záda od parťáka, který tomu rozumí, má zkušenosti a <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">odhalil chyby v kupní smlouvě</span>, které chystala italská realitka. Servis vážně na <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">jedničku s hvězdičkou</span>.</>,
+              },
+              {
+                name: 'Lenka Kluková', tag: 'Slovensko',
+                quote: <>Domy v Itálii byla ta <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">správná volba</span> — <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">vstřícný a rychlý přístup</span>, ochota poradit, promptná komunikace s realitními agenturami a prověření zásadních informací o nemovitostech. Za nás <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">absolutní spokojenost</span>.</>,
+              },
+              {
+                name: 'Marcela Dejlová', tag: 'Itálie',
+                quote: <>Děkuji za <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">perfektní servis</span>, pomoc při koupi domu včetně všech nezbytných úředních procedur, osobní asistenci a <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">neuvěřitelně vstřícné, milé a přátelské jednání</span>. Zdravím z Itálie.</>,
+              },
+            ].map(({ name, tag, quote }) => (
+              <div key={name} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 flex flex-col gap-4">
+                <p className="text-gray-600 text-sm leading-relaxed italic flex-1">&ldquo;{quote}&rdquo;</p>
+                <div className="flex items-center gap-2 mt-auto pt-2 border-t border-gray-50">
+                  <div className="h-7 w-7 rounded-full bg-copper-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-xs font-bold text-copper-700">{name.charAt(0)}</span>
+                  </div>
+                  <span className="font-semibold text-gray-900 text-sm">{name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
