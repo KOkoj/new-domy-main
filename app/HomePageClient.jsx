@@ -25,9 +25,16 @@ export default function HomePageClient({ initialProperties = [] }) {
   const SHOW_HOME_ARCHIVED_SECTIONS = false
   const [properties, setProperties] = useState(initialProperties)
   
-  // Background images for hero section
+  // Background images for hero section.
+  // Pre-optimised at 960 px wide with a 1.5 px blur (invisible under the
+  // gradient overlay): AVIF ≈ 15 KiB, WebP ≈ 44 KiB.
   const heroBackgroundImages = [
-    { src: "/hero bg/hero-background.jpg", alt: "Hero background image" }
+    {
+      src: "/hero-background.webp",
+      avifSrc: "/hero-background.avif",
+      webpSrc: "/hero-background.webp",
+      alt: "Italský venkov — hero pozadí"
+    }
   ]
   const [filteredProperties, setFilteredProperties] = useState(initialProperties)
   const [favorites, setFavorites] = useState(new Set())

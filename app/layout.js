@@ -10,21 +10,21 @@ import { readLanguageFromCookies } from '@/lib/userPreferences'
 import { Analytics } from '@vercel/analytics/next'
 
 const manrope = Manrope({
-  subsets: ['latin', 'latin-ext'],
+  subsets: ['latin'],
   display: 'swap',
   variable: '--font-manrope',
   fallback: ['system-ui', 'arial'],
   preload: true,
-  weight: ['200', '300', '400', '500', '600', '700', '800'],
+  weight: ['400', '600', '700'],
 })
 
 const sora = Sora({
-  subsets: ['latin', 'latin-ext'],
+  subsets: ['latin'],
   display: 'swap',
   variable: '--font-sora',
   fallback: ['system-ui', 'arial'],
-  preload: true,
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
+  preload: false,
+  weight: ['600', '700', '800'],
 })
 
 export const metadata = {
@@ -88,6 +88,17 @@ export default async function RootLayout({ children }) {
     <html lang={language} className={`${manrope.variable} ${sora.variable} font-sans overflow-x-hidden`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        {/* LCP hero background — preload the best format the browser supports.
+            AVIF-capable browsers (Chrome, Edge, Firefox, Safari 16+) fetch the
+            14 KiB AVIF; others fall back to the 44 KiB WebP via the <picture>
+            element in BackgroundImageTransition. */}
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-background.avif"
+          type="image/avif"
+          fetchPriority="high"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

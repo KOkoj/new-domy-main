@@ -90,5 +90,24 @@
         "tailwindcss": "^3.4.1",
         "typescript": "5.9.3"
     },
-    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+    "browserslist": {
+        "production": [
+            ">0.5%",
+            "last 2 major versions",
+            "Firefox ESR",
+            "not dead",
+            "not IE 11",
+            "not op_mini all",
+            "not safari < 15.4",
+            "not chrome < 93",
+            "not firefox < 90",
+            "not edge < 93"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }

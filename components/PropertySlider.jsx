@@ -121,13 +121,20 @@ function SlideCard({ property, language, labels }) {
         <span className="sr-only">{labels.viewDetails}</span>
       </Link>
 
-      <div className="relative overflow-hidden flex-shrink-0 h-52">
+      {/*
+        Explicit width + height let the browser reserve the exact 320×208 space
+        before the image downloads, eliminating layout shift. w-full + h-auto
+        makes it responsive; the container clips at the right height via
+        aspect-[320/208] so the card thumbnail is always the same proportion.
+      */}
+      <div className="relative overflow-hidden flex-shrink-0">
         <PropertyImage
           src={property.image}
           alt={title}
-          fill
+          width={320}
+          height={208}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
+          className="w-full h-auto object-cover aspect-[320/208] group-hover:scale-105 transition-transform duration-300 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-800/40 via-transparent to-transparent" />
 
@@ -244,7 +251,38 @@ export default function PropertySlider({ language = 'en' }) {
     load()
   }, [])
 
-  if (loading || properties.length === 0) return null
+  // Render a same-height skeleton while fetching so the section never has
+  // zero height — the #1 cause of layout shift for this component.
+  if (loading) {
+    return (
+      <section className="bg-gray-50 border-t border-gray-100 py-16" aria-hidden="true">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-8">
+            <div className="space-y-2">
+              <div className="h-7 w-72 rounded-md bg-gray-200 animate-pulse" />
+              <div className="h-1 w-12 rounded-full bg-gray-200 animate-pulse" />
+            </div>
+          </div>
+          <div className="flex gap-5 overflow-hidden">
+            {[0, 1, 2, 3].map((i) => (
+              <div key={i} className="flex-[0_0_280px] sm:flex-[0_0_300px] lg:flex-[0_0_320px] shrink-0">
+                <div className="rounded-2xl overflow-hidden bg-white shadow-md border border-gray-100">
+                  <div className="w-full aspect-[320/208] bg-gray-200 animate-pulse" />
+                  <div className="p-4 space-y-2">
+                    <div className="h-4 w-3/4 rounded bg-gray-200 animate-pulse" />
+                    <div className="h-3 w-1/2 rounded bg-gray-200 animate-pulse" />
+                    <div className="h-3 w-1/3 rounded bg-gray-200 animate-pulse mt-3" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (properties.length === 0) return null
 
   return (
     <section className="bg-gray-50 border-t border-gray-100 py-16">

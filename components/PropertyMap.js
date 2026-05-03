@@ -1,7 +1,8 @@
 ﻿'use client';
 
 import React, { useEffect, useRef } from 'react';
-import 'leaflet/dist/leaflet.css';
+
+const LEAFLET_CSS_ID = 'leaflet-css';
 
 const PropertyMap = ({ 
   properties = [], 
@@ -22,11 +23,14 @@ const PropertyMap = ({
         // Dynamically import Leaflet
         L = await import('leaflet');
         
-        // Import Leaflet CSS
-        const leafletCSS = document.createElement('link');
-        leafletCSS.rel = 'stylesheet';
-        leafletCSS.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-        document.head.appendChild(leafletCSS);
+        // Inject Leaflet CSS once, non-blocking (removed from static import to avoid render-blocking bundle)
+        if (!document.getElementById(LEAFLET_CSS_ID)) {
+          const leafletCSS = document.createElement('link');
+          leafletCSS.id = LEAFLET_CSS_ID;
+          leafletCSS.rel = 'stylesheet';
+          leafletCSS.href = '/leaflet/leaflet.css';
+          document.head.appendChild(leafletCSS);
+        }
 
         // Fix for default markers in Leaflet
         delete L.Icon.Default.prototype._getIconUrl;
