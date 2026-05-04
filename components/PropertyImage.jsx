@@ -1,39 +1,43 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { PROPERTY_IMAGE_FALLBACK } from '@/lib/getPropertyImage'
 
 /**
- * Wrapper around next/image that transparently swaps to a fallback URL when
- * the upstream image 404s, hotlink-blocks, or otherwise fails to load. Used in
- * property cards and galleries so dead CDN URLs never leave a blank slot.
+ * Wrapper around next/image for property photos.
  *
- * Behaviour on failure:
- *   1. First failure on the original src → retry once with a cache-busting
- *      query param. External CDNs (im-cdn.it, idealista) and the Next.js image
- *      optimizer will both occasionally hiccup on the first hit, especially
- *      when the request was emitted as a `priority` preload before hydration;
- *      a fresh request usually succeeds.
- *   2. Retry also failed → fall back to PROPERTY_IMAGE_FALLBACK and call
- *      `onUpstreamError` so the parent (e.g. ImageGallery) can keep the rest
- *      of the UI in sync (so the hero and the lightbox at the same index
- *      don't disagree about whether that slot is showing the fallback).
+ * Two important deviations from a plain <Image>:
+ *
+ * 1. `unoptimized` is forced on. Property images come from a high-volume mix
+ *    of Idealista/im-cdn.it CDN URLs and self-hosted /uploads paths. Routing
+ *    them through Vercel's Image Optimization endpoint exhausts the project's
+ *    transformation quota almost instantly (one gallery render = dozens of
+ *    transformations) and the optimizer then returns 402 Payment Required for
+ *    every subsequent request, including local /uploads files. Bypassing the
+ *    optimizer keeps the gallery loading reliably; we trade off responsive
+ *    srcset for a working hero, which is the right trade for this site.
+ *
+ * 2. On load failure we swap to a generic fallback URL and notify the parent
+ *    via `onUpstreamError`, so a containing gallery can mark the slot as bad
+ *    and keep every renderer of that slot (hero, thumbnails, lightbox) in
+ *    sync — the previous bug where the hero showed the fallback while the
+ *    lightbox still tried the dead URL is impossible once the parent owns
+ *    that state.
  */
 export default function PropertyImage({
   src,
   fallbackSrc = PROPERTY_IMAGE_FALLBACK,
   alt = '',
   onUpstreamError,
+  unoptimized = true,
   ...props
 }) {
   const initialSrc = src || fallbackSrc
   const [currentSrc, setCurrentSrc] = useState(initialSrc)
-  const attemptRef = useRef(0)
 
   useEffect(() => {
     setCurrentSrc(src || fallbackSrc)
-    attemptRef.current = 0
   }, [src, fallbackSrc])
 
   return (
@@ -41,16 +45,9 @@ export default function PropertyImage({
       {...props}
       src={currentSrc}
       alt={alt}
+      unoptimized={unoptimized}
       onError={() => {
         if (currentSrc === fallbackSrc) return
-
-        if (attemptRef.current === 0 && src) {
-          attemptRef.current = 1
-          const sep = src.includes('?') ? '&' : '?'
-          setCurrentSrc(`${src}${sep}_pi_retry=1`)
-          return
-        }
-
         setCurrentSrc(fallbackSrc)
         if (typeof onUpstreamError === 'function') {
           onUpstreamError()

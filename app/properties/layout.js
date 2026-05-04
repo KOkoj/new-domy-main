@@ -1,6 +1,5 @@
 import { absoluteUrl, SITE_NAME, SITE_URL } from '@/lib/siteConfig'
 import { getAllProperties } from '@/lib/propertyApi'
-import { getPropertyImageList } from '@/lib/getPropertyImage'
 import JsonLd from '@/components/seo/JsonLd'
 import { buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
 
@@ -120,8 +119,6 @@ function PropertiesSeoContent({ properties }) {
           const city = getLocalized(property?.location?.city?.name, 'cs', '')
           const region = getLocalized(property?.location?.city?.region?.name, 'cs', '')
           const description = getLocalized(property?.description, 'cs', '').slice(0, 200)
-          const images = getPropertyImageList(property)
-          const heroImage = images[0]
           return (
             <li key={slug}>
               <a href={`/properties/${slug}`}>
@@ -129,7 +126,6 @@ function PropertiesSeoContent({ properties }) {
                 {city ? `, ${city}` : ''}
                 {region ? `, ${region}` : ''}
               </a>
-              {heroImage ? <img src={heroImage} alt={title} /> : null}
               {description ? <p>{description}</p> : null}
             </li>
           )

@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getPropertyBySlug } from '@/lib/propertyApi'
-import { getPropertyImageList, PROPERTY_IMAGE_FALLBACK } from '@/lib/getPropertyImage'
+import { getPropertyImageList } from '@/lib/getPropertyImage'
 import PropertyDetailClient from './PropertyDetailClient'
 
 export const dynamic = 'force-dynamic'
@@ -72,8 +72,6 @@ function PropertySeoContent({ property }) {
   const address = getLocalized(property?.location?.address, 'cs', '')
   const formattedPrice = formatPriceForSeo(property.price)
   const specs = property.specifications || {}
-  const images = getPropertyImageList(property)
-  const heroImage = images[0] || PROPERTY_IMAGE_FALLBACK
 
   return (
     <div
@@ -119,12 +117,6 @@ function PropertySeoContent({ property }) {
                 return label ? <li key={index}>{label}</li> : null
               })}
             </ul>
-          </>
-        ) : null}
-        {images.length > 0 ? (
-          <>
-            <h2>Fotografie</h2>
-            <img src={heroImage} alt={title} />
           </>
         ) : null}
       </article>
