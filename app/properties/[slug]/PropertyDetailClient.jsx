@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import PropertyImage from '@/components/PropertyImage'
-import { getPropertyImageList } from '@/lib/getPropertyImage'
+import { getPropertyImageList, PROPERTY_IMAGE_FALLBACK } from '@/lib/getPropertyImage'
 import { useParams } from 'next/navigation'
 import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, User, X, ChevronLeft, ChevronRight, ZoomIn, Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -50,13 +50,44 @@ function getPropertyTypeLabel(propertyType, language) {
   return PROPERTY_TYPE_LABELS[key]?.[language] || PROPERTY_TYPE_LABELS[key]?.en || propertyType || '-'
 }
 
+function isLocalAsset(url) {
+  return typeof url === 'string' && url.startsWith('/')
+}
+
 function ImageGallery({ images, title, status, language }) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
+  const [failedIndices, setFailedIndices] = useState(() => new Set())
   const statusLabel = getPropertyStatusLabel(status, language)
 
   useEffect(() => { setMounted(true) }, [])
+
+  // When the underlying images array changes (e.g. navigating between
+  // properties), drop any "this slot failed" marks so the new property gets a
+  // clean slate and isn't punished for the previous property's dead URLs.
+  useEffect(() => {
+    setFailedIndices((prev) => (prev.size === 0 ? prev : new Set()))
+  }, [images])
+
+  const markFailed = useCallback((idx) => {
+    setFailedIndices((prev) => {
+      if (prev.has(idx)) return prev
+      const next = new Set(prev)
+      next.add(idx)
+      return next
+    })
+  }, [])
+
+  // Single source of truth for "what URL should slot `idx` actually display".
+  // If the slot has reported an upstream failure, every component that renders
+  // it (hero, thumbnail mosaic, lightbox main, lightbox strip) collapses to
+  // the same fallback URL, so they can never disagree the way the hero used
+  // to disagree with the lightbox.
+  const srcAt = useCallback((idx) => {
+    if (failedIndices.has(idx)) return PROPERTY_IMAGE_FALLBACK
+    return images[idx]
+  }, [failedIndices, images])
 
   const openLightbox = (index) => {
     setLightboxIndex(index)
@@ -112,12 +143,13 @@ function ImageGallery({ images, title, status, language }) {
             onClick={() => openLightbox(0)}
           >
             <PropertyImage
-              key={images[0]}
-              src={images[0]}
+              key={srcAt(0)}
+              src={srcAt(0)}
               alt={title}
               fill
               sizes="(min-width: 1024px) 66vw, 100vw"
-              priority
+              priority={isLocalAsset(images[0])}
+              onUpstreamError={() => markFailed(0)}
               className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
             {statusLabel && (
@@ -137,12 +169,13 @@ function ImageGallery({ images, title, status, language }) {
               onClick={() => openLightbox(0)}
             >
               <PropertyImage
-                key={images[0]}
-                src={images[0]}
+                key={srcAt(0)}
+                src={srcAt(0)}
                 alt={title}
                 fill
                 sizes="(min-width: 640px) 58vw, 75vw"
-                priority
+                priority={isLocalAsset(images[0])}
+                onUpstreamError={() => markFailed(0)}
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
               {statusLabel && (
@@ -171,10 +204,11 @@ function ImageGallery({ images, title, status, language }) {
                     onClick={() => openLightbox(slot)}
                   >
                     <PropertyImage
-                      src={img}
+                      src={srcAt(slot)}
                       alt={`${title} - ${slot + 1}`}
                       fill
                       sizes="(min-width: 640px) 20vw, 33vw"
+                      onUpstreamError={() => markFailed(slot)}
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
@@ -245,12 +279,13 @@ function ImageGallery({ images, title, status, language }) {
           >
             <PropertyImage
               key={lightboxIndex}
-              src={images[lightboxIndex]}
+              src={srcAt(lightboxIndex)}
               alt={`${title} - Image ${lightboxIndex + 1}`}
               fill
               sizes="90vw"
               className="object-contain"
-              priority
+              priority={isLocalAsset(images[lightboxIndex])}
+              onUpstreamError={() => markFailed(lightboxIndex)}
             />
           </div>
 
@@ -283,10 +318,11 @@ function ImageGallery({ images, title, status, language }) {
                     }`}
                   >
                     <PropertyImage
-                      src={img}
+                      src={srcAt(idx)}
                       alt={`${title} - ${idx + 1}`}
                       fill
                       sizes="80px"
+                      onUpstreamError={() => markFailed(idx)}
                       className="object-cover"
                     />
                   </button>
