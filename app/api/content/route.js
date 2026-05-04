@@ -389,19 +389,6 @@ export async function PUT(request) {
       if (data.publishAt !== undefined) updateData.publishAt = data.publishAt
       if (data.scheduledPublish !== undefined) updateData.scheduledPublish = data.scheduledPublish
 
-      // Generate new slug if title changed
-      if (data.title && (data.title.en || data.title.it)) {
-        const slugBase = (data.title.en || data.title.it || 'untitled')
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/(^-|-$)/g, '')
-
-        updateData.slug = {
-          _type: 'slug',
-          current: slugBase
-        }
-      }
-
       try {
         const result = await writeClient
           .patch(id)
