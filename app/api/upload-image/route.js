@@ -1,33 +1,27 @@
 import { NextResponse } from 'next/server'
 import { writeClient } from '@/lib/sanity'
 import { requireAdminApiAccess } from '@/lib/adminAuth'
-import { ADMIN_LAUNCH_TOOLS_ENABLED, getAdminToolDisabledResponse } from '@/lib/featureFlags'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-// Helper to check if Sanity is configured
 function isSanityConfigured() {
-  return process.env.NEXT_PUBLIC_SANITY_PROJECT_ID && 
+  return process.env.NEXT_PUBLIC_SANITY_PROJECT_ID &&
          process.env.NEXT_PUBLIC_SANITY_PROJECT_ID !== 'placeholder' &&
          process.env.SANITY_API_TOKEN
 }
 
 export async function POST(request) {
-  if (!ADMIN_LAUNCH_TOOLS_ENABLED) {
-    return NextResponse.json(getAdminToolDisabledResponse(), { status: 503 })
-  }
-
-  const access = await requireAdminApiAccess()
-  if (!access.ok) return access.response
-
-  if (!isSanityConfigured()) {
-    return NextResponse.json({ 
-      error: 'Sanity CMS not configured properly. Ensure SANITY_API_TOKEN is set.' 
-    }, { status: 503 })
-  }
-
   try {
+    const access = await requireAdminApiAccess()
+    if (!access.ok) return access.response
+
+    if (!isSanityConfigured()) {
+      return NextResponse.json({
+        error: 'Sanity CMS not configured properly. Ensure SANITY_API_TOKEN is set.'
+      }, { status: 503 })
+    }
+
     const formData = await request.formData()
     const file = formData.get('file')
 
@@ -43,18 +37,16 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Only image uploads are allowed' }, { status: 400 })
     }
 
-    // Convert file to buffer
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
-    // Upload to Sanity
     const asset = await writeClient.assets.upload('image', buffer, {
       filename: file.name,
       contentType: file.type
     })
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       asset: {
         _id: asset._id,
         url: asset.url,
@@ -63,10 +55,9 @@ export async function POST(request) {
     })
   } catch (error) {
     console.error('Error uploading image:', error)
-    return NextResponse.json({ 
+    return NextResponse.json({
       error: 'Failed to upload image',
-      details: process.env.NODE_ENV !== 'production' ? error.message : undefined
+      details: error?.message || null
     }, { status: 500 })
   }
 }
-

@@ -150,10 +150,10 @@ export async function GET(request) {
 
 // POST - Create new property
 export async function POST(request) {
-  const access = await requireAdminApiAccess()
-  if (!access.ok) return access.response
-
   try {
+    const access = await requireAdminApiAccess()
+    if (!access.ok) return access.response
+
     const body = await request.json()
     const { type, data } = body
 
@@ -296,10 +296,10 @@ export async function POST(request) {
 
 // PUT - Update property
 export async function PUT(request) {
-  const access = await requireAdminApiAccess()
-  if (!access.ok) return access.response
-
   try {
+    const access = await requireAdminApiAccess()
+    if (!access.ok) return access.response
+
     const body = await request.json()
     const { type, id, data } = body
 
@@ -363,15 +363,23 @@ export async function PUT(request) {
 
       // Fallback to local write when SANITY_API_TOKEN is not available
       if (!process.env.SANITY_API_TOKEN) {
-        const property = await updateLocalProperty(id, data)
-        if (!property) {
-          return NextResponse.json({ error: 'Property not found' }, { status: 404 })
+        try {
+          const property = await updateLocalProperty(id, data)
+          if (!property) {
+            return NextResponse.json({ error: 'Property not found' }, { status: 404 })
+          }
+          return NextResponse.json({
+            success: true,
+            property,
+            warning: 'Sanity API token missing, property updated in local store'
+          })
+        } catch (localError) {
+          console.error('Local store update failed:', localError)
+          return NextResponse.json({
+            error: 'Failed to update property',
+            details: localError?.message || 'Local store write failed'
+          }, { status: 500 })
         }
-        return NextResponse.json({
-          success: true,
-          property,
-          warning: 'Sanity API token missing, property updated in local store'
-        })
       }
 
       try {
@@ -383,15 +391,28 @@ export async function PUT(request) {
         return NextResponse.json({ success: true, property: result })
       } catch (sanityError) {
         console.error('Sanity update failed, falling back to local store:', sanityError)
-        const property = await updateLocalProperty(id, data)
-        if (!property) {
-          return NextResponse.json({ error: 'Property not found' }, { status: 404 })
+        try {
+          const property = await updateLocalProperty(id, data)
+          if (!property) {
+            return NextResponse.json({
+              error: 'Property not found in local store after Sanity update failed',
+              sanityError: sanityError?.message
+            }, { status: 404 })
+          }
+          return NextResponse.json({
+            success: true,
+            property,
+            warning: 'Sanity update failed, property updated in local store'
+          })
+        } catch (localError) {
+          console.error('Local store fallback also failed:', localError)
+          return NextResponse.json({
+            error: 'Failed to update property — Sanity and local store both failed',
+            details: sanityError?.message || null,
+            localError: localError?.message || null,
+            hint: 'Ensure SANITY_API_TOKEN is set and valid, or check server filesystem permissions'
+          }, { status: 500 })
         }
-        return NextResponse.json({
-          success: true,
-          property,
-          warning: 'Sanity update failed, property updated in local store'
-        })
       }
     }
 
@@ -431,16 +452,18 @@ export async function PUT(request) {
     return NextResponse.json({ error: 'Invalid type or missing ID' }, { status: 400 })
   } catch (error) {
     console.error('Error updating content:', error)
-    return NextResponse.json({ error: 'Failed to update content' }, { status: 500 })
+    return NextResponse.json({
+      error: 'Failed to update content',
+      details: error?.message || null
+    }, { status: 500 })
   }
 }
 
 // DELETE - Delete property
 export async function DELETE(request) {
-  const access = await requireAdminApiAccess()
-  if (!access.ok) return access.response
-
   try {
+    const access = await requireAdminApiAccess()
+    if (!access.ok) return access.response
     const url = new URL(request.url)
     const type = url.searchParams.get('type')
     const id = url.searchParams.get('id')
