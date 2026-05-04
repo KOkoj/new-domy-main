@@ -328,6 +328,30 @@ export async function PUT(request) {
     }
 
     if (type === 'property' && id) {
+      // Local-store properties must never be sent to Sanity — their IDs don't exist there
+      const isLocalId = id.startsWith('local-')
+
+      if (isLocalId || !process.env.SANITY_API_TOKEN) {
+        try {
+          const property = await updateLocalProperty(id, data)
+          if (!property) {
+            return NextResponse.json({ error: 'Property not found' }, { status: 404 })
+          }
+          return NextResponse.json({
+            success: true,
+            property,
+            warning: isLocalId ? undefined : 'Sanity API token missing, property updated in local store'
+          })
+        } catch (localError) {
+          console.error('Local store update failed:', localError)
+          return NextResponse.json({
+            error: 'Failed to update property in local store',
+            details: localError?.message || null,
+            hint: 'The server filesystem may be read-only. Check write permissions for the data/ directory.'
+          }, { status: 500 })
+        }
+      }
+
       const updateData = {}
 
       if (data.title) updateData.title = data.title
@@ -361,27 +385,6 @@ export async function PUT(request) {
         }
       }
 
-      // Fallback to local write when SANITY_API_TOKEN is not available
-      if (!process.env.SANITY_API_TOKEN) {
-        try {
-          const property = await updateLocalProperty(id, data)
-          if (!property) {
-            return NextResponse.json({ error: 'Property not found' }, { status: 404 })
-          }
-          return NextResponse.json({
-            success: true,
-            property,
-            warning: 'Sanity API token missing, property updated in local store'
-          })
-        } catch (localError) {
-          console.error('Local store update failed:', localError)
-          return NextResponse.json({
-            error: 'Failed to update property',
-            details: localError?.message || 'Local store write failed'
-          }, { status: 500 })
-        }
-      }
-
       try {
         const result = await writeClient
           .patch(id)
@@ -396,7 +399,7 @@ export async function PUT(request) {
           if (!property) {
             return NextResponse.json({
               error: 'Property not found in local store after Sanity update failed',
-              sanityError: sanityError?.message
+              details: sanityError?.message
             }, { status: 404 })
           }
           return NextResponse.json({
@@ -407,9 +410,8 @@ export async function PUT(request) {
         } catch (localError) {
           console.error('Local store fallback also failed:', localError)
           return NextResponse.json({
-            error: 'Failed to update property — Sanity and local store both failed',
+            error: 'Failed to update property',
             details: sanityError?.message || null,
-            localError: localError?.message || null,
             hint: 'Ensure SANITY_API_TOKEN is set and valid, or check server filesystem permissions'
           }, { status: 500 })
         }
