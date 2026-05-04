@@ -160,6 +160,7 @@ export default async function PropertyDetailPage({ params }) {
     specifications: sanityProperty.specifications,
     location: sanityProperty.location,
     images: getPropertyImageList(sanityProperty),
+    mainImage: 0,
     amenities: sanityProperty.amenities || [],
     developer: sanityProperty.developer,
     status: sanityProperty.status || 'available',

@@ -112,6 +112,7 @@ function ImageGallery({ images, title, status, language }) {
             onClick={() => openLightbox(0)}
           >
             <PropertyImage
+              key={images[0]}
               src={images[0]}
               alt={title}
               fill
@@ -136,6 +137,7 @@ function ImageGallery({ images, title, status, language }) {
               onClick={() => openLightbox(0)}
             >
               <PropertyImage
+                key={images[0]}
                 src={images[0]}
                 alt={title}
                 fill
@@ -425,6 +427,15 @@ export default function PropertyDetailClient({ initialProperty = null }) {
   const slugParam = Array.isArray(routeParams?.slug) ? routeParams.slug[0] : routeParams?.slug
   const [property, setProperty] = useState(initialProperty)
   const [loading, setLoading] = useState(!initialProperty)
+
+  // Sync property state when server provides a new initialProperty (e.g. client-side
+  // navigation between property pages — React reuses this component but useState
+  // only captures the initial value; without this the gallery would show stale images).
+  useEffect(() => {
+    if (initialProperty) {
+      setProperty(initialProperty)
+    }
+  }, [initialProperty])
   const [isFavorited, setIsFavorited] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [user, setUser] = useState(null)
