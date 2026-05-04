@@ -3,7 +3,7 @@ import { getPropertyBySlug } from '@/lib/propertyApi'
 import { getPropertyImageList, PROPERTY_IMAGE_FALLBACK } from '@/lib/getPropertyImage'
 import PropertyDetailClient from './PropertyDetailClient'
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 function getLocalized(value, language = 'cs', fallback = '') {
   if (value === null || value === undefined || value === '') return fallback

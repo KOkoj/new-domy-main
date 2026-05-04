@@ -14,7 +14,7 @@ export async function GET(request) {
     const properties = await getAllProperties(url.searchParams)
     return NextResponse.json(properties, {
       headers: {
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+        'Cache-Control': 'no-store',
       },
     })
   } catch (error) {

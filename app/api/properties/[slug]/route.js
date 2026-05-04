@@ -15,7 +15,7 @@ export async function GET(request, { params }) {
 
     return NextResponse.json(property, {
       headers: {
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+        'Cache-Control': 'no-store',
       },
     })
   } catch (error) {
