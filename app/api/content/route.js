@@ -67,15 +67,24 @@ export async function GET(request) {
         sourceUrl,
         _createdAt
       }`
-      
-      const properties = await client.fetch(query)
-      if (Array.isArray(properties) && properties.length > 0) {
-        return NextResponse.json({ properties })
+
+      // Always load local properties so local-ID edits are visible alongside Sanity items
+      const [sanityProperties, localProperties] = await Promise.all([
+        client.fetch(query).catch(() => []),
+        getLocalProperties().catch(() => [])
+      ])
+
+      const sanityItems = Array.isArray(sanityProperties) ? sanityProperties : []
+      const localItems = Array.isArray(localProperties) ? localProperties : []
+
+      if (sanityItems.length > 0) {
+        // Merge: Sanity is authoritative for its own IDs; append local-only items after
+        const sanityIds = new Set(sanityItems.map(p => p._id))
+        const localOnly = localItems.filter(p => !sanityIds.has(p._id))
+        return NextResponse.json({ properties: [...sanityItems, ...localOnly] })
       }
 
-      // Fallback to local properties when Sanity has no items
-      const localProperties = await getLocalProperties()
-      return NextResponse.json({ properties: localProperties })
+      return NextResponse.json({ properties: localItems })
     }
 
     if (type === 'regions') {
@@ -94,13 +103,21 @@ export async function GET(request) {
         popularity
       }`
 
-      const regions = await client.fetch(query)
-      if (Array.isArray(regions) && regions.length > 0) {
-        return NextResponse.json({ regions })
+      const [sanityRegions, localRegions] = await Promise.all([
+        client.fetch(query).catch(() => []),
+        getLocalRegions().catch(() => [])
+      ])
+
+      const sanityItems = Array.isArray(sanityRegions) ? sanityRegions : []
+      const localItems = Array.isArray(localRegions) ? localRegions : []
+
+      if (sanityItems.length > 0) {
+        const sanityIds = new Set(sanityItems.map(r => r._id))
+        const localOnly = localItems.filter(r => !sanityIds.has(r._id))
+        return NextResponse.json({ regions: [...sanityItems, ...localOnly] })
       }
 
-      const localRegions = await getLocalRegions()
-      return NextResponse.json({ regions: localRegions })
+      return NextResponse.json({ regions: localItems })
     }
 
     return NextResponse.json({ error: 'Invalid type parameter' }, { status: 400 })
