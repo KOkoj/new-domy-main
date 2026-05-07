@@ -1,5 +1,1024 @@
 [
   {
+    "_id": "local-import-veneto-villa-torri-del-benaco-pozzol-1778154498994-g1myq",
+    "_type": "listing",
+    "title": {
+      "en": "Detached Villa with Lake-View Terrace in Torri del Benaco",
+      "cs": "Samostatna vila s terasou a vyhledem na jezero v Torri del Benaco",
+      "it": "Villetta singola con terrazzo vista lago a Torri del Benaco"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "veneto-villa-torri-del-benaco-pozzol"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 790000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 160,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Torri del Benaco",
+          "cs": "Torri del Benaco",
+          "it": "Torri del Benaco"
+        },
+        "slug": {
+          "current": "torri-del-benaco"
+        },
+        "region": {
+          "name": {
+            "it": "Veneto",
+            "en": "Veneto",
+            "cs": "Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Localita Pozzol 9, Centre, Torri del Benaco (VR), Veneto",
+        "cs": "Localita Pozzol 9, centrum, Torri del Benaco (VR), Veneto",
+        "it": "Localita Pozzol 9, Centro, Torri del Benaco (VR), Veneto"
+      },
+      "coordinates": {
+        "lat": 45.6228,
+        "lng": 10.6982
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Torri del Benaco, in the Pozzol locality, we offer a detached villa with panoramic terrace and lake view. The property provides independence, privacy, and a particularly interesting location for anyone looking for a Garda home with private spaces and open views toward the water.\n\nThe living area is bright and opens onto the wooden terrace, ideal for outdoor living and enjoying the view. The sleeping area includes a double bedroom with large panoramic windows, a single bedroom, and a windowed bathroom. Recent double-glazed windows improve comfort and insulation.\n\nA private garage, semi-basement, and attic with potential complete the property. A rare opportunity on the Torri del Benaco market, suitable as a main residence, holiday home, or high-quality Lake Garda investment.",
+      "cs": "V Torri del Benaco, v lokalite Pozzol, nabizime samostatnou vilu s panoramatickou terasou a vyhledem na jezero. Nemovitost poskytuje nezavislost, soukromi a velmi zajimavou polohu pro ty, kdo hledaji dum u Gardy s vlastnimi prostory a otevrenymi pohledy k vode.\n\nObytna cast je svetla a otevíra se na drevenou terasu, idealni pro venkovni pobyt a vyuziti vyhledu. Nocni cast zahrnuje dvouluzkovou loznici s velkymi panoramatickymi okny, jednoluzkovy pokoj a koupelnu s oknem. Novejsi okna s dvojskly zlepsuji komfort a izolaci.\n\nNabidku doplnuje soukroma garaz, polosuterenn a puda s potencialem vyuziti. Vzacna prilezitost na trhu v Torri del Benaco, vhodna jako hlavni bydleni, rekreacni dum nebo kvalitni investice u Gardskeho jezera.",
+      "it": "A Torri del Benaco, in localita Pozzol, proponiamo una villetta singola con terrazzo panoramico e vista lago. La proprieta offre indipendenza, privacy e una posizione particolarmente interessante per chi cerca una casa sul Garda con spazi propri e scorci aperti verso l acqua.\n\nLa zona giorno e luminosa e si apre sul terrazzo in legno, ideale per vivere l esterno e valorizzare la vista. La zona notte comprende una camera matrimoniale con grandi finestre panoramiche, una camera singola e un bagno finestrato. I serramenti recenti con doppi vetri migliorano comfort e isolamento.\n\nCompletano la proprieta un garage privato, un piano seminterrato e una soffitta con potenziale di utilizzo. Una soluzione rara sul mercato di Torri del Benaco, adatta come residenza principale, casa vacanze o investimento di pregio sul Lago di Garda."
+    },
+    "images": [
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/01-01-gallery-1.jpg",
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/02-02-gallery-2.jpg",
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/03-03-gallery-3.jpg",
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/04-04-gallery-4.jpg",
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/05-05-gallery-5.jpg",
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/06-06-gallery-6.jpg",
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/07-07-gallery-7.jpg",
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/08-08-gallery-8.jpg",
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/09-09-gallery-9.jpg",
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/10-10-gallery-10.jpg",
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/11-11-gallery-11.jpg",
+      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villetta singola in posizione rara a Torri del Benaco",
+          "en": "Detached villa in a rare Torri del Benaco location",
+          "cs": "Samostatna vila ve vzacne poloze v Torri del Benaco"
+        }
+      },
+      {
+        "name": {
+          "it": "Terrazzo in legno con splendida vista lago",
+          "en": "Wooden terrace with beautiful lake view",
+          "cs": "Drevena terasa s krasnym vyhledem na jezero"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona giorno luminosa con affaccio panoramico",
+          "en": "Bright living area with panoramic outlook",
+          "cs": "Svetla obytna cast s panoramatickym vyhledem"
+        }
+      },
+      {
+        "name": {
+          "it": "Camera matrimoniale con grandi finestre e camera singola",
+          "en": "Double bedroom with large windows plus single bedroom",
+          "cs": "Dvouluzkova loznice s velkymi okny a jednoluzkovy pokoj"
+        }
+      },
+      {
+        "name": {
+          "it": "Bagno finestrato e serramenti recenti con doppi vetri",
+          "en": "Windowed bathroom and recent double-glazed windows",
+          "cs": "Koupelna s oknem a novejsi okna s dvojskly"
+        }
+      },
+      {
+        "name": {
+          "it": "Garage privato, seminterrato e soffitta con potenziale",
+          "en": "Private garage, semi-basement, and attic with potential",
+          "cs": "Soukroma garaz, polosuterenn a puda s potencialem"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Lake-View Villa for Sale in Torri del Benaco",
+      "cs": "Vila s vyhledem na jezero na prodej v Torri del Benaco",
+      "it": "Villa vista lago in vendita a Torri del Benaco"
+    },
+    "seoDescription": {
+      "en": "160 sqm detached villa in Torri del Benaco: lake-view terrace, 2 bedrooms, private garage, semi-basement, attic, and rare location.",
+      "cs": "Samostatna vila 160 m2 v Torri del Benaco: terasa s vyhledem na jezero, 2 loznice, soukroma garaz, polosuterenn, puda a vzacna poloha.",
+      "it": "Villetta singola di 160 m2 a Torri del Benaco: terrazzo vista lago, 2 camere, garage privato, seminterrato, soffitta e posizione rara."
+    },
+    "keywords": [
+      "torri del benaco",
+      "lago di garda",
+      "villa",
+      "vista lago",
+      "pozzol",
+      "veneto"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128272384/",
+    "_createdAt": "2026-05-07T11:48:18.992Z",
+    "_updatedAt": "2026-05-07T11:48:18.992Z"
+  },
+  {
+    "_id": "local-import-veneto-appartamento-costermano-sul-garda-corte-collina-1778154498643-chosn",
+    "_type": "listing",
+    "title": {
+      "en": "One-Bedroom Apartment with Terrace in Corte Collina, Costermano sul Garda",
+      "cs": "Apartman 2+kk s terasou v rezidenci Corte Collina u Gardy",
+      "it": "Bilocale con terrazzo nel residence Corte Collina a Costermano sul Garda"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "veneto-appartamento-costermano-sul-garda-corte-collina"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 248000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 65,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Costermano sul Garda",
+          "cs": "Costermano sul Garda",
+          "it": "Costermano sul Garda"
+        },
+        "slug": {
+          "current": "costermano-sul-garda"
+        },
+        "region": {
+          "name": {
+            "it": "Veneto",
+            "en": "Veneto",
+            "cs": "Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Zel, Castion Veronese, Costermano sul Garda (VR), Veneto",
+        "cs": "Via Zel, Castion Veronese, Costermano sul Garda (VR), Veneto",
+        "it": "Via Zel, Castion Veronese, Costermano sul Garda (VR), Veneto"
+      },
+      "coordinates": {
+        "lat": 45.6061,
+        "lng": 10.721
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the Corte Collina residence, in Castion Veronese within Costermano sul Garda, we offer a first-floor one-bedroom apartment with an approx. 20 sqm terrace and open view. The location is convenient for Lake Garda and makes the property suitable both for personal use and tourist rental.\n\nThe apartment includes a living room with kitchenette, large double bedroom, and windowed bathroom. The terrace is the home's key outdoor space, ideal for dining, relaxing, and enjoying the lake season.\n\nA garage and cellar complete the property. The residence offers a pool with solarium and changing rooms, tennis courts, and a football pitch, increasing both the lifestyle value and the potential for short lets or holiday-home use.",
+      "cs": "V rezidenci Corte Collina, v Castion Veronese v obci Costermano sul Garda, nabizime apartman 2+kk v prvnim patre s terasou cca 20 m2 a otevrenym vyhledem. Poloha je pohodlna pro dosazeni Gardskeho jezera a nemovitost je vhodna jak pro vlastni uzivani, tak pro turisticky pronajem.\n\nApartman zahrnuje obyvaci pokoj s kuchynskym koutem, prostornou dvouluzkovou loznici a koupelnu s oknem. Terasa je hlavnim venkovnim prostorem bytu, idealnim pro stolovani, odpocinek a pobyt venku behem jezerni sezony.\n\nNabidku doplnuje garaz a sklep. Rezidence nabizi bazen se solariem a satnami, tenisove kurty a fotbalove hriste, cimz zvysuje uzitnou hodnotu i potencial pro kratkodobe pronajmy nebo rekreacni bydleni.",
+      "it": "Nel residence Corte Collina, a Castion Veronese nel comune di Costermano sul Garda, proponiamo un bilocale al primo piano con terrazzo di circa 20 m2 e vista aperta. La posizione e comoda per raggiungere il Lago di Garda e rende l immobile adatto sia all uso personale sia alla locazione turistica.\n\nL appartamento comprende soggiorno con angolo cottura, ampia camera matrimoniale e bagno finestrato. Il terrazzo rappresenta il vero spazio esterno della casa, ideale per pranzi, relax e momenti all aperto durante la stagione del lago.\n\nCompletano la proprieta garage e cantina. Il residence offre piscina con solarium e spogliatoi, campi da tennis e campo da calcio, aumentando il valore d uso e il potenziale per affitti brevi o casa vacanze."
+    },
+    "images": [
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/01-01-gallery-1.jpg",
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/02-02-gallery-2.jpg",
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/03-03-gallery-3.jpg",
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/04-04-gallery-4.jpg",
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/05-05-gallery-5.jpg",
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/06-06-gallery-6.jpg",
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/07-07-gallery-7.jpg",
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/08-08-gallery-8.jpg",
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/09-09-gallery-9.jpg",
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/10-10-gallery-10.jpg",
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/11-11-gallery-11.jpg",
+      "/uploads/properties/veneto-appartamento-costermano-sul-garda-corte-collina/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Bilocale al primo piano nel residence Corte Collina",
+          "en": "First-floor one-bedroom apartment in the Corte Collina residence",
+          "cs": "Apartman 2+kk v prvnim patre rezidence Corte Collina"
+        }
+      },
+      {
+        "name": {
+          "it": "Terrazzo di circa 20 m2 con vista aperta",
+          "en": "Approx. 20 sqm terrace with open view",
+          "cs": "Terasa cca 20 m2 s otevrenym vyhledem"
+        }
+      },
+      {
+        "name": {
+          "it": "Soggiorno con angolo cottura e camera matrimoniale ampia",
+          "en": "Living room with kitchenette and large double bedroom",
+          "cs": "Obyvaci pokoj s kuchynskym koutem a prostornou loznici"
+        }
+      },
+      {
+        "name": {
+          "it": "Bagno finestrato, garage e cantina",
+          "en": "Windowed bathroom, garage, and cellar",
+          "cs": "Koupelna s oknem, garaz a sklep"
+        }
+      },
+      {
+        "name": {
+          "it": "Piscina, solarium, spogliatoi, campi da tennis e campo da calcio",
+          "en": "Pool, solarium, changing rooms, tennis courts, and football pitch",
+          "cs": "Bazen, solarium, satny, tenisove kurty a fotbalove hriste"
+        }
+      },
+      {
+        "name": {
+          "it": "Ottimo per vacanze e locazioni turistiche sul Lago di Garda",
+          "en": "Excellent for holidays and tourist rentals on Lake Garda",
+          "cs": "Vyborne pro dovolenou a turisticke pronajmy u Gardskeho jezera"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "One-Bedroom Apartment with Terrace for Sale in Costermano sul Garda",
+      "cs": "Apartman s terasou na prodej v Costermano sul Garda",
+      "it": "Bilocale con terrazzo in vendita a Costermano sul Garda"
+    },
+    "seoDescription": {
+      "en": "65 sqm apartment in Corte Collina, Costermano sul Garda: 20 sqm terrace, garage, cellar, pool, tennis courts, and residence amenities.",
+      "cs": "Apartman 65 m2 v rezidenci Corte Collina u Gardy: terasa 20 m2, garaz, sklep, bazen, tenis a rezidencni sluzby.",
+      "it": "Bilocale di 65 m2 nel residence Corte Collina a Costermano sul Garda: terrazzo 20 m2, garage, cantina, piscina, tennis e servizi."
+    },
+    "keywords": [
+      "costermano sul garda",
+      "castion veronese",
+      "corte collina",
+      "bilocale",
+      "terrazzo",
+      "lago di garda"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128506462/",
+    "_createdAt": "2026-05-07T11:48:18.642Z",
+    "_updatedAt": "2026-05-07T11:48:18.642Z"
+  },
+  {
+    "_id": "local-import-veneto-appartamento-pescantina-centro-borgo-1778154498365-2sh1k",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated One-Bedroom Home with Mezzanine in Historic Pescantina",
+      "cs": "Zrekonstruovane bydleni se spacim patrem v historickem centru Pescantiny",
+      "it": "Bilocale ristrutturato con soppalco nel centro storico di Pescantina"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "veneto-appartamento-pescantina-centro-borgo"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 185000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 90,
+      "parking": 1,
+      "yearBuilt": 2002
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Pescantina",
+          "cs": "Pescantina",
+          "it": "Pescantina"
+        },
+        "slug": {
+          "current": "pescantina"
+        },
+        "region": {
+          "name": {
+            "it": "Veneto",
+            "en": "Veneto",
+            "cs": "Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Borgo, Historic Centre, Pescantina (VR), Veneto",
+        "cs": "Via Borgo, historicke centrum, Pescantina (VR), Veneto",
+        "it": "Via Borgo, Centro, Pescantina (VR), Veneto"
+      },
+      "coordinates": {
+        "lat": 45.4806,
+        "lng": 10.8635
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the historic centre of Pescantina, on Via Borgo, we offer a distinctive independent home, renovated and arranged over several levels. Exposed beams and the central location make this property interesting both as a main residence and as an investment or holiday home in the Verona area.\n\nThe home includes a living area with furnished open kitchen, windowed bathroom, laundry room, bedroom/study, and a mezzanine usable as a sleeping area or additional space. The layout makes good use of the property's vertical structure and creates a compact, functional setting.\n\nA garage of approx. 14 sqm, independent heating, and air conditioning complete the property. A ready and versatile proposal, combining old-town character with the practicality of an independent entrance.",
+      "cs": "V historickem centru Pescantiny, v ulici Via Borgo, nabizime charakteristicke samostatne bydleni po rekonstrukci, rozlozene do vice urovni. Priznane tramy a centralni poloha delaji z teto nemovitosti zajimavou moznost jak pro vlastni bydleni, tak pro investici nebo rekreacni vyuziti v oblasti Verony.\n\nDum zahrnuje obytni cast se zarizenou otevrenou kuchyni, koupelnu s oknem, pradelnu, loznici/pracovnu a patro vyuzitelne jako spaci cast nebo dalsi prostor. Dispozice dobre vyuziva vertikalni charakter nemovitosti a vytvari kompaktny a funkcni celek.\n\nNabidku doplnuje garaz cca 14 m2, samostatne vytapeni a klimatizace. Pripravena a vsestranna nemovitost s kouzlem historickeho centra a praktickym samostatnym vstupem.",
+      "it": "Nel centro storico di Pescantina, in via Borgo, proponiamo una soluzione indipendente e caratteristica, ristrutturata e disposta su piu livelli. Gli ambienti con travi a vista e la posizione centrale rendono questa proprieta interessante sia come abitazione principale sia come investimento o casa vacanze nella zona veronese.\n\nLa casa comprende una zona giorno con cucina a vista arredata, bagno finestrato, lavanderia, camera/studio e un soppalco utilizzabile come zona notte o spazio aggiuntivo. La distribuzione sfrutta bene la verticalita dell immobile e crea un contesto raccolto e funzionale.\n\nCompletano la proprieta un autorimessa di circa 14 m2, riscaldamento autonomo e climatizzazione. Una proposta pronta e versatile, con il fascino del centro storico e la praticita di un ingresso indipendente."
+    },
+    "images": [
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/01-01-gallery-1.jpg",
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/02-02-gallery-2.jpg",
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/03-03-gallery-3.jpg",
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/04-04-gallery-4.jpg",
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/05-05-gallery-5.jpg",
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/06-06-gallery-6.jpg",
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/07-07-gallery-7.jpg",
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/08-08-gallery-8.jpg",
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/09-09-gallery-9.jpg",
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/10-10-gallery-10.jpg",
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/11-11-gallery-11.jpg",
+      "/uploads/properties/veneto-appartamento-pescantina-centro-borgo/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Soluzione indipendente su piu livelli nel centro storico",
+          "en": "Independent multi-level home in the historic centre",
+          "cs": "Samostatne viceurovnove bydleni v historickem centru"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona giorno con cucina a vista arredata",
+          "en": "Living area with furnished open kitchen",
+          "cs": "Obytna cast se zarizenou otevrenou kuchyni"
+        }
+      },
+      {
+        "name": {
+          "it": "Camera/studio e soppalco utilizzabile come zona notte",
+          "en": "Bedroom/study plus mezzanine usable as sleeping area",
+          "cs": "Loznice/pracovna a patro vyuzitelne jako spaci cast"
+        }
+      },
+      {
+        "name": {
+          "it": "Bagno finestrato, lavanderia e autorimessa di circa 14 m2",
+          "en": "Windowed bathroom, laundry room, and approx. 14 sqm garage",
+          "cs": "Koupelna s oknem, pradelna a garaz cca 14 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Travi a vista, climatizzazione e riscaldamento autonomo",
+          "en": "Exposed beams, air conditioning, and independent heating",
+          "cs": "Priznane tramy, klimatizace a samostatne vytapeni"
+        }
+      },
+      {
+        "name": {
+          "it": "Adatto anche come investimento o casa vacanze",
+          "en": "Also suitable as an investment or holiday home",
+          "cs": "Vhodne take jako investice nebo rekreacni bydleni"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Mezzanine Apartment for Sale in Pescantina",
+      "cs": "Bydleni se spacim patrem na prodej v Pescantine",
+      "it": "Bilocale con soppalco in vendita nel centro di Pescantina"
+    },
+    "seoDescription": {
+      "en": "90 sqm independent one-bedroom home in central Pescantina: mezzanine, exposed beams, furnished kitchen, laundry, air conditioning, and garage.",
+      "cs": "Samostatne bydleni 90 m2 v centru Pescantiny: patro, priznane tramy, zarizena kuchyne, pradelna, klimatizace a garaz.",
+      "it": "Bilocale indipendente di 90 m2 a Pescantina centro: soppalco, travi a vista, cucina arredata, lavanderia, climatizzazione e garage."
+    },
+    "keywords": [
+      "pescantina",
+      "centro storico",
+      "bilocale",
+      "soppalco",
+      "garage",
+      "veneto"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127105191/",
+    "_createdAt": "2026-05-07T11:48:18.364Z",
+    "_updatedAt": "2026-05-07T11:48:18.364Z"
+  },
+  {
+    "_id": "local-import-lombardia-villetta-schiera-curtatone-eremo-1778154497615-vyk9d",
+    "_type": "listing",
+    "title": {
+      "en": "Modern Townhouse with Garden in Curtatone Eremo",
+      "cs": "Moderni radovy dum se zahradou v Curtatone Eremo",
+      "it": "Villetta a schiera moderna con giardino a Curtatone Eremo"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-villetta-schiera-curtatone-eremo"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 239000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 157,
+      "parking": 1,
+      "yearBuilt": 2010
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Curtatone",
+          "cs": "Curtatone",
+          "it": "Curtatone"
+        },
+        "slug": {
+          "current": "curtatone"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Daniel Bovet 16, Eremo, Curtatone (MN), Lombardy",
+        "cs": "Via Daniel Bovet 16, Eremo, Curtatone (MN), Lombardie",
+        "it": "Via Daniel Bovet 16, Eremo, Curtatone (MN), Lombardia"
+      },
+      "coordinates": {
+        "lat": 45.1301,
+        "lng": 10.7388
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Eremo di Curtatone, in a quiet and well-connected residential area, we offer a central townhouse built in 2010 and arranged over two levels. The home provides practical spaces, current finishes, and efficient management, ideal for a family looking for independence and comfort close to services.\n\nThe ground floor includes a welcoming living room, a separate eat-in kitchen, a bathroom/laundry room, and access to private outdoor areas at the front and rear. The upper floor hosts three bedrooms, the second bathroom, and two balconies, with a simple and functional layout.\n\nThe property includes underfloor heating, solar panels, and a garage with automated sectional door. A recent and complete solution, ready to live in, in one of Curtatone's most requested areas.",
+      "cs": "V casti Eremo di Curtatone, v klidne a dobre dostupne rezidencni zone, nabizime radovy dum z roku 2010 rozlozeny do dvou podlazi. Dum nabizi prakticke prostory, soucasne povrchy a efektivni provoz, idealni pro rodinu hledajici nezavislost a komfort v dosahu sluzeb.\n\nV prizemi je prijemny obyvaci pokoj, samostatna obyvatelna kuchyne, koupelna/pradelna a vstupy do soukromych venkovnich prostoru vpredu i vzadu. Horni podlazi zahrnuje tri loznice, druhou koupelnu a dva balkony s jednoduchou a dobre vyuzitelnou dispozici.\n\nNemovitost ma podlahove vytapeni, solarni panely a garaz s automatickymi sekcnimi vraty. Novejsi a kompletni reseni pripravene k bydleni v jedne z vyhledavanych oblasti Curtatone.",
+      "it": "A Eremo di Curtatone, in zona residenziale tranquilla e ben collegata, proponiamo una villetta a schiera centrale edificata nel 2010 e distribuita su due livelli. La casa offre spazi funzionali, finiture attuali e una gestione efficiente, ideale per una famiglia che cerca indipendenza e comfort senza rinunciare alla comodita dei servizi.\n\nAl piano terra si trovano un soggiorno accogliente, una cucina abitabile separata, un bagno/lavanderia e gli accessi agli spazi esterni privati sul fronte e sul retro. Il piano superiore ospita tre camere da letto, il secondo bagno e due balconi, con una distribuzione semplice e ben sfruttabile.\n\nLa proprieta e dotata di riscaldamento a pavimento, pannelli solari e autorimessa con basculante sezionale automatizzata. Una soluzione recente e completa, pronta da vivere in una delle zone piu richieste di Curtatone."
+    },
+    "images": [
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-curtatone-eremo/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villetta a schiera centrale in contesto residenziale recente",
+          "en": "Central townhouse in a recent residential setting",
+          "cs": "Radovy dum v novejsi rezidencni lokalite"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona giorno con soggiorno e cucina abitabile separata",
+          "en": "Living area with lounge and separate eat-in kitchen",
+          "cs": "Obytna cast s obyvaci mistnosti a samostatnou kuchyni"
+        }
+      },
+      {
+        "name": {
+          "it": "Tre camere, due bagni e due balconi al piano notte",
+          "en": "Three bedrooms, two bathrooms, and two balconies on the sleeping floor",
+          "cs": "Tri loznice, dve koupelny a dva balkony v nocni casti"
+        }
+      },
+      {
+        "name": {
+          "it": "Spazi esterni privati sul fronte e sul retro",
+          "en": "Private outdoor areas at the front and rear",
+          "cs": "Soukrome venkovni plochy vpredu i vzadu"
+        }
+      },
+      {
+        "name": {
+          "it": "Riscaldamento a pavimento e pannelli solari",
+          "en": "Underfloor heating and solar panels",
+          "cs": "Podlahove vytapeni a solarni panely"
+        }
+      },
+      {
+        "name": {
+          "it": "Autorimessa con basculante sezionale automatizzata",
+          "en": "Garage with automated sectional door",
+          "cs": "Garaaz s automatickymi sekcnimi vraty"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Townhouse for Sale in Curtatone Eremo, Lombardy",
+      "cs": "Radovy dum na prodej v Curtatone Eremo",
+      "it": "Villetta a schiera in vendita a Curtatone Eremo"
+    },
+    "seoDescription": {
+      "en": "157 sqm townhouse in Curtatone Eremo: 3 bedrooms, 2 bathrooms, garden, balconies, underfloor heating, solar panels, and garage.",
+      "cs": "Radovy dum 157 m2 v Curtatone Eremo: 3 loznice, 2 koupelny, zahrada, balkony, podlahove vytapeni, solarni panely a garaz.",
+      "it": "Villetta a schiera di 157 m2 a Curtatone Eremo: 3 camere, 2 bagni, giardino, balconi, riscaldamento a pavimento, pannelli solari e garage."
+    },
+    "keywords": [
+      "curtatone",
+      "eremo",
+      "villetta a schiera",
+      "giardino",
+      "box auto",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128804048/",
+    "_createdAt": "2026-05-07T11:48:17.614Z",
+    "_updatedAt": "2026-05-07T11:48:17.614Z"
+  },
+  {
+    "_id": "local-import-veneto-appartamento-verona-porta-palio-1778154497357-70djt",
+    "_type": "listing",
+    "title": {
+      "en": "Restored Noble Floor Apartment in Historic Verona Palazzo",
+      "cs": "Restaurovany piano nobile v historickem palaci ve Verone",
+      "it": "Piano nobile restaurato in palazzo storico a Verona"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "veneto-appartamento-verona-porta-palio"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 1950000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 245,
+      "parking": 1,
+      "yearBuilt": 1500
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Verona",
+          "cs": "Verona",
+          "it": "Verona"
+        },
+        "slug": {
+          "current": "verona"
+        },
+        "region": {
+          "name": {
+            "it": "Veneto",
+            "en": "Veneto",
+            "cs": "Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Stradone Porta Palio, Valverde, Verona (VR), Veneto",
+        "cs": "Stradone Porta Palio, Valverde, Verona (VR), Veneto",
+        "it": "Stradone Porta Palio, Valverde, Verona (VR), Veneto"
+      },
+      "coordinates": {
+        "lat": 45.4384,
+        "lng": 10.9864
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Verona old town, steps from the Arena and conveniently outside the ZTL, we offer a prestigious noble-floor apartment finely restored inside an elegant 16th-century palazzo. The residence combines historic charm and contemporary comfort, with wooden ceilings, original stone elements, and modern systems.\n\nThe representative living area is large and bright, enhanced by a working travertine marble fireplace, two balconies, and a modern open kitchen with wine cabinet. The sleeping area includes a primary suite with steam bath and two further bedrooms with bathroom access, overlooking quiet and private internal spaces.\n\nTriple glazing, full soundproofing, dual mechanical ventilation, and optimized energy performance increase comfort. A historic cellar and bare ownership of the inner courtyard with space for car, bicycles, and motorbike complete the property. The layout may also allow division into two independent units.",
+      "cs": "V historickem centru Verony, par kroku od Areny a pohodlne mimo ZTL, nabizime prestizni piano nobile po peclive rekonstrukci v elegantnim palaci z 16. stoleti. Rezidence spojuje historicky puvab a soucasny komfort, s drevenymi stropy, puvodnimi kamennymi prvky a modernimi instalacemi.\n\nReprezentativni obytny prostor je velky a svetly, doplneny funkcni krbem z travertinoveho mramoru, dvema balkony a moderni otevrenou kuchyni s vinotekou. Nocni cast zahrnuje hlavni suite s tureckou lazni a dve dalsi loznice s koupelnou, orientovane do tichych a soukromych vnitrnich prostoru.\n\nTrojskla, kompletni odhlucneni, dvojity system rizene ventilace a optimalizovana energeticka efektivita zvysuji komfort. Nabidku doplnuje historicky sklep a hola vlastnicka prava k vnitrnimu dvoru s mistem pro auto, kola a motorku. Dispozice muze umoznit i rozdeleni na dve samostatne jednotky.",
+      "it": "Nel centro storico di Verona, a pochi passi dall Arena e in posizione comoda fuori dalla ZTL, proponiamo un prestigioso piano nobile finemente restaurato all interno di un elegante palazzo del 1500. La dimora coniuga fascino storico e comfort contemporaneo, con soffitti lignei, elementi lapidei originali e impianti moderni.\n\nLa zona living di rappresentanza e ampia e luminosa, arricchita da camino funzionante in marmo travertino, due balconi e moderna cucina a vista con cantinetta vini. La zona notte comprende una suite padronale con bagno turco e altre due camere con bagno, affacciate su interni silenziosi e riservati.\n\nTripli vetri, insonorizzazione totale, doppio sistema VMC ed efficienza energetica ottimizzata aumentano il comfort. Completano la proprieta una cantina storica e la nuda proprieta del cortile interno con spazio per auto, bici e moto. Possibile anche la suddivisione in due unita indipendenti."
+    },
+    "images": [
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/01-01-gallery-1.jpg",
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/02-02-gallery-2.jpg",
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/03-03-gallery-3.jpg",
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/04-04-gallery-4.jpg",
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/05-05-gallery-5.jpg",
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/06-06-gallery-6.jpg",
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/07-07-gallery-7.jpg",
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/08-08-gallery-8.jpg",
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/09-09-gallery-9.jpg",
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/10-10-gallery-10.jpg",
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/11-11-gallery-11.jpg",
+      "/uploads/properties/veneto-appartamento-verona-porta-palio/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Piano nobile in elegante palazzo del 1500 nel centro storico di Verona",
+          "en": "Noble-floor apartment in an elegant 16th-century palazzo in Verona old town",
+          "cs": "Piano nobile v elegantnim palaci z 16. stoleti v historickem centru Verony"
+        }
+      },
+      {
+        "name": {
+          "it": "Restauro di alto livello con soffitti lignei e apparati lapidei originali",
+          "en": "High-level restoration with wooden ceilings and original stone elements",
+          "cs": "Kvalitni rekonstrukce s drevenymi stropy a puvodnimi kamennymi prvky"
+        }
+      },
+      {
+        "name": {
+          "it": "Ampia zona living di rappresentanza con camino funzionante in travertino",
+          "en": "Large representative living area with working travertine fireplace",
+          "cs": "Velka reprezentativni obytná cast s funkcni krbem z travertinu"
+        }
+      },
+      {
+        "name": {
+          "it": "Cucina a vista moderna con cantinetta vini",
+          "en": "Modern open kitchen with wine cabinet",
+          "cs": "Moderni otevrena kuchyne s vinotekou"
+        }
+      },
+      {
+        "name": {
+          "it": "Suite padronale con bagno turco e due ulteriori camere con bagno",
+          "en": "Primary suite with steam bath plus two further bedrooms with bathroom access",
+          "cs": "Hlavni suite s tureckou lazni a dalsi dve loznice s koupelnou"
+        }
+      },
+      {
+        "name": {
+          "it": "Tripli vetri, insonorizzazione totale e doppio sistema VMC",
+          "en": "Triple glazing, full soundproofing, and dual mechanical ventilation system",
+          "cs": "Trojskla, kompletni odhlucneni a dvojity system rizene ventilace"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Restored Noble Floor Apartment for Sale in Verona Old Town",
+      "cs": "Restaurovany piano nobile na prodej v historicke Verone",
+      "it": "Piano nobile restaurato in vendita nel centro storico di Verona"
+    },
+    "seoDescription": {
+      "en": "245 sqm historic apartment in Verona: 3 bedrooms, 2 bathrooms, 16th-century palazzo, fireplace, historic cellar, courtyard, and premium finishes.",
+      "cs": "Historicky byt 245 m2 ve Verone: 3 loznice, 2 koupelny, palac z 16. stoleti, krb, historicky sklep, dvur a premium povrchy.",
+      "it": "Appartamento storico di 245 m2 a Verona: 3 camere, 2 bagni, palazzo del 1500, camino, cantina storica, cortile e finiture premium."
+    },
+    "keywords": [
+      "verona",
+      "centro storico",
+      "stradone porta palio",
+      "piano nobile",
+      "palazzo storico",
+      "veneto"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128427282/",
+    "_createdAt": "2026-05-07T11:48:17.356Z",
+    "_updatedAt": "2026-05-07T11:48:17.356Z"
+  },
+  {
+    "_id": "local-import-friuli-venezia-giulia-casa-indipendente-udine-zorutti-1778154496369-cedpc",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Townhouse Steps from Central Udine",
+      "cs": "Zrekonstruovany mestsky dum par kroku od centra Udine",
+      "it": "Terracielo ristrutturato a pochi passi dal centro di Udine"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "friuli-venezia-giulia-casa-indipendente-udine-zorutti"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 285000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 132,
+      "yearBuilt": 2011
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Udine",
+          "cs": "Udine",
+          "it": "Udine"
+        },
+        "slug": {
+          "current": "udine"
+        },
+        "region": {
+          "name": {
+            "it": "Friuli-Venezia Giulia",
+            "en": "Friuli-Venezia Giulia",
+            "cs": "Furlansko-Julske Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Pietro Zorutti 24, Volpe - Villalta, Udine (UD), Friuli-Venezia Giulia",
+        "cs": "Via Pietro Zorutti 24, Volpe - Villalta, Udine (UD), Furlansko-Julske Benatsko",
+        "it": "Via Pietro Zorutti 24, Volpe - Villalta, Udine (UD), Friuli-Venezia Giulia"
+      },
+      "coordinates": {
+        "lat": 46.0661,
+        "lng": 13.2289
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In one of Udine's most desirable areas, just a few minutes walk from the center yet in a quiet and private setting, we offer an independent townhouse fully renovated in 2011. The home combines warm atmosphere, quality materials, and an original multi-level layout.\n\nThe ground floor opens with a long private entrance, a room currently used as a kitchen, a bathroom with mosaic shower, and two storage rooms. The first floor includes a second bedroom, a second bathroom with shower, and a room ideal as a study or walk-in closet. The top level hosts the bright living area, with provision for an open kitchen and views over an internal courtyard.\n\nBrushed oak and Pietra Piacentina finishes, double-glazed windows, security door, grilles, and independent thermostats on each floor make this a refined city home ready to live in.",
+      "cs": "V jedne z nejzadanejsich casti Udine, jen nekolik minut pesky od centra a presto v klidnem a soukromem prostredi, nabizime samostatny mestsky dum kompletne zrekonstruovany v roce 2011. Dum spojuje prijemnou atmosferu, kvalitni materialy a originalni dispozici ve vice urovnich.\n\nPrizemi tvori dlouhy soukromy vstup, mistnost aktualne pouzivana jako kuchyne, koupelna se sprchou s mozaikou a dve komory. V prvnim patre je druha loznice, druha koupelna se sprchou a mistnost vhodna jako pracovna nebo satna. Posledni podlazi nabizi svetlou obytnou cast s pripravou na otevrenou kuchyni a vyhledy do vnitrniho dvora.\n\nKartacovany dub, kamen Pietra Piacentina, dvojskla, bezpecnostni dvere, mrize a samostatne termostaty v kazdem patre delaji z domu pripravene a kultivovane mestske bydleni.",
+      "it": "In una delle zone piu ambite di Udine, a pochi minuti a piedi dal centro ma in un contesto tranquillo e riservato, proponiamo un terracielo indipendente completamente ristrutturato nel 2011. La casa unisce atmosfera calda, materiali di pregio e una distribuzione originale su piu livelli.\n\nIl piano terra accoglie con un ingresso lungo e riservato, una camera attualmente utilizzata come cucina, un bagno con doccia mosaicata e due ripostigli. Al primo piano si trovano una seconda camera, un secondo bagno con doccia e una stanza ideale come studio o cabina armadio. L ultimo livello ospita la zona living luminosa, con predisposizione per cucina a vista e affacci su corte interna.\n\nLe finiture in rovere spazzolato e pietra piacentina, i serramenti con doppi vetri, la porta blindata, le inferriate e i termostati indipendenti per piano rendono questa soluzione adatta a chi cerca una casa cittadina curata e pronta da vivere."
+    },
+    "images": [
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/01-01-gallery-1.jpg",
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/02-02-gallery-2.jpg",
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/03-03-gallery-3.jpg",
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/04-04-gallery-4.jpg",
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/05-05-gallery-5.jpg",
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/06-06-gallery-6.jpg",
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/07-07-gallery-7.jpg",
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/08-08-gallery-8.jpg",
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/09-09-gallery-9.jpg",
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/10-10-gallery-10.jpg",
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/11-11-gallery-11.jpg",
+      "/uploads/properties/friuli-venezia-giulia-casa-indipendente-udine-zorutti/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Terracielo indipendente completamente ristrutturato nel 2011",
+          "en": "Independent townhouse fully renovated in 2011",
+          "cs": "Samostatny mestsky dum kompletne zrekonstruovany v roce 2011"
+        }
+      },
+      {
+        "name": {
+          "it": "Posizione tranquilla a pochi minuti a piedi dal centro di Udine",
+          "en": "Quiet location within walking distance of central Udine",
+          "cs": "Klidna poloha v dochazkove vzdalenosti od centra Udine"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona living luminosa all ultimo piano con predisposizione cucina a vista",
+          "en": "Bright top-floor living area with provision for open kitchen",
+          "cs": "Svetla obytna cast v poslednim patre s pripravou na otevrenou kuchyni"
+        }
+      },
+      {
+        "name": {
+          "it": "Due camere, studio o cabina armadio e due bagni",
+          "en": "Two bedrooms, study or walk-in closet, and two bathrooms",
+          "cs": "Dve loznice, pracovna nebo satna a dve koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "Finiture in rovere spazzolato e pietra piacentina",
+          "en": "Brushed oak and Pietra Piacentina finishes",
+          "cs": "Povrchy z kartacovaneho dubu a kamene Pietra Piacentina"
+        }
+      },
+      {
+        "name": {
+          "it": "Porta blindata, inferriate e predisposizione climatizzazione",
+          "en": "Security door, grilles, and air-conditioning pre-installation",
+          "cs": "Bezpecnostni dvere, mrize a priprava na klimatizaci"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Townhouse for Sale near Central Udine",
+      "cs": "Zrekonstruovany mestsky dum na prodej u centra Udine",
+      "it": "Terracielo ristrutturato in vendita vicino al centro di Udine"
+    },
+    "seoDescription": {
+      "en": "132 sqm townhouse in Udine: 4 rooms, 2 bedrooms, 2 bathrooms, 2011 renovation, refined finishes, and central location.",
+      "cs": "Mestsky dum 132 m2 v Udine: 4 mistnosti, 2 loznice, 2 koupelny, rekonstrukce 2011, kvalitni povrchy a centralni poloha.",
+      "it": "Casa indipendente di 132 m2 a Udine: 4 locali, 2 camere, 2 bagni, ristrutturazione 2011, finiture pregiate e posizione centrale."
+    },
+    "keywords": [
+      "udine",
+      "via pietro zorutti",
+      "terracielo",
+      "casa indipendente",
+      "ristrutturato",
+      "friuli venezia giulia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127925348/",
+    "_createdAt": "2026-05-07T11:48:16.359Z",
+    "_updatedAt": "2026-05-07T11:48:16.359Z"
+  },
+  {
+    "_id": "local-import-friuli-venezia-giulia-villa-ovaro-mione-1778154495170-9smh6",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Villa with Garden in Mione di Ovaro",
+      "cs": "Zrekonstruovana vila se zahradou v casti Mione u Ovara",
+      "it": "Villa ristrutturata con giardino nella frazione Mione di Ovaro"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "friuli-venezia-giulia-villa-ovaro-mione"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 440000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 3,
+      "bathrooms": 4,
+      "squareFootage": 250,
+      "parking": 2,
+      "lotSize": 400
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Ovaro",
+          "cs": "Ovaro",
+          "it": "Ovaro"
+        },
+        "slug": {
+          "current": "ovaro"
+        },
+        "region": {
+          "name": {
+            "it": "Friuli-Venezia Giulia",
+            "en": "Friuli-Venezia Giulia",
+            "cs": "Furlansko-Julske Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via 8 Ottobre di Mione 3, Mione, Ovaro (UD), Friuli-Venezia Giulia",
+        "cs": "Via 8 Ottobre di Mione 3, Mione, Ovaro (UD), Furlansko-Julske Benatsko",
+        "it": "Via 8 Ottobre di Mione 3, Mione, Ovaro (UD), Friuli-Venezia Giulia"
+      },
+      "coordinates": {
+        "lat": 46.4789,
+        "lng": 12.8545
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the Mione hamlet of Ovaro, next to the well-known house of 100 windows, we offer a fully renovated detached villa, almost like new and finished with care. The property provides generous space over three above-ground levels, suitable both as a main residence and as a representative home in Carnia.\n\nThe ground floor includes a large entrance living room with fogolar fireplace, separate eat-in kitchen, dining room, balcony, storage/laundry area, guest bathroom, and a double bedroom with private bathroom. The first floor offers a large hallway usable as a study or reading area and two double bedrooms, both with en-suite bathrooms. The second floor is dedicated to a large attic with usable heights.\n\nOutside, the private area of about 400 sqm can be arranged as garden and parking. A rare option for buyers seeking independence, character, and a completed renovation in Friuli-Venezia Giulia.",
+      "cs": "V casti Mione u Ovara, vedle znameho domu se 100 okny, nabizime samostatnou vilu po kompletni rekonstrukci, ve stavu temer jako nova a s peclive zvolenymi povrchy. Nemovitost nabizi velkorysy prostor ve trech nadzemnich podlazich, vhodny jako hlavni bydleni i reprezentativni dum v oblasti Carnia.\n\nV prizemi je velky vstupni salon s krbem fogolar, samostatna obyvatelna kuchyne, jidelna, balkon, komora/pradelna, servisni koupelna a manzelska loznice s vlastni koupelnou. Prvni patro nabizi prostornou chodbu vyuzitelnou jako pracovna nebo ctenarsky kout a dve manzelske loznice, obe s koupelnou en suite. Druhe patro tvori velke podkrovi s vyuzitelnou vyskou.\n\nVenku je soukromy prostor asi 400 m2, ktery lze vyuzit jako zahradu a parkovani. Vzacna volba pro kupujici, kteri hledaji nezavislost, charakter a hotovou rekonstrukci ve Friuli-Venezia Giulia.",
+      "it": "Nella frazione Mione di Ovaro, accanto alla nota casa dalle 100 finestre, proponiamo una villa indipendente completamente ristrutturata, pari al nuovo e caratterizzata da finiture curate. La proprieta offre una metratura importante su tre livelli fuori terra, con spazi adatti sia a residenza principale sia a casa di rappresentanza in Carnia.\n\nAl piano terra si trovano un ampio salone d ingresso con fogolar, cucina separata e abitabile, sala da pranzo, balcone, ripostiglio/lavanderia, bagno di servizio e una camera matrimoniale con bagno privato. Il primo piano ospita un grande disimpegno utilizzabile come studio o zona lettura e due camere matrimoniali, entrambe con bagno en suite. Il secondo piano e dedicato a una soffitta ampia con altezze sfruttabili.\n\nAll esterno, lo scoperto di circa 400 m2 consente di organizzare giardino e area parcheggio. Una soluzione rara per chi cerca indipendenza, carattere e una ristrutturazione gia completata in Friuli-Venezia Giulia."
+    },
+    "images": [
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/01-01-gallery-1.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/02-02-gallery-2.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/03-03-gallery-3.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/04-04-gallery-4.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/05-05-gallery-5.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/06-06-gallery-6.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/07-07-gallery-7.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/08-08-gallery-8.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/09-09-gallery-9.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/10-10-gallery-10.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/11-11-gallery-11.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-ovaro-mione/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Soluzione indipendente completamente ristrutturata con finiture ricercate",
+          "en": "Detached home fully renovated with refined finishes",
+          "cs": "Samostatny dum po kompletni rekonstrukci s kvalitnimi povrchy"
+        }
+      },
+      {
+        "name": {
+          "it": "Posizione caratteristica nella frazione Mione, accanto a Palazzo Micoli Toscano",
+          "en": "Characteristic setting in Mione, next to Palazzo Micoli Toscano",
+          "cs": "Charakteristicka poloha v casti Mione u Palazzo Micoli Toscano"
+        }
+      },
+      {
+        "name": {
+          "it": "Tre piani fuori terra con ampia soffitta abitabile",
+          "en": "Three above-ground levels with large habitable attic",
+          "cs": "Tri nadzemni podlazi a velke obyvatelne podkrovi"
+        }
+      },
+      {
+        "name": {
+          "it": "Salone d ingresso con fogolar, cucina separata e sala da pranzo",
+          "en": "Entrance living room with fogolar fireplace, separate kitchen, and dining room",
+          "cs": "Vstupni salon s krbem fogolar, samostatna kuchyne a jidelna"
+        }
+      },
+      {
+        "name": {
+          "it": "Tre camere matrimoniali, tutte con bagno privato o en suite",
+          "en": "Three double bedrooms, each with private or en-suite bathroom",
+          "cs": "Tri manzelske loznice, kazda s vlastni koupelnou nebo en suite"
+        }
+      },
+      {
+        "name": {
+          "it": "Scoperto privato di circa 400 m2 utilizzabile come giardino e parcheggio",
+          "en": "Private outdoor area of about 400 sqm usable as garden and parking",
+          "cs": "Soukromy venkovni prostor asi 400 m2 vhodny jako zahrada a parkovani"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Villa with Garden for Sale in Ovaro Mione",
+      "cs": "Zrekonstruovana vila se zahradou na prodej v Ovaru Mione",
+      "it": "Villa ristrutturata con giardino in vendita a Ovaro Mione"
+    },
+    "seoDescription": {
+      "en": "Renovated detached villa in Ovaro Mione: 250 sqm, 3 bedrooms, 4 bathrooms, three levels, attic, private outdoor area, and parking.",
+      "cs": "Zrekonstruovana samostatna vila v Ovaru Mione: 250 m2, 3 loznice, 4 koupelny, tri podlazi, podkrovi, soukromy venkovni prostor a parkovani.",
+      "it": "Villa indipendente ristrutturata a Ovaro Mione: 250 m2, 3 camere, 4 bagni, tre livelli, soffitta, scoperto privato e parcheggio."
+    },
+    "keywords": [
+      "ovaro",
+      "mione",
+      "villa ristrutturata",
+      "carnia",
+      "giardino",
+      "friuli venezia giulia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/120021254/",
+    "_createdAt": "2026-05-07T11:48:15.132Z",
+    "_updatedAt": "2026-05-07T11:48:15.132Z"
+  },
+  {
     "_id": "local-import-friuli-venezia-giulia-villa-tolmezzo-centro-pordenone-1778153101954-evdeu",
     "_type": "listing",
     "title": {
