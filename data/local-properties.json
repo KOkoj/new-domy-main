@@ -1,5 +1,295 @@
 [
   {
+    "_id": "local-import-piemonte-villetta-schiera-none-san-lorenzo-1778171664094-utjfe",
+    "_type": "listing",
+    "title": {
+      "en": "Terraced House with Garden and Garage in None",
+      "cs": "Radovy dum se zahradou a garazi v None",
+      "it": "Villetta a schiera con giardino e garage a None"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "piemonte-villetta-schiera-none-san-lorenzo"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 235000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "squareFootage": 240,
+      "parking": 2
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "None",
+          "cs": "None",
+          "it": "None"
+        },
+        "slug": {
+          "current": "none"
+        },
+        "region": {
+          "name": {
+            "it": "Piemonte",
+            "en": "Piedmont",
+            "cs": "Piemont"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via San Lorenzo 7, town centre, None (TO), Piedmont",
+        "cs": "Via San Lorenzo 7, centrum, None (TO), Piemont",
+        "it": "Via San Lorenzo 7, centro, None (TO), Piemonte"
+      },
+      "coordinates": {
+        "lat": 44.9368,
+        "lng": 7.5342
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In None, on Via San Lorenzo 7, we offer a terraced house with garden, garage, and private courtyard. Built in 1997 and finished with exposed brickwork, the property provides approx. 240 sqm over four levels: ground floor, first floor, second floor, and habitable attic.\n\nThe ground floor includes a fitted kitchen, bathroom with shower, and internal garage. The first floor features a large living room with fireplace, terrace, double bedroom with private terrace, and bathroom with tub. The second floor offers an additional living area with open-plan kitchen and lounge, bedroom with terrace, and bathroom. The habitable attic includes a large bedroom with walk-in wardrobe and the possibility of creating a private bathroom.\n\nThe property includes an approx. 200 sqm paved courtyard, garden, parking space in the driveway, independent heating with condensing boiler, fireplace, wood stove, solid wood windows with safety glass, and alarm system. The layout also allows easy division into two independent residential units.",
+      "cs": "V None, ve Via San Lorenzo 7, nabizime radovy dum se zahradou, garazi a soukromym dvorem. Nemovitost byla postavena v roce 1997, ma cihlovou fasadu a nabizi cca 240 m2 ve ctyrech urovnich: prizemi, prvni patro, druhe patro a obyvatelne podkrovi.\n\nV prizemi je zarizena kuchyne, koupelna se sprchou a vnitrni garaz. Prvni patro zahrnuje velky obyvak s krbem, terasu, dvouluzkovou loznici se soukromou terasou a koupelnu s vanou. Druhe patro nabizi dalsi obytnou cast s otevrenou kuchyni a obyvakem, loznici s terasou a koupelnu. Obyvatelne podkrovi obsahuje velkou loznici se satnou a moznosti vybudovat soukromou koupelnu.\n\nSoucasti nemovitosti je dlazdeny dvur cca 200 m2, zahrada, parkovaci misto v prijezdu, samostatne topeni s kondenzacnim kotlem, krb, kamna na drevo, okna z masivniho dreva s bezpecnostnimi skly a alarm. Dispozice umoznuje take jednoduche rozdeleni na dve samostatne bytove jednotky.",
+      "it": "A None, in via San Lorenzo 7, proponiamo una villetta a schiera con giardino, garage e cortile privato. L'immobile, costruito nel 1997 e rifinito in paramano, offre circa 240 m2 distribuiti su quattro livelli: piano terra, primo piano, secondo piano e mansarda abitabile.\n\nAl piano terra si trovano una cucina arredata, bagno con doccia e garage interno. Il primo piano ospita un grande soggiorno con camino, terrazzo, camera matrimoniale con terrazzo privato e bagno con vasca. Il secondo piano offre un'ulteriore zona giorno con cucina e soggiorno open space, camera con terrazzo e bagno. La mansarda abitabile include una grande camera con cabina armadio e possibilita di ricavare un bagno privato.\n\nLa proprieta dispone di cortile pavimentato di circa 200 m2, giardino, posto auto nel passo carraio, riscaldamento autonomo con caldaia a condensazione, camino, stufa a legna, infissi in legno massello con vetri antisfondamento e impianto di allarme. La distribuzione consente anche una facile divisione in due unita abitative indipendenti."
+    },
+    "images": [
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/01-01-gallery-1.jpg",
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/02-02-gallery-2.jpg",
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/03-03-gallery-3.jpg",
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/04-04-gallery-4.jpg",
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/05-05-gallery-5.jpg",
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/06-06-gallery-6.jpg",
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/07-07-gallery-7.jpg",
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/08-08-gallery-8.jpg",
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/09-09-gallery-9.jpg",
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/10-10-gallery-10.jpg",
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/11-11-gallery-11.jpg",
+      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villetta a schiera di circa 240 m2 su quattro livelli",
+          "en": "Terraced house of approx. 240 sqm over four levels",
+          "cs": "Radovy dum cca 240 m2 ve ctyrech urovnich"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino privato e cortile pavimentato di circa 200 m2",
+          "en": "Private garden and approx. 200 sqm paved courtyard",
+          "cs": "Soukroma zahrada a dlazdeny dvur cca 200 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Garage interno e posto auto nel passo carraio",
+          "en": "Internal garage and parking space in the driveway",
+          "cs": "Vnitrni garaz a parkovaci misto v prijezdu"
+        }
+      },
+      {
+        "name": {
+          "it": "Possibile divisione in due unita indipendenti",
+          "en": "Can be divided into two independent units",
+          "cs": "Moznost rozdeleni na dve samostatne jednotky"
+        }
+      },
+      {
+        "name": {
+          "it": "Tre terrazzi, mansarda abitabile e cantina/deposito",
+          "en": "Three terraces, habitable attic, and storage areas",
+          "cs": "Tri terasy, obyvatelne podkrovi a ulozne prostory"
+        }
+      },
+      {
+        "name": {
+          "it": "Riscaldamento autonomo, camino, stufa a legna e impianto di allarme",
+          "en": "Independent heating, fireplace, wood stove, and alarm system",
+          "cs": "Samostatne topeni, krb, kamna na drevo a alarm"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Terraced House with Garden for Sale in None",
+      "cs": "Radovy dum se zahradou na prodej v None",
+      "it": "Villetta a schiera con giardino in vendita a None"
+    },
+    "seoDescription": {
+      "en": "240 sqm terraced house in None: 3 bedrooms, 3 bathrooms, garden, 200 sqm courtyard, garage, terraces, and possible split into two units.",
+      "cs": "Radovy dum 240 m2 v None: 3 loznice, 3 koupelny, zahrada, dvur 200 m2, garaz, terasy a moznost rozdeleni na dve jednotky.",
+      "it": "Villetta a schiera di 240 m2 a None: 3 camere, 3 bagni, giardino, cortile 200 m2, garage, terrazzi e possibilita di due unita indipendenti."
+    },
+    "keywords": [
+      "none",
+      "via san lorenzo",
+      "villetta a schiera",
+      "giardino",
+      "garage",
+      "torino",
+      "piemonte"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128449506/",
+    "_createdAt": "2026-05-07T16:34:24.093Z",
+    "_updatedAt": "2026-05-07T16:34:24.093Z"
+  },
+  {
+    "_id": "local-import-piemonte-appartamento-torino-venaria-madonna-campagna-1778171659323-0xk85",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Three-Room Apartment with Three Balconies on Via Venaria in Turin",
+      "cs": "Zrekonstruovany trilokal se tremi balkony ve Via Venaria v Turine",
+      "it": "Trilocale ristrutturato con tre balconi in via Venaria a Torino"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "piemonte-appartamento-torino-venaria-madonna-campagna"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 115000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 100
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Turin",
+          "cs": "Turin",
+          "it": "Torino"
+        },
+        "slug": {
+          "current": "torino"
+        },
+        "region": {
+          "name": {
+            "it": "Piemonte",
+            "en": "Piedmont",
+            "cs": "Piemont"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Venaria 15, Madonna di Campagna, Turin, Piedmont",
+        "cs": "Via Venaria 15, Madonna di Campagna, Turin, Piemont",
+        "it": "Via Venaria 15, Madonna di Campagna, Torino, Piemonte"
+      },
+      "coordinates": {
+        "lat": 45.1066,
+        "lng": 7.6625
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Turin, on Via Venaria 15 in the Madonna di Campagna district, we offer a renovated three-room apartment of approx. 100 sqm located on the third floor of a mid-1950s building without lift.\n\nThe entrance opens directly into the living area with open kitchen. The internal layout continues with a bathroom and two generously sized double bedrooms, providing comfortable and practical spaces.\n\nThe dual aspect brings good natural light, while the three balconies overlook both Via Venaria and the internal condominium courtyard. Independent heating and two cellars on the basement level complete the property.",
+      "cs": "V Turine, ve Via Venaria 15 ve ctvrti Madonna di Campagna, nabizime zrekonstruovany trilokal o plose cca 100 m2 ve tretim patre domu z poloviny 50. let bez vytahu.\n\nVstup vede primo do obytne casti s otevrenou kuchyni. Dispozice dale zahrnuje koupelnu a dve velke dvouluzkove loznice, ktere nabizeji pohodlne a dobre vyuzitelne prostory.\n\nDvojita orientace zajistuje dostatek prirozeneho svetla a tri balkony maji vyhled jak do Via Venaria, tak do vnitrniho dvora domu. Nemovitost doplnuje samostatne topeni a dva sklepy v suterenu.",
+      "it": "A Torino, in via Venaria 15 nel quartiere Madonna di Campagna, proponiamo un trilocale ristrutturato di circa 100 m2 situato al terzo piano di uno stabile della meta degli anni Cinquanta senza ascensore.\n\nL'ingresso apre direttamente sulla zona giorno con cucina a vista. La distribuzione interna prosegue con bagno e due camere matrimoniali di generosa metratura, pensate per offrire ambienti comodi e ben sfruttabili.\n\nLa doppia esposizione assicura buona luminosita naturale e i tre balconi affacciano sia su via Venaria sia sul cortile interno condominiale. Completano la proprieta il riscaldamento autonomo e due cantine al piano interrato."
+    },
+    "images": [
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/01-01-gallery-1.jpg",
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/02-02-gallery-2.jpg",
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/03-03-gallery-3.jpg",
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/04-04-gallery-4.jpg",
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/05-05-gallery-5.jpg",
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/06-06-gallery-6.jpg",
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/07-07-gallery-7.jpg",
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/08-08-gallery-8.jpg",
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/09-09-gallery-9.jpg",
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/10-10-gallery-10.jpg",
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/11-11-gallery-11.jpg",
+      "/uploads/properties/piemonte-appartamento-torino-venaria-madonna-campagna/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Trilocale di circa 100 m2 al terzo piano",
+          "en": "Three-room apartment of approx. 100 sqm on the third floor",
+          "cs": "Trilokal cca 100 m2 ve tretim patre"
+        }
+      },
+      {
+        "name": {
+          "it": "Ristrutturato nei dettagli",
+          "en": "Renovated in detail",
+          "cs": "Detailne zrekonstruovano"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona giorno con cucina a vista",
+          "en": "Living area with open kitchen",
+          "cs": "Obytna cast s otevrenou kuchyni"
+        }
+      },
+      {
+        "name": {
+          "it": "Due ampie camere matrimoniali",
+          "en": "Two spacious double bedrooms",
+          "cs": "Dve prostorne dvouluzkove loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "Doppia esposizione e tre balconi",
+          "en": "Dual aspect and three balconies",
+          "cs": "Dvojita orientace a tri balkony"
+        }
+      },
+      {
+        "name": {
+          "it": "Riscaldamento autonomo e due cantine",
+          "en": "Independent heating and two cellars",
+          "cs": "Samostatne topeni a dva sklepy"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Three-Room Apartment for Sale in Turin on Via Venaria",
+      "cs": "Zrekonstruovany trilokal na prodej v Turine ve Via Venaria",
+      "it": "Trilocale ristrutturato in vendita a Torino in via Venaria"
+    },
+    "seoDescription": {
+      "en": "100 sqm three-room apartment in Turin, Madonna di Campagna: 2 bedrooms, bathroom, open kitchen, three balconies, independent heating, and two cellars.",
+      "cs": "Trilokal 100 m2 v Turine, Madonna di Campagna: 2 loznice, koupelna, otevrena kuchyne, tri balkony, samostatne topeni a dva sklepy.",
+      "it": "Trilocale di 100 m2 a Torino, zona Madonna di Campagna: 2 camere, bagno, cucina a vista, tre balconi, riscaldamento autonomo e due cantine."
+    },
+    "keywords": [
+      "torino",
+      "via venaria",
+      "madonna di campagna",
+      "trilocale",
+      "appartamento",
+      "piemonte"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128449572/",
+    "_createdAt": "2026-05-07T16:34:19.296Z",
+    "_updatedAt": "2026-05-07T16:34:19.296Z"
+  },
+  {
     "_id": "local-import-lombardia-bilocale-lodi-fanfani-camolina-1778170576514-04n9q",
     "_type": "listing",
     "title": {
