@@ -1,5 +1,150 @@
 [
   {
+    "_id": "local-import-lombardia-villa-ubiale-clanezzo-grumello-1778169703831-hqrhk",
+    "_type": "listing",
+    "title": {
+      "en": "Exclusive Villa with Garden and Panoramic View in Ubiale Clanezzo",
+      "cs": "Exkluzivni vila se zahradou a panoramatickym vyhledem v Ubiale Clanezzo",
+      "it": "Villa esclusiva con giardino e vista panoramica a Ubiale Clanezzo"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-villa-ubiale-clanezzo-grumello"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 550000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 7,
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "squareFootage": 600,
+      "parking": 6
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Ubiale Clanezzo",
+          "cs": "Ubiale Clanezzo",
+          "it": "Ubiale Clanezzo"
+        },
+        "slug": {
+          "current": "ubiale-clanezzo"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Grumello 13, Ubiale, Ubiale Clanezzo (BG), Lombardy",
+        "cs": "Via Grumello 13, Ubiale, Ubiale Clanezzo (BG), Lombardie",
+        "it": "Via Grumello 13, Ubiale, Ubiale Clanezzo (BG), Lombardia"
+      },
+      "coordinates": {
+        "lat": 45.7831,
+        "lng": 9.6205
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Ubiale Clanezzo, in a private, quiet, and panoramic position, we offer an exclusive villa of approx. 600 sqm just 5 minutes from San Pellegrino Terme and convenient for the valley ski resorts. The property is arranged over four levels and offers large, bright, and well-distributed interiors.\n\nThe sleeping area includes four double bedrooms with views over the surrounding hills and mountains. The bathrooms are spacious, with natural light and distinctive architectural details. The living area is enhanced by a triple lounge, eat-in kitchen, and a large terrace wrapping around the main spaces, ideal for outdoor living during the warm season.\n\nThe private garden surrounds the villa and includes a characteristic outdoor area with canopy, stone oven, wood-fired barbecue oven, and valuable plantings. An approx. 110 sqm garage/storage area, three covered parking spaces, three uncovered spaces, cellar, and a heated semi-basement with kitchen, bathroom, and living area complete the property, also suitable as an independent guest or staff apartment.",
+      "cs": "V Ubiale Clanezzo, v soukrome, klidne a panoramaticke poloze, nabizime exkluzivni vilu o plose cca 600 m2 jen 5 minut od San Pellegrino Terme a pohodlne dostupnou k lyzarskym strediskum v udoli. Nemovitost je rozlozena do ctyr urovni a nabizi velke, svetle a dobre usporadane interiery.\n\nNocni cast zahrnuje ctyri dvouluzkove loznice s vyhledem na okolni kopce a hory. Koupelny jsou prostorne, s prirodnim svetlem a vyraznymi architektonickymi detaily. Obytnou cast tvori trojdilny salon, obyvatelna kuchyne a velka terasa obklopujici hlavni prostory, idealni pro venkovni zivot v teple sezone.\n\nSoukroma zahrada obklopuje vilu a zahrnuje venkovni cast s pristreskem, kamennou peci, peci na drevo pro barbecue a hodnotnou vysadbou. Nabidku doplnuje garaz/sklad cca 110 m2, tri kryta a tri venkovni stani, sklep a vytapeny polosuterenn s kuchyni, koupelnou a obytnou casti, vhodny take jako samostatny byt pro hosty nebo personal.",
+      "it": "A Ubiale Clanezzo, in posizione riservata, tranquilla e panoramica, proponiamo una villa esclusiva di circa 600 m2 a soli 5 minuti da San Pellegrino Terme e comoda per raggiungere le stazioni sciistiche della valle. La proprieta si sviluppa su quattro livelli e offre ambienti ampi, luminosi e ben distribuiti.\n\nLa zona notte comprende quattro camere matrimoniali con vista sulle colline e sulle montagne circostanti. I bagni sono ampi, con luce naturale e dettagli architettonici distintivi. La zona giorno e valorizzata da un triplo salone, cucina abitabile e ampio terrazzo che circonda gli spazi principali, ideale per vivere l'esterno nelle stagioni piu calde.\n\nIl giardino privato abbraccia la villa e include una caratteristica area esterna con tettoia, forno in pietra, forno a legna per barbecue e piante di pregio. Completano la proprieta un box/rimessa di circa 110 m2, tre posti auto coperti, tre scoperti, cantina e una zona seminterrata riscaldata con cucina, bagno e zona giorno, adatta anche come appartamento indipendente per ospiti o personale."
+    },
+    "images": [
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-villa-ubiale-clanezzo-grumello/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villa esclusiva di circa 600 m2 su quattro livelli",
+          "en": "Exclusive villa of approx. 600 sqm over four levels",
+          "cs": "Exkluzivni vila cca 600 m2 ve ctyrech urovnich"
+        }
+      },
+      {
+        "name": {
+          "it": "Posizione riservata e panoramica a 5 minuti da San Pellegrino Terme",
+          "en": "Private panoramic position 5 minutes from San Pellegrino Terme",
+          "cs": "Soukroma panoramaticka poloha 5 minut od San Pellegrino Terme"
+        }
+      },
+      {
+        "name": {
+          "it": "Quattro camere matrimoniali con vista sulle colline",
+          "en": "Four double bedrooms with hillside views",
+          "cs": "Ctyri dvouluzkove loznice s vyhledem na kopce"
+        }
+      },
+      {
+        "name": {
+          "it": "Triplo salone, cucina abitabile e grande terrazzo perimetrale",
+          "en": "Triple living room, eat-in kitchen, and large wraparound terrace",
+          "cs": "Trojdilny salon, obyvatelna kuchyne a velka obvodova terasa"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino privato con forno in pietra, forno a legna e area barbecue",
+          "en": "Private garden with stone oven, wood-fired oven, and barbecue area",
+          "cs": "Soukroma zahrada s kamennou peci, peci na drevo a grilovaci casti"
+        }
+      },
+      {
+        "name": {
+          "it": "Box/rimessa di circa 110 m2 e almeno sei posti auto",
+          "en": "Approx. 110 sqm garage/storage and at least six parking spaces",
+          "cs": "Garaz/sklad cca 110 m2 a nejmene sest parkovacich mist"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Villa with Garden and Panoramic View for Sale in Ubiale Clanezzo",
+      "cs": "Vila se zahradou a panoramatickym vyhledem na prodej v Ubiale Clanezzo",
+      "it": "Villa con giardino e vista panoramica in vendita a Ubiale Clanezzo"
+    },
+    "seoDescription": {
+      "en": "600 sqm villa in Ubiale Clanezzo: 4 bedrooms, 4 bathrooms, terraces, garden, 110 sqm garage, 6 parking spaces, and independent guest area.",
+      "cs": "Vila 600 m2 v Ubiale Clanezzo: 4 loznice, 4 koupelny, terasy, zahrada, garaz 110 m2, 6 stani a samostatna cast pro hosty.",
+      "it": "Villa di 600 m2 a Ubiale Clanezzo: 4 camere, 4 bagni, terrazzi, giardino, box 110 m2, 6 posti auto e zona indipendente per ospiti."
+    },
+    "keywords": [
+      "ubiale clanezzo",
+      "via grumello",
+      "villa",
+      "giardino",
+      "san pellegrino terme",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127333961/",
+    "_createdAt": "2026-05-07T16:01:43.821Z",
+    "_updatedAt": "2026-05-07T16:01:43.821Z"
+  },
+  {
     "_id": "local-import-lombardia-appartamento-valsolda-residenza-riviera-lago-lugano-1778157099940-chtzd",
     "_type": "listing",
     "title": {
