@@ -1,5 +1,1162 @@
 [
   {
+    "_id": "local-import-lombardia-appartamento-toscolano-maderno-vigole-1778155869726-ep8w0",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated One-Bedroom Apartment with Lake-View Terrace in Toscolano Maderno",
+      "cs": "Zrekonstruovany apartman s terasou a vyhledem na jezero v Toscolano Maderno",
+      "it": "Bilocale ristrutturato con terrazzo vista lago a Toscolano Maderno"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-appartamento-toscolano-maderno-vigole"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 250000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 51,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Toscolano-Maderno",
+          "cs": "Toscolano-Maderno",
+          "it": "Toscolano-Maderno"
+        },
+        "slug": {
+          "current": "toscolano-maderno"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Vigole, Toscolano-Maderno (BS), Lombardy",
+        "cs": "Via Vigole, Toscolano-Maderno (BS), Lombardie",
+        "it": "Via Vigole, Toscolano-Maderno (BS), Lombardia"
+      },
+      "coordinates": {
+        "lat": 45.6394,
+        "lng": 10.591
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the renowned hillside area of Toscolano Maderno, on the Brescia side of Lake Garda, we offer an elegant one-bedroom apartment with panoramic lake view, set in a small residence surrounded by greenery, privacy, and quiet.\n\nThe apartment is on the ground floor and is accessed through a covered porch. The entrance leads to a bright living room with large window and French door to the panoramic terrace. The kitchen is separate, the double bedroom has direct terrace access, and the windowed bathroom is in excellent condition.\n\nThe property has been renovated and includes underfloor heating and new windows. The residence offers condominium parking spaces. An interesting option as a Garda holiday home or investment in one of the most requested areas.",
+      "cs": "Ve vyhledavane kopcovite oblasti Toscolano Maderno, na brescijske strane Gardskeho jezera, nabizime elegantni apartman 2+kk s panoramatickym vyhledem na jezero, v male rezidenci obklopene zelenou, soukromim a klidem.\n\nApartman je v prizemi a vstupuje se do nej pres kryty portik. Vstup vede do svetleho obyvaciho pokoje s velkym oknem a francouzskymi dvermi na panoramatickou terasu. Kuchyne je samostatna, dvouluzkova loznice ma primy vstup na terasu a koupelna s oknem je ve vybornem stavu.\n\nNemovitost je po rekonstrukci, ma podlahove vytapeni a nova okna. Rezidence nabizi spolecna parkovaci stani. Zajimava moznost jako rekreacni bydleni u Gardy nebo investice v jedne z nejzadanejsich lokalit.",
+      "it": "Nella rinomata zona collinare di Toscolano Maderno, sulla sponda bresciana del Lago di Garda, proponiamo un elegante bilocale con vista lago panoramica, inserito in un residence di poche unita immerso nel verde e caratterizzato da privacy e tranquillita.\n\nL'appartamento si trova al piano terra ed e accessibile tramite portico coperto. L'ingresso conduce al soggiorno luminoso con ampia finestra e porta finestra verso il terrazzo panoramico. La cucina e separata, la camera matrimoniale ha accesso diretto al terrazzo e il bagno finestrato e in ottime condizioni.\n\nL'immobile e stato ristrutturato, dispone di riscaldamento a pavimento e nuovi infissi. Il residence offre posti auto condominiali. Una soluzione interessante come casa vacanze sul Garda o investimento in una delle zone piu richieste."
+    },
+    "images": [
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-appartamento-toscolano-maderno-vigole/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Bilocale al piano terra in residence di poche unita",
+          "en": "Ground-floor one-bedroom apartment in a small residence",
+          "cs": "Prizemni apartman 2+kk v male rezidenci"
+        }
+      },
+      {
+        "name": {
+          "it": "Terrazzo panoramico con vista lago dominante",
+          "en": "Panoramic terrace with wide lake view",
+          "cs": "Panoramaticka terasa s sirokym vyhledem na jezero"
+        }
+      },
+      {
+        "name": {
+          "it": "Soggiorno luminoso e cucina separata",
+          "en": "Bright living room and separate kitchen",
+          "cs": "Svetly obyvaci pokoj a samostatna kuchyne"
+        }
+      },
+      {
+        "name": {
+          "it": "Camera matrimoniale con accesso diretto al terrazzo",
+          "en": "Double bedroom with direct terrace access",
+          "cs": "Dvouluzkova loznice s primym vstupem na terasu"
+        }
+      },
+      {
+        "name": {
+          "it": "Bagno finestrato e ottime condizioni manutentive",
+          "en": "Windowed bathroom and excellent maintenance condition",
+          "cs": "Koupelna s oknem a vyborny stav"
+        }
+      },
+      {
+        "name": {
+          "it": "Riscaldamento a pavimento, nuovi infissi e posti auto condominiali",
+          "en": "Underfloor heating, new windows, and condominium parking",
+          "cs": "Podlahove vytapeni, nova okna a spolecne parkovani"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Lake-View One-Bedroom Apartment for Sale in Toscolano Maderno",
+      "cs": "Apartman s vyhledem na jezero na prodej v Toscolano Maderno",
+      "it": "Bilocale vista lago in vendita a Toscolano Maderno"
+    },
+    "seoDescription": {
+      "en": "51 sqm apartment in Toscolano Maderno: lake-view terrace, double bedroom, separate kitchen, windowed bathroom, and underfloor heating.",
+      "cs": "Apartman 51 m2 v Toscolano Maderno: terasa s vyhledem na jezero, loznice, samostatna kuchyne, koupelna s oknem a podlahove vytapeni.",
+      "it": "Bilocale di 51 m2 a Toscolano Maderno: terrazzo vista lago, camera matrimoniale, cucina separata, bagno finestrato, riscaldamento a pavimento."
+    },
+    "keywords": [
+      "toscolano maderno",
+      "via vigole",
+      "bilocale",
+      "vista lago",
+      "lago di garda",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/126831165/",
+    "_createdAt": "2026-05-07T12:11:09.725Z",
+    "_updatedAt": "2026-05-07T12:11:09.725Z"
+  },
+  {
+    "_id": "local-import-lombardia-nuova-costruzione-tremosine-window-garda-1778155869065-8flt9",
+    "_type": "listing",
+    "title": {
+      "en": "New Window Garda Apartments with Lake View in Tremosine",
+      "cs": "Nove apartmany Window Garda s vyhledem na jezero v Tremosine",
+      "it": "Nuovi appartamenti Window Garda con vista lago a Tremosine"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-nuova-costruzione-tremosine-window-garda"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 255000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 54,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Tremosine sul Garda",
+          "cs": "Tremosine sul Garda",
+          "it": "Tremosine sul Garda"
+        },
+        "slug": {
+          "current": "tremosine-sul-garda"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Benaco, Pieve, Tremosine sul Garda (BS), Lombardy",
+        "cs": "Via Benaco, Pieve, Tremosine sul Garda (BS), Lombardie",
+        "it": "Via Benaco, Pieve, Tremosine sul Garda (BS), Lombardia"
+      },
+      "coordinates": {
+        "lat": 45.7726,
+        "lng": 10.7638
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Pieve di Tremosine sul Garda, in a privileged panoramic position, we offer the new Window Garda real estate development. The project includes 31 class-A residential units of different sizes with dedicated parking spaces, designed for those seeking a modern home on Lake Garda.\n\nThe setting offers a spectacular view over the lake, immersed in nature yet close to town services and daily conveniences. Condominium amenities including pool and panoramic sun terrace increase usability and make the complex ideal for relaxation, sports, and holidays.\n\nThe location is perfect for lovers of lake scenery, trekking, mountain biking, and water sports. Launch prices from 255,000 euros.",
+      "cs": "V Pieve di Tremosine sul Garda, v privilegovane panoramaticke poloze, nabizime novy projekt Window Garda. Projekt zahrnuje 31 bytovych jednotek v energeticke tride A ruznych velikosti s vyhrazenymi parkovacimi misty, urcenych pro ty, kdo hledaji moderni bydleni u Gardskeho jezera.\n\nProstredi nabizi spektakularni vyhled na jezero, je obklopeno prirodou a zaroven blizko mestskych sluzeb a kazdodennich pohodli. Spolecne vybaveni vcetne bazenu a panoramaticke slunecni terasy zvysuje uzitnou hodnotu a dela komplex idealni pro odpocinek, sport a dovolenou.\n\nPoloha je perfektni pro milovniky jezerni krajiny, trekkingu, horskych kol a vodnich sportu. Uvodni ceny od 255 000 eur.",
+      "it": "A Pieve di Tremosine sul Garda, in posizione privilegiata e panoramica, proponiamo la nuova iniziativa immobiliare Window Garda. Il progetto prevede 31 soluzioni abitative in classe A, con metrature diverse e posti auto dedicati, pensate per chi cerca una casa moderna sul Lago di Garda.\n\nIl contesto offre una vista spettacolare a picco sul lago, immerso nella natura ma vicino ai servizi cittadini e alle comodita quotidiane. Le amenities condominiali, tra cui piscina e terrazza prendisole panoramica, aumentano il valore d'uso e rendono il complesso ideale per relax, sport e vacanze.\n\nLa posizione e perfetta per chi ama paesaggio lacustre, trekking, mountain bike e sport di lago. Prezzi promozionali di lancio cantiere a partire da 255.000 euro."
+    },
+    "images": [
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-nuova-costruzione-tremosine-window-garda/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Nuova iniziativa immobiliare Window Garda a Pieve di Tremosine",
+          "en": "New Window Garda development in Pieve di Tremosine",
+          "cs": "Novy developersky projekt Window Garda v Pieve di Tremosine"
+        }
+      },
+      {
+        "name": {
+          "it": "31 soluzioni abitative di diverse metrature in classe A",
+          "en": "31 residential units of different sizes in energy class A",
+          "cs": "31 bytovych jednotek ruznych velikosti v energeticke tride A"
+        }
+      },
+      {
+        "name": {
+          "it": "Vista panoramica mozzafiato sul Lago di Garda",
+          "en": "Breathtaking panoramic view over Lake Garda",
+          "cs": "Uchvatny panoramaticky vyhled na Gardske jezero"
+        }
+      },
+      {
+        "name": {
+          "it": "Piscina condominiale e terrazza prendisole panoramica",
+          "en": "Shared pool and panoramic sun terrace",
+          "cs": "Spolecny bazen a panoramaticka slunecni terasa"
+        }
+      },
+      {
+        "name": {
+          "it": "Posti auto dedicati",
+          "en": "Dedicated parking spaces",
+          "cs": "Vyhrazena parkovaci stani"
+        }
+      },
+      {
+        "name": {
+          "it": "Posizione immersa nella natura ma vicina ai servizi",
+          "en": "Nature setting close to daily services",
+          "cs": "Poloha v prirode, pritom blizko sluzeb"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "New Lake-View Apartments for Sale in Tremosine sul Garda",
+      "cs": "Nove apartmany s vyhledem na jezero v Tremosine sul Garda",
+      "it": "Nuovi appartamenti vista lago a Tremosine sul Garda"
+    },
+    "seoDescription": {
+      "en": "Window Garda in Tremosine: new class-A apartments from 54 sqm, lake view, pool, sun terrace, and dedicated parking spaces.",
+      "cs": "Window Garda v Tremosine: nove apartmany tridy A od 54 m2, vyhled na jezero, bazen, slunecni terasa a vyhrazena stani.",
+      "it": "Window Garda a Tremosine: nuovi appartamenti in classe A da 54 m2, vista lago, piscina, terrazza solarium e posti auto dedicati."
+    },
+    "keywords": [
+      "tremosine sul garda",
+      "window garda",
+      "nuova costruzione",
+      "vista lago",
+      "piscina",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/120478090/",
+    "_createdAt": "2026-05-07T12:11:09.064Z",
+    "_updatedAt": "2026-05-07T12:11:09.064Z"
+  },
+  {
+    "_id": "local-import-friuli-venezia-giulia-appartamento-camporosso-valcanale-lussari-1778155868022-o28y6",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Apartment with Monte Lussari View in Camporosso",
+      "cs": "Zrekonstruovany apartman s vyhledem na Monte Lussari v Camporossu",
+      "it": "Appartamento ristrutturato con vista Monte Lussari a Camporosso"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "friuli-venezia-giulia-appartamento-camporosso-valcanale-lussari"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 395000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 115,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Tarvisio",
+          "cs": "Tarvisio",
+          "it": "Tarvisio"
+        },
+        "slug": {
+          "current": "tarvisio"
+        },
+        "region": {
+          "name": {
+            "it": "Friuli-Venezia Giulia",
+            "en": "Friuli-Venezia Giulia",
+            "cs": "Furlansko-Julske Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Valcanale 39, Camporosso in Valcanale, Tarvisio (UD), Friuli-Venezia Giulia",
+        "cs": "Via Valcanale 39, Camporosso in Valcanale, Tarvisio (UD), Furlansko-Julske Benatsko",
+        "it": "Via Valcanale 39, Camporosso in Valcanale, Tarvisio (UD), Friuli-Venezia Giulia"
+      },
+      "coordinates": {
+        "lat": 46.50901031,
+        "lng": 13.52688026
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Camporosso, in the heart of Valcanale and about 10 minutes on foot from the Monte Lussari lifts, we offer a charming fully renovated apartment with beautiful open views. The property is on the second floor with lift in a recent condominium with thermal coat, generous common areas, and uncovered condominium parking.\n\nThe spaces are designed for comfortable mountain living: large living room with double-sided fireplace, dining area connected to the fireplace, equipped kitchen with high-end appliances, two double bedrooms, and two bathrooms, one windowed and one with laundry.\n\nThe approx. 15 sqm covered terrace is fully usable and naturally extends the living area. Custom fixed furniture included, cellar/ski room, energy class B, and optional private garages available separately complete a ready-to-live solution.",
+      "cs": "V Camporossu, v srdci Valcanale a asi 10 minut pesky od lanovek Monte Lussari, nabizime puvabny kompletne zrekonstruovany apartman s krasnym otevrenym vyhledem. Nemovitost se nachazi ve druhem patre s vytahem v novejsim dome se zateplenim, prostornymi spolecnymi castmi a venkovnim spolecnym parkovanim.\n\nProstory jsou navrzeny pro komfortni horske bydleni: velky obyvaci pokoj s oboustrannym krbem, jidelna navazana na krb, vybavena kuchyne se spotrebici vyssi tridy, dve dvouluzkove loznice a dve koupelny, jedna s oknem a druha s pradelnou.\n\nKryta terasa cca 15 m2 je plne obyvatelna a prirozene prodluzuje obytnou cast. Soucasti je zakazkovy pevny nabytek, sklep/ski room, energeticka trida B a moznost dokoupeni soukromych garazi.",
+      "it": "A Camporosso, nel cuore della Valcanale e a circa 10 minuti a piedi dagli impianti del Monte Lussari, proponiamo un appartamento di charme completamente ristrutturato con splendida vista aperta. L'immobile si trova al secondo piano con ascensore in condominio recente con cappotto termico, ampie zone comuni e parcheggio condominiale scoperto.\n\nGli spazi sono pensati per vivere la montagna con comfort: ampio soggiorno con caminetto bifronte, sala da pranzo collegata al camino, cucina attrezzata con elettrodomestici di alta gamma, due camere matrimoniali e due bagni, di cui uno finestrato e uno con lavanderia.\n\nLa terrazza coperta di circa 15 m2 e pienamente abitabile e prolunga naturalmente la zona living. Arredo fisso su misura incluso, cantina/ski room, classe energetica B e possibilita di garage privati acquistabili separatamente completano una soluzione pronta da vivere."
+    },
+    "images": [
+      "/uploads/properties/friuli-venezia-giulia-appartamento-camporosso-valcanale-lussari/01-01-gallery-1.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-camporosso-valcanale-lussari/02-02-gallery-2.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-camporosso-valcanale-lussari/03-03-gallery-3.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-camporosso-valcanale-lussari/04-04-gallery-4.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-camporosso-valcanale-lussari/05-05-gallery-5.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-camporosso-valcanale-lussari/06-06-gallery-6.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-camporosso-valcanale-lussari/07-07-gallery-7.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Appartamento di charme completamente ristrutturato",
+          "en": "Charming fully renovated apartment",
+          "cs": "Puvabny kompletne zrekonstruovany apartman"
+        }
+      },
+      {
+        "name": {
+          "it": "Vista aperta sul Monte Lussari e terrazza coperta di circa 15 m2",
+          "en": "Open Monte Lussari view and approx. 15 sqm covered terrace",
+          "cs": "Otevreny vyhled na Monte Lussari a kryta terasa cca 15 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Ampio soggiorno e sala da pranzo con caminetto bifronte",
+          "en": "Large living and dining area with double-sided fireplace",
+          "cs": "Velka obytna a jidelni cast s oboustrannym krbem"
+        }
+      },
+      {
+        "name": {
+          "it": "Cucina attrezzata con elettrodomestici di alta gamma",
+          "en": "Equipped kitchen with high-end appliances",
+          "cs": "Vybavena kuchyne se spotrebici vyssi tridy"
+        }
+      },
+      {
+        "name": {
+          "it": "Due camere matrimoniali e due bagni",
+          "en": "Two double bedrooms and two bathrooms",
+          "cs": "Dve dvouluzkove loznice a dve koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "Cantina/ski room, classe B e posti auto condominiali",
+          "en": "Cellar/ski room, class B, and condominium parking spaces",
+          "cs": "Sklep/ski room, trida B a spolecna parkovaci stani"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Apartment with Monte Lussari View for Sale in Camporosso",
+      "cs": "Zrekonstruovany apartman s vyhledem na Monte Lussari",
+      "it": "Appartamento ristrutturato vista Monte Lussari a Camporosso"
+    },
+    "seoDescription": {
+      "en": "115 sqm apartment in Camporosso: 2 bedrooms, 2 bathrooms, covered terrace, double-sided fireplace, custom furniture, ski room, and class B.",
+      "cs": "Apartman 115 m2 v Camporossu: 2 loznice, 2 koupelny, kryta terasa, oboustranny krb, zakazkovy nabytek, ski room a trida B.",
+      "it": "Appartamento di 115 m2 a Camporosso: 2 camere, 2 bagni, terrazza coperta, camino bifronte, arredo su misura, ski room e classe B."
+    },
+    "keywords": [
+      "camporosso",
+      "tarvisio",
+      "monte lussari",
+      "valcanale",
+      "appartamento ristrutturato",
+      "friuli venezia giulia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128749010/",
+    "_createdAt": "2026-05-07T12:11:08.021Z",
+    "_updatedAt": "2026-05-07T12:11:08.021Z"
+  },
+  {
+    "_id": "local-import-friuli-venezia-giulia-villa-tarvisio-via-bamberga-1778155867663-z36v3",
+    "_type": "listing",
+    "title": {
+      "en": "Large Three-Level Villa Surrounded by Greenery in Tarvisio",
+      "cs": "Velka vila ve trech urovnich obklopena zelenou v Tarvisiu",
+      "it": "Villa ampia su tre livelli immersa nel verde a Tarvisio"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "friuli-venezia-giulia-villa-tarvisio-via-bamberga"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 890000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 8,
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "squareFootage": 380,
+      "parking": 2
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Tarvisio",
+          "cs": "Tarvisio",
+          "it": "Tarvisio"
+        },
+        "slug": {
+          "current": "tarvisio"
+        },
+        "region": {
+          "name": {
+            "it": "Friuli-Venezia Giulia",
+            "en": "Friuli-Venezia Giulia",
+            "cs": "Furlansko-Julske Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Bamberga 5, Centre, Tarvisio (UD), Friuli-Venezia Giulia",
+        "cs": "Via Bamberga 5, centrum, Tarvisio (UD), Furlansko-Julske Benatsko",
+        "it": "Via Bamberga 5, Centro, Tarvisio (UD), Friuli-Venezia Giulia"
+      },
+      "coordinates": {
+        "lat": 46.5044,
+        "lng": 13.5997
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Tarvisio, on Via Bamberga, we offer a large villa surrounded by mountain greenery. The property is arranged over three levels and is designed to host family, friends, and relaxing moments in every season.\n\nThe ground floor welcomes with a large entrance, spacious living room with fireplace and terrace access, kitchen with dining room, bedroom, bathroom, and study. Upstairs there are three double bedrooms with access to a panoramic terrace, two bathrooms, and a small bedroom.\n\nThe basement offers a double garage, storage/pantry, relaxation and convivial area, laundry with bathroom, and space for DIY. Steps from the railway station and cycle path, this is an ideal villa for those seeking generous spaces and mountain living.",
+      "cs": "V Tarvisiu, v ulici Via Bamberga, nabizime velkou vilu obklopenou horskou zelenou. Nemovitost je rozlozena do tri urovni a je navrzena pro rodinu, hosty i odpocinek v kazdem rocni obdobi.\n\nPrizemi nabizi velky vstup, prostorny obyvaci pokoj s krbem a vstupem na terasu, kuchyni s jidelnou, loznici, koupelnu a pracovnu. V hornim patre jsou tri dvouluzkove loznice se vstupem na panoramatickou terasu, dve koupelny a mensi pokoj.\n\nSuterenn zahrnuje dvojgaraz, sklad/spiz, relaxacni a spolecenskou cast, pradelnu s koupelnou a prostor pro kutilstvi. Kousek od vlakove stanice a cyklostezky, idealni vila pro ty, kdo hledaji velkoryse prostory a horsky zivot.",
+      "it": "A Tarvisio, in via Bamberga, proponiamo una villa di ampie dimensioni immersa nel verde delle montagne. La proprieta si sviluppa su tre livelli ed e pensata per ospitare famiglia, amici e momenti di relax in ogni stagione.\n\nIl piano terra accoglie con un ampio ingresso, grande salotto con camino e accesso al terrazzo, cucina con sala da pranzo, camera da letto, bagno e studio. Al piano superiore si trovano tre camere matrimoniali con accesso a un terrazzo panoramico, due bagni e una cameretta.\n\nIl piano seminterrato offre doppio garage, magazzino/dispensa, zona relax per la convivialita, lavanderia con bagno e spazio per bricolage. A pochi passi da stazione e pista ciclabile, e una villa ideale per chi cerca spazi importanti e vita in montagna."
+    },
+    "images": [
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/01-01-gallery-1.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/02-02-gallery-2.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/03-03-gallery-3.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/04-04-gallery-4.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/05-05-gallery-5.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/06-06-gallery-6.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/07-07-gallery-7.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/08-08-gallery-8.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/09-09-gallery-9.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/10-10-gallery-10.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/11-11-gallery-11.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tarvisio-via-bamberga/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villa di ampie dimensioni disposta su tre livelli",
+          "en": "Large villa arranged over three levels",
+          "cs": "Velka vila rozlozena do tri urovni"
+        }
+      },
+      {
+        "name": {
+          "it": "Grande salotto con camino e accesso al terrazzo",
+          "en": "Large living room with fireplace and terrace access",
+          "cs": "Velky obyvaci pokoj s krbem a vstupem na terasu"
+        }
+      },
+      {
+        "name": {
+          "it": "Cucina con sala da pranzo, studio e camera al piano terra",
+          "en": "Kitchen with dining room, study, and bedroom on the ground floor",
+          "cs": "Kuchyne s jidelnou, pracovna a pokoj v prizemi"
+        }
+      },
+      {
+        "name": {
+          "it": "Tre camere matrimoniali con terrazzo panoramico al piano superiore",
+          "en": "Three double bedrooms with panoramic terrace upstairs",
+          "cs": "Tri dvouluzkove loznice s panoramatickou terasou v patre"
+        }
+      },
+      {
+        "name": {
+          "it": "Seminterrato con doppio garage, dispensa, zona relax e lavanderia",
+          "en": "Basement with double garage, pantry, relaxation area, and laundry",
+          "cs": "Suterenn s dvojgarazi, spizi, relaxacni casti a pradelnou"
+        }
+      },
+      {
+        "name": {
+          "it": "Vicino alla stazione ferroviaria e alla pista ciclabile",
+          "en": "Close to the railway station and cycle path",
+          "cs": "Blizko vlakove stanice a cyklostezky"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Large Villa with Double Garage for Sale in Tarvisio",
+      "cs": "Velka vila s dvojgarazi na prodej v Tarvisiu",
+      "it": "Villa grande con doppio garage in vendita a Tarvisio"
+    },
+    "seoDescription": {
+      "en": "380 sqm villa in Tarvisio: 5 bedrooms, 4 bathrooms, fireplace, panoramic terraces, double garage, relaxation area, and green setting.",
+      "cs": "Vila 380 m2 v Tarvisiu: 5 loznic, 4 koupelny, krb, panoramaticke terasy, dvojgaraz, relaxacni cast a zelena poloha.",
+      "it": "Villa di 380 m2 a Tarvisio: 5 camere, 4 bagni, camino, terrazzi panoramici, doppio garage, zona relax e posizione nel verde."
+    },
+    "keywords": [
+      "tarvisio",
+      "via bamberga",
+      "villa",
+      "doppio garage",
+      "camino",
+      "friuli venezia giulia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/122653612/",
+    "_createdAt": "2026-05-07T12:11:07.662Z",
+    "_updatedAt": "2026-05-07T12:11:07.662Z"
+  },
+  {
+    "_id": "local-import-friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino-1778155867240-g0tpi",
+    "_type": "listing",
+    "title": {
+      "en": "Ground-Floor Apartment with Private Garden in Tarvisio",
+      "cs": "Prizemni apartman se soukromou zahradou v Tarvisiu",
+      "it": "Appartamento al piano terra con giardino privato a Tarvisio"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 338000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 114,
+      "parking": 1,
+      "lotSize": 190
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Tarvisio",
+          "cs": "Tarvisio",
+          "it": "Tarvisio"
+        },
+        "slug": {
+          "current": "tarvisio"
+        },
+        "region": {
+          "name": {
+            "it": "Friuli-Venezia Giulia",
+            "en": "Friuli-Venezia Giulia",
+            "cs": "Furlansko-Julske Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Gorizia, Centre, Tarvisio (UD), Friuli-Venezia Giulia",
+        "cs": "Via Gorizia, centrum, Tarvisio (UD), Furlansko-Julske Benatsko",
+        "it": "Via Gorizia, Centro, Tarvisio (UD), Friuli-Venezia Giulia"
+      },
+      "coordinates": {
+        "lat": 46.5022,
+        "lng": 13.5915
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In a well-kept condominium setting in Tarvisio, we offer an exclusive ground-floor apartment with a large private garden. The approx. 114 sqm interior is balanced and functional, with comfortable spaces for everyday living.\n\nThe living area includes a modern lounge and separate kitchen, while the sleeping area hosts two spacious double bedrooms and a windowed bathroom. Outside, the approx. 190 sqm garden wraps around two sides of the property, creating a private oasis for relaxing, outdoor dining, and mountain living.\n\nA cellar and approx. 23 sqm garage complete the property. The strategic location and outdoor space make it suitable as both a main residence and a holiday base in Tarvisio.",
+      "cs": "V udrzovanem bytovem dome v Tarvisiu nabizime vyjimecny prizemni apartman s velkou soukromou zahradou. Interier o plose cca 114 m2 je vyvazeny a funkcni, s pohodlnymi prostory pro kazdodenni bydleni.\n\nObytna cast zahrnuje moderni obyvaci pokoj a samostatnou kuchyni, nocni cast dve prostorne dvouluzkove loznice a koupelnu s oknem. Venku zahrada cca 190 m2 obklopuje nemovitost ze dvou stran a vytvari soukromou oazu pro odpocinek, venkovni stolovani a horsky zivot.\n\nNabidku doplnuje sklep a garaz cca 23 m2. Strategicka poloha a venkovni prostory delaji z nemovitosti vhodne reseni pro hlavni bydleni i rekreacni vyuziti v Tarvisiu.",
+      "it": "In un contesto condominiale ben curato a Tarvisio, proponiamo un esclusivo appartamento al piano terra con ampio giardino privato. La superficie interna di circa 114 m2 e distribuita in modo equilibrato, con spazi comodi e facilmente vivibili.\n\nLa zona giorno comprende un salotto moderno e una cucina separata, mentre la zona notte ospita due spaziose camere matrimoniali e un bagno finestrato. All'esterno, il giardino di circa 190 m2 avvolge la proprieta su due lati e crea un'oasi privata per relax, pranzi all'aperto e vita in montagna.\n\nCompletano la soluzione una cantina e un garage di circa 23 m2. La posizione strategica e gli spazi esterni rendono l'immobile adatto sia come residenza principale sia come appoggio per vacanze a Tarvisio."
+    },
+    "images": [
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/01-01-gallery-1.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/02-02-gallery-2.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/03-03-gallery-3.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/04-04-gallery-4.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/05-05-gallery-5.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/06-06-gallery-6.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/07-07-gallery-7.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/08-08-gallery-8.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/09-09-gallery-9.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/10-10-gallery-10.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/11-11-gallery-11.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-gorizia-giardino/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Piano terra in contesto condominiale curato",
+          "en": "Ground floor in a well-kept condominium setting",
+          "cs": "Prizemi v udrzovanem bytovem dome"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino privato di circa 190 m2 su due lati",
+          "en": "Approx. 190 sqm private garden on two sides",
+          "cs": "Soukroma zahrada cca 190 m2 ze dvou stran"
+        }
+      },
+      {
+        "name": {
+          "it": "Soggiorno moderno e cucina separata",
+          "en": "Modern living room and separate kitchen",
+          "cs": "Moderni obyvaci pokoj a samostatna kuchyne"
+        }
+      },
+      {
+        "name": {
+          "it": "Due camere matrimoniali e bagno finestrato",
+          "en": "Two double bedrooms and windowed bathroom",
+          "cs": "Dve dvouluzkove loznice a koupelna s oknem"
+        }
+      },
+      {
+        "name": {
+          "it": "Cantina e garage di circa 23 m2",
+          "en": "Cellar and approx. 23 sqm garage",
+          "cs": "Sklep a garaz cca 23 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Ideale come prima casa o punto d'appoggio per vacanze",
+          "en": "Ideal as a main home or holiday base",
+          "cs": "Idealni jako hlavni bydleni nebo rekreacni zakladna"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Apartment with Private Garden for Sale in Tarvisio",
+      "cs": "Apartman se soukromou zahradou na prodej v Tarvisiu",
+      "it": "Appartamento con giardino privato in vendita a Tarvisio"
+    },
+    "seoDescription": {
+      "en": "114 sqm apartment in Tarvisio: ground floor, 190 sqm private garden, 2 bedrooms, windowed bathroom, cellar, and 23 sqm garage.",
+      "cs": "Apartman 114 m2 v Tarvisiu: prizemi, soukroma zahrada 190 m2, 2 loznice, koupelna s oknem, sklep a garaz 23 m2.",
+      "it": "Appartamento di 114 m2 a Tarvisio: piano terra, giardino privato 190 m2, 2 camere, bagno finestrato, cantina e garage 23 m2."
+    },
+    "keywords": [
+      "tarvisio",
+      "via gorizia",
+      "giardino privato",
+      "piano terra",
+      "garage",
+      "friuli venezia giulia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/126565243/",
+    "_createdAt": "2026-05-07T12:11:07.239Z",
+    "_updatedAt": "2026-05-07T12:11:07.239Z"
+  },
+  {
+    "_id": "local-import-friuli-venezia-giulia-appartamento-tarvisio-piazza-unita-1778155866894-4h7vp",
+    "_type": "listing",
+    "title": {
+      "en": "Furnished Two-Bedroom Apartment in Residenza Arena, Central Tarvisio",
+      "cs": "Zarizeny apartman 3+kk v Residenza Arena v centru Tarvisia",
+      "it": "Trilocale arredato nella Residenza Arena in centro a Tarvisio"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "friuli-venezia-giulia-appartamento-tarvisio-piazza-unita"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 290000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 74,
+      "parking": 1,
+      "yearBuilt": 2008
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Tarvisio",
+          "cs": "Tarvisio",
+          "it": "Tarvisio"
+        },
+        "slug": {
+          "current": "tarvisio"
+        },
+        "region": {
+          "name": {
+            "it": "Friuli-Venezia Giulia",
+            "en": "Friuli-Venezia Giulia",
+            "cs": "Furlansko-Julske Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Piazza Unita 11, Centre, Tarvisio (UD), Friuli-Venezia Giulia",
+        "cs": "Piazza Unita 11, centrum, Tarvisio (UD), Furlansko-Julske Benatsko",
+        "it": "Piazza Unita 11, Centro, Tarvisio (UD), Friuli-Venezia Giulia"
+      },
+      "coordinates": {
+        "lat": 46.5059,
+        "lng": 13.5788
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the centre of Tarvisio, in Residenza Arena steps from the church, town hall, shops, and services, we offer a quality two-bedroom apartment in excellent condition. The property is on the third floor with lift in a complex built in 2008 with strong attention to insulation and comfort.\n\nThe layout includes entrance, living room with kitchen and access to a pleasant covered wood-lined terrace, double bedroom, small bedroom, windowed bathroom, and storage room. South-west exposure provides good light even during winter.\n\nThe property is sold fully furnished and includes a masonry cellar and parking space in the condominium garage. A ready and central solution, perfect for living in Tarvisio all year or as a quality alpine home.",
+      "cs": "V centru Tarvisia, v Residenza Arena kousek od kostela, radnice, obchodu a sluzeb, nabizime kvalitni apartman 3+kk ve vybornem stavu. Nachazi se ve tretim patre s vytahem v komplexu z roku 2008, postavenem s durazem na izolaci a komfort.\n\nDispozice zahrnuje vstup, obyvaci pokoj s kuchyni a vstupem na prijemnou krytou drevem oblozenou terasu, loznici, mensi pokoj, koupelnu s oknem a komoru. Jihozapadni orientace zarucuje dobre svetlo i v zime.\n\nNemovitost se prodava kompletne zarizena a zahrnuje zdeny sklep a stani ve spolecne garazi. Hotove centralni reseni pro celorocni bydleni v Tarvisiu nebo kvalitni horsky byt.",
+      "it": "Nel centro di Tarvisio, nella Residenza Arena a pochi passi da chiesa, municipio, negozi e servizi, proponiamo un trilocale di pregio in ottime condizioni. L'appartamento si trova al terzo piano con ascensore ed e inserito in un complesso costruito nel 2008 con particolare attenzione a isolamento e comfort.\n\nLa distribuzione comprende ingresso, soggiorno con cucina e accesso a un piacevole terrazzo coperto rivestito in legno, camera matrimoniale, cameretta, bagno finestrato e ripostiglio. L'esposizione sud-ovest garantisce buona luminosita anche nella stagione invernale.\n\nLa proprieta viene venduta completamente arredata e include cantina in muratura e posto auto nell'autorimessa condominiale. Soluzione pronta e centrale, perfetta per vivere Tarvisio tutto l'anno o come casa alpina di livello."
+    },
+    "images": [
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/01-01-gallery-1.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/02-02-gallery-2.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/03-03-gallery-3.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/04-04-gallery-4.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/05-05-gallery-5.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/06-06-gallery-6.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/07-07-gallery-7.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/08-08-gallery-8.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/09-09-gallery-9.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/10-10-gallery-10.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/11-11-gallery-11.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-piazza-unita/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Terzo piano con ascensore in condominio del 2008",
+          "en": "Third floor with lift in a 2008 condominium",
+          "cs": "Treti patro s vytahem v dome z roku 2008"
+        }
+      },
+      {
+        "name": {
+          "it": "Soggiorno con cucina e terrazzo coperto rivestito in legno",
+          "en": "Living room with kitchen and covered wood-lined terrace",
+          "cs": "Obyvaci pokoj s kuchyni a krytou drevem oblozenou terasou"
+        }
+      },
+      {
+        "name": {
+          "it": "Camera matrimoniale, cameretta, bagno finestrato e ripostiglio",
+          "en": "Double bedroom, small bedroom, windowed bathroom, and storage",
+          "cs": "Loznice, mensi pokoj, koupelna s oknem a komora"
+        }
+      },
+      {
+        "name": {
+          "it": "Venduto completamente arredato",
+          "en": "Sold fully furnished",
+          "cs": "Prodava se kompletne zarizene"
+        }
+      },
+      {
+        "name": {
+          "it": "Cantina in muratura e posto auto in autorimessa condominiale",
+          "en": "Masonry cellar and parking space in condominium garage",
+          "cs": "Zdeny sklep a stani ve spolecne garazi"
+        }
+      },
+      {
+        "name": {
+          "it": "Esposizione sud-ovest e ottimo isolamento termico-acustico",
+          "en": "South-west exposure and excellent thermal-acoustic insulation",
+          "cs": "Jihozapadni orientace a vyborne tepelne-akusticke izolace"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Furnished Two-Bedroom Apartment for Sale in Central Tarvisio",
+      "cs": "Zarizeny apartman na prodej v centru Tarvisia",
+      "it": "Trilocale arredato in vendita nel centro di Tarvisio"
+    },
+    "seoDescription": {
+      "en": "74 sqm apartment in Residenza Arena, Tarvisio: 2 bedrooms, covered terrace, lift, cellar, parking space, and furniture included.",
+      "cs": "Apartman 74 m2 v Residenza Arena v Tarvisiu: 2 loznice, kryta terasa, vytah, sklep, stani a zarizeni v cene.",
+      "it": "Trilocale di 74 m2 in Residenza Arena a Tarvisio: 2 camere, terrazzo coperto, ascensore, cantina, posto auto e arredo incluso."
+    },
+    "keywords": [
+      "tarvisio",
+      "piazza unita",
+      "residenza arena",
+      "trilocale",
+      "arredato",
+      "posto auto"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127330073/",
+    "_createdAt": "2026-05-07T12:11:06.893Z",
+    "_updatedAt": "2026-05-07T12:11:06.893Z"
+  },
+  {
+    "_id": "local-import-friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto-1778155866574-9jfut",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Bedroom Apartment with Terrace near Tarvisio Ski Slopes",
+      "cs": "Apartman 3+kk s terasou u sjezdovek v Tarvisiu",
+      "it": "Trilocale con terrazzo vicino alle piste da sci di Tarvisio"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 180000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 59,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Tarvisio",
+          "cs": "Tarvisio",
+          "it": "Tarvisio"
+        },
+        "slug": {
+          "current": "tarvisio"
+        },
+        "region": {
+          "name": {
+            "it": "Friuli-Venezia Giulia",
+            "en": "Friuli-Venezia Giulia",
+            "cs": "Furlansko-Julske Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Vittorio Veneto 8, Centre, Tarvisio (UD), Friuli-Venezia Giulia",
+        "cs": "Via Vittorio Veneto 8, centrum, Tarvisio (UD), Furlansko-Julske Benatsko",
+        "it": "Via Vittorio Veneto 8, Centro, Tarvisio (UD), Friuli-Venezia Giulia"
+      },
+      "coordinates": {
+        "lat": 46.505,
+        "lng": 13.5718
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the heart of Tarvisio, steps from the ski slopes and town centre, we offer a welcoming and functional two-bedroom apartment, ideal as a holiday home or investment. The location provides easy access to lifts, shops, and services.\n\nThe apartment includes a living room with kitchen, two bedrooms, one bathroom, and a terrace for relaxing after mountain days. The layout is simple and suitable for hosting family or friends.\n\nAttic storage and a garage complete the property, important features for mountain use and sports equipment. A practical, accessible, and well-positioned solution in the Tarvisio market.",
+      "cs": "V srdci Tarvisia, jen kousek od sjezdovek a centra obce, nabizime prijemny a funkcni apartman 3+kk, idealni jako rekreacni bydleni nebo investice. Poloha umoznuje snadny pristup k lanovkam, obchodum a sluzbam.\n\nApartman zahrnuje obyvaci pokoj s kuchyni, dve loznice, jednu koupelnu a terasu pro odpocinek po dnech na horach. Dispozice je jednoducha a vhodna pro rodinu nebo hosty.\n\nNabidku doplnuje puda a garaz, dulezite prvky pro horske vyuziti a sportovni vybaveni. Prakticke a dobre umistene reseni na trhu v Tarvisiu.",
+      "it": "Nel cuore di Tarvisio, a pochi passi dalle piste da sci e dal centro del paese, proponiamo un trilocale accogliente e funzionale, ideale come casa vacanze o investimento. La posizione consente di raggiungere facilmente impianti, negozi e servizi.\n\nL'appartamento comprende soggiorno con cucina, due camere da letto, un bagno e un terrazzo utilizzabile per momenti di relax dopo le giornate in montagna. La distribuzione e semplice e adatta a ospitare famiglia o amici.\n\nCompletano la proprieta soffitta e garage, elementi importanti per chi vive la montagna e necessita di spazio per attrezzatura sportiva. Una soluzione pratica, accessibile e ben collocata nel mercato di Tarvisio."
+    },
+    "images": [
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/01-01-gallery-1.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/02-02-gallery-2.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/03-03-gallery-3.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/04-04-gallery-4.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/05-05-gallery-5.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/06-06-gallery-6.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/07-07-gallery-7.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/08-08-gallery-8.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/09-09-gallery-9.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/10-10-gallery-10.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/11-11-gallery-11.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-vittorio-veneto/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Posizione centrale a pochi passi da piste e servizi",
+          "en": "Central position steps from slopes and services",
+          "cs": "Centralni poloha kousek od sjezdovek a sluzeb"
+        }
+      },
+      {
+        "name": {
+          "it": "Due camere da letto e soggiorno con cucina",
+          "en": "Two bedrooms and living room with kitchen",
+          "cs": "Dve loznice a obyvaci pokoj s kuchyni"
+        }
+      },
+      {
+        "name": {
+          "it": "Terrazzo per momenti di relax",
+          "en": "Terrace for relaxing moments",
+          "cs": "Terasa pro odpocinek"
+        }
+      },
+      {
+        "name": {
+          "it": "Bagno, soffitta e garage",
+          "en": "Bathroom, attic storage, and garage",
+          "cs": "Koupelna, puda a garaz"
+        }
+      },
+      {
+        "name": {
+          "it": "Ideale come casa vacanze in montagna",
+          "en": "Ideal as a mountain holiday home",
+          "cs": "Idealni jako horsky rekreacni byt"
+        }
+      },
+      {
+        "name": {
+          "it": "Interessante anche per investimento a reddito",
+          "en": "Also interesting as a rental investment",
+          "cs": "Zajimave take jako investice k pronajmu"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment near Ski Slopes for Sale in Tarvisio",
+      "cs": "Apartman u sjezdovek na prodej v Tarvisiu",
+      "it": "Trilocale vicino alle piste in vendita a Tarvisio"
+    },
+    "seoDescription": {
+      "en": "59 sqm apartment in Tarvisio: 2 bedrooms, terrace, attic storage, garage, and central position near ski lifts.",
+      "cs": "Apartman 59 m2 v Tarvisiu: 2 loznice, terasa, puda, garaz a centralni poloha u lyzarskych vleku.",
+      "it": "Appartamento di 59 m2 a Tarvisio: 2 camere, terrazzo, soffitta, garage e posizione centrale vicino agli impianti sciistici."
+    },
+    "keywords": [
+      "tarvisio",
+      "via vittorio veneto",
+      "trilocale",
+      "piste da sci",
+      "garage",
+      "friuli venezia giulia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128834360/",
+    "_createdAt": "2026-05-07T12:11:06.573Z",
+    "_updatedAt": "2026-05-07T12:11:06.573Z"
+  },
+  {
+    "_id": "local-import-friuli-venezia-giulia-appartamento-tarvisio-via-torrente-1778155866173-t0kh9",
+    "_type": "listing",
+    "title": {
+      "en": "One-Bedroom Apartment with Panoramic Terrace and Garage in Tarvisio",
+      "cs": "Apartman 2+kk s panoramatickou terasou a garazi v Tarvisiu",
+      "it": "Bilocale con terrazza panoramica e garage a Tarvisio"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "friuli-venezia-giulia-appartamento-tarvisio-via-torrente"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 250000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 81,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Tarvisio",
+          "cs": "Tarvisio",
+          "it": "Tarvisio"
+        },
+        "slug": {
+          "current": "tarvisio"
+        },
+        "region": {
+          "name": {
+            "it": "Friuli-Venezia Giulia",
+            "en": "Friuli-Venezia Giulia",
+            "cs": "Furlansko-Julske Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Torrente 8/A, Centre, Tarvisio (UD), Friuli-Venezia Giulia",
+        "cs": "Via Torrente 8/A, centrum, Tarvisio (UD), Furlansko-Julske Benatsko",
+        "it": "Via Torrente 8/A, Centro, Tarvisio (UD), Friuli-Venezia Giulia"
+      },
+      "coordinates": {
+        "lat": 46.5035,
+        "lng": 13.5865
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the heart of Tarvisio, in a quiet green setting, we offer a refined one-bedroom apartment in a recently upgraded building with fully renovated facades. The apartment is served by a lift and offers warm, well-kept interiors in harmony with the alpine setting.\n\nThe entrance with security door leads to the living area with kitchenette, well arranged for daily use and mountain stays. The sleeping area includes a double bedroom, windowed bathroom, and a practical storage room also useful for sports equipment.\n\nThe key feature is the panoramic terrace, accessible from both the living room and bedroom, with open mountain views. A masonry cellar, garage, and possible outdoor parking space complete the property. Ready for holidays, personal use, or investment.",
+      "cs": "V srdci Tarvisia, v klidne zeleni, nabizime elegantni apartman 2+kk v nedavno revitalizovanem dome s kompletne obnovenymi fasadami. Byt je obslouzen vytahem a nabizi udrzovane a prijemne interiery v horskem stylu.\n\nVstup s bezpecnostnimi dvermi vede do obytne casti s kuchynskym koutem, dobre resene pro kazdodenni uzivani i pobyty na horach. Nocni cast zahrnuje dvouluzkovou loznici, koupelnu s oknem a praktickou komoru vhodnou i pro sportovni vybaveni.\n\nHlavni hodnotou je panoramaticka terasa pristupna z obyvaciho pokoje i loznice, s otevrenym vyhledem na hory. Nabidku doplnuje zdeny sklep, garaz a moznost venkovniho stani. Pripravene pro dovolenou, vlastni uzivani nebo investici.",
+      "it": "Nel cuore di Tarvisio, in posizione tranquilla e immersa nel verde, proponiamo un raffinato bilocale in stabile recentemente riqualificato con rifacimento completo delle facciate. L'appartamento e servito da ascensore e offre ambienti curati, caldi e coerenti con il contesto alpino.\n\nL'ingresso con porta blindata conduce alla zona giorno con angolo cottura, ben organizzata per l'uso quotidiano e per i soggiorni in montagna. La zona notte comprende una camera matrimoniale, bagno finestrato e un comodo ripostiglio utilizzabile anche per attrezzatura sportiva.\n\nIl valore principale e la terrazza panoramica, accessibile sia dal soggiorno sia dalla camera, con vista aperta sulle montagne. Completano la proprieta cantina in muratura, garage e possibilita di posto auto esterno. Soluzione pronta per vacanze, uso personale o investimento."
+    },
+    "images": [
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/01-01-gallery-1.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/02-02-gallery-2.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/03-03-gallery-3.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/04-04-gallery-4.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/05-05-gallery-5.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/06-06-gallery-6.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/07-07-gallery-7.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/08-08-gallery-8.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/09-09-gallery-9.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/10-10-gallery-10.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/11-11-gallery-11.jpg",
+      "/uploads/properties/friuli-venezia-giulia-appartamento-tarvisio-via-torrente/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Bilocale in stabile recentemente riqualificato",
+          "en": "One-bedroom apartment in a recently upgraded building",
+          "cs": "Apartman 2+kk v nedavno revitalizovanem dome"
+        }
+      },
+      {
+        "name": {
+          "it": "Terrazza panoramica accessibile da soggiorno e camera",
+          "en": "Panoramic terrace accessible from living room and bedroom",
+          "cs": "Panoramaticka terasa pristupna z obyvaci casti i loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona giorno luminosa con angolo cottura",
+          "en": "Bright living area with kitchenette",
+          "cs": "Svetla obytna cast s kuchynskym koutem"
+        }
+      },
+      {
+        "name": {
+          "it": "Camera matrimoniale, bagno finestrato e ripostiglio",
+          "en": "Double bedroom, windowed bathroom, and storage room",
+          "cs": "Dvouluzkova loznice, koupelna s oknem a komora"
+        }
+      },
+      {
+        "name": {
+          "it": "Cantina in muratura, garage e possibilita di posto auto esterno",
+          "en": "Masonry cellar, garage, and possible outdoor parking space",
+          "cs": "Zdeny sklep, garaz a moznost venkovniho stani"
+        }
+      },
+      {
+        "name": {
+          "it": "Riscaldamento autonomo gestibile da remoto",
+          "en": "Independent heating manageable remotely",
+          "cs": "Samostatne vytapeni ovladatelne na dalku"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "One-Bedroom Apartment with Terrace and Garage for Sale in Tarvisio",
+      "cs": "Apartman s terasou a garazi na prodej v Tarvisiu",
+      "it": "Bilocale con terrazza e garage in vendita a Tarvisio"
+    },
+    "seoDescription": {
+      "en": "81 sqm one-bedroom apartment in Tarvisio: panoramic terrace, double bedroom, windowed bathroom, cellar, garage, and independent heating.",
+      "cs": "Apartman 81 m2 v Tarvisiu: panoramaticka terasa, loznice, koupelna s oknem, sklep, garaz a samostatne vytapeni.",
+      "it": "Bilocale di 81 m2 a Tarvisio: terrazza panoramica, camera matrimoniale, bagno finestrato, cantina, garage e riscaldamento autonomo."
+    },
+    "keywords": [
+      "tarvisio",
+      "via torrente",
+      "bilocale",
+      "terrazza panoramica",
+      "garage",
+      "friuli venezia giulia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128364808/",
+    "_createdAt": "2026-05-07T12:11:06.163Z",
+    "_updatedAt": "2026-05-07T12:11:06.163Z"
+  },
+  {
     "_id": "local-import-veneto-villa-torri-del-benaco-pozzol-1778154498994-g1myq",
     "_type": "listing",
     "title": {
