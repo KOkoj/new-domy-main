@@ -1,5 +1,296 @@
 [
   {
+    "_id": "local-import-lombardia-bilocale-lodi-fanfani-camolina-1778170576514-04n9q",
+    "_type": "listing",
+    "title": {
+      "en": "Modern One-Bedroom Apartment with Balcony and Cellar in Lodi Fanfani",
+      "cs": "Moderni bilokal s balkonem a sklepem v lokalite Fanfani v Lodi",
+      "it": "Bilocale moderno con balcone e cantina nella zona Fanfani di Lodi"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-bilocale-lodi-fanfani-camolina"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 85000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 42
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Lodi",
+          "cs": "Lodi",
+          "it": "Lodi"
+        },
+        "slug": {
+          "current": "lodi"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via della Camolina 2, Fanfani area, Lodi, Lombardy",
+        "cs": "Via della Camolina 2, lokalita Fanfani, Lodi, Lombardie",
+        "it": "Via della Camolina 2, zona Fanfani, Lodi, Lombardia"
+      },
+      "coordinates": {
+        "lat": 45.31,
+        "lng": 9.4888
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the sought-after Fanfani area of Lodi, just a few minutes on foot from the railway station, we offer a one-bedroom apartment of approx. 42 sqm located on the ground floor of a modern building built in 2003 and served by a lift.\n\nThe entrance opens into a bright living room with kitchenette and access to the balcony, a useful private outdoor space for relaxing. The sleeping area includes a double bedroom and a windowed bathroom with shower.\n\nA private cellar on the semi-basement level completes the property. Thanks to its size, location, and transport links, this is an interesting solution both as a practical city home and as a rental investment.",
+      "cs": "Ve vyhledavane lokalite Fanfani v Lodi, jen nekolik minut pesky od vlakove stanice, nabizime bilokal o plose cca 42 m2 v prizemi moderni budovy z roku 2003 se vztahem.\n\nVstup vede do svetleho obyvaciho pokoje s kuchynskym koutem a vstupem na balkon, ktery poskytuje prakticky soukromy venkovni prostor pro odpocinek. Nocni cast zahrnuje dvouluzkovou loznici a koupelnu s oknem a sprchou.\n\nSoucasti nemovitosti je soukromy sklep v polosuterenu. Diky velikosti, poloze a dobremu spojeni jde o zajimavou volbu jako prakticke mestske bydleni i jako investice k pronajmu.",
+      "it": "Nella richiesta zona Fanfani di Lodi, a pochi minuti a piedi dalla stazione ferroviaria, proponiamo un bilocale di circa 42 m2 situato al piano terra di un edificio moderno costruito nel 2003 e servito da ascensore.\n\nL'ingresso apre su un soggiorno luminoso con angolo cottura e accesso al balcone, uno spazio esterno utile per momenti di relax. La zona notte comprende una camera matrimoniale e un bagno finestrato con doccia.\n\nLa proprieta include una cantina di pertinenza esclusiva al piano seminterrato. Per dimensioni, posizione e collegamenti, la soluzione e interessante sia come residenza pratica in citta sia come investimento da mettere a reddito."
+    },
+    "images": [
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-bilocale-lodi-fanfani-camolina/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Bilocale di circa 42 m2 al piano terra",
+          "en": "One-bedroom apartment of approx. 42 sqm on the ground floor",
+          "cs": "Bilokal cca 42 m2 v prizemi"
+        }
+      },
+      {
+        "name": {
+          "it": "Edificio moderno del 2003 servito da ascensore",
+          "en": "Modern 2003 building served by lift",
+          "cs": "Moderni dum z roku 2003 s vytahem"
+        }
+      },
+      {
+        "name": {
+          "it": "Soggiorno luminoso con angolo cottura",
+          "en": "Bright living room with kitchenette",
+          "cs": "Svetly obyvak s kuchynskym koutem"
+        }
+      },
+      {
+        "name": {
+          "it": "Balcone comodo per uno spazio esterno privato",
+          "en": "Balcony providing private outdoor space",
+          "cs": "Balkon jako soukromy venkovni prostor"
+        }
+      },
+      {
+        "name": {
+          "it": "Camera matrimoniale e bagno finestrato con doccia",
+          "en": "Double bedroom and windowed bathroom with shower",
+          "cs": "Dvouluzkova loznice a koupelna s oknem a sprchou"
+        }
+      },
+      {
+        "name": {
+          "it": "Cantina esclusiva al piano seminterrato",
+          "en": "Private cellar on the semi-basement level",
+          "cs": "Soukromy sklep v polosuterenu"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "One-Bedroom Apartment with Balcony for Sale in Lodi Fanfani",
+      "cs": "Bilokal s balkonem na prodej v Lodi Fanfani",
+      "it": "Bilocale con balcone in vendita a Lodi zona Fanfani"
+    },
+    "seoDescription": {
+      "en": "42 sqm one-bedroom apartment in Lodi Fanfani: ground floor, living room with kitchenette, balcony, double bedroom, windowed bathroom, and cellar.",
+      "cs": "Bilokal 42 m2 v Lodi Fanfani: prizemi, obyvak s kuchynskym koutem, balkon, dvouluzkova loznice, koupelna s oknem a sklep.",
+      "it": "Bilocale di 42 m2 a Lodi zona Fanfani: piano terra, soggiorno con angolo cottura, balcone, camera matrimoniale, bagno finestrato e cantina."
+    },
+    "keywords": [
+      "lodi",
+      "via della camolina",
+      "bilocale",
+      "fanfani",
+      "appartamento",
+      "balcone",
+      "cantina",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128818326/",
+    "_createdAt": "2026-05-07T16:16:16.513Z",
+    "_updatedAt": "2026-05-07T16:16:16.513Z"
+  },
+  {
+    "_id": "local-import-lombardia-appartamento-lodi-ugo-brunetti-1778170570657-pk3ic",
+    "_type": "listing",
+    "title": {
+      "en": "Three-Room Apartment with Attic Storage on Via Ugo Brunetti in Lodi",
+      "cs": "Trilokal se skladovacim podkrovim ve Via Ugo Brunetti v Lodi",
+      "it": "Trilocale abitabile con solaio in via Ugo Brunetti a Lodi"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-appartamento-lodi-ugo-brunetti"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 89000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 67
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Lodi",
+          "cs": "Lodi",
+          "it": "Lodi"
+        },
+        "slug": {
+          "current": "lodi"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Ugo Brunetti 4, Revellino - Campo Marte, Lodi, Lombardy",
+        "cs": "Via Ugo Brunetti 4, Revellino - Campo Marte, Lodi, Lombardie",
+        "it": "Via Ugo Brunetti 4, Revellino - Campo Marte, Lodi, Lombardia"
+      },
+      "coordinates": {
+        "lat": 45.3272,
+        "lng": 9.5161
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Lodi, on Via Ugo Brunetti 4, we offer a three-room apartment of approx. 67 sqm located on the raised ground floor of a quiet condominium. The home is habitable and keeps its original finishes, making it an interesting option both for buyers who want to personalize the interiors and for investors seeking rental potential.\n\nThe layout is practical and includes a living room, kitchen, two bedrooms, bathroom, and a useful storage room. A private attic storage area completes the property, adding valuable extra space.\n\nThe apartment is available immediately and is located in the Revellino - Campo Marte area, a convenient urban position for living in Lodi with services close at hand.",
+      "cs": "V Lodi, ve Via Ugo Brunetti 4, nabizime trilokal o plose cca 67 m2 ve zvysenem prizemi klidneho bytoveho domu. Byt je obyvatelny a zachovava puvodni povrchove upravy, takze je zajimavou volbou pro kupce, kteri si chteji interier upravit podle sebe, i pro investory hledajici pronajimatelny byt.\n\nDispozice je prakticka: obyvak, kuchyne, dve loznice, koupelna a uzitecna komora. Soucasti nemovitosti je take soukromy pudni sklad, ktery pridava dalsi ulozny prostor.\n\nByt je ihned volny a nachazi se v lokalite Revellino - Campo Marte, v pohodlne mestske poloze v Lodi se sluzbami v dosahu.",
+      "it": "A Lodi, in via Ugo Brunetti 4, proponiamo un appartamento trilocale di circa 67 m2 posto al piano rialzato di un contesto condominiale tranquillo. La soluzione e abitabile e conserva finiture originali, offrendo una base interessante sia per chi cerca una casa da personalizzare sia per chi desidera un immobile da mettere a reddito.\n\nGli spazi sono distribuiti in modo funzionale: soggiorno, cucina, due camere da letto, bagno e pratico ripostiglio. Completa la proprieta un solaio annesso, utile come spazio di deposito aggiuntivo.\n\nL'immobile e libero subito e si trova nella zona Revellino - Campo Marte, una posizione comoda per vivere Lodi con servizi urbani a portata di mano."
+    },
+    "images": [
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-appartamento-lodi-ugo-brunetti/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Appartamento trilocale di circa 67 m2 al piano rialzato",
+          "en": "Three-room apartment of approx. 67 sqm on the raised ground floor",
+          "cs": "Trilokal cca 67 m2 ve zvysenem prizemi"
+        }
+      },
+      {
+        "name": {
+          "it": "Contesto condominiale tranquillo in via Ugo Brunetti",
+          "en": "Quiet condominium setting on Via Ugo Brunetti",
+          "cs": "Klidny bytovy dum ve Via Ugo Brunetti"
+        }
+      },
+      {
+        "name": {
+          "it": "Soggiorno, cucina, due camere e bagno",
+          "en": "Living room, kitchen, two bedrooms, and bathroom",
+          "cs": "Obyvak, kuchyne, dve loznice a koupelna"
+        }
+      },
+      {
+        "name": {
+          "it": "Pratico ripostiglio interno",
+          "en": "Practical internal storage room",
+          "cs": "Prakticka vnitrni komora"
+        }
+      },
+      {
+        "name": {
+          "it": "Solaio annesso incluso nella proprieta",
+          "en": "Private attic storage included with the property",
+          "cs": "Soukromy pudni sklad soucasti nemovitosti"
+        }
+      },
+      {
+        "name": {
+          "it": "Libero subito, adatto anche come investimento",
+          "en": "Available immediately, also suitable as an investment",
+          "cs": "Ihned volne, vhodne take jako investice"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Three-Room Apartment for Sale in Lodi on Via Ugo Brunetti",
+      "cs": "Trilokal na prodej v Lodi ve Via Ugo Brunetti",
+      "it": "Trilocale in vendita a Lodi in via Ugo Brunetti"
+    },
+    "seoDescription": {
+      "en": "67 sqm three-room apartment in Lodi, raised ground floor, 2 bedrooms, bathroom, storage room, attic storage, and immediate availability.",
+      "cs": "Trilokal 67 m2 v Lodi, zvysene prizemi, 2 loznice, koupelna, komora, pudni sklad a okamzita dostupnost.",
+      "it": "Trilocale di 67 m2 a Lodi, piano rialzato, 2 camere, bagno, ripostiglio, solaio e disponibilita immediata in zona Revellino - Campo Marte."
+    },
+    "keywords": [
+      "lodi",
+      "via ugo brunetti",
+      "trilocale",
+      "appartamento",
+      "revellino",
+      "campo marte",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128395592/",
+    "_createdAt": "2026-05-07T16:16:10.657Z",
+    "_updatedAt": "2026-05-07T16:16:10.657Z"
+  },
+  {
     "_id": "local-import-lombardia-villa-ubiale-clanezzo-grumello-1778169703831-hqrhk",
     "_type": "listing",
     "title": {
