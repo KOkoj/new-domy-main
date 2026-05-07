@@ -1,5 +1,878 @@
 [
   {
+    "_id": "local-import-lombardia-appartamento-valsolda-residenza-riviera-lago-lugano-1778157099940-chtzd",
+    "_type": "listing",
+    "title": {
+      "en": "Exclusive Lakefront Apartment on Lake Lugano in Residenza Riviera",
+      "cs": "Exkluzivni apartman primo u Luganskeho jezera v Residenza Riviera",
+      "it": "Appartamento esclusivo fronte Lago di Lugano nella Residenza Riviera"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-appartamento-valsolda-residenza-riviera-lago-lugano"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 1150000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 206,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Valsolda",
+          "cs": "Valsolda",
+          "it": "Valsolda"
+        },
+        "slug": {
+          "current": "valsolda"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Statale 127, Valsolda (CO), Lombardy",
+        "cs": "Via Statale 127, Valsolda (CO), Lombardie",
+        "it": "Via Statale 127, Valsolda (CO), Lombardia"
+      },
+      "coordinates": {
+        "lat": 46.0226,
+        "lng": 9.0375
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Valsolda, directly on Lake Lugano, we offer an exclusive apartment inside Residenza Riviera. The home occupies the entire first floor and provides approx. 206 sqm of interiors, plus approx. 41 sqm of lake-facing terraces.\n\nThe main entrance opens onto a large open-plan living area with open kitchen, dining area, spacious lounge, TV room, and an internal spa with whirlpool tub, sauna, and glass shower. Large windows connect the rooms to the balconies and frame breathtaking views over Lake Lugano.\n\nThe sleeping area includes a very spacious primary bedroom with walk-in closet and en-suite bathroom, plus a second double bedroom with balcony access. A high-end proposal for those seeking a lakefront home with generous spaces, comfort, and exclusive atmosphere.",
+      "cs": "Ve Valsolde, primo u Luganskeho jezera, nabizime exkluzivni apartman v Residenza Riviera. Byt zabira cele prvni patro a nabizi cca 206 m2 interieru plus cca 41 m2 teras smerem k jezeru.\n\nHlavni vstup se otevíra do velke otevrene obytne casti s kuchyni, jidelnou, prostornym salonem, TV pokojem a vnitrnim spa s virivou vanou, saunou a sklenenou sprchou. Velka okna propojuji prostory s balkony a ramují uchvatny vyhled na Luganske jezero.\n\nNocni cast zahrnuje velmi prostornou hlavni loznici se satnou a vlastni koupelnou a druhou dvouluzkovou loznici se vstupem na balkon. Nabidka vysoke urovne pro ty, kdo hledaji bydleni primo u jezera s velkorysou plochou, komfortem a exkluzivni atmosferou.",
+      "it": "A Valsolda, direttamente sul Lago di Lugano, proponiamo un appartamento esclusivo all'interno della Residenza Riviera. L'abitazione occupa completamente il primo piano e sviluppa circa 206 m2 interni, oltre a terrazzi a lago per circa 41 m2.\n\nDall'ingresso principale si apre una grande zona giorno open-space composta da cucina a vista, zona pranzo, ampio soggiorno, sala TV e una SPA interna con vasca idromassaggio, sauna e doccia in vetro. Le grandi vetrate collegano gli ambienti ai balconi e incorniciano una vista mozzafiato sul Lago di Lugano.\n\nLa zona notte comprende una camera padronale molto spaziosa con cabina armadio e bagno en-suite, oltre a una seconda camera matrimoniale con accesso al balcone. Una proposta di pregio per chi cerca un'abitazione fronte lago con metrature importanti, comfort e atmosfera esclusiva."
+    },
+    "images": [
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-appartamento-valsolda-residenza-riviera-lago-lugano/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Appartamento esclusivo direttamente sul Lago di Lugano",
+          "en": "Exclusive apartment directly on Lake Lugano",
+          "cs": "Exkluzivni apartman primo u Luganskeho jezera"
+        }
+      },
+      {
+        "name": {
+          "it": "Occupa l'intero primo piano della Residenza Riviera",
+          "en": "Occupies the entire first floor of Residenza Riviera",
+          "cs": "Zabira cele prvni patro Residenza Riviera"
+        }
+      },
+      {
+        "name": {
+          "it": "Circa 206 m2 interni oltre a 41 m2 di terrazzi a lago",
+          "en": "Approx. 206 sqm interiors plus 41 sqm lake terraces",
+          "cs": "Cca 206 m2 interieru plus 41 m2 teras k jezeru"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona giorno open-space con cucina, pranzo, soggiorno e sala TV",
+          "en": "Open-plan living area with kitchen, dining, lounge, and TV room",
+          "cs": "Otevrena obytna cast s kuchyni, jidelnou, salonem a TV pokojem"
+        }
+      },
+      {
+        "name": {
+          "it": "SPA interna con vasca idromassaggio, sauna e doccia in vetro",
+          "en": "Internal spa with whirlpool tub, sauna, and glass shower",
+          "cs": "Vnitrni spa s virivou vanou, saunou a sklenenou sprchou"
+        }
+      },
+      {
+        "name": {
+          "it": "Camera padronale con cabina armadio e bagno en-suite",
+          "en": "Primary bedroom with walk-in closet and en-suite bathroom",
+          "cs": "Hlavni loznice se satnou a vlastni koupelnou"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Lakefront Apartment on Lake Lugano for Sale in Valsolda",
+      "cs": "Apartman u Luganskeho jezera na prodej ve Valsolde",
+      "it": "Appartamento fronte Lago di Lugano in vendita a Valsolda"
+    },
+    "seoDescription": {
+      "en": "206 sqm apartment in Valsolda, Residenza Riviera: Lake Lugano frontage, 41 sqm terraces, internal spa, 2 bedrooms, and breathtaking view.",
+      "cs": "Apartman 206 m2 ve Valsolde, Residenza Riviera: primo u Luganskeho jezera, terasy 41 m2, vnitrni spa, 2 loznice a uchvatny vyhled.",
+      "it": "Appartamento di 206 m2 a Valsolda nella Residenza Riviera: fronte Lago di Lugano, terrazzi 41 m2, SPA interna, 2 camere e vista mozzafiato."
+    },
+    "keywords": [
+      "valsolda",
+      "lago di lugano",
+      "residenza riviera",
+      "fronte lago",
+      "spa",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/99304810/",
+    "_createdAt": "2026-05-07T12:31:39.940Z",
+    "_updatedAt": "2026-05-07T12:31:39.940Z"
+  },
+  {
+    "_id": "local-import-lombardia-casa-indipendente-vedano-olona-martiri-1778157099694-2lmfz",
+    "_type": "listing",
+    "title": {
+      "en": "Independent Three-Level Home with Veranda in Vedano Olona",
+      "cs": "Samostatny dum ve trech urovnich s verandou ve Vedano Olona",
+      "it": "Casa indipendente su tre livelli con veranda a Vedano Olona"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-casa-indipendente-vedano-olona-martiri"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 335000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 189,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Vedano Olona",
+          "cs": "Vedano Olona",
+          "it": "Vedano Olona"
+        },
+        "slug": {
+          "current": "vedano-olona"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via dei Martiri 30, Vedano Olona (VA), Lombardy",
+        "cs": "Via dei Martiri 30, Vedano Olona (VA), Lombardie",
+        "it": "Via dei Martiri 30, Vedano Olona (VA), Lombardia"
+      },
+      "coordinates": {
+        "lat": 45.7764,
+        "lng": 8.8794
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the heart of Vedano Olona, on Via dei Martiri 30, we offer a charming townhouse free on three sides and arranged over three levels. The home combines the warmth of a true family residence with modern solutions and a layout suited to everyday living.\n\nThe veranda overlooking greenery introduces welcoming spaces full of character, designed to provide privacy and comfort. The approx. 189 sqm total surface includes five rooms and two bathrooms, with interiors that allow flexible use between living area, sleeping area, and service spaces.\n\nA ready solution for those seeking independence, atmosphere, and convenience in a central Vedano Olona position, with the added value of generous interior spaces and three-sided exposure.",
+      "cs": "V srdci Vedano Olona, v ulici Via dei Martiri 30, nabizime puvabny dum volny ze tri stran a rozlozeny do tri urovni. Dum spojuje prijemnou atmosferu skutecneho rodinneho bydleni s modernimi resenimi a dispozici vhodnou pro kazdodenni zivot.\n\nVeranda s vyhledem do zelene vede do prijemnych prostoru s osobitym charakterem, navrzenych pro soukromi a komfort. Celkova plocha cca 189 m2 zahrnuje pet mistnosti a dve koupelny, s interiery umoznujicimi flexibilni vyuziti mezi obytnou, nocni a servisni casti.\n\nHotove reseni pro ty, kdo hledaji nezavislost, atmosferu a pohodli v centralni poloze Vedano Olona, s pridanou hodnotou velkorysych vnitnich prostoru a expozice ze tri stran.",
+      "it": "Nel cuore di Vedano Olona, in Via dei Martiri 30, proponiamo un affascinante terratetto libero su tre lati e disposto su tre livelli. La casa combina il calore di una vera abitazione familiare con soluzioni moderne e una distribuzione adatta alla vita quotidiana.\n\nLa veranda con vista sul verde introduce a spazi accoglienti e ricchi di personalita, pensati per offrire privacy e comfort. La superficie complessiva di circa 189 m2 comprende cinque locali e due bagni, con ambienti che permettono una gestione flessibile tra zona giorno, zona notte e spazi di servizio.\n\nUna soluzione pronta per chi cerca indipendenza, atmosfera e comodita in una posizione centrale di Vedano Olona, con il valore aggiunto di spazi interni generosi e una casa libera su tre lati."
+    },
+    "images": [
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-casa-indipendente-vedano-olona-martiri/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Terratetto libero su tre lati nel cuore di Vedano Olona",
+          "en": "Three-sided free townhouse in the heart of Vedano Olona",
+          "cs": "Radovy dum volny ze tri stran v srdci Vedano Olona"
+        }
+      },
+      {
+        "name": {
+          "it": "Distribuzione su tre livelli per circa 189 m2",
+          "en": "Three-level layout for approx. 189 sqm",
+          "cs": "Dispozice ve trech urovnich o plose cca 189 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Veranda con affaccio sul verde",
+          "en": "Veranda overlooking greenery",
+          "cs": "Veranda s vyhledem do zelene"
+        }
+      },
+      {
+        "name": {
+          "it": "Cinque locali e due bagni",
+          "en": "Five rooms and two bathrooms",
+          "cs": "Pet mistnosti a dve koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "Soluzione familiare con atmosfera calda e riservata",
+          "en": "Family home with a warm and private atmosphere",
+          "cs": "Rodinny dum s prijemnou a soukromou atmosferou"
+        }
+      },
+      {
+        "name": {
+          "it": "Tecnologie moderne e interni curati",
+          "en": "Modern technologies and well-kept interiors",
+          "cs": "Moderni technologie a udrzovane interiery"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Independent Home for Sale in Vedano Olona",
+      "cs": "Samostatny dum na prodej ve Vedano Olona",
+      "it": "Casa indipendente in vendita a Vedano Olona"
+    },
+    "seoDescription": {
+      "en": "189 sqm independent home in Vedano Olona: free on three sides, three levels, green-view veranda, 5 rooms, 2 bathrooms, and central location.",
+      "cs": "Samostatny dum 189 m2 ve Vedano Olona: volny ze tri stran, tri urovne, veranda do zelene, 5 mistnosti, 2 koupelny a centralni poloha.",
+      "it": "Casa indipendente di 189 m2 a Vedano Olona: libera su tre lati, tre livelli, veranda sul verde, 5 locali, 2 bagni e posizione centrale."
+    },
+    "keywords": [
+      "vedano olona",
+      "casa indipendente",
+      "terratetto",
+      "via dei martiri",
+      "veranda",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128193376/",
+    "_createdAt": "2026-05-07T12:31:39.682Z",
+    "_updatedAt": "2026-05-07T12:31:39.682Z"
+  },
+  {
+    "_id": "local-import-lombardia-appartamento-barzano-garibaldi-terrazzo-1778156839607-pd3bm",
+    "_type": "listing",
+    "title": {
+      "en": "Top-Floor Four-Room Apartment with Covered Terrace in Barzano",
+      "cs": "Ctyrpokojovy byt v poslednim patre s krytou terasou v Barzanu",
+      "it": "Quadrilocale ultimo piano con terrazzo coperto a Barzano"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-appartamento-barzano-garibaldi-terrazzo"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 180000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 143,
+      "parking": 2
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Barzano",
+          "cs": "Barzano",
+          "it": "Barzano"
+        },
+        "slug": {
+          "current": "barzano"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Giuseppe Garibaldi 109, Centre, Barzano (LC), Lombardy",
+        "cs": "Via Giuseppe Garibaldi 109, centrum, Barzano (LC), Lombardie",
+        "it": "Via Giuseppe Garibaldi 109, Centro, Barzano (LC), Lombardia"
+      },
+      "coordinates": {
+        "lat": 45.7349,
+        "lng": 9.3142
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the centre of Barzano, we offer a large four-room apartment located on the top floor. The position allows quiet living while remaining close to town-centre services and conveniences.\n\nThe apartment includes a large living room opening onto a covered terrace, ideal for lunches and dinners during the warm season, an eat-in kitchen, three double bedrooms, and two bathrooms. The internal layout offers generous spaces suitable for a family.\n\nA further large room on the semi-basement level can be used as a hobby room or cellar according to needs. A garage suitable for two medium-sized cars completes the property. Central heating with consumption allocator.",
+      "cs": "V centru Barzana nabizime velky ctyrpokojovy byt v poslednim patre. Poloha umoznuje klidne bydleni a zaroven blizkost sluzeb a pohodli centra obce.\n\nByt zahrnuje velky obyvaci pokoj se vstupem na krytou terasu, idealni pro obedy a vecere v teple sezone, obyvatelnou kuchyni, tri dvouluzkove loznice a dve koupelny. Vnitrni dispozice nabizi velkoryse prostory vhodne pro rodinu.\n\nV polosuterenu je dalsi velka mistnost, vyuzitelna jako hobby pokoj nebo sklep podle potreb. Nabidku doplnuje garaz vhodna pro dve stredne velka auta. Centralni vytapeni s mericem spotreby.",
+      "it": "In centro a Barzano, proponiamo un ampio appartamento di quattro locali situato all'ultimo piano. La posizione permette di vivere in una zona tranquilla senza rinunciare ai servizi e alle comodita del centro cittadino.\n\nL'appartamento comprende un grande soggiorno con uscita sul terrazzo coperto, ideale per pranzi e cene durante la bella stagione, cucina abitabile, tre camere matrimoniali e due bagni. La distribuzione interna offre spazi generosi e adatti a una famiglia.\n\nAl piano seminterrato e presente un ulteriore locale di ampie dimensioni, utilizzabile come hobby room o cantina a seconda delle esigenze. Completa la proprieta un box auto utile per due macchine di medie dimensioni. Riscaldamento centralizzato con ripartitore."
+    },
+    "images": [
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-appartamento-barzano-garibaldi-terrazzo/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Ampio quadrilocale all'ultimo piano in centro paese",
+          "en": "Large top-floor four-room apartment in the town centre",
+          "cs": "Velky ctyrpokojovy byt v poslednim patre v centru obce"
+        }
+      },
+      {
+        "name": {
+          "it": "Grande soggiorno con uscita su terrazzo coperto",
+          "en": "Large living room opening onto a covered terrace",
+          "cs": "Velky obyvaci pokoj se vstupem na krytou terasu"
+        }
+      },
+      {
+        "name": {
+          "it": "Cucina abitabile e tre camere matrimoniali",
+          "en": "Eat-in kitchen and three double bedrooms",
+          "cs": "Obyvatelna kuchyne a tri dvouluzkove loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "Due bagni e locale seminterrato uso hobby/cantina",
+          "en": "Two bathrooms and basement room for hobby/cellar use",
+          "cs": "Dve koupelny a polosuterenn mistnost pro hobby/sklep"
+        }
+      },
+      {
+        "name": {
+          "it": "Box auto per due macchine di medie dimensioni",
+          "en": "Garage for two medium-sized cars",
+          "cs": "Garaz pro dve stredne velka auta"
+        }
+      },
+      {
+        "name": {
+          "it": "Riscaldamento centralizzato con ripartitore",
+          "en": "Central heating with consumption allocator",
+          "cs": "Centralni vytapeni s mericem spotreby"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Four-Room Apartment with Terrace and Double Garage for Sale in Barzano",
+      "cs": "Ctyrpokojovy byt s terasou a dvojgarazi na prodej v Barzanu",
+      "it": "Quadrilocale con terrazzo e box doppio in vendita a Barzano"
+    },
+    "seoDescription": {
+      "en": "143 sqm apartment in Barzano: top floor, covered terrace, 3 double bedrooms, 2 bathrooms, hobby/cellar room, and garage for two cars.",
+      "cs": "Byt 143 m2 v Barzanu: posledni patro, kryta terasa, 3 loznice, 2 koupelny, hobby/sklepni mistnost a garaz pro dve auta.",
+      "it": "Appartamento di 143 m2 a Barzano: ultimo piano, terrazzo coperto, 3 camere matrimoniali, 2 bagni, hobby room/cantina e box per due auto."
+    },
+    "keywords": [
+      "barzano",
+      "quadrilocale",
+      "terrazzo coperto",
+      "box doppio",
+      "centro",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127613572/",
+    "_createdAt": "2026-05-07T12:27:19.606Z",
+    "_updatedAt": "2026-05-07T12:27:19.606Z"
+  },
+  {
+    "_id": "local-import-lombardia-appartamento-lonate-ceppino-strecciola-1778156838861-h8fkk",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Semi-Independent Duplex Apartment in Lonate Ceppino",
+      "cs": "Zrekonstruovany polonezavisly mezonet v Lonate Ceppino",
+      "it": "Appartamento semindipendente ristrutturato su due livelli a Lonate Ceppino"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-appartamento-lonate-ceppino-strecciola"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 265000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "squareFootage": 161,
+      "parking": 1,
+      "yearBuilt": 1970
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Lonate Ceppino",
+          "cs": "Lonate Ceppino",
+          "it": "Lonate Ceppino"
+        },
+        "slug": {
+          "current": "lonate-ceppino"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via della Strecciola 3, Lonate Ceppino (VA), Lombardy",
+        "cs": "Via della Strecciola 3, Lonate Ceppino (VA), Lombardie",
+        "it": "Via della Strecciola 3, Lonate Ceppino (VA), Lombardia"
+      },
+      "coordinates": {
+        "lat": 45.7056,
+        "lng": 8.8769
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the heart of Lonate Ceppino, on Via della Strecciola, we offer a semi-independent apartment on two levels, fully transformed by a complete renovation. The first floor was renewed in 2015, while the second level was completed between 2017 and 2020.\n\nThe entrance opens onto a bright approx. 33 sqm living area, enhanced by LED lighting and access to a balcony of over 15 sqm. The home offers generous and well-distributed spaces, with rooms and bathrooms designed for comfort, privacy, and family life.\n\nExternal thermal coat, zoned underfloor heating, condensing boiler, and solar panels ensure efficiency. Security door, grilles, motorized shutters, cameras, and perimeter/volumetric alarm complete safety. Furniture included and an approx. 21 sqm garage make the solution ready to live in.",
+      "cs": "V srdci Lonate Ceppino, v ulici Via della Strecciola, nabizime polonezavisly byt ve dvou urovnich, kompletne promeneny celkovou rekonstrukci. Prvni patro bylo obnoveno v roce 2015 a druha uroven byla dokoncena mezi roky 2017 a 2020.\n\nVstup vede do svetle obytne casti o plose cca 33 m2, doplnene LED osvetlenim a vstupem na balkon pres 15 m2. Dum nabizi velkoryse a dobre rozvrzene prostory, s mistnostmi a koupelnami navrzenymi pro komfort, soukromi a rodinny zivot.\n\nVnejsi zatepleni, zonove podlahove vytapeni, kondenzacni kotel a solarni panely zajistuji efektivitu. Bezpecnostni dvere, mrize, motorizovane rolety, kamery a obvodovy/volumetricky alarm doplnuji bezpecnost. Zarizeni v cene a garaz cca 21 m2 delaji z nabidky hotove bydleni.",
+      "it": "Nel cuore di Lonate Ceppino, in via della Strecciola, proponiamo un appartamento semindipendente su due livelli, completamente trasformato da una ristrutturazione totale. Il primo piano e stato rinnovato nel 2015, mentre il secondo livello e stato completato tra il 2017 e il 2020.\n\nL'ingresso apre su una luminosa zona giorno di circa 33 m2, valorizzata da illuminazione a LED e accesso a un balcone di oltre 15 m2. La casa offre spazi generosi e ben distribuiti, con camere e bagni pensati per comfort, privacy e vita familiare.\n\nCappotto termico esterno, riscaldamento a pavimento suddiviso per zone, caldaia a condensazione e pannelli solari garantiscono efficienza. Porta blindata, inferriate, tapparelle motorizzate, telecamere e allarme perimetrale/volumetrico completano la sicurezza. Arredi inclusi e box auto di circa 21 m2 rendono la soluzione pronta da vivere."
+    },
+    "images": [
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-appartamento-lonate-ceppino-strecciola/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Appartamento semindipendente su due livelli",
+          "en": "Semi-independent apartment on two levels",
+          "cs": "Polonezavisly byt ve dvou urovnich"
+        }
+      },
+      {
+        "name": {
+          "it": "Ristrutturazione totale tra 2015 e 2020",
+          "en": "Full renovation carried out between 2015 and 2020",
+          "cs": "Kompletni rekonstrukce mezi roky 2015 a 2020"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona giorno di circa 33 m2 con illuminazione LED",
+          "en": "Approx. 33 sqm living area with LED lighting",
+          "cs": "Obytna cast cca 33 m2 s LED osvetlenim"
+        }
+      },
+      {
+        "name": {
+          "it": "Balcone di oltre 15 m2",
+          "en": "Balcony of over 15 sqm",
+          "cs": "Balkon pres 15 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Cappotto termico, riscaldamento a pavimento e pannelli solari",
+          "en": "Thermal coat, underfloor heating, and solar panels",
+          "cs": "Zatepleni, podlahove vytapeni a solarni panely"
+        }
+      },
+      {
+        "name": {
+          "it": "Arredi inclusi e box auto di circa 21 m2",
+          "en": "Furniture included and approx. 21 sqm garage",
+          "cs": "Zarizeni v cene a garaz cca 21 m2"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Semi-Independent Apartment for Sale in Lonate Ceppino",
+      "cs": "Zrekonstruovany polonezavisly byt na prodej v Lonate Ceppino",
+      "it": "Appartamento semindipendente ristrutturato a Lonate Ceppino"
+    },
+    "seoDescription": {
+      "en": "161 sqm apartment in Lonate Ceppino: two levels, 15 sqm balcony, 2015-2020 renovation, furniture included, 21 sqm garage, and efficient systems.",
+      "cs": "Byt 161 m2 v Lonate Ceppino: dve urovne, balkon 15 m2, rekonstrukce 2015-2020, zarizeni v cene, garaz 21 m2 a efektivni systemy.",
+      "it": "Appartamento di 161 m2 a Lonate Ceppino: due livelli, balcone 15 m2, ristrutturazione 2015-2020, arredi inclusi, box 21 m2 e impianti efficienti."
+    },
+    "keywords": [
+      "lonate ceppino",
+      "via della strecciola",
+      "semindipendente",
+      "ristrutturato",
+      "box auto",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128193392/",
+    "_createdAt": "2026-05-07T12:27:18.859Z",
+    "_updatedAt": "2026-05-07T12:27:18.859Z"
+  },
+  {
+    "_id": "local-import-lombardia-appartamento-osnago-terrazzo-box-doppio-1778156838569-ns6sj",
+    "_type": "listing",
+    "title": {
+      "en": "Top-Floor Two-Bedroom Apartment with Terrace and Double Garage in Osnago",
+      "cs": "Apartman 3+kk v poslednim patre s terasou a dvojgarazi v Osnagu",
+      "it": "Trilocale ultimo piano con terrazzo e box doppio a Osnago"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-appartamento-osnago-terrazzo-box-doppio"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 185000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 95,
+      "parking": 2
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Osnago",
+          "cs": "Osnago",
+          "it": "Osnago"
+        },
+        "slug": {
+          "current": "osnago"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Martiri della Liberazione 9, Centre, Osnago (LC), Lombardy",
+        "cs": "Via Martiri della Liberazione 9, centrum, Osnago (LC), Lombardie",
+        "it": "Via Martiri della Liberazione 9, Centro, Osnago (LC), Lombardia"
+      },
+      "coordinates": {
+        "lat": 45.6788,
+        "lng": 9.3995
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Osnago, in the Fiera area, we offer an approx. 95 sqm apartment located on the top floor of a building with lift. The home provides comfortable spaces, good natural light, and a functional layout for those seeking practicality and connections.\n\nThe living area opens onto a large terrace, ideal for outdoor use during the warm season. The sleeping area includes a double bedroom with direct access to a private balcony, a second bedroom, and two bathrooms, one also arranged as a laundry room.\n\nA cellar and double garage complete the property. The apartment has air conditioning, increasing summer comfort and making it suitable for a couple, a family, or anyone needing valuable accessory spaces.",
+      "cs": "V Osnagu, v oblasti Fiera, nabizime byt o plose cca 95 m2 v poslednim patre domu s vytahem. Nemovitost nabizi pohodlne prostory, dobrou svetlost a funkcni dispozici pro ty, kdo hledaji prakticke bydleni s dobrou dostupnosti.\n\nObytna cast se otevira na velkou terasu, idealni pro venkovni uzivani v teple sezone. Nocni cast zahrnuje dvouluzkovou loznici s primym vstupem na soukromy balkon, druhy pokoj a dve koupelny, z nichz jedna slouzi take jako pradelna.\n\nNabidku doplnuje sklep a dvojgaraz. Byt ma klimatizaci, coz zvysuje komfort v letnich mesicich, a je vhodny pro par, rodinu nebo pro ty, kdo potrebuji hodnotne doplnkove prostory.",
+      "it": "A Osnago, in zona Fiera, proponiamo un appartamento di circa 95 m2 situato all'ultimo piano di un edificio dotato di ascensore. La casa offre spazi comodi, una buona luminosita e una distribuzione funzionale per chi cerca praticita e collegamenti.\n\nLa zona giorno si apre su un ampio terrazzo, ideale per vivere l'esterno durante la bella stagione. La zona notte comprende una camera matrimoniale con accesso diretto a un balcone privato, una seconda camera e due bagni, di cui uno organizzato anche come lavanderia.\n\nCantina e box doppio completano la proprieta. L'appartamento dispone di aria condizionata, aumentando il comfort nei mesi estivi e rendendo la soluzione adatta a una coppia, una famiglia o a chi desidera spazi accessori importanti."
+    },
+    "images": [
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-appartamento-osnago-terrazzo-box-doppio/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Ultimo piano in edificio con ascensore",
+          "en": "Top floor in a building with lift",
+          "cs": "Posledni patro v dome s vytahem"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona giorno luminosa con uscita su ampio terrazzo",
+          "en": "Bright living area opening onto a large terrace",
+          "cs": "Svetla obytna cast se vstupem na velkou terasu"
+        }
+      },
+      {
+        "name": {
+          "it": "Camera matrimoniale con balcone privato",
+          "en": "Double bedroom with private balcony",
+          "cs": "Dvouluzkova loznice se soukromym balkonem"
+        }
+      },
+      {
+        "name": {
+          "it": "Due bagni, di cui uno bagno/lavanderia",
+          "en": "Two bathrooms, one also used as laundry",
+          "cs": "Dve koupelny, jedna take jako pradelna"
+        }
+      },
+      {
+        "name": {
+          "it": "Cantina e box doppio",
+          "en": "Cellar and double garage",
+          "cs": "Sklep a dvojgaraz"
+        }
+      },
+      {
+        "name": {
+          "it": "Aria condizionata e posizione funzionale",
+          "en": "Air conditioning and functional location",
+          "cs": "Klimatizace a prakticka poloha"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment with Terrace and Double Garage for Sale in Osnago",
+      "cs": "Apartman s terasou a dvojgarazi na prodej v Osnagu",
+      "it": "Trilocale con terrazzo e box doppio in vendita a Osnago"
+    },
+    "seoDescription": {
+      "en": "95 sqm apartment in Osnago: top floor with lift, terrace, balcony, 2 bedrooms, 2 bathrooms, cellar, double garage, and air conditioning.",
+      "cs": "Byt 95 m2 v Osnagu: posledni patro s vytahem, terasa, balkon, 2 loznice, 2 koupelny, sklep, dvojgaraz a klimatizace.",
+      "it": "Appartamento di 95 m2 a Osnago: ultimo piano con ascensore, terrazzo, balcone, 2 camere, 2 bagni, cantina, box doppio e aria condizionata."
+    },
+    "keywords": [
+      "osnago",
+      "trilocale",
+      "terrazzo",
+      "box doppio",
+      "ultimo piano",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127746632/",
+    "_createdAt": "2026-05-07T12:27:18.568Z",
+    "_updatedAt": "2026-05-07T12:27:18.568Z"
+  },
+  {
+    "_id": "local-import-lombardia-villa-brezzo-di-bedero-lago-maggiore-1778156838248-5i7e6",
+    "_type": "listing",
+    "title": {
+      "en": "Panoramic Villa with Pool and Lake Maggiore View in Brezzo di Bedero",
+      "cs": "Panoramaticka vila s bazenem a vyhledem na Lago Maggiore v Brezzo di Bedero",
+      "it": "Villa panoramica con piscina e vista Lago Maggiore a Brezzo di Bedero"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-villa-brezzo-di-bedero-lago-maggiore"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 1790000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "squareFootage": 280,
+      "parking": 8,
+      "yearBuilt": 2012,
+      "lotSize": 1300
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Brezzo di Bedero",
+          "cs": "Brezzo di Bedero",
+          "it": "Brezzo di Bedero"
+        },
+        "slug": {
+          "current": "brezzo-di-bedero"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Porto Valtravaglia 1, Brezzo di Bedero (VA), Lombardy",
+        "cs": "Via Porto Valtravaglia 1, Brezzo di Bedero (VA), Lombardie",
+        "it": "Via Porto Valtravaglia 1, Brezzo di Bedero (VA), Lombardia"
+      },
+      "coordinates": {
+        "lat": 45.9879,
+        "lng": 8.7128
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Brezzo di Bedero, in a dominant and private position, we offer a modern panoramic villa with wide open views over Lake Maggiore. The property is arranged over three levels for approx. 280 sqm and was fully renovated in 2012, with further updates in recent years.\n\nThe ground floor includes a large living room with wood fireplace, open kitchen, and fully glazed veranda with dining area designed to enhance the lake view. The same level includes a double bedroom with wardrobe/storage and a shower bathroom. The first floor hosts a second living room with pellet stove and panoramic balcony, bedrooms, and bathrooms, including a whirlpool tub.\n\nThe semi-basement is dedicated to accessory and wellness spaces, with wine cellar, gym, service bathroom, laundry, and storage/cellar. Outside, the approx. 1,300 sqm garden includes an infinity pool prepared for heating and a Jacuzzi. Underground double garage, outdoor parking spaces, energy class A, home automation, alarm, and solar systems complete a ready-to-live villa.",
+      "cs": "V Brezzo di Bedero, v dominantni a soukrome poloze, nabizime moderni panoramatickou vilu s sirokym otevrenym vyhledem na Lago Maggiore. Nemovitost je rozlozena do tri urovni o plose cca 280 m2 a byla kompletne rekonstruovana v roce 2012, s dalsimi upravami v poslednich letech.\n\nV prizemi je velky obytny prostor s krbem na drevo, otevrena kuchyne a plne prosklena veranda s jidelnou navrzena pro vyuziti vyhledu na jezero. Na stejne urovni je dvouluzkova loznice se satnou/komorou a koupelna se sprchou. Prvni patro nabizi dalsi obytny pokoj s peletovymi kamny a panoramatickym balkonem, loznice a koupelny vcetne virive vany.\n\nPolosuterenn je venovan servisnim a wellness prostoram, s vinotekou, posilovnou, koupelnou, pradelnou a skladovymi prostory. Venku je zahrada cca 1 300 m2 s nekonecnym bazenem pripravenym na vytapeni a Jacuzzi. Podzemni dvojgaraz, venkovni stani, energeticka trida A, chytra domacnost, alarm a solarni systemy doplnuji vilu pripravenou k bydleni.",
+      "it": "A Brezzo di Bedero, in posizione dominante e riservata, proponiamo una villa panoramica in stile moderno con vista ampia e aperta sul Lago Maggiore. La proprieta si sviluppa su tre livelli per circa 280 m2 ed e stata completamente ristrutturata nel 2012, con ulteriori aggiornamenti negli ultimi anni.\n\nAl piano terra si trovano un ampio living con camino a legna, cucina open space e veranda completamente vetrata con zona pranzo, pensata per valorizzare la vista lago. Sullo stesso livello sono presenti una camera matrimoniale con guardaroba/ripostiglio e bagno con doccia. Il primo piano ospita un secondo soggiorno con stufa a pellet e balcone panoramico, camere da letto e bagni, inclusa una vasca idromassaggio.\n\nIl seminterrato e dedicato a spazi accessori e benessere, con cantina vini, palestra, bagno di servizio, lavanderia e ripostiglio/cantina. All'esterno, il giardino di circa 1.300 m2 ospita piscina a sfioro predisposta per riscaldamento e Jacuzzi. Doppio garage interrato, posti auto esterni, classe energetica A, domotica, allarme e impianti solari completano una villa pronta da vivere."
+    },
+    "images": [
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/01-01-gallery-1.jpg",
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/02-02-gallery-2.jpg",
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/03-03-gallery-3.jpg",
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/04-04-gallery-4.jpg",
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/05-05-gallery-5.jpg",
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/06-06-gallery-6.jpg",
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/07-07-gallery-7.jpg",
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/08-08-gallery-8.jpg",
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/09-09-gallery-9.jpg",
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/10-10-gallery-10.jpg",
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/11-11-gallery-11.jpg",
+      "/uploads/properties/lombardia-villa-brezzo-di-bedero-lago-maggiore/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villa moderna ristrutturata con vista aperta sul Lago Maggiore",
+          "en": "Modern renovated villa with open Lake Maggiore view",
+          "cs": "Moderni zrekonstruovana vila s otevrenym vyhledem na Lago Maggiore"
+        }
+      },
+      {
+        "name": {
+          "it": "Tre livelli per circa 280 m2 complessivi",
+          "en": "Three levels for approx. 280 sqm total",
+          "cs": "Tri urovne o celkove plose cca 280 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino privato di circa 1.300 m2 con piscina a sfioro e Jacuzzi",
+          "en": "Approx. 1,300 sqm private garden with infinity pool and Jacuzzi",
+          "cs": "Soukroma zahrada cca 1 300 m2 s nekonecnym bazenem a Jacuzzi"
+        }
+      },
+      {
+        "name": {
+          "it": "Living con camino, cucina open space e veranda vetrata panoramica",
+          "en": "Living room with fireplace, open kitchen, and panoramic glazed veranda",
+          "cs": "Obyvaci pokoj s krbem, otevrena kuchyne a panoramaticka prosklena veranda"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona benessere con palestra, cantina vini, lavanderia e locali accessori",
+          "en": "Wellness/service area with gym, wine cellar, laundry, and accessory rooms",
+          "cs": "Wellness a servisni cast s posilovnou, vinotekou, pradelnou a dalsimi prostory"
+        }
+      },
+      {
+        "name": {
+          "it": "Domotica, allarme, videosorveglianza, solare e fotovoltaico",
+          "en": "Home automation, alarm, video surveillance, solar thermal, and photovoltaic systems",
+          "cs": "Chytra domacnost, alarm, kamerovy system, solarni a fotovoltaicke panely"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Lake Maggiore View Villa with Pool for Sale in Brezzo di Bedero",
+      "cs": "Vila s vyhledem na Lago Maggiore a bazenem v Brezzo di Bedero",
+      "it": "Villa vista Lago Maggiore con piscina a Brezzo di Bedero"
+    },
+    "seoDescription": {
+      "en": "280 sqm villa in Brezzo di Bedero: Lake Maggiore view, 1,300 sqm garden, infinity pool, Jacuzzi, 4 bedrooms, double garage, and class A.",
+      "cs": "Vila 280 m2 v Brezzo di Bedero: vyhled na Lago Maggiore, zahrada 1 300 m2, nekonecny bazen, Jacuzzi, 4 loznice, dvojgaraz a trida A.",
+      "it": "Villa di 280 m2 a Brezzo di Bedero: vista Lago Maggiore, giardino 1.300 m2, piscina a sfioro, Jacuzzi, 4 camere, garage doppio e classe A."
+    },
+    "keywords": [
+      "brezzo di bedero",
+      "lago maggiore",
+      "villa",
+      "piscina",
+      "jacuzzi",
+      "lombardia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/125932369/",
+    "_createdAt": "2026-05-07T12:27:18.238Z",
+    "_updatedAt": "2026-05-07T12:27:18.238Z"
+  },
+  {
     "_id": "local-import-lombardia-appartamento-toscolano-maderno-vigole-1778155869726-ep8w0",
     "_type": "listing",
     "title": {
