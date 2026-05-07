@@ -1,5 +1,174 @@
 [
   {
+    "_id": "local-import-friuli-venezia-giulia-villa-tolmezzo-centro-pordenone-1778153101954-evdeu",
+    "_type": "listing",
+    "title": {
+      "en": "Detached Villa with Garden and Building Land in Tolmezzo",
+      "cs": "Samostatna vila se zahradou a stavebnim pozemkem v Tolmezzu",
+      "it": "Villa singola con giardino e terreno edificabile a Tolmezzo"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "friuli-venezia-giulia-villa-tolmezzo-centro-pordenone"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 350000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "squareFootage": 230,
+      "parking": 2,
+      "yearBuilt": 1980,
+      "lotSize": 1100
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Tolmezzo",
+          "cs": "Tolmezzo",
+          "it": "Tolmezzo"
+        },
+        "slug": {
+          "current": "tolmezzo"
+        },
+        "region": {
+          "name": {
+            "it": "Friuli-Venezia Giulia",
+            "en": "Friuli-Venezia Giulia",
+            "cs": "Furlansko-Julske Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Pordenone 2, Centro, Tolmezzo (UD), Friuli-Venezia Giulia",
+        "cs": "Via Pordenone 2, centrum, Tolmezzo (UD), Furlansko-Julske Benatsko",
+        "it": "Via Pordenone 2, Centro, Tolmezzo (UD), Friuli-Venezia Giulia"
+      },
+      "coordinates": {
+        "lat": 46.3993,
+        "lng": 13.0229
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In a central position in Tolmezzo, on Via Pordenone, we offer a detached villa of about 230 sqm set on a main plot of about 600 sqm, with generous spaces and a functional multi-level layout.\n\nThe home is mainly arranged on the raised floor, where there is a bright living room of about 30 sqm with kitchenette, a windowed bathroom, and two well-sized double bedrooms. An internal staircase leads to the habitable attic level, composed of two further bedrooms, a bathroom, and a terrace.\n\nThe fully heated semi-basement includes a large tavern room, storage rooms, and an additional bathroom. The double garage is directly connected to the tavern room. The property is completed by additional building land of about 500 sqm, useful for future development or for further enhancing the outdoor areas.",
+      "cs": "V centralni poloze v Tolmezzu, na ulici Via Pordenone, nabizime samostatnou vilu o plose priblizne 230 m2 na hlavnim pozemku o velikosti asi 600 m2, s velkorysymi prostory a funkcni dispozici ve vice urovnich.\n\nHlavni obytny prostor se nachazi ve zvysenem prizemi, kde je svetly obyvak o velikosti asi 30 m2 s kuchynskym koutem, koupelna s oknem a dve prostorne manzelske loznice. Vnitrni schodiste vede do obyvatelneho podkrovi, kde jsou dalsi dve loznice, koupelna a terasa.\n\nPlne vytapeny polosuterem nabizi velkou tavernu, skladovaci mistnosti a dalsi koupelnu. Dvojgaraz je primo propojena s tavernou. Soucasti nabidky je take dalsi stavebni pozemek o velikosti asi 500 m2, zajimavy pro budouci rozsireni nebo dalsi zhodnoceni venkovnich prostoru.",
+      "it": "In posizione centrale a Tolmezzo, in via Pordenone, proponiamo una villa singola di circa 230 m2 inserita in un lotto principale di circa 600 m2, con spazi ampi e distribuzione funzionale su piu livelli.\n\nL'abitazione si sviluppa principalmente al piano rialzato, dove si trovano un soggiorno luminoso di circa 30 m2 con angolo cottura, un bagno finestrato e due camere matrimoniali di buone dimensioni. Una scala interna conduce alla mansarda abitabile, composta da altre due camere da letto, un bagno e un terrazzo.\n\nIl piano seminterrato, completamente riscaldato, ospita una grande taverna, locali ad uso deposito e un ulteriore bagno. Il garage doppio e collegato direttamente alla taverna. Completa la proprieta un terreno edificabile aggiuntivo di circa 500 m2, interessante per futuri ampliamenti o per valorizzare ulteriormente gli spazi esterni."
+    },
+    "images": [
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/01-01-gallery-1.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/02-02-gallery-2.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/03-03-gallery-3.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/04-04-gallery-4.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/05-05-gallery-5.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/06-06-gallery-6.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/07-07-gallery-7.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/08-08-gallery-8.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/09-09-gallery-9.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/10-10-gallery-10.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/11-11-gallery-11.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-tolmezzo-centro-pordenone/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villa singola libera e abitabile in centro a Tolmezzo",
+          "en": "Detached villa, available and habitable, in central Tolmezzo",
+          "cs": "Samostatna vila, volna a obyvatelna, v centru Tolmezza"
+        }
+      },
+      {
+        "name": {
+          "it": "Lotto principale di circa 600 m2 con giardino privato",
+          "en": "Main plot of about 600 sqm with private garden",
+          "cs": "Hlavni pozemek asi 600 m2 se soukromou zahradou"
+        }
+      },
+      {
+        "name": {
+          "it": "Ulteriore terreno edificabile di circa 500 m2",
+          "en": "Additional building land of about 500 sqm",
+          "cs": "Dalsi stavebni pozemek o velikosti asi 500 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Piano rialzato con soggiorno luminoso di circa 30 m2 e angolo cottura",
+          "en": "Raised floor with bright 30 sqm living room and kitchenette",
+          "cs": "Zvyssene prizemi se svetlym obyvakem asi 30 m2 a kuchynskym koutem"
+        }
+      },
+      {
+        "name": {
+          "it": "Quattro camere da letto complessive tra piano principale e mansarda",
+          "en": "Four total bedrooms between the main floor and attic level",
+          "cs": "Ctyri loznice celkem mezi hlavnim podlazim a obytnym podkrovim"
+        }
+      },
+      {
+        "name": {
+          "it": "Mansarda abitabile con due camere, bagno e terrazzo",
+          "en": "Habitable attic with two bedrooms, bathroom, and terrace",
+          "cs": "Obyvatelne podkrovi se dvema loznicemi, koupelnou a terasou"
+        }
+      },
+      {
+        "name": {
+          "it": "Seminterrato riscaldato con grande taverna e locali deposito",
+          "en": "Heated semi-basement with large tavern room and storage areas",
+          "cs": "Vytapeny polosuterem s velkou tavernou a skladovacimi prostory"
+        }
+      },
+      {
+        "name": {
+          "it": "Garage doppio collegato direttamente alla taverna",
+          "en": "Double garage directly connected to the tavern room",
+          "cs": "Dvojgaraz primo propojena s tavernou"
+        }
+      },
+      {
+        "name": {
+          "it": "Riscaldamento autonomo a radiatori alimentato a metano",
+          "en": "Independent methane radiator heating",
+          "cs": "Samostatne vytapeni radiatory na metan"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Detached Villa with Garden and Building Land for Sale in Tolmezzo",
+      "cs": "Samostatna vila se zahradou a stavebnim pozemkem na prodej v Tolmezzu",
+      "it": "Villa singola con giardino e terreno edificabile a Tolmezzo"
+    },
+    "seoDescription": {
+      "en": "230 sqm villa in Tolmezzo: 6 rooms, 4 bedrooms, 3 bathrooms, habitable attic, tavern room, double garage, garden, and building land.",
+      "cs": "Vila 230 m2 v Tolmezzu: 6 mistnosti, 4 loznice, 3 koupelny, obyvatelne podkrovi, taverna, dvojgaraz, zahrada a stavebni pozemek.",
+      "it": "Villa di 230 m2 a Tolmezzo: 6 locali, 4 camere, 3 bagni, mansarda abitabile, taverna, garage doppio, giardino e terreno edificabile."
+    },
+    "keywords": [
+      "tolmezzo",
+      "via pordenone",
+      "villa singola",
+      "giardino privato",
+      "terreno edificabile",
+      "garage doppio",
+      "friuli venezia giulia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128371450/",
+    "_createdAt": "2026-05-07T11:25:01.943Z",
+    "_updatedAt": "2026-05-07T11:25:01.943Z"
+  },
+  {
     "_id": "local-import-friuli-venezia-giulia-appartamento-udine-ospedale-cotonificio-1778149775232-2sje5",
     "_type": "listing",
     "title": {
