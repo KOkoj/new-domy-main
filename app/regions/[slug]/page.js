@@ -17,8 +17,7 @@ import { REGION_CURIOSITIES } from '../regionCuriosities'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 
 const DEFAULT_BOOKING_LINK = 'https://www.dpbolvw.net/click-101629596-15735418'
-const REGION_WIDGET_LINK = 'https://www.dpbolvw.net/click-101629596-17122707'
-const REGION_WIDGET_IMAGE = 'https://www.awltovhc.com/image-101629596-17122707'
+const REGION_CAR_RENTAL_LINK = 'https://www.tkqlhce.com/click-101629596-17122732'
 const REGION_BOOKING_LINKS = {
   lombardia:
     'https://www.booking.com/searchresults.cs.html?aid=1522416&label=affnetcj-15735418_pub-7711899_site-101629596_pname-Creavita+sro_clkid-_cjevent-23f68d511e0e11f183fd00400a18ba73&lang=cs&sid=f9245db3ab66c6aaf5f923e76887184f&sb=1&sb_lp=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.cs.html%3Faid%3D1522416%26label%3Daffnetcj-15735418_pub-7711899_site-101629596_pname-Creavita%2520sro_clkid-_cjevent-23f68d511e0e11f183fd00400a18ba73%26sid%3Df9245db3ab66c6aaf5f923e76887184f%26sb_price_type%3Dtotal%26&ss=Riva+del+Garda%2C+Trentino-Alto+Adige%2C+Italia&is_ski_area=&checkin_year=&checkin_month=&checkout_year=&checkout_month=&flex_window=0&efdco=1&group_adults=2&group_children=0&no_rooms=1&b_h4u_keep_filters=&from_sf=1&ss_raw=lago+di+garda&ac_position=1&ac_langcode=it&ac_click_type=b&ac_meta=GhA2YTdmNTcxNGExNmIwMjlmIAEoATICaXQ6DWxhZ28gZGkgZ2FyZGFAAEoAUAA%3D&dest_id=-126468&dest_type=city&place_id_lat=45.88506&place_id_lon=10.838951&search_pageview_id=8f4d570d21da0186&search_selected=true&search_pageview_id=8f4d570d21da0186&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0',
@@ -1501,20 +1500,39 @@ export default function RegionDetailPage() {
                   </p>
                 </div>
                 <div className="mt-8 pt-6 border-t border-gray-100">
-                  <a
-                    href={REGION_WIDGET_LINK}
-                    target="_blank"
-                    rel="nofollow sponsored noopener noreferrer"
-                    className="block w-[40%] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-transform duration-300 hover:shadow-md"
-                  >
-                    <img
-                      src={REGION_WIDGET_IMAGE}
-                      width="660"
-                      height="270"
-                      alt=""
-                      className="block h-auto w-full"
-                    />
-                  </a>
+                  <div className="rounded-2xl border border-blue-100 bg-blue-50/70 p-5">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                      <div>
+                        <p className="text-lg font-semibold text-slate-900">
+                          {language === 'cs'
+                            ? 'Potřebujete auto pro cestu po regionu?'
+                            : language === 'it'
+                              ? 'Ti serve un’auto per visitare la regione?'
+                              : 'Need a car to explore the region?'}
+                        </p>
+                        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                          {language === 'cs'
+                            ? 'Porovnejte nabídky autopůjčoven a naplánujte si pohodlné přesuny mezi městy, vesnicemi a pobřežím.'
+                            : language === 'it'
+                              ? 'Confronta le offerte di autonoleggio e organizza facilmente gli spostamenti tra città, borghi e costa.'
+                              : 'Compare car rental offers and plan easy transfers between cities, villages, and the coast.'}
+                        </p>
+                      </div>
+                      <a
+                        href={REGION_CAR_RENTAL_LINK}
+                        target="_blank"
+                        rel="nofollow sponsored noopener noreferrer"
+                        className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-700 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
+                      >
+                        {language === 'cs'
+                          ? 'Najít půjčení auta'
+                          : language === 'it'
+                            ? 'Trova un’auto a noleggio'
+                            : 'Find a rental car'}
+                        <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
