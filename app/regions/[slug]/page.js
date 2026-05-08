@@ -255,9 +255,9 @@ const REGION_DATA = {
       it: 'Milano, Lago di Como e micro-mercati strategici per obiettivi diversi'
     },
     description: {
-      en: 'Placeholder: this detailed Lombardy guide is being prepared. We will soon add full local strategy, city-by-city analysis, legal/technical checkpoints, and practical buyer scenarios.',
-      cs: 'Placeholder: tento detailni pruvodce Lombardii pripravujeme. Brzy doplnime lokální strategii, analyzu mest, pravni a technicke kontroly i praktické scenare kupujicich.',
-      it: 'Placeholder: questa guida dettagliata sulla Lombardia è in preparazione. A breve aggiungeremo strategia locale, analisi città per città, controlli legali e tecnici e scenari pratici.'
+      en: 'Lombardy is one of Italy’s most liquid and diverse markets. Milan drives urban demand, Lake Como attracts premium international buyers, and secondary cities such as Bergamo, Brescia and Monza offer more balanced entry points. The right strategy depends on whether the goal is personal use, rental income, relocation or long-term capital preservation.',
+      cs: 'Lombardie patří k nejlikvidnějším a nejrozmanitějším trhům v Itálii. Milán táhne městskou poptávku, Lago di Como přitahuje prémiové zahraniční kupující a města jako Bergamo, Brescia nebo Monza nabízejí vyváženější vstupní úrovně. Správná strategie závisí na tom, zda jde o vlastní užívání, pronájem, přesun nebo dlouhodobé uchování hodnoty.',
+      it: 'La Lombardia è uno dei mercati più liquidi e diversificati d’Italia. Milano guida la domanda urbana, il Lago di Como attira acquirenti internazionali premium e città come Bergamo, Brescia e Monza offrono punti di ingresso più equilibrati. La strategia corretta dipende dall’obiettivo: uso personale, reddito da locazione, trasferimento o conservazione del valore nel lungo periodo.'
     },
     highlights: {
       en: [
@@ -1045,25 +1045,25 @@ function createPlaceholderRegion(slug = '') {
     },
     image: '/Toscana.png',
     tagline: {
-      en: 'Detailed regional guide in preparation',
-      cs: 'Detailni regionální pruvodce se pripravuje',
-      it: 'Guida dettagliata della regione in preparazione'
+      en: 'Regional overview for Italian property buyers',
+      cs: 'Regionální přehled pro kupující nemovitostí v Itálii',
+      it: 'Panoramica regionale per chi compra casa in Italia'
     },
     description: {
-      en: 'Placeholder: this region page is being prepared. We will add detailed pricing bands, city-level breakdown, legal and technical checkpoints, and practical buyer scenarios soon.',
-      cs: 'Placeholder: tato stránka regionů je v priprave. Brzy doplnime detailni cenova pasma, rozpis mest, pravni a technicke kontroly i praktické scenare kupujicich.',
-      it: 'Questa pagina regione è in preparazione. A breve aggiungeremo fasce prezzo dettagliate, analisi delle città, controlli legali/tecnici e scenari pratici.'
+      en: 'This regional page gives a practical first orientation for buyers comparing locations in Italy. Use it as a starting point to evaluate lifestyle, accessibility, services, property types and the level of technical and legal due diligence needed before making an offer.',
+      cs: 'Tato regionální stránka slouží jako praktická první orientace pro kupující, kteří porovnávají lokality v Itálii. Pomáhá posoudit životní styl, dostupnost, služby, typy nemovitostí a rozsah technických a právních kontrol před podáním nabídky.',
+      it: 'Questa pagina regionale offre un primo orientamento pratico per chi confronta diverse località in Italia. Serve per valutare stile di vita, accessibilità, servizi, tipologie immobiliari e livello di verifiche tecniche e legali necessario prima di fare un’offerta.'
     },
     highlights: {
-      en: ['Guide coming soon', 'Market mapping in progress', 'Legal and technical checks', 'Practical buyer focus'],
-      cs: ['Pruvodce bude brzy', 'Mapovani trhu v priprave', 'Právní a technicke kontroly', 'Prakticky fokus kupujiciho'],
-      it: ['Guida in arrivo', 'Mappatura mercato in corso', 'Controlli legali e tecnici', 'Focus pratico per acquirenti']
+      en: ['Lifestyle and access', 'Local market context', 'Legal and technical checks', 'Practical buyer focus'],
+      cs: ['Životní styl a dostupnost', 'Lokální tržní kontext', 'Právní a technické kontroly', 'Praktický fokus kupujícího'],
+      it: ['Stile di vita e accessibilità', 'Contesto del mercato locale', 'Controlli legali e tecnici', 'Focus pratico per acquirenti']
     },
-    priceRange: 'TBD',
+    priceRange: 'Market dependent',
     bestFor: {
-      en: 'Guide preview',
-      cs: 'Nahled pruvodce',
-      it: 'Anteprima guida'
+      en: 'Initial regional comparison',
+      cs: 'První porovnání regionů',
+      it: 'Primo confronto tra regioni'
     },
     topCities: [prettyName]
   }
