@@ -1483,22 +1483,6 @@ export default function RegionDetailPage() {
                     <p key={index}>{line}</p>
                   ))}
                 </div>
-                <div className="mt-8 rounded-2xl border border-slate-200 bg-[#f7f6f3] px-5 py-4">
-                  <p className="text-lg font-semibold text-slate-800">
-                    {language === 'cs'
-                      ? 'Chcete tato města navštívit pohodlně?'
-                      : language === 'it'
-                        ? 'Vuoi visitare queste città comodamente?'
-                        : 'Do you want to visit these cities comfortably?'}
-                  </p>
-                  <p className="mt-2 text-slate-600">
-                    {language === 'cs'
-                      ? 'Tady najdete správné řešení.'
-                      : language === 'it'
-                        ? 'Qui trovi la soluzione giusta.'
-                        : 'Here you can find the right solution.'}
-                  </p>
-                </div>
                 <div className="mt-8 pt-6 border-t border-gray-100">
                   <div className="rounded-2xl border border-blue-100 bg-blue-50/70 p-5">
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
