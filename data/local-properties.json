@@ -1,5 +1,728 @@
 [
   {
+    "_id": "local-import-liguria-appartamento-varazze-san-giacomo-vista-mare-1778238432883-59ve1",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Level Apartment with Sea-View Terraces in Varazze",
+      "cs": "Mezonetovy byt s terasami a vyhledem na more ve Varazze",
+      "it": "Appartamento su due livelli con terrazzi vista mare a Varazze"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "liguria-appartamento-varazze-san-giacomo-vista-mare"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 320000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 1,
+      "squareFootage": 128,
+      "parking": 2
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Varazze",
+          "cs": "Varazze",
+          "it": "Varazze"
+        },
+        "slug": {
+          "current": "varazze"
+        },
+        "region": {
+          "name": {
+            "it": "Liguria",
+            "en": "Liguria",
+            "cs": "Ligurie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via San Giacomo 23C, Piani di San Giacomo, Varazze (SV), Liguria",
+        "cs": "Via San Giacomo 23C, Piani di San Giacomo, Varazze (SV), Ligurie",
+        "it": "Via San Giacomo 23C, Piani di San Giacomo, Varazze (SV), Liguria"
+      },
+      "coordinates": {
+        "lat": 44.3783,
+        "lng": 8.6237
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Varazze, in the Piani di San Giacomo area and a few minutes from the sea, we offer a two-level apartment of approx. 128 sqm, set in a small building with independent entrance.\n\nThe main level includes a spacious living area with kitchenette and access to a large sea-view terrace. The north-facing bedroom has a second private terrace, and the bathroom is windowed with shower. Upstairs there is a spacious double bedroom, which can be divided to create a third bedroom, plus a storage room and utility space.\n\nThe property is in good condition, has independent heating, and includes two private uncovered parking spaces in a forecourt accessible through a gate and electric barrier. Excellent as a main home, holiday home, or short-rental investment.",
+      "cs": "Ve Varazze, v oblasti Piani di San Giacomo a nekolik minut od more, nabizime mezonetovy byt o plose cca 128 m2 v malem dome se samostatnym vstupem.\n\nHlavni uroven zahrnuje prostornou obytnou cast s kuchynskym koutem a vstupem na velkou terasu s vyhledem na more. Loznice orientovana na sever ma druhou soukromou terasu a koupelna je s oknem a sprchou. V hornim patre je prostorna dvouluzkova loznice, kterou lze rozdelit a vytvorit treti loznici, dale komora a technicky/odkladaci prostor.\n\nNemovitost je v dobrem stavu, ma samostatne topeni a zahrnuje dve soukroma venkovni parkovaci mista na plose pristupne pres branu a elektrickou zavoru. Vhodne jako hlavni bydleni, dovolenkovy byt nebo investice pro kratkodobe pronajmy.",
+      "it": "A Varazze, nella zona dei Piani di San Giacomo e a pochi minuti dal mare, proponiamo un appartamento su due livelli di circa 128 m2, inserito in un piccolo caseggiato con ingresso indipendente.\n\nIl piano principale ospita una zona giorno ampia con angolo cottura e accesso a un grande terrazzo con vista mare. La camera esposta a nord offre un secondo terrazzo privato e il bagno e finestrato con doccia. Al piano superiore si trova una spaziosa camera matrimoniale, divisibile per ricavare una terza camera, oltre a ripostiglio e locale sgombero.\n\nLa proprieta e in buone condizioni, dispone di riscaldamento autonomo e include due posti auto scoperti in un piazzale accessibile tramite cancello e sbarra elettrica. Ottima come prima casa, casa vacanze o investimento per affitti brevi."
+    },
+    "images": [
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/01-01-gallery-1.jpg",
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/02-02-gallery-2.jpg",
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/03-03-gallery-3.jpg",
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/04-04-gallery-4.jpg",
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/05-05-gallery-5.jpg",
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/06-06-gallery-6.jpg",
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/07-07-gallery-7.jpg",
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/08-08-gallery-8.jpg",
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/09-09-gallery-9.jpg",
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/10-10-gallery-10.jpg",
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/11-11-gallery-11.jpg",
+      "/uploads/properties/liguria-appartamento-varazze-san-giacomo-vista-mare/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Appartamento di circa 128 m2 su due livelli",
+          "en": "Apartment of approx. 128 sqm over two levels",
+          "cs": "Byt cca 128 m2 ve dvou urovnich"
+        }
+      },
+      {
+        "name": {
+          "it": "Posizione dominante ai Piani di San Giacomo",
+          "en": "Dominant position in Piani di San Giacomo",
+          "cs": "Dominantni poloha v Piani di San Giacomo"
+        }
+      },
+      {
+        "name": {
+          "it": "Ampio terrazzo con vista mare",
+          "en": "Large terrace with sea view",
+          "cs": "Velka terasa s vyhledem na more"
+        }
+      },
+      {
+        "name": {
+          "it": "Ingresso indipendente",
+          "en": "Independent entrance",
+          "cs": "Samostatny vstup"
+        }
+      },
+      {
+        "name": {
+          "it": "Tre camere potenziali e bagno finestrato",
+          "en": "Up to three bedrooms and windowed bathroom",
+          "cs": "Moznost tri loznic a koupelna s oknem"
+        }
+      },
+      {
+        "name": {
+          "it": "Due posti auto scoperti di proprieta",
+          "en": "Two private uncovered parking spaces",
+          "cs": "Dve soukroma venkovni parkovaci mista"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Sea-View Apartment for Sale in Varazze San Giacomo",
+      "cs": "Byt s vyhledem na more na prodej ve Varazze San Giacomo",
+      "it": "Appartamento vista mare in vendita a Varazze San Giacomo"
+    },
+    "seoDescription": {
+      "en": "128 sqm two-level apartment in Varazze with sea-view terraces, independent entrance, up to 3 bedrooms, and 2 parking spaces.",
+      "cs": "Mezonetovy byt 128 m2 ve Varazze s terasami a vyhledem na more, samostatnym vstupem, moznosti 3 loznic a 2 parkovacimi misty.",
+      "it": "Appartamento di 128 m2 a Varazze su due livelli, terrazzi vista mare, ingresso indipendente, 3 camere potenziali e 2 posti auto."
+    },
+    "keywords": [
+      "varazze",
+      "san giacomo",
+      "vista mare",
+      "terrazzo",
+      "appartamento",
+      "liguria"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/119903200/",
+    "_createdAt": "2026-05-08T11:07:12.882Z",
+    "_updatedAt": "2026-05-08T11:07:12.882Z"
+  },
+  {
+    "_id": "local-import-liguria-appartamento-vado-ligure-armando-diaz-1778238426963-to990",
+    "_type": "listing",
+    "title": {
+      "en": "Bright Top-Floor Three-Room Apartment in Central Vado Ligure",
+      "cs": "Svetly trilokal v poslednim patre v centru Vado Ligure",
+      "it": "Trilocale luminoso all'ultimo piano nel centro di Vado Ligure"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "liguria-appartamento-vado-ligure-armando-diaz"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 169000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 73
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Vado Ligure",
+          "cs": "Vado Ligure",
+          "it": "Vado Ligure"
+        },
+        "slug": {
+          "current": "vado-ligure"
+        },
+        "region": {
+          "name": {
+            "it": "Liguria",
+            "en": "Liguria",
+            "cs": "Ligurie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Armando Diaz 32, town centre, Vado Ligure (SV), Liguria",
+        "cs": "Via Armando Diaz 32, centrum, Vado Ligure (SV), Ligurie",
+        "it": "Via Armando Diaz 32, centro, Vado Ligure (SV), Liguria"
+      },
+      "coordinates": {
+        "lat": 44.2705,
+        "lng": 8.4374
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the historic centre of Vado Ligure, on Via Armando Diaz 32, we offer a spacious three-room apartment of approx. 73 sqm on the fifth and top floor of a building with lift. The location is convenient for services and beaches, suitable both as a main home and as a holiday property.\n\nThe apartment is bright thanks to its favourable exposure and includes an entrance hallway, eat-in kitchen with balcony, living room, double bedroom, bathroom with shower, and large storage room. The layout also allows the possibility of creating a second bedroom.\n\nThe property features independent heating, air conditioning, and new PVC double-glazed windows.",
+      "cs": "V historickem centru Vado Ligure, ve Via Armando Diaz 32, nabizime prostorny trilokal o plose cca 73 m2 v patem a poslednim patre domu s vytahem. Poloha je pohodlna ke sluzbam i plazim, vhodna jako hlavni bydleni i dovolenkovy byt.\n\nByt je svetly diky dobre orientaci a zahrnuje vstupni chodbu, obyvatelnou kuchyni s balkonem, obyvak, dvouluzkovou loznici, koupelnu se sprchou a velkou komoru. Dispozice umoznuje take uvazovat o vytvoreni druhe loznice.\n\nNemovitost ma samostatne topeni, klimatizaci a nova plastova okna s dvojsklem.",
+      "it": "Nel centro storico di Vado Ligure, in via Armando Diaz 32, proponiamo un ampio trilocale di circa 73 m2 al quinto e ultimo piano di una palazzina con ascensore. La posizione e comoda ai servizi e alle spiagge, ideale sia come prima casa sia come casa vacanze.\n\nL'appartamento e luminoso grazie all'esposizione favorevole e si compone di ingresso su disimpegno, cucina abitabile con balcone, soggiorno, camera matrimoniale, bagno con doccia e ampio ripostiglio. La distribuzione consente anche di valutare la realizzazione di una seconda camera.\n\nLa proprieta dispone di riscaldamento autonomo, impianto di condizionamento e infissi nuovi in PVC con doppio vetro."
+    },
+    "images": [
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/01-01-gallery-1.jpg",
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/02-02-gallery-2.jpg",
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/03-03-gallery-3.jpg",
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/04-04-gallery-4.jpg",
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/05-05-gallery-5.jpg",
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/06-06-gallery-6.jpg",
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/07-07-gallery-7.jpg",
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/08-08-gallery-8.jpg",
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/09-09-gallery-9.jpg",
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/10-10-gallery-10.jpg",
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/11-11-gallery-11.jpg",
+      "/uploads/properties/liguria-appartamento-vado-ligure-armando-diaz/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Trilocale di circa 73 m2 al quinto e ultimo piano",
+          "en": "Three-room apartment of approx. 73 sqm on the fifth and top floor",
+          "cs": "Trilokal cca 73 m2 v patem a poslednim patre"
+        }
+      },
+      {
+        "name": {
+          "it": "Palazzina con ascensore in centro storico",
+          "en": "Building with lift in the historic centre",
+          "cs": "Dum s vytahem v historickem centru"
+        }
+      },
+      {
+        "name": {
+          "it": "Cucina abitabile con balcone",
+          "en": "Eat-in kitchen with balcony",
+          "cs": "Obyvatelna kuchyne s balkonem"
+        }
+      },
+      {
+        "name": {
+          "it": "Soggiorno, camera matrimoniale e bagno con doccia",
+          "en": "Living room, double bedroom, and bathroom with shower",
+          "cs": "Obyvak, dvouluzkova loznice a koupelna se sprchou"
+        }
+      },
+      {
+        "name": {
+          "it": "Riscaldamento autonomo e aria condizionata",
+          "en": "Independent heating and air conditioning",
+          "cs": "Samostatne topeni a klimatizace"
+        }
+      },
+      {
+        "name": {
+          "it": "Infissi nuovi in PVC con doppio vetro",
+          "en": "New PVC double-glazed windows",
+          "cs": "Nova plastova okna s dvojsklem"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Top-Floor Three-Room Apartment for Sale in Vado Ligure",
+      "cs": "Trilokal v poslednim patre na prodej ve Vado Ligure",
+      "it": "Trilocale ultimo piano in vendita a Vado Ligure"
+    },
+    "seoDescription": {
+      "en": "73 sqm three-room apartment in central Vado Ligure: top floor with lift, balcony, eat-in kitchen, independent heating, and air conditioning.",
+      "cs": "Trilokal 73 m2 v centru Vado Ligure: posledni patro s vytahem, balkon, obyvatelna kuchyne, samostatne topeni a klimatizace.",
+      "it": "Trilocale di 73 m2 a Vado Ligure centro: ultimo piano con ascensore, balcone, cucina abitabile, riscaldamento autonomo e aria condizionata."
+    },
+    "keywords": [
+      "vado ligure",
+      "via armando diaz",
+      "trilocale",
+      "ultimo piano",
+      "appartamento",
+      "liguria"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128114790/",
+    "_createdAt": "2026-05-08T11:07:06.962Z",
+    "_updatedAt": "2026-05-08T11:07:06.962Z"
+  },
+  {
+    "_id": "local-import-piemonte-villa-lanzo-torinese-oviglia-inferiore-1778238420665-v2clg",
+    "_type": "listing",
+    "title": {
+      "en": "Villa with Land and Views in Lanzo Torinese",
+      "cs": "Vila s pozemkem a vyhledem v Lanzo Torinese",
+      "it": "Villa con terreno e vista a Lanzo Torinese"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "piemonte-villa-lanzo-torinese-oviglia-inferiore"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 230000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 7,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "squareFootage": 380,
+      "parking": 3
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Lanzo Torinese",
+          "cs": "Lanzo Torinese",
+          "it": "Lanzo Torinese"
+        },
+        "slug": {
+          "current": "lanzo-torinese"
+        },
+        "region": {
+          "name": {
+            "it": "Piemonte",
+            "en": "Piedmont",
+            "cs": "Piemont"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Regione Oviglia Inferiore 167, Lanzo Torinese (TO), Piedmont",
+        "cs": "Regione Oviglia Inferiore 167, Lanzo Torinese (TO), Piemont",
+        "it": "Regione Oviglia Inferiore 167, Lanzo Torinese (TO), Piemonte"
+      },
+      "coordinates": {
+        "lat": 45.281,
+        "lng": 7.4843
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Lanzo Torinese, at Regione Oviglia Inferiore 167, we offer a detached villa in a hillside position, approx. 5 minutes from the centre, with city views, garden, courtyard, and approx. 2,000 sqm of land.\n\nThe home provides approx. 380 sqm over three levels. The approx. 140 sqm ground floor includes a tavern room, bathroom, technical room, and two bedrooms. The first floor, also approx. 140 sqm, hosts the kitchen, lounge, three bedrooms, and bathroom. The approx. 100 sqm attic includes two rooms, hallway, and bathroom.\n\nA cellar, technical room, driveway access, courtyard parking spaces, and independent heating complete the property. A spacious and versatile solution for those seeking generous interiors, greenery, and quiet close to central Lanzo.",
+      "cs": "V Lanzo Torinese, na adrese Regione Oviglia Inferiore 167, nabizime samostatnou vilu ve svahu, cca 5 minut od centra, s vyhledem na mesto, zahradou, dvorem a pozemkem cca 2 000 m2.\n\nDum ma cca 380 m2 ve trech urovnich. Prizemi o cca 140 m2 zahrnuje tavernu, koupelnu, technickou mistnost a dve loznice. Prvni patro, take cca 140 m2, nabizi kuchyni, salon, tri loznice a koupelnu. Podkrovi cca 100 m2 obsahuje dve mistnosti, chodbu a koupelnu.\n\nNemovitost doplnuje sklep, technicka mistnost, prijezd autem, parkovaci mista ve dvore a samostatne topeni. Prostorne a flexibilni reseni pro ty, kdo hledaji velke interiery, zelen a klid v blizkosti centra Lanza.",
+      "it": "A Lanzo Torinese, in Regione Oviglia Inferiore 167, proponiamo una villa unifamiliare in posizione collinare, a circa 5 minuti dal centro, con vista sulla citta, giardino, cortile e terreno di circa 2.000 m2.\n\nL'abitazione sviluppa circa 380 m2 su tre livelli. Il piano terra di circa 140 m2 comprende tavernetta, bagno, locale tecnico e due camere. Il primo piano, sempre di circa 140 m2, ospita cucina, salone, tre camere e bagno. La mansarda di circa 100 m2 include due camere, disimpegno e bagno.\n\nCompletano la proprieta cantina, locale tecnico, accesso carraio, posti auto nel cortile e riscaldamento autonomo. Una soluzione ampia e versatile per chi cerca spazi generosi, verde e tranquillita vicino al centro di Lanzo."
+    },
+    "images": [
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/01-01-gallery-1.jpg",
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/02-02-gallery-2.jpg",
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/03-03-gallery-3.jpg",
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/04-04-gallery-4.jpg",
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/05-05-gallery-5.jpg",
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/06-06-gallery-6.jpg",
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/07-07-gallery-7.jpg",
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/08-08-gallery-8.jpg",
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/09-09-gallery-9.jpg",
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/10-10-gallery-10.jpg",
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/11-11-gallery-11.jpg",
+      "/uploads/properties/piemonte-villa-lanzo-torinese-oviglia-inferiore/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villa unifamiliare di circa 380 m2 su tre livelli",
+          "en": "Detached villa of approx. 380 sqm over three levels",
+          "cs": "Samostatna vila cca 380 m2 ve trech urovnich"
+        }
+      },
+      {
+        "name": {
+          "it": "Terreno di circa 2.000 m2",
+          "en": "Approx. 2,000 sqm of land",
+          "cs": "Pozemek cca 2 000 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Posizione collinare a 5 minuti dal centro",
+          "en": "Hillside position 5 minutes from the centre",
+          "cs": "Poloha ve svahu 5 minut od centra"
+        }
+      },
+      {
+        "name": {
+          "it": "Sette ambienti abitabili tra piano terra, primo piano e mansarda",
+          "en": "Seven living rooms/spaces across ground floor, first floor, and attic",
+          "cs": "Sedm obytnych prostoru v prizemi, prvnim patre a podkrovi"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino, cortile e posti auto",
+          "en": "Garden, courtyard, and parking spaces",
+          "cs": "Zahrada, dvur a parkovaci mista"
+        }
+      },
+      {
+        "name": {
+          "it": "Cantina, locale tecnico e riscaldamento autonomo",
+          "en": "Cellar, technical room, and independent heating",
+          "cs": "Sklep, technicka mistnost a samostatne topeni"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Villa with Land for Sale in Lanzo Torinese",
+      "cs": "Vila s pozemkem na prodej v Lanzo Torinese",
+      "it": "Villa con terreno in vendita a Lanzo Torinese"
+    },
+    "seoDescription": {
+      "en": "380 sqm villa in Lanzo Torinese with 2,000 sqm land, 4 bedrooms, 3 bathrooms, garden, courtyard, parking, and city views.",
+      "cs": "Vila 380 m2 v Lanzo Torinese s pozemkem 2 000 m2, 4 loznicemi, 3 koupelnami, zahradou, dvorem, parkovanim a vyhledem.",
+      "it": "Villa di 380 m2 a Lanzo Torinese con terreno 2.000 m2, 4 camere, 3 bagni, giardino, cortile, posti auto e vista sulla citta."
+    },
+    "keywords": [
+      "lanzo torinese",
+      "oviglia inferiore",
+      "villa",
+      "terreno",
+      "giardino",
+      "piemonte"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/122330822/",
+    "_createdAt": "2026-05-08T11:07:00.664Z",
+    "_updatedAt": "2026-05-08T11:07:00.664Z"
+  },
+  {
+    "_id": "local-import-piemonte-villa-castiglione-tinella-san-martino-1778238415048-0k6pf",
+    "_type": "listing",
+    "title": {
+      "en": "Panoramic Villa Over the Vineyards in Castiglione Tinella",
+      "cs": "Panoramaticka vila nad vinicemi v Castiglione Tinella",
+      "it": "Villa panoramica sulle vigne a Castiglione Tinella"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "piemonte-villa-castiglione-tinella-san-martino"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 199000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 250,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Castiglione Tinella",
+          "cs": "Castiglione Tinella",
+          "it": "Castiglione Tinella"
+        },
+        "slug": {
+          "current": "castiglione-tinella"
+        },
+        "region": {
+          "name": {
+            "it": "Piemonte",
+            "en": "Piedmont",
+            "cs": "Piemont"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Strada San Martino, Castiglione Tinella (CN), Piedmont",
+        "cs": "Strada San Martino, Castiglione Tinella (CN), Piemont",
+        "it": "Strada San Martino, Castiglione Tinella (CN), Piemonte"
+      },
+      "coordinates": {
+        "lat": 44.7271,
+        "lng": 8.1994
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Castiglione Tinella, in a dominant position among the Moscato vineyards, we offer a detached villa of approx. 250 sqm combining the charm of Piedmontese rustic architecture with an elegant and bright residence.\n\nThe living area features exposed brick arches, an eat-in kitchen, and a lounge. Large windows enhance the views over the Langhe landscape, while the spacious panoramic terrace is ideal for breakfast, relaxing, and enjoying sunsets over the vineyards.\n\nThe property includes three bedrooms, two bathrooms, a well-kept courtyard, private garden, paved outdoor areas, and garage. A ready-to-live-in solution for those seeking privacy, views, and authenticity in the heart of Moscato country.",
+      "cs": "V Castiglione Tinella, v dominantni poloze mezi vinicemi Moscato, nabizime samostatnou vilu o plose cca 250 m2, ktera spojuje kouzlo piemontskeho rustikalniho stylu s elegantnim a svetlym bydlenim.\n\nObytnou cast charakterizuji priznane cihlove oblouky, obyvatelna kuchyne a salon. Velka okna zduraznuji vyhled na krajinu Langhe a prostorna panoramaticka terasa je idealni pro snidane, odpocinek a zapady slunce nad vinicemi.\n\nNemovitost nabizi tri loznice, dve koupelny, udrzovany dvur, soukromou zahradu, dlazdene venkovni plochy a garaz. Reseni pripravene k bydleni pro ty, kdo hledaji soukromi, vyhledy a autenticitu v srdci oblasti Moscato.",
+      "it": "A Castiglione Tinella, in posizione dominante tra le vigne del Moscato, proponiamo una villa indipendente di circa 250 m2 che unisce il fascino del rustico piemontese a una dimora signorile e luminosa.\n\nLa zona giorno e caratterizzata da archi in mattoni a vista, cucina abitabile e salone. Le ampie finestre valorizzano la vista sul paesaggio delle Langhe, mentre il grande terrazzo panoramico offre uno spazio ideale per colazioni, relax e tramonti sulle vigne.\n\nLa proprieta dispone di tre camere, due bagni, cortile curato, giardino privato, spazi esterni pavimentati e box auto. Una soluzione pronta da vivere per chi cerca privacy, panorama e autenticita nel cuore del territorio del Moscato."
+    },
+    "images": [
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/01-01-gallery-1.jpg",
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/02-02-gallery-2.jpg",
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/03-03-gallery-3.jpg",
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/04-04-gallery-4.jpg",
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/05-05-gallery-5.jpg",
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/06-06-gallery-6.jpg",
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/07-07-gallery-7.jpg",
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/08-08-gallery-8.jpg",
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/09-09-gallery-9.jpg",
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/10-10-gallery-10.jpg",
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/11-11-gallery-11.jpg",
+      "/uploads/properties/piemonte-villa-castiglione-tinella-san-martino/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villa indipendente di circa 250 m2",
+          "en": "Detached villa of approx. 250 sqm",
+          "cs": "Samostatna vila cca 250 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Posizione dominante con vista sulle vigne del Moscato",
+          "en": "Dominant position overlooking Moscato vineyards",
+          "cs": "Dominantni poloha s vyhledem na vinice Moscato"
+        }
+      },
+      {
+        "name": {
+          "it": "Ampio terrazzo panoramico",
+          "en": "Large panoramic terrace",
+          "cs": "Velka panoramaticka terasa"
+        }
+      },
+      {
+        "name": {
+          "it": "Archi in mattoni a vista e dettagli signorili",
+          "en": "Exposed brick arches and elegant details",
+          "cs": "Priznane cihlove oblouky a elegantni detaily"
+        }
+      },
+      {
+        "name": {
+          "it": "Tre camere e due bagni",
+          "en": "Three bedrooms and two bathrooms",
+          "cs": "Tri loznice a dve koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino privato, cortile e box auto",
+          "en": "Private garden, courtyard, and garage",
+          "cs": "Soukroma zahrada, dvur a garaz"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Panoramic Villa for Sale in Castiglione Tinella",
+      "cs": "Panoramaticka vila na prodej v Castiglione Tinella",
+      "it": "Villa panoramica in vendita a Castiglione Tinella"
+    },
+    "seoDescription": {
+      "en": "250 sqm villa in Castiglione Tinella with 3 bedrooms, 2 bathrooms, panoramic terrace, garden, courtyard, garage, and vineyard views.",
+      "cs": "Vila 250 m2 v Castiglione Tinella se 3 loznicemi, 2 koupelnami, panoramatickou terasou, zahradou, dvorem, garazi a vyhledem na vinice.",
+      "it": "Villa di 250 m2 a Castiglione Tinella con 3 camere, 2 bagni, terrazzo panoramico, giardino, cortile, box e vista sulle vigne."
+    },
+    "keywords": [
+      "castiglione tinella",
+      "strada san martino",
+      "villa",
+      "vigne",
+      "muscato",
+      "piemonte"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127388795/",
+    "_createdAt": "2026-05-08T11:06:55.048Z",
+    "_updatedAt": "2026-05-08T11:06:55.048Z"
+  },
+  {
+    "_id": "local-import-piemonte-casa-indipendente-giaveno-teresa-marchini-1778238409429-e6oed",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Semi-Detached House with Courtyard in Giaveno",
+      "cs": "Zrekonstruovany poloradovy dum se dvorem v Giavenu",
+      "it": "Casa semindipendente ristrutturata con cortile a Giaveno"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "piemonte-casa-indipendente-giaveno-teresa-marchini"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 134000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 100
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Giaveno",
+          "cs": "Giaveno",
+          "it": "Giaveno"
+        },
+        "slug": {
+          "current": "giaveno"
+        },
+        "region": {
+          "name": {
+            "it": "Piemonte",
+            "en": "Piedmont",
+            "cs": "Piemont"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Teresa Marchini 3, town centre, Giaveno (TO), Piedmont",
+        "cs": "Via Teresa Marchini 3, centrum, Giaveno (TO), Piemont",
+        "it": "Via Teresa Marchini 3, centro, Giaveno (TO), Piemonte"
+      },
+      "coordinates": {
+        "lat": 45.0438,
+        "lng": 7.35264
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the heart of Giaveno, on Via Teresa Marchini 3, we offer a semi-detached home fully renovated in 2025. The property stands out for its private courtyard, a reserved outdoor space in the town centre.\n\nThe house is arranged over three levels. The ground floor includes the entrance, living room, and open kitchen, enhanced by a modern pellet fireplace. The first floor offers one bedroom, a bathroom, and a balcony; the second and top floor hosts the main bedroom with private bathroom and panoramic balcony.\n\nA paved rustic cellar, suitable as storage or hobby space, quality materials, and attention to energy efficiency complete the property, with the option to install a 1.5 kW photovoltaic system.",
+      "cs": "V centru Giavena, ve Via Teresa Marchini 3, nabizime poloradovy dum kompletne zrekonstruovany v roce 2025. Nemovitost vynika soukromym dvorem, ktery poskytuje klidny venkovni prostor primo v centru obce.\n\nDum je usporadan do tri urovni. V prizemi je vstup, obyvak a otevrena kuchyne, doplnena modernim peletovym krbem. V prvnim patre je jedna loznice, koupelna a balkon; ve druhem a poslednim patre se nachazi hlavni loznice s vlastni koupelnou a panoramatickym balkonem.\n\nNabidku doplnuje dlazdeny rustikalni sklep vhodny jako sklad nebo hobby mistnost, kvalitni materialy a duraz na energetickou ucinnost, s moznosti instalace fotovoltaiky 1,5 kW.",
+      "it": "Nel cuore di Giaveno, in via Teresa Marchini 3, proponiamo una soluzione semindipendente completamente ristrutturata nel 2025. La proprieta si distingue per il cortile privato, utile per vivere uno spazio esterno riservato nel centro del paese.\n\nLa casa si sviluppa su tre livelli. Al piano terreno si trova l'ingresso con soggiorno e cucina a vista, valorizzato da un moderno caminetto a pellet. Al primo piano sono presenti una camera, un bagno e un balcone; al secondo e ultimo piano si trova la camera padronale con bagno privato e balcone panoramico.\n\nCompletano la proposta una cantina rustica pavimentata, utilizzabile come deposito o locale hobby, materiali di pregio e attenzione all'efficienza energetica, con possibilita di installare un impianto fotovoltaico da 1,5 kW."
+    },
+    "images": [
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/01-01-gallery-1.jpg",
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/02-02-gallery-2.jpg",
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/03-03-gallery-3.jpg",
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/04-04-gallery-4.jpg",
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/05-05-gallery-5.jpg",
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/06-06-gallery-6.jpg",
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/07-07-gallery-7.jpg",
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/08-08-gallery-8.jpg",
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/09-09-gallery-9.jpg",
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/10-10-gallery-10.jpg",
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/11-11-gallery-11.jpg",
+      "/uploads/properties/piemonte-casa-indipendente-giaveno-teresa-marchini/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Soluzione semindipendente di circa 100 m2 su tre livelli",
+          "en": "Semi-detached home of approx. 100 sqm over three levels",
+          "cs": "Poloradovy dum cca 100 m2 ve trech urovnich"
+        }
+      },
+      {
+        "name": {
+          "it": "Completamente ristrutturata nel 2025",
+          "en": "Fully renovated in 2025",
+          "cs": "Kompletne zrekonstruovano v roce 2025"
+        }
+      },
+      {
+        "name": {
+          "it": "Cortile privato riservato",
+          "en": "Private courtyard",
+          "cs": "Soukromy dvur"
+        }
+      },
+      {
+        "name": {
+          "it": "Soggiorno con cucina a vista e caminetto a pellet",
+          "en": "Living room with open kitchen and pellet fireplace",
+          "cs": "Obyvak s otevrenou kuchyni a peletovym krbem"
+        }
+      },
+      {
+        "name": {
+          "it": "Due camere, due bagni e balconi",
+          "en": "Two bedrooms, two bathrooms, and balconies",
+          "cs": "Dve loznice, dve koupelny a balkony"
+        }
+      },
+      {
+        "name": {
+          "it": "Cantina rustica pavimentata e predisposizione fotovoltaico",
+          "en": "Paved rustic cellar and photovoltaic option",
+          "cs": "Dlazdeny rustikalni sklep a moznost fotovoltaiky"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Semi-Detached House for Sale in Giaveno",
+      "cs": "Zrekonstruovany dum na prodej v Giavenu",
+      "it": "Casa indipendente ristrutturata in vendita a Giaveno"
+    },
+    "seoDescription": {
+      "en": "100 sqm semi-detached house in Giaveno: renovated in 2025, 2 bedrooms, 2 bathrooms, private courtyard, balconies, and cellar.",
+      "cs": "Poloradovy dum 100 m2 v Giavenu: rekonstrukce 2025, 2 loznice, 2 koupelny, soukromy dvur, balkony a sklep.",
+      "it": "Casa semindipendente di 100 m2 a Giaveno: ristrutturata nel 2025, 2 camere, 2 bagni, cortile privato, balconi e cantina."
+    },
+    "keywords": [
+      "giaveno",
+      "via teresa marchini",
+      "casa indipendente",
+      "cortile",
+      "ristrutturata",
+      "piemonte"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128228842/",
+    "_createdAt": "2026-05-08T11:06:49.415Z",
+    "_updatedAt": "2026-05-08T11:06:49.415Z"
+  },
+  {
     "_id": "local-import-piemonte-villetta-schiera-none-san-lorenzo-1778171664094-utjfe",
     "_type": "listing",
     "title": {
