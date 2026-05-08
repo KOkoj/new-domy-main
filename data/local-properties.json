@@ -1,5 +1,1018 @@
 [
   {
+    "_id": "local-import-emilia-romagna-appartamento-villa-maccaretolo-mussolina-1778242123948-ygu84",
+    "_type": "listing",
+    "title": {
+      "en": "Like-New Small Villa with Garden in Maccaretolo",
+      "cs": "Temer nova vilka se zahradou v Maccaretolo",
+      "it": "Villetta come nuova con giardino a Maccaretolo"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "emilia-romagna-appartamento-villa-maccaretolo-mussolina"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 170000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 123,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "San Pietro in Casale",
+          "cs": "San Pietro in Casale",
+          "it": "San Pietro in Casale"
+        },
+        "slug": {
+          "current": "san-pietro-in-casale"
+        },
+        "region": {
+          "name": {
+            "it": "Emilia-Romagna",
+            "en": "Emilia-Romagna",
+            "cs": "Emilie-Romagna"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Mussolina, Maccaretolo, San Pietro in Casale (BO), Emilia-Romagna",
+        "cs": "Via Mussolina, Maccaretolo, San Pietro in Casale (BO), Emilia-Romagna",
+        "it": "Via Mussolina, Maccaretolo, San Pietro in Casale (BO), Emilia-Romagna"
+      },
+      "coordinates": {
+        "lat": 44.7216,
+        "lng": 11.42
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Maccaretolo, part of San Pietro in Casale, this small villa on Via Mussolina is located in a quiet and private setting.\n\nThe property is like new and includes a bright living room with kitchenette, two bedrooms upstairs, one double and one twin-sized, bathroom, storage room, and private outdoor spaces. The main bedroom has a terrace with open views.\n\nComfort is enhanced by underfloor heating and cooling, photovoltaic system with heat pump, security grilles, mosquito screens, green outdoor area, and private parking space.",
+      "cs": "V Maccaretolo, casti San Pietro in Casale, nabizime vilku ve Via Mussolina v klidne a soukrome lokalite.\n\nNemovitost je temer nova a zahrnuje svetly obyvak s kuchynskym koutem, dve loznice v hornim patre, jednu dvouluzkovou a jednu mensi, koupelnu, komoru a soukrome venkovni prostory. Hlavni loznice ma terasu s otevrenym vyhledem.\n\nKomfort zajistuje podlahove topeni a chlazeni, fotovoltaika s tepelnym cerpadlem, mrize, site proti hmyzu, zelena venkovni plocha a vlastni parkovaci misto.",
+      "it": "A Maccaretolo, frazione di San Pietro in Casale, proponiamo una villetta in via Mussolina, situata in zona tranquilla e riservata.\n\nLa proprieta si presenta come nuova ed e composta da soggiorno luminoso con angolo cottura, due camere al piano superiore, una doppia e una matrimoniale, bagno, ripostiglio e spazi esterni privati. La camera matrimoniale dispone di terrazzo con vista aperta.\n\nIl comfort e valorizzato da riscaldamento e raffrescamento a pavimento, impianto fotovoltaico con pompa di calore, inferriate, zanzariere, area verde e posto auto di proprieta."
+    },
+    "images": [
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/01-01-gallery-1.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/02-02-gallery-2.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/03-03-gallery-3.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/04-04-gallery-4.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/05-05-gallery-5.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/06-06-gallery-6.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/07-07-gallery-7.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/08-08-gallery-8.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/09-09-gallery-9.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/10-10-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/11-11-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-villa-maccaretolo-mussolina/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villetta abitata solo per pochi mesi",
+          "en": "Small villa lived in only for a few months",
+          "cs": "Vilka obyvana jen nekolik mesicu"
+        }
+      },
+      {
+        "name": {
+          "it": "Soggiorno luminoso con angolo cottura",
+          "en": "Bright living room with kitchenette",
+          "cs": "Svetly obyvak s kuchynskym koutem"
+        }
+      },
+      {
+        "name": {
+          "it": "Due camere al piano superiore",
+          "en": "Two bedrooms upstairs",
+          "cs": "Dve loznice v hornim patre"
+        }
+      },
+      {
+        "name": {
+          "it": "Terrazzo e balcone",
+          "en": "Terrace and balcony",
+          "cs": "Terasa a balkon"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino di circa 150 m2",
+          "en": "Garden of approx. 150 sqm",
+          "cs": "Zahrada cca 150 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Fotovoltaico e pompa di calore",
+          "en": "Photovoltaic system and heat pump",
+          "cs": "Fotovoltaika a tepelne cerpadlo"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Small Villa with Garden for Sale in Maccaretolo",
+      "cs": "Vilka se zahradou na prodej v Maccaretolo",
+      "it": "Villetta con giardino in vendita a Maccaretolo"
+    },
+    "seoDescription": {
+      "en": "123 sqm small villa in Maccaretolo with 2 bedrooms, terrace, 150 sqm garden, photovoltaic system, and parking.",
+      "cs": "Vilka 123 m2 v Maccaretolo se 2 loznicemi, terasou, zahradou 150 m2, fotovoltaikou a parkovanim.",
+      "it": "Appartamento in villa di 123 m2 a Maccaretolo, con 2 camere, terrazzo, giardino di 150 m2, fotovoltaico e posto auto."
+    },
+    "keywords": [
+      "maccaretolo",
+      "san pietro in casale",
+      "villetta",
+      "giardino",
+      "fotovoltaico",
+      "emilia-romagna"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/126192177/",
+    "_createdAt": "2026-05-08T12:08:43.948Z",
+    "_updatedAt": "2026-05-08T12:08:43.948Z"
+  },
+  {
+    "_id": "local-import-emilia-romagna-villa-bifamiliare-piolino-amola-piscina-1778242117828-hey21",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Semi-Detached Villa with Pool in Amola di Persiceto",
+      "cs": "Zrekonstruovana dvojvila s bazenem v Amola di Persiceto",
+      "it": "Villa bifamiliare ristrutturata con piscina ad Amola di Persiceto"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "emilia-romagna-villa-bifamiliare-piolino-amola-piscina"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 465000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "squareFootage": 192,
+      "parking": 2
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "San Giovanni in Persiceto",
+          "cs": "San Giovanni in Persiceto",
+          "it": "San Giovanni in Persiceto"
+        },
+        "slug": {
+          "current": "san-giovanni-in-persiceto"
+        },
+        "region": {
+          "name": {
+            "it": "Emilia-Romagna",
+            "en": "Emilia-Romagna",
+            "cs": "Emilie-Romagna"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via dei Martiri, Piolino, San Giovanni in Persiceto (BO), Emilia-Romagna",
+        "cs": "Via dei Martiri, Piolino, San Giovanni in Persiceto (BO), Emilia-Romagna",
+        "it": "Via dei Martiri, Piolino, San Giovanni in Persiceto (BO), Emilia-Romagna"
+      },
+      "coordinates": {
+        "lat": 44.6659,
+        "lng": 11.1735
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In the hamlet of Amola, close to San Giovanni in Persiceto, this independent semi-detached villa has been recently renovated with modern design and technologies focused on comfort and energy efficiency.\n\nThe house is arranged over several levels with two independent entrances. The living area includes a lounge of over 30 sqm and a separate kitchen; upstairs there are three large bedrooms, a study, a fitness area, and a second bathroom. Laundry room and garage complete the interior layout.\n\nOutside, the property offers an approx. 200 sqm private courtyard with heated pool and convivial outdoor spaces.",
+      "cs": "V casti Amola, nedaleko San Giovanni in Persiceto, nabizime samostatnou dvojvilu po nedavne rekonstrukci, s modernim designem a technologiemi zamereneymi na komfort a energetickou usporu.\n\nDum je na vice urovnich se dvema nezavislymi vstupy. Obytnou cast tvori salon pres 30 m2 a samostatna kuchyne; v hornich patrech jsou tri velke loznice, pracovna, fitness zona a druha koupelna. Dispozici doplnuje pradelna a garaz.\n\nVenku je soukromy dvur cca 200 m2 s vyhrivanym bazenem a prostorem pro spolecne chvile.",
+      "it": "Nella frazione di Amola, vicino a San Giovanni in Persiceto, proponiamo una villa bifamiliare indipendente recentemente ristrutturata, con design moderno e soluzioni tecnologiche orientate al comfort e al risparmio energetico.\n\nLa casa si sviluppa su piu livelli con due accessi indipendenti. La zona giorno comprende un soggiorno di oltre 30 m2 e cucina separata; ai piani superiori si trovano tre grandi camere, uno studio, un'area fitness e il secondo bagno. La lavanderia e il garage completano la distribuzione interna.\n\nAll'esterno la proprieta dispone di area cortiliva esclusiva di circa 200 m2 con piscina riscaldata e spazi conviviali."
+    },
+    "images": [
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/01-01-gallery-1.jpg",
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/02-02-gallery-2.jpg",
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/03-03-gallery-3.jpg",
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/04-04-gallery-4.jpg",
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/05-05-gallery-5.jpg",
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/06-06-gallery-6.jpg",
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/07-07-gallery-7.jpg",
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/08-08-gallery-8.jpg",
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/09-09-gallery-9.jpg",
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/10-10-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/11-11-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-villa-bifamiliare-piolino-amola-piscina/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villa bifamiliare indipendente",
+          "en": "Independent semi-detached villa",
+          "cs": "Samostatna dvojvila"
+        }
+      },
+      {
+        "name": {
+          "it": "Ristrutturazione recente con design moderno",
+          "en": "Recent renovation with modern design",
+          "cs": "Nedavna rekonstrukce s modernim designem"
+        }
+      },
+      {
+        "name": {
+          "it": "Ampia zona giorno e cucina separata",
+          "en": "Large living area and separate kitchen",
+          "cs": "Velka obytna cast a samostatna kuchyne"
+        }
+      },
+      {
+        "name": {
+          "it": "Tre camere, studio e area fitness",
+          "en": "Three bedrooms, study, and fitness area",
+          "cs": "Tri loznice, pracovna a fitness zona"
+        }
+      },
+      {
+        "name": {
+          "it": "Cortile esclusivo con piscina riscaldata",
+          "en": "Private courtyard with heated pool",
+          "cs": "Soukromy dvur s vyhrivanym bazenem"
+        }
+      },
+      {
+        "name": {
+          "it": "Tecnologie per basso consumo energetico",
+          "en": "Low-energy technologies",
+          "cs": "Technologie pro nizkou energetickou narocnost"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Semi-Detached Villa with Pool for Sale in San Giovanni in Persiceto",
+      "cs": "Dvojvila s bazenem na prodej v San Giovanni in Persiceto",
+      "it": "Villa bifamiliare con piscina in vendita a San Giovanni in Persiceto"
+    },
+    "seoDescription": {
+      "en": "Renovated 192 sqm semi-detached villa in Amola with 4 bedrooms, 2 bathrooms, garage, private courtyard, and heated pool.",
+      "cs": "Zrekonstruovana dvojvila 192 m2 v Amola se 4 loznicemi, 2 koupelnami, garazi, soukromym dvorem a bazenem.",
+      "it": "Villa bifamiliare ristrutturata di 192 m2 ad Amola, con 4 camere, 2 bagni, garage, cortile privato e piscina riscaldata."
+    },
+    "keywords": [
+      "san giovanni in persiceto",
+      "amola",
+      "piolino",
+      "villa bifamiliare",
+      "piscina",
+      "emilia-romagna"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/122313716/",
+    "_createdAt": "2026-05-08T12:08:37.827Z",
+    "_updatedAt": "2026-05-08T12:08:37.827Z"
+  },
+  {
+    "_id": "local-import-emilia-romagna-villa-monzuno-san-rocco-querce-1778242111863-e8plg",
+    "_type": "listing",
+    "title": {
+      "en": "Detached Villa with Panoramic Garden in San Rocco di Monzuno",
+      "cs": "Samostatna vila s panoramatickou zahradou v San Rocco di Monzuno",
+      "it": "Villa indipendente con giardino panoramico a San Rocco di Monzuno"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "emilia-romagna-villa-monzuno-san-rocco-querce"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 120000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "squareFootage": 159,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Monzuno",
+          "cs": "Monzuno",
+          "it": "Monzuno"
+        },
+        "slug": {
+          "current": "monzuno"
+        },
+        "region": {
+          "name": {
+            "it": "Emilia-Romagna",
+            "en": "Emilia-Romagna",
+            "cs": "Emilie-Romagna"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via delle Querce 80, San Rocco, Monzuno (BO), Emilia-Romagna",
+        "cs": "Via delle Querce 80, San Rocco, Monzuno (BO), Emilia-Romagna",
+        "it": "Via delle Querce 80, San Rocco, Monzuno (BO), Emilia-Romagna"
+      },
+      "coordinates": {
+        "lat": 44.2759,
+        "lng": 11.2227
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Monzuno, in the San Rocco area, this detached villa is open on all four sides, surrounded by greenery and enjoying panoramic views.\n\nThe house measures approx. 159 sqm over two levels plus an approx. 41 sqm garage in the basement. The main floor includes living room with fireplace, kitchen, bedroom, hallway, and bathroom; upstairs there are three bedrooms, hallway, bathroom, and storage room.\n\nA fenced garden of approx. 1,375 sqm surrounds the property. The villa is habitable, with some updated elements, but requires modernization works.",
+      "cs": "V Monzunu, v casti San Rocco, nabizime samostatnou vilu volnou ze vsech ctyr stran, obklopenou zelenou a s panoramatickym vyhledem.\n\nDum ma cca 159 m2 na dvou podlazich a garaz cca 41 m2 v suterenu. Hlavni patro zahrnuje obyvak s krbem, kuchyni, loznici, chodbu a koupelnu; v hornim patre jsou tri loznice, chodba, koupelna a komora.\n\nPozemek tvori oplocena zahrada cca 1 375 m2. Vila je obyvatelna, nektere prvky jsou obnovene, ale vyzaduje modernizaci.",
+      "it": "A Monzuno, in localita San Rocco, proponiamo una villa indipendente libera su quattro lati, immersa nel verde e con vista panoramica.\n\nLa casa misura circa 159 m2 ed e disposta su due livelli oltre a un garage di circa 41 m2 al piano seminterrato. Il piano principale comprende soggiorno con camino, cucina, camera, disimpegno e bagno; al piano superiore si trovano tre camere, disimpegno, bagno e ripostiglio.\n\nIl giardino recintato di circa 1.375 m2 circonda la proprieta. La villa e abitabile, con alcuni elementi gia aggiornati, ma richiede interventi di ammodernamento."
+    },
+    "images": [
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/01-01-gallery-1.jpg",
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/02-02-gallery-2.jpg",
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/03-03-gallery-3.jpg",
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/04-04-gallery-4.jpg",
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/05-05-gallery-5.jpg",
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/06-06-gallery-6.jpg",
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/07-07-gallery-7.jpg",
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/08-08-gallery-8.jpg",
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/09-09-gallery-9.jpg",
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/10-10-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/11-11-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-villa-monzuno-san-rocco-querce/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Villa libera sui quattro lati",
+          "en": "Villa open on all four sides",
+          "cs": "Vila volna ze vsech ctyr stran"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino recintato di circa 1.375 m2",
+          "en": "Fenced garden of approx. 1,375 sqm",
+          "cs": "Oplocena zahrada cca 1 375 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Vista panoramica nel verde",
+          "en": "Panoramic green views",
+          "cs": "Panoramaticky vyhled do zelene"
+        }
+      },
+      {
+        "name": {
+          "it": "Soggiorno con camino",
+          "en": "Living room with fireplace",
+          "cs": "Obyvak s krbem"
+        }
+      },
+      {
+        "name": {
+          "it": "Quattro camere e due bagni",
+          "en": "Four bedrooms and two bathrooms",
+          "cs": "Ctyri loznice a dve koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "Ampio garage al seminterrato",
+          "en": "Large basement garage",
+          "cs": "Velka garaz v suterenu"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Villa with Garden for Sale in Monzuno",
+      "cs": "Vila se zahradou na prodej v Monzunu",
+      "it": "Villa con giardino in vendita a Monzuno"
+    },
+    "seoDescription": {
+      "en": "159 sqm detached villa in San Rocco di Monzuno with 4 bedrooms, 2 bathrooms, garage, and 1,375 sqm fenced garden.",
+      "cs": "Samostatna vila 159 m2 v San Rocco di Monzuno se 4 loznicemi, 2 koupelnami, garazi a zahradou 1 375 m2.",
+      "it": "Villa indipendente di 159 m2 a San Rocco di Monzuno, con 4 camere, 2 bagni, garage e giardino recintato di 1.375 m2."
+    },
+    "keywords": [
+      "monzuno",
+      "san rocco",
+      "villa",
+      "giardino",
+      "garage",
+      "emilia-romagna"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/120137496/",
+    "_createdAt": "2026-05-08T12:08:31.862Z",
+    "_updatedAt": "2026-05-08T12:08:31.862Z"
+  },
+  {
+    "_id": "local-import-emilia-romagna-appartamento-novi-modena-edison-1778242103413-vi038",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Two-Bedroom Apartment in Upgraded Building in Novi di Modena",
+      "cs": "Zrekonstruovany byt 3+kk v revitalizovanem dome v Novi di Modena",
+      "it": "Trilocale ristrutturato in palazzina riqualificata a Novi di Modena"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "emilia-romagna-appartamento-novi-modena-edison"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 73000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 63,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Novi di Modena",
+          "cs": "Novi di Modena",
+          "it": "Novi di Modena"
+        },
+        "slug": {
+          "current": "novi-di-modena"
+        },
+        "region": {
+          "name": {
+            "it": "Emilia-Romagna",
+            "en": "Emilia-Romagna",
+            "cs": "Emilie-Romagna"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Thomas Alva Edison 15, Novi di Modena (MO), Emilia-Romagna",
+        "cs": "Via Thomas Alva Edison 15, Novi di Modena (MO), Emilia-Romagna",
+        "it": "Via Thomas Alva Edison 15, Novi di Modena (MO), Emilia-Romagna"
+      },
+      "coordinates": {
+        "lat": 44.8936,
+        "lng": 10.8956
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Novi di Modena, on Via Thomas Alva Edison 15, this fully renovated apartment is located on the first floor with lift, inside a recently upgraded building.\n\nThe building has undergone major works, including thermal insulation, seismic upgrade, and renovation of common areas. The apartment includes a living area with kitchenette, double bedroom, small second room suitable as study or wardrobe room, and windowed bathroom with shower.\n\nPVC double-glazed windows, independent heating, air conditioning, and a service garage on the ground floor complete the property.",
+      "cs": "V Novi di Modena, ve Via Thomas Alva Edison 15, nabizime kompletne zrekonstruovany byt v prvnim patre s vytahem, v nedavno revitalizovanem dome.\n\nBudova prosla dulezitymi pracemi vcetne zatepleni, seizmickeho posileni a obnovy spolecnych casti. Byt nabizi obytnou cast s kuchynskym koutem, dvouluzkovou loznici, mensi pokoj vhodny jako pracovna nebo satna a koupelnu s oknem a sprchou.\n\nSoucasti jsou plastova okna s dvojsklem, autonomni topeni, klimatizace a servisni garaz v prizemi.",
+      "it": "A Novi di Modena, in via Thomas Alva Edison 15, proponiamo un trilocale completamente ristrutturato al primo piano con ascensore, all'interno di una palazzina recentemente riqualificata.\n\nL'edificio e stato oggetto di interventi importanti, tra cui cappotto termico, adeguamento antisismico e rinnovo delle parti comuni. L'appartamento offre ingresso su zona giorno con angolo cottura, camera matrimoniale, mezza camera utilizzabile come studio o stanza armadi, e bagno finestrato con doccia.\n\nCompletano la proprieta infissi in PVC doppio vetro, riscaldamento autonomo, aria condizionata e garage di servizio al piano terra."
+    },
+    "images": [
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/01-01-gallery-1.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/02-02-gallery-2.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/03-03-gallery-3.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/04-04-gallery-4.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/05-05-gallery-5.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/06-06-gallery-6.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/07-07-gallery-7.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/08-08-gallery-8.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/09-09-gallery-9.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/10-10-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/11-11-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-novi-modena-edison/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Appartamento completamente ristrutturato",
+          "en": "Fully renovated apartment",
+          "cs": "Kompletne zrekonstruovany byt"
+        }
+      },
+      {
+        "name": {
+          "it": "Palazzina con cappotto e adeguamento antisismico",
+          "en": "Building with thermal insulation and seismic upgrade",
+          "cs": "Dum se zateplenim a seizmickym posilenim"
+        }
+      },
+      {
+        "name": {
+          "it": "Primo piano con ascensore",
+          "en": "First floor with lift",
+          "cs": "Prvni patro s vytahem"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona giorno con angolo cottura",
+          "en": "Living area with kitchenette",
+          "cs": "Obytna cast s kuchynskym koutem"
+        }
+      },
+      {
+        "name": {
+          "it": "Camera matrimoniale e mezza camera",
+          "en": "Double bedroom and small second room",
+          "cs": "Dvouluzkova loznice a mensi pokoj"
+        }
+      },
+      {
+        "name": {
+          "it": "Garage di servizio al piano terra",
+          "en": "Service garage on the ground floor",
+          "cs": "Servisni garaz v prizemi"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Two-Bedroom Apartment for Sale in Novi di Modena",
+      "cs": "Zrekonstruovany byt na prodej v Novi di Modena",
+      "it": "Trilocale ristrutturato in vendita a Novi di Modena"
+    },
+    "seoDescription": {
+      "en": "Renovated 63 sqm apartment in Novi di Modena with lift, garage, independent heating, and air conditioning.",
+      "cs": "Zrekonstruovany byt 63 m2 v Novi di Modena s vytahem, garazi, autonomnim topenim a klimatizaci.",
+      "it": "Appartamento ristrutturato di 63 m2 a Novi di Modena, con ascensore, garage, riscaldamento autonomo e aria condizionata."
+    },
+    "keywords": [
+      "novi di modena",
+      "modena",
+      "trilocale",
+      "ristrutturato",
+      "garage",
+      "emilia-romagna"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/125754995/",
+    "_createdAt": "2026-05-08T12:08:23.412Z",
+    "_updatedAt": "2026-05-08T12:08:23.412Z"
+  },
+  {
+    "_id": "local-import-emilia-romagna-monolocale-bologna-borre-cantina-1778242097470-00xsr",
+    "_type": "listing",
+    "title": {
+      "en": "Studio Apartment with Small Terrace and Cellar on Via delle Borre",
+      "cs": "Garsonka s malou terasou a sklepem ve Via delle Borre",
+      "it": "Monolocale con terrazzino e cantina in via delle Borre a Bologna"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "emilia-romagna-monolocale-bologna-borre-cantina"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 89000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 1,
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "squareFootage": 37
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Bologna",
+          "cs": "Bologna",
+          "it": "Bologna"
+        },
+        "slug": {
+          "current": "bologna"
+        },
+        "region": {
+          "name": {
+            "it": "Emilia-Romagna",
+            "en": "Emilia-Romagna",
+            "cs": "Emilie-Romagna"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via delle Borre 13, Noce - Pescarola, Bologna, Emilia-Romagna",
+        "cs": "Via delle Borre 13, Noce - Pescarola, Bologna, Emilia-Romagna",
+        "it": "Via delle Borre 13, Noce - Pescarola, Bologna, Emilia-Romagna"
+      },
+      "coordinates": {
+        "lat": 44.5209,
+        "lng": 11.3181
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Bologna, on Via delle Borre 13, this approx. 37 sqm studio apartment is located on the second floor of a small residential building.\n\nThe property includes an open living area with visible kitchenette and a bathroom with shower, connected to a small terrace. A cellar in the basement is included.\n\nThe location is quiet and convenient to services, with nearby green areas, bus stop, pharmacy, post office, ring road access, and shopping centres.",
+      "cs": "V Boloni, ve Via delle Borre 13, nabizime garsonku o rozloze cca 37 m2 ve druhem patre maleho bytoveho domu.\n\nByt tvori jedna obytna mistnost s kuchynskym koutem a koupelna se sprchou, propojena s malou terasou. V suterenu je sklep.\n\nPoloha je klidna a prakticka, pobliz zelene, autobusove zastavky, lekarny, posty, tangencialy a obchodnich center.",
+      "it": "A Bologna, in via delle Borre 13, proponiamo un monolocale di circa 37 m2 al secondo piano di una palazzina di poche unita.\n\nL'immobile e composto da ingresso su ambiente unico con angolo cottura a vista e bagno con box doccia, collegato a un piccolo terrazzino. Al piano seminterrato e presente una cantina.\n\nLa posizione e silenziosa e comoda ai servizi, con spazi verdi nelle vicinanze, fermata autobus, farmacia, posta e collegamenti con tangenziale e centri commerciali."
+    },
+    "images": [
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/01-01-gallery-1.jpg",
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/02-02-gallery-2.jpg",
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/03-03-gallery-3.jpg",
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/04-04-gallery-4.jpg",
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/05-05-gallery-5.jpg",
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/06-06-gallery-6.jpg",
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/07-07-gallery-7.jpg",
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/08-08-gallery-8.jpg",
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/09-09-gallery-9.jpg",
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/10-10-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/11-11-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-monolocale-bologna-borre-cantina/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Monolocale di circa 37 m2",
+          "en": "Studio apartment of approx. 37 sqm",
+          "cs": "Garsonka cca 37 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Secondo piano in piccola palazzina",
+          "en": "Second floor in a small building",
+          "cs": "Druhe patro v malem dome"
+        }
+      },
+      {
+        "name": {
+          "it": "Ambiente unico con angolo cottura",
+          "en": "Open living area with kitchenette",
+          "cs": "Jedna mistnost s kuchynskym koutem"
+        }
+      },
+      {
+        "name": {
+          "it": "Bagno con accesso al terrazzino",
+          "en": "Bathroom with access to small terrace",
+          "cs": "Koupelna se vstupem na terasu"
+        }
+      },
+      {
+        "name": {
+          "it": "Cantina inclusa",
+          "en": "Cellar included",
+          "cs": "Sklep v cene"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona comoda ai servizi",
+          "en": "Convenient area close to services",
+          "cs": "Lokalita blizko sluzeb"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Studio Apartment with Cellar for Sale in Bologna",
+      "cs": "Garsonka se sklepem na prodej v Boloni",
+      "it": "Monolocale con cantina in vendita a Bologna"
+    },
+    "seoDescription": {
+      "en": "37 sqm studio apartment on Via delle Borre in Bologna, with small terrace, shower bathroom, and cellar included.",
+      "cs": "Garsonka 37 m2 ve Via delle Borre v Boloni, s malou terasou, koupelnou se sprchou a sklepem.",
+      "it": "Monolocale di 37 m2 in via delle Borre a Bologna, con terrazzino, bagno con doccia e cantina inclusa."
+    },
+    "keywords": [
+      "bologna",
+      "via delle borre",
+      "monolocale",
+      "cantina",
+      "terrazzino",
+      "emilia-romagna"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/126025661/",
+    "_createdAt": "2026-05-08T12:08:17.469Z",
+    "_updatedAt": "2026-05-08T12:08:17.469Z"
+  },
+  {
+    "_id": "local-import-emilia-romagna-bilocale-bologna-ospedaletto-aeroporto-1778242091495-ti8lp",
+    "_type": "listing",
+    "title": {
+      "en": "Furnished Income Apartment near Bologna Airport",
+      "cs": "Zarizeny investicni byt u letiste v Boloni",
+      "it": "Bilocale arredato a reddito vicino all'aeroporto di Bologna"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "emilia-romagna-bilocale-bologna-ospedaletto-aeroporto"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 99000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 42
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Bologna",
+          "cs": "Bologna",
+          "it": "Bologna"
+        },
+        "slug": {
+          "current": "bologna"
+        },
+        "region": {
+          "name": {
+            "it": "Emilia-Romagna",
+            "en": "Emilia-Romagna",
+            "cs": "Emilie-Romagna"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via dell'Ospedaletto 7, Borgo Panigale, Bologna, Emilia-Romagna",
+        "cs": "Via dell'Ospedaletto 7, Borgo Panigale, Bologna, Emilia-Romagna",
+        "it": "Via dell'Ospedaletto 7, Borgo Panigale, Bologna, Emilia-Romagna"
+      },
+      "coordinates": {
+        "lat": 44.5247,
+        "lng": 11.275
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Bologna, on Via dell'Ospedaletto 7, this one-bedroom apartment is set on the second and top floor, approx. 500 metres from Marconi Airport and convenient to the main transport routes.\n\nThe layout includes entrance, windowed bathroom with shower, kitchen, and a large double bedroom. A basement cellar completes the property.\n\nThe apartment is furnished and currently rented, making it an interesting option for investors seeking a strategic Bologna location.",
+      "cs": "V Boloni, ve Via dell'Ospedaletto 7, nabizime byt 2+kk ve druhem a poslednim patre, cca 500 metru od letiste Marconi a blizko hlavnich dopravnich tahu.\n\nDispozice zahrnuje vstup, koupelnu s oknem a sprchou, kuchyni a velkou dvouluzkovou loznici. Soucasti je sklep v suterenu.\n\nByt je zarizeny a aktualne pronajaty, vhodny jako investice ve strategicke casti Boloni.",
+      "it": "A Bologna, in via dell'Ospedaletto 7, proponiamo un bilocale al secondo e ultimo piano, a circa 500 metri dall'aeroporto Marconi e comodo alle principali vie di comunicazione.\n\nL'appartamento e composto da ingresso, bagno finestrato con doccia, cucina e ampia camera matrimoniale. Completa la proprieta una cantina al piano seminterrato.\n\nLa soluzione e arredata e attualmente locata, con potenziale interessante per chi cerca un investimento in una zona strategica di Bologna."
+    },
+    "images": [
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/01-01-gallery-1.jpg",
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/02-02-gallery-2.jpg",
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/03-03-gallery-3.jpg",
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/04-04-gallery-4.jpg",
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/05-05-gallery-5.jpg",
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/06-06-gallery-6.jpg",
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/07-07-gallery-7.jpg",
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/08-08-gallery-8.jpg",
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/09-09-gallery-9.jpg",
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/10-10-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/11-11-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-bilocale-bologna-ospedaletto-aeroporto/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Bilocale al secondo e ultimo piano",
+          "en": "One-bedroom apartment on the second and top floor",
+          "cs": "Byt 2+kk ve druhem a poslednim patre"
+        }
+      },
+      {
+        "name": {
+          "it": "A circa 500 metri dall'aeroporto Marconi",
+          "en": "Approx. 500 metres from Marconi Airport",
+          "cs": "Cca 500 metru od letiste Marconi"
+        }
+      },
+      {
+        "name": {
+          "it": "Bagno finestrato con doccia",
+          "en": "Windowed bathroom with shower",
+          "cs": "Koupelna s oknem a sprchou"
+        }
+      },
+      {
+        "name": {
+          "it": "Cantina al piano seminterrato",
+          "en": "Cellar in the basement",
+          "cs": "Sklep v suterenu"
+        }
+      },
+      {
+        "name": {
+          "it": "Infissi PVC doppio vetro",
+          "en": "PVC double-glazed windows",
+          "cs": "Plastova okna s dvojsklem"
+        }
+      },
+      {
+        "name": {
+          "it": "Attualmente locato",
+          "en": "Currently rented",
+          "cs": "Aktualne pronajato"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "One-Bedroom Apartment for Sale near Bologna Airport",
+      "cs": "Byt 2+kk na prodej u letiste Bologna",
+      "it": "Bilocale in vendita vicino aeroporto Bologna"
+    },
+    "seoDescription": {
+      "en": "Furnished 42 sqm one-bedroom apartment in Borgo Panigale near Marconi Airport, with cellar and active rental contract.",
+      "cs": "Zarizeny byt 42 m2 v Borgo Panigale u letiste Marconi, se sklepem a aktivnim najmem.",
+      "it": "Bilocale arredato di 42 m2 a Borgo Panigale, vicino all'aeroporto Marconi, con cantina e contratto di locazione attivo."
+    },
+    "keywords": [
+      "bologna",
+      "borgo panigale",
+      "aeroporto",
+      "bilocale",
+      "investimento",
+      "emilia-romagna"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127126641/",
+    "_createdAt": "2026-05-08T12:08:11.494Z",
+    "_updatedAt": "2026-05-08T12:08:11.494Z"
+  },
+  {
+    "_id": "local-import-emilia-romagna-villa-argelato-funo-giardino-1778242085340-wrp6n",
+    "_type": "listing",
+    "title": {
+      "en": "Multi-Family Villa with Large Private Courtyard in Funo di Argelato",
+      "cs": "Vicegeneracni vila s velkym soukromym dvorem ve Funo di Argelato",
+      "it": "Villa plurifamiliare con grande corte privata a Funo di Argelato"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "emilia-romagna-villa-argelato-funo-giardino"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 549000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 5,
+      "bathrooms": 2,
+      "squareFootage": 201,
+      "parking": 2
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Argelato",
+          "cs": "Argelato",
+          "it": "Argelato"
+        },
+        "slug": {
+          "current": "argelato"
+        },
+        "region": {
+          "name": {
+            "it": "Emilia-Romagna",
+            "en": "Emilia-Romagna",
+            "cs": "Emilie-Romagna"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Funo 4/6, Funo, Argelato (BO), Emilia-Romagna",
+        "cs": "Via Funo 4/6, Funo, Argelato (BO), Emilia-Romagna",
+        "it": "Via Funo 4/6, Funo, Argelato (BO), Emilia-Romagna"
+      },
+      "coordinates": {
+        "lat": 44.5962,
+        "lng": 11.3627
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Funo di Argelato, on Via Funo 4/6, this semi-detached multi-family villa offers approx. 201 sqm over three levels, open on three sides.\n\nThe ground floor includes an open-plan living and dining area with kitchenette, a windowed laundry room, storage space, and a double bedroom with direct access to the private garden. The first floor has two double bedrooms, each with a private bathroom, while the second floor offers a large attic-style room with an additional bathroom.\n\nThe property is completed by a private paved and green courtyard, automatic pergola awning, double garage, and internal parking. A quiet residential setting with convenient access to Bologna.",
+      "cs": "Ve Funo di Argelato, ve Via Funo 4/6, nabizime polosamostatnou vicegeneracni vilu o rozloze cca 201 m2 na trech podlazich, volnou ze tri stran.\n\nV prizemi je otevrena obytna cast s obyvacim pokojem, jidelnou a kuchynskym koutem, pradelna s oknem, komora a dvouluzkova loznice s primym vstupem do soukrome zahrady. V prvnim patre jsou dve dvouluzkove loznice, kazda s vlastni koupelnou, druhe patro nabizi velky podkrovni prostor s dalsi koupelnou.\n\nSoucasti je soukromy dvur se zelenou casti, automaticka pergola, dvojgaraz a vnitrni parkovani. Klidna rezidencni poloha s dobrym napojenim na Bolonu.",
+      "it": "A Funo di Argelato, in via Funo 4/6, proponiamo una villa plurifamiliare semindipendente di circa 201 m2, libera su tre lati e disposta su tre livelli.\n\nIl piano terra ospita una zona living open space con soggiorno, pranzo e angolo cottura, lavanderia finestrata, ripostiglio e una camera matrimoniale con accesso diretto al giardino privato. Al primo piano si trovano due camere matrimoniali, entrambe con bagno privato, mentre il secondo piano offre un ampio locale sottotetto con ulteriore bagno.\n\nCompletano la proprieta una corte privata pavimentata e verde, una pergotenda automatica, garage doppio e posto auto interno. La posizione e residenziale, silenziosa e ben collegata con Bologna."
+    },
+    "images": [
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/01-01-gallery-1.jpg",
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/02-02-gallery-2.jpg",
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/03-03-gallery-3.jpg",
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/04-04-gallery-4.jpg",
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/05-05-gallery-5.jpg",
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/06-06-gallery-6.jpg",
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/07-07-gallery-7.jpg",
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/08-08-gallery-8.jpg",
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/09-09-gallery-9.jpg",
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/10-10-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/11-11-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-villa-argelato-funo-giardino/12-12-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Soluzione semindipendente libera su tre lati",
+          "en": "Semi-detached home open on three sides",
+          "cs": "Polosamostatny dum volny ze tri stran"
+        }
+      },
+      {
+        "name": {
+          "it": "Ampia corte privata con giardino",
+          "en": "Large private courtyard with garden",
+          "cs": "Velky soukromy dvur se zahradou"
+        }
+      },
+      {
+        "name": {
+          "it": "Zona living open space di circa 45 m2",
+          "en": "Approx. 45 sqm open-plan living area",
+          "cs": "Otevrena obytna cast cca 45 m2"
+        }
+      },
+      {
+        "name": {
+          "it": "Camere con servizi privati",
+          "en": "Bedrooms with private bathrooms",
+          "cs": "Loznice s vlastnim socialnim zazemim"
+        }
+      },
+      {
+        "name": {
+          "it": "Garage doppio e posto auto interno",
+          "en": "Double garage and internal parking space",
+          "cs": "Dvojgaraz a vnitrni parkovaci misto"
+        }
+      },
+      {
+        "name": {
+          "it": "Contesto verde comodo a Bologna",
+          "en": "Green setting convenient to Bologna",
+          "cs": "Zelene prostredi s dobrou dostupnosti do Boloni"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Villa with Garden for Sale in Funo di Argelato",
+      "cs": "Vila se zahradou na prodej ve Funo di Argelato",
+      "it": "Villa con giardino in vendita a Funo di Argelato"
+    },
+    "seoDescription": {
+      "en": "201 sqm multi-family villa in Funo di Argelato with private courtyard, bedrooms with bathrooms, double garage, and parking.",
+      "cs": "Vicegeneracni vila 201 m2 ve Funo di Argelato se soukromym dvorem, loznicemi s koupelnami, dvojgarazi a parkovanim.",
+      "it": "Villa plurifamiliare di 201 m2 a Funo di Argelato, con corte privata, camere con bagno, garage doppio e posto auto."
+    },
+    "keywords": [
+      "argelato",
+      "funo",
+      "villa",
+      "giardino",
+      "garage",
+      "emilia-romagna"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127112391/",
+    "_createdAt": "2026-05-08T12:08:05.332Z",
+    "_updatedAt": "2026-05-08T12:08:05.332Z"
+  },
+  {
     "_id": "local-import-toscana-rustico-pescia-casa-nuova-colline-1778240101282-q8lgs",
     "_type": "listing",
     "title": {
