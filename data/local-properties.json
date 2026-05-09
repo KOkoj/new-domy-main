@@ -1,5 +1,2880 @@
 [
   {
+    "_id": "local-import-lazio-villa-lanuvio-laviniense-1778348024961-2qse7",
+    "_type": "listing",
+    "title": {
+      "en": "Detached Villa in Lanuvio",
+      "cs": "Samostatna vila v Lanuviu",
+      "it": "Villa unifamiliare a Lanuvio"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-villa-lanuvio-laviniense"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 530000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 6,
+      "bathrooms": 3,
+      "squareFootage": 464
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Lanuvio",
+          "cs": "Lanuvio",
+          "it": "Lanuvio"
+        },
+        "slug": {
+          "current": "lanuvio"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Laviniense, Lanuvio",
+        "cs": "Via Laviniense, Lanuvio",
+        "it": "Via Laviniense, Lanuvio"
+      },
+      "coordinates": {
+        "lat": 41.6623,
+        "lng": 12.6747
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Lanuvio, this villa offers 464 sqm, 6 rooms, 6 bedrooms and 3 bathrooms. The property is located at Via Laviniense, Lanuvio and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is villa di ampia metratura nel centro di Lanuvio. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Lanuvio nabizi tato nemovitost 464 m2, 6 mistnosti, 6 loznice a 3 koupelny. Nachazi se na adrese Via Laviniense, Lanuvio a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je villa di ampia metratura nel centro di Lanuvio. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Lanuvio, proponiamo villa con 464 mq, 6 locali, 6 camere e 3 bagni. La proprieta si trova in Via Laviniense, Lanuvio e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa di ampia metratura nel centro di Lanuvio. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/01-gallery-1.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/02-gallery-10.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/03-gallery-11.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/04-gallery-12.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/05-gallery-2.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/06-gallery-3.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/07-gallery-4.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/08-gallery-5.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/09-gallery-6.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/10-gallery-7.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/11-gallery-8.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/12-gallery-9.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/13-main.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa di ampia metratura nel centro di Lanuvio",
+          "en": "villa di ampia metratura nel centro di Lanuvio",
+          "cs": "villa di ampia metratura nel centro di Lanuvio"
+        }
+      },
+      {
+        "name": {
+          "it": "464 mq commerciali",
+          "en": "464 commercial sqm",
+          "cs": "464 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "6 camere da letto",
+          "en": "6 bedrooms",
+          "cs": "6 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Laviniense",
+          "en": "listed address: Via Laviniense",
+          "cs": "uvedena adresa: Via Laviniense"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Detached Villa in Lanuvio for sale",
+      "cs": "Samostatna vila v Lanuviu na prodej",
+      "it": "Villa unifamiliare a Lanuvio in vendita"
+    },
+    "seoDescription": {
+      "en": "Lanuvio: villa of 464 sqm, 6 bedrooms, 3 bathrooms. Asking price EUR 530,000.",
+      "cs": "Lanuvio: nemovitost 464 m2, 6 loznice, 3 koupelny. Cena 530000 EUR.",
+      "it": "Lanuvio: villa di 464 mq, 6 camere, 3 bagni. Prezzo 530.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "lanuvio",
+      "villa",
+      "via-laviniense",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/119476777/",
+    "_createdAt": "2026-05-09T17:33:44.960Z",
+    "_updatedAt": "2026-05-09T17:33:44.960Z"
+  },
+  {
+    "_id": "local-import-lazio-villa-bifamiliare-ardea-paese-salvie-1778348024534-ne7r6",
+    "_type": "listing",
+    "title": {
+      "en": "Semi-Detached Villa in Ardea Paese",
+      "cs": "Polovina vily v Ardea Paese",
+      "it": "Villa bifamiliare ad Ardea Paese"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-villa-bifamiliare-ardea-paese-salvie"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 137000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "squareFootage": 228
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Ardea",
+          "cs": "Ardea",
+          "it": "Ardea"
+        },
+        "slug": {
+          "current": "ardea"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via delle Salvie, Ardea",
+        "cs": "Via delle Salvie, Ardea",
+        "it": "Via delle Salvie, Ardea"
+      },
+      "coordinates": {
+        "lat": 41.6118,
+        "lng": 12.5413
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Ardea, this villa offers 228 sqm, 6 rooms, 4 bedrooms and 2 bathrooms. The property is located at Via delle Salvie, Ardea and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is semi-detached villa con quattro camere ad Ardea. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Ardea nabizi tato nemovitost 228 m2, 6 mistnosti, 4 loznice a 2 koupelny. Nachazi se na adrese Via delle Salvie, Ardea a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je polovina vily con quattro camere ad Ardea. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Ardea, proponiamo villa con 228 mq, 6 locali, 4 camere e 2 bagni. La proprieta si trova in Via delle Salvie, Ardea e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa bifamiliare con quattro camere ad Ardea. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1891887114/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887128/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887134/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887142/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887154/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887168/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887178/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887182/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887188/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887196/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887204/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887210/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887218/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1891887224/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa bifamiliare con quattro camere ad Ardea",
+          "en": "semi-detached villa con quattro camere ad Ardea",
+          "cs": "polovina vily con quattro camere ad Ardea"
+        }
+      },
+      {
+        "name": {
+          "it": "228 mq commerciali",
+          "en": "228 commercial sqm",
+          "cs": "228 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "4 camere da letto",
+          "en": "4 bedrooms",
+          "cs": "4 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via delle Salvie",
+          "en": "listed address: Via delle Salvie",
+          "cs": "uvedena adresa: Via delle Salvie"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Semi-Detached Villa in Ardea Paese for sale",
+      "cs": "Polovina vily v Ardea Paese na prodej",
+      "it": "Villa bifamiliare ad Ardea Paese in vendita"
+    },
+    "seoDescription": {
+      "en": "Ardea: villa of 228 sqm, 4 bedrooms, 2 bathrooms. Asking price EUR 137,000.",
+      "cs": "Ardea: nemovitost 228 m2, 4 loznice, 2 koupelny. Cena 137000 EUR.",
+      "it": "Ardea: villa di 228 mq, 4 camere, 2 bagni. Prezzo 137.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "ardea",
+      "villa",
+      "via-delle-salvie",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127746584/",
+    "_createdAt": "2026-05-09T17:33:44.533Z",
+    "_updatedAt": "2026-05-09T17:33:44.533Z"
+  },
+  {
+    "_id": "local-import-lazio-bilocale-anzio-santa-teresa-andromaca-1778348024193-r8ioa",
+    "_type": "listing",
+    "title": {
+      "en": "One-Bedroom Apartment in Anzio, Santa Teresa",
+      "cs": "Dvoupokojovy byt v Anziu, Santa Teresa",
+      "it": "Bilocale ad Anzio, Santa Teresa"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-bilocale-anzio-santa-teresa-andromaca"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 119000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 50
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Anzio",
+          "cs": "Anzio",
+          "it": "Anzio"
+        },
+        "slug": {
+          "current": "anzio"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Andromaca, Anzio",
+        "cs": "Via Andromaca, Anzio",
+        "it": "Via Andromaca, Anzio"
+      },
+      "coordinates": {
+        "lat": 41.4569,
+        "lng": 12.6364
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Anzio, this apartment offers 50 sqm, 2 rooms, 1 bedrooms and 1 bathrooms. The property is located at Via Andromaca, Anzio and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is bilocale nella zona Santa Teresa ad Anzio. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Anzio nabizi tato nemovitost 50 m2, 2 mistnosti, 1 loznice a 1 koupelny. Nachazi se na adrese Via Andromaca, Anzio a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je bilocale nella zona Santa Teresa ad Anzio. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Anzio, proponiamo appartamento con 50 mq, 2 locali, 1 camere e 1 bagni. La proprieta si trova in Via Andromaca, Anzio e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e bilocale nella zona Santa Teresa ad Anzio. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1918618584/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618630/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618638/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618644/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618662/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618678/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618688/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618696/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618700/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618704/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618708/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618714/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618720/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1918618724/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "bilocale nella zona Santa Teresa ad Anzio",
+          "en": "bilocale nella zona Santa Teresa ad Anzio",
+          "cs": "bilocale nella zona Santa Teresa ad Anzio"
+        }
+      },
+      {
+        "name": {
+          "it": "50 mq commerciali",
+          "en": "50 commercial sqm",
+          "cs": "50 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "2 locali",
+          "en": "2 rooms",
+          "cs": "2 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "1 camere da letto",
+          "en": "1 bedrooms",
+          "cs": "1 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Andromaca",
+          "en": "listed address: Via Andromaca",
+          "cs": "uvedena adresa: Via Andromaca"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "One-Bedroom Apartment in Anzio, Santa Teresa for sale",
+      "cs": "Dvoupokojovy byt v Anziu, Santa Teresa na prodej",
+      "it": "Bilocale ad Anzio, Santa Teresa in vendita"
+    },
+    "seoDescription": {
+      "en": "Anzio: apartment of 50 sqm, 1 bedrooms, 1 bathrooms. Asking price EUR 119,000.",
+      "cs": "Anzio: nemovitost 50 m2, 1 loznice, 1 koupelny. Cena 119000 EUR.",
+      "it": "Anzio: appartamento di 50 mq, 1 camere, 1 bagni. Prezzo 119.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "anzio",
+      "apartment",
+      "via-andromaca",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128841204/",
+    "_createdAt": "2026-05-09T17:33:44.193Z",
+    "_updatedAt": "2026-05-09T17:33:44.193Z"
+  },
+  {
+    "_id": "local-import-lazio-villa-marta-via-laertina-1778348023940-aur4a",
+    "_type": "listing",
+    "title": {
+      "en": "Detached Villa in Marta, Via Laertina",
+      "cs": "Samostatna vila v Marte, Via Laertina",
+      "it": "Villa unifamiliare a Marta in via Laertina"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-villa-marta-via-laertina"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 400000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "squareFootage": 283
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Marta",
+          "cs": "Marta",
+          "it": "Marta"
+        },
+        "slug": {
+          "current": "marta"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Laertina, Marta",
+        "cs": "Via Laertina, Marta",
+        "it": "Via Laertina, Marta"
+      },
+      "coordinates": {
+        "lat": 42.533,
+        "lng": 11.9303
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Marta, this villa offers 283 sqm, 5 rooms, 3 bedrooms and 3 bathrooms. The property is located at Via Laertina, Marta and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is villa near Lake Bolsena. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Marta nabizi tato nemovitost 283 m2, 5 mistnosti, 3 loznice a 3 koupelny. Nachazi se na adrese Via Laertina, Marta a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je villa blizko jezera Bolsena. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Marta, proponiamo villa con 283 mq, 5 locali, 3 camere e 3 bagni. La proprieta si trova in Via Laertina, Marta e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa vicina al Lago di Bolsena. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/lazio-villa-marta-via-laertina/01-gallery-1.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/02-gallery-10.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/03-gallery-11.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/04-gallery-12.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/05-gallery-2.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/06-gallery-3.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/07-gallery-4.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/08-gallery-5.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/09-gallery-6.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/10-gallery-7.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/11-gallery-8.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/12-gallery-9.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/13-main.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa vicina al Lago di Bolsena",
+          "en": "villa near Lake Bolsena",
+          "cs": "villa blizko jezera Bolsena"
+        }
+      },
+      {
+        "name": {
+          "it": "283 mq commerciali",
+          "en": "283 commercial sqm",
+          "cs": "283 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "5 locali",
+          "en": "5 rooms",
+          "cs": "5 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Laertina",
+          "en": "listed address: Via Laertina",
+          "cs": "uvedena adresa: Via Laertina"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Detached Villa in Marta, Via Laertina for sale",
+      "cs": "Samostatna vila v Marte, Via Laertina na prodej",
+      "it": "Villa unifamiliare a Marta in via Laertina in vendita"
+    },
+    "seoDescription": {
+      "en": "Marta: villa of 283 sqm, 3 bedrooms, 3 bathrooms. Asking price EUR 400,000.",
+      "cs": "Marta: nemovitost 283 m2, 3 loznice, 3 koupelny. Cena 400000 EUR.",
+      "it": "Marta: villa di 283 mq, 3 camere, 3 bagni. Prezzo 400.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "marta",
+      "villa",
+      "via-laertina",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127213249/",
+    "_createdAt": "2026-05-09T17:33:43.939Z",
+    "_updatedAt": "2026-05-09T17:33:43.939Z"
+  },
+  {
+    "_id": "local-import-lazio-villa-bifamiliare-orte-camerano-1778348023665-4uqgv",
+    "_type": "listing",
+    "title": {
+      "en": "Semi-Detached Villa in Orte, Via Camerano",
+      "cs": "Polovina vily v Orte, Via Camerano",
+      "it": "Villa bifamiliare a Orte in via Camerano"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-villa-bifamiliare-orte-camerano"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 270000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "squareFootage": 300
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Orte",
+          "cs": "Orte",
+          "it": "Orte"
+        },
+        "slug": {
+          "current": "orte"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Camerano, snc, Orte",
+        "cs": "Via Camerano, snc, Orte",
+        "it": "Via Camerano, snc, Orte"
+      },
+      "coordinates": {
+        "lat": 42.4435,
+        "lng": 12.401
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Orte, this villa offers 300 sqm, 6 rooms, 3 bedrooms and 3 bathrooms. The property is located at Via Camerano, snc, Orte and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is semi-detached villa con large floor area a Orte. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Orte nabizi tato nemovitost 300 m2, 6 mistnosti, 3 loznice a 3 koupelny. Nachazi se na adrese Via Camerano, snc, Orte a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je polovina vily con velka plocha a Orte. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Orte, proponiamo villa con 300 mq, 6 locali, 3 camere e 3 bagni. La proprieta si trova in Via Camerano, snc, Orte e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa bifamiliare con grande superficie a Orte. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1896439794/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439864/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439842/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439458/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439476/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439504/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439546/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439586/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439618/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439692/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439726/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439748/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439770/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1896439810/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa bifamiliare con grande superficie a Orte",
+          "en": "semi-detached villa con large floor area a Orte",
+          "cs": "polovina vily con velka plocha a Orte"
+        }
+      },
+      {
+        "name": {
+          "it": "300 mq commerciali",
+          "en": "300 commercial sqm",
+          "cs": "300 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Camerano, snc",
+          "en": "listed address: Via Camerano, snc",
+          "cs": "uvedena adresa: Via Camerano, snc"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Semi-Detached Villa in Orte, Via Camerano for sale",
+      "cs": "Polovina vily v Orte, Via Camerano na prodej",
+      "it": "Villa bifamiliare a Orte in via Camerano in vendita"
+    },
+    "seoDescription": {
+      "en": "Orte: villa of 300 sqm, 3 bedrooms, 3 bathrooms. Asking price EUR 270,000.",
+      "cs": "Orte: nemovitost 300 m2, 3 loznice, 3 koupelny. Cena 270000 EUR.",
+      "it": "Orte: villa di 300 mq, 3 camere, 3 bagni. Prezzo 270.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "orte",
+      "villa",
+      "via-camerano-snc",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127834878/",
+    "_createdAt": "2026-05-09T17:33:43.665Z",
+    "_updatedAt": "2026-05-09T17:33:43.665Z"
+  },
+  {
+    "_id": "local-import-lazio-villa-rignano-flaminio-montelarco-1778348023490-dma4y",
+    "_type": "listing",
+    "title": {
+      "en": "Villa in Rignano Flaminio, Montelarco",
+      "cs": "Vila v Rignano Flaminio, Montelarco",
+      "it": "Villa a Rignano Flaminio, Montelarco"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-villa-rignano-flaminio-montelarco"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 239000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "squareFootage": 180
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Rignano Flaminio",
+          "cs": "Rignano Flaminio",
+          "it": "Rignano Flaminio"
+        },
+        "slug": {
+          "current": "rignano-flaminio"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Monte Cervino, Rignano Flaminio",
+        "cs": "Via Monte Cervino, Rignano Flaminio",
+        "it": "Via Monte Cervino, Rignano Flaminio"
+      },
+      "coordinates": {
+        "lat": 42.1663,
+        "lng": 12.4841
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Rignano Flaminio, this villa offers 180 sqm, 4 rooms, 3 bedrooms and 3 bathrooms. The property is located at Via Monte Cervino, Rignano Flaminio and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is villa con tre camere nella zona Montelarco. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Rignano Flaminio nabizi tato nemovitost 180 m2, 4 mistnosti, 3 loznice a 3 koupelny. Nachazi se na adrese Via Monte Cervino, Rignano Flaminio a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je villa con tre camere nella zona Montelarco. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Rignano Flaminio, proponiamo villa con 180 mq, 4 locali, 3 camere e 3 bagni. La proprieta si trova in Via Monte Cervino, Rignano Flaminio e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa con tre camere nella zona Montelarco. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1913404276/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407386/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407412/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407432/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407450/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407472/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407494/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407508/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407530/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407552/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407568/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407588/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407600/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913407624/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa con tre camere nella zona Montelarco",
+          "en": "villa con tre camere nella zona Montelarco",
+          "cs": "villa con tre camere nella zona Montelarco"
+        }
+      },
+      {
+        "name": {
+          "it": "180 mq commerciali",
+          "en": "180 commercial sqm",
+          "cs": "180 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Monte Cervino",
+          "en": "listed address: Via Monte Cervino",
+          "cs": "uvedena adresa: Via Monte Cervino"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Villa in Rignano Flaminio, Montelarco for sale",
+      "cs": "Vila v Rignano Flaminio, Montelarco na prodej",
+      "it": "Villa a Rignano Flaminio, Montelarco in vendita"
+    },
+    "seoDescription": {
+      "en": "Rignano Flaminio: villa of 180 sqm, 3 bedrooms, 3 bathrooms. Asking price EUR 239,000.",
+      "cs": "Rignano Flaminio: nemovitost 180 m2, 3 loznice, 3 koupelny. Cena 239000 EUR.",
+      "it": "Rignano Flaminio: villa di 180 mq, 3 camere, 3 bagni. Prezzo 239.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "rignano-flaminio",
+      "villa",
+      "via-monte-cervino",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128630928/",
+    "_createdAt": "2026-05-09T17:33:43.489Z",
+    "_updatedAt": "2026-05-09T17:33:43.489Z"
+  },
+  {
+    "_id": "local-import-umbria-quadrilocale-terni-maratta-narni-1778348023312-54dyc",
+    "_type": "listing",
+    "title": {
+      "en": "Four-Room Apartment in Terni, Maratta Area",
+      "cs": "Ctyrpokojovy byt v Terni, oblast Maratta",
+      "it": "Quadrilocale a Terni, zona Maratta"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "umbria-quadrilocale-terni-maratta-narni"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 65000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 100
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Terni",
+          "cs": "Terni",
+          "it": "Terni"
+        },
+        "slug": {
+          "current": "terni"
+        },
+        "region": {
+          "name": {
+            "it": "Umbria",
+            "en": "Umbria",
+            "cs": "Umbrie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Narni, Terni",
+        "cs": "Via Narni, Terni",
+        "it": "Via Narni, Terni"
+      },
+      "coordinates": {
+        "lat": 42.5498,
+        "lng": 12.6248
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Terni, this apartment offers 100 sqm, 4 rooms, 3 bedrooms and 2 bathrooms. The property is located at Via Narni, Terni and is a practical option for buyers looking in Umbria with clear figures and a defined asking price.\n\nThe key point is quadrilocale con tre camere a Maratta. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Terni nabizi tato nemovitost 100 m2, 4 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese Via Narni, Terni a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Umbrie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je quadrilocale con tre camere a Maratta. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Terni, proponiamo appartamento con 100 mq, 4 locali, 3 camere e 2 bagni. La proprieta si trova in Via Narni, Terni e rappresenta una soluzione concreta per chi cerca una casa in Umbria con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e quadrilocale con tre camere a Maratta. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1795160671/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1795160715/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1795160725/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1795160733/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1795160735/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1795160687/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1892257538/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1795160713/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1795160683/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1795160695/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1795160705/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1795160723/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "quadrilocale con tre camere a Maratta",
+          "en": "quadrilocale con tre camere a Maratta",
+          "cs": "quadrilocale con tre camere a Maratta"
+        }
+      },
+      {
+        "name": {
+          "it": "100 mq commerciali",
+          "en": "100 commercial sqm",
+          "cs": "100 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Narni",
+          "en": "listed address: Via Narni",
+          "cs": "uvedena adresa: Via Narni"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Four-Room Apartment in Terni, Maratta Area for sale",
+      "cs": "Ctyrpokojovy byt v Terni, oblast Maratta na prodej",
+      "it": "Quadrilocale a Terni, zona Maratta in vendita"
+    },
+    "seoDescription": {
+      "en": "Terni: apartment of 100 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 65,000.",
+      "cs": "Terni: nemovitost 100 m2, 3 loznice, 2 koupelny. Cena 65000 EUR.",
+      "it": "Terni: appartamento di 100 mq, 3 camere, 2 bagni. Prezzo 65.000 euro."
+    },
+    "keywords": [
+      "umbria",
+      "terni",
+      "apartment",
+      "via-narni",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/123692641/",
+    "_createdAt": "2026-05-09T17:33:43.311Z",
+    "_updatedAt": "2026-05-09T17:33:43.311Z"
+  },
+  {
+    "_id": "local-import-lazio-terratetto-faleria-giacomo-matteotti-1778348023137-uism9",
+    "_type": "listing",
+    "title": {
+      "en": "Townhouse with Garden in Faleria",
+      "cs": "Radovy dum se zahradou ve Falerii",
+      "it": "Terratetto con giardino a Faleria"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-terratetto-faleria-giacomo-matteotti"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 89000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 113
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Faleria",
+          "cs": "Faleria",
+          "it": "Faleria"
+        },
+        "slug": {
+          "current": "faleria"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Giacomo Matteotti 31, Faleria",
+        "cs": "Via Giacomo Matteotti 31, Faleria",
+        "it": "Via Giacomo Matteotti 31, Faleria"
+      },
+      "coordinates": {
+        "lat": 42.6811,
+        "lng": 12.4457
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Faleria, this independent home offers 113 sqm, 4 rooms, 2 bedrooms and 1 bathrooms. The property is located at Via Giacomo Matteotti 31, Faleria and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is private garden e elevated position a Faleria. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Faleria nabizi tato nemovitost 113 m2, 4 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Via Giacomo Matteotti 31, Faleria a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je soukroma zahrada e vyvysena poloha a Faleria. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Faleria, proponiamo casa indipendente con 113 mq, 4 locali, 2 camere e 1 bagni. La proprieta si trova in Via Giacomo Matteotti 31, Faleria e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e giardino esclusivo e posizione alta a Faleria. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1911769260/m-c.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "giardino esclusivo e posizione alta a Faleria",
+          "en": "private garden e elevated position a Faleria",
+          "cs": "soukroma zahrada e vyvysena poloha a Faleria"
+        }
+      },
+      {
+        "name": {
+          "it": "113 mq commerciali",
+          "en": "113 commercial sqm",
+          "cs": "113 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Giacomo Matteotti 31",
+          "en": "listed address: Via Giacomo Matteotti 31",
+          "cs": "uvedena adresa: Via Giacomo Matteotti 31"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Townhouse with Garden in Faleria for sale",
+      "cs": "Radovy dum se zahradou ve Falerii na prodej",
+      "it": "Terratetto con giardino a Faleria in vendita"
+    },
+    "seoDescription": {
+      "en": "Faleria: independent home of 113 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 89,000.",
+      "cs": "Faleria: nemovitost 113 m2, 2 loznice, 1 koupelny. Cena 89000 EUR.",
+      "it": "Faleria: casa indipendente di 113 mq, 2 camere, 1 bagni. Prezzo 89.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "faleria",
+      "house",
+      "via-giacomo-matteotti-31",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/111281773/",
+    "_createdAt": "2026-05-09T17:33:43.136Z",
+    "_updatedAt": "2026-05-09T17:33:43.136Z"
+  },
+  {
+    "_id": "local-import-lazio-bilocale-viterbo-mattonara-1778348022938-trp6r",
+    "_type": "listing",
+    "title": {
+      "en": "One-Bedroom Apartment in Viterbo, Via della Mattonara",
+      "cs": "Dvoupokojovy byt ve Viterbu, Via della Mattonara",
+      "it": "Bilocale a Viterbo in via della Mattonara"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-bilocale-viterbo-mattonara"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 105000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 50
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Viterbo",
+          "cs": "Viterbo",
+          "it": "Viterbo"
+        },
+        "slug": {
+          "current": "viterbo"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via della Mattonara, Viterbo",
+        "cs": "Via della Mattonara, Viterbo",
+        "it": "Via della Mattonara, Viterbo"
+      },
+      "coordinates": {
+        "lat": 42.4043,
+        "lng": 12.1037
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Viterbo, this apartment offers 50 sqm, 2 rooms, 1 bedrooms and 1 bathrooms. The property is located at Via della Mattonara, Viterbo and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is bilocale compatto a San Martino al Cimino. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Viterbo nabizi tato nemovitost 50 m2, 2 mistnosti, 1 loznice a 1 koupelny. Nachazi se na adrese Via della Mattonara, Viterbo a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je bilocale compatto a San Martino al Cimino. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Viterbo, proponiamo appartamento con 50 mq, 2 locali, 1 camere e 1 bagni. La proprieta si trova in Via della Mattonara, Viterbo e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e bilocale compatto a San Martino al Cimino. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1913594652/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595348/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595354/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595364/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595368/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595374/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595384/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595388/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595400/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595408/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595416/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595420/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595426/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1913595434/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "bilocale compatto a San Martino al Cimino",
+          "en": "bilocale compatto a San Martino al Cimino",
+          "cs": "bilocale compatto a San Martino al Cimino"
+        }
+      },
+      {
+        "name": {
+          "it": "50 mq commerciali",
+          "en": "50 commercial sqm",
+          "cs": "50 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "2 locali",
+          "en": "2 rooms",
+          "cs": "2 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "1 camere da letto",
+          "en": "1 bedrooms",
+          "cs": "1 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via della Mattonara",
+          "en": "listed address: Via della Mattonara",
+          "cs": "uvedena adresa: Via della Mattonara"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "One-Bedroom Apartment in Viterbo, Via della Mattonara for sale",
+      "cs": "Dvoupokojovy byt ve Viterbu, Via della Mattonara na prodej",
+      "it": "Bilocale a Viterbo in via della Mattonara in vendita"
+    },
+    "seoDescription": {
+      "en": "Viterbo: apartment of 50 sqm, 1 bedrooms, 1 bathrooms. Asking price EUR 105,000.",
+      "cs": "Viterbo: nemovitost 50 m2, 1 loznice, 1 koupelny. Cena 105000 EUR.",
+      "it": "Viterbo: appartamento di 50 mq, 1 camere, 1 bagni. Prezzo 105.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "viterbo",
+      "apartment",
+      "via-della-mattonara",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128638238/",
+    "_createdAt": "2026-05-09T17:33:42.937Z",
+    "_updatedAt": "2026-05-09T17:33:42.937Z"
+  },
+  {
+    "_id": "local-import-umbria-villa-bifamiliare-corciano-chiugiana-1778348022759-5ht29",
+    "_type": "listing",
+    "title": {
+      "en": "Semi-Detached Villa in Corciano, Chiugiana",
+      "cs": "Polovina vily v Corcianu, Chiugiana",
+      "it": "Villa bifamiliare a Corciano, Chiugiana"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "umbria-villa-bifamiliare-corciano-chiugiana"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 409000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 7,
+      "bathrooms": 3,
+      "squareFootage": 310
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Corciano",
+          "cs": "Corciano",
+          "it": "Corciano"
+        },
+        "slug": {
+          "current": "corciano"
+        },
+        "region": {
+          "name": {
+            "it": "Umbria",
+            "en": "Umbria",
+            "cs": "Umbrie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Giacomo Matteotti, Corciano",
+        "cs": "Via Giacomo Matteotti, Corciano",
+        "it": "Via Giacomo Matteotti, Corciano"
+      },
+      "coordinates": {
+        "lat": 43.1062,
+        "lng": 12.3157
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Corciano, this villa offers 310 sqm, 6 rooms, 7 bedrooms and 3 bathrooms. The property is located at Via Giacomo Matteotti, Corciano and is a practical option for buyers looking in Umbria with clear figures and a defined asking price.\n\nThe key point is semi-detached villa con metratura importante a Corciano. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Corciano nabizi tato nemovitost 310 m2, 6 mistnosti, 7 loznice a 3 koupelny. Nachazi se na adrese Via Giacomo Matteotti, Corciano a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Umbrie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je polovina vily con metratura importante a Corciano. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Corciano, proponiamo villa con 310 mq, 6 locali, 7 camere e 3 bagni. La proprieta si trova in Via Giacomo Matteotti, Corciano e rappresenta una soluzione concreta per chi cerca una casa in Umbria con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa bifamiliare con metratura importante a Corciano. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1807403573/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807405221/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807405289/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807405311/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807404177/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807403997/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807404153/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807404125/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807404091/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807404065/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807404039/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807403765/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807404023/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1807403601/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa bifamiliare con metratura importante a Corciano",
+          "en": "semi-detached villa con metratura importante a Corciano",
+          "cs": "polovina vily con metratura importante a Corciano"
+        }
+      },
+      {
+        "name": {
+          "it": "310 mq commerciali",
+          "en": "310 commercial sqm",
+          "cs": "310 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "7 camere da letto",
+          "en": "7 bedrooms",
+          "cs": "7 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Giacomo Matteotti",
+          "en": "listed address: Via Giacomo Matteotti",
+          "cs": "uvedena adresa: Via Giacomo Matteotti"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Semi-Detached Villa in Corciano, Chiugiana for sale",
+      "cs": "Polovina vily v Corcianu, Chiugiana na prodej",
+      "it": "Villa bifamiliare a Corciano, Chiugiana in vendita"
+    },
+    "seoDescription": {
+      "en": "Corciano: villa of 310 sqm, 7 bedrooms, 3 bathrooms. Asking price EUR 409,000.",
+      "cs": "Corciano: nemovitost 310 m2, 7 loznice, 3 koupelny. Cena 409000 EUR.",
+      "it": "Corciano: villa di 310 mq, 7 camere, 3 bagni. Prezzo 409.000 euro."
+    },
+    "keywords": [
+      "umbria",
+      "corciano",
+      "villa",
+      "via-giacomo-matteotti",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/124223825/",
+    "_createdAt": "2026-05-09T17:33:42.758Z",
+    "_updatedAt": "2026-05-09T17:33:42.758Z"
+  },
+  {
+    "_id": "local-import-umbria-villa-cannara-sant-angelo-1778348022582-vpebq",
+    "_type": "listing",
+    "title": {
+      "en": "Villa in Cannara on Via Sant'Angelo",
+      "cs": "Vila v Cannare ve Via Sant'Angelo",
+      "it": "Villa a Cannara in via Sant'Angelo"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "umbria-villa-cannara-sant-angelo"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 299000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 188
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Cannara",
+          "cs": "Cannara",
+          "it": "Cannara"
+        },
+        "slug": {
+          "current": "cannara"
+        },
+        "region": {
+          "name": {
+            "it": "Umbria",
+            "en": "Umbria",
+            "cs": "Umbrie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Sant'Angelo, Cannara",
+        "cs": "Via Sant'Angelo, Cannara",
+        "it": "Via Sant'Angelo, Cannara"
+      },
+      "coordinates": {
+        "lat": 42.994,
+        "lng": 12.5879
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Cannara, this villa offers 188 sqm, 4 rooms, 3 bedrooms and 2 bathrooms. The property is located at Via Sant'Angelo, Cannara and is a practical option for buyers looking in Umbria with clear figures and a defined asking price.\n\nThe key point is detached villa con tre camere e doppi servizi. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Cannara nabizi tato nemovitost 188 m2, 4 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese Via Sant'Angelo, Cannara a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Umbrie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je samostatna vila con tre camere e doppi servizi. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Cannara, proponiamo villa con 188 mq, 4 locali, 3 camere e 2 bagni. La proprieta si trova in Via Sant'Angelo, Cannara e rappresenta una soluzione concreta per chi cerca una casa in Umbria con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa indipendente con tre camere e doppi servizi. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/01-gallery-1.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/02-gallery-10.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/03-gallery-11.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/04-gallery-12.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/05-gallery-2.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/06-gallery-3.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/07-gallery-4.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/08-gallery-5.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/09-gallery-6.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/10-gallery-7.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/11-gallery-8.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/12-gallery-9.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/13-main.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa indipendente con tre camere e doppi servizi",
+          "en": "detached villa con tre camere e doppi servizi",
+          "cs": "samostatna vila con tre camere e doppi servizi"
+        }
+      },
+      {
+        "name": {
+          "it": "188 mq commerciali",
+          "en": "188 commercial sqm",
+          "cs": "188 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Sant'Angelo",
+          "en": "listed address: Via Sant'Angelo",
+          "cs": "uvedena adresa: Via Sant'Angelo"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Villa in Cannara on Via Sant'Angelo for sale",
+      "cs": "Vila v Cannare ve Via Sant'Angelo na prodej",
+      "it": "Villa a Cannara in via Sant'Angelo in vendita"
+    },
+    "seoDescription": {
+      "en": "Cannara: villa of 188 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 299,000.",
+      "cs": "Cannara: nemovitost 188 m2, 3 loznice, 2 koupelny. Cena 299000 EUR.",
+      "it": "Cannara: villa di 188 mq, 3 camere, 2 bagni. Prezzo 299.000 euro."
+    },
+    "keywords": [
+      "umbria",
+      "cannara",
+      "villa",
+      "via-sant-angelo",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127718822/",
+    "_createdAt": "2026-05-09T17:33:42.581Z",
+    "_updatedAt": "2026-05-09T17:33:42.581Z"
+  },
+  {
+    "_id": "local-import-umbria-villa-perugia-montevile-1778348022345-i597j",
+    "_type": "listing",
+    "title": {
+      "en": "Large Villa in Perugia Montevile",
+      "cs": "Velka vila v Perugii Montevile",
+      "it": "Villa con grande superficie a Perugia Montevile"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "umbria-villa-perugia-montevile"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 355000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 1,
+      "bedrooms": 4,
+      "bathrooms": 0,
+      "squareFootage": 288
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Perugia",
+          "cs": "Perugia",
+          "it": "Perugia"
+        },
+        "slug": {
+          "current": "perugia"
+        },
+        "region": {
+          "name": {
+            "it": "Umbria",
+            "en": "Umbria",
+            "cs": "Umbrie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "strada montevile, 37, Perugia",
+        "cs": "strada montevile, 37, Perugia",
+        "it": "strada montevile, 37, Perugia"
+      },
+      "coordinates": {
+        "lat": 43.0958,
+        "lng": 12.4388
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Perugia, this villa offers 288 sqm, 1 rooms, 4 bedrooms and 0 bathrooms. The property is located at strada montevile, 37, Perugia and is a practical option for buyers looking in Umbria with clear figures and a defined asking price.\n\nThe key point is villa con ampi spazi e terreno a Montevile. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Perugia nabizi tato nemovitost 288 m2, 1 mistnosti, 4 loznice a 0 koupelny. Nachazi se na adrese strada montevile, 37, Perugia a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Umbrie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je villa con ampi spazi e terreno a Montevile. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Perugia, proponiamo villa con 288 mq, 1 locali, 4 camere e 0 bagni. La proprieta si trova in strada montevile, 37, Perugia e rappresenta una soluzione concreta per chi cerca una casa in Umbria con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa con ampi spazi e terreno a Montevile. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/umbria-villa-perugia-montevile/01-gallery-1.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/02-gallery-10.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/03-gallery-11.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/04-gallery-12.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/05-gallery-2.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/06-gallery-3.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/07-gallery-4.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/08-gallery-5.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/09-gallery-6.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/10-gallery-7.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/11-gallery-8.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/12-gallery-9.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/13-main.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa con ampi spazi e terreno a Montevile",
+          "en": "villa con ampi spazi e terreno a Montevile",
+          "cs": "villa con ampi spazi e terreno a Montevile"
+        }
+      },
+      {
+        "name": {
+          "it": "288 mq commerciali",
+          "en": "288 commercial sqm",
+          "cs": "288 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "1 locali",
+          "en": "1 rooms",
+          "cs": "1 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "4 camere da letto",
+          "en": "4 bedrooms",
+          "cs": "4 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "bagni",
+          "en": "bathrooms",
+          "cs": "koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: strada montevile, 37",
+          "en": "listed address: strada montevile, 37",
+          "cs": "uvedena adresa: strada montevile, 37"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Large Villa in Perugia Montevile for sale",
+      "cs": "Velka vila v Perugii Montevile na prodej",
+      "it": "Villa con grande superficie a Perugia Montevile in vendita"
+    },
+    "seoDescription": {
+      "en": "Perugia: villa of 288 sqm, 4 bedrooms, 0 bathrooms. Asking price EUR 355,000.",
+      "cs": "Perugia: nemovitost 288 m2, 4 loznice, 0 koupelny. Cena 355000 EUR.",
+      "it": "Perugia: villa di 288 mq, 4 camere, 0 bagni. Prezzo 355.000 euro."
+    },
+    "keywords": [
+      "umbria",
+      "perugia",
+      "villa",
+      "strada-montevile-37",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/125346019/",
+    "_createdAt": "2026-05-09T17:33:42.344Z",
+    "_updatedAt": "2026-05-09T17:33:42.344Z"
+  },
+  {
+    "_id": "local-import-umbria-terratetto-gualdo-tadino-fratelli-tromba-1778348022092-wk6ag",
+    "_type": "listing",
+    "title": {
+      "en": "Townhouse in Central Gualdo Tadino",
+      "cs": "Radovy dum v centru Gualdo Tadino",
+      "it": "Terratetto a Gualdo Tadino centro"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "umbria-terratetto-gualdo-tadino-fratelli-tromba"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 75000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 85
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Gualdo Tadino",
+          "cs": "Gualdo Tadino",
+          "it": "Gualdo Tadino"
+        },
+        "slug": {
+          "current": "gualdo-tadino"
+        },
+        "region": {
+          "name": {
+            "it": "Umbria",
+            "en": "Umbria",
+            "cs": "Umbrie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "VIA FRATELLI TROMBA, Gualdo Tadino",
+        "cs": "VIA FRATELLI TROMBA, Gualdo Tadino",
+        "it": "VIA FRATELLI TROMBA, Gualdo Tadino"
+      },
+      "coordinates": {
+        "lat": 43.2301,
+        "lng": 12.7839
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Gualdo Tadino, this independent home offers 85 sqm, 3 rooms, 2 bedrooms and 2 bathrooms. The property is located at VIA FRATELLI TROMBA, Gualdo Tadino and is a practical option for buyers looking in Umbria with clear figures and a defined asking price.\n\nThe key point is multi-family home in historic centre. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Gualdo Tadino nabizi tato nemovitost 85 m2, 3 mistnosti, 2 loznice a 2 koupelny. Nachazi se na adrese VIA FRATELLI TROMBA, Gualdo Tadino a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Umbrie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je vicegeneracni dum in historicke centrum. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Gualdo Tadino, proponiamo casa indipendente con 85 mq, 3 locali, 2 camere e 2 bagni. La proprieta si trova in VIA FRATELLI TROMBA, Gualdo Tadino e rappresenta una soluzione concreta per chi cerca una casa in Umbria con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e abitazione plurifamiliare in centro storico. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/01-gallery-1.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/02-gallery-10.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/03-gallery-11.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/04-gallery-12.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/05-gallery-2.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/06-gallery-3.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/07-gallery-4.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/08-gallery-5.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/09-gallery-6.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/10-gallery-7.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/11-gallery-8.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/12-gallery-9.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/13-main.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "abitazione plurifamiliare in centro storico",
+          "en": "multi-family home in historic centre",
+          "cs": "vicegeneracni dum in historicke centrum"
+        }
+      },
+      {
+        "name": {
+          "it": "85 mq commerciali",
+          "en": "85 commercial sqm",
+          "cs": "85 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: VIA FRATELLI TROMBA",
+          "en": "listed address: VIA FRATELLI TROMBA",
+          "cs": "uvedena adresa: VIA FRATELLI TROMBA"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Townhouse in Central Gualdo Tadino for sale",
+      "cs": "Radovy dum v centru Gualdo Tadino na prodej",
+      "it": "Terratetto a Gualdo Tadino centro in vendita"
+    },
+    "seoDescription": {
+      "en": "Gualdo Tadino: independent home of 85 sqm, 2 bedrooms, 2 bathrooms. Asking price EUR 75,000.",
+      "cs": "Gualdo Tadino: nemovitost 85 m2, 2 loznice, 2 koupelny. Cena 75000 EUR.",
+      "it": "Gualdo Tadino: casa indipendente di 85 mq, 2 camere, 2 bagni. Prezzo 75.000 euro."
+    },
+    "keywords": [
+      "umbria",
+      "gualdo-tadino",
+      "house",
+      "via-fratelli-tromba",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128635466/",
+    "_createdAt": "2026-05-09T17:33:42.091Z",
+    "_updatedAt": "2026-05-09T17:33:42.091Z"
+  },
+  {
+    "_id": "local-import-marche-villa-cantiano-martiri-resistenza-1778348021801-8f7sy",
+    "_type": "listing",
+    "title": {
+      "en": "Detached Villa in Cantiano",
+      "cs": "Samostatna vila v Cantianu",
+      "it": "Villa unifamiliare a Cantiano"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "marche-villa-cantiano-martiri-resistenza"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 75000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 5,
+      "bathrooms": 3,
+      "squareFootage": 385
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Cantiano",
+          "cs": "Cantiano",
+          "it": "Cantiano"
+        },
+        "slug": {
+          "current": "cantiano"
+        },
+        "region": {
+          "name": {
+            "it": "Marche",
+            "en": "Marche",
+            "cs": "Marky"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Martiri della resistenza, Cantiano",
+        "cs": "Via Martiri della resistenza, Cantiano",
+        "it": "Via Martiri della resistenza, Cantiano"
+      },
+      "coordinates": {
+        "lat": 43.4737,
+        "lng": 12.6305
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Cantiano, this villa offers 385 sqm, 6 rooms, 5 bedrooms and 3 bathrooms. The property is located at Via Martiri della resistenza, Cantiano and is a practical option for buyers looking in Marche with clear figures and a defined asking price.\n\nThe key point is large size e posizione centrale a Cantiano. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Cantiano nabizi tato nemovitost 385 m2, 6 mistnosti, 5 loznice a 3 koupelny. Nachazi se na adrese Via Martiri della resistenza, Cantiano a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Marky s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je velka plocha e posizione centrale a Cantiano. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Cantiano, proponiamo villa con 385 mq, 6 locali, 5 camere e 3 bagni. La proprieta si trova in Via Martiri della resistenza, Cantiano e rappresenta una soluzione concreta per chi cerca una casa in Marche con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e grande metratura e posizione centrale a Cantiano. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/01-gallery-1.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/02-gallery-10.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/03-gallery-11.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/04-gallery-12.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/05-gallery-2.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/06-gallery-3.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/07-gallery-4.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/08-gallery-5.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/09-gallery-6.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/10-gallery-7.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/11-gallery-8.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/12-gallery-9.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/13-main.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "grande metratura e posizione centrale a Cantiano",
+          "en": "large size e posizione centrale a Cantiano",
+          "cs": "velka plocha e posizione centrale a Cantiano"
+        }
+      },
+      {
+        "name": {
+          "it": "385 mq commerciali",
+          "en": "385 commercial sqm",
+          "cs": "385 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "5 camere da letto",
+          "en": "5 bedrooms",
+          "cs": "5 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Martiri della resistenza",
+          "en": "listed address: Via Martiri della resistenza",
+          "cs": "uvedena adresa: Via Martiri della resistenza"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Detached Villa in Cantiano for sale",
+      "cs": "Samostatna vila v Cantianu na prodej",
+      "it": "Villa unifamiliare a Cantiano in vendita"
+    },
+    "seoDescription": {
+      "en": "Cantiano: villa of 385 sqm, 5 bedrooms, 3 bathrooms. Asking price EUR 75,000.",
+      "cs": "Cantiano: nemovitost 385 m2, 5 loznice, 3 koupelny. Cena 75000 EUR.",
+      "it": "Cantiano: villa di 385 mq, 5 camere, 3 bagni. Prezzo 75.000 euro."
+    },
+    "keywords": [
+      "marche",
+      "cantiano",
+      "villa",
+      "via-martiri-della-resistenza",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/125411963/",
+    "_createdAt": "2026-05-09T17:33:41.800Z",
+    "_updatedAt": "2026-05-09T17:33:41.800Z"
+  },
+  {
+    "_id": "local-import-marche-terratetto-treia-contrada-berta-1778348021451-4g10w",
+    "_type": "listing",
+    "title": {
+      "en": "Townhouse in Contrada Berta, Treia",
+      "cs": "Radovy dum v Contrada Berta u Treie",
+      "it": "Terratetto in Contrada Berta a Treia"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "marche-terratetto-treia-contrada-berta"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 109000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 82
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Treia",
+          "cs": "Treia",
+          "it": "Treia"
+        },
+        "slug": {
+          "current": "treia"
+        },
+        "region": {
+          "name": {
+            "it": "Marche",
+            "en": "Marche",
+            "cs": "Marky"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Contrada Berta, Treia",
+        "cs": "Contrada Berta, Treia",
+        "it": "Contrada Berta, Treia"
+      },
+      "coordinates": {
+        "lat": 43.2714,
+        "lng": 13.2915
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Treia, this independent home offers 82 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at Contrada Berta, Treia and is a practical option for buyers looking in Marche with clear figures and a defined asking price.\n\nThe key point is independent home compatta in contesto marchigiano. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Treia nabizi tato nemovitost 82 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Contrada Berta, Treia a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Marky s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je samostatny dum compatta in contesto marchigiano. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Treia, proponiamo casa indipendente con 82 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in Contrada Berta, Treia e rappresenta una soluzione concreta per chi cerca una casa in Marche con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e casa indipendente compatta in contesto marchigiano. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/01-gallery-1.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/02-gallery-10.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/03-gallery-11.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/04-gallery-12.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/05-gallery-2.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/06-gallery-3.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/07-gallery-4.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/08-gallery-5.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/09-gallery-6.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/10-gallery-7.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/11-gallery-8.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/12-gallery-9.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/13-main.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "casa indipendente compatta in contesto marchigiano",
+          "en": "independent home compatta in contesto marchigiano",
+          "cs": "samostatny dum compatta in contesto marchigiano"
+        }
+      },
+      {
+        "name": {
+          "it": "82 mq commerciali",
+          "en": "82 commercial sqm",
+          "cs": "82 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Contrada Berta",
+          "en": "listed address: Contrada Berta",
+          "cs": "uvedena adresa: Contrada Berta"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Townhouse in Contrada Berta, Treia for sale",
+      "cs": "Radovy dum v Contrada Berta u Treie na prodej",
+      "it": "Terratetto in Contrada Berta a Treia in vendita"
+    },
+    "seoDescription": {
+      "en": "Treia: independent home of 82 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 109,000.",
+      "cs": "Treia: nemovitost 82 m2, 2 loznice, 1 koupelny. Cena 109000 EUR.",
+      "it": "Treia: casa indipendente di 82 mq, 2 camere, 1 bagni. Prezzo 109.000 euro."
+    },
+    "keywords": [
+      "marche",
+      "treia",
+      "house",
+      "contrada-berta",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/106748975/",
+    "_createdAt": "2026-05-09T17:33:41.450Z",
+    "_updatedAt": "2026-05-09T17:33:41.450Z"
+  },
+  {
+    "_id": "local-import-marche-terratetto-fabriano-collamato-1778348021200-v6r90",
+    "_type": "listing",
+    "title": {
+      "en": "Townhouse in Collamato, Fabriano",
+      "cs": "Radovy dum v Collamatu u Fabriana",
+      "it": "Terratetto a Collamato, Fabriano"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "marche-terratetto-fabriano-collamato"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 80000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 6,
+      "bathrooms": 1,
+      "squareFootage": 105
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Fabriano",
+          "cs": "Fabriano",
+          "it": "Fabriano"
+        },
+        "slug": {
+          "current": "fabriano"
+        },
+        "region": {
+          "name": {
+            "it": "Marche",
+            "en": "Marche",
+            "cs": "Marky"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "FRAZIONE COLLAMATO -via campo al fosso, Fabriano",
+        "cs": "FRAZIONE COLLAMATO -via campo al fosso, Fabriano",
+        "it": "FRAZIONE COLLAMATO -via campo al fosso, Fabriano"
+      },
+      "coordinates": {
+        "lat": 43.2909,
+        "lng": 12.9491
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Fabriano, this independent home offers 105 sqm, 6 rooms, 6 bedrooms and 1 bathrooms. The property is located at FRAZIONE COLLAMATO -via campo al fosso, Fabriano and is a practical option for buyers looking in Marche with clear figures and a defined asking price.\n\nThe key point is soluzione indipendente nella frazione Collamato. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Fabriano nabizi tato nemovitost 105 m2, 6 mistnosti, 6 loznice a 1 koupelny. Nachazi se na adrese FRAZIONE COLLAMATO -via campo al fosso, Fabriano a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Marky s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je soluzione indipendente nella frazione Collamato. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Fabriano, proponiamo casa indipendente con 105 mq, 6 locali, 6 camere e 1 bagni. La proprieta si trova in FRAZIONE COLLAMATO -via campo al fosso, Fabriano e rappresenta una soluzione concreta per chi cerca una casa in Marche con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e soluzione indipendente nella frazione Collamato. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/marche-terratetto-fabriano-collamato/01-gallery-1.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/02-gallery-10.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/03-gallery-11.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/04-gallery-12.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/05-gallery-2.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/06-gallery-3.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/07-gallery-4.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/08-gallery-5.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/09-gallery-6.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/10-gallery-7.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/11-gallery-8.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/12-gallery-9.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/13-main.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "soluzione indipendente nella frazione Collamato",
+          "en": "soluzione indipendente nella frazione Collamato",
+          "cs": "soluzione indipendente nella frazione Collamato"
+        }
+      },
+      {
+        "name": {
+          "it": "105 mq commerciali",
+          "en": "105 commercial sqm",
+          "cs": "105 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "6 camere da letto",
+          "en": "6 bedrooms",
+          "cs": "6 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: FRAZIONE COLLAMATO -via campo al fosso",
+          "en": "listed address: FRAZIONE COLLAMATO -via campo al fosso",
+          "cs": "uvedena adresa: FRAZIONE COLLAMATO -via campo al fosso"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Townhouse in Collamato, Fabriano for sale",
+      "cs": "Radovy dum v Collamatu u Fabriana na prodej",
+      "it": "Terratetto a Collamato, Fabriano in vendita"
+    },
+    "seoDescription": {
+      "en": "Fabriano: independent home of 105 sqm, 6 bedrooms, 1 bathrooms. Asking price EUR 80,000.",
+      "cs": "Fabriano: nemovitost 105 m2, 6 loznice, 1 koupelny. Cena 80000 EUR.",
+      "it": "Fabriano: casa indipendente di 105 mq, 6 camere, 1 bagni. Prezzo 80.000 euro."
+    },
+    "keywords": [
+      "marche",
+      "fabriano",
+      "house",
+      "frazione-collamato-via-campo-al-fosso",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/118735713/",
+    "_createdAt": "2026-05-09T17:33:41.199Z",
+    "_updatedAt": "2026-05-09T17:33:41.199Z"
+  },
+  {
+    "_id": "local-import-emilia-romagna-trilocale-riccione-parco-monterosa-1778348020917-rea1p",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Bedroom Apartment in Riccione, Parco Area",
+      "cs": "Trilocale v Riccione, oblast Parco",
+      "it": "Trilocale a Riccione, zona Parco"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "emilia-romagna-trilocale-riccione-parco-monterosa"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 350000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 101
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Riccione",
+          "cs": "Riccione",
+          "it": "Riccione"
+        },
+        "slug": {
+          "current": "riccione"
+        },
+        "region": {
+          "name": {
+            "it": "Emilia-Romagna",
+            "en": "Emilia-Romagna",
+            "cs": "Emilie-Romagna"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Viale Monterosa, Riccione",
+        "cs": "Viale Monterosa, Riccione",
+        "it": "Viale Monterosa, Riccione"
+      },
+      "coordinates": {
+        "lat": 44.0057,
+        "lng": 12.6366
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Riccione, this apartment offers 101 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at Viale Monterosa, Riccione and is a practical option for buyers looking in Emilia-Romagna with clear figures and a defined asking price.\n\nThe key point is zona Parco a Riccione con spazi ben distribuiti. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Riccione nabizi tato nemovitost 101 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Viale Monterosa, Riccione a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Emilie-Romagna s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je zona Parco a Riccione con spazi ben distribuiti. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Riccione, proponiamo appartamento con 101 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in Viale Monterosa, Riccione e rappresenta una soluzione concreta per chi cerca una casa in Emilia-Romagna con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e zona Parco a Riccione con spazi ben distribuiti. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/01-gallery-1.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/02-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/03-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/04-gallery-12.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/05-gallery-2.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/06-gallery-3.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/07-gallery-4.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/08-gallery-5.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/09-gallery-6.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/10-gallery-7.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/11-gallery-8.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/12-gallery-9.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/13-main.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "zona Parco a Riccione con spazi ben distribuiti",
+          "en": "zona Parco a Riccione con spazi ben distribuiti",
+          "cs": "zona Parco a Riccione con spazi ben distribuiti"
+        }
+      },
+      {
+        "name": {
+          "it": "101 mq commerciali",
+          "en": "101 commercial sqm",
+          "cs": "101 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Viale Monterosa",
+          "en": "listed address: Viale Monterosa",
+          "cs": "uvedena adresa: Viale Monterosa"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment in Riccione, Parco Area for sale",
+      "cs": "Trilocale v Riccione, oblast Parco na prodej",
+      "it": "Trilocale a Riccione, zona Parco in vendita"
+    },
+    "seoDescription": {
+      "en": "Riccione: apartment of 101 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 350,000.",
+      "cs": "Riccione: nemovitost 101 m2, 2 loznice, 1 koupelny. Cena 350000 EUR.",
+      "it": "Riccione: appartamento di 101 mq, 2 camere, 1 bagni. Prezzo 350.000 euro."
+    },
+    "keywords": [
+      "emilia-romagna",
+      "riccione",
+      "apartment",
+      "viale-monterosa",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128638974/",
+    "_createdAt": "2026-05-09T17:33:40.915Z",
+    "_updatedAt": "2026-05-09T17:33:40.915Z"
+  },
+  {
+    "_id": "local-import-emilia-romagna-appartamento-rimini-bellariva-armellini-1778348020633-jyevj",
+    "_type": "listing",
+    "title": {
+      "en": "Spacious Apartment in Rimini Bellariva",
+      "cs": "Prostorny byt v Rimini Bellariva",
+      "it": "Appartamento spazioso a Rimini Bellariva"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "emilia-romagna-appartamento-rimini-bellariva-armellini"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 340000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 133
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Rimini",
+          "cs": "Rimini",
+          "it": "Rimini"
+        },
+        "slug": {
+          "current": "rimini"
+        },
+        "region": {
+          "name": {
+            "it": "Emilia-Romagna",
+            "en": "Emilia-Romagna",
+            "cs": "Emilie-Romagna"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Carlo Armellini, Rimini",
+        "cs": "Via Carlo Armellini, Rimini",
+        "it": "Via Carlo Armellini, Rimini"
+      },
+      "coordinates": {
+        "lat": 44.0449,
+        "lng": 12.5999
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Rimini, this apartment offers 133 sqm, 5 rooms, 3 bedrooms and 2 bathrooms. The property is located at Via Carlo Armellini, Rimini and is a practical option for buyers looking in Emilia-Romagna with clear figures and a defined asking price.\n\nThe key point is zona Bellariva vicina ai servizi e al mare. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Rimini nabizi tato nemovitost 133 m2, 5 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese Via Carlo Armellini, Rimini a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Emilie-Romagna s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je zona Bellariva vicina ai servizi e al mare. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Rimini, proponiamo appartamento con 133 mq, 5 locali, 3 camere e 2 bagni. La proprieta si trova in Via Carlo Armellini, Rimini e rappresenta una soluzione concreta per chi cerca una casa in Emilia-Romagna con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e zona Bellariva vicina ai servizi e al mare. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/01-gallery-1.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/02-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/03-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/04-gallery-12.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/05-gallery-2.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/06-gallery-3.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/07-gallery-4.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/08-gallery-5.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/09-gallery-6.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/10-gallery-7.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/11-gallery-8.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/12-gallery-9.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/13-main.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "zona Bellariva vicina ai servizi e al mare",
+          "en": "zona Bellariva vicina ai servizi e al mare",
+          "cs": "zona Bellariva vicina ai servizi e al mare"
+        }
+      },
+      {
+        "name": {
+          "it": "133 mq commerciali",
+          "en": "133 commercial sqm",
+          "cs": "133 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "5 locali",
+          "en": "5 rooms",
+          "cs": "5 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Carlo Armellini",
+          "en": "listed address: Via Carlo Armellini",
+          "cs": "uvedena adresa: Via Carlo Armellini"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Spacious Apartment in Rimini Bellariva for sale",
+      "cs": "Prostorny byt v Rimini Bellariva na prodej",
+      "it": "Appartamento spazioso a Rimini Bellariva in vendita"
+    },
+    "seoDescription": {
+      "en": "Rimini: apartment of 133 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 340,000.",
+      "cs": "Rimini: nemovitost 133 m2, 3 loznice, 2 koupelny. Cena 340000 EUR.",
+      "it": "Rimini: appartamento di 133 mq, 3 camere, 2 bagni. Prezzo 340.000 euro."
+    },
+    "keywords": [
+      "emilia-romagna",
+      "rimini",
+      "apartment",
+      "via-carlo-armellini",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/126851667/",
+    "_createdAt": "2026-05-09T17:33:40.633Z",
+    "_updatedAt": "2026-05-09T17:33:40.633Z"
+  },
+  {
+    "_id": "local-import-marche-quadrilocale-fano-sant-orso-de-curtis-1778348020350-dhc1d",
+    "_type": "listing",
+    "title": {
+      "en": "Four-Room Apartment in Fano, Sant'Orso",
+      "cs": "Ctyrpokojovy byt ve Fanu, Sant'Orso",
+      "it": "Quadrilocale a Fano, zona Sant'Orso"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "marche-quadrilocale-fano-sant-orso-de-curtis"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 275000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 1,
+      "bathrooms": 2,
+      "squareFootage": 127
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Fano",
+          "cs": "Fano",
+          "it": "Fano"
+        },
+        "slug": {
+          "current": "fano"
+        },
+        "region": {
+          "name": {
+            "it": "Marche",
+            "en": "Marche",
+            "cs": "Marky"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Antonio De Curtis, Fano",
+        "cs": "Via Antonio De Curtis, Fano",
+        "it": "Via Antonio De Curtis, Fano"
+      },
+      "coordinates": {
+        "lat": 43.8218,
+        "lng": 13.01
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Fano, this apartment offers 127 sqm, 4 rooms, 1 bedrooms and 2 bathrooms. The property is located at Via Antonio De Curtis, Fano and is a practical option for buyers looking in Marche with clear figures and a defined asking price.\n\nThe key point is quartiere residenziale Sant Orso con doppi servizi. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Fano nabizi tato nemovitost 127 m2, 4 mistnosti, 1 loznice a 2 koupelny. Nachazi se na adrese Via Antonio De Curtis, Fano a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Marky s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je quartiere residenziale Sant Orso con doppi servizi. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Fano, proponiamo appartamento con 127 mq, 4 locali, 1 camere e 2 bagni. La proprieta si trova in Via Antonio De Curtis, Fano e rappresenta una soluzione concreta per chi cerca una casa in Marche con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e quartiere residenziale Sant Orso con doppi servizi. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/01-gallery-1.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/02-gallery-10.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/03-gallery-11.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/04-gallery-12.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/05-gallery-2.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/06-gallery-3.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/07-gallery-4.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/08-gallery-5.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/09-gallery-6.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/10-gallery-7.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/11-gallery-8.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/12-gallery-9.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/13-main.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "quartiere residenziale Sant Orso con doppi servizi",
+          "en": "quartiere residenziale Sant Orso con doppi servizi",
+          "cs": "quartiere residenziale Sant Orso con doppi servizi"
+        }
+      },
+      {
+        "name": {
+          "it": "127 mq commerciali",
+          "en": "127 commercial sqm",
+          "cs": "127 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "1 camere da letto",
+          "en": "1 bedrooms",
+          "cs": "1 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Antonio De Curtis",
+          "en": "listed address: Via Antonio De Curtis",
+          "cs": "uvedena adresa: Via Antonio De Curtis"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Four-Room Apartment in Fano, Sant'Orso for sale",
+      "cs": "Ctyrpokojovy byt ve Fanu, Sant'Orso na prodej",
+      "it": "Quadrilocale a Fano, zona Sant'Orso in vendita"
+    },
+    "seoDescription": {
+      "en": "Fano: apartment of 127 sqm, 1 bedrooms, 2 bathrooms. Asking price EUR 275,000.",
+      "cs": "Fano: nemovitost 127 m2, 1 loznice, 2 koupelny. Cena 275000 EUR.",
+      "it": "Fano: appartamento di 127 mq, 1 camere, 2 bagni. Prezzo 275.000 euro."
+    },
+    "keywords": [
+      "marche",
+      "fano",
+      "apartment",
+      "via-antonio-de-curtis",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127581588/",
+    "_createdAt": "2026-05-09T17:33:40.349Z",
+    "_updatedAt": "2026-05-09T17:33:40.349Z"
+  },
+  {
+    "_id": "local-import-marche-terratetto-offagna-centro-1778348020029-3vsus",
+    "_type": "listing",
+    "title": {
+      "en": "Townhouse in Excellent Condition in Central Offagna",
+      "cs": "Radovy dum ve vybornem stavu v centru Offagny",
+      "it": "Terratetto in ottimo stato nel centro di Offagna"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "marche-terratetto-offagna-centro"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 398000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 6,
+      "bathrooms": 3,
+      "squareFootage": 240
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Offagna",
+          "cs": "Offagna",
+          "it": "Offagna"
+        },
+        "slug": {
+          "current": "offagna"
+        },
+        "region": {
+          "name": {
+            "it": "Marche",
+            "en": "Marche",
+            "cs": "Marky"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Offagna",
+        "cs": "Offagna",
+        "it": "Offagna"
+      },
+      "coordinates": {
+        "lat": 43.5288,
+        "lng": 13.4425
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Offagna, this independent home offers 240 sqm, 6 rooms, 6 bedrooms and 3 bathrooms. The property is located at Offagna and is a practical option for buyers looking in Marche with clear figures and a defined asking price.\n\nThe key point is ampia independent home nel centro di Offagna. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Offagna nabizi tato nemovitost 240 m2, 6 mistnosti, 6 loznice a 3 koupelny. Nachazi se na adrese Offagna a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Marky s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je ampia samostatny dum nel centro di Offagna. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Offagna, proponiamo casa indipendente con 240 mq, 6 locali, 6 camere e 3 bagni. La proprieta si trova in Offagna e rappresenta una soluzione concreta per chi cerca una casa in Marche con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e ampia casa indipendente nel centro di Offagna. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/marche-terratetto-offagna-centro/01-gallery-1.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/02-gallery-10.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/03-gallery-11.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/04-gallery-12.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/05-gallery-2.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/06-gallery-3.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/07-gallery-4.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/08-gallery-5.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/09-gallery-6.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/10-gallery-7.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/11-gallery-8.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/12-gallery-9.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/13-main.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "ampia casa indipendente nel centro di Offagna",
+          "en": "ampia independent home nel centro di Offagna",
+          "cs": "ampia samostatny dum nel centro di Offagna"
+        }
+      },
+      {
+        "name": {
+          "it": "240 mq commerciali",
+          "en": "240 commercial sqm",
+          "cs": "240 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "6 camere da letto",
+          "en": "6 bedrooms",
+          "cs": "6 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Townhouse in Excellent Condition in Central Offagna for sale",
+      "cs": "Radovy dum ve vybornem stavu v centru Offagny na prodej",
+      "it": "Terratetto in ottimo stato nel centro di Offagna in vendita"
+    },
+    "seoDescription": {
+      "en": "Offagna: independent home of 240 sqm, 6 bedrooms, 3 bathrooms. Asking price EUR 398,000.",
+      "cs": "Offagna: nemovitost 240 m2, 6 loznice, 3 koupelny. Cena 398000 EUR.",
+      "it": "Offagna: casa indipendente di 240 mq, 6 camere, 3 bagni. Prezzo 398.000 euro."
+    },
+    "keywords": [
+      "marche",
+      "offagna",
+      "house",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128743436/",
+    "_createdAt": "2026-05-09T17:33:40.020Z",
+    "_updatedAt": "2026-05-09T17:33:40.020Z"
+  },
+  {
     "_id": "local-import-veneto-terratetto-venezia-zattere-spirito-santo-1778342445182-wxfdz",
     "_type": "listing",
     "title": {
