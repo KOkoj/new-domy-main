@@ -82,8 +82,6 @@ export default async function RootLayout({ children }) {
     url: SITE_URL
   }
 
-  const GA_MEASUREMENT_ID = 'G-XXXXXXX'
-
   return (
     <html lang={language} className={`${manrope.variable} ${sora.variable} font-sans overflow-x-hidden`}>
       <head>
@@ -106,21 +104,6 @@ export default async function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
-        {/* Google Analytics 4 */}
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_MEASUREMENT_ID}');
-            `,
-          }}
         />
       </head>
       <body className="antialiased overflow-x-hidden">
