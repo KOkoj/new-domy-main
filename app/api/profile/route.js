@@ -57,7 +57,9 @@ function buildProfileFromUser(user) {
       user.user_metadata?.full_name ||
       user.email?.split('@')[0] ||
       'User',
-    role: 'user'
+    role: String(user.email || '').trim().toLowerCase() === 'luca.croce@domyvitalii.cz'
+      ? 'admin'
+      : 'user'
   }
 }
 

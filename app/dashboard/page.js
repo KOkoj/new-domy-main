@@ -28,6 +28,7 @@ import {
   ArrowRight
 } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
+import { getDashboardUser } from '../../lib/dashboardAuth'
 import { t } from '../../lib/translations'
 import Link from 'next/link'
 
@@ -87,12 +88,25 @@ export default function DashboardOverview() {
   }, [])
 
   const loadDashboardData = async () => {
-    if (!supabase) return
     try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
+      const user = await getDashboardUser(supabase)
+      if (!user) {
+        setStats(prev => ({ ...prev, loading: false }))
+        return
+      }
       
       setUser(user)
+
+      if (!supabase) {
+        setStats(prev => ({
+          ...prev,
+          membershipDays: user?.created_at
+            ? Math.floor((new Date() - new Date(user.created_at)) / (1000 * 60 * 60 * 24))
+            : 0,
+          loading: false
+        }))
+        return
+      }
 
       // 1. Load basic stats (Parallel)
       const [

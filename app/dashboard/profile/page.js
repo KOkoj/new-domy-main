@@ -22,6 +22,7 @@ import {
   Settings
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
 
 export default function ProfileManagement() {
@@ -73,10 +74,12 @@ export default function ProfileManagement() {
   }, [])
 
   const loadProfile = async () => {
-    if (!supabase) return
     try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
+      const user = await getDashboardUser(supabase)
+      if (!user || !supabase) {
+        setLoading(false)
+        return
+      }
 
       setUser(user)
 

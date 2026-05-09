@@ -16,6 +16,7 @@ import {
   Download
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
 
 const UPCOMING_WEBINARS = [
@@ -168,11 +169,13 @@ export default function WebinarsPage() {
   }, [])
 
   const loadWebinarData = async () => {
-    if (!supabase) return
     try {
       setLoading(true)
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
+      const user = await getDashboardUser(supabase)
+      if (!user || !supabase) {
+        setLoading(false)
+        return
+      }
       
       setUser(user)
 
@@ -542,4 +545,3 @@ END:VCALENDAR`
     </div>
   )
 }
-

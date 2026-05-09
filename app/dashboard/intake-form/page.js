@@ -22,6 +22,7 @@ import {
   Globe
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
 
 const PROPERTY_TYPES = ['Villa', 'House', 'Apartment', 'Farmhouse', 'Castle', 'Commercial', 'Land']
@@ -241,10 +242,12 @@ export default function IntakeForm() {
   }, [])
 
   const loadFormData = async () => {
-    if (!supabase) return
     try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
+      const user = await getDashboardUser(supabase)
+      if (!user || !supabase) {
+        setLoading(false)
+        return
+      }
       
       setUser(user)
       
@@ -1066,4 +1069,3 @@ export default function IntakeForm() {
     </div>
   )
 }
-

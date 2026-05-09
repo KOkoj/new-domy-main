@@ -54,7 +54,10 @@ export default function DocumentsPage() {
   }, [])
 
   const loadDocuments = async () => {
-    if (!supabase) return
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
     try {
       setLoading(true)
       const { data, error } = await supabase
