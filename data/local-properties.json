@@ -1,5 +1,1164 @@
 [
   {
+    "_id": "local-import-abruzzo-quadrilocale-pescara-via-teramo-1778352000530-ooha9",
+    "_type": "listing",
+    "title": {
+      "en": "Four-Room Apartment in Pescara, Via Teramo",
+      "cs": "Ctyrpokojovy byt v Pescare, Via Teramo",
+      "it": "Quadrilocale a Pescara in via Teramo"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "abruzzo-quadrilocale-pescara-via-teramo"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 260000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 139
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Pescara",
+          "cs": "Pescara",
+          "it": "Pescara"
+        },
+        "slug": {
+          "current": "pescara"
+        },
+        "region": {
+          "name": {
+            "it": "Abruzzo",
+            "en": "Abruzzo",
+            "cs": "Abruzzo"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Teramo, Pescara",
+        "cs": "Via Teramo, Pescara",
+        "it": "Via Teramo, Pescara"
+      },
+      "coordinates": {
+        "lat": 42.4666,
+        "lng": 14.2092
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Pescara, this apartment offers 139 sqm, 4 rooms, 2 bedrooms and 1 bathrooms. The property is located at Via Teramo, Pescara and is a practical option for buyers looking in Abruzzo with clear figures and a defined asking price.\n\nThe key point is central area di Pescara near the station. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Pescara nabizi tato nemovitost 139 m2, 4 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Via Teramo, Pescara a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Abruzzo s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je centralni oblast di Pescara blizko nadrazi. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Pescara, proponiamo appartamento con 139 mq, 4 locali, 2 camere e 1 bagni. La proprieta si trova in Via Teramo, Pescara e rappresenta una soluzione concreta per chi cerca una casa in Abruzzo con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e zona centrale di Pescara vicino alla stazione. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/01-gallery-1.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/02-gallery-10.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/03-gallery-11.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/04-gallery-12.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/05-gallery-2.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/06-gallery-3.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/07-gallery-4.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/08-gallery-5.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/09-gallery-6.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/10-gallery-7.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/11-gallery-8.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/12-gallery-9.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/13-main.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "zona centrale di Pescara vicino alla stazione",
+          "en": "central area di Pescara near the station",
+          "cs": "centralni oblast di Pescara blizko nadrazi"
+        }
+      },
+      {
+        "name": {
+          "it": "139 mq commerciali",
+          "en": "139 commercial sqm",
+          "cs": "139 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Teramo",
+          "en": "listed address: Via Teramo",
+          "cs": "uvedena adresa: Via Teramo"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Four-Room Apartment in Pescara, Via Teramo for sale",
+      "cs": "Ctyrpokojovy byt v Pescare, Via Teramo na prodej",
+      "it": "Quadrilocale a Pescara in via Teramo in vendita"
+    },
+    "seoDescription": {
+      "en": "Pescara: apartment of 139 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 260,000.",
+      "cs": "Pescara: nemovitost 139 m2, 2 loznice, 1 koupelny. Cena 260000 EUR.",
+      "it": "Pescara: appartamento di 139 mq, 2 camere, 1 bagni. Prezzo 260.000 euro."
+    },
+    "keywords": [
+      "abruzzo",
+      "pescara",
+      "apartment",
+      "via-teramo",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127611620/",
+    "_createdAt": "2026-05-09T18:40:00.529Z",
+    "_updatedAt": "2026-05-09T18:40:00.529Z"
+  },
+  {
+    "_id": "local-import-abruzzo-trilocale-vasto-pennaluce-1778352000168-wfj39",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Bedroom Apartment in Vasto, Via Pennaluce",
+      "cs": "Trilocale ve Vastu, Via Pennaluce",
+      "it": "Trilocale a Vasto in via Pennaluce"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "abruzzo-trilocale-vasto-pennaluce"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 75000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 60
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Vasto",
+          "cs": "Vasto",
+          "it": "Vasto"
+        },
+        "slug": {
+          "current": "vasto"
+        },
+        "region": {
+          "name": {
+            "it": "Abruzzo",
+            "en": "Abruzzo",
+            "cs": "Abruzzo"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "VIA PENNALUCE, Vasto",
+        "cs": "VIA PENNALUCE, Vasto",
+        "it": "VIA PENNALUCE, Vasto"
+      },
+      "coordinates": {
+        "lat": 42.1715,
+        "lng": 14.7144
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Vasto, this apartment offers 60 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at VIA PENNALUCE, Vasto and is a practical option for buyers looking in Abruzzo with clear figures and a defined asking price.\n\nThe key point is zona Incoronata a Vasto con due camere. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Vasto nabizi tato nemovitost 60 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese VIA PENNALUCE, Vasto a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Abruzzo s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je zona Incoronata a Vasto con due camere. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Vasto, proponiamo appartamento con 60 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in VIA PENNALUCE, Vasto e rappresenta una soluzione concreta per chi cerca una casa in Abruzzo con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e zona Incoronata a Vasto con due camere. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/01-gallery-1.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/02-gallery-10.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/03-gallery-11.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/04-gallery-12.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/05-gallery-2.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/06-gallery-3.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/07-gallery-4.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/08-gallery-5.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/09-gallery-6.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/10-gallery-7.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/11-gallery-8.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/12-gallery-9.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/13-main.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "zona Incoronata a Vasto con due camere",
+          "en": "zona Incoronata a Vasto con due camere",
+          "cs": "zona Incoronata a Vasto con due camere"
+        }
+      },
+      {
+        "name": {
+          "it": "60 mq commerciali",
+          "en": "60 commercial sqm",
+          "cs": "60 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: VIA PENNALUCE",
+          "en": "listed address: VIA PENNALUCE",
+          "cs": "uvedena adresa: VIA PENNALUCE"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment in Vasto, Via Pennaluce for sale",
+      "cs": "Trilocale ve Vastu, Via Pennaluce na prodej",
+      "it": "Trilocale a Vasto in via Pennaluce in vendita"
+    },
+    "seoDescription": {
+      "en": "Vasto: apartment of 60 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 75,000.",
+      "cs": "Vasto: nemovitost 60 m2, 2 loznice, 1 koupelny. Cena 75000 EUR.",
+      "it": "Vasto: appartamento di 60 mq, 2 camere, 1 bagni. Prezzo 75.000 euro."
+    },
+    "keywords": [
+      "abruzzo",
+      "vasto",
+      "apartment",
+      "via-pennaluce",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128187634/",
+    "_createdAt": "2026-05-09T18:40:00.167Z",
+    "_updatedAt": "2026-05-09T18:40:00.167Z"
+  },
+  {
+    "_id": "local-import-abruzzo-trilocale-villetta-barrea-marsicana-1778351999830-05gq4",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Bedroom Apartment in Villetta Barrea",
+      "cs": "Trilocale ve Villetta Barrea",
+      "it": "Trilocale a Villetta Barrea"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "abruzzo-trilocale-villetta-barrea-marsicana"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 79000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 80
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Villetta Barrea",
+          "cs": "Villetta Barrea",
+          "it": "Villetta Barrea"
+        },
+        "slug": {
+          "current": "villetta-barrea"
+        },
+        "region": {
+          "name": {
+            "it": "Abruzzo",
+            "en": "Abruzzo",
+            "cs": "Abruzzo"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "SR 83 MARSICANA VIA ROMA, Villetta Barrea",
+        "cs": "SR 83 MARSICANA VIA ROMA, Villetta Barrea",
+        "it": "SR 83 MARSICANA VIA ROMA, Villetta Barrea"
+      },
+      "coordinates": {
+        "lat": 41.7755,
+        "lng": 13.9414
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Villetta Barrea, this apartment offers 80 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at SR 83 MARSICANA VIA ROMA, Villetta Barrea and is a practical option for buyers looking in Abruzzo with clear figures and a defined asking price.\n\nThe key point is posizione in area montana vicino al Parco Nazionale d Abruzzo. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Villetta Barrea nabizi tato nemovitost 80 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese SR 83 MARSICANA VIA ROMA, Villetta Barrea a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Abruzzo s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je posizione in area montana vicino al Parco Nazionale d Abruzzo. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Villetta Barrea, proponiamo appartamento con 80 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in SR 83 MARSICANA VIA ROMA, Villetta Barrea e rappresenta una soluzione concreta per chi cerca una casa in Abruzzo con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e posizione in area montana vicino al Parco Nazionale d Abruzzo. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/01-gallery-1.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/02-gallery-10.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/03-gallery-11.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/04-gallery-12.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/05-gallery-2.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/06-gallery-3.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/07-gallery-4.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/08-gallery-5.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/09-gallery-6.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/10-gallery-7.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/11-gallery-8.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/12-gallery-9.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/13-main.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "posizione in area montana vicino al Parco Nazionale d Abruzzo",
+          "en": "posizione in area montana vicino al Parco Nazionale d Abruzzo",
+          "cs": "posizione in area montana vicino al Parco Nazionale d Abruzzo"
+        }
+      },
+      {
+        "name": {
+          "it": "80 mq commerciali",
+          "en": "80 commercial sqm",
+          "cs": "80 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: SR 83 MARSICANA VIA ROMA",
+          "en": "listed address: SR 83 MARSICANA VIA ROMA",
+          "cs": "uvedena adresa: SR 83 MARSICANA VIA ROMA"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment in Villetta Barrea for sale",
+      "cs": "Trilocale ve Villetta Barrea na prodej",
+      "it": "Trilocale a Villetta Barrea in vendita"
+    },
+    "seoDescription": {
+      "en": "Villetta Barrea: apartment of 80 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 79,000.",
+      "cs": "Villetta Barrea: nemovitost 80 m2, 2 loznice, 1 koupelny. Cena 79000 EUR.",
+      "it": "Villetta Barrea: appartamento di 80 mq, 2 camere, 1 bagni. Prezzo 79.000 euro."
+    },
+    "keywords": [
+      "abruzzo",
+      "villetta-barrea",
+      "apartment",
+      "sr-83-marsicana-via-roma",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/122322566/",
+    "_createdAt": "2026-05-09T18:39:59.829Z",
+    "_updatedAt": "2026-05-09T18:39:59.829Z"
+  },
+  {
+    "_id": "local-import-lazio-quadrilocale-roma-fleming-citta-di-castello-1778351999551-x9xnq",
+    "_type": "listing",
+    "title": {
+      "en": "Four-Room Apartment in Rome Fleming",
+      "cs": "Ctyrpokojovy byt v Rime Fleming",
+      "it": "Quadrilocale a Roma Fleming"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-quadrilocale-roma-fleming-citta-di-castello"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 650000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 140
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Roma",
+          "cs": "Roma",
+          "it": "Roma"
+        },
+        "slug": {
+          "current": "roma"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Citta' Di Castello, Roma",
+        "cs": "Via Citta' Di Castello, Roma",
+        "it": "Via Citta' Di Castello, Roma"
+      },
+      "coordinates": {
+        "lat": 41.9463,
+        "lng": 12.475
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Roma, this apartment offers 140 sqm, 4 rooms, 3 bedrooms and 2 bathrooms. The property is located at Via Citta' Di Castello, Roma and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is large floor area nel district Fleming. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Roma nabizi tato nemovitost 140 m2, 4 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese Via Citta' Di Castello, Roma a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je velka plocha nel ctvrt Fleming. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Roma, proponiamo appartamento con 140 mq, 4 locali, 3 camere e 2 bagni. La proprieta si trova in Via Citta' Di Castello, Roma e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e ampia metratura nel quartiere Fleming. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/01-gallery-1.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/02-gallery-10.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/03-gallery-11.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/04-gallery-12.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/05-gallery-2.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/06-gallery-3.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/07-gallery-4.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/08-gallery-5.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/09-gallery-6.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/10-gallery-7.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/11-gallery-8.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/12-gallery-9.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/13-main.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "ampia metratura nel quartiere Fleming",
+          "en": "large floor area nel district Fleming",
+          "cs": "velka plocha nel ctvrt Fleming"
+        }
+      },
+      {
+        "name": {
+          "it": "140 mq commerciali",
+          "en": "140 commercial sqm",
+          "cs": "140 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Citta' Di Castello",
+          "en": "listed address: Via Citta' Di Castello",
+          "cs": "uvedena adresa: Via Citta' Di Castello"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Four-Room Apartment in Rome Fleming for sale",
+      "cs": "Ctyrpokojovy byt v Rime Fleming na prodej",
+      "it": "Quadrilocale a Roma Fleming in vendita"
+    },
+    "seoDescription": {
+      "en": "Roma: apartment of 140 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 650,000.",
+      "cs": "Roma: nemovitost 140 m2, 3 loznice, 2 koupelny. Cena 650000 EUR.",
+      "it": "Roma: appartamento di 140 mq, 3 camere, 2 bagni. Prezzo 650.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "roma",
+      "apartment",
+      "via-citta-di-castello",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128244762/",
+    "_createdAt": "2026-05-09T18:39:59.550Z",
+    "_updatedAt": "2026-05-09T18:39:59.550Z"
+  },
+  {
+    "_id": "local-import-lazio-trilocale-roma-balduina-cecilio-stazio-1778351999313-wvmm5",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Bedroom Apartment in Rome Balduina",
+      "cs": "Trilocale v Rime Balduina",
+      "it": "Trilocale a Roma Balduina"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-trilocale-roma-balduina-cecilio-stazio"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 279000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 55
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Roma",
+          "cs": "Roma",
+          "it": "Roma"
+        },
+        "slug": {
+          "current": "roma"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Cecilio Stazio, Roma",
+        "cs": "Via Cecilio Stazio, Roma",
+        "it": "Via Cecilio Stazio, Roma"
+      },
+      "coordinates": {
+        "lat": 41.9224,
+        "lng": 12.4447
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Roma, this apartment offers 55 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at Via Cecilio Stazio, Roma and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is zona Balduina con taglio compatto e due camere. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Roma nabizi tato nemovitost 55 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Via Cecilio Stazio, Roma a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je zona Balduina con taglio compatto e due camere. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Roma, proponiamo appartamento con 55 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in Via Cecilio Stazio, Roma e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e zona Balduina con taglio compatto e due camere. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/01-gallery-1.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/02-gallery-10.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/03-gallery-11.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/04-gallery-12.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/05-gallery-2.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/06-gallery-3.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/07-gallery-4.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/08-gallery-5.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/09-gallery-6.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/10-gallery-7.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/11-gallery-8.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/12-gallery-9.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/13-main.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "zona Balduina con taglio compatto e due camere",
+          "en": "zona Balduina con taglio compatto e due camere",
+          "cs": "zona Balduina con taglio compatto e due camere"
+        }
+      },
+      {
+        "name": {
+          "it": "55 mq commerciali",
+          "en": "55 commercial sqm",
+          "cs": "55 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Cecilio Stazio",
+          "en": "listed address: Via Cecilio Stazio",
+          "cs": "uvedena adresa: Via Cecilio Stazio"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment in Rome Balduina for sale",
+      "cs": "Trilocale v Rime Balduina na prodej",
+      "it": "Trilocale a Roma Balduina in vendita"
+    },
+    "seoDescription": {
+      "en": "Roma: apartment of 55 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 279,000.",
+      "cs": "Roma: nemovitost 55 m2, 2 loznice, 1 koupelny. Cena 279000 EUR.",
+      "it": "Roma: appartamento di 55 mq, 2 camere, 1 bagni. Prezzo 279.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "roma",
+      "apartment",
+      "via-cecilio-stazio",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128777492/",
+    "_createdAt": "2026-05-09T18:39:59.312Z",
+    "_updatedAt": "2026-05-09T18:39:59.312Z"
+  },
+  {
+    "_id": "local-import-abruzzo-terratetto-sante-marie-ludovici-1778351999067-9ssq5",
+    "_type": "listing",
+    "title": {
+      "en": "Multi-Family Townhouse in Sante Marie",
+      "cs": "Vicegeneracni radovy dum v Sante Marie",
+      "it": "Terratetto plurifamiliare a Sante Marie"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "abruzzo-terratetto-sante-marie-ludovici"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 89000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 221
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Sante Marie",
+          "cs": "Sante Marie",
+          "it": "Sante Marie"
+        },
+        "slug": {
+          "current": "sante-marie"
+        },
+        "region": {
+          "name": {
+            "it": "Abruzzo",
+            "en": "Abruzzo",
+            "cs": "Abruzzo"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Gustavo Ludovici, Sante Marie",
+        "cs": "Via Gustavo Ludovici, Sante Marie",
+        "it": "Via Gustavo Ludovici, Sante Marie"
+      },
+      "coordinates": {
+        "lat": 42.1054,
+        "lng": 13.1998
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Sante Marie, this independent home offers 221 sqm, 6 rooms, 3 bedrooms and 2 bathrooms. The property is located at Via Gustavo Ludovici, Sante Marie and is a practical option for buyers looking in Abruzzo with clear figures and a defined asking price.\n\nThe key point is large townhouse nel centro di Sante Marie. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Sante Marie nabizi tato nemovitost 221 m2, 6 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese Via Gustavo Ludovici, Sante Marie a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Abruzzo s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je velky radovy dum nel centro di Sante Marie. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Sante Marie, proponiamo casa indipendente con 221 mq, 6 locali, 3 camere e 2 bagni. La proprieta si trova in Via Gustavo Ludovici, Sante Marie e rappresenta una soluzione concreta per chi cerca una casa in Abruzzo con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e grande terratetto nel centro di Sante Marie. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1920817212/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920817046/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920816792/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920817126/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920817342/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920817164/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920817358/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920816880/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920816824/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920816842/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920817090/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920817374/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920816864/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1920816910/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "grande terratetto nel centro di Sante Marie",
+          "en": "large townhouse nel centro di Sante Marie",
+          "cs": "velky radovy dum nel centro di Sante Marie"
+        }
+      },
+      {
+        "name": {
+          "it": "221 mq commerciali",
+          "en": "221 commercial sqm",
+          "cs": "221 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Gustavo Ludovici",
+          "en": "listed address: Via Gustavo Ludovici",
+          "cs": "uvedena adresa: Via Gustavo Ludovici"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Multi-Family Townhouse in Sante Marie for sale",
+      "cs": "Vicegeneracni radovy dum v Sante Marie na prodej",
+      "it": "Terratetto plurifamiliare a Sante Marie in vendita"
+    },
+    "seoDescription": {
+      "en": "Sante Marie: independent home of 221 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 89,000.",
+      "cs": "Sante Marie: nemovitost 221 m2, 3 loznice, 2 koupelny. Cena 89000 EUR.",
+      "it": "Sante Marie: casa indipendente di 221 mq, 3 camere, 2 bagni. Prezzo 89.000 euro."
+    },
+    "keywords": [
+      "abruzzo",
+      "sante-marie",
+      "house",
+      "via-gustavo-ludovici",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128937298/",
+    "_createdAt": "2026-05-09T18:39:59.066Z",
+    "_updatedAt": "2026-05-09T18:39:59.066Z"
+  },
+  {
+    "_id": "local-import-lazio-bilocale-anzio-spadellata-susino-1778351998882-5ng5s",
+    "_type": "listing",
+    "title": {
+      "en": "One-Bedroom Apartment in Anzio, Spadellata Area",
+      "cs": "Dvoupokojovy byt v Anziu, oblast Spadellata",
+      "it": "Bilocale ad Anzio, zona Spadellata"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-bilocale-anzio-spadellata-susino"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 79000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 2,
+      "squareFootage": 64
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Anzio",
+          "cs": "Anzio",
+          "it": "Anzio"
+        },
+        "slug": {
+          "current": "anzio"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via del Susino, Anzio",
+        "cs": "Via del Susino, Anzio",
+        "it": "Via del Susino, Anzio"
+      },
+      "coordinates": {
+        "lat": 41.5219,
+        "lng": 12.6142
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Anzio, this apartment offers 64 sqm, 2 rooms, 1 bedrooms and 2 bathrooms. The property is located at Via del Susino, Anzio and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is one-bedroom apartment con due bathrooms nella zona Spadellata. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Anzio nabizi tato nemovitost 64 m2, 2 mistnosti, 1 loznice a 2 koupelny. Nachazi se na adrese Via del Susino, Anzio a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je dvoupokojovy byt con due koupelny nella zona Spadellata. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Anzio, proponiamo appartamento con 64 mq, 2 locali, 1 camere e 2 bagni. La proprieta si trova in Via del Susino, Anzio e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e bilocale con due bagni nella zona Spadellata. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/01-gallery-1.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/02-gallery-10.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/03-gallery-11.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/04-gallery-12.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/05-gallery-2.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/06-gallery-3.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/07-gallery-4.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/08-gallery-5.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/09-gallery-6.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/10-gallery-7.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/11-gallery-8.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/12-gallery-9.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/13-main.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "bilocale con due bagni nella zona Spadellata",
+          "en": "one-bedroom apartment con due bathrooms nella zona Spadellata",
+          "cs": "dvoupokojovy byt con due koupelny nella zona Spadellata"
+        }
+      },
+      {
+        "name": {
+          "it": "64 mq commerciali",
+          "en": "64 commercial sqm",
+          "cs": "64 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "2 locali",
+          "en": "2 rooms",
+          "cs": "2 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "1 camere da letto",
+          "en": "1 bedrooms",
+          "cs": "1 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via del Susino",
+          "en": "listed address: Via del Susino",
+          "cs": "uvedena adresa: Via del Susino"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "One-Bedroom Apartment in Anzio, Spadellata Area for sale",
+      "cs": "Dvoupokojovy byt v Anziu, oblast Spadellata na prodej",
+      "it": "Bilocale ad Anzio, zona Spadellata in vendita"
+    },
+    "seoDescription": {
+      "en": "Anzio: apartment of 64 sqm, 1 bedrooms, 2 bathrooms. Asking price EUR 79,000.",
+      "cs": "Anzio: nemovitost 64 m2, 1 loznice, 2 koupelny. Cena 79000 EUR.",
+      "it": "Anzio: appartamento di 64 mq, 1 camere, 2 bagni. Prezzo 79.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "anzio",
+      "apartment",
+      "via-del-susino",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/123387041/",
+    "_createdAt": "2026-05-09T18:39:58.881Z",
+    "_updatedAt": "2026-05-09T18:39:58.881Z"
+  },
+  {
+    "_id": "local-import-lazio-bilocale-roma-monteverde-trasfigurazione-1778351998503-xuve7",
+    "_type": "listing",
+    "title": {
+      "en": "One-Bedroom Apartment in Rome Monteverde Nuovo",
+      "cs": "Dvoupokojovy byt v Rime Monteverde Nuovo",
+      "it": "Bilocale a Roma Monteverde Nuovo"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-bilocale-roma-monteverde-trasfigurazione"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 299000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 55
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Roma",
+          "cs": "Roma",
+          "it": "Roma"
+        },
+        "slug": {
+          "current": "roma"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Piazza della Trasfigurazione, Roma",
+        "cs": "Piazza della Trasfigurazione, Roma",
+        "it": "Piazza della Trasfigurazione, Roma"
+      },
+      "coordinates": {
+        "lat": 41.8715,
+        "lng": 12.4466
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Roma, this apartment offers 55 sqm, 2 rooms, 1 bedrooms and 1 bathrooms. The property is located at Piazza della Trasfigurazione, Roma and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is piazza della Trasfigurazione nel district Monteverde Nuovo. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Roma nabizi tato nemovitost 55 m2, 2 mistnosti, 1 loznice a 1 koupelny. Nachazi se na adrese Piazza della Trasfigurazione, Roma a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je piazza della Trasfigurazione nel ctvrt Monteverde Nuovo. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Roma, proponiamo appartamento con 55 mq, 2 locali, 1 camere e 1 bagni. La proprieta si trova in Piazza della Trasfigurazione, Roma e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e piazza della Trasfigurazione nel quartiere Monteverde Nuovo. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/01-gallery-1.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/02-gallery-10.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/03-gallery-11.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/04-gallery-12.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/05-gallery-2.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/06-gallery-3.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/07-gallery-4.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/08-gallery-5.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/09-gallery-6.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/10-gallery-7.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/11-gallery-8.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/12-gallery-9.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/13-main.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "piazza della Trasfigurazione nel quartiere Monteverde Nuovo",
+          "en": "piazza della Trasfigurazione nel district Monteverde Nuovo",
+          "cs": "piazza della Trasfigurazione nel ctvrt Monteverde Nuovo"
+        }
+      },
+      {
+        "name": {
+          "it": "55 mq commerciali",
+          "en": "55 commercial sqm",
+          "cs": "55 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "2 locali",
+          "en": "2 rooms",
+          "cs": "2 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "1 camere da letto",
+          "en": "1 bedrooms",
+          "cs": "1 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Piazza della Trasfigurazione",
+          "en": "listed address: Piazza della Trasfigurazione",
+          "cs": "uvedena adresa: Piazza della Trasfigurazione"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "One-Bedroom Apartment in Rome Monteverde Nuovo for sale",
+      "cs": "Dvoupokojovy byt v Rime Monteverde Nuovo na prodej",
+      "it": "Bilocale a Roma Monteverde Nuovo in vendita"
+    },
+    "seoDescription": {
+      "en": "Roma: apartment of 55 sqm, 1 bedrooms, 1 bathrooms. Asking price EUR 299,000.",
+      "cs": "Roma: nemovitost 55 m2, 1 loznice, 1 koupelny. Cena 299000 EUR.",
+      "it": "Roma: appartamento di 55 mq, 1 camere, 1 bagni. Prezzo 299.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "roma",
+      "apartment",
+      "piazza-della-trasfigurazione",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128775662/",
+    "_createdAt": "2026-05-09T18:39:58.498Z",
+    "_updatedAt": "2026-05-09T18:39:58.498Z"
+  },
+  {
     "_id": "local-import-lazio-villa-lanuvio-laviniense-1778348024961-2qse7",
     "_type": "listing",
     "title": {
