@@ -1,5 +1,2157 @@
 [
   {
+    "_id": "local-import-veneto-terratetto-venezia-zattere-spirito-santo-1778342445182-wxfdz",
+    "_type": "listing",
+    "title": {
+      "en": "Townhouse near Zattere in Venice",
+      "cs": "Dum u Zattere v Benatkach",
+      "it": "Terra-cielo alle Zattere, Venezia"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "veneto-terratetto-venezia-zattere-spirito-santo"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 380000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 60
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Venezia",
+          "cs": "Venezia",
+          "it": "Venezia"
+        },
+        "slug": {
+          "current": "venezia"
+        },
+        "region": {
+          "name": {
+            "it": "Veneto",
+            "en": "Veneto",
+            "cs": "Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Fondamenta Zattere allo Spirito Santo, Venezia",
+        "cs": "Fondamenta Zattere allo Spirito Santo, Venezia",
+        "it": "Fondamenta Zattere allo Spirito Santo, Venezia"
+      },
+      "coordinates": {
+        "lat": 45.4284,
+        "lng": 12.3313
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Venezia, this independent home offers 60 sqm, 3 rooms, 2 bedrooms and 2 bathrooms. The property is located at Fondamenta Zattere allo Spirito Santo, Venezia and is a practical option for buyers looking in Veneto with clear figures and a defined asking price.\n\nThe key point is corte veneziana tranquilla vicino alle Zattere. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Venezia nabizi tato nemovitost 60 m2, 3 mistnosti, 2 loznice a 2 koupelny. Nachazi se na adrese Fondamenta Zattere allo Spirito Santo, Venezia a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Benatsko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je corte veneziana tranquilla vicino alle Zattere. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Venezia, proponiamo casa indipendente con 60 mq, 3 locali, 2 camere e 2 bagni. La proprieta si trova in Fondamenta Zattere allo Spirito Santo, Venezia e rappresenta una soluzione concreta per chi cerca una casa in Veneto con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e corte veneziana tranquilla vicino alle Zattere. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/01-gallery-1.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/02-gallery-10.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/03-gallery-11.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/04-gallery-2.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/05-gallery-3.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/06-gallery-4.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/07-gallery-5.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/08-gallery-6.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/09-gallery-7.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/10-gallery-8.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/11-gallery-9.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/12-main.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "corte veneziana tranquilla vicino alle Zattere",
+          "en": "corte veneziana tranquilla vicino alle Zattere",
+          "cs": "corte veneziana tranquilla vicino alle Zattere"
+        }
+      },
+      {
+        "name": {
+          "it": "60 mq commerciali",
+          "en": "60 commercial sqm",
+          "cs": "60 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Fondamenta Zattere allo Spirito Santo",
+          "en": "listed address: Fondamenta Zattere allo Spirito Santo",
+          "cs": "uvedena adresa: Fondamenta Zattere allo Spirito Santo"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Townhouse near Zattere in Venice for sale",
+      "cs": "Dum u Zattere v Benatkach na prodej",
+      "it": "Terra-cielo alle Zattere, Venezia in vendita"
+    },
+    "seoDescription": {
+      "en": "Venezia: house of 60 sqm, 2 bedrooms, 2 bathrooms. Asking price EUR 380,000.",
+      "cs": "Venezia: nemovitost 60 m2, 2 loznice, 2 koupelny. Cena 380000 EUR.",
+      "it": "Venezia: casa indipendente di 60 mq, 2 camere, 2 bagni. Prezzo 380.000 euro."
+    },
+    "keywords": [
+      "veneto",
+      "venezia",
+      "house",
+      "fondamenta-zattere-allo-spirito-santo",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/81535855/",
+    "_createdAt": "2026-05-09T16:00:45.182Z",
+    "_updatedAt": "2026-05-09T16:00:45.182Z"
+  },
+  {
+    "_id": "local-import-veneto-terratetto-venezia-castello-biennale-1778342444953-giwne",
+    "_type": "listing",
+    "title": {
+      "en": "Independent Townhouse in Venice Castello",
+      "cs": "Samostatny dum ve veneztske ctvrti Castello",
+      "it": "Terra-cielo indipendente a Venezia Castello"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "veneto-terratetto-venezia-castello-biennale"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 320000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 100
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Venezia",
+          "cs": "Venezia",
+          "it": "Venezia"
+        },
+        "slug": {
+          "current": "venezia"
+        },
+        "region": {
+          "name": {
+            "it": "Veneto",
+            "en": "Veneto",
+            "cs": "Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Venezia",
+        "cs": "Venezia",
+        "it": "Venezia"
+      },
+      "coordinates": {
+        "lat": 45.4325,
+        "lng": 12.3556
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Venezia, this independent home offers 100 sqm, 5 rooms, 2 bedrooms and 1 bathrooms. The property is located at Venezia and is a practical option for buyers looking in Veneto with clear figures and a defined asking price.\n\nThe key point is independent entrance vicino a Via Garibaldi e Biennale. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Venezia nabizi tato nemovitost 100 m2, 5 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Venezia a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Benatsko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je samostatny vstup vicino a Via Garibaldi e Biennale. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Venezia, proponiamo casa indipendente con 100 mq, 5 locali, 2 camere e 1 bagni. La proprieta si trova in Venezia e rappresenta una soluzione concreta per chi cerca una casa in Veneto con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e ingresso indipendente vicino a Via Garibaldi e Biennale. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/01-gallery-1.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/02-gallery-2.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/03-gallery-3.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/04-gallery-4.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/05-gallery-5.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/06-gallery-6.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/07-gallery-7.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/08-gallery-8.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/09-gallery-9.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/10-main.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/11-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "ingresso indipendente vicino a Via Garibaldi e Biennale",
+          "en": "independent entrance vicino a Via Garibaldi e Biennale",
+          "cs": "samostatny vstup vicino a Via Garibaldi e Biennale"
+        }
+      },
+      {
+        "name": {
+          "it": "100 mq commerciali",
+          "en": "100 commercial sqm",
+          "cs": "100 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "5 locali",
+          "en": "5 rooms",
+          "cs": "5 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Independent Townhouse in Venice Castello for sale",
+      "cs": "Samostatny dum ve veneztske ctvrti Castello na prodej",
+      "it": "Terra-cielo indipendente a Venezia Castello in vendita"
+    },
+    "seoDescription": {
+      "en": "Venezia: house of 100 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 320,000.",
+      "cs": "Venezia: nemovitost 100 m2, 2 loznice, 1 koupelny. Cena 320000 EUR.",
+      "it": "Venezia: casa indipendente di 100 mq, 2 camere, 1 bagni. Prezzo 320.000 euro."
+    },
+    "keywords": [
+      "veneto",
+      "venezia",
+      "house",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/123899347/",
+    "_createdAt": "2026-05-09T16:00:44.952Z",
+    "_updatedAt": "2026-05-09T16:00:44.952Z"
+  },
+  {
+    "_id": "local-import-veneto-villa-massanzago-viale-roma-1778342444745-f9kue",
+    "_type": "listing",
+    "title": {
+      "en": "Detached Villa on Large Plot in Massanzago",
+      "cs": "Samostatna vila s velkym pozemkem v Massanzagu",
+      "it": "Villa singola con grande lotto a Massanzago"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "veneto-villa-massanzago-viale-roma"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 350000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "squareFootage": 286
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Massanzago",
+          "cs": "Massanzago",
+          "it": "Massanzago"
+        },
+        "slug": {
+          "current": "massanzago"
+        },
+        "region": {
+          "name": {
+            "it": "Veneto",
+            "en": "Veneto",
+            "cs": "Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Viale Roma, Massanzago",
+        "cs": "Viale Roma, Massanzago",
+        "it": "Viale Roma, Massanzago"
+      },
+      "coordinates": {
+        "lat": 45.5515,
+        "lng": 12.0193
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Massanzago, this villa offers 286 sqm, 5 rooms, 4 bedrooms and 2 bathrooms. The property is located at Viale Roma, Massanzago and is a practical option for buyers looking in Veneto with clear figures and a defined asking price.\n\nThe key point is villa in centro paese con lotto di circa 1100 mq. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Massanzago nabizi tato nemovitost 286 m2, 5 mistnosti, 4 loznice a 2 koupelny. Nachazi se na adrese Viale Roma, Massanzago a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Benatsko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je villa in centro paese con lotto di circa 1100 mq. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Massanzago, proponiamo villa con 286 mq, 5 locali, 4 camere e 2 bagni. La proprieta si trova in Viale Roma, Massanzago e rappresenta una soluzione concreta per chi cerca una casa in Veneto con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa in centro paese con lotto di circa 1100 mq. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/01-gallery-1.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/02-gallery-10.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/03-gallery-11.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/04-gallery-12.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/05-gallery-2.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/06-gallery-3.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/07-gallery-4.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/08-gallery-5.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/09-gallery-6.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/10-gallery-7.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/11-gallery-8.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/12-gallery-9.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/13-main.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa in centro paese con lotto di circa 1100 mq",
+          "en": "villa in centro paese con lotto di circa 1100 mq",
+          "cs": "villa in centro paese con lotto di circa 1100 mq"
+        }
+      },
+      {
+        "name": {
+          "it": "286 mq commerciali",
+          "en": "286 commercial sqm",
+          "cs": "286 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "5 locali",
+          "en": "5 rooms",
+          "cs": "5 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "4 camere da letto",
+          "en": "4 bedrooms",
+          "cs": "4 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Viale Roma",
+          "en": "listed address: Viale Roma",
+          "cs": "uvedena adresa: Viale Roma"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Detached Villa on Large Plot in Massanzago for sale",
+      "cs": "Samostatna vila s velkym pozemkem v Massanzagu na prodej",
+      "it": "Villa singola con grande lotto a Massanzago in vendita"
+    },
+    "seoDescription": {
+      "en": "Massanzago: villa of 286 sqm, 4 bedrooms, 2 bathrooms. Asking price EUR 350,000.",
+      "cs": "Massanzago: nemovitost 286 m2, 4 loznice, 2 koupelny. Cena 350000 EUR.",
+      "it": "Massanzago: villa di 286 mq, 4 camere, 2 bagni. Prezzo 350.000 euro."
+    },
+    "keywords": [
+      "veneto",
+      "massanzago",
+      "villa",
+      "viale-roma",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128875114/",
+    "_createdAt": "2026-05-09T16:00:44.744Z",
+    "_updatedAt": "2026-05-09T16:00:44.744Z"
+  },
+  {
+    "_id": "local-import-veneto-villa-legnaro-vescovo-giardino-1778342444528-j7bcy",
+    "_type": "listing",
+    "title": {
+      "en": "A2-Rated Detached Villa with Large Garden in Legnaro",
+      "cs": "Samostatna vila A2 s velkou zahradou v Legnaru",
+      "it": "Villa singola in classe A2 con grande giardino a Legnaro"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "veneto-villa-legnaro-vescovo-giardino"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 330000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 2,
+      "bathrooms": 3,
+      "squareFootage": 385
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Legnaro",
+          "cs": "Legnaro",
+          "it": "Legnaro"
+        },
+        "slug": {
+          "current": "legnaro"
+        },
+        "region": {
+          "name": {
+            "it": "Veneto",
+            "en": "Veneto",
+            "cs": "Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Vescovo, Legnaro",
+        "cs": "Vescovo, Legnaro",
+        "it": "Vescovo, Legnaro"
+      },
+      "coordinates": {
+        "lat": 45.3304,
+        "lng": 11.9779
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Legnaro, this villa offers 385 sqm, 6 rooms, 2 bedrooms and 3 bathrooms. The property is located at Vescovo, Legnaro and is a practical option for buyers looking in Veneto with clear figures and a defined asking price.\n\nThe key point is 2010 villa with garden, photovoltaic system and generous accessory spaces. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Legnaro nabizi tato nemovitost 385 m2, 6 mistnosti, 2 loznice a 3 koupelny. Nachazi se na adrese Vescovo, Legnaro a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Benatsko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je vila z roku 2010 se zahradou, fotovoltaikou a velkym prislusenstvim. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Legnaro, proponiamo villa con 385 mq, 6 locali, 2 camere e 3 bagni. La proprieta si trova in Vescovo, Legnaro e rappresenta una soluzione concreta per chi cerca una casa in Veneto con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa del 2010 con giardino, fotovoltaico e ampi accessori. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1876461181/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1876461201/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1876461203/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1876461209/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1876461219/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1876461229/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1876461239/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1876461247/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1876461253/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1876461265/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1876461271/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1876461285/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa del 2010 con giardino, fotovoltaico e ampi accessori",
+          "en": "2010 villa with garden, photovoltaic system and generous accessory spaces",
+          "cs": "vila z roku 2010 se zahradou, fotovoltaikou a velkym prislusenstvim"
+        }
+      },
+      {
+        "name": {
+          "it": "385 mq commerciali",
+          "en": "385 commercial sqm",
+          "cs": "385 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Vescovo",
+          "en": "listed address: Vescovo",
+          "cs": "uvedena adresa: Vescovo"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "A2-Rated Detached Villa with Large Garden in Legnaro for sale",
+      "cs": "Samostatna vila A2 s velkou zahradou v Legnaru na prodej",
+      "it": "Villa singola in classe A2 con grande giardino a Legnaro in vendita"
+    },
+    "seoDescription": {
+      "en": "Legnaro: villa of 385 sqm, 2 bedrooms, 3 bathrooms. Asking price EUR 330,000.",
+      "cs": "Legnaro: nemovitost 385 m2, 2 loznice, 3 koupelny. Cena 330000 EUR.",
+      "it": "Legnaro: villa di 385 mq, 2 camere, 3 bagni. Prezzo 330.000 euro."
+    },
+    "keywords": [
+      "veneto",
+      "legnaro",
+      "villa",
+      "vescovo",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127099395/",
+    "_createdAt": "2026-05-09T16:00:44.527Z",
+    "_updatedAt": "2026-05-09T16:00:44.527Z"
+  },
+  {
+    "_id": "local-import-veneto-villa-bifamiliare-crespino-via-trieste-1778342444363-wbnlc",
+    "_type": "listing",
+    "title": {
+      "en": "Semi-Detached Villa with Generous Spaces in Crespino",
+      "cs": "Prostorna polovina vily v Crespinu",
+      "it": "Villa bifamiliare con ampi spazi a Crespino"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "veneto-villa-bifamiliare-crespino-via-trieste"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 95000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 285
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Crespino",
+          "cs": "Crespino",
+          "it": "Crespino"
+        },
+        "slug": {
+          "current": "crespino"
+        },
+        "region": {
+          "name": {
+            "it": "Veneto",
+            "en": "Veneto",
+            "cs": "Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Trieste, Crespino",
+        "cs": "Via Trieste, Crespino",
+        "it": "Via Trieste, Crespino"
+      },
+      "coordinates": {
+        "lat": 44.9829,
+        "lng": 11.89
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Crespino, this villa offers 285 sqm, 6 rooms, 2 bedrooms and 2 bathrooms. The property is located at Via Trieste, Crespino and is a practical option for buyers looking in Veneto with clear figures and a defined asking price.\n\nThe key point is semi-detached villa from 1983 in a residential area. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Crespino nabizi tato nemovitost 285 m2, 6 mistnosti, 2 loznice a 2 koupelny. Nachazi se na adrese Via Trieste, Crespino a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Benatsko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je polovina vily z roku 1983 v rezidencni oblasti. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Crespino, proponiamo villa con 285 mq, 6 locali, 2 camere e 2 bagni. La proprieta si trova in Via Trieste, Crespino e rappresenta una soluzione concreta per chi cerca una casa in Veneto con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa bifamiliare del 1983 in zona residenziale. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1907019718/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907020144/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907020152/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907020164/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907020168/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907020176/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907020182/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907020190/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907020196/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907020202/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907020208/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907020220/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa bifamiliare del 1983 in zona residenziale",
+          "en": "semi-detached villa from 1983 in a residential area",
+          "cs": "polovina vily z roku 1983 v rezidencni oblasti"
+        }
+      },
+      {
+        "name": {
+          "it": "285 mq commerciali",
+          "en": "285 commercial sqm",
+          "cs": "285 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Trieste",
+          "en": "listed address: Via Trieste",
+          "cs": "uvedena adresa: Via Trieste"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Semi-Detached Villa with Generous Spaces in Crespino for sale",
+      "cs": "Prostorna polovina vily v Crespinu na prodej",
+      "it": "Villa bifamiliare con ampi spazi a Crespino in vendita"
+    },
+    "seoDescription": {
+      "en": "Crespino: villa of 285 sqm, 2 bedrooms, 2 bathrooms. Asking price EUR 95,000.",
+      "cs": "Crespino: nemovitost 285 m2, 2 loznice, 2 koupelny. Cena 95000 EUR.",
+      "it": "Crespino: villa di 285 mq, 2 camere, 2 bagni. Prezzo 95.000 euro."
+    },
+    "keywords": [
+      "veneto",
+      "crespino",
+      "villa",
+      "via-trieste",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128365194/",
+    "_createdAt": "2026-05-09T16:00:44.361Z",
+    "_updatedAt": "2026-05-09T16:00:44.361Z"
+  },
+  {
+    "_id": "local-import-veneto-trilocale-legnago-porto-carducci-1778342444204-pspg7",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Bedroom Apartment in Porto di Legnago",
+      "cs": "Trilocale v Porto di Legnago",
+      "it": "Trilocale a Porto di Legnago"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "veneto-trilocale-legnago-porto-carducci"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 89000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 85
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Legnago",
+          "cs": "Legnago",
+          "it": "Legnago"
+        },
+        "slug": {
+          "current": "legnago"
+        },
+        "region": {
+          "name": {
+            "it": "Veneto",
+            "en": "Veneto",
+            "cs": "Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Piazzetta Giosuè Carducci, 1, Legnago",
+        "cs": "Via Piazzetta Giosuè Carducci, 1, Legnago",
+        "it": "Via Piazzetta Giosuè Carducci, 1, Legnago"
+      },
+      "coordinates": {
+        "lat": 45.1966,
+        "lng": 11.3133
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Legnago, this apartment offers 85 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at Via Piazzetta Giosuè Carducci, 1, Legnago and is a practical option for buyers looking in Veneto with clear figures and a defined asking price.\n\nThe key point is first floor con spazi interni flessibili. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Legnago nabizi tato nemovitost 85 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Via Piazzetta Giosuè Carducci, 1, Legnago a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Benatsko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je prvni patro con spazi interni flessibili. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Legnago, proponiamo appartamento con 85 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in Via Piazzetta Giosuè Carducci, 1, Legnago e rappresenta una soluzione concreta per chi cerca una casa in Veneto con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e primo piano con spazi interni flessibili. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/01-gallery-1.jpg",
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/02-gallery-10.jpg",
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/03-gallery-2.jpg",
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/04-gallery-3.jpg",
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/05-gallery-4.jpg",
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/06-gallery-5.jpg",
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/07-gallery-6.jpg",
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/08-gallery-7.jpg",
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/09-gallery-8.jpg",
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/10-gallery-9.jpg",
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/11-main.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "primo piano con spazi interni flessibili",
+          "en": "first floor con spazi interni flessibili",
+          "cs": "prvni patro con spazi interni flessibili"
+        }
+      },
+      {
+        "name": {
+          "it": "85 mq commerciali",
+          "en": "85 commercial sqm",
+          "cs": "85 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Piazzetta Giosuè Carducci, 1",
+          "en": "listed address: Via Piazzetta Giosuè Carducci, 1",
+          "cs": "uvedena adresa: Via Piazzetta Giosuè Carducci, 1"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment in Porto di Legnago for sale",
+      "cs": "Trilocale v Porto di Legnago na prodej",
+      "it": "Trilocale a Porto di Legnago in vendita"
+    },
+    "seoDescription": {
+      "en": "Legnago: apartment of 85 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 89,000.",
+      "cs": "Legnago: nemovitost 85 m2, 2 loznice, 1 koupelny. Cena 89000 EUR.",
+      "it": "Legnago: appartamento di 85 mq, 2 camere, 1 bagni. Prezzo 89.000 euro."
+    },
+    "keywords": [
+      "veneto",
+      "legnago",
+      "apartment",
+      "via-piazzetta-giosue-carducci-1",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127222155/",
+    "_createdAt": "2026-05-09T16:00:44.203Z",
+    "_updatedAt": "2026-05-09T16:00:44.203Z"
+  },
+  {
+    "_id": "local-import-emilia-romagna-casa-vigarano-mainarda-via-mantova-1778342443993-vug7j",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Level Semi-Detached Home in Vigarano Mainarda",
+      "cs": "Cast dvojdomu ve Vigarano Mainarda",
+      "it": "Porzione di bifamiliare a Vigarano Mainarda"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "emilia-romagna-casa-vigarano-mainarda-via-mantova"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 75000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 100
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Vigarano Mainarda",
+          "cs": "Vigarano Mainarda",
+          "it": "Vigarano Mainarda"
+        },
+        "slug": {
+          "current": "vigarano-mainarda"
+        },
+        "region": {
+          "name": {
+            "it": "Emilia-Romagna",
+            "en": "Emilia-Romagna",
+            "cs": "Emilie-Romagna"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via mantova, Vigarano Mainarda",
+        "cs": "Via mantova, Vigarano Mainarda",
+        "it": "Via mantova, Vigarano Mainarda"
+      },
+      "coordinates": {
+        "lat": 44.8682,
+        "lng": 11.5076
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Vigarano Mainarda, this independent home offers 100 sqm, 5 rooms, 2 bedrooms and 2 bathrooms. The property is located at Via mantova, Vigarano Mainarda and is a practical option for buyers looking in Emilia-Romagna with clear figures and a defined asking price.\n\nThe key point is portion of a home su due livelli. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Vigarano Mainarda nabizi tato nemovitost 100 m2, 5 mistnosti, 2 loznice a 2 koupelny. Nachazi se na adrese Via mantova, Vigarano Mainarda a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Emilie-Romagna s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je cast domu su due livelli. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Vigarano Mainarda, proponiamo casa indipendente con 100 mq, 5 locali, 2 camere e 2 bagni. La proprieta si trova in Via mantova, Vigarano Mainarda e rappresenta una soluzione concreta per chi cerca una casa in Emilia-Romagna con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e porzione di abitazione su due livelli. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/01-gallery-1.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/02-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/03-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/04-gallery-12.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/05-gallery-2.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/06-gallery-3.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/07-gallery-4.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/08-gallery-5.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/09-gallery-6.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/10-gallery-7.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/11-gallery-8.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/12-gallery-9.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/13-main.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "porzione di abitazione su due livelli",
+          "en": "portion of a home su due livelli",
+          "cs": "cast domu su due livelli"
+        }
+      },
+      {
+        "name": {
+          "it": "100 mq commerciali",
+          "en": "100 commercial sqm",
+          "cs": "100 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "5 locali",
+          "en": "5 rooms",
+          "cs": "5 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via mantova",
+          "en": "listed address: Via mantova",
+          "cs": "uvedena adresa: Via mantova"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Level Semi-Detached Home in Vigarano Mainarda for sale",
+      "cs": "Cast dvojdomu ve Vigarano Mainarda na prodej",
+      "it": "Porzione di bifamiliare a Vigarano Mainarda in vendita"
+    },
+    "seoDescription": {
+      "en": "Vigarano Mainarda: house of 100 sqm, 2 bedrooms, 2 bathrooms. Asking price EUR 75,000.",
+      "cs": "Vigarano Mainarda: nemovitost 100 m2, 2 loznice, 2 koupelny. Cena 75000 EUR.",
+      "it": "Vigarano Mainarda: casa indipendente di 100 mq, 2 camere, 2 bagni. Prezzo 75.000 euro."
+    },
+    "keywords": [
+      "emilia-romagna",
+      "vigarano-mainarda",
+      "house",
+      "via-mantova",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/121934676/",
+    "_createdAt": "2026-05-09T16:00:43.992Z",
+    "_updatedAt": "2026-05-09T16:00:43.992Z"
+  },
+  {
+    "_id": "local-import-toscana-villetta-massa-ronchi-poveromo-1778342443750-dfu08",
+    "_type": "listing",
+    "title": {
+      "en": "Small Villa in Marina di Ronchi, Massa",
+      "cs": "Vilka v Marina di Ronchi u Massy",
+      "it": "Villetta a Marina di Ronchi, Massa"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-villetta-massa-ronchi-poveromo"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 390000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 85
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Massa",
+          "cs": "Massa",
+          "it": "Massa"
+        },
+        "slug": {
+          "current": "massa"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskansko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via san Domenichino, Massa",
+        "cs": "Via san Domenichino, Massa",
+        "it": "Via san Domenichino, Massa"
+      },
+      "coordinates": {
+        "lat": 44.0041,
+        "lng": 10.1268
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Massa, this independent home offers 85 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at Via san Domenichino, Massa and is a practical option for buyers looking in Tuscany with clear figures and a defined asking price.\n\nThe key point is residential area a poca distanza dalle spiagge. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Massa nabizi tato nemovitost 85 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Via san Domenichino, Massa a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Toskansko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je rezidencni oblast a poca distanza dalle spiagge. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Massa, proponiamo casa indipendente con 85 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in Via san Domenichino, Massa e rappresenta una soluzione concreta per chi cerca una casa in Toscana con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e zona residenziale a poca distanza dalle spiagge. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/01-gallery-1.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/02-gallery-10.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/03-gallery-11.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/04-gallery-12.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/05-gallery-2.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/06-gallery-3.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/07-gallery-4.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/08-gallery-5.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/09-gallery-6.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/10-gallery-7.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/11-gallery-8.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/12-gallery-9.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/13-main.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "zona residenziale a poca distanza dalle spiagge",
+          "en": "residential area a poca distanza dalle spiagge",
+          "cs": "rezidencni oblast a poca distanza dalle spiagge"
+        }
+      },
+      {
+        "name": {
+          "it": "85 mq commerciali",
+          "en": "85 commercial sqm",
+          "cs": "85 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via san Domenichino",
+          "en": "listed address: Via san Domenichino",
+          "cs": "uvedena adresa: Via san Domenichino"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Small Villa in Marina di Ronchi, Massa for sale",
+      "cs": "Vilka v Marina di Ronchi u Massy na prodej",
+      "it": "Villetta a Marina di Ronchi, Massa in vendita"
+    },
+    "seoDescription": {
+      "en": "Massa: house of 85 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 390,000.",
+      "cs": "Massa: nemovitost 85 m2, 2 loznice, 1 koupelny. Cena 390000 EUR.",
+      "it": "Massa: casa indipendente di 85 mq, 2 camere, 1 bagni. Prezzo 390.000 euro."
+    },
+    "keywords": [
+      "toscana",
+      "massa",
+      "house",
+      "via-san-domenichino",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/125977685/",
+    "_createdAt": "2026-05-09T16:00:43.750Z",
+    "_updatedAt": "2026-05-09T16:00:43.750Z"
+  },
+  {
+    "_id": "local-import-toscana-villetta-pietrasanta-osterietta-1778342443434-bbur7",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Semi-Detached Villa in Pietrasanta",
+      "cs": "Zrekonstruovana polovina vily v Pietrasante",
+      "it": "Villetta bifamiliare ristrutturata a Pietrasanta"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-villetta-pietrasanta-osterietta"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 395000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 105
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Pietrasanta",
+          "cs": "Pietrasanta",
+          "it": "Pietrasanta"
+        },
+        "slug": {
+          "current": "pietrasanta"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskansko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Osterietta, Pietrasanta",
+        "cs": "Via Osterietta, Pietrasanta",
+        "it": "Via Osterietta, Pietrasanta"
+      },
+      "coordinates": {
+        "lat": 43.9523,
+        "lng": 10.2269
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Pietrasanta, this villa offers 105 sqm, 4 rooms, 2 bedrooms and 2 bathrooms. The property is located at Via Osterietta, Pietrasanta and is a practical option for buyers looking in Tuscany with clear figures and a defined asking price.\n\nThe key point is free on three sides e vicina al centro storico. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Pietrasanta nabizi tato nemovitost 105 m2, 4 mistnosti, 2 loznice a 2 koupelny. Nachazi se na adrese Via Osterietta, Pietrasanta a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Toskansko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je volna ze tri stran e vicina al centro storico. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Pietrasanta, proponiamo villa con 105 mq, 4 locali, 2 camere e 2 bagni. La proprieta si trova in Via Osterietta, Pietrasanta e rappresenta una soluzione concreta per chi cerca una casa in Toscana con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e libera su tre lati e vicina al centro storico. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/01-gallery-1.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/02-gallery-10.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/03-gallery-11.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/04-gallery-12.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/05-gallery-2.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/06-gallery-3.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/07-gallery-4.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/08-gallery-5.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/09-gallery-6.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/10-gallery-7.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/11-gallery-8.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/12-gallery-9.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/13-main.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "libera su tre lati e vicina al centro storico",
+          "en": "free on three sides e vicina al centro storico",
+          "cs": "volna ze tri stran e vicina al centro storico"
+        }
+      },
+      {
+        "name": {
+          "it": "105 mq commerciali",
+          "en": "105 commercial sqm",
+          "cs": "105 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Osterietta",
+          "en": "listed address: Via Osterietta",
+          "cs": "uvedena adresa: Via Osterietta"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Semi-Detached Villa in Pietrasanta for sale",
+      "cs": "Zrekonstruovana polovina vily v Pietrasante na prodej",
+      "it": "Villetta bifamiliare ristrutturata a Pietrasanta in vendita"
+    },
+    "seoDescription": {
+      "en": "Pietrasanta: villa of 105 sqm, 2 bedrooms, 2 bathrooms. Asking price EUR 395,000.",
+      "cs": "Pietrasanta: nemovitost 105 m2, 2 loznice, 2 koupelny. Cena 395000 EUR.",
+      "it": "Pietrasanta: villa di 105 mq, 2 camere, 2 bagni. Prezzo 395.000 euro."
+    },
+    "keywords": [
+      "toscana",
+      "pietrasanta",
+      "villa",
+      "via-osterietta",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/122080284/",
+    "_createdAt": "2026-05-09T16:00:43.433Z",
+    "_updatedAt": "2026-05-09T16:00:43.433Z"
+  },
+  {
+    "_id": "local-import-toscana-terratetto-firenze-via-mannelli-garage-1778342443154-czfbf",
+    "_type": "listing",
+    "title": {
+      "en": "Townhouse with Garage on Via Mannelli in Florence",
+      "cs": "Dum s garazi ve Via Mannelli ve Florencii",
+      "it": "Terratetto con garage in via Mannelli a Firenze"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-terratetto-firenze-via-mannelli-garage"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 449000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 86
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Firenze",
+          "cs": "Firenze",
+          "it": "Firenze"
+        },
+        "slug": {
+          "current": "firenze"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskansko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via mannelli, Firenze",
+        "cs": "Via mannelli, Firenze",
+        "it": "Via mannelli, Firenze"
+      },
+      "coordinates": {
+        "lat": 43.7722,
+        "lng": 11.2795
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Firenze, this independent home offers 86 sqm, 4 rooms, 2 bedrooms and 2 bathrooms. The property is located at Via mannelli, Firenze and is a practical option for buyers looking in Tuscany with clear figures and a defined asking price.\n\nThe key point is private internal road and garage. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Firenze nabizi tato nemovitost 86 m2, 4 mistnosti, 2 loznice a 2 koupelny. Nachazi se na adrese Via mannelli, Firenze a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Toskansko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je soukroma vnitrni cesta a garaz. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Firenze, proponiamo casa indipendente con 86 mq, 4 locali, 2 camere e 2 bagni. La proprieta si trova in Via mannelli, Firenze e rappresenta una soluzione concreta per chi cerca una casa in Toscana con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e strada interna privata e garage. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/01-gallery-1.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/02-gallery-10.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/03-gallery-11.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/04-gallery-12.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/05-gallery-2.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/06-gallery-3.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/07-gallery-4.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/08-gallery-5.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/09-gallery-6.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/10-gallery-7.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/11-gallery-8.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/12-gallery-9.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/13-main.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "strada interna privata e garage",
+          "en": "private internal road and garage",
+          "cs": "soukroma vnitrni cesta a garaz"
+        }
+      },
+      {
+        "name": {
+          "it": "86 mq commerciali",
+          "en": "86 commercial sqm",
+          "cs": "86 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via mannelli",
+          "en": "listed address: Via mannelli",
+          "cs": "uvedena adresa: Via mannelli"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Townhouse with Garage on Via Mannelli in Florence for sale",
+      "cs": "Dum s garazi ve Via Mannelli ve Florencii na prodej",
+      "it": "Terratetto con garage in via Mannelli a Firenze in vendita"
+    },
+    "seoDescription": {
+      "en": "Firenze: house of 86 sqm, 2 bedrooms, 2 bathrooms. Asking price EUR 449,000.",
+      "cs": "Firenze: nemovitost 86 m2, 2 loznice, 2 koupelny. Cena 449000 EUR.",
+      "it": "Firenze: casa indipendente di 86 mq, 2 camere, 2 bagni. Prezzo 449.000 euro."
+    },
+    "keywords": [
+      "toscana",
+      "firenze",
+      "house",
+      "via-mannelli",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127851200/",
+    "_createdAt": "2026-05-09T16:00:43.153Z",
+    "_updatedAt": "2026-05-09T16:00:43.153Z"
+  },
+  {
+    "_id": "local-import-toscana-trilocale-firenze-le-cure-cavalcanti-1778342442913-areio",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Two-Bedroom Apartment in Florence Le Cure",
+      "cs": "Zrekonstruovany trilocale ve Florencii Le Cure",
+      "it": "Trilocale ristrutturato nel quartiere Le Cure"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-trilocale-firenze-le-cure-cavalcanti"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 478000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 83
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Firenze",
+          "cs": "Firenze",
+          "it": "Firenze"
+        },
+        "slug": {
+          "current": "firenze"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskansko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Guido Cavalcanti, Firenze",
+        "cs": "Via Guido Cavalcanti, Firenze",
+        "it": "Via Guido Cavalcanti, Firenze"
+      },
+      "coordinates": {
+        "lat": 43.787,
+        "lng": 11.2738
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Firenze, this apartment offers 83 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at Via Guido Cavalcanti, Firenze and is a practical option for buyers looking in Tuscany with clear figures and a defined asking price.\n\nThe key point is full renovation prevista nel 2025. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Firenze nabizi tato nemovitost 83 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Via Guido Cavalcanti, Firenze a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Toskansko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je kompletni rekonstrukce prevista nel 2025. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Firenze, proponiamo appartamento con 83 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in Via Guido Cavalcanti, Firenze e rappresenta una soluzione concreta per chi cerca una casa in Toscana con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e ristrutturazione completa prevista nel 2025. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/01-gallery-1.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/02-gallery-10.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/03-gallery-11.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/04-gallery-2.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/05-gallery-3.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/06-gallery-4.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/07-gallery-5.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/08-gallery-6.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/09-gallery-7.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/10-gallery-8.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/11-gallery-9.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/12-main.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/13-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "ristrutturazione completa prevista nel 2025",
+          "en": "full renovation prevista nel 2025",
+          "cs": "kompletni rekonstrukce prevista nel 2025"
+        }
+      },
+      {
+        "name": {
+          "it": "83 mq commerciali",
+          "en": "83 commercial sqm",
+          "cs": "83 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Guido Cavalcanti",
+          "en": "listed address: Via Guido Cavalcanti",
+          "cs": "uvedena adresa: Via Guido Cavalcanti"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Two-Bedroom Apartment in Florence Le Cure for sale",
+      "cs": "Zrekonstruovany trilocale ve Florencii Le Cure na prodej",
+      "it": "Trilocale ristrutturato nel quartiere Le Cure in vendita"
+    },
+    "seoDescription": {
+      "en": "Firenze: apartment of 83 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 478,000.",
+      "cs": "Firenze: nemovitost 83 m2, 2 loznice, 1 koupelny. Cena 478000 EUR.",
+      "it": "Firenze: appartamento di 83 mq, 2 camere, 1 bagni. Prezzo 478.000 euro."
+    },
+    "keywords": [
+      "toscana",
+      "firenze",
+      "apartment",
+      "via-guido-cavalcanti",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/119798110/",
+    "_createdAt": "2026-05-09T16:00:42.912Z",
+    "_updatedAt": "2026-05-09T16:00:42.912Z"
+  },
+  {
+    "_id": "local-import-toscana-terratetto-san-marcello-piteglio-calamecca-1778342442703-vh37c",
+    "_type": "listing",
+    "title": {
+      "en": "Village Townhouse in Calamecca",
+      "cs": "Radovy dum v obci Calamecca",
+      "it": "Terratetto nel borgo di Calamecca"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-terratetto-san-marcello-piteglio-calamecca"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 67000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 70
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "San Marcello Piteglio",
+          "cs": "San Marcello Piteglio",
+          "it": "San Marcello Piteglio"
+        },
+        "slug": {
+          "current": "san-marcello-piteglio"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskansko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via del Colle, San Marcello Piteglio",
+        "cs": "Via del Colle, San Marcello Piteglio",
+        "it": "Via del Colle, San Marcello Piteglio"
+      },
+      "coordinates": {
+        "lat": 43.9889,
+        "lng": 10.7691
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In San Marcello Piteglio, this independent home offers 70 sqm, 3 rooms, 1 bedrooms and 1 bathrooms. The property is located at Via del Colle, San Marcello Piteglio and is a practical option for buyers looking in Tuscany with clear figures and a defined asking price.\n\nThe key point is independent home su tre livelli nel borgo. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite San Marcello Piteglio nabizi tato nemovitost 70 m2, 3 mistnosti, 1 loznice a 1 koupelny. Nachazi se na adrese Via del Colle, San Marcello Piteglio a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Toskansko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je samostatny dum su tre livelli nel borgo. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A San Marcello Piteglio, proponiamo casa indipendente con 70 mq, 3 locali, 1 camere e 1 bagni. La proprieta si trova in Via del Colle, San Marcello Piteglio e rappresenta una soluzione concreta per chi cerca una casa in Toscana con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e abitazione indipendente su tre livelli nel borgo. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/01-gallery-1.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/02-gallery-10.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/03-gallery-11.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/04-gallery-12.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/05-gallery-2.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/06-gallery-3.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/07-gallery-4.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/08-gallery-5.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/09-gallery-6.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/10-gallery-7.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/11-gallery-8.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/12-gallery-9.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/13-main.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "abitazione indipendente su tre livelli nel borgo",
+          "en": "independent home su tre livelli nel borgo",
+          "cs": "samostatny dum su tre livelli nel borgo"
+        }
+      },
+      {
+        "name": {
+          "it": "70 mq commerciali",
+          "en": "70 commercial sqm",
+          "cs": "70 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "1 camere da letto",
+          "en": "1 bedrooms",
+          "cs": "1 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via del Colle",
+          "en": "listed address: Via del Colle",
+          "cs": "uvedena adresa: Via del Colle"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Village Townhouse in Calamecca for sale",
+      "cs": "Radovy dum v obci Calamecca na prodej",
+      "it": "Terratetto nel borgo di Calamecca in vendita"
+    },
+    "seoDescription": {
+      "en": "San Marcello Piteglio: house of 70 sqm, 1 bedrooms, 1 bathrooms. Asking price EUR 67,000.",
+      "cs": "San Marcello Piteglio: nemovitost 70 m2, 1 loznice, 1 koupelny. Cena 67000 EUR.",
+      "it": "San Marcello Piteglio: casa indipendente di 70 mq, 1 camere, 1 bagni. Prezzo 67.000 euro."
+    },
+    "keywords": [
+      "toscana",
+      "san-marcello-piteglio",
+      "house",
+      "via-del-colle",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127300135/",
+    "_createdAt": "2026-05-09T16:00:42.703Z",
+    "_updatedAt": "2026-05-09T16:00:42.703Z"
+  },
+  {
+    "_id": "local-import-toscana-trilocale-santa-croce-sull-arno-mazzini-1778342442485-z7e20",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Bedroom Apartment in Santa Croce sull'Arno",
+      "cs": "Trilocale v Santa Croce sull'Arno",
+      "it": "Trilocale a Santa Croce sull'Arno"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-trilocale-santa-croce-sull-arno-mazzini"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 77000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 65
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Santa Croce sull'Arno",
+          "cs": "Santa Croce sull'Arno",
+          "it": "Santa Croce sull'Arno"
+        },
+        "slug": {
+          "current": "santa-croce-sull-arno"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskansko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Corso Giuseppe Mazzini, Santa Croce sull'Arno",
+        "cs": "Corso Giuseppe Mazzini, Santa Croce sull'Arno",
+        "it": "Corso Giuseppe Mazzini, Santa Croce sull'Arno"
+      },
+      "coordinates": {
+        "lat": 43.7103,
+        "lng": 10.7823
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Santa Croce sull'Arno, this apartment offers 65 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at Corso Giuseppe Mazzini, Santa Croce sull'Arno and is a practical option for buyers looking in Tuscany with clear figures and a defined asking price.\n\nThe key point is second and top floor in piccolo contesto. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Santa Croce sull'Arno nabizi tato nemovitost 65 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Corso Giuseppe Mazzini, Santa Croce sull'Arno a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Toskansko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je druhe a posledni patro in piccolo contesto. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Santa Croce sull'Arno, proponiamo appartamento con 65 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in Corso Giuseppe Mazzini, Santa Croce sull'Arno e rappresenta una soluzione concreta per chi cerca una casa in Toscana con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e secondo e ultimo piano in piccolo contesto. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/01-gallery-1.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/02-gallery-10.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/03-gallery-11.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/04-gallery-12.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/05-gallery-2.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/06-gallery-3.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/07-gallery-4.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/08-gallery-5.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/09-gallery-6.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/10-gallery-7.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/11-gallery-8.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/12-gallery-9.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/13-main.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "secondo e ultimo piano in piccolo contesto",
+          "en": "second and top floor in piccolo contesto",
+          "cs": "druhe a posledni patro in piccolo contesto"
+        }
+      },
+      {
+        "name": {
+          "it": "65 mq commerciali",
+          "en": "65 commercial sqm",
+          "cs": "65 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Corso Giuseppe Mazzini",
+          "en": "listed address: Corso Giuseppe Mazzini",
+          "cs": "uvedena adresa: Corso Giuseppe Mazzini"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment in Santa Croce sull'Arno for sale",
+      "cs": "Trilocale v Santa Croce sull'Arno na prodej",
+      "it": "Trilocale a Santa Croce sull'Arno in vendita"
+    },
+    "seoDescription": {
+      "en": "Santa Croce sull'Arno: apartment of 65 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 77,000.",
+      "cs": "Santa Croce sull'Arno: nemovitost 65 m2, 2 loznice, 1 koupelny. Cena 77000 EUR.",
+      "it": "Santa Croce sull'Arno: appartamento di 65 mq, 2 camere, 1 bagni. Prezzo 77.000 euro."
+    },
+    "keywords": [
+      "toscana",
+      "santa-croce-sull-arno",
+      "apartment",
+      "corso-giuseppe-mazzini",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127970410/",
+    "_createdAt": "2026-05-09T16:00:42.484Z",
+    "_updatedAt": "2026-05-09T16:00:42.484Z"
+  },
+  {
+    "_id": "local-import-toscana-appartamento-pistoia-cireglio-collina-1778342442253-ukfcg",
+    "_type": "listing",
+    "title": {
+      "en": "Hill-Setting Apartment in Cireglio, Pistoia",
+      "cs": "Byt v kopcovite casti Cireglio u Pistoie",
+      "it": "Appartamento collinare a Cireglio, Pistoia"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-appartamento-pistoia-cireglio-collina"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 75000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 90
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Pistoia",
+          "cs": "Pistoia",
+          "it": "Pistoia"
+        },
+        "slug": {
+          "current": "pistoia"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskansko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Cireglio, Pistoia",
+        "cs": "Cireglio, Pistoia",
+        "it": "Cireglio, Pistoia"
+      },
+      "coordinates": {
+        "lat": 43.9882,
+        "lng": 10.8552
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Pistoia, this apartment offers 90 sqm, 6 rooms, 2 bedrooms and 1 bathrooms. The property is located at Cireglio, Pistoia and is a practical option for buyers looking in Tuscany with clear figures and a defined asking price.\n\nThe key point is green hillside setting a Cireglio. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Pistoia nabizi tato nemovitost 90 m2, 6 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Cireglio, Pistoia a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Toskansko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je zelene kopcovite prostredi a Cireglio. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Pistoia, proponiamo appartamento con 90 mq, 6 locali, 2 camere e 1 bagni. La proprieta si trova in Cireglio, Pistoia e rappresenta una soluzione concreta per chi cerca una casa in Toscana con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e contesto collinare e verde a Cireglio. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/01-gallery-1.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/02-gallery-10.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/03-gallery-11.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/04-gallery-12.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/05-gallery-2.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/06-gallery-3.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/07-gallery-4.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/08-gallery-5.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/09-gallery-6.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/10-gallery-7.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/11-gallery-8.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/12-gallery-9.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/13-main.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "contesto collinare e verde a Cireglio",
+          "en": "green hillside setting a Cireglio",
+          "cs": "zelene kopcovite prostredi a Cireglio"
+        }
+      },
+      {
+        "name": {
+          "it": "90 mq commerciali",
+          "en": "90 commercial sqm",
+          "cs": "90 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Cireglio",
+          "en": "listed address: Cireglio",
+          "cs": "uvedena adresa: Cireglio"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Hill-Setting Apartment in Cireglio, Pistoia for sale",
+      "cs": "Byt v kopcovite casti Cireglio u Pistoie na prodej",
+      "it": "Appartamento collinare a Cireglio, Pistoia in vendita"
+    },
+    "seoDescription": {
+      "en": "Pistoia: apartment of 90 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 75,000.",
+      "cs": "Pistoia: nemovitost 90 m2, 2 loznice, 1 koupelny. Cena 75000 EUR.",
+      "it": "Pistoia: appartamento di 90 mq, 2 camere, 1 bagni. Prezzo 75.000 euro."
+    },
+    "keywords": [
+      "toscana",
+      "pistoia",
+      "apartment",
+      "cireglio",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128108086/",
+    "_createdAt": "2026-05-09T16:00:42.252Z",
+    "_updatedAt": "2026-05-09T16:00:42.252Z"
+  },
+  {
+    "_id": "local-import-toscana-bilocale-santa-maria-a-monte-taccione-1778342442007-q8vup",
+    "_type": "listing",
+    "title": {
+      "en": "Investment One-Bedroom Apartment in Santa Maria a Monte",
+      "cs": "Investicni dvoupokojovy byt v Santa Maria a Monte",
+      "it": "Bilocale da investimento a Santa Maria a Monte"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-bilocale-santa-maria-a-monte-taccione"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 85000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 54
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Santa Maria a Monte",
+          "cs": "Santa Maria a Monte",
+          "it": "Santa Maria a Monte"
+        },
+        "slug": {
+          "current": "santa-maria-a-monte"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskansko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Taccione, Santa Maria a Monte",
+        "cs": "Via Taccione, Santa Maria a Monte",
+        "it": "Via Taccione, Santa Maria a Monte"
+      },
+      "coordinates": {
+        "lat": 43.7047,
+        "lng": 10.6866
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Santa Maria a Monte, this apartment offers 54 sqm, 2 rooms, 1 bedrooms and 1 bathrooms. The property is located at Via Taccione, Santa Maria a Monte and is a practical option for buyers looking in Tuscany with clear figures and a defined asking price.\n\nThe key point is income investment in Via Taccione. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Santa Maria a Monte nabizi tato nemovitost 54 m2, 2 mistnosti, 1 loznice a 1 koupelny. Nachazi se na adrese Via Taccione, Santa Maria a Monte a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Toskansko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je investice s vynosem in Via Taccione. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Santa Maria a Monte, proponiamo appartamento con 54 mq, 2 locali, 1 camere e 1 bagni. La proprieta si trova in Via Taccione, Santa Maria a Monte e rappresenta una soluzione concreta per chi cerca una casa in Toscana con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e investimento a reddito in Via Taccione. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/01-gallery-1.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/02-gallery-10.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/03-gallery-11.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/04-gallery-12.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/05-gallery-2.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/06-gallery-3.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/07-gallery-4.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/08-gallery-5.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/09-gallery-6.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/10-gallery-7.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/11-gallery-8.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/12-gallery-9.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/13-main.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "investimento a reddito in Via Taccione",
+          "en": "income investment in Via Taccione",
+          "cs": "investice s vynosem in Via Taccione"
+        }
+      },
+      {
+        "name": {
+          "it": "54 mq commerciali",
+          "en": "54 commercial sqm",
+          "cs": "54 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "2 locali",
+          "en": "2 rooms",
+          "cs": "2 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "1 camere da letto",
+          "en": "1 bedrooms",
+          "cs": "1 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Taccione",
+          "en": "listed address: Via Taccione",
+          "cs": "uvedena adresa: Via Taccione"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Investment One-Bedroom Apartment in Santa Maria a Monte for sale",
+      "cs": "Investicni dvoupokojovy byt v Santa Maria a Monte na prodej",
+      "it": "Bilocale da investimento a Santa Maria a Monte in vendita"
+    },
+    "seoDescription": {
+      "en": "Santa Maria a Monte: apartment of 54 sqm, 1 bedrooms, 1 bathrooms. Asking price EUR 85,000.",
+      "cs": "Santa Maria a Monte: nemovitost 54 m2, 1 loznice, 1 koupelny. Cena 85000 EUR.",
+      "it": "Santa Maria a Monte: appartamento di 54 mq, 1 camere, 1 bagni. Prezzo 85.000 euro."
+    },
+    "keywords": [
+      "toscana",
+      "santa-maria-a-monte",
+      "apartment",
+      "via-taccione",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128798952/",
+    "_createdAt": "2026-05-09T16:00:41.994Z",
+    "_updatedAt": "2026-05-09T16:00:41.994Z"
+  },
+  {
     "_id": "local-import-emilia-romagna-appartamento-villa-maccaretolo-mussolina-1778242123948-ygu84",
     "_type": "listing",
     "title": {
