@@ -1,0 +1,89 @@
+{
+  "slug": "abruzzo-appartamento-villetta-barrea-virgilio",
+  "title_it": "Appartamento ampio a Villetta Barrea",
+  "title_en": "Large Apartment in Villetta Barrea",
+  "title_cs": "Prostorny byt ve Villetta Barrea",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Abruzzo",
+  "city_it": "Villetta Barrea",
+  "city_en": "Villetta Barrea",
+  "city_cs": "Villetta Barrea",
+  "address_it": "Via Benedetto Virgilio, Villetta Barrea",
+  "address_en": "Via Benedetto Virgilio, Villetta Barrea",
+  "address_cs": "Via Benedetto Virgilio, Villetta Barrea",
+  "price": 105000,
+  "rooms": 6,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "square_meters": 150,
+  "features": [
+    {
+      "it": "ampia metratura a Villetta Barrea",
+      "en": "large floor area a Villetta Barrea",
+      "cs": "velka plocha a Villetta Barrea"
+    },
+    {
+      "it": "150 mq commerciali",
+      "en": "150 commercial sqm",
+      "cs": "150 m2 komercni plochy"
+    },
+    {
+      "it": "6 locali",
+      "en": "6 rooms",
+      "cs": "6 mistnosti"
+    },
+    {
+      "it": "3 camere da letto",
+      "en": "3 bedrooms",
+      "cs": "3 loznice"
+    },
+    {
+      "it": "2 bagni",
+      "en": "2 bathrooms",
+      "cs": "2 koupelny"
+    },
+    {
+      "it": "indirizzo indicato: Via Benedetto Virgilio",
+      "en": "listed address: Via Benedetto Virgilio",
+      "cs": "uvedena adresa: Via Benedetto Virgilio"
+    }
+  ],
+  "description_it": "A Villetta Barrea, proponiamo appartamento con 150 mq, 6 locali, 3 camere e 2 bagni. La proprieta si trova in Via Benedetto Virgilio, Villetta Barrea e rappresenta una soluzione concreta per chi cerca una casa in Abruzzo con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e ampia metratura a Villetta Barrea. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto.",
+  "description_en": "In Villetta Barrea, this apartment offers 150 sqm, 6 rooms, 3 bedrooms and 2 bathrooms. The property is located at Via Benedetto Virgilio, Villetta Barrea and is a practical option for buyers looking in Abruzzo with clear figures and a defined asking price.\n\nThe key point is large floor area a Villetta Barrea. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+  "description_cs": "V lokalite Villetta Barrea nabizi tato nemovitost 150 m2, 6 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese Via Benedetto Virgilio, Villetta Barrea a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Abruzzo s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je velka plocha a Villetta Barrea. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+  "seo_title_it": "Appartamento ampio a Villetta Barrea in vendita",
+  "seo_title_en": "Large Apartment in Villetta Barrea for sale",
+  "seo_title_cs": "Prostorny byt ve Villetta Barrea na prodej",
+  "seo_description_it": "Villetta Barrea: appartamento di 150 mq, 3 camere, 2 bagni. Prezzo 105.000 euro.",
+  "seo_description_en": "Villetta Barrea: apartment of 150 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 105,000.",
+  "seo_description_cs": "Villetta Barrea: nemovitost 150 m2, 3 loznice, 2 koupelny. Cena 105000 EUR.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "abruzzo",
+    "villetta-barrea",
+    "apartment",
+    "via-benedetto-virgilio",
+    "immobiliare-it"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/114878777/",
+  "lat": 41.7764,
+  "lng": 13.9304,
+  "image_urls": [
+    "https://pwm.im-cdn.it/image/1581910855/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581910823/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581910847/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581910867/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581910877/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581913029/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581910889/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581910901/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581910911/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581910919/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581910935/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581910945/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581913015/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1581910959/xxl.jpg"
+  ]
+}

@@ -1,5 +1,867 @@
 [
   {
+    "_id": "local-import-lazio-quadrilocale-cassino-san-bartolomeo-pertini-1778408547727-iqbwd",
+    "_type": "listing",
+    "title": {
+      "en": "Four-Room Apartment in Cassino, San Bartolomeo",
+      "cs": "Ctyrpokojovy byt v Cassinu, San Bartolomeo",
+      "it": "Quadrilocale a Cassino, San Bartolomeo"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-quadrilocale-cassino-san-bartolomeo-pertini"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 97000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 110
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Cassino",
+          "cs": "Cassino",
+          "it": "Cassino"
+        },
+        "slug": {
+          "current": "cassino"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Viale Pertini, Cassino",
+        "cs": "Viale Pertini, Cassino",
+        "it": "Viale Pertini, Cassino"
+      },
+      "coordinates": {
+        "lat": 41.4914,
+        "lng": 13.8601
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Cassino, this apartment offers 110 sqm, 4 rooms, 3 bedrooms and 2 bathrooms. The property is located at Viale Pertini, Cassino and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is quadrilocale con tre camere a San Bartolomeo. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Cassino nabizi tato nemovitost 110 m2, 4 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese Viale Pertini, Cassino a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je quadrilocale con tre camere a San Bartolomeo. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Cassino, proponiamo appartamento con 110 mq, 4 locali, 3 camere e 2 bagni. La proprieta si trova in Viale Pertini, Cassino e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e quadrilocale con tre camere a San Bartolomeo. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/01-gallery-1.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/02-gallery-10.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/03-gallery-11.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/04-gallery-12.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/05-gallery-2.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/06-gallery-3.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/07-gallery-4.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/08-gallery-5.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/09-gallery-6.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/10-gallery-7.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/11-gallery-8.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/12-gallery-9.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/13-main.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "quadrilocale con tre camere a San Bartolomeo",
+          "en": "quadrilocale con tre camere a San Bartolomeo",
+          "cs": "quadrilocale con tre camere a San Bartolomeo"
+        }
+      },
+      {
+        "name": {
+          "it": "110 mq commerciali",
+          "en": "110 commercial sqm",
+          "cs": "110 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Viale Pertini",
+          "en": "listed address: Viale Pertini",
+          "cs": "uvedena adresa: Viale Pertini"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Four-Room Apartment in Cassino, San Bartolomeo for sale",
+      "cs": "Ctyrpokojovy byt v Cassinu, San Bartolomeo na prodej",
+      "it": "Quadrilocale a Cassino, San Bartolomeo in vendita"
+    },
+    "seoDescription": {
+      "en": "Cassino: apartment of 110 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 97,000.",
+      "cs": "Cassino: nemovitost 110 m2, 3 loznice, 2 koupelny. Cena 97000 EUR.",
+      "it": "Cassino: appartamento di 110 mq, 3 camere, 2 bagni. Prezzo 97.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "cassino",
+      "apartment",
+      "viale-pertini",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128116158/",
+    "_createdAt": "2026-05-10T10:22:27.726Z",
+    "_updatedAt": "2026-05-10T10:22:27.726Z"
+  },
+  {
+    "_id": "local-import-lazio-trilocale-latina-scalo-biancospino-1778408547220-o8sgm",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Bedroom Apartment in Latina Scalo",
+      "cs": "Trilocale v Latina Scalo",
+      "it": "Trilocale a Latina Scalo"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-trilocale-latina-scalo-biancospino"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 159000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 81
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Latina",
+          "cs": "Latina",
+          "it": "Latina"
+        },
+        "slug": {
+          "current": "latina"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via del Biancospino, Latina",
+        "cs": "Via del Biancospino, Latina",
+        "it": "Via del Biancospino, Latina"
+      },
+      "coordinates": {
+        "lat": 41.5257,
+        "lng": 12.9455
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Latina, this apartment offers 81 sqm, 3 rooms, 2 bedrooms and 2 bathrooms. The property is located at Via del Biancospino, Latina and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is zona Latina Scalo con due camere e two bathrooms. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Latina nabizi tato nemovitost 81 m2, 3 mistnosti, 2 loznice a 2 koupelny. Nachazi se na adrese Via del Biancospino, Latina a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je zona Latina Scalo con due camere e dve koupelny. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Latina, proponiamo appartamento con 81 mq, 3 locali, 2 camere e 2 bagni. La proprieta si trova in Via del Biancospino, Latina e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e zona Latina Scalo con due camere e doppi servizi. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/01-gallery-1.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/02-gallery-10.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/03-gallery-11.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/04-gallery-12.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/05-gallery-2.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/06-gallery-3.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/07-gallery-4.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/08-gallery-5.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/09-gallery-6.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/10-gallery-7.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/11-gallery-8.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/12-gallery-9.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/13-main.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "zona Latina Scalo con due camere e doppi servizi",
+          "en": "zona Latina Scalo con due camere e two bathrooms",
+          "cs": "zona Latina Scalo con due camere e dve koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "81 mq commerciali",
+          "en": "81 commercial sqm",
+          "cs": "81 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via del Biancospino",
+          "en": "listed address: Via del Biancospino",
+          "cs": "uvedena adresa: Via del Biancospino"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment in Latina Scalo for sale",
+      "cs": "Trilocale v Latina Scalo na prodej",
+      "it": "Trilocale a Latina Scalo in vendita"
+    },
+    "seoDescription": {
+      "en": "Latina: apartment of 81 sqm, 2 bedrooms, 2 bathrooms. Asking price EUR 159,000.",
+      "cs": "Latina: nemovitost 81 m2, 2 loznice, 2 koupelny. Cena 159000 EUR.",
+      "it": "Latina: appartamento di 81 mq, 2 camere, 2 bagni. Prezzo 159.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "latina",
+      "apartment",
+      "via-del-biancospino",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128623164/",
+    "_createdAt": "2026-05-10T10:22:27.219Z",
+    "_updatedAt": "2026-05-10T10:22:27.219Z"
+  },
+  {
+    "_id": "local-import-abruzzo-appartamento-villetta-barrea-virgilio-1778408546667-9lt0a",
+    "_type": "listing",
+    "title": {
+      "en": "Large Apartment in Villetta Barrea",
+      "cs": "Prostorny byt ve Villetta Barrea",
+      "it": "Appartamento ampio a Villetta Barrea"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "abruzzo-appartamento-villetta-barrea-virgilio"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 105000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 150
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Villetta Barrea",
+          "cs": "Villetta Barrea",
+          "it": "Villetta Barrea"
+        },
+        "slug": {
+          "current": "villetta-barrea"
+        },
+        "region": {
+          "name": {
+            "it": "Abruzzo",
+            "en": "Abruzzo",
+            "cs": "Abruzzo"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Benedetto Virgilio, Villetta Barrea",
+        "cs": "Via Benedetto Virgilio, Villetta Barrea",
+        "it": "Via Benedetto Virgilio, Villetta Barrea"
+      },
+      "coordinates": {
+        "lat": 41.7764,
+        "lng": 13.9304
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Villetta Barrea, this apartment offers 150 sqm, 6 rooms, 3 bedrooms and 2 bathrooms. The property is located at Via Benedetto Virgilio, Villetta Barrea and is a practical option for buyers looking in Abruzzo with clear figures and a defined asking price.\n\nThe key point is large floor area a Villetta Barrea. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Villetta Barrea nabizi tato nemovitost 150 m2, 6 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese Via Benedetto Virgilio, Villetta Barrea a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Abruzzo s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je velka plocha a Villetta Barrea. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Villetta Barrea, proponiamo appartamento con 150 mq, 6 locali, 3 camere e 2 bagni. La proprieta si trova in Via Benedetto Virgilio, Villetta Barrea e rappresenta una soluzione concreta per chi cerca una casa in Abruzzo con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e ampia metratura a Villetta Barrea. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1581910855/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581910823/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581910847/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581910867/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581910877/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581913029/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581910889/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581910901/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581910911/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581910919/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581910935/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581910945/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581913015/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1581910959/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "ampia metratura a Villetta Barrea",
+          "en": "large floor area a Villetta Barrea",
+          "cs": "velka plocha a Villetta Barrea"
+        }
+      },
+      {
+        "name": {
+          "it": "150 mq commerciali",
+          "en": "150 commercial sqm",
+          "cs": "150 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Benedetto Virgilio",
+          "en": "listed address: Via Benedetto Virgilio",
+          "cs": "uvedena adresa: Via Benedetto Virgilio"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Large Apartment in Villetta Barrea for sale",
+      "cs": "Prostorny byt ve Villetta Barrea na prodej",
+      "it": "Appartamento ampio a Villetta Barrea in vendita"
+    },
+    "seoDescription": {
+      "en": "Villetta Barrea: apartment of 150 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 105,000.",
+      "cs": "Villetta Barrea: nemovitost 150 m2, 3 loznice, 2 koupelny. Cena 105000 EUR.",
+      "it": "Villetta Barrea: appartamento di 150 mq, 3 camere, 2 bagni. Prezzo 105.000 euro."
+    },
+    "keywords": [
+      "abruzzo",
+      "villetta-barrea",
+      "apartment",
+      "via-benedetto-virgilio",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/114878777/",
+    "_createdAt": "2026-05-10T10:22:26.666Z",
+    "_updatedAt": "2026-05-10T10:22:26.666Z"
+  },
+  {
+    "_id": "local-import-abruzzo-trilocale-montesilvano-via-naviglio-1778408546073-in7h7",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Bedroom Apartment in Montesilvano, Via Naviglio",
+      "cs": "Trilocale v Montesilvanu, Via Naviglio",
+      "it": "Trilocale a Montesilvano, via Naviglio"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "abruzzo-trilocale-montesilvano-via-naviglio"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 148000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 90
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Montesilvano",
+          "cs": "Montesilvano",
+          "it": "Montesilvano"
+        },
+        "slug": {
+          "current": "montesilvano"
+        },
+        "region": {
+          "name": {
+            "it": "Abruzzo",
+            "en": "Abruzzo",
+            "cs": "Abruzzo"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Naviglio, Montesilvano",
+        "cs": "Via Naviglio, Montesilvano",
+        "it": "Via Naviglio, Montesilvano"
+      },
+      "coordinates": {
+        "lat": 42.5141,
+        "lng": 14.159
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Montesilvano, this apartment offers 90 sqm, 3 rooms, 2 bedrooms and 2 bathrooms. The property is located at Via Naviglio, Montesilvano and is a practical option for buyers looking in Abruzzo with clear figures and a defined asking price.\n\nThe key point is trilocale con due bathrooms a Villa Verrocchio. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Montesilvano nabizi tato nemovitost 90 m2, 3 mistnosti, 2 loznice a 2 koupelny. Nachazi se na adrese Via Naviglio, Montesilvano a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Abruzzo s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je trilocale con due koupelny a Villa Verrocchio. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Montesilvano, proponiamo appartamento con 90 mq, 3 locali, 2 camere e 2 bagni. La proprieta si trova in Via Naviglio, Montesilvano e rappresenta una soluzione concreta per chi cerca una casa in Abruzzo con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e trilocale con due bagni a Villa Verrocchio. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1874154799/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874155105/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874155115/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874154711/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874154723/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874154737/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874154749/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874154761/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874154771/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874154781/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874154785/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874154805/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874154815/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1874154823/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "trilocale con due bagni a Villa Verrocchio",
+          "en": "trilocale con due bathrooms a Villa Verrocchio",
+          "cs": "trilocale con due koupelny a Villa Verrocchio"
+        }
+      },
+      {
+        "name": {
+          "it": "90 mq commerciali",
+          "en": "90 commercial sqm",
+          "cs": "90 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Naviglio",
+          "en": "listed address: Via Naviglio",
+          "cs": "uvedena adresa: Via Naviglio"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment in Montesilvano, Via Naviglio for sale",
+      "cs": "Trilocale v Montesilvanu, Via Naviglio na prodej",
+      "it": "Trilocale a Montesilvano, via Naviglio in vendita"
+    },
+    "seoDescription": {
+      "en": "Montesilvano: apartment of 90 sqm, 2 bedrooms, 2 bathrooms. Asking price EUR 148,000.",
+      "cs": "Montesilvano: nemovitost 90 m2, 2 loznice, 2 koupelny. Cena 148000 EUR.",
+      "it": "Montesilvano: appartamento di 90 mq, 2 camere, 2 bagni. Prezzo 148.000 euro."
+    },
+    "keywords": [
+      "abruzzo",
+      "montesilvano",
+      "apartment",
+      "via-naviglio",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127002641/",
+    "_createdAt": "2026-05-10T10:22:26.068Z",
+    "_updatedAt": "2026-05-10T10:22:26.068Z"
+  },
+  {
+    "_id": "local-import-abruzzo-appartamento-in-villa-pescara-pandolfi-1778408545553-6a5bm",
+    "_type": "listing",
+    "title": {
+      "en": "Apartment in Villa in Pescara, Strada Pandolfi",
+      "cs": "Byt ve vile v Pescare, Strada Pandolfi",
+      "it": "Appartamento in villa a Pescara, Strada Pandolfi"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "abruzzo-appartamento-in-villa-pescara-pandolfi"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 350000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 3,
+      "squareFootage": 206
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Pescara",
+          "cs": "Pescara",
+          "it": "Pescara"
+        },
+        "slug": {
+          "current": "pescara"
+        },
+        "region": {
+          "name": {
+            "it": "Abruzzo",
+            "en": "Abruzzo",
+            "cs": "Abruzzo"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Strada Pandolfi, Pescara",
+        "cs": "Strada Pandolfi, Pescara",
+        "it": "Strada Pandolfi, Pescara"
+      },
+      "coordinates": {
+        "lat": 42.4766,
+        "lng": 14.1761
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Pescara, this apartment offers 206 sqm, 3 rooms, 2 bedrooms and 3 bathrooms. The property is located at Strada Pandolfi, Pescara and is a practical option for buyers looking in Abruzzo with clear figures and a defined asking price.\n\nThe key point is apartment in villa nella hillside area di Pescara. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Pescara nabizi tato nemovitost 206 m2, 3 mistnosti, 2 loznice a 3 koupelny. Nachazi se na adrese Strada Pandolfi, Pescara a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Abruzzo s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je byt ve vile nella kopcovita oblast di Pescara. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Pescara, proponiamo appartamento con 206 mq, 3 locali, 2 camere e 3 bagni. La proprieta si trova in Strada Pandolfi, Pescara e rappresenta una soluzione concreta per chi cerca una casa in Abruzzo con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e appartamento in villa nella zona collinare di Pescara. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1750909796/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750909714/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750909754/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750909734/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750909852/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750909774/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750909828/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750910170/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750910198/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750910208/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750910226/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750909896/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750909912/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1750909928/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "appartamento in villa nella zona collinare di Pescara",
+          "en": "apartment in villa nella hillside area di Pescara",
+          "cs": "byt ve vile nella kopcovita oblast di Pescara"
+        }
+      },
+      {
+        "name": {
+          "it": "206 mq commerciali",
+          "en": "206 commercial sqm",
+          "cs": "206 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Strada Pandolfi",
+          "en": "listed address: Strada Pandolfi",
+          "cs": "uvedena adresa: Strada Pandolfi"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Apartment in Villa in Pescara, Strada Pandolfi for sale",
+      "cs": "Byt ve vile v Pescare, Strada Pandolfi na prodej",
+      "it": "Appartamento in villa a Pescara, Strada Pandolfi in vendita"
+    },
+    "seoDescription": {
+      "en": "Pescara: apartment of 206 sqm, 2 bedrooms, 3 bathrooms. Asking price EUR 350,000.",
+      "cs": "Pescara: nemovitost 206 m2, 2 loznice, 3 koupelny. Cena 350000 EUR.",
+      "it": "Pescara: appartamento di 206 mq, 2 camere, 3 bagni. Prezzo 350.000 euro."
+    },
+    "keywords": [
+      "abruzzo",
+      "pescara",
+      "apartment",
+      "strada-pandolfi",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/121979878/",
+    "_createdAt": "2026-05-10T10:22:25.552Z",
+    "_updatedAt": "2026-05-10T10:22:25.552Z"
+  },
+  {
+    "_id": "local-import-abruzzo-villa-bifamiliare-montesilvano-colle-1778408545155-6wb0c",
+    "_type": "listing",
+    "title": {
+      "en": "Semi-Detached Villa in Montesilvano Colle",
+      "cs": "Polovina vily v Montesilvano Colle",
+      "it": "Villa bifamiliare a Montesilvano Colle"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "abruzzo-villa-bifamiliare-montesilvano-colle"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 285000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "squareFootage": 180
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Montesilvano",
+          "cs": "Montesilvano",
+          "it": "Montesilvano"
+        },
+        "slug": {
+          "current": "montesilvano"
+        },
+        "region": {
+          "name": {
+            "it": "Abruzzo",
+            "en": "Abruzzo",
+            "cs": "Abruzzo"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Montesilvano",
+        "cs": "Montesilvano",
+        "it": "Montesilvano"
+      },
+      "coordinates": {
+        "lat": 42.5,
+        "lng": 14.1597
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Montesilvano, this villa offers 180 sqm, 4 rooms, 3 bedrooms and 3 bathrooms. The property is located at Montesilvano and is a practical option for buyers looking in Abruzzo with clear figures and a defined asking price.\n\nThe key point is semi-detached villa in ottimo stato a Montesilvano Colle. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Montesilvano nabizi tato nemovitost 180 m2, 4 mistnosti, 3 loznice a 3 koupelny. Nachazi se na adrese Montesilvano a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Abruzzo s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je polovina vily in ottimo stato a Montesilvano Colle. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Montesilvano, proponiamo villa con 180 mq, 4 locali, 3 camere e 3 bagni. La proprieta si trova in Montesilvano e rappresenta una soluzione concreta per chi cerca una casa in Abruzzo con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa bifamiliare in ottimo stato a Montesilvano Colle. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/01-gallery-1.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/02-gallery-10.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/03-gallery-11.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/04-gallery-12.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/05-gallery-2.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/06-gallery-3.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/07-gallery-4.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/08-gallery-5.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/09-gallery-6.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/10-gallery-7.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/11-gallery-8.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/12-gallery-9.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/13-main.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa bifamiliare in ottimo stato a Montesilvano Colle",
+          "en": "semi-detached villa in ottimo stato a Montesilvano Colle",
+          "cs": "polovina vily in ottimo stato a Montesilvano Colle"
+        }
+      },
+      {
+        "name": {
+          "it": "180 mq commerciali",
+          "en": "180 commercial sqm",
+          "cs": "180 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Semi-Detached Villa in Montesilvano Colle for sale",
+      "cs": "Polovina vily v Montesilvano Colle na prodej",
+      "it": "Villa bifamiliare a Montesilvano Colle in vendita"
+    },
+    "seoDescription": {
+      "en": "Montesilvano: villa of 180 sqm, 3 bedrooms, 3 bathrooms. Asking price EUR 285,000.",
+      "cs": "Montesilvano: nemovitost 180 m2, 3 loznice, 3 koupelny. Cena 285000 EUR.",
+      "it": "Montesilvano: villa di 180 mq, 3 camere, 3 bagni. Prezzo 285.000 euro."
+    },
+    "keywords": [
+      "abruzzo",
+      "montesilvano",
+      "villa",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128853392/",
+    "_createdAt": "2026-05-10T10:22:25.149Z",
+    "_updatedAt": "2026-05-10T10:22:25.149Z"
+  },
+  {
     "_id": "local-import-abruzzo-quadrilocale-pescara-via-teramo-1778352000530-ooha9",
     "_type": "listing",
     "title": {
