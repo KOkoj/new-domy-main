@@ -355,6 +355,33 @@ const UPDATED_REPORT = {
       'Na jihu se dá stále dobře najíst levněji, ale v ikonických místech jako Amalfi, Capri, Taormina nebo centrum Neapole už rozhoduje turistická poloha, ne zeměpisný jih.',
       'U moře a v horských destinacích počítejte s větším sezonním rozdílem mezi pracovním dnem mimo sezonu a víkendem v létě.'
     ],
+    rankingsTitle: 'Mini žebříčky 2026: kde hledat cenu nebo kvalitu',
+    rankingsIntro:
+      'Tyto žebříčky nejsou reklamní doporučení ani garance nejlepší ceny v každém městě. Jde o praktický výběr podle veřejných cenových průzkumů, spotřebitelských hodnocení a gastronomických průvodců dostupných pro sezonu 2026.',
+    supermarketRankTitle: 'Supermarkety a discounty: cena / kvalita',
+    supermarketRankItems: [
+      'Eurospin - nejsilnější volba pro nejnižší cenu základního nákupu a levné privátní značky.',
+      'In’s Mercato - velmi dobrý discount pro smíšený koš a rychlý nákup v běžných městech.',
+      'Famila / Famila Superstore - dobrý kompromis, když chcete kombinovat značkové produkty a úsporu.',
+      'Carrefour - zajímavý hlavně u produktů pod vlastní značkou a při akcích.',
+      'Esselunga - silná kvalita, sortiment a online služba; ne vždy nejlevnější, ale často dobrý poměr pohodlí a kvality.'
+    ],
+    pizzeriaRankTitle: 'Pizzerie: kvalita, která stále dává smysl',
+    pizzeriaRankItems: [
+      'I Masanielli - Francesco Martucci, Caserta: špičková pizza v městě, kde cena obvykle není tak extrémní jako v prémiových turistických centrech.',
+      'Diego Vitagliano Pizzeria, Neapol: vysoká kvalita a silná neapolská pozice, vhodné pro cestovatele, kteří chtějí jistotu.',
+      'Seu Pizza Illuminati, Řím: jedna z nejlepších adres v hlavním městě pro modernější styl pizzy.',
+      '50 Kalò, Neapol: velmi dobrá volba pro klasickou neapolskou zkušenost s kontrolovatelným rozpočtem.',
+      'Sestogusto, Turín: severní Itálie, dobrá kvalita a zajímavý poměr oproti dražším adresám v Miláně.'
+    ],
+    restaurantRankTitle: 'Restaurace: kvalita / cena bez fine dining rozpočtu',
+    restaurantRankItems: [
+      'Bib Gourmand je nejbezpečnější filtr: v Itálii 2026 zahrnuje 255 restaurací s dobrým poměrem kvality a ceny.',
+      'Emilia-Romagna a Piemonte mají největší koncentraci Bib Gourmand, každá zhruba 34 adres.',
+      'Toscana drží velmi silnou pozici pro tradiční kuchyni s přibližně 26 adresami.',
+      'Lombardie má široký výběr včetně míst mimo nejdražší centrum Milána, přibližně 23 adres.',
+      'Veneto nabízí solidní síť dostupnějších restaurací pro cestu mezi městy, jezerem a pobřežím, přibližně 18 adres.'
+    ],
     supermarketNote:
       'Jde o orientační spotřebitelská rozmezí aktualizovaná pro rok 2026. Cena se může měnit podle řetězce, regionu, značky a sezony.',
     legalTitle: 'Poznámka k cenám',
@@ -390,6 +417,33 @@ const UPDATED_REPORT = {
       'Southern Italy can still be cheaper, but in places such as Amalfi, Capri, Taormina, or central Naples the tourist position matters more than geography.',
       'At the seaside and in mountain destinations, expect a bigger gap between a weekday off season and a summer weekend.'
     ],
+    rankingsTitle: 'Mini rankings 2026: where to look for price or value',
+    rankingsIntro:
+      'These rankings are not advertising recommendations and do not guarantee the lowest price in every city. They are practical shortlists based on public price surveys, consumer ratings, and food guides available for the 2026 season.',
+    supermarketRankTitle: 'Supermarkets and discounters: price / quality',
+    supermarketRankItems: [
+      'Eurospin - the strongest choice for the lowest basic grocery basket and low-cost private-label products.',
+      'In’s Mercato - a very good discounter for mixed baskets and quick shopping in everyday cities.',
+      'Famila / Famila Superstore - a solid compromise when mixing branded products with savings.',
+      'Carrefour - interesting mainly for own-brand products and promotions.',
+      'Esselunga - strong quality, assortment, and online service; not always the cheapest, but often good for convenience and reliability.'
+    ],
+    pizzeriaRankTitle: 'Pizzerias: quality that still makes sense',
+    pizzeriaRankItems: [
+      'I Masanielli - Francesco Martucci, Caserta: top-level pizza in a city where prices are usually less extreme than premium tourist centers.',
+      'Diego Vitagliano Pizzeria, Naples: high quality and a strong Neapolitan benchmark, useful for travelers who want certainty.',
+      'Seu Pizza Illuminati, Rome: one of the best addresses in the capital for a more modern pizza style.',
+      '50 Kalò, Naples: a very good option for a classic Neapolitan experience with a controllable budget.',
+      'Sestogusto, Turin: northern Italy, strong quality, and interesting value compared with more expensive Milan addresses.'
+    ],
+    restaurantRankTitle: 'Restaurants: value without a fine-dining budget',
+    restaurantRankItems: [
+      'Bib Gourmand is the safest filter: in Italy 2026 it includes 255 restaurants with strong value for money.',
+      'Emilia-Romagna and Piedmont have the largest concentration of Bib Gourmand restaurants, about 34 addresses each.',
+      'Tuscany remains very strong for traditional food with about 26 addresses.',
+      'Lombardy offers a broad choice, including places outside Milan’s most expensive center, about 23 addresses.',
+      'Veneto has a solid network of more accessible restaurants for trips between cities, lake areas, and the coast, about 18 addresses.'
+    ],
     supermarketNote:
       'These are indicative consumer ranges updated for 2026. Prices can change by chain, region, brand, and season.',
     legalTitle: 'Price note',
@@ -424,6 +478,33 @@ const UPDATED_REPORT = {
       'Piccole città in Abruzzo, Molise, Basilicata, entroterra calabrese o alcune zone delle Marche offrono spesso migliore rapporto qualità/prezzo.',
       'Il Sud può restare più conveniente, ma in luoghi come Amalfi, Capri, Taormina o centro di Napoli conta più la pressione turistica che la geografia.',
       'Al mare e in montagna il divario tra giorno feriale fuori stagione e weekend estivo può essere molto marcato.'
+    ],
+    rankingsTitle: 'Mini classifiche 2026: dove cercare prezzo o qualità',
+    rankingsIntro:
+      'Queste classifiche non sono consigli pubblicitari e non garantiscono il prezzo più basso in ogni città. Sono shortlist pratiche basate su indagini prezzo pubbliche, valutazioni dei consumatori e guide gastronomiche disponibili per la stagione 2026.',
+    supermarketRankTitle: 'Supermercati e discount: prezzo / qualità',
+    supermarketRankItems: [
+      'Eurospin - scelta più forte per il carrello base più economico e i prodotti primo prezzo a marchio privato.',
+      'In’s Mercato - discount molto valido per carrello misto e spesa veloce nelle città comuni.',
+      'Famila / Famila Superstore - buon compromesso quando si combinano prodotti di marca e convenienza.',
+      'Carrefour - interessante soprattutto sui prodotti a marchio dell’insegna e sulle promozioni.',
+      'Esselunga - forte su qualità, assortimento e spesa online; non sempre la più economica, ma spesso solida per comodità e affidabilità.'
+    ],
+    pizzeriaRankTitle: 'Pizzerie: qualità che resta sensata',
+    pizzeriaRankItems: [
+      'I Masanielli - Francesco Martucci, Caserta: pizza di vertice in una città dove i prezzi sono di solito meno estremi rispetto ai centri turistici premium.',
+      'Diego Vitagliano Pizzeria, Napoli: alta qualità e riferimento napoletano forte, utile per chi vuole andare sul sicuro.',
+      'Seu Pizza Illuminati, Roma: una delle migliori insegne della capitale per uno stile di pizza più moderno.',
+      '50 Kalò, Napoli: ottima scelta per esperienza napoletana classica con budget controllabile.',
+      'Sestogusto, Torino: Nord Italia, buona qualità e rapporto interessante rispetto ad alcune insegne più care di Milano.'
+    ],
+    restaurantRankTitle: 'Ristoranti: qualità / prezzo senza budget da fine dining',
+    restaurantRankItems: [
+      'Bib Gourmand è il filtro più sicuro: in Italia 2026 raccoglie 255 ristoranti con forte rapporto qualità/prezzo.',
+      'Emilia-Romagna e Piemonte hanno la concentrazione più alta di Bib Gourmand, circa 34 indirizzi ciascuna.',
+      'La Toscana resta molto forte per cucina tradizionale con circa 26 indirizzi.',
+      'La Lombardia offre scelta ampia, anche fuori dal centro più caro di Milano, con circa 23 indirizzi.',
+      'Il Veneto ha una rete solida di ristoranti più accessibili per viaggi tra città, lago e costa, circa 18 indirizzi.'
     ],
     supermarketNote:
       'Sono intervalli orientativi aggiornati al 2026. Il prezzo può cambiare per insegna, regione, marca e stagione.',
@@ -486,6 +567,37 @@ function ReporterCard({ title, intro, items, tone = 'white' }) {
             <li key={line}>{line}</li>
           ))}
         </ul>
+      </CardContent>
+    </Card>
+  )
+}
+
+function MiniRankingsCard({ report }) {
+  const groups = [
+    { title: report.supermarketRankTitle, items: report.supermarketRankItems },
+    { title: report.pizzeriaRankTitle, items: report.pizzeriaRankItems },
+    { title: report.restaurantRankTitle, items: report.restaurantRankItems }
+  ]
+
+  return (
+    <Card className="bg-white border border-slate-200">
+      <CardHeader>
+        <CardTitle className="mb-8">{report.rankingsTitle}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-slate-700 leading-relaxed mb-6">{report.rankingsIntro}</p>
+        <div className="space-y-6">
+          {groups.map((group) => (
+            <section key={group.title}>
+              <h3 className="font-semibold text-slate-900 mb-3">{group.title}</h3>
+              <ol className="list-decimal pl-6 space-y-2 text-slate-700">
+                {group.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            </section>
+          ))}
+        </div>
       </CardContent>
     </Card>
   )
@@ -651,6 +763,8 @@ export default function FoodCostsItaly2026Page() {
               intro={report.regionalIntro}
               items={report.regionalItems}
             />
+
+            <MiniRankingsCard report={report} />
 
             <TravelPartnerCta
               title={t.partnerMid.title}
