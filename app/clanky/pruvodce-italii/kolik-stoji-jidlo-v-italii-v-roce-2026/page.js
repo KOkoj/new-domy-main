@@ -716,6 +716,8 @@ export default function FoodCostsItaly2026Page() {
               </CardContent>
             </Card>
 
+            <MiniRankingsCard report={report} />
+
             <ReporterCard
               title={report.marketTitle}
               intro={report.marketIntro}
@@ -763,8 +765,6 @@ export default function FoodCostsItaly2026Page() {
               intro={report.regionalIntro}
               items={report.regionalItems}
             />
-
-            <MiniRankingsCard report={report} />
 
             <TravelPartnerCta
               title={t.partnerMid.title}
