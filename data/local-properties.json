@@ -1,5 +1,1296 @@
 [
   {
+    "_id": "local-import-puglia-villa-san-giovanni-rotondo-sp43-1778417415596-cdo74",
+    "_type": "listing",
+    "title": {
+      "en": "Semi-Detached Villa in San Giovanni Rotondo, SP43",
+      "cs": "Polovina vily v San Giovanni Rotondo, SP43",
+      "it": "Villa bifamiliare a San Giovanni Rotondo, via SP43"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "puglia-villa-san-giovanni-rotondo-sp43"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 475000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 5,
+      "bathrooms": 3,
+      "squareFootage": 870
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "San Giovanni Rotondo",
+          "cs": "San Giovanni Rotondo",
+          "it": "San Giovanni Rotondo"
+        },
+        "slug": {
+          "current": "san-giovanni-rotondo"
+        },
+        "region": {
+          "name": {
+            "it": "Puglia",
+            "en": "Apulia",
+            "cs": "Apulie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via SP43, San Giovanni Rotondo",
+        "cs": "Via SP43, San Giovanni Rotondo",
+        "it": "Via SP43, San Giovanni Rotondo"
+      },
+      "coordinates": {
+        "lat": 41.723,
+        "lng": 15.788
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In San Giovanni Rotondo, this villa offers 870 sqm, 6 rooms, 5 bedrooms and 3 bathrooms. The property is located at Via SP43, San Giovanni Rotondo and is a practical option for buyers looking in Apulia with clear figures and a defined asking price.\n\nThe key point is villa indipendente con ampio terreno a circa 1 km dal centro. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite San Giovanni Rotondo nabizi tato nemovitost 870 m2, 6 mistnosti, 5 loznice a 3 koupelny. Nachazi se na adrese Via SP43, San Giovanni Rotondo a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Apulie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je villa indipendente con ampio terreno a circa 1 km dal centro. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A San Giovanni Rotondo, proponiamo villa con 870 mq, 6 locali, 5 camere e 3 bagni. La proprieta si trova in Via SP43, San Giovanni Rotondo e rappresenta una soluzione concreta per chi cerca una casa in Puglia con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa indipendente con ampio terreno a circa 1 km dal centro. Dalla descrizione emerge inoltre: CONTRADA PASSATURO:\nProponiamo in vendita villa indipendente, a circa 1 km dal centro del paese, immersa in un contesto tranquillo e riservato, circondata da circa 7.000 mq di terreno. Disposta su due livelli, la soluzione è ideale anche per due nuclei familiari.\nL’immobile è completo di tre box auto e locale ad uso deposito, garantendo funzionalità e spazi accessori.\nIl piano terra è valorizzato da un portico vetrato di ampia metratura con affaccio sul giardino privato, ideale per momenti di relax. Dal portico si accede alla luminosa zona giorno, con ambienti spaziosi, camino e angolo cottura a vista, che rendono l’ambiente accogliente e conviviale.\nLa zona notte comprende camera matrimoniale, cameretta con affaccio sul portico, bagno finestrato e ampia cantina, perfetta come locale accessorio o deposito.\nAl primo piano si apre un’ampia corte, che conduce tramite portico alla zona giorno con affaccio su terrazzo di generosa metratura. Il piano comprende cucina, bagno con balcone, camera da letto con cabina armadio e secondo bagno finestrato, offrendo spazi comodi e funzionali per la vita quotidiana.\nLe informazioni pubblicitarie non hanno carattere contrattuale. Le planimetrie non sono in scala e la suddivisione degli spazi è a scopo meramente illustrativo.\nemail: fghs8@tecnocasa.it\nTelefono 0882.211418\nNel corso di un'eventuale trattativa, garantiamo piena assistenza a partire dalla consulenza del mutuo bancario ideale e personalizzato, per proseguire con eventuali valutazioni assolutamente gratuite degli immobili di vostra proprietà da mettere in vendita.\nIl nostro STAFF ha come obiettivo quello di trovare la migliore soluzione per i nostri clienti, cercando di conoscere a fondo le loro esigenze ed essere in grado di indicare la soluzione ottimale, offrendo immobili accuratamente selezionati, riducendo così i tempi della transazione immobiliare.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1870904141/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904161/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904171/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904181/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904191/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904197/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904203/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904213/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904221/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904231/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904241/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904247/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904255/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1870904259/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa indipendente con ampio terreno a circa 1 km dal centro",
+          "en": "villa indipendente con ampio terreno a circa 1 km dal centro",
+          "cs": "villa indipendente con ampio terreno a circa 1 km dal centro"
+        }
+      },
+      {
+        "name": {
+          "it": "870 mq commerciali",
+          "en": "870 commercial sqm",
+          "cs": "870 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "5 camere da letto",
+          "en": "5 bedrooms",
+          "cs": "5 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via SP43, San Giovanni Rotondo",
+          "en": "listed address: Via SP43, San Giovanni Rotondo",
+          "cs": "uvedena adresa: Via SP43, San Giovanni Rotondo"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Semi-Detached Villa in San Giovanni Rotondo, SP43 for sale",
+      "cs": "Polovina vily v San Giovanni Rotondo, SP43 na prodej",
+      "it": "Villa bifamiliare a San Giovanni Rotondo, via SP43 in vendita"
+    },
+    "seoDescription": {
+      "en": "San Giovanni Rotondo: villa of 870 sqm, 5 bedrooms, 3 bathrooms. Asking price EUR 475,000.",
+      "cs": "San Giovanni Rotondo: nemovitost 870 m2, 5 loznice, 3 koupelny. Cena 475 000 EUR.",
+      "it": "San Giovanni Rotondo: villa di 870 mq, 5 camere, 3 bagni. Prezzo 475.000 euro."
+    },
+    "keywords": [
+      "puglia",
+      "san-giovanni-rotondo",
+      "villa",
+      "via-sp43",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/126867719/",
+    "_createdAt": "2026-05-10T12:50:15.595Z",
+    "_updatedAt": "2026-05-10T12:50:15.595Z"
+  },
+  {
+    "_id": "local-import-puglia-villa-bifamiliare-vico-del-gargano-mannarelle-1778417415362-60d94",
+    "_type": "listing",
+    "title": {
+      "en": "Semi-Detached Villa in Vico del Gargano, Contrada Mannarelle",
+      "cs": "Polovina vily ve Vico del Gargano, Contrada Mannarelle",
+      "it": "Villa bifamiliare a Vico del Gargano, Contrada Mannarelle"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "puglia-villa-bifamiliare-vico-del-gargano-mannarelle"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 399000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 6,
+      "bathrooms": 3,
+      "squareFootage": 395
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Vico del Gargano",
+          "cs": "Vico del Gargano",
+          "it": "Vico del Gargano"
+        },
+        "slug": {
+          "current": "vico-del-gargano"
+        },
+        "region": {
+          "name": {
+            "it": "Puglia",
+            "en": "Apulia",
+            "cs": "Apulie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Contrada Mannarelle, Vico del Gargano",
+        "cs": "Contrada Mannarelle, Vico del Gargano",
+        "it": "Contrada Mannarelle, Vico del Gargano"
+      },
+      "coordinates": {
+        "lat": 41.8929,
+        "lng": 15.9472
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Vico del Gargano, this villa offers 395 sqm, 6 rooms, 6 bedrooms and 3 bathrooms. The property is located at Contrada Mannarelle, Vico del Gargano and is a practical option for buyers looking in Apulia with clear figures and a defined asking price.\n\nThe key point is panoramic villa sul Gargano con giardino, garage e vista mare. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Vico del Gargano nabizi tato nemovitost 395 m2, 6 mistnosti, 6 loznice a 3 koupelny. Nachazi se na adrese Contrada Mannarelle, Vico del Gargano a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Apulie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je panoramaticka vila sul Gargano con giardino, garage e vista mare. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Vico del Gargano, proponiamo villa con 395 mq, 6 locali, 6 camere e 3 bagni. La proprieta si trova in Contrada Mannarelle, Vico del Gargano e rappresenta una soluzione concreta per chi cerca una casa in Puglia con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa panoramica sul Gargano con giardino, garage e vista mare. Dalla descrizione emerge inoltre: RIF. 385455 - Villa bifamiliare di prestigio in contesto riservato ed esclusivo, immersa nella quiete e nella bellezza di uno dei tratti più suggestivi del Gargano. La proprietà gode di una posizione panoramica unica: da un lato una splendida vista mare, con affaccio sulle Isole Tremiti e sulla costa croata, e dall’altro una vista aperta sul rinomato Parco Nazionale del Gargano e sulla Foresta Umbra. Le principali località balneari sono raggiungibili in soli 10 minuti d’auto. La villa è composta da due appartamenti completamente indipendenti, distribuiti su due livelli, per una superficie complessiva di 134 mq ogni piano, oltre a un ampio garage/cantina attrezzato di 127 mq. Al piano interrato è presente un grande garage con capacità per tre autovetture, completo di due vani ad uso cantina, ideali come spazi di deposito. Il piano terra è composto da un soggiorno, cucina separata da un mezzo muro, due bagni e tre camere da letto. Da questo livello è inoltre possibile accedere direttamente alla cantina dall’interno dell’abitazione, garantendo massima comodità. Il primo piano dispone di ingresso, ampio soggiorno e cucina con vista mare, tre camere da letto e un bagno, offrendo ambienti luminosi e ben arieggiati. L’immobile si distingue per dotazioni che ne aumentano comfort e autonomia: impianto a pannelli solari per la produzione di energia elettrica, pozzo artesiano che garantisce gratuitamente l’approvvigionamento idrico agli appartamenti e un ulteriore pozzo dedicato alla raccolta dell’acqua piovana, ideale per l’irrigazione del giardino. A completare il prestigio della proprietà, un magnifico giardino privato di circa 2.500 mq, arricchito da numerose varietà di alberi da frutto e da una piccola vigna con diverse tipologie di uva. All’interno dell’area esterna è stato inoltre realizzato un caratteristico forno in pietra, perfetto per la preparazione di pizze, pane e prodotti da forno tradizionali. La villa è stata costruita da un artigiano considerato tra i migliori maestri del Gargano, con grande attenzione alla qualità dei materiali e alla cura dei dettagli. Soluzione ideale per chi cerca privacy, natura, panorama e indipendenza, senza rinunciare alla vicinanza al mare e ai principali servizi. sfbc\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/01-gallery-1.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/02-gallery-10.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/03-gallery-11.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/04-gallery-12.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/05-gallery-2.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/06-gallery-3.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/07-gallery-4.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/08-gallery-5.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/09-gallery-6.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/10-gallery-7.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/11-gallery-8.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/12-gallery-9.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/13-main.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa panoramica sul Gargano con giardino, garage e vista mare",
+          "en": "panoramic villa sul Gargano con giardino, garage e vista mare",
+          "cs": "panoramaticka vila sul Gargano con giardino, garage e vista mare"
+        }
+      },
+      {
+        "name": {
+          "it": "395 mq commerciali",
+          "en": "395 commercial sqm",
+          "cs": "395 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "6 camere da letto",
+          "en": "6 bedrooms",
+          "cs": "6 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Contrada Mannarelle, Vico del Gargano",
+          "en": "listed address: Contrada Mannarelle, Vico del Gargano",
+          "cs": "uvedena adresa: Contrada Mannarelle, Vico del Gargano"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Semi-Detached Villa in Vico del Gargano, Contrada Mannarelle for sale",
+      "cs": "Polovina vily ve Vico del Gargano, Contrada Mannarelle na prodej",
+      "it": "Villa bifamiliare a Vico del Gargano, Contrada Mannarelle in vendita"
+    },
+    "seoDescription": {
+      "en": "Vico del Gargano: villa of 395 sqm, 6 bedrooms, 3 bathrooms. Asking price EUR 399,000.",
+      "cs": "Vico del Gargano: nemovitost 395 m2, 6 loznice, 3 koupelny. Cena 399 000 EUR.",
+      "it": "Vico del Gargano: villa di 395 mq, 6 camere, 3 bagni. Prezzo 399.000 euro."
+    },
+    "keywords": [
+      "puglia",
+      "vico-del-gargano",
+      "villa",
+      "contrada-mannarelle",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/125873951/",
+    "_createdAt": "2026-05-10T12:50:15.361Z",
+    "_updatedAt": "2026-05-10T12:50:15.361Z"
+  },
+  {
+    "_id": "local-import-puglia-terratetto-san-giovanni-rotondo-cavour-1778417414630-kylzd",
+    "_type": "listing",
+    "title": {
+      "en": "Townhouse in San Giovanni Rotondo, Via Cavour",
+      "cs": "Mestsky dum v San Giovanni Rotondo, Via Cavour",
+      "it": "Terratetto a San Giovanni Rotondo, via Cavour"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "puglia-terratetto-san-giovanni-rotondo-cavour"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 62000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 5,
+      "bedrooms": 2,
+      "bathrooms": 3,
+      "squareFootage": 133
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "San Giovanni Rotondo",
+          "cs": "San Giovanni Rotondo",
+          "it": "San Giovanni Rotondo"
+        },
+        "slug": {
+          "current": "san-giovanni-rotondo"
+        },
+        "region": {
+          "name": {
+            "it": "Puglia",
+            "en": "Apulia",
+            "cs": "Apulie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Camillo Benso di Cavour, 20, San Giovanni Rotondo",
+        "cs": "Via Camillo Benso di Cavour, 20, San Giovanni Rotondo",
+        "it": "Via Camillo Benso di Cavour, 20, San Giovanni Rotondo"
+      },
+      "coordinates": {
+        "lat": 41.7064,
+        "lng": 15.7259
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In San Giovanni Rotondo, this house offers 133 sqm, 5 rooms, 2 bedrooms and 3 bathrooms. The property is located at Via Camillo Benso di Cavour, 20, San Giovanni Rotondo and is a practical option for buyers looking in Apulia with clear figures and a defined asking price.\n\nThe key point is independent home in pieno centro su piu livelli. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite San Giovanni Rotondo nabizi tato nemovitost 133 m2, 5 mistnosti, 2 loznice a 3 koupelny. Nachazi se na adrese Via Camillo Benso di Cavour, 20, San Giovanni Rotondo a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Apulie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je samostatne bydleni in pieno centro su piu livelli. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A San Giovanni Rotondo, proponiamo casa indipendente con 133 mq, 5 locali, 2 camere e 3 bagni. La proprieta si trova in Via Camillo Benso di Cavour, 20, San Giovanni Rotondo e rappresenta una soluzione concreta per chi cerca una casa in Puglia con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e soluzione indipendente in pieno centro su piu livelli. Dalla descrizione emerge inoltre: VIA CAVOUR: in pieno centro, proponiamo una soluzione indipendente che conquista per la sua luminosità e la distribuzione intelligente degli spazi su più livelli. Al piano terra troviamo un soggiorno accogliente, una cucina funzionale, un bagno e un pratico ripostiglio, perfetti per la vita di tutti i giorni. Salendo al primo piano, la zona notte offre una camera matrimoniale, una cameretta con balcone e un bagno finestrato, ideale per garantire comfort e privacy. Il secondo piano, leggermente spiovente, accoglie un soggiorno versatile, una veranda con balcone panoramico, un bagno e un ulteriore ripostiglio: uno spazio perfetto per creare un angolo relax, uno studio o un’area dedicata agli hobby. Se per acquistare il tuo nuovo immobile devi vendere la tua attuale proprietà, contattaci per una consulenza gratuita e senza impegno, con valutazione professionale. Non perdere questa opportunità! Chiamaci per fissare un appuntamento senza impegno. Seguici anche sui nostri social: siamo presenti su Facebook, Instagram e YouTube con il nome @tecnocasa_sangiovannirotondo. Le informazioni pubblicitarie non hanno carattere contrattuale. Le planimetrie non sono in scala e la suddivisione degli spazi è a scopo meramente illustrativo. email: fghs8@tecnocasa.it Telefono 0882.211418 Nel corso di un'eventuale trattativa, garantiamo piena assistenza a partire dalla consulenza del mutuo bancario ideale e personalizzato, per proseguire con eventuali valutazioni assolutamente gratuite degli immobili di vostra proprietà da mettere in vendita. Il nostro STAFF ha come obiettivo quello di trovare la migliore soluzione per i nostri clienti, cercando di conoscere a fondo le loro esigenze ed essere in grado di indicare la soluzione ottimale, offrendo immobili accuratamente selezionati, riducendo così i tempi della transazione immobiliare.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/01-gallery-1.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/02-gallery-10.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/03-gallery-11.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/04-gallery-12.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/05-gallery-2.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/06-gallery-3.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/07-gallery-4.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/08-gallery-5.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/09-gallery-6.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/10-gallery-7.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/11-gallery-8.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/12-gallery-9.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/13-main.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "soluzione indipendente in pieno centro su piu livelli",
+          "en": "independent home in pieno centro su piu livelli",
+          "cs": "samostatne bydleni in pieno centro su piu livelli"
+        }
+      },
+      {
+        "name": {
+          "it": "133 mq commerciali",
+          "en": "133 commercial sqm",
+          "cs": "133 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "5 locali",
+          "en": "5 rooms",
+          "cs": "5 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Camillo Benso di Cavour, 20, San Giovanni Rotondo",
+          "en": "listed address: Via Camillo Benso di Cavour, 20, San Giovanni Rotondo",
+          "cs": "uvedena adresa: Via Camillo Benso di Cavour, 20, San Giovanni Rotondo"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Townhouse in San Giovanni Rotondo, Via Cavour for sale",
+      "cs": "Mestsky dum v San Giovanni Rotondo, Via Cavour na prodej",
+      "it": "Terratetto a San Giovanni Rotondo, via Cavour in vendita"
+    },
+    "seoDescription": {
+      "en": "San Giovanni Rotondo: house of 133 sqm, 2 bedrooms, 3 bathrooms. Asking price EUR 62,000.",
+      "cs": "San Giovanni Rotondo: nemovitost 133 m2, 2 loznice, 3 koupelny. Cena 62 000 EUR.",
+      "it": "San Giovanni Rotondo: casa indipendente di 133 mq, 2 camere, 3 bagni. Prezzo 62.000 euro."
+    },
+    "keywords": [
+      "puglia",
+      "san-giovanni-rotondo",
+      "house",
+      "via-camillo-benso-di-cavour",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128206104/",
+    "_createdAt": "2026-05-10T12:50:14.629Z",
+    "_updatedAt": "2026-05-10T12:50:14.629Z"
+  },
+  {
+    "_id": "local-import-campania-terratetto-apice-contrada-alvino-1778417414306-rhutk",
+    "_type": "listing",
+    "title": {
+      "en": "Multi-Family House in Contrada Alvino, Apice",
+      "cs": "Vicebytovy dum v Contrada Alvino, Apice",
+      "it": "Terratetto plurifamiliare in Contrada Alvino, Apice"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "campania-terratetto-apice-contrada-alvino"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 50000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "squareFootage": 160
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Apice",
+          "cs": "Apice",
+          "it": "Apice"
+        },
+        "slug": {
+          "current": "apice"
+        },
+        "region": {
+          "name": {
+            "it": "Campania",
+            "en": "Campania",
+            "cs": "Kampanie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Contrada Alvino, Apice",
+        "cs": "Contrada Alvino, Apice",
+        "it": "Contrada Alvino, Apice"
+      },
+      "coordinates": {
+        "lat": 41.1453,
+        "lng": 14.9397
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Apice, this house offers 160 sqm, 6 rooms, 4 bedrooms and 2 bathrooms. The property is located at Contrada Alvino, Apice and is a practical option for buyers looking in Campania with clear figures and a defined asking price.\n\nThe key point is proprieta collinare con due abitazioni, depositi e terreno agricolo. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Apice nabizi tato nemovitost 160 m2, 6 mistnosti, 4 loznice a 2 koupelny. Nachazi se na adrese Contrada Alvino, Apice a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Kampanie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je proprieta collinare con due abitazioni, depositi e terreno agricolo. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Apice, proponiamo casa indipendente con 160 mq, 6 locali, 4 camere e 2 bagni. La proprieta si trova in Contrada Alvino, Apice e rappresenta una soluzione concreta per chi cerca una casa in Campania con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e proprieta collinare con due abitazioni, depositi e terreno agricolo. Dalla descrizione emerge inoltre: In zona collinare di Apice (BN) a circa 5 km dal centro abitato del paese, proponiamo un bellissima proprietà composta da due abitazioni indipendenti,  depositi e terreno agricolo di circa 4.500 mq con pozzo, ideale per chi cerca una casa immersa nel verde e nella tranquillità.\n\nL'abitazione principale, realizzata nel 1990, è disposta su un unico livello per un totale di circa  80 mq netti ed ed è composta da una accogliente e luminosa zona giorno open space, corridoio, due camere da letto e bagno. La casa è arricchità da due spaziosi porticati dove poter vivere momenti di relax. Adiacenti all'abitazione ci sono 2 spaziosi locali deposito per un totale di circa 30 mq.\n\nA pochi passi è situata la seconda abitazione  di circa 68 mq distribuiti su un unico piano ed è composta da cucina, soggiorno, camera da letto, cameretta, corridoio e bagno con vasca. Al piano superiore, con accesso da una scala esterna, è presente un'altra camera da letto di circa 12 mq con bagno. A poca distanza sono collocati dei locali deposito ideali per il ricovero di mezzi e attrezzi agricoli.\n\nCompleta la proprietà un bel terreno agricolo di circa 4.500 mq di cui 800 mq posti accanto alla casa e con all'interno un uliveto in produzione, ed i restanti 3.700 mq posti difronte alla casa.\n\nSoluzione perfetta sia come prima casa che casa vacanze ideale per per chi cerca ampi spazi da vivere\n\nPer maggiori informazioni e appuntamenti di visita contatta la sede Futurocasa di Apice allo 0824 921150 - 0824 921900\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1759063290/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063446/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063246/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063256/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063448/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063250/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063238/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063232/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063268/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063274/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063266/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063276/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063258/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1759063286/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "proprieta collinare con due abitazioni, depositi e terreno agricolo",
+          "en": "proprieta collinare con due abitazioni, depositi e terreno agricolo",
+          "cs": "proprieta collinare con due abitazioni, depositi e terreno agricolo"
+        }
+      },
+      {
+        "name": {
+          "it": "160 mq commerciali",
+          "en": "160 commercial sqm",
+          "cs": "160 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "4 camere da letto",
+          "en": "4 bedrooms",
+          "cs": "4 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Contrada Alvino, Apice",
+          "en": "listed address: Contrada Alvino, Apice",
+          "cs": "uvedena adresa: Contrada Alvino, Apice"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Multi-Family House in Contrada Alvino, Apice for sale",
+      "cs": "Vicebytovy dum v Contrada Alvino, Apice na prodej",
+      "it": "Terratetto plurifamiliare in Contrada Alvino, Apice in vendita"
+    },
+    "seoDescription": {
+      "en": "Apice: house of 160 sqm, 4 bedrooms, 2 bathrooms. Asking price EUR 50,000.",
+      "cs": "Apice: nemovitost 160 m2, 4 loznice, 2 koupelny. Cena 50 000 EUR.",
+      "it": "Apice: casa indipendente di 160 mq, 4 camere, 2 bagni. Prezzo 50.000 euro."
+    },
+    "keywords": [
+      "campania",
+      "apice",
+      "house",
+      "contrada-alvino",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/122288966/",
+    "_createdAt": "2026-05-10T12:50:14.304Z",
+    "_updatedAt": "2026-05-10T12:50:14.304Z"
+  },
+  {
+    "_id": "local-import-campania-casa-indipendente-apice-tignano-1778417414053-k8gzo",
+    "_type": "listing",
+    "title": {
+      "en": "Detached House in Contrada Tignano, Apice",
+      "cs": "Samostatny dum v Contrada Tignano, Apice",
+      "it": "Casa indipendente in Contrada Tignano, Apice"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "campania-casa-indipendente-apice-tignano"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 65000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 140
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Apice",
+          "cs": "Apice",
+          "it": "Apice"
+        },
+        "slug": {
+          "current": "apice"
+        },
+        "region": {
+          "name": {
+            "it": "Campania",
+            "en": "Campania",
+            "cs": "Kampanie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Contrada Tignano, Apice",
+        "cs": "Contrada Tignano, Apice",
+        "it": "Contrada Tignano, Apice"
+      },
+      "coordinates": {
+        "lat": 41.1453,
+        "lng": 14.9397
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Apice, this house offers 140 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at Contrada Tignano, Apice and is a practical option for buyers looking in Campania with clear figures and a defined asking price.\n\nThe key point is detached house da ristrutturare con terreno agricolo panoramico. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Apice nabizi tato nemovitost 140 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Contrada Tignano, Apice a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Kampanie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je samostatny dum da ristrutturare con terreno agricolo panoramico. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Apice, proponiamo casa indipendente con 140 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in Contrada Tignano, Apice e rappresenta una soluzione concreta per chi cerca una casa in Campania con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e casa indipendente da ristrutturare con terreno agricolo panoramico. Dalla descrizione emerge inoltre: Casa indipendente in zona collinare e panoramica di Apice, a circa 7 km dal centro, con terreno agricolo circostante di circa 12.000 mq, giardino, depositi al seminterrato e abitazione al piano rialzato.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1703941398/m-c.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "casa indipendente da ristrutturare con terreno agricolo panoramico",
+          "en": "detached house da ristrutturare con terreno agricolo panoramico",
+          "cs": "samostatny dum da ristrutturare con terreno agricolo panoramico"
+        }
+      },
+      {
+        "name": {
+          "it": "140 mq commerciali",
+          "en": "140 commercial sqm",
+          "cs": "140 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Contrada Tignano, Apice",
+          "en": "listed address: Contrada Tignano, Apice",
+          "cs": "uvedena adresa: Contrada Tignano, Apice"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Detached House in Contrada Tignano, Apice for sale",
+      "cs": "Samostatny dum v Contrada Tignano, Apice na prodej",
+      "it": "Casa indipendente in Contrada Tignano, Apice in vendita"
+    },
+    "seoDescription": {
+      "en": "Apice: house of 140 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 65,000.",
+      "cs": "Apice: nemovitost 140 m2, 2 loznice, 1 koupelny. Cena 65 000 EUR.",
+      "it": "Apice: casa indipendente di 140 mq, 2 camere, 1 bagni. Prezzo 65.000 euro."
+    },
+    "keywords": [
+      "campania",
+      "apice",
+      "house",
+      "contrada-tignano",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/120467710/",
+    "_createdAt": "2026-05-10T12:50:14.052Z",
+    "_updatedAt": "2026-05-10T12:50:14.052Z"
+  },
+  {
+    "_id": "local-import-molise-bilocale-campomarino-lido-stazione-1778417413813-sahw1",
+    "_type": "listing",
+    "title": {
+      "en": "Apartment in Campomarino Lido, Via della Stazione",
+      "cs": "Byt v Campomarino Lido, Via della Stazione",
+      "it": "Bilocale a Campomarino Lido, via della Stazione"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "molise-bilocale-campomarino-lido-stazione"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 69000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 104
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Campomarino",
+          "cs": "Campomarino",
+          "it": "Campomarino"
+        },
+        "slug": {
+          "current": "campomarino"
+        },
+        "region": {
+          "name": {
+            "it": "Molise",
+            "en": "Molise",
+            "cs": "Molise"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via della Stazione, 1, Campomarino",
+        "cs": "Via della Stazione, 1, Campomarino",
+        "it": "Via della Stazione, 1, Campomarino"
+      },
+      "coordinates": {
+        "lat": 41.9567,
+        "lng": 15.0358
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Campomarino, this apartment offers 104 sqm, 2 rooms, 2 bedrooms and 1 bathrooms. The property is located at Via della Stazione, 1, Campomarino and is a practical option for buyers looking in Molise with clear figures and a defined asking price.\n\nThe key point is top-floor apartment a Campomarino Lido. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Campomarino nabizi tato nemovitost 104 m2, 2 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Via della Stazione, 1, Campomarino a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Molise s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je byt v poslednim patre a Campomarino Lido. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Campomarino, proponiamo appartamento con 104 mq, 2 locali, 2 camere e 1 bagni. La proprieta si trova in Via della Stazione, 1, Campomarino e rappresenta una soluzione concreta per chi cerca una casa in Molise con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e appartamento all ultimo piano a Campomarino Lido. Dalla descrizione emerge inoltre: A Campomarino Lido, In Via della Stazione, proponiamo un appartamento situato all'ultimo piano di un edificio residenziale. Con una superficie di 80 mq, l'immobile offre spazi ben distribuiti e funzionali. L'appartamento si compone di quattro locali, tra cui due camere da letto accoglienti, ideali per il riposo e la tranquillità. \nIl soggiorno, luminoso e spazioso, si presta perfettamente per momenti di relax e convivialità. \nLa cucina, separata, è pratica e ben organizzata.\n Il bagno, dotato di tutti i comfort essenziali, completa la proprietà. \nCostruito nel 1967, l'edificio mantiene il fascino dell'epoca, pur offrendo tutte le comodità moderne. \nUn posto auto condominiale garantisce praticità e sicurezza. \nLa posizione permette di godere delle comodità dei servizi pricipali, rendendo questa soluzione ideale per chi cerca una residenza al mare.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1734837054/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837530/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837568/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837594/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837632/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837666/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837700/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837720/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837744/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837770/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837790/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837828/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837848/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1734837870/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "appartamento all ultimo piano a Campomarino Lido",
+          "en": "top-floor apartment a Campomarino Lido",
+          "cs": "byt v poslednim patre a Campomarino Lido"
+        }
+      },
+      {
+        "name": {
+          "it": "104 mq commerciali",
+          "en": "104 commercial sqm",
+          "cs": "104 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "2 locali",
+          "en": "2 rooms",
+          "cs": "2 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via della Stazione, 1, Campomarino",
+          "en": "listed address: Via della Stazione, 1, Campomarino",
+          "cs": "uvedena adresa: Via della Stazione, 1, Campomarino"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Apartment in Campomarino Lido, Via della Stazione for sale",
+      "cs": "Byt v Campomarino Lido, Via della Stazione na prodej",
+      "it": "Bilocale a Campomarino Lido, via della Stazione in vendita"
+    },
+    "seoDescription": {
+      "en": "Campomarino: apartment of 104 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 69,000.",
+      "cs": "Campomarino: nemovitost 104 m2, 2 loznice, 1 koupelny. Cena 69 000 EUR.",
+      "it": "Campomarino: appartamento di 104 mq, 2 camere, 1 bagni. Prezzo 69.000 euro."
+    },
+    "keywords": [
+      "molise",
+      "campomarino",
+      "apartment",
+      "via-della-stazione",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/121470636/",
+    "_createdAt": "2026-05-10T12:50:13.812Z",
+    "_updatedAt": "2026-05-10T12:50:13.812Z"
+  },
+  {
+    "_id": "local-import-lazio-villa-bifamiliare-latina-macchia-grande-1778417413581-4ebm3",
+    "_type": "listing",
+    "title": {
+      "en": "Semi-Detached Villa in Latina, Strada Macchia Grande",
+      "cs": "Polovina vily v Latine, Strada Macchia Grande",
+      "it": "Villa bifamiliare a Latina, Strada Macchia Grande"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-villa-bifamiliare-latina-macchia-grande"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 279000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 137
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Latina",
+          "cs": "Latina",
+          "it": "Latina"
+        },
+        "slug": {
+          "current": "latina"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Strada Macchia Grande, 31, Latina",
+        "cs": "Strada Macchia Grande, 31, Latina",
+        "it": "Strada Macchia Grande, 31, Latina"
+      },
+      "coordinates": {
+        "lat": 41.4319,
+        "lng": 12.8026
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Latina, this villa offers 137 sqm, 4 rooms, 3 bedrooms and 2 bathrooms. The property is located at Strada Macchia Grande, 31, Latina and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is semi-detached portion ristrutturata nel 2025 con giardino. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Latina nabizi tato nemovitost 137 m2, 4 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese Strada Macchia Grande, 31, Latina a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je cast dvojdomu ristrutturata nel 2025 con giardino. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Latina, proponiamo villa con 137 mq, 4 locali, 3 camere e 2 bagni. La proprieta si trova in Strada Macchia Grande, 31, Latina e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e porzione di bifamiliare ristrutturata nel 2025 con giardino. Dalla descrizione emerge inoltre: Porzione di bifamiliare ristrutturata 2025 – 125 mq con giardino | Borgo Sabotino (Consorzio Anni Verdi), Strada Macchia Grande.\n\nIn contesto residenziale tranquillo e ben collegato, proponiamo porzione di bifamiliare di 125 mq, in condizioni ottime e ristrutturata nel 2025, ideale per chi cerca spazi veri e una casa già pronta, senza pensieri.\n\nStruttura:\n- Doppio soggiorno\n- Cucina abitabile\n- 3 camere da letto\n- 2 bagni (uno con doccia e uno con vasca)\n- Giardino\nIngresso indipendente\n\nDotazioni e comfort: riscaldamento autonomo a gas con radiatori, pompa di calore, fotovoltaico e camino. Presenti bombolone e due autoclavi. Completa la proprietà la dotazione di sicurezza e accessi con porta blindata, videocitofono e cancello elettrico.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1903994614/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994624/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994640/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994650/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994666/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994678/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994692/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994700/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994716/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994728/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994738/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994750/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994758/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1903994774/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "porzione di bifamiliare ristrutturata nel 2025 con giardino",
+          "en": "semi-detached portion ristrutturata nel 2025 con giardino",
+          "cs": "cast dvojdomu ristrutturata nel 2025 con giardino"
+        }
+      },
+      {
+        "name": {
+          "it": "137 mq commerciali",
+          "en": "137 commercial sqm",
+          "cs": "137 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Strada Macchia Grande, 31, Latina",
+          "en": "listed address: Strada Macchia Grande, 31, Latina",
+          "cs": "uvedena adresa: Strada Macchia Grande, 31, Latina"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Semi-Detached Villa in Latina, Strada Macchia Grande for sale",
+      "cs": "Polovina vily v Latine, Strada Macchia Grande na prodej",
+      "it": "Villa bifamiliare a Latina, Strada Macchia Grande in vendita"
+    },
+    "seoDescription": {
+      "en": "Latina: villa of 137 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 279,000.",
+      "cs": "Latina: nemovitost 137 m2, 3 loznice, 2 koupelny. Cena 279 000 EUR.",
+      "it": "Latina: villa di 137 mq, 3 camere, 2 bagni. Prezzo 279.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "latina",
+      "villa",
+      "strada-macchia-grande",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128241706/",
+    "_createdAt": "2026-05-10T12:50:13.580Z",
+    "_updatedAt": "2026-05-10T12:50:13.580Z"
+  },
+  {
+    "_id": "local-import-lazio-villa-plurifamiliare-terracina-oasi-1778417413311-5mgso",
+    "_type": "listing",
+    "title": {
+      "en": "Multi-Family Villa in Terracina, Oasi",
+      "cs": "Vicebytova vila v Terracine, Oasi",
+      "it": "Villa plurifamiliare all'Oasi di Terracina"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-villa-plurifamiliare-terracina-oasi"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 349000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 125
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Terracina",
+          "cs": "Terracina",
+          "it": "Terracina"
+        },
+        "slug": {
+          "current": "terracina"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "L'Oasi, Terracina",
+        "cs": "L'Oasi, Terracina",
+        "it": "L'Oasi, Terracina"
+      },
+      "coordinates": {
+        "lat": 41.2622,
+        "lng": 13.1331
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Terracina, this villa offers 125 sqm, 4 rooms, 3 bedrooms and 2 bathrooms. The property is located at L'Oasi, Terracina and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is villa portion nel complesso Oasi a circa 250 metri dal mare. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Terracina nabizi tato nemovitost 125 m2, 4 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese L'Oasi, Terracina a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je cast vilky nel complesso Oasi a circa 250 metri dal mare. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Terracina, proponiamo villa con 125 mq, 4 locali, 3 camere e 2 bagni. La proprieta si trova in L'Oasi, Terracina e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e porzione di villino nel complesso Oasi a circa 250 metri dal mare. Dalla descrizione emerge inoltre: Nel rinomato complesso residenziale \"Oasi\" al Circeo, a soli 250 metri dal mare, ti aspetta una splendida porzione di villino trifamiliare di 125 mq, distribuito su due livelli fuori terra. Gli spazi all'interno del villino accoglienti e funzionali sono così distribuiti: Al Piano Terra: Ti accoglie un ampio salone con camino, una cucina semi-abitabile e un bagno. Dal salone si accede al giardino privato in parte mattonato con un pratico barbecue, perfetto per cene all'aperto e un comodo servizio doccia esterna. Al Primo Piano la zona notte ospita tre spaziose camere matrimoniali e un ulteriore bagno. L'immobile si presenta in buone condizioni abitative, pronto per essere vissuto fin da subito, e include già tende da sole, grate di sicurezza e  un condizionatore al piano primo. La proprietà è valorizzata da un posto auto scoperto all'interno del giardino e due pratiche cantine. il villino viene venduto completamente arredato, permettendoti di godere della tua nuova casa al mare senza pensieri fin dal primo giorno. Il complesso residenziale \"Oasi\" offre servizi esclusivi per un'estate da sogno, tra cui un Campo da tennis, accesso privato e diretto alla spiaggia con servizio di posa ombrelloni, sdraio e lettino dal 15 giugno al 15 settembre. Se cerchi la casa perfetta per le tue vacanze o un investimento di prestigio sul Litorale Laziale questo villino a due passi dal mare è la soluzione ideale. Non lasciarti sfuggire questa straordinaria opportunità, Contattaci oggi stesso per maggiori informazioni o per fissare una visita!  Per questo o altri immobili simili contattare Frimm Academy 41337 Puoi collegarti al nostro sito internet oppure visita la nostra pagina facebook: eaversa@frimmacademy, scaricare la nostra applicazione m. frimm. com/41337. Uno staff di professionisti garantiranno la trasparenza della trattativa e una ricerca dell'immobile mirata alle proprie esigenze. Contatta direttamente il nostro ufficio di back office con sede in Via Ferdinando di Savoia, 3. TELEFONO 06 89167059\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "https://pwm.im-cdn.it/image/1877795577/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795579/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795581/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795585/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795589/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795591/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795597/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795599/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795601/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795603/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795605/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795607/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795609/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1877795615/xxl.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "porzione di villino nel complesso Oasi a circa 250 metri dal mare",
+          "en": "villa portion nel complesso Oasi a circa 250 metri dal mare",
+          "cs": "cast vilky nel complesso Oasi a circa 250 metri dal mare"
+        }
+      },
+      {
+        "name": {
+          "it": "125 mq commerciali",
+          "en": "125 commercial sqm",
+          "cs": "125 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "4 locali",
+          "en": "4 rooms",
+          "cs": "4 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: L'Oasi, Terracina",
+          "en": "listed address: L'Oasi, Terracina",
+          "cs": "uvedena adresa: L'Oasi, Terracina"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Multi-Family Villa in Terracina, Oasi for sale",
+      "cs": "Vicebytova vila v Terracine, Oasi na prodej",
+      "it": "Villa plurifamiliare all'Oasi di Terracina in vendita"
+    },
+    "seoDescription": {
+      "en": "Terracina: villa of 125 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 349,000.",
+      "cs": "Terracina: nemovitost 125 m2, 3 loznice, 2 koupelny. Cena 349 000 EUR.",
+      "it": "Terracina: villa di 125 mq, 3 camere, 2 bagni. Prezzo 349.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "terracina",
+      "villa",
+      "l-oasi",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127154217/",
+    "_createdAt": "2026-05-10T12:50:13.310Z",
+    "_updatedAt": "2026-05-10T12:50:13.310Z"
+  },
+  {
+    "_id": "local-import-lazio-trilocale-latina-lido-via-elba-1778417390499-cuw0i",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Bedroom Apartment in Latina Lido, Via Elba",
+      "cs": "Trilocale v Latina Lido, Via Elba",
+      "it": "Trilocale a Latina Lido, via Elba"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lazio-trilocale-latina-lido-via-elba"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 160000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 87
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Latina",
+          "cs": "Latina",
+          "it": "Latina"
+        },
+        "slug": {
+          "current": "latina"
+        },
+        "region": {
+          "name": {
+            "it": "Lazio",
+            "en": "Lazio",
+            "cs": "Lazio"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Elba, 8, Latina",
+        "cs": "Via Elba, 8, Latina",
+        "it": "Via Elba, 8, Latina"
+      },
+      "coordinates": {
+        "lat": 41.4133,
+        "lng": 12.8522
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "description": {
+      "en": "In Latina, this apartment offers 87 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at Via Elba, 8, Latina and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is ready-to-use apartment near the sea con corte esclusiva. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Latina nabizi tato nemovitost 87 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Via Elba, 8, Latina a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je byt pripraveny k bydleni blizko more con corte esclusiva. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Latina, proponiamo appartamento con 87 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in Via Elba, 8, Latina e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e appartamento pronto vicino al mare con corte esclusiva. Dalla descrizione emerge inoltre: DOVE SIAMO Sul Lungomare di Latina, alle spalle dello storico ristorante \"Il Tarantino\" in via Elba, a pochi passi dalla prima fila e dalla spiaggia. A CHI CI RIVOLGIAMO L’immobile si presenta in ottime condizioni ed è disponibile per essere consegnato già per l'estate in arrivo, secondo esigenze e possibilità di chi lo acquista. Oltre a rappresentare una soluzione per le vacanze estive, potrebbe essere anche un'ottima opportunità di investimento. CARATTERISTICHE L’appartamento, come già anticipato ben rifinito e pronto per essere abitato, è posto al piano rialzato di una palazzina in cortina situata a soli 50 metri dal mare. Dispone di doppio ingresso, (uno indipendente) . Internamente offre un accogliente soggiorno con angolo cottura, due camere da letto, un bagno finestrato e un balcone angolare. Il vero punto di forza è la corte esclusiva, perfetta per momenti di relax e per pranzi o cene all’aperto. L’esposizione garantisce un’ottima luminosità durante tutta la giornata. Completa la proprietà un posto auto scoperto in un terreno a poca distanza dal fabbricato. SERVIZI IN ZONA La posizione, tra Capoportiere e Foceverde, e la vicinanza ai principali servizi rendono l’immobile particolarmente comodo. TEMPI DI CONSEGNA Disponibile da subito. DISPONIBILITÀ PER APPUNTAMENTI È possibile visitare l’immobile tutti i giorni, dal lunedì al sabato. Per maggiori informazioni o per fissare un appuntamento, contattate la nostra agenzia.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/01-gallery-1.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/02-gallery-10.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/03-gallery-11.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/04-gallery-12.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/05-gallery-2.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/06-gallery-3.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/07-gallery-4.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/08-gallery-5.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/09-gallery-6.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/10-gallery-7.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/11-gallery-8.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/12-gallery-9.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/13-main.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "appartamento pronto vicino al mare con corte esclusiva",
+          "en": "ready-to-use apartment near the sea con corte esclusiva",
+          "cs": "byt pripraveny k bydleni blizko more con corte esclusiva"
+        }
+      },
+      {
+        "name": {
+          "it": "87 mq commerciali",
+          "en": "87 commercial sqm",
+          "cs": "87 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Elba, 8, Latina",
+          "en": "listed address: Via Elba, 8, Latina",
+          "cs": "uvedena adresa: Via Elba, 8, Latina"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment in Latina Lido, Via Elba for sale",
+      "cs": "Trilocale v Latina Lido, Via Elba na prodej",
+      "it": "Trilocale a Latina Lido, via Elba in vendita"
+    },
+    "seoDescription": {
+      "en": "Latina: apartment of 87 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 160,000.",
+      "cs": "Latina: nemovitost 87 m2, 2 loznice, 1 koupelny. Cena 160 000 EUR.",
+      "it": "Latina: appartamento di 87 mq, 2 camere, 1 bagni. Prezzo 160.000 euro."
+    },
+    "keywords": [
+      "lazio",
+      "latina",
+      "apartment",
+      "via-elba",
+      "immobiliare-it"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128783804/",
+    "_createdAt": "2026-05-10T12:49:50.469Z",
+    "_updatedAt": "2026-05-10T12:49:50.469Z"
+  },
+  {
     "_id": "local-import-lazio-quadrilocale-cassino-san-bartolomeo-pertini-1778408547727-iqbwd",
     "_type": "listing",
     "title": {
