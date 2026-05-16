@@ -12,7 +12,7 @@ export function getNewPropertyLabel(language = 'en') {
 
 export default function NewPropertyRibbon({ language = 'en', className = '' }) {
   return (
-    <div className={`pointer-events-none absolute right-[-38px] top-[18px] z-30 w-36 rotate-45 bg-emerald-600 py-1.5 text-center text-[11px] font-bold uppercase tracking-[0.18em] text-white shadow-lg ring-1 ring-white/30 ${className}`}>
+    <div className={`pointer-events-none absolute right-[-36px] top-[14px] z-10 w-36 rotate-45 bg-red-600 py-1.5 text-center text-[11px] font-extrabold uppercase tracking-[0.2em] text-white shadow-[0_8px_18px_rgba(220,38,38,0.35)] ring-1 ring-white/50 ${className}`}>
       {getNewPropertyLabel(language)}
     </div>
   )

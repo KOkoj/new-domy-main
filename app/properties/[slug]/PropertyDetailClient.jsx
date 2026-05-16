@@ -985,7 +985,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                       </Badge>
                     )}
                     {property.isNew && (
-                      <Badge className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                      <Badge className="bg-red-600 hover:bg-red-700 text-white shadow-sm">
                         {getNewPropertyLabel(language)}
                       </Badge>
                     )}
