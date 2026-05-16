@@ -19,12 +19,36 @@
   "square_meters": 100,
   "parking": 0,
   "features": [
-    { "it": "Soluzione semindipendente di circa 100 m2 su tre livelli", "en": "Semi-detached home of approx. 100 sqm over three levels", "cs": "Poloradovy dum cca 100 m2 ve trech urovnich" },
-    { "it": "Completamente ristrutturata nel 2025", "en": "Fully renovated in 2025", "cs": "Kompletne zrekonstruovano v roce 2025" },
-    { "it": "Cortile privato riservato", "en": "Private courtyard", "cs": "Soukromy dvur" },
-    { "it": "Soggiorno con cucina a vista e caminetto a pellet", "en": "Living room with open kitchen and pellet fireplace", "cs": "Obyvak s otevrenou kuchyni a peletovym krbem" },
-    { "it": "Due camere, due bagni e balconi", "en": "Two bedrooms, two bathrooms, and balconies", "cs": "Dve loznice, dve koupelny a balkony" },
-    { "it": "Cantina rustica pavimentata e predisposizione fotovoltaico", "en": "Paved rustic cellar and photovoltaic option", "cs": "Dlazdeny rustikalni sklep a moznost fotovoltaiky" }
+    {
+      "it": "Soluzione semindipendente di circa 100 m2 su tre livelli",
+      "en": "Semi-detached home of approx. 100 sqm over three levels",
+      "cs": "Poloradovy dům cca 100 m2 ve třech úrovních"
+    },
+    {
+      "it": "Completamente ristrutturata nel 2025",
+      "en": "Fully renovated in 2025",
+      "cs": "Kompletne zrekonstruovano v roce 2025"
+    },
+    {
+      "it": "Cortile privato riservato",
+      "en": "Private courtyard",
+      "cs": "Soukromy dvur"
+    },
+    {
+      "it": "Soggiorno con cucina a vista e caminetto a pellet",
+      "en": "Living room with open kitchen and pellet fireplace",
+      "cs": "Obyvak s otevrenou kuchyni a peletovym krbem"
+    },
+    {
+      "it": "Due camere, due bagni e balconi",
+      "en": "Two bedrooms, two bathrooms, and balconies",
+      "cs": "Dve ložnice, dve koupelny a balkony"
+    },
+    {
+      "it": "Cantina rustica pavimentata e predisposizione fotovoltaico",
+      "en": "Paved rustic cellar and photovoltaic option",
+      "cs": "Dlazdeny rustikalni sklep a možnost fotovoltaiky"
+    }
   ],
   "description_it": "Nel cuore di Giaveno, in via Teresa Marchini 3, proponiamo una soluzione semindipendente completamente ristrutturata nel 2025. La proprieta si distingue per il cortile privato, utile per vivere uno spazio esterno riservato nel centro del paese.\n\nLa casa si sviluppa su tre livelli. Al piano terreno si trova l'ingresso con soggiorno e cucina a vista, valorizzato da un moderno caminetto a pellet. Al primo piano sono presenti una camera, un bagno e un balcone; al secondo e ultimo piano si trova la camera padronale con bagno privato e balcone panoramico.\n\nCompletano la proposta una cantina rustica pavimentata, utilizzabile come deposito o locale hobby, materiali di pregio e attenzione all'efficienza energetica, con possibilita di installare un impianto fotovoltaico da 1,5 kW.",
   "description_en": "In the heart of Giaveno, on Via Teresa Marchini 3, we offer a semi-detached home fully renovated in 2025. The property stands out for its private courtyard, a reserved outdoor space in the town centre.\n\nThe house is arranged over three levels. The ground floor includes the entrance, living room, and open kitchen, enhanced by a modern pellet fireplace. The first floor offers one bedroom, a bathroom, and a balcony; the second and top floor hosts the main bedroom with private bathroom and panoramic balcony.\n\nA paved rustic cellar, suitable as storage or hobby space, quality materials, and attention to energy efficiency complete the property, with the option to install a 1.5 kW photovoltaic system.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Poloradovy dum 100 m2 v Giavenu: rekonstrukce 2025, 2 loznice, 2 koupelny, soukromy dvur, balkony a sklep.",
   "status": "available",
   "featured": false,
-  "keywords": ["giaveno", "via teresa marchini", "casa indipendente", "cortile", "ristrutturata", "piemonte"],
+  "keywords": [
+    "giaveno",
+    "via teresa marchini",
+    "casa indipendente",
+    "cortile",
+    "ristrutturata",
+    "piemonte"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/128228842/",
   "lat": 45.0438,
   "lng": 7.35264,

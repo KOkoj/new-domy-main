@@ -19,12 +19,36 @@
   "square_meters": 42,
   "parking": 0,
   "features": [
-    { "it": "Bilocale al secondo e ultimo piano", "en": "One-bedroom apartment on the second and top floor", "cs": "Byt 2+kk ve druhem a poslednim patre" },
-    { "it": "A circa 500 metri dall'aeroporto Marconi", "en": "Approx. 500 metres from Marconi Airport", "cs": "Cca 500 metru od letiste Marconi" },
-    { "it": "Bagno finestrato con doccia", "en": "Windowed bathroom with shower", "cs": "Koupelna s oknem a sprchou" },
-    { "it": "Cantina al piano seminterrato", "en": "Cellar in the basement", "cs": "Sklep v suterenu" },
-    { "it": "Infissi PVC doppio vetro", "en": "PVC double-glazed windows", "cs": "Plastova okna s dvojsklem" },
-    { "it": "Attualmente locato", "en": "Currently rented", "cs": "Aktualne pronajato" }
+    {
+      "it": "Bilocale al secondo e ultimo piano",
+      "en": "One-bedroom apartment on the second and top floor",
+      "cs": "Byt 2+kk ve druhem a poslednim patre"
+    },
+    {
+      "it": "A circa 500 metri dall'aeroporto Marconi",
+      "en": "Approx. 500 metres from Marconi Airport",
+      "cs": "Cca 500 metru od letiště Marconi"
+    },
+    {
+      "it": "Bagno finestrato con doccia",
+      "en": "Windowed bathroom with shower",
+      "cs": "Koupelna s oknem a sprchou"
+    },
+    {
+      "it": "Cantina al piano seminterrato",
+      "en": "Cellar in the basement",
+      "cs": "Sklep v suterenu"
+    },
+    {
+      "it": "Infissi PVC doppio vetro",
+      "en": "PVC double-glazed windows",
+      "cs": "Plastova okna s dvojsklem"
+    },
+    {
+      "it": "Attualmente locato",
+      "en": "Currently rented",
+      "cs": "Aktualne pronajato"
+    }
   ],
   "description_it": "A Bologna, in via dell'Ospedaletto 7, proponiamo un bilocale al secondo e ultimo piano, a circa 500 metri dall'aeroporto Marconi e comodo alle principali vie di comunicazione.\n\nL'appartamento e composto da ingresso, bagno finestrato con doccia, cucina e ampia camera matrimoniale. Completa la proprieta una cantina al piano seminterrato.\n\nLa soluzione e arredata e attualmente locata, con potenziale interessante per chi cerca un investimento in una zona strategica di Bologna.",
   "description_en": "In Bologna, on Via dell'Ospedaletto 7, this one-bedroom apartment is set on the second and top floor, approx. 500 metres from Marconi Airport and convenient to the main transport routes.\n\nThe layout includes entrance, windowed bathroom with shower, kitchen, and a large double bedroom. A basement cellar completes the property.\n\nThe apartment is furnished and currently rented, making it an interesting option for investors seeking a strategic Bologna location.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Zarizeny byt 42 m2 v Borgo Panigale u letiste Marconi, se sklepem a aktivnim najmem.",
   "status": "available",
   "featured": false,
-  "keywords": ["bologna", "borgo panigale", "aeroporto", "bilocale", "investimento", "emilia-romagna"],
+  "keywords": [
+    "bologna",
+    "borgo panigale",
+    "aeroporto",
+    "bilocale",
+    "investimento",
+    "emilia-romagna"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/127126641/",
   "lat": 44.5247,
   "lng": 11.275,

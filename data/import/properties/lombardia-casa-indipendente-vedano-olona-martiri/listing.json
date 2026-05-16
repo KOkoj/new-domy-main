@@ -19,12 +19,36 @@
   "square_meters": 189,
   "parking": 1,
   "features": [
-    { "it": "Terratetto libero su tre lati nel cuore di Vedano Olona", "en": "Three-sided free townhouse in the heart of Vedano Olona", "cs": "Radovy dum volny ze tri stran v srdci Vedano Olona" },
-    { "it": "Distribuzione su tre livelli per circa 189 m2", "en": "Three-level layout for approx. 189 sqm", "cs": "Dispozice ve trech urovnich o plose cca 189 m2" },
-    { "it": "Veranda con affaccio sul verde", "en": "Veranda overlooking greenery", "cs": "Veranda s vyhledem do zelene" },
-    { "it": "Cinque locali e due bagni", "en": "Five rooms and two bathrooms", "cs": "Pet mistnosti a dve koupelny" },
-    { "it": "Soluzione familiare con atmosfera calda e riservata", "en": "Family home with a warm and private atmosphere", "cs": "Rodinny dum s prijemnou a soukromou atmosferou" },
-    { "it": "Tecnologie moderne e interni curati", "en": "Modern technologies and well-kept interiors", "cs": "Moderni technologie a udrzovane interiery" }
+    {
+      "it": "Terratetto libero su tre lati nel cuore di Vedano Olona",
+      "en": "Three-sided free townhouse in the heart of Vedano Olona",
+      "cs": "Řadový dům volny ze tri stran v srdci Vedano Olona"
+    },
+    {
+      "it": "Distribuzione su tre livelli per circa 189 m2",
+      "en": "Three-level layout for approx. 189 sqm",
+      "cs": "Dispozice ve třech úrovních o plose cca 189 m2"
+    },
+    {
+      "it": "Veranda con affaccio sul verde",
+      "en": "Veranda overlooking greenery",
+      "cs": "Veranda s výhledem do zelene"
+    },
+    {
+      "it": "Cinque locali e due bagni",
+      "en": "Five rooms and two bathrooms",
+      "cs": "Pet místnosti a dve koupelny"
+    },
+    {
+      "it": "Soluzione familiare con atmosfera calda e riservata",
+      "en": "Family home with a warm and private atmosphere",
+      "cs": "Rodinny dům s prijemnou a soukromou atmosferou"
+    },
+    {
+      "it": "Tecnologie moderne e interni curati",
+      "en": "Modern technologies and well-kept interiors",
+      "cs": "Moderní technologie a udrzovane interiery"
+    }
   ],
   "description_it": "Nel cuore di Vedano Olona, in Via dei Martiri 30, proponiamo un affascinante terratetto libero su tre lati e disposto su tre livelli. La casa combina il calore di una vera abitazione familiare con soluzioni moderne e una distribuzione adatta alla vita quotidiana.\n\nLa veranda con vista sul verde introduce a spazi accoglienti e ricchi di personalita, pensati per offrire privacy e comfort. La superficie complessiva di circa 189 m2 comprende cinque locali e due bagni, con ambienti che permettono una gestione flessibile tra zona giorno, zona notte e spazi di servizio.\n\nUna soluzione pronta per chi cerca indipendenza, atmosfera e comodita in una posizione centrale di Vedano Olona, con il valore aggiunto di spazi interni generosi e una casa libera su tre lati.",
   "description_en": "In the heart of Vedano Olona, on Via dei Martiri 30, we offer a charming townhouse free on three sides and arranged over three levels. The home combines the warmth of a true family residence with modern solutions and a layout suited to everyday living.\n\nThe veranda overlooking greenery introduces welcoming spaces full of character, designed to provide privacy and comfort. The approx. 189 sqm total surface includes five rooms and two bathrooms, with interiors that allow flexible use between living area, sleeping area, and service spaces.\n\nA ready solution for those seeking independence, atmosphere, and convenience in a central Vedano Olona position, with the added value of generous interior spaces and three-sided exposure.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Samostatny dum 189 m2 ve Vedano Olona: volny ze tri stran, tri urovne, veranda do zelene, 5 mistnosti, 2 koupelny a centralni poloha.",
   "status": "available",
   "featured": false,
-  "keywords": ["vedano olona", "casa indipendente", "terratetto", "via dei martiri", "veranda", "lombardia"],
+  "keywords": [
+    "vedano olona",
+    "casa indipendente",
+    "terratetto",
+    "via dei martiri",
+    "veranda",
+    "lombardia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/128193376/",
   "lat": 45.7764,
   "lng": 8.8794,

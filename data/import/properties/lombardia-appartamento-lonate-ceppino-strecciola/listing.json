@@ -20,12 +20,36 @@
   "yearBuilt": 1970,
   "parking": 1,
   "features": [
-    { "it": "Appartamento semindipendente su due livelli", "en": "Semi-independent apartment on two levels", "cs": "Polonezavisly byt ve dvou urovnich" },
-    { "it": "Ristrutturazione totale tra 2015 e 2020", "en": "Full renovation carried out between 2015 and 2020", "cs": "Kompletni rekonstrukce mezi roky 2015 a 2020" },
-    { "it": "Zona giorno di circa 33 m2 con illuminazione LED", "en": "Approx. 33 sqm living area with LED lighting", "cs": "Obytna cast cca 33 m2 s LED osvetlenim" },
-    { "it": "Balcone di oltre 15 m2", "en": "Balcony of over 15 sqm", "cs": "Balkon pres 15 m2" },
-    { "it": "Cappotto termico, riscaldamento a pavimento e pannelli solari", "en": "Thermal coat, underfloor heating, and solar panels", "cs": "Zatepleni, podlahove vytapeni a solarni panely" },
-    { "it": "Arredi inclusi e box auto di circa 21 m2", "en": "Furniture included and approx. 21 sqm garage", "cs": "Zarizeni v cene a garaz cca 21 m2" }
+    {
+      "it": "Appartamento semindipendente su due livelli",
+      "en": "Semi-independent apartment on two levels",
+      "cs": "Polonezavisly byt ve dvou úrovních"
+    },
+    {
+      "it": "Ristrutturazione totale tra 2015 e 2020",
+      "en": "Full renovation carried out between 2015 and 2020",
+      "cs": "Kompletni rekonstrukce mezi roky 2015 a 2020"
+    },
+    {
+      "it": "Zona giorno di circa 33 m2 con illuminazione LED",
+      "en": "Approx. 33 sqm living area with LED lighting",
+      "cs": "Obytna část cca 33 m2 s LED osvetlenim"
+    },
+    {
+      "it": "Balcone di oltre 15 m2",
+      "en": "Balcony of over 15 sqm",
+      "cs": "Balkon pres 15 m2"
+    },
+    {
+      "it": "Cappotto termico, riscaldamento a pavimento e pannelli solari",
+      "en": "Thermal coat, underfloor heating, and solar panels",
+      "cs": "Zatepleni, podlahove vytapeni a solarni panely"
+    },
+    {
+      "it": "Arredi inclusi e box auto di circa 21 m2",
+      "en": "Furniture included and approx. 21 sqm garage",
+      "cs": "Zarizeni v cene a garáž cca 21 m2"
+    }
   ],
   "description_it": "Nel cuore di Lonate Ceppino, in via della Strecciola, proponiamo un appartamento semindipendente su due livelli, completamente trasformato da una ristrutturazione totale. Il primo piano e stato rinnovato nel 2015, mentre il secondo livello e stato completato tra il 2017 e il 2020.\n\nL'ingresso apre su una luminosa zona giorno di circa 33 m2, valorizzata da illuminazione a LED e accesso a un balcone di oltre 15 m2. La casa offre spazi generosi e ben distribuiti, con camere e bagni pensati per comfort, privacy e vita familiare.\n\nCappotto termico esterno, riscaldamento a pavimento suddiviso per zone, caldaia a condensazione e pannelli solari garantiscono efficienza. Porta blindata, inferriate, tapparelle motorizzate, telecamere e allarme perimetrale/volumetrico completano la sicurezza. Arredi inclusi e box auto di circa 21 m2 rendono la soluzione pronta da vivere.",
   "description_en": "In the heart of Lonate Ceppino, on Via della Strecciola, we offer a semi-independent apartment on two levels, fully transformed by a complete renovation. The first floor was renewed in 2015, while the second level was completed between 2017 and 2020.\n\nThe entrance opens onto a bright approx. 33 sqm living area, enhanced by LED lighting and access to a balcony of over 15 sqm. The home offers generous and well-distributed spaces, with rooms and bathrooms designed for comfort, privacy, and family life.\n\nExternal thermal coat, zoned underfloor heating, condensing boiler, and solar panels ensure efficiency. Security door, grilles, motorized shutters, cameras, and perimeter/volumetric alarm complete safety. Furniture included and an approx. 21 sqm garage make the solution ready to live in.",
@@ -38,7 +62,14 @@
   "seo_description_cs": "Byt 161 m2 v Lonate Ceppino: dve urovne, balkon 15 m2, rekonstrukce 2015-2020, zarizeni v cene, garaz 21 m2 a efektivni systemy.",
   "status": "available",
   "featured": false,
-  "keywords": ["lonate ceppino", "via della strecciola", "semindipendente", "ristrutturato", "box auto", "lombardia"],
+  "keywords": [
+    "lonate ceppino",
+    "via della strecciola",
+    "semindipendente",
+    "ristrutturato",
+    "box auto",
+    "lombardia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/128193392/",
   "lat": 45.7056,
   "lng": 8.8769,

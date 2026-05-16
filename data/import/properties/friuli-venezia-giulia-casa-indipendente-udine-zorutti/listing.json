@@ -19,12 +19,36 @@
   "square_meters": 132,
   "yearBuilt": 2011,
   "features": [
-    { "it": "Terracielo indipendente completamente ristrutturato nel 2011", "en": "Independent townhouse fully renovated in 2011", "cs": "Samostatny mestsky dum kompletne zrekonstruovany v roce 2011" },
-    { "it": "Posizione tranquilla a pochi minuti a piedi dal centro di Udine", "en": "Quiet location within walking distance of central Udine", "cs": "Klidna poloha v dochazkove vzdalenosti od centra Udine" },
-    { "it": "Zona living luminosa all ultimo piano con predisposizione cucina a vista", "en": "Bright top-floor living area with provision for open kitchen", "cs": "Svetla obytna cast v poslednim patre s pripravou na otevrenou kuchyni" },
-    { "it": "Due camere, studio o cabina armadio e due bagni", "en": "Two bedrooms, study or walk-in closet, and two bathrooms", "cs": "Dve loznice, pracovna nebo satna a dve koupelny" },
-    { "it": "Finiture in rovere spazzolato e pietra piacentina", "en": "Brushed oak and Pietra Piacentina finishes", "cs": "Povrchy z kartacovaneho dubu a kamene Pietra Piacentina" },
-    { "it": "Porta blindata, inferriate e predisposizione climatizzazione", "en": "Security door, grilles, and air-conditioning pre-installation", "cs": "Bezpecnostni dvere, mrize a priprava na klimatizaci" }
+    {
+      "it": "Terracielo indipendente completamente ristrutturato nel 2011",
+      "en": "Independent townhouse fully renovated in 2011",
+      "cs": "Samostatný městský dům kompletne zrekonstruovaný v roce 2011"
+    },
+    {
+      "it": "Posizione tranquilla a pochi minuti a piedi dal centro di Udine",
+      "en": "Quiet location within walking distance of central Udine",
+      "cs": "Klidna poloha v dochazkove vzdalenosti od centra Udine"
+    },
+    {
+      "it": "Zona living luminosa all ultimo piano con predisposizione cucina a vista",
+      "en": "Bright top-floor living area with provision for open kitchen",
+      "cs": "Svetla obytna část v poslednim patre s pripravou na otevrenou kuchyni"
+    },
+    {
+      "it": "Due camere, studio o cabina armadio e due bagni",
+      "en": "Two bedrooms, study or walk-in closet, and two bathrooms",
+      "cs": "Dve ložnice, pracovna nebo satna a dve koupelny"
+    },
+    {
+      "it": "Finiture in rovere spazzolato e pietra piacentina",
+      "en": "Brushed oak and Pietra Piacentina finishes",
+      "cs": "Povrchy z kartacovaneho dubu a kamene Pietra Piacentina"
+    },
+    {
+      "it": "Porta blindata, inferriate e predisposizione climatizzazione",
+      "en": "Security door, grilles, and air-conditioning pre-installation",
+      "cs": "Bezpecnostni dvere, mrize a priprava na klimatizaci"
+    }
   ],
   "description_it": "In una delle zone piu ambite di Udine, a pochi minuti a piedi dal centro ma in un contesto tranquillo e riservato, proponiamo un terracielo indipendente completamente ristrutturato nel 2011. La casa unisce atmosfera calda, materiali di pregio e una distribuzione originale su piu livelli.\n\nIl piano terra accoglie con un ingresso lungo e riservato, una camera attualmente utilizzata come cucina, un bagno con doccia mosaicata e due ripostigli. Al primo piano si trovano una seconda camera, un secondo bagno con doccia e una stanza ideale come studio o cabina armadio. L ultimo livello ospita la zona living luminosa, con predisposizione per cucina a vista e affacci su corte interna.\n\nLe finiture in rovere spazzolato e pietra piacentina, i serramenti con doppi vetri, la porta blindata, le inferriate e i termostati indipendenti per piano rendono questa soluzione adatta a chi cerca una casa cittadina curata e pronta da vivere.",
   "description_en": "In one of Udine's most desirable areas, just a few minutes walk from the center yet in a quiet and private setting, we offer an independent townhouse fully renovated in 2011. The home combines warm atmosphere, quality materials, and an original multi-level layout.\n\nThe ground floor opens with a long private entrance, a room currently used as a kitchen, a bathroom with mosaic shower, and two storage rooms. The first floor includes a second bedroom, a second bathroom with shower, and a room ideal as a study or walk-in closet. The top level hosts the bright living area, with provision for an open kitchen and views over an internal courtyard.\n\nBrushed oak and Pietra Piacentina finishes, double-glazed windows, security door, grilles, and independent thermostats on each floor make this a refined city home ready to live in.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Mestsky dum 132 m2 v Udine: 4 mistnosti, 2 loznice, 2 koupelny, rekonstrukce 2011, kvalitni povrchy a centralni poloha.",
   "status": "available",
   "featured": false,
-  "keywords": ["udine", "via pietro zorutti", "terracielo", "casa indipendente", "ristrutturato", "friuli venezia giulia"],
+  "keywords": [
+    "udine",
+    "via pietro zorutti",
+    "terracielo",
+    "casa indipendente",
+    "ristrutturato",
+    "friuli venezia giulia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/127925348/",
   "lat": 46.0661,
   "lng": 13.2289,

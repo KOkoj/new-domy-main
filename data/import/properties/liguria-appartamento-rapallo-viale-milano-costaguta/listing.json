@@ -19,12 +19,36 @@
   "square_meters": 50,
   "parking": 0,
   "features": [
-    { "it": "Bilocale di circa 50 m2 al piano terra", "en": "One-bedroom apartment of approx. 50 sqm on the ground floor", "cs": "Bilokal cca 50 m2 v prizemi" },
-    { "it": "Soggiorno luminoso con cucina a vista", "en": "Bright living room with open kitchen", "cs": "Svetly obyvak s otevrenou kuchyni" },
-    { "it": "Camera matrimoniale separata", "en": "Separate double bedroom", "cs": "Samostatna dvouluzkova loznice" },
-    { "it": "Bagno in posizione centrale", "en": "Centrally positioned bathroom", "cs": "Koupelna v centralni poloze" },
-    { "it": "Ripostiglio utile come spazio di servizio", "en": "Useful storage room", "cs": "Prakticka komora" },
-    { "it": "Soluzione adatta anche come investimento", "en": "Also suitable as an investment", "cs": "Vhodne take jako investice" }
+    {
+      "it": "Bilocale di circa 50 m2 al piano terra",
+      "en": "One-bedroom apartment of approx. 50 sqm on the ground floor",
+      "cs": "Dvoupokojový byt cca 50 m2 v prizemi"
+    },
+    {
+      "it": "Soggiorno luminoso con cucina a vista",
+      "en": "Bright living room with open kitchen",
+      "cs": "Světlý obyvak s otevrenou kuchyni"
+    },
+    {
+      "it": "Camera matrimoniale separata",
+      "en": "Separate double bedroom",
+      "cs": "Samostatná dvouluzkova ložnice"
+    },
+    {
+      "it": "Bagno in posizione centrale",
+      "en": "Centrally positioned bathroom",
+      "cs": "Koupelna v centralni poloze"
+    },
+    {
+      "it": "Ripostiglio utile come spazio di servizio",
+      "en": "Useful storage room",
+      "cs": "Prakticka komora"
+    },
+    {
+      "it": "Soluzione adatta anche come investimento",
+      "en": "Also suitable as an investment",
+      "cs": "Vhodne take jako investice"
+    }
   ],
   "description_it": "A Rapallo, in zona Costaguta e in viale Milano, proponiamo un bilocale al piano terra con distribuzione semplice e funzionale. L'ingresso conduce a un pratico disimpegno che organizza gli ambienti e rende la casa comoda da vivere.\n\nLa zona giorno comprende un soggiorno luminoso con cucina a vista, mentre la zona notte e composta da una camera matrimoniale separata. Il bagno e ben accessibile e completa gli spazi principali; il ripostiglio aggiunge un utile ambiente di servizio.\n\nLa soluzione e indicata per chi cerca una casa facile da gestire a Rapallo oppure un immobile da mettere a reddito.",
   "description_en": "In Rapallo, in the Costaguta area on Viale Milano, we offer a ground-floor one-bedroom apartment with a simple and functional layout. The entrance leads to a practical hallway that organizes the spaces and makes the home easy to use.\n\nThe living area includes a bright lounge with open kitchen, while the sleeping area consists of a separate double bedroom. The bathroom is conveniently accessible, and a storage room adds useful service space.\n\nThis is a good option for buyers looking for an easy-to-manage home in Rapallo or a rental investment.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Bilokal 50 m2 v Rapallu Costaguta, prizemi, obyvak s otevrenou kuchyni, dvouluzkova loznice, koupelna a komora.",
   "status": "available",
   "featured": false,
-  "keywords": ["rapallo", "viale milano", "costaguta", "bilocale", "appartamento", "liguria"],
+  "keywords": [
+    "rapallo",
+    "viale milano",
+    "costaguta",
+    "bilocale",
+    "appartamento",
+    "liguria"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/127251621/",
   "lat": 44.3497,
   "lng": 9.2243,

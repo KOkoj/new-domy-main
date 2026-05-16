@@ -19,12 +19,36 @@
   "square_meters": 54,
   "parking": 1,
   "features": [
-    { "it": "Nuova iniziativa immobiliare Window Garda a Pieve di Tremosine", "en": "New Window Garda development in Pieve di Tremosine", "cs": "Novy developersky projekt Window Garda v Pieve di Tremosine" },
-    { "it": "31 soluzioni abitative di diverse metrature in classe A", "en": "31 residential units of different sizes in energy class A", "cs": "31 bytovych jednotek ruznych velikosti v energeticke tride A" },
-    { "it": "Vista panoramica mozzafiato sul Lago di Garda", "en": "Breathtaking panoramic view over Lake Garda", "cs": "Uchvatny panoramaticky vyhled na Gardske jezero" },
-    { "it": "Piscina condominiale e terrazza prendisole panoramica", "en": "Shared pool and panoramic sun terrace", "cs": "Spolecny bazen a panoramaticka slunecni terasa" },
-    { "it": "Posti auto dedicati", "en": "Dedicated parking spaces", "cs": "Vyhrazena parkovaci stani" },
-    { "it": "Posizione immersa nella natura ma vicina ai servizi", "en": "Nature setting close to daily services", "cs": "Poloha v prirode, pritom blizko sluzeb" }
+    {
+      "it": "Nuova iniziativa immobiliare Window Garda a Pieve di Tremosine",
+      "en": "New Window Garda development in Pieve di Tremosine",
+      "cs": "Novy developersky projekt Window Garda v Pieve di Tremosine"
+    },
+    {
+      "it": "31 soluzioni abitative di diverse metrature in classe A",
+      "en": "31 residential units of different sizes in energy class A",
+      "cs": "31 bytovych jednotek ruznych velikosti v energeticke tride A"
+    },
+    {
+      "it": "Vista panoramica mozzafiato sul Lago di Garda",
+      "en": "Breathtaking panoramic view over Lake Garda",
+      "cs": "Uchvatny panoramaticky výhled na Gardske jezero"
+    },
+    {
+      "it": "Piscina condominiale e terrazza prendisole panoramica",
+      "en": "Shared pool and panoramic sun terrace",
+      "cs": "Spolecny bazén a panoramatická slunecni terasa"
+    },
+    {
+      "it": "Posti auto dedicati",
+      "en": "Dedicated parking spaces",
+      "cs": "Vyhrazena parkovaci stani"
+    },
+    {
+      "it": "Posizione immersa nella natura ma vicina ai servizi",
+      "en": "Nature setting close to daily services",
+      "cs": "Poloha v prirode, pritom blizko sluzeb"
+    }
   ],
   "description_it": "A Pieve di Tremosine sul Garda, in posizione privilegiata e panoramica, proponiamo la nuova iniziativa immobiliare Window Garda. Il progetto prevede 31 soluzioni abitative in classe A, con metrature diverse e posti auto dedicati, pensate per chi cerca una casa moderna sul Lago di Garda.\n\nIl contesto offre una vista spettacolare a picco sul lago, immerso nella natura ma vicino ai servizi cittadini e alle comodita quotidiane. Le amenities condominiali, tra cui piscina e terrazza prendisole panoramica, aumentano il valore d'uso e rendono il complesso ideale per relax, sport e vacanze.\n\nLa posizione e perfetta per chi ama paesaggio lacustre, trekking, mountain bike e sport di lago. Prezzi promozionali di lancio cantiere a partire da 255.000 euro.",
   "description_en": "In Pieve di Tremosine sul Garda, in a privileged panoramic position, we offer the new Window Garda real estate development. The project includes 31 class-A residential units of different sizes with dedicated parking spaces, designed for those seeking a modern home on Lake Garda.\n\nThe setting offers a spectacular view over the lake, immersed in nature yet close to town services and daily conveniences. Condominium amenities including pool and panoramic sun terrace increase usability and make the complex ideal for relaxation, sports, and holidays.\n\nThe location is perfect for lovers of lake scenery, trekking, mountain biking, and water sports. Launch prices from 255,000 euros.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Window Garda v Tremosine: nove apartmany tridy A od 54 m2, vyhled na jezero, bazen, slunecni terasa a vyhrazena stani.",
   "status": "available",
   "featured": false,
-  "keywords": ["tremosine sul garda", "window garda", "nuova costruzione", "vista lago", "piscina", "lombardia"],
+  "keywords": [
+    "tremosine sul garda",
+    "window garda",
+    "nuova costruzione",
+    "vista lago",
+    "piscina",
+    "lombardia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/120478090/",
   "lat": 45.7726,
   "lng": 10.7638,

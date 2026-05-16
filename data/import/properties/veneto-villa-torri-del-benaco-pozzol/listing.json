@@ -19,12 +19,36 @@
   "square_meters": 160,
   "parking": 1,
   "features": [
-    { "it": "Villetta singola in posizione rara a Torri del Benaco", "en": "Detached villa in a rare Torri del Benaco location", "cs": "Samostatna vila ve vzacne poloze v Torri del Benaco" },
-    { "it": "Terrazzo in legno con splendida vista lago", "en": "Wooden terrace with beautiful lake view", "cs": "Drevena terasa s krasnym vyhledem na jezero" },
-    { "it": "Zona giorno luminosa con affaccio panoramico", "en": "Bright living area with panoramic outlook", "cs": "Svetla obytna cast s panoramatickym vyhledem" },
-    { "it": "Camera matrimoniale con grandi finestre e camera singola", "en": "Double bedroom with large windows plus single bedroom", "cs": "Dvouluzkova loznice s velkymi okny a jednoluzkovy pokoj" },
-    { "it": "Bagno finestrato e serramenti recenti con doppi vetri", "en": "Windowed bathroom and recent double-glazed windows", "cs": "Koupelna s oknem a novejsi okna s dvojskly" },
-    { "it": "Garage privato, seminterrato e soffitta con potenziale", "en": "Private garage, semi-basement, and attic with potential", "cs": "Soukroma garaz, polosuterenn a puda s potencialem" }
+    {
+      "it": "Villetta singola in posizione rara a Torri del Benaco",
+      "en": "Detached villa in a rare Torri del Benaco location",
+      "cs": "Samostatná vila ve vzacne poloze v Torri del Benaco"
+    },
+    {
+      "it": "Terrazzo in legno con splendida vista lago",
+      "en": "Wooden terrace with beautiful lake view",
+      "cs": "Drevena terasa s krasnym výhledem na jezero"
+    },
+    {
+      "it": "Zona giorno luminosa con affaccio panoramico",
+      "en": "Bright living area with panoramic outlook",
+      "cs": "Svetla obytna část s panoramatickym výhledem"
+    },
+    {
+      "it": "Camera matrimoniale con grandi finestre e camera singola",
+      "en": "Double bedroom with large windows plus single bedroom",
+      "cs": "Dvouluzkova ložnice s velkymi okny a jednoluzkovy pokoj"
+    },
+    {
+      "it": "Bagno finestrato e serramenti recenti con doppi vetri",
+      "en": "Windowed bathroom and recent double-glazed windows",
+      "cs": "Koupelna s oknem a novejsi okna s dvojskly"
+    },
+    {
+      "it": "Garage privato, seminterrato e soffitta con potenziale",
+      "en": "Private garage, semi-basement, and attic with potential",
+      "cs": "Soukroma garáž, polosuterenn a puda s potencialem"
+    }
   ],
   "description_it": "A Torri del Benaco, in localita Pozzol, proponiamo una villetta singola con terrazzo panoramico e vista lago. La proprieta offre indipendenza, privacy e una posizione particolarmente interessante per chi cerca una casa sul Garda con spazi propri e scorci aperti verso l acqua.\n\nLa zona giorno e luminosa e si apre sul terrazzo in legno, ideale per vivere l esterno e valorizzare la vista. La zona notte comprende una camera matrimoniale con grandi finestre panoramiche, una camera singola e un bagno finestrato. I serramenti recenti con doppi vetri migliorano comfort e isolamento.\n\nCompletano la proprieta un garage privato, un piano seminterrato e una soffitta con potenziale di utilizzo. Una soluzione rara sul mercato di Torri del Benaco, adatta come residenza principale, casa vacanze o investimento di pregio sul Lago di Garda.",
   "description_en": "In Torri del Benaco, in the Pozzol locality, we offer a detached villa with panoramic terrace and lake view. The property provides independence, privacy, and a particularly interesting location for anyone looking for a Garda home with private spaces and open views toward the water.\n\nThe living area is bright and opens onto the wooden terrace, ideal for outdoor living and enjoying the view. The sleeping area includes a double bedroom with large panoramic windows, a single bedroom, and a windowed bathroom. Recent double-glazed windows improve comfort and insulation.\n\nA private garage, semi-basement, and attic with potential complete the property. A rare opportunity on the Torri del Benaco market, suitable as a main residence, holiday home, or high-quality Lake Garda investment.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Samostatna vila 160 m2 v Torri del Benaco: terasa s vyhledem na jezero, 2 loznice, soukroma garaz, polosuterenn, puda a vzacna poloha.",
   "status": "available",
   "featured": false,
-  "keywords": ["torri del benaco", "lago di garda", "villa", "vista lago", "pozzol", "veneto"],
+  "keywords": [
+    "torri del benaco",
+    "lago di garda",
+    "villa",
+    "vista lago",
+    "pozzol",
+    "veneto"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/128272384/",
   "lat": 45.6228,
   "lng": 10.6982,

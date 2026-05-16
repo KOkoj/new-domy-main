@@ -19,12 +19,36 @@
   "square_meters": 65,
   "parking": 1,
   "features": [
-    { "it": "Bilocale al primo piano nel residence Corte Collina", "en": "First-floor one-bedroom apartment in the Corte Collina residence", "cs": "Apartman 2+kk v prvnim patre rezidence Corte Collina" },
-    { "it": "Terrazzo di circa 20 m2 con vista aperta", "en": "Approx. 20 sqm terrace with open view", "cs": "Terasa cca 20 m2 s otevrenym vyhledem" },
-    { "it": "Soggiorno con angolo cottura e camera matrimoniale ampia", "en": "Living room with kitchenette and large double bedroom", "cs": "Obyvaci pokoj s kuchynskym koutem a prostornou loznici" },
-    { "it": "Bagno finestrato, garage e cantina", "en": "Windowed bathroom, garage, and cellar", "cs": "Koupelna s oknem, garaz a sklep" },
-    { "it": "Piscina, solarium, spogliatoi, campi da tennis e campo da calcio", "en": "Pool, solarium, changing rooms, tennis courts, and football pitch", "cs": "Bazen, solarium, satny, tenisove kurty a fotbalove hriste" },
-    { "it": "Ottimo per vacanze e locazioni turistiche sul Lago di Garda", "en": "Excellent for holidays and tourist rentals on Lake Garda", "cs": "Vyborne pro dovolenou a turisticke pronajmy u Gardskeho jezera" }
+    {
+      "it": "Bilocale al primo piano nel residence Corte Collina",
+      "en": "First-floor one-bedroom apartment in the Corte Collina residence",
+      "cs": "Apartmán 2+kk v prvnim patre rezidence Corte Collina"
+    },
+    {
+      "it": "Terrazzo di circa 20 m2 con vista aperta",
+      "en": "Approx. 20 sqm terrace with open view",
+      "cs": "Terasa cca 20 m2 s otevrenym výhledem"
+    },
+    {
+      "it": "Soggiorno con angolo cottura e camera matrimoniale ampia",
+      "en": "Living room with kitchenette and large double bedroom",
+      "cs": "Obyvaci pokoj s kuchynskym koutem a prostornou ložnici"
+    },
+    {
+      "it": "Bagno finestrato, garage e cantina",
+      "en": "Windowed bathroom, garage, and cellar",
+      "cs": "Koupelna s oknem, garáž a sklep"
+    },
+    {
+      "it": "Piscina, solarium, spogliatoi, campi da tennis e campo da calcio",
+      "en": "Pool, solarium, changing rooms, tennis courts, and football pitch",
+      "cs": "Bazen, solarium, satny, tenisove kurty a fotbalove hriste"
+    },
+    {
+      "it": "Ottimo per vacanze e locazioni turistiche sul Lago di Garda",
+      "en": "Excellent for holidays and tourist rentals on Lake Garda",
+      "cs": "Vyborne pro dovolenou a turisticke pronajmy u Gardskeho jezera"
+    }
   ],
   "description_it": "Nel residence Corte Collina, a Castion Veronese nel comune di Costermano sul Garda, proponiamo un bilocale al primo piano con terrazzo di circa 20 m2 e vista aperta. La posizione e comoda per raggiungere il Lago di Garda e rende l immobile adatto sia all uso personale sia alla locazione turistica.\n\nL appartamento comprende soggiorno con angolo cottura, ampia camera matrimoniale e bagno finestrato. Il terrazzo rappresenta il vero spazio esterno della casa, ideale per pranzi, relax e momenti all aperto durante la stagione del lago.\n\nCompletano la proprieta garage e cantina. Il residence offre piscina con solarium e spogliatoi, campi da tennis e campo da calcio, aumentando il valore d uso e il potenziale per affitti brevi o casa vacanze.",
   "description_en": "In the Corte Collina residence, in Castion Veronese within Costermano sul Garda, we offer a first-floor one-bedroom apartment with an approx. 20 sqm terrace and open view. The location is convenient for Lake Garda and makes the property suitable both for personal use and tourist rental.\n\nThe apartment includes a living room with kitchenette, large double bedroom, and windowed bathroom. The terrace is the home's key outdoor space, ideal for dining, relaxing, and enjoying the lake season.\n\nA garage and cellar complete the property. The residence offers a pool with solarium and changing rooms, tennis courts, and a football pitch, increasing both the lifestyle value and the potential for short lets or holiday-home use.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Apartman 65 m2 v rezidenci Corte Collina u Gardy: terasa 20 m2, garaz, sklep, bazen, tenis a rezidencni sluzby.",
   "status": "available",
   "featured": false,
-  "keywords": ["costermano sul garda", "castion veronese", "corte collina", "bilocale", "terrazzo", "lago di garda"],
+  "keywords": [
+    "costermano sul garda",
+    "castion veronese",
+    "corte collina",
+    "bilocale",
+    "terrazzo",
+    "lago di garda"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/128506462/",
   "lat": 45.6061,
   "lng": 10.721,

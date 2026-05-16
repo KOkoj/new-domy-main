@@ -20,12 +20,36 @@
   "yearBuilt": 2008,
   "parking": 1,
   "features": [
-    { "it": "Terzo piano con ascensore in condominio del 2008", "en": "Third floor with lift in a 2008 condominium", "cs": "Treti patro s vytahem v dome z roku 2008" },
-    { "it": "Soggiorno con cucina e terrazzo coperto rivestito in legno", "en": "Living room with kitchen and covered wood-lined terrace", "cs": "Obyvaci pokoj s kuchyni a krytou drevem oblozenou terasou" },
-    { "it": "Camera matrimoniale, cameretta, bagno finestrato e ripostiglio", "en": "Double bedroom, small bedroom, windowed bathroom, and storage", "cs": "Loznice, mensi pokoj, koupelna s oknem a komora" },
-    { "it": "Venduto completamente arredato", "en": "Sold fully furnished", "cs": "Prodava se kompletne zarizene" },
-    { "it": "Cantina in muratura e posto auto in autorimessa condominiale", "en": "Masonry cellar and parking space in condominium garage", "cs": "Zdeny sklep a stani ve spolecne garazi" },
-    { "it": "Esposizione sud-ovest e ottimo isolamento termico-acustico", "en": "South-west exposure and excellent thermal-acoustic insulation", "cs": "Jihozapadni orientace a vyborne tepelne-akusticke izolace" }
+    {
+      "it": "Terzo piano con ascensore in condominio del 2008",
+      "en": "Third floor with lift in a 2008 condominium",
+      "cs": "Treti patro s vytahem v domě z roku 2008"
+    },
+    {
+      "it": "Soggiorno con cucina e terrazzo coperto rivestito in legno",
+      "en": "Living room with kitchen and covered wood-lined terrace",
+      "cs": "Obyvaci pokoj s kuchyni a krytou drevem oblozenou terasou"
+    },
+    {
+      "it": "Camera matrimoniale, cameretta, bagno finestrato e ripostiglio",
+      "en": "Double bedroom, small bedroom, windowed bathroom, and storage",
+      "cs": "Ložnice, mensi pokoj, koupelna s oknem a komora"
+    },
+    {
+      "it": "Venduto completamente arredato",
+      "en": "Sold fully furnished",
+      "cs": "Prodava se kompletne zarizene"
+    },
+    {
+      "it": "Cantina in muratura e posto auto in autorimessa condominiale",
+      "en": "Masonry cellar and parking space in condominium garage",
+      "cs": "Zdeny sklep a stani ve spolecne garáží"
+    },
+    {
+      "it": "Esposizione sud-ovest e ottimo isolamento termico-acustico",
+      "en": "South-west exposure and excellent thermal-acoustic insulation",
+      "cs": "Jihozapadni orientace a vyborne tepelne-akusticke izolace"
+    }
   ],
   "description_it": "Nel centro di Tarvisio, nella Residenza Arena a pochi passi da chiesa, municipio, negozi e servizi, proponiamo un trilocale di pregio in ottime condizioni. L'appartamento si trova al terzo piano con ascensore ed e inserito in un complesso costruito nel 2008 con particolare attenzione a isolamento e comfort.\n\nLa distribuzione comprende ingresso, soggiorno con cucina e accesso a un piacevole terrazzo coperto rivestito in legno, camera matrimoniale, cameretta, bagno finestrato e ripostiglio. L'esposizione sud-ovest garantisce buona luminosita anche nella stagione invernale.\n\nLa proprieta viene venduta completamente arredata e include cantina in muratura e posto auto nell'autorimessa condominiale. Soluzione pronta e centrale, perfetta per vivere Tarvisio tutto l'anno o come casa alpina di livello.",
   "description_en": "In the centre of Tarvisio, in Residenza Arena steps from the church, town hall, shops, and services, we offer a quality two-bedroom apartment in excellent condition. The property is on the third floor with lift in a complex built in 2008 with strong attention to insulation and comfort.\n\nThe layout includes entrance, living room with kitchen and access to a pleasant covered wood-lined terrace, double bedroom, small bedroom, windowed bathroom, and storage room. South-west exposure provides good light even during winter.\n\nThe property is sold fully furnished and includes a masonry cellar and parking space in the condominium garage. A ready and central solution, perfect for living in Tarvisio all year or as a quality alpine home.",
@@ -38,7 +62,14 @@
   "seo_description_cs": "Apartman 74 m2 v Residenza Arena v Tarvisiu: 2 loznice, kryta terasa, vytah, sklep, stani a zarizeni v cene.",
   "status": "available",
   "featured": false,
-  "keywords": ["tarvisio", "piazza unita", "residenza arena", "trilocale", "arredato", "posto auto"],
+  "keywords": [
+    "tarvisio",
+    "piazza unita",
+    "residenza arena",
+    "trilocale",
+    "arredato",
+    "posto auto"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/127330073/",
   "lat": 46.5059,
   "lng": 13.5788,

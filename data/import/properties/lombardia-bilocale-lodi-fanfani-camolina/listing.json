@@ -19,12 +19,36 @@
   "square_meters": 42,
   "parking": 0,
   "features": [
-    { "it": "Bilocale di circa 42 m2 al piano terra", "en": "One-bedroom apartment of approx. 42 sqm on the ground floor", "cs": "Bilokal cca 42 m2 v prizemi" },
-    { "it": "Edificio moderno del 2003 servito da ascensore", "en": "Modern 2003 building served by lift", "cs": "Moderni dum z roku 2003 s vytahem" },
-    { "it": "Soggiorno luminoso con angolo cottura", "en": "Bright living room with kitchenette", "cs": "Svetly obyvak s kuchynskym koutem" },
-    { "it": "Balcone comodo per uno spazio esterno privato", "en": "Balcony providing private outdoor space", "cs": "Balkon jako soukromy venkovni prostor" },
-    { "it": "Camera matrimoniale e bagno finestrato con doccia", "en": "Double bedroom and windowed bathroom with shower", "cs": "Dvouluzkova loznice a koupelna s oknem a sprchou" },
-    { "it": "Cantina esclusiva al piano seminterrato", "en": "Private cellar on the semi-basement level", "cs": "Soukromy sklep v polosuterenu" }
+    {
+      "it": "Bilocale di circa 42 m2 al piano terra",
+      "en": "One-bedroom apartment of approx. 42 sqm on the ground floor",
+      "cs": "Dvoupokojový byt cca 42 m2 v prizemi"
+    },
+    {
+      "it": "Edificio moderno del 2003 servito da ascensore",
+      "en": "Modern 2003 building served by lift",
+      "cs": "Moderní dům z roku 2003 s vytahem"
+    },
+    {
+      "it": "Soggiorno luminoso con angolo cottura",
+      "en": "Bright living room with kitchenette",
+      "cs": "Světlý obyvak s kuchynskym koutem"
+    },
+    {
+      "it": "Balcone comodo per uno spazio esterno privato",
+      "en": "Balcony providing private outdoor space",
+      "cs": "Balkon jako soukromý venkovni prostor"
+    },
+    {
+      "it": "Camera matrimoniale e bagno finestrato con doccia",
+      "en": "Double bedroom and windowed bathroom with shower",
+      "cs": "Dvouluzkova ložnice a koupelna s oknem a sprchou"
+    },
+    {
+      "it": "Cantina esclusiva al piano seminterrato",
+      "en": "Private cellar on the semi-basement level",
+      "cs": "Soukromy sklep v polosuterenu"
+    }
   ],
   "description_it": "Nella richiesta zona Fanfani di Lodi, a pochi minuti a piedi dalla stazione ferroviaria, proponiamo un bilocale di circa 42 m2 situato al piano terra di un edificio moderno costruito nel 2003 e servito da ascensore.\n\nL'ingresso apre su un soggiorno luminoso con angolo cottura e accesso al balcone, uno spazio esterno utile per momenti di relax. La zona notte comprende una camera matrimoniale e un bagno finestrato con doccia.\n\nLa proprieta include una cantina di pertinenza esclusiva al piano seminterrato. Per dimensioni, posizione e collegamenti, la soluzione e interessante sia come residenza pratica in citta sia come investimento da mettere a reddito.",
   "description_en": "In the sought-after Fanfani area of Lodi, just a few minutes on foot from the railway station, we offer a one-bedroom apartment of approx. 42 sqm located on the ground floor of a modern building built in 2003 and served by a lift.\n\nThe entrance opens into a bright living room with kitchenette and access to the balcony, a useful private outdoor space for relaxing. The sleeping area includes a double bedroom and a windowed bathroom with shower.\n\nA private cellar on the semi-basement level completes the property. Thanks to its size, location, and transport links, this is an interesting solution both as a practical city home and as a rental investment.",
@@ -37,7 +61,16 @@
   "seo_description_cs": "Bilokal 42 m2 v Lodi Fanfani: prizemi, obyvak s kuchynskym koutem, balkon, dvouluzkova loznice, koupelna s oknem a sklep.",
   "status": "available",
   "featured": false,
-  "keywords": ["lodi", "via della camolina", "bilocale", "fanfani", "appartamento", "balcone", "cantina", "lombardia"],
+  "keywords": [
+    "lodi",
+    "via della camolina",
+    "bilocale",
+    "fanfani",
+    "appartamento",
+    "balcone",
+    "cantina",
+    "lombardia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/128818326/",
   "lat": 45.31,
   "lng": 9.4888,

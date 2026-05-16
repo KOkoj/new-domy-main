@@ -19,12 +19,36 @@
   "square_meters": 37,
   "parking": 0,
   "features": [
-    { "it": "Monolocale di circa 37 m2", "en": "Studio apartment of approx. 37 sqm", "cs": "Garsonka cca 37 m2" },
-    { "it": "Secondo piano in piccola palazzina", "en": "Second floor in a small building", "cs": "Druhe patro v malem dome" },
-    { "it": "Ambiente unico con angolo cottura", "en": "Open living area with kitchenette", "cs": "Jedna mistnost s kuchynskym koutem" },
-    { "it": "Bagno con accesso al terrazzino", "en": "Bathroom with access to small terrace", "cs": "Koupelna se vstupem na terasu" },
-    { "it": "Cantina inclusa", "en": "Cellar included", "cs": "Sklep v cene" },
-    { "it": "Zona comoda ai servizi", "en": "Convenient area close to services", "cs": "Lokalita blizko sluzeb" }
+    {
+      "it": "Monolocale di circa 37 m2",
+      "en": "Studio apartment of approx. 37 sqm",
+      "cs": "Garsonka cca 37 m2"
+    },
+    {
+      "it": "Secondo piano in piccola palazzina",
+      "en": "Second floor in a small building",
+      "cs": "Druhe patro v malem domě"
+    },
+    {
+      "it": "Ambiente unico con angolo cottura",
+      "en": "Open living area with kitchenette",
+      "cs": "Jedna mistnost s kuchynskym koutem"
+    },
+    {
+      "it": "Bagno con accesso al terrazzino",
+      "en": "Bathroom with access to small terrace",
+      "cs": "Koupelna se vstupem na terasu"
+    },
+    {
+      "it": "Cantina inclusa",
+      "en": "Cellar included",
+      "cs": "Sklep v cene"
+    },
+    {
+      "it": "Zona comoda ai servizi",
+      "en": "Convenient area close to services",
+      "cs": "Lokalita blizko sluzeb"
+    }
   ],
   "description_it": "A Bologna, in via delle Borre 13, proponiamo un monolocale di circa 37 m2 al secondo piano di una palazzina di poche unita.\n\nL'immobile e composto da ingresso su ambiente unico con angolo cottura a vista e bagno con box doccia, collegato a un piccolo terrazzino. Al piano seminterrato e presente una cantina.\n\nLa posizione e silenziosa e comoda ai servizi, con spazi verdi nelle vicinanze, fermata autobus, farmacia, posta e collegamenti con tangenziale e centri commerciali.",
   "description_en": "In Bologna, on Via delle Borre 13, this approx. 37 sqm studio apartment is located on the second floor of a small residential building.\n\nThe property includes an open living area with visible kitchenette and a bathroom with shower, connected to a small terrace. A cellar in the basement is included.\n\nThe location is quiet and convenient to services, with nearby green areas, bus stop, pharmacy, post office, ring road access, and shopping centres.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Garsonka 37 m2 ve Via delle Borre v Boloni, s malou terasou, koupelnou se sprchou a sklepem.",
   "status": "available",
   "featured": false,
-  "keywords": ["bologna", "via delle borre", "monolocale", "cantina", "terrazzino", "emilia-romagna"],
+  "keywords": [
+    "bologna",
+    "via delle borre",
+    "monolocale",
+    "cantina",
+    "terrazzino",
+    "emilia-romagna"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/126025661/",
   "lat": 44.5209,
   "lng": 11.3181,

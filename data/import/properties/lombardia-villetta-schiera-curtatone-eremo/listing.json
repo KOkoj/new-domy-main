@@ -20,12 +20,36 @@
   "yearBuilt": 2010,
   "parking": 1,
   "features": [
-    { "it": "Villetta a schiera centrale in contesto residenziale recente", "en": "Central townhouse in a recent residential setting", "cs": "Radovy dum v novejsi rezidencni lokalite" },
-    { "it": "Zona giorno con soggiorno e cucina abitabile separata", "en": "Living area with lounge and separate eat-in kitchen", "cs": "Obytna cast s obyvaci mistnosti a samostatnou kuchyni" },
-    { "it": "Tre camere, due bagni e due balconi al piano notte", "en": "Three bedrooms, two bathrooms, and two balconies on the sleeping floor", "cs": "Tri loznice, dve koupelny a dva balkony v nocni casti" },
-    { "it": "Spazi esterni privati sul fronte e sul retro", "en": "Private outdoor areas at the front and rear", "cs": "Soukrome venkovni plochy vpredu i vzadu" },
-    { "it": "Riscaldamento a pavimento e pannelli solari", "en": "Underfloor heating and solar panels", "cs": "Podlahove vytapeni a solarni panely" },
-    { "it": "Autorimessa con basculante sezionale automatizzata", "en": "Garage with automated sectional door", "cs": "Garaaz s automatickymi sekcnimi vraty" }
+    {
+      "it": "Villetta a schiera centrale in contesto residenziale recente",
+      "en": "Central townhouse in a recent residential setting",
+      "cs": "Řadový dům v novejsi rezidencni lokalitě"
+    },
+    {
+      "it": "Zona giorno con soggiorno e cucina abitabile separata",
+      "en": "Living area with lounge and separate eat-in kitchen",
+      "cs": "Obytna část s obyvaci místnosti a samostatnou kuchyni"
+    },
+    {
+      "it": "Tre camere, due bagni e due balconi al piano notte",
+      "en": "Three bedrooms, two bathrooms, and two balconies on the sleeping floor",
+      "cs": "Tri ložnice, dve koupelny a dva balkony v nocni části"
+    },
+    {
+      "it": "Spazi esterni privati sul fronte e sul retro",
+      "en": "Private outdoor areas at the front and rear",
+      "cs": "Soukrome venkovni plochy vpredu i vzadu"
+    },
+    {
+      "it": "Riscaldamento a pavimento e pannelli solari",
+      "en": "Underfloor heating and solar panels",
+      "cs": "Podlahove vytapeni a solarni panely"
+    },
+    {
+      "it": "Autorimessa con basculante sezionale automatizzata",
+      "en": "Garage with automated sectional door",
+      "cs": "Garaaz s automatickymi sekcnimi vraty"
+    }
   ],
   "description_it": "A Eremo di Curtatone, in zona residenziale tranquilla e ben collegata, proponiamo una villetta a schiera centrale edificata nel 2010 e distribuita su due livelli. La casa offre spazi funzionali, finiture attuali e una gestione efficiente, ideale per una famiglia che cerca indipendenza e comfort senza rinunciare alla comodita dei servizi.\n\nAl piano terra si trovano un soggiorno accogliente, una cucina abitabile separata, un bagno/lavanderia e gli accessi agli spazi esterni privati sul fronte e sul retro. Il piano superiore ospita tre camere da letto, il secondo bagno e due balconi, con una distribuzione semplice e ben sfruttabile.\n\nLa proprieta e dotata di riscaldamento a pavimento, pannelli solari e autorimessa con basculante sezionale automatizzata. Una soluzione recente e completa, pronta da vivere in una delle zone piu richieste di Curtatone.",
   "description_en": "In Eremo di Curtatone, in a quiet and well-connected residential area, we offer a central townhouse built in 2010 and arranged over two levels. The home provides practical spaces, current finishes, and efficient management, ideal for a family looking for independence and comfort close to services.\n\nThe ground floor includes a welcoming living room, a separate eat-in kitchen, a bathroom/laundry room, and access to private outdoor areas at the front and rear. The upper floor hosts three bedrooms, the second bathroom, and two balconies, with a simple and functional layout.\n\nThe property includes underfloor heating, solar panels, and a garage with automated sectional door. A recent and complete solution, ready to live in, in one of Curtatone's most requested areas.",
@@ -38,7 +62,14 @@
   "seo_description_cs": "Radovy dum 157 m2 v Curtatone Eremo: 3 loznice, 2 koupelny, zahrada, balkony, podlahove vytapeni, solarni panely a garaz.",
   "status": "available",
   "featured": false,
-  "keywords": ["curtatone", "eremo", "villetta a schiera", "giardino", "box auto", "lombardia"],
+  "keywords": [
+    "curtatone",
+    "eremo",
+    "villetta a schiera",
+    "giardino",
+    "box auto",
+    "lombardia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/128804048/",
   "lat": 45.1301,
   "lng": 10.7388,

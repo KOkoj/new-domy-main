@@ -19,12 +19,36 @@
   "square_meters": 206,
   "parking": 1,
   "features": [
-    { "it": "Appartamento esclusivo direttamente sul Lago di Lugano", "en": "Exclusive apartment directly on Lake Lugano", "cs": "Exkluzivni apartman primo u Luganskeho jezera" },
-    { "it": "Occupa l'intero primo piano della Residenza Riviera", "en": "Occupies the entire first floor of Residenza Riviera", "cs": "Zabira cele prvni patro Residenza Riviera" },
-    { "it": "Circa 206 m2 interni oltre a 41 m2 di terrazzi a lago", "en": "Approx. 206 sqm interiors plus 41 sqm lake terraces", "cs": "Cca 206 m2 interieru plus 41 m2 teras k jezeru" },
-    { "it": "Zona giorno open-space con cucina, pranzo, soggiorno e sala TV", "en": "Open-plan living area with kitchen, dining, lounge, and TV room", "cs": "Otevrena obytna cast s kuchyni, jidelnou, salonem a TV pokojem" },
-    { "it": "SPA interna con vasca idromassaggio, sauna e doccia in vetro", "en": "Internal spa with whirlpool tub, sauna, and glass shower", "cs": "Vnitrni spa s virivou vanou, saunou a sklenenou sprchou" },
-    { "it": "Camera padronale con cabina armadio e bagno en-suite", "en": "Primary bedroom with walk-in closet and en-suite bathroom", "cs": "Hlavni loznice se satnou a vlastni koupelnou" }
+    {
+      "it": "Appartamento esclusivo direttamente sul Lago di Lugano",
+      "en": "Exclusive apartment directly on Lake Lugano",
+      "cs": "Exkluzivni apartmán primo u Luganského jezera"
+    },
+    {
+      "it": "Occupa l'intero primo piano della Residenza Riviera",
+      "en": "Occupies the entire first floor of Residenza Riviera",
+      "cs": "Zabira cele prvni patro Residenza Riviera"
+    },
+    {
+      "it": "Circa 206 m2 interni oltre a 41 m2 di terrazzi a lago",
+      "en": "Approx. 206 sqm interiors plus 41 sqm lake terraces",
+      "cs": "Cca 206 m2 interieru plus 41 m2 teras k jezeru"
+    },
+    {
+      "it": "Zona giorno open-space con cucina, pranzo, soggiorno e sala TV",
+      "en": "Open-plan living area with kitchen, dining, lounge, and TV room",
+      "cs": "Otevrena obytna část s kuchyni, jidelnou, salonem a TV pokojem"
+    },
+    {
+      "it": "SPA interna con vasca idromassaggio, sauna e doccia in vetro",
+      "en": "Internal spa with whirlpool tub, sauna, and glass shower",
+      "cs": "Vnitrni spa s virivou vanou, saunou a sklenenou sprchou"
+    },
+    {
+      "it": "Camera padronale con cabina armadio e bagno en-suite",
+      "en": "Primary bedroom with walk-in closet and en-suite bathroom",
+      "cs": "Hlavni ložnice se satnou a vlastní koupelnou"
+    }
   ],
   "description_it": "A Valsolda, direttamente sul Lago di Lugano, proponiamo un appartamento esclusivo all'interno della Residenza Riviera. L'abitazione occupa completamente il primo piano e sviluppa circa 206 m2 interni, oltre a terrazzi a lago per circa 41 m2.\n\nDall'ingresso principale si apre una grande zona giorno open-space composta da cucina a vista, zona pranzo, ampio soggiorno, sala TV e una SPA interna con vasca idromassaggio, sauna e doccia in vetro. Le grandi vetrate collegano gli ambienti ai balconi e incorniciano una vista mozzafiato sul Lago di Lugano.\n\nLa zona notte comprende una camera padronale molto spaziosa con cabina armadio e bagno en-suite, oltre a una seconda camera matrimoniale con accesso al balcone. Una proposta di pregio per chi cerca un'abitazione fronte lago con metrature importanti, comfort e atmosfera esclusiva.",
   "description_en": "In Valsolda, directly on Lake Lugano, we offer an exclusive apartment inside Residenza Riviera. The home occupies the entire first floor and provides approx. 206 sqm of interiors, plus approx. 41 sqm of lake-facing terraces.\n\nThe main entrance opens onto a large open-plan living area with open kitchen, dining area, spacious lounge, TV room, and an internal spa with whirlpool tub, sauna, and glass shower. Large windows connect the rooms to the balconies and frame breathtaking views over Lake Lugano.\n\nThe sleeping area includes a very spacious primary bedroom with walk-in closet and en-suite bathroom, plus a second double bedroom with balcony access. A high-end proposal for those seeking a lakefront home with generous spaces, comfort, and exclusive atmosphere.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Apartman 206 m2 ve Valsolde, Residenza Riviera: primo u Luganskeho jezera, terasy 41 m2, vnitrni spa, 2 loznice a uchvatny vyhled.",
   "status": "available",
   "featured": false,
-  "keywords": ["valsolda", "lago di lugano", "residenza riviera", "fronte lago", "spa", "lombardia"],
+  "keywords": [
+    "valsolda",
+    "lago di lugano",
+    "residenza riviera",
+    "fronte lago",
+    "spa",
+    "lombardia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/99304810/",
   "lat": 46.0226,
   "lng": 9.0375,

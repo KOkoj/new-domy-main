@@ -19,12 +19,36 @@
   "square_meters": 115,
   "parking": 1,
   "features": [
-    { "it": "Appartamento di charme completamente ristrutturato", "en": "Charming fully renovated apartment", "cs": "Puvabny kompletne zrekonstruovany apartman" },
-    { "it": "Vista aperta sul Monte Lussari e terrazza coperta di circa 15 m2", "en": "Open Monte Lussari view and approx. 15 sqm covered terrace", "cs": "Otevreny vyhled na Monte Lussari a kryta terasa cca 15 m2" },
-    { "it": "Ampio soggiorno e sala da pranzo con caminetto bifronte", "en": "Large living and dining area with double-sided fireplace", "cs": "Velka obytna a jidelni cast s oboustrannym krbem" },
-    { "it": "Cucina attrezzata con elettrodomestici di alta gamma", "en": "Equipped kitchen with high-end appliances", "cs": "Vybavena kuchyne se spotrebici vyssi tridy" },
-    { "it": "Due camere matrimoniali e due bagni", "en": "Two double bedrooms and two bathrooms", "cs": "Dve dvouluzkove loznice a dve koupelny" },
-    { "it": "Cantina/ski room, classe B e posti auto condominiali", "en": "Cellar/ski room, class B, and condominium parking spaces", "cs": "Sklep/ski room, trida B a spolecna parkovaci stani" }
+    {
+      "it": "Appartamento di charme completamente ristrutturato",
+      "en": "Charming fully renovated apartment",
+      "cs": "Puvabny kompletne zrekonstruovaný apartmán"
+    },
+    {
+      "it": "Vista aperta sul Monte Lussari e terrazza coperta di circa 15 m2",
+      "en": "Open Monte Lussari view and approx. 15 sqm covered terrace",
+      "cs": "Otevreny výhled na Monte Lussari a kryta terasa cca 15 m2"
+    },
+    {
+      "it": "Ampio soggiorno e sala da pranzo con caminetto bifronte",
+      "en": "Large living and dining area with double-sided fireplace",
+      "cs": "Velká obytna a jidelni část s oboustrannym krbem"
+    },
+    {
+      "it": "Cucina attrezzata con elettrodomestici di alta gamma",
+      "en": "Equipped kitchen with high-end appliances",
+      "cs": "Vybavena kuchyne se spotrebici vyssi tridy"
+    },
+    {
+      "it": "Due camere matrimoniali e due bagni",
+      "en": "Two double bedrooms and two bathrooms",
+      "cs": "Dve dvouluzkove ložnice a dve koupelny"
+    },
+    {
+      "it": "Cantina/ski room, classe B e posti auto condominiali",
+      "en": "Cellar/ski room, class B, and condominium parking spaces",
+      "cs": "Sklep/ski room, trida B a spolecna parkovaci stani"
+    }
   ],
   "description_it": "A Camporosso, nel cuore della Valcanale e a circa 10 minuti a piedi dagli impianti del Monte Lussari, proponiamo un appartamento di charme completamente ristrutturato con splendida vista aperta. L'immobile si trova al secondo piano con ascensore in condominio recente con cappotto termico, ampie zone comuni e parcheggio condominiale scoperto.\n\nGli spazi sono pensati per vivere la montagna con comfort: ampio soggiorno con caminetto bifronte, sala da pranzo collegata al camino, cucina attrezzata con elettrodomestici di alta gamma, due camere matrimoniali e due bagni, di cui uno finestrato e uno con lavanderia.\n\nLa terrazza coperta di circa 15 m2 e pienamente abitabile e prolunga naturalmente la zona living. Arredo fisso su misura incluso, cantina/ski room, classe energetica B e possibilita di garage privati acquistabili separatamente completano una soluzione pronta da vivere.",
   "description_en": "In Camporosso, in the heart of Valcanale and about 10 minutes on foot from the Monte Lussari lifts, we offer a charming fully renovated apartment with beautiful open views. The property is on the second floor with lift in a recent condominium with thermal coat, generous common areas, and uncovered condominium parking.\n\nThe spaces are designed for comfortable mountain living: large living room with double-sided fireplace, dining area connected to the fireplace, equipped kitchen with high-end appliances, two double bedrooms, and two bathrooms, one windowed and one with laundry.\n\nThe approx. 15 sqm covered terrace is fully usable and naturally extends the living area. Custom fixed furniture included, cellar/ski room, energy class B, and optional private garages available separately complete a ready-to-live solution.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Apartman 115 m2 v Camporossu: 2 loznice, 2 koupelny, kryta terasa, oboustranny krb, zakazkovy nabytek, ski room a trida B.",
   "status": "available",
   "featured": false,
-  "keywords": ["camporosso", "tarvisio", "monte lussari", "valcanale", "appartamento ristrutturato", "friuli venezia giulia"],
+  "keywords": [
+    "camporosso",
+    "tarvisio",
+    "monte lussari",
+    "valcanale",
+    "appartamento ristrutturato",
+    "friuli venezia giulia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/128749010/",
   "lat": 46.50901031,
   "lng": 13.52688026,

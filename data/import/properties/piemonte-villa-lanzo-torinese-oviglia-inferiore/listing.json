@@ -19,12 +19,36 @@
   "square_meters": 380,
   "parking": 3,
   "features": [
-    { "it": "Villa unifamiliare di circa 380 m2 su tre livelli", "en": "Detached villa of approx. 380 sqm over three levels", "cs": "Samostatna vila cca 380 m2 ve trech urovnich" },
-    { "it": "Terreno di circa 2.000 m2", "en": "Approx. 2,000 sqm of land", "cs": "Pozemek cca 2 000 m2" },
-    { "it": "Posizione collinare a 5 minuti dal centro", "en": "Hillside position 5 minutes from the centre", "cs": "Poloha ve svahu 5 minut od centra" },
-    { "it": "Sette ambienti abitabili tra piano terra, primo piano e mansarda", "en": "Seven living rooms/spaces across ground floor, first floor, and attic", "cs": "Sedm obytnych prostoru v prizemi, prvnim patre a podkrovi" },
-    { "it": "Giardino, cortile e posti auto", "en": "Garden, courtyard, and parking spaces", "cs": "Zahrada, dvur a parkovaci mista" },
-    { "it": "Cantina, locale tecnico e riscaldamento autonomo", "en": "Cellar, technical room, and independent heating", "cs": "Sklep, technicka mistnost a samostatne topeni" }
+    {
+      "it": "Villa unifamiliare di circa 380 m2 su tre livelli",
+      "en": "Detached villa of approx. 380 sqm over three levels",
+      "cs": "Samostatná vila cca 380 m2 ve třech úrovních"
+    },
+    {
+      "it": "Terreno di circa 2.000 m2",
+      "en": "Approx. 2,000 sqm of land",
+      "cs": "Pozemek cca 2 000 m2"
+    },
+    {
+      "it": "Posizione collinare a 5 minuti dal centro",
+      "en": "Hillside position 5 minutes from the centre",
+      "cs": "Poloha ve svahu 5 minut od centra"
+    },
+    {
+      "it": "Sette ambienti abitabili tra piano terra, primo piano e mansarda",
+      "en": "Seven living rooms/spaces across ground floor, first floor, and attic",
+      "cs": "Sedm obytnych prostoru v prizemi, prvnim patre a podkrovi"
+    },
+    {
+      "it": "Giardino, cortile e posti auto",
+      "en": "Garden, courtyard, and parking spaces",
+      "cs": "Zahrada, dvur a parkovaci mista"
+    },
+    {
+      "it": "Cantina, locale tecnico e riscaldamento autonomo",
+      "en": "Cellar, technical room, and independent heating",
+      "cs": "Sklep, technicka mistnost a samostatné topeni"
+    }
   ],
   "description_it": "A Lanzo Torinese, in Regione Oviglia Inferiore 167, proponiamo una villa unifamiliare in posizione collinare, a circa 5 minuti dal centro, con vista sulla citta, giardino, cortile e terreno di circa 2.000 m2.\n\nL'abitazione sviluppa circa 380 m2 su tre livelli. Il piano terra di circa 140 m2 comprende tavernetta, bagno, locale tecnico e due camere. Il primo piano, sempre di circa 140 m2, ospita cucina, salone, tre camere e bagno. La mansarda di circa 100 m2 include due camere, disimpegno e bagno.\n\nCompletano la proprieta cantina, locale tecnico, accesso carraio, posti auto nel cortile e riscaldamento autonomo. Una soluzione ampia e versatile per chi cerca spazi generosi, verde e tranquillita vicino al centro di Lanzo.",
   "description_en": "In Lanzo Torinese, at Regione Oviglia Inferiore 167, we offer a detached villa in a hillside position, approx. 5 minutes from the centre, with city views, garden, courtyard, and approx. 2,000 sqm of land.\n\nThe home provides approx. 380 sqm over three levels. The approx. 140 sqm ground floor includes a tavern room, bathroom, technical room, and two bedrooms. The first floor, also approx. 140 sqm, hosts the kitchen, lounge, three bedrooms, and bathroom. The approx. 100 sqm attic includes two rooms, hallway, and bathroom.\n\nA cellar, technical room, driveway access, courtyard parking spaces, and independent heating complete the property. A spacious and versatile solution for those seeking generous interiors, greenery, and quiet close to central Lanzo.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Vila 380 m2 v Lanzo Torinese s pozemkem 2 000 m2, 4 loznicemi, 3 koupelnami, zahradou, dvorem, parkovanim a vyhledem.",
   "status": "available",
   "featured": false,
-  "keywords": ["lanzo torinese", "oviglia inferiore", "villa", "terreno", "giardino", "piemonte"],
+  "keywords": [
+    "lanzo torinese",
+    "oviglia inferiore",
+    "villa",
+    "terreno",
+    "giardino",
+    "piemonte"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/122330822/",
   "lat": 45.281,
   "lng": 7.4843,

@@ -19,12 +19,36 @@
   "square_meters": 63,
   "parking": 1,
   "features": [
-    { "it": "Appartamento completamente ristrutturato", "en": "Fully renovated apartment", "cs": "Kompletne zrekonstruovany byt" },
-    { "it": "Palazzina con cappotto e adeguamento antisismico", "en": "Building with thermal insulation and seismic upgrade", "cs": "Dum se zateplenim a seizmickym posilenim" },
-    { "it": "Primo piano con ascensore", "en": "First floor with lift", "cs": "Prvni patro s vytahem" },
-    { "it": "Zona giorno con angolo cottura", "en": "Living area with kitchenette", "cs": "Obytna cast s kuchynskym koutem" },
-    { "it": "Camera matrimoniale e mezza camera", "en": "Double bedroom and small second room", "cs": "Dvouluzkova loznice a mensi pokoj" },
-    { "it": "Garage di servizio al piano terra", "en": "Service garage on the ground floor", "cs": "Servisni garaz v prizemi" }
+    {
+      "it": "Appartamento completamente ristrutturato",
+      "en": "Fully renovated apartment",
+      "cs": "Kompletne zrekonstruovaný byt"
+    },
+    {
+      "it": "Palazzina con cappotto e adeguamento antisismico",
+      "en": "Building with thermal insulation and seismic upgrade",
+      "cs": "Dům se zateplenim a seizmickym posilenim"
+    },
+    {
+      "it": "Primo piano con ascensore",
+      "en": "First floor with lift",
+      "cs": "Prvni patro s vytahem"
+    },
+    {
+      "it": "Zona giorno con angolo cottura",
+      "en": "Living area with kitchenette",
+      "cs": "Obytna část s kuchynskym koutem"
+    },
+    {
+      "it": "Camera matrimoniale e mezza camera",
+      "en": "Double bedroom and small second room",
+      "cs": "Dvouluzkova ložnice a mensi pokoj"
+    },
+    {
+      "it": "Garage di servizio al piano terra",
+      "en": "Service garage on the ground floor",
+      "cs": "Servisni garáž v prizemi"
+    }
   ],
   "description_it": "A Novi di Modena, in via Thomas Alva Edison 15, proponiamo un trilocale completamente ristrutturato al primo piano con ascensore, all'interno di una palazzina recentemente riqualificata.\n\nL'edificio e stato oggetto di interventi importanti, tra cui cappotto termico, adeguamento antisismico e rinnovo delle parti comuni. L'appartamento offre ingresso su zona giorno con angolo cottura, camera matrimoniale, mezza camera utilizzabile come studio o stanza armadi, e bagno finestrato con doccia.\n\nCompletano la proprieta infissi in PVC doppio vetro, riscaldamento autonomo, aria condizionata e garage di servizio al piano terra.",
   "description_en": "In Novi di Modena, on Via Thomas Alva Edison 15, this fully renovated apartment is located on the first floor with lift, inside a recently upgraded building.\n\nThe building has undergone major works, including thermal insulation, seismic upgrade, and renovation of common areas. The apartment includes a living area with kitchenette, double bedroom, small second room suitable as study or wardrobe room, and windowed bathroom with shower.\n\nPVC double-glazed windows, independent heating, air conditioning, and a service garage on the ground floor complete the property.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Zrekonstruovany byt 63 m2 v Novi di Modena s vytahem, garazi, autonomnim topenim a klimatizaci.",
   "status": "available",
   "featured": false,
-  "keywords": ["novi di modena", "modena", "trilocale", "ristrutturato", "garage", "emilia-romagna"],
+  "keywords": [
+    "novi di modena",
+    "modena",
+    "trilocale",
+    "ristrutturato",
+    "garage",
+    "emilia-romagna"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/125754995/",
   "lat": 44.8936,
   "lng": 10.8956,

@@ -19,12 +19,36 @@
   "square_meters": 60,
   "parking": 0,
   "features": [
-    { "it": "Bilocale di circa 60 m2", "en": "One-bedroom apartment of approx. 60 sqm", "cs": "Bilokal cca 60 m2" },
-    { "it": "Contesto residenziale tranquillo", "en": "Quiet residential setting", "cs": "Klidne rezidencni prostredi" },
-    { "it": "Zona giorno luminosa", "en": "Bright living area", "cs": "Svetla obytna cast" },
-    { "it": "Cucina separata", "en": "Separate kitchen", "cs": "Samostatna kuchyne" },
-    { "it": "Camera matrimoniale e bagno finestrato", "en": "Double bedroom and windowed bathroom", "cs": "Dvouluzkova loznice a koupelna s oknem" },
-    { "it": "Posizione comoda ai servizi di Rapallo", "en": "Convenient position for Rapallo services", "cs": "Pohodlna poloha ke sluzbam v Rapallu" }
+    {
+      "it": "Bilocale di circa 60 m2",
+      "en": "One-bedroom apartment of approx. 60 sqm",
+      "cs": "Dvoupokojový byt cca 60 m2"
+    },
+    {
+      "it": "Contesto residenziale tranquillo",
+      "en": "Quiet residential setting",
+      "cs": "Klidne rezidencni prostredi"
+    },
+    {
+      "it": "Zona giorno luminosa",
+      "en": "Bright living area",
+      "cs": "Svetla obytna část"
+    },
+    {
+      "it": "Cucina separata",
+      "en": "Separate kitchen",
+      "cs": "Samostatná kuchyne"
+    },
+    {
+      "it": "Camera matrimoniale e bagno finestrato",
+      "en": "Double bedroom and windowed bathroom",
+      "cs": "Dvouluzkova ložnice a koupelna s oknem"
+    },
+    {
+      "it": "Posizione comoda ai servizi di Rapallo",
+      "en": "Convenient position for Rapallo services",
+      "cs": "Pohodlna poloha ke sluzbam v Rapallu"
+    }
   ],
   "description_it": "A Rapallo, in via Arpinati 28 nella zona Golf - Castellino, proponiamo un bilocale di circa 60 m2 inserito in un contesto residenziale tranquillo e ben mantenuto.\n\nL'appartamento offre due locali ben distribuiti: una zona giorno luminosa e accogliente, cucina separata, camera da letto confortevole e bagno finestrato. La disposizione interna consente una gestione pratica degli spazi.\n\nLa posizione permette di raggiungere facilmente i servizi, le attrazioni cittadine e i collegamenti verso le localita limitrofe.",
   "description_en": "In Rapallo, on Via Arpinati 28 in the Golf - Castellino area, we offer a one-bedroom apartment of approx. 60 sqm set in a quiet and well-kept residential context.\n\nThe apartment includes two well-distributed rooms: a bright and welcoming living area, separate kitchen, comfortable bedroom, and windowed bathroom. The layout makes the spaces practical and easy to manage.\n\nThe position provides convenient access to services, city attractions, and transport links to nearby towns.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Bilokal 60 m2 v Rapallu Golf - Castellino se svetlym obyvakem, samostatnou kuchyni, dvouluzkovou loznici a koupelnou s oknem.",
   "status": "available",
   "featured": false,
-  "keywords": ["rapallo", "via arpinati", "golf castellino", "bilocale", "appartamento", "liguria"],
+  "keywords": [
+    "rapallo",
+    "via arpinati",
+    "golf castellino",
+    "bilocale",
+    "appartamento",
+    "liguria"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/127559890/",
   "lat": 44.3539,
   "lng": 9.21369,

@@ -19,12 +19,36 @@
   "square_meters": 100,
   "parking": 0,
   "features": [
-    { "it": "Trilocale di circa 100 m2 al terzo piano", "en": "Three-room apartment of approx. 100 sqm on the third floor", "cs": "Trilokal cca 100 m2 ve tretim patre" },
-    { "it": "Ristrutturato nei dettagli", "en": "Renovated in detail", "cs": "Detailne zrekonstruovano" },
-    { "it": "Zona giorno con cucina a vista", "en": "Living area with open kitchen", "cs": "Obytna cast s otevrenou kuchyni" },
-    { "it": "Due ampie camere matrimoniali", "en": "Two spacious double bedrooms", "cs": "Dve prostorne dvouluzkove loznice" },
-    { "it": "Doppia esposizione e tre balconi", "en": "Dual aspect and three balconies", "cs": "Dvojita orientace a tri balkony" },
-    { "it": "Riscaldamento autonomo e due cantine", "en": "Independent heating and two cellars", "cs": "Samostatne topeni a dva sklepy" }
+    {
+      "it": "Trilocale di circa 100 m2 al terzo piano",
+      "en": "Three-room apartment of approx. 100 sqm on the third floor",
+      "cs": "Třípokojový byt cca 100 m2 ve tretim patre"
+    },
+    {
+      "it": "Ristrutturato nei dettagli",
+      "en": "Renovated in detail",
+      "cs": "Detailne zrekonstruovano"
+    },
+    {
+      "it": "Zona giorno con cucina a vista",
+      "en": "Living area with open kitchen",
+      "cs": "Obytna část s otevrenou kuchyni"
+    },
+    {
+      "it": "Due ampie camere matrimoniali",
+      "en": "Two spacious double bedrooms",
+      "cs": "Dve prostorne dvouluzkove ložnice"
+    },
+    {
+      "it": "Doppia esposizione e tre balconi",
+      "en": "Dual aspect and three balconies",
+      "cs": "Dvojita orientace a tri balkony"
+    },
+    {
+      "it": "Riscaldamento autonomo e due cantine",
+      "en": "Independent heating and two cellars",
+      "cs": "Samostatné topeni a dva sklepy"
+    }
   ],
   "description_it": "A Torino, in via Venaria 15 nel quartiere Madonna di Campagna, proponiamo un trilocale ristrutturato di circa 100 m2 situato al terzo piano di uno stabile della meta degli anni Cinquanta senza ascensore.\n\nL'ingresso apre direttamente sulla zona giorno con cucina a vista. La distribuzione interna prosegue con bagno e due camere matrimoniali di generosa metratura, pensate per offrire ambienti comodi e ben sfruttabili.\n\nLa doppia esposizione assicura buona luminosita naturale e i tre balconi affacciano sia su via Venaria sia sul cortile interno condominiale. Completano la proprieta il riscaldamento autonomo e due cantine al piano interrato.",
   "description_en": "In Turin, on Via Venaria 15 in the Madonna di Campagna district, we offer a renovated three-room apartment of approx. 100 sqm located on the third floor of a mid-1950s building without lift.\n\nThe entrance opens directly into the living area with open kitchen. The internal layout continues with a bathroom and two generously sized double bedrooms, providing comfortable and practical spaces.\n\nThe dual aspect brings good natural light, while the three balconies overlook both Via Venaria and the internal condominium courtyard. Independent heating and two cellars on the basement level complete the property.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Trilokal 100 m2 v Turine, Madonna di Campagna: 2 loznice, koupelna, otevrena kuchyne, tri balkony, samostatne topeni a dva sklepy.",
   "status": "available",
   "featured": false,
-  "keywords": ["torino", "via venaria", "madonna di campagna", "trilocale", "appartamento", "piemonte"],
+  "keywords": [
+    "torino",
+    "via venaria",
+    "madonna di campagna",
+    "trilocale",
+    "appartamento",
+    "piemonte"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/128449572/",
   "lat": 45.1066,
   "lng": 7.6625,

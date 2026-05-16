@@ -19,12 +19,36 @@
   "square_meters": 201,
   "parking": 2,
   "features": [
-    { "it": "Soluzione semindipendente libera su tre lati", "en": "Semi-detached home open on three sides", "cs": "Polosamostatny dum volny ze tri stran" },
-    { "it": "Ampia corte privata con giardino", "en": "Large private courtyard with garden", "cs": "Velky soukromy dvur se zahradou" },
-    { "it": "Zona living open space di circa 45 m2", "en": "Approx. 45 sqm open-plan living area", "cs": "Otevrena obytna cast cca 45 m2" },
-    { "it": "Camere con servizi privati", "en": "Bedrooms with private bathrooms", "cs": "Loznice s vlastnim socialnim zazemim" },
-    { "it": "Garage doppio e posto auto interno", "en": "Double garage and internal parking space", "cs": "Dvojgaraz a vnitrni parkovaci misto" },
-    { "it": "Contesto verde comodo a Bologna", "en": "Green setting convenient to Bologna", "cs": "Zelene prostredi s dobrou dostupnosti do Boloni" }
+    {
+      "it": "Soluzione semindipendente libera su tre lati",
+      "en": "Semi-detached home open on three sides",
+      "cs": "Polosamostatny dům volny ze tri stran"
+    },
+    {
+      "it": "Ampia corte privata con giardino",
+      "en": "Large private courtyard with garden",
+      "cs": "Velký soukromý dvur se zahradou"
+    },
+    {
+      "it": "Zona living open space di circa 45 m2",
+      "en": "Approx. 45 sqm open-plan living area",
+      "cs": "Otevrena obytna část cca 45 m2"
+    },
+    {
+      "it": "Camere con servizi privati",
+      "en": "Bedrooms with private bathrooms",
+      "cs": "Ložnice s vlastním socialnim zazemim"
+    },
+    {
+      "it": "Garage doppio e posto auto interno",
+      "en": "Double garage and internal parking space",
+      "cs": "Dvojgaraz a vnitrni parkovaci misto"
+    },
+    {
+      "it": "Contesto verde comodo a Bologna",
+      "en": "Green setting convenient to Bologna",
+      "cs": "Zelene prostredi s dobrou dostupnosti do Boloni"
+    }
   ],
   "description_it": "A Funo di Argelato, in via Funo 4/6, proponiamo una villa plurifamiliare semindipendente di circa 201 m2, libera su tre lati e disposta su tre livelli.\n\nIl piano terra ospita una zona living open space con soggiorno, pranzo e angolo cottura, lavanderia finestrata, ripostiglio e una camera matrimoniale con accesso diretto al giardino privato. Al primo piano si trovano due camere matrimoniali, entrambe con bagno privato, mentre il secondo piano offre un ampio locale sottotetto con ulteriore bagno.\n\nCompletano la proprieta una corte privata pavimentata e verde, una pergotenda automatica, garage doppio e posto auto interno. La posizione e residenziale, silenziosa e ben collegata con Bologna.",
   "description_en": "In Funo di Argelato, on Via Funo 4/6, this semi-detached multi-family villa offers approx. 201 sqm over three levels, open on three sides.\n\nThe ground floor includes an open-plan living and dining area with kitchenette, a windowed laundry room, storage space, and a double bedroom with direct access to the private garden. The first floor has two double bedrooms, each with a private bathroom, while the second floor offers a large attic-style room with an additional bathroom.\n\nThe property is completed by a private paved and green courtyard, automatic pergola awning, double garage, and internal parking. A quiet residential setting with convenient access to Bologna.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Vicegeneracni vila 201 m2 ve Funo di Argelato se soukromym dvorem, loznicemi s koupelnami, dvojgarazi a parkovanim.",
   "status": "available",
   "featured": false,
-  "keywords": ["argelato", "funo", "villa", "giardino", "garage", "emilia-romagna"],
+  "keywords": [
+    "argelato",
+    "funo",
+    "villa",
+    "giardino",
+    "garage",
+    "emilia-romagna"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/127112391/",
   "lat": 44.5962,
   "lng": 11.3627,

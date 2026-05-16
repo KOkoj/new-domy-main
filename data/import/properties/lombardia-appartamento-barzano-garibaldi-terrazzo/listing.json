@@ -19,12 +19,36 @@
   "square_meters": 143,
   "parking": 2,
   "features": [
-    { "it": "Ampio quadrilocale all'ultimo piano in centro paese", "en": "Large top-floor four-room apartment in the town centre", "cs": "Velky ctyrpokojovy byt v poslednim patre v centru obce" },
-    { "it": "Grande soggiorno con uscita su terrazzo coperto", "en": "Large living room opening onto a covered terrace", "cs": "Velky obyvaci pokoj se vstupem na krytou terasu" },
-    { "it": "Cucina abitabile e tre camere matrimoniali", "en": "Eat-in kitchen and three double bedrooms", "cs": "Obyvatelna kuchyne a tri dvouluzkove loznice" },
-    { "it": "Due bagni e locale seminterrato uso hobby/cantina", "en": "Two bathrooms and basement room for hobby/cellar use", "cs": "Dve koupelny a polosuterenn mistnost pro hobby/sklep" },
-    { "it": "Box auto per due macchine di medie dimensioni", "en": "Garage for two medium-sized cars", "cs": "Garaz pro dve stredne velka auta" },
-    { "it": "Riscaldamento centralizzato con ripartitore", "en": "Central heating with consumption allocator", "cs": "Centralni vytapeni s mericem spotreby" }
+    {
+      "it": "Ampio quadrilocale all'ultimo piano in centro paese",
+      "en": "Large top-floor four-room apartment in the town centre",
+      "cs": "Velký čtyřpokojový byt v poslednim patre v centru obce"
+    },
+    {
+      "it": "Grande soggiorno con uscita su terrazzo coperto",
+      "en": "Large living room opening onto a covered terrace",
+      "cs": "Velký obyvaci pokoj se vstupem na krytou terasu"
+    },
+    {
+      "it": "Cucina abitabile e tre camere matrimoniali",
+      "en": "Eat-in kitchen and three double bedrooms",
+      "cs": "Obyvatelna kuchyne a tri dvouluzkove ložnice"
+    },
+    {
+      "it": "Due bagni e locale seminterrato uso hobby/cantina",
+      "en": "Two bathrooms and basement room for hobby/cellar use",
+      "cs": "Dve koupelny a polosuterenn mistnost pro hobby/sklep"
+    },
+    {
+      "it": "Box auto per due macchine di medie dimensioni",
+      "en": "Garage for two medium-sized cars",
+      "cs": "Garaz pro dve stredne velká auta"
+    },
+    {
+      "it": "Riscaldamento centralizzato con ripartitore",
+      "en": "Central heating with consumption allocator",
+      "cs": "Centralni vytapeni s mericem spotreby"
+    }
   ],
   "description_it": "In centro a Barzano, proponiamo un ampio appartamento di quattro locali situato all'ultimo piano. La posizione permette di vivere in una zona tranquilla senza rinunciare ai servizi e alle comodita del centro cittadino.\n\nL'appartamento comprende un grande soggiorno con uscita sul terrazzo coperto, ideale per pranzi e cene durante la bella stagione, cucina abitabile, tre camere matrimoniali e due bagni. La distribuzione interna offre spazi generosi e adatti a una famiglia.\n\nAl piano seminterrato e presente un ulteriore locale di ampie dimensioni, utilizzabile come hobby room o cantina a seconda delle esigenze. Completa la proprieta un box auto utile per due macchine di medie dimensioni. Riscaldamento centralizzato con ripartitore.",
   "description_en": "In the centre of Barzano, we offer a large four-room apartment located on the top floor. The position allows quiet living while remaining close to town-centre services and conveniences.\n\nThe apartment includes a large living room opening onto a covered terrace, ideal for lunches and dinners during the warm season, an eat-in kitchen, three double bedrooms, and two bathrooms. The internal layout offers generous spaces suitable for a family.\n\nA further large room on the semi-basement level can be used as a hobby room or cellar according to needs. A garage suitable for two medium-sized cars completes the property. Central heating with consumption allocator.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Byt 143 m2 v Barzanu: posledni patro, kryta terasa, 3 loznice, 2 koupelny, hobby/sklepni mistnost a garaz pro dve auta.",
   "status": "available",
   "featured": false,
-  "keywords": ["barzano", "quadrilocale", "terrazzo coperto", "box doppio", "centro", "lombardia"],
+  "keywords": [
+    "barzano",
+    "quadrilocale",
+    "terrazzo coperto",
+    "box doppio",
+    "centro",
+    "lombardia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/127613572/",
   "lat": 45.7349,
   "lng": 9.3142,

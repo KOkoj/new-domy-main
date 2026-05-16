@@ -19,12 +19,36 @@
   "square_meters": 95,
   "parking": 2,
   "features": [
-    { "it": "Ultimo piano in edificio con ascensore", "en": "Top floor in a building with lift", "cs": "Posledni patro v dome s vytahem" },
-    { "it": "Zona giorno luminosa con uscita su ampio terrazzo", "en": "Bright living area opening onto a large terrace", "cs": "Svetla obytna cast se vstupem na velkou terasu" },
-    { "it": "Camera matrimoniale con balcone privato", "en": "Double bedroom with private balcony", "cs": "Dvouluzkova loznice se soukromym balkonem" },
-    { "it": "Due bagni, di cui uno bagno/lavanderia", "en": "Two bathrooms, one also used as laundry", "cs": "Dve koupelny, jedna take jako pradelna" },
-    { "it": "Cantina e box doppio", "en": "Cellar and double garage", "cs": "Sklep a dvojgaraz" },
-    { "it": "Aria condizionata e posizione funzionale", "en": "Air conditioning and functional location", "cs": "Klimatizace a prakticka poloha" }
+    {
+      "it": "Ultimo piano in edificio con ascensore",
+      "en": "Top floor in a building with lift",
+      "cs": "Posledni patro v domě s vytahem"
+    },
+    {
+      "it": "Zona giorno luminosa con uscita su ampio terrazzo",
+      "en": "Bright living area opening onto a large terrace",
+      "cs": "Svetla obytna část se vstupem na velkou terasu"
+    },
+    {
+      "it": "Camera matrimoniale con balcone privato",
+      "en": "Double bedroom with private balcony",
+      "cs": "Dvouluzkova ložnice se soukromým balkonem"
+    },
+    {
+      "it": "Due bagni, di cui uno bagno/lavanderia",
+      "en": "Two bathrooms, one also used as laundry",
+      "cs": "Dve koupelny, jedna take jako pradelna"
+    },
+    {
+      "it": "Cantina e box doppio",
+      "en": "Cellar and double garage",
+      "cs": "Sklep a dvojgaraz"
+    },
+    {
+      "it": "Aria condizionata e posizione funzionale",
+      "en": "Air conditioning and functional location",
+      "cs": "Klimatizace a prakticka poloha"
+    }
   ],
   "description_it": "A Osnago, in zona Fiera, proponiamo un appartamento di circa 95 m2 situato all'ultimo piano di un edificio dotato di ascensore. La casa offre spazi comodi, una buona luminosita e una distribuzione funzionale per chi cerca praticita e collegamenti.\n\nLa zona giorno si apre su un ampio terrazzo, ideale per vivere l'esterno durante la bella stagione. La zona notte comprende una camera matrimoniale con accesso diretto a un balcone privato, una seconda camera e due bagni, di cui uno organizzato anche come lavanderia.\n\nCantina e box doppio completano la proprieta. L'appartamento dispone di aria condizionata, aumentando il comfort nei mesi estivi e rendendo la soluzione adatta a una coppia, una famiglia o a chi desidera spazi accessori importanti.",
   "description_en": "In Osnago, in the Fiera area, we offer an approx. 95 sqm apartment located on the top floor of a building with lift. The home provides comfortable spaces, good natural light, and a functional layout for those seeking practicality and connections.\n\nThe living area opens onto a large terrace, ideal for outdoor use during the warm season. The sleeping area includes a double bedroom with direct access to a private balcony, a second bedroom, and two bathrooms, one also arranged as a laundry room.\n\nA cellar and double garage complete the property. The apartment has air conditioning, increasing summer comfort and making it suitable for a couple, a family, or anyone needing valuable accessory spaces.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Byt 95 m2 v Osnagu: posledni patro s vytahem, terasa, balkon, 2 loznice, 2 koupelny, sklep, dvojgaraz a klimatizace.",
   "status": "available",
   "featured": false,
-  "keywords": ["osnago", "trilocale", "terrazzo", "box doppio", "ultimo piano", "lombardia"],
+  "keywords": [
+    "osnago",
+    "trilocale",
+    "terrazzo",
+    "box doppio",
+    "ultimo piano",
+    "lombardia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/127746632/",
   "lat": 45.6788,
   "lng": 9.3995,

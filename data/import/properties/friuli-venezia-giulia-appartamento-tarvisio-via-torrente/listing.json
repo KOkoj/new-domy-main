@@ -19,12 +19,36 @@
   "square_meters": 81,
   "parking": 1,
   "features": [
-    { "it": "Bilocale in stabile recentemente riqualificato", "en": "One-bedroom apartment in a recently upgraded building", "cs": "Apartman 2+kk v nedavno revitalizovanem dome" },
-    { "it": "Terrazza panoramica accessibile da soggiorno e camera", "en": "Panoramic terrace accessible from living room and bedroom", "cs": "Panoramaticka terasa pristupna z obyvaci casti i loznice" },
-    { "it": "Zona giorno luminosa con angolo cottura", "en": "Bright living area with kitchenette", "cs": "Svetla obytna cast s kuchynskym koutem" },
-    { "it": "Camera matrimoniale, bagno finestrato e ripostiglio", "en": "Double bedroom, windowed bathroom, and storage room", "cs": "Dvouluzkova loznice, koupelna s oknem a komora" },
-    { "it": "Cantina in muratura, garage e possibilita di posto auto esterno", "en": "Masonry cellar, garage, and possible outdoor parking space", "cs": "Zdeny sklep, garaz a moznost venkovniho stani" },
-    { "it": "Riscaldamento autonomo gestibile da remoto", "en": "Independent heating manageable remotely", "cs": "Samostatne vytapeni ovladatelne na dalku" }
+    {
+      "it": "Bilocale in stabile recentemente riqualificato",
+      "en": "One-bedroom apartment in a recently upgraded building",
+      "cs": "Apartmán 2+kk v nedavno revitalizovanem domě"
+    },
+    {
+      "it": "Terrazza panoramica accessibile da soggiorno e camera",
+      "en": "Panoramic terrace accessible from living room and bedroom",
+      "cs": "Panoramatická terasa pristupna z obyvaci části i ložnice"
+    },
+    {
+      "it": "Zona giorno luminosa con angolo cottura",
+      "en": "Bright living area with kitchenette",
+      "cs": "Svetla obytna část s kuchynskym koutem"
+    },
+    {
+      "it": "Camera matrimoniale, bagno finestrato e ripostiglio",
+      "en": "Double bedroom, windowed bathroom, and storage room",
+      "cs": "Dvouluzkova ložnice, koupelna s oknem a komora"
+    },
+    {
+      "it": "Cantina in muratura, garage e possibilita di posto auto esterno",
+      "en": "Masonry cellar, garage, and possible outdoor parking space",
+      "cs": "Zdeny sklep, garáž a možnost venkovniho stani"
+    },
+    {
+      "it": "Riscaldamento autonomo gestibile da remoto",
+      "en": "Independent heating manageable remotely",
+      "cs": "Samostatné vytapeni ovladatelne na dalku"
+    }
   ],
   "description_it": "Nel cuore di Tarvisio, in posizione tranquilla e immersa nel verde, proponiamo un raffinato bilocale in stabile recentemente riqualificato con rifacimento completo delle facciate. L'appartamento e servito da ascensore e offre ambienti curati, caldi e coerenti con il contesto alpino.\n\nL'ingresso con porta blindata conduce alla zona giorno con angolo cottura, ben organizzata per l'uso quotidiano e per i soggiorni in montagna. La zona notte comprende una camera matrimoniale, bagno finestrato e un comodo ripostiglio utilizzabile anche per attrezzatura sportiva.\n\nIl valore principale e la terrazza panoramica, accessibile sia dal soggiorno sia dalla camera, con vista aperta sulle montagne. Completano la proprieta cantina in muratura, garage e possibilita di posto auto esterno. Soluzione pronta per vacanze, uso personale o investimento.",
   "description_en": "In the heart of Tarvisio, in a quiet green setting, we offer a refined one-bedroom apartment in a recently upgraded building with fully renovated facades. The apartment is served by a lift and offers warm, well-kept interiors in harmony with the alpine setting.\n\nThe entrance with security door leads to the living area with kitchenette, well arranged for daily use and mountain stays. The sleeping area includes a double bedroom, windowed bathroom, and a practical storage room also useful for sports equipment.\n\nThe key feature is the panoramic terrace, accessible from both the living room and bedroom, with open mountain views. A masonry cellar, garage, and possible outdoor parking space complete the property. Ready for holidays, personal use, or investment.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Apartman 81 m2 v Tarvisiu: panoramaticka terasa, loznice, koupelna s oknem, sklep, garaz a samostatne vytapeni.",
   "status": "available",
   "featured": false,
-  "keywords": ["tarvisio", "via torrente", "bilocale", "terrazza panoramica", "garage", "friuli venezia giulia"],
+  "keywords": [
+    "tarvisio",
+    "via torrente",
+    "bilocale",
+    "terrazza panoramica",
+    "garage",
+    "friuli venezia giulia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/128364808/",
   "lat": 46.5035,
   "lng": 13.5865,

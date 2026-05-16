@@ -19,12 +19,36 @@
   "square_meters": 159,
   "parking": 1,
   "features": [
-    { "it": "Villa libera sui quattro lati", "en": "Villa open on all four sides", "cs": "Vila volna ze vsech ctyr stran" },
-    { "it": "Giardino recintato di circa 1.375 m2", "en": "Fenced garden of approx. 1,375 sqm", "cs": "Oplocena zahrada cca 1 375 m2" },
-    { "it": "Vista panoramica nel verde", "en": "Panoramic green views", "cs": "Panoramaticky vyhled do zelene" },
-    { "it": "Soggiorno con camino", "en": "Living room with fireplace", "cs": "Obyvak s krbem" },
-    { "it": "Quattro camere e due bagni", "en": "Four bedrooms and two bathrooms", "cs": "Ctyri loznice a dve koupelny" },
-    { "it": "Ampio garage al seminterrato", "en": "Large basement garage", "cs": "Velka garaz v suterenu" }
+    {
+      "it": "Villa libera sui quattro lati",
+      "en": "Villa open on all four sides",
+      "cs": "Vila volna ze vsech ctyr stran"
+    },
+    {
+      "it": "Giardino recintato di circa 1.375 m2",
+      "en": "Fenced garden of approx. 1,375 sqm",
+      "cs": "Oplocena zahrada cca 1 375 m2"
+    },
+    {
+      "it": "Vista panoramica nel verde",
+      "en": "Panoramic green views",
+      "cs": "Panoramaticky výhled do zelene"
+    },
+    {
+      "it": "Soggiorno con camino",
+      "en": "Living room with fireplace",
+      "cs": "Obyvak s krbem"
+    },
+    {
+      "it": "Quattro camere e due bagni",
+      "en": "Four bedrooms and two bathrooms",
+      "cs": "Ctyri ložnice a dve koupelny"
+    },
+    {
+      "it": "Ampio garage al seminterrato",
+      "en": "Large basement garage",
+      "cs": "Velká garáž v suterenu"
+    }
   ],
   "description_it": "A Monzuno, in localita San Rocco, proponiamo una villa indipendente libera su quattro lati, immersa nel verde e con vista panoramica.\n\nLa casa misura circa 159 m2 ed e disposta su due livelli oltre a un garage di circa 41 m2 al piano seminterrato. Il piano principale comprende soggiorno con camino, cucina, camera, disimpegno e bagno; al piano superiore si trovano tre camere, disimpegno, bagno e ripostiglio.\n\nIl giardino recintato di circa 1.375 m2 circonda la proprieta. La villa e abitabile, con alcuni elementi gia aggiornati, ma richiede interventi di ammodernamento.",
   "description_en": "In Monzuno, in the San Rocco area, this detached villa is open on all four sides, surrounded by greenery and enjoying panoramic views.\n\nThe house measures approx. 159 sqm over two levels plus an approx. 41 sqm garage in the basement. The main floor includes living room with fireplace, kitchen, bedroom, hallway, and bathroom; upstairs there are three bedrooms, hallway, bathroom, and storage room.\n\nA fenced garden of approx. 1,375 sqm surrounds the property. The villa is habitable, with some updated elements, but requires modernization works.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Samostatna vila 159 m2 v San Rocco di Monzuno se 4 loznicemi, 2 koupelnami, garazi a zahradou 1 375 m2.",
   "status": "available",
   "featured": false,
-  "keywords": ["monzuno", "san rocco", "villa", "giardino", "garage", "emilia-romagna"],
+  "keywords": [
+    "monzuno",
+    "san rocco",
+    "villa",
+    "giardino",
+    "garage",
+    "emilia-romagna"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/120137496/",
   "lat": 44.2759,
   "lng": 11.2227,

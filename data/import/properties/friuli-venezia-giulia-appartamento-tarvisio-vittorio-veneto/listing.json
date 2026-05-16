@@ -19,12 +19,36 @@
   "square_meters": 59,
   "parking": 1,
   "features": [
-    { "it": "Posizione centrale a pochi passi da piste e servizi", "en": "Central position steps from slopes and services", "cs": "Centralni poloha kousek od sjezdovek a sluzeb" },
-    { "it": "Due camere da letto e soggiorno con cucina", "en": "Two bedrooms and living room with kitchen", "cs": "Dve loznice a obyvaci pokoj s kuchyni" },
-    { "it": "Terrazzo per momenti di relax", "en": "Terrace for relaxing moments", "cs": "Terasa pro odpocinek" },
-    { "it": "Bagno, soffitta e garage", "en": "Bathroom, attic storage, and garage", "cs": "Koupelna, puda a garaz" },
-    { "it": "Ideale come casa vacanze in montagna", "en": "Ideal as a mountain holiday home", "cs": "Idealni jako horsky rekreacni byt" },
-    { "it": "Interessante anche per investimento a reddito", "en": "Also interesting as a rental investment", "cs": "Zajimave take jako investice k pronajmu" }
+    {
+      "it": "Posizione centrale a pochi passi da piste e servizi",
+      "en": "Central position steps from slopes and services",
+      "cs": "Centralni poloha kousek od sjezdovek a sluzeb"
+    },
+    {
+      "it": "Due camere da letto e soggiorno con cucina",
+      "en": "Two bedrooms and living room with kitchen",
+      "cs": "Dve ložnice a obyvaci pokoj s kuchyni"
+    },
+    {
+      "it": "Terrazzo per momenti di relax",
+      "en": "Terrace for relaxing moments",
+      "cs": "Terasa pro odpocinek"
+    },
+    {
+      "it": "Bagno, soffitta e garage",
+      "en": "Bathroom, attic storage, and garage",
+      "cs": "Koupelna, puda a garáž"
+    },
+    {
+      "it": "Ideale come casa vacanze in montagna",
+      "en": "Ideal as a mountain holiday home",
+      "cs": "Idealni jako horsky rekreacni byt"
+    },
+    {
+      "it": "Interessante anche per investimento a reddito",
+      "en": "Also interesting as a rental investment",
+      "cs": "Zajimave take jako investice k pronajmu"
+    }
   ],
   "description_it": "Nel cuore di Tarvisio, a pochi passi dalle piste da sci e dal centro del paese, proponiamo un trilocale accogliente e funzionale, ideale come casa vacanze o investimento. La posizione consente di raggiungere facilmente impianti, negozi e servizi.\n\nL'appartamento comprende soggiorno con cucina, due camere da letto, un bagno e un terrazzo utilizzabile per momenti di relax dopo le giornate in montagna. La distribuzione e semplice e adatta a ospitare famiglia o amici.\n\nCompletano la proprieta soffitta e garage, elementi importanti per chi vive la montagna e necessita di spazio per attrezzatura sportiva. Una soluzione pratica, accessibile e ben collocata nel mercato di Tarvisio.",
   "description_en": "In the heart of Tarvisio, steps from the ski slopes and town centre, we offer a welcoming and functional two-bedroom apartment, ideal as a holiday home or investment. The location provides easy access to lifts, shops, and services.\n\nThe apartment includes a living room with kitchen, two bedrooms, one bathroom, and a terrace for relaxing after mountain days. The layout is simple and suitable for hosting family or friends.\n\nAttic storage and a garage complete the property, important features for mountain use and sports equipment. A practical, accessible, and well-positioned solution in the Tarvisio market.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Apartman 59 m2 v Tarvisiu: 2 loznice, terasa, puda, garaz a centralni poloha u lyzarskych vleku.",
   "status": "available",
   "featured": false,
-  "keywords": ["tarvisio", "via vittorio veneto", "trilocale", "piste da sci", "garage", "friuli venezia giulia"],
+  "keywords": [
+    "tarvisio",
+    "via vittorio veneto",
+    "trilocale",
+    "piste da sci",
+    "garage",
+    "friuli venezia giulia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/128834360/",
   "lat": 46.505,
   "lng": 13.5718,

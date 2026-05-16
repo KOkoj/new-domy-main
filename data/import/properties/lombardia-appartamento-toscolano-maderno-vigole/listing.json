@@ -19,12 +19,36 @@
   "square_meters": 51,
   "parking": 1,
   "features": [
-    { "it": "Bilocale al piano terra in residence di poche unita", "en": "Ground-floor one-bedroom apartment in a small residence", "cs": "Prizemni apartman 2+kk v male rezidenci" },
-    { "it": "Terrazzo panoramico con vista lago dominante", "en": "Panoramic terrace with wide lake view", "cs": "Panoramaticka terasa s sirokym vyhledem na jezero" },
-    { "it": "Soggiorno luminoso e cucina separata", "en": "Bright living room and separate kitchen", "cs": "Svetly obyvaci pokoj a samostatna kuchyne" },
-    { "it": "Camera matrimoniale con accesso diretto al terrazzo", "en": "Double bedroom with direct terrace access", "cs": "Dvouluzkova loznice s primym vstupem na terasu" },
-    { "it": "Bagno finestrato e ottime condizioni manutentive", "en": "Windowed bathroom and excellent maintenance condition", "cs": "Koupelna s oknem a vyborny stav" },
-    { "it": "Riscaldamento a pavimento, nuovi infissi e posti auto condominiali", "en": "Underfloor heating, new windows, and condominium parking", "cs": "Podlahove vytapeni, nova okna a spolecne parkovani" }
+    {
+      "it": "Bilocale al piano terra in residence di poche unita",
+      "en": "Ground-floor one-bedroom apartment in a small residence",
+      "cs": "Přízemní apartmán 2+kk v male rezidenci"
+    },
+    {
+      "it": "Terrazzo panoramico con vista lago dominante",
+      "en": "Panoramic terrace with wide lake view",
+      "cs": "Panoramatická terasa s sirokym výhledem na jezero"
+    },
+    {
+      "it": "Soggiorno luminoso e cucina separata",
+      "en": "Bright living room and separate kitchen",
+      "cs": "Světlý obyvaci pokoj a samostatná kuchyne"
+    },
+    {
+      "it": "Camera matrimoniale con accesso diretto al terrazzo",
+      "en": "Double bedroom with direct terrace access",
+      "cs": "Dvouluzkova ložnice s primym vstupem na terasu"
+    },
+    {
+      "it": "Bagno finestrato e ottime condizioni manutentive",
+      "en": "Windowed bathroom and excellent maintenance condition",
+      "cs": "Koupelna s oknem a vyborny stav"
+    },
+    {
+      "it": "Riscaldamento a pavimento, nuovi infissi e posti auto condominiali",
+      "en": "Underfloor heating, new windows, and condominium parking",
+      "cs": "Podlahove vytapeni, nová okna a spolecne parkovani"
+    }
   ],
   "description_it": "Nella rinomata zona collinare di Toscolano Maderno, sulla sponda bresciana del Lago di Garda, proponiamo un elegante bilocale con vista lago panoramica, inserito in un residence di poche unita immerso nel verde e caratterizzato da privacy e tranquillita.\n\nL'appartamento si trova al piano terra ed e accessibile tramite portico coperto. L'ingresso conduce al soggiorno luminoso con ampia finestra e porta finestra verso il terrazzo panoramico. La cucina e separata, la camera matrimoniale ha accesso diretto al terrazzo e il bagno finestrato e in ottime condizioni.\n\nL'immobile e stato ristrutturato, dispone di riscaldamento a pavimento e nuovi infissi. Il residence offre posti auto condominiali. Una soluzione interessante come casa vacanze sul Garda o investimento in una delle zone piu richieste.",
   "description_en": "In the renowned hillside area of Toscolano Maderno, on the Brescia side of Lake Garda, we offer an elegant one-bedroom apartment with panoramic lake view, set in a small residence surrounded by greenery, privacy, and quiet.\n\nThe apartment is on the ground floor and is accessed through a covered porch. The entrance leads to a bright living room with large window and French door to the panoramic terrace. The kitchen is separate, the double bedroom has direct terrace access, and the windowed bathroom is in excellent condition.\n\nThe property has been renovated and includes underfloor heating and new windows. The residence offers condominium parking spaces. An interesting option as a Garda holiday home or investment in one of the most requested areas.",
@@ -37,7 +61,14 @@
   "seo_description_cs": "Apartman 51 m2 v Toscolano Maderno: terasa s vyhledem na jezero, loznice, samostatna kuchyne, koupelna s oknem a podlahove vytapeni.",
   "status": "available",
   "featured": false,
-  "keywords": ["toscolano maderno", "via vigole", "bilocale", "vista lago", "lago di garda", "lombardia"],
+  "keywords": [
+    "toscolano maderno",
+    "via vigole",
+    "bilocale",
+    "vista lago",
+    "lago di garda",
+    "lombardia"
+  ],
   "source_url": "https://www.immobiliare.it/annunci/126831165/",
   "lat": 45.6394,
   "lng": 10.591,
