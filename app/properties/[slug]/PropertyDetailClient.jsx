@@ -20,6 +20,7 @@ import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import AuthModal from '../../../components/AuthModal'
 import Footer from '@/components/Footer'
+import NewPropertyRibbon, { getNewPropertyLabel } from '@/components/NewPropertyRibbon'
 
 function getPropertyStatusLabel(status, language) {
   if (status === 'sold') {
@@ -54,7 +55,7 @@ function isLocalAsset(url) {
   return typeof url === 'string' && url.startsWith('/')
 }
 
-function ImageGallery({ images, title, status, language }) {
+function ImageGallery({ images, title, status, language, isNew }) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
@@ -152,6 +153,7 @@ function ImageGallery({ images, title, status, language }) {
               onUpstreamError={() => markFailed(0)}
               className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
+            {isNew && <NewPropertyRibbon language={language} />}
             {statusLabel && (
               <div className="absolute left-4 top-4 z-10">
                 <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg ${status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'}`}>
@@ -178,6 +180,7 @@ function ImageGallery({ images, title, status, language }) {
                 onUpstreamError={() => markFailed(0)}
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
+              {isNew && <NewPropertyRibbon language={language} />}
               {statusLabel && (
                 <div className="absolute left-4 top-4 z-10">
                   <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg ${status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'}`}>
@@ -553,7 +556,8 @@ export default function PropertyDetailClient({ initialProperty = null }) {
             amenities: sanityProperty.amenities || [],
             developer: sanityProperty.developer,
             status: sanityProperty.status || 'available',
-            featured: sanityProperty.featured || false
+            featured: sanityProperty.featured || false,
+            isNew: Boolean(sanityProperty.isNew || sanityProperty.newListing)
           }
           
           setProperty(transformedProperty)
@@ -980,6 +984,11 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                         {language === 'cs' ? 'Doporučeno' : language === 'it' ? 'In evidenza' : 'Featured'}
                       </Badge>
                     )}
+                    {property.isNew && (
+                      <Badge className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                        {getNewPropertyLabel(language)}
+                      </Badge>
+                    )}
                     <Badge variant="outline" className="capitalize">
                       {property.status === 'available' 
                         ? (language === 'cs' ? 'Dostupné' : language === 'it' ? 'Disponibile' : 'Available')
@@ -1037,6 +1046,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
               title={getLocalizedText(property.title, 'Property')} 
               status={property.status}
               language={language}
+              isNew={property.isNew}
             />
 
             {/* Property Details */}

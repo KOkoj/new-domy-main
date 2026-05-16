@@ -749,6 +749,7 @@ async function transformFolderToProperty({
     },
     status: normalizeWhitespace(pick(listing, ['status'], 'available')) || 'available',
     featured: Boolean(listing.featured),
+    isNew: Boolean(listing.isNew || listing.newListing),
     description: {
       en: descriptionEn || descriptionIt,
       cs: descriptionCs || descriptionIt,

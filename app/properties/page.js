@@ -32,6 +32,7 @@ import Navigation from '@/components/Navigation';
 import PropertyImage from '@/components/PropertyImage';
 import { getPropertyImage } from '@/lib/getPropertyImage';
 import { formatPriceCompact } from '../../lib/currency';
+import NewPropertyRibbon from '@/components/NewPropertyRibbon';
 
 const AuthModal = dynamic(() => import('../../components/AuthModal'), { ssr: false });
 
@@ -125,6 +126,12 @@ const getStatusLabel = (status, language) => {
   return null
 }
 
+const getPropertyTimestamp = (property) => {
+  const value = property?.createdAt || property?.updatedAt || property?._createdAt || property?._updatedAt
+  const timestamp = Date.parse(value || '')
+  return Number.isFinite(timestamp) ? timestamp : 0
+}
+
 // PropertyCard component matching homepage design
 function PropertyCard({ property, onFavorite, isFavorited, language, currency, onClick }) {
   const roomsLabel = language === 'cs' ? 'm\u00edstnosti' : language === 'it' ? 'locali' : 'rooms'
@@ -173,6 +180,8 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
           className="object-cover group-hover:scale-110 transition-transform duration-300 ease-out"
           data-testid="property-image"
         />
+
+        {property.isNew && <NewPropertyRibbon language={language} />}
 
         {statusLabel && (
           <div className="absolute left-4 top-4 z-30 pointer-events-none">
@@ -730,7 +739,10 @@ export default function PropertiesPage() {
               slug: prop.slug?.current || prop.slug || '',
               sanityId: prop._id,
               status: prop.status || 'available',
-              sourceUrl: prop.sourceUrl || ''
+              sourceUrl: prop.sourceUrl || '',
+              createdAt: prop._createdAt || prop.createdAt || '',
+              updatedAt: prop._updatedAt || prop.updatedAt || '',
+              isNew: Boolean(prop.isNew || prop.newListing)
             };
           });
 
@@ -882,7 +894,7 @@ export default function PropertiesPage() {
         return sorted.sort((a, b) => b.price - a.price);
       case 'newest':
       default:
-        return sorted.sort((a, b) => b.id - a.id);
+        return sorted.sort((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a));
     }
   }, [filteredProperties, sortBy]);
 

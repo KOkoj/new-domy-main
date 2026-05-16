@@ -86,6 +86,16 @@ function mergePropertyCollections(primary = [], secondary = []) {
   return merged
 }
 
+function getPropertyTimestamp(property) {
+  const value = property?._createdAt || property?._updatedAt || property?.createdAt || property?.updatedAt
+  const timestamp = Date.parse(value || '')
+  return Number.isFinite(timestamp) ? timestamp : 0
+}
+
+function sortPropertiesByNewest(properties = []) {
+  return [...properties].sort((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a))
+}
+
 async function findLocalPropertyBySlug(slugOrId) {
   const properties = await readLocalPropertiesFromJson()
   return (
@@ -167,7 +177,7 @@ export async function GET(request, { params }) {
         )
       }
 
-      return NextResponse.json(filteredProperties)
+      return NextResponse.json(sortPropertiesByNewest(filteredProperties))
     }
 
     if (path[0] === 'properties' && path[1]) {

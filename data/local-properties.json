@@ -1,5 +1,723 @@
 [
   {
+    "_id": "local-import-toscana-attico-massa-marittima-centro-liberta-1778853063503-2y4r6",
+    "_type": "listing",
+    "title": {
+      "en": "Penthouse in the Historic Centre of Massa Marittima",
+      "cs": "Podkrovni byt v historickem centru Massa Marittima",
+      "it": "Attico nel centro storico di Massa Marittima"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-attico-massa-marittima-centro-liberta"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 150000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 101
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Massa Marittima",
+          "cs": "Massa Marittima",
+          "it": "Massa Marittima"
+        },
+        "slug": {
+          "current": "massa-marittima"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskansko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via della Libertà, Massa Marittima",
+        "cs": "Via della Libertà, Massa Marittima",
+        "it": "Via della Libertà, Massa Marittima"
+      },
+      "coordinates": {
+        "lat": 43.0509,
+        "lng": 10.8883
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "description": {
+      "en": "In Massa Marittima, this apartment offers 101 sqm, 6 rooms, 3 bedrooms and 2 bathrooms. The property is located at Via della Libertà, Massa Marittima and is a practical option for buyers looking in Tuscany with clear figures and a defined asking price.\n\nThe key point is move-in ready penthouse nel borgo medievale a circa 20 minuti dal mare. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Massa Marittima nabizi tato nemovitost 101 m2, 6 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese Via della Libertà, Massa Marittima a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Toskansko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je podkrovni byt pripraveny k bydleni nel borgo medievale a circa 20 minuti dal mare. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Massa Marittima, proponiamo appartamento con 101 mq, 6 locali, 3 camere e 2 bagni. La proprieta si trova in Via della Libertà, Massa Marittima e rappresenta una proposta concreta per chi cerca casa in Toscana con prezzo definito e dati verificabili.\n\nIl punto forte dell annuncio e attico pronto da abitare nel borgo medievale a circa 20 minuti dal mare. Dalla descrizione emerge inoltre: Contesto Ampio attico con balcone affacciato sulle antiche mura della città e sulla famosa Torre del Candeliere. Le finestre si aprono sulla via più caratteristica e rinomata di Massa Marittima, offrendo una vista che spazia fino al magnifico Duomo di San Cerbone. L’ingresso dell’appartamento si trova in un suggestivo vicolo medievale. L’alloggio è silenzioso e dotato di un moderno impianto a pompe di calore, pronto per essere abitato da subito. Una soluzione IDEALE per attività di affitti brevi, grazie alla sua posizione eccezionale. È inoltre perfetto come seconda casa per godersi la vita massetana in totale relax: tre ampie camere da letto e un grande open space offrono tutto lo spazio necessario per accogliere amici e condividere splendide vacanze in un contesto storico unico, a due passi dal mare e immersi in un’atmosfera senza tempo. Massa Marittima va vissuta per comprenderne a pieno la magia. Descrizione Terzo piano: locale tecnico, balcone, bagno esterno, ampio open space con angolo cottura, tre camere da letto matrimoniali, bagno. IL BORGO Massa Marittima è un affascinante borgo medievale immerso nelle colline della Maremma toscana, noto per il suo straordinario Duomo di San Cerbone e il centro storico perfettamente conservato. Cosa fare: passeggiare tra le sue vie lastricate, visitare musei e monumenti storici, scoprire la storia mineraria locale, oppure rilassarsi con escursioni a piedi o in bici nella natura circostante. La città gode di una posizione strategica, a soli 20 minuti dal mare, con le splendide spiagge del Golfo di Follonica facilmente raggiungibili. Cala Violina, una delle calette più belle della Toscana, dista circa 30 minuti in auto. Ottimi collegamenti anche con le città d’arte: Siena: circa 1 ora Pisa: circa 1 ora e 30 minuti Firenze: circa 2 ore.+\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/01-gallery-1.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/02-gallery-10.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/03-gallery-11.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/04-gallery-12.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/05-gallery-2.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/06-gallery-3.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/07-gallery-4.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/08-gallery-5.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/09-gallery-6.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/10-gallery-7.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/11-gallery-8.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/12-gallery-9.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/13-main.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "attico pronto da abitare nel borgo medievale a circa 20 minuti dal mare",
+          "en": "move-in ready penthouse nel borgo medievale a circa 20 minuti dal mare",
+          "cs": "podkrovni byt pripraveny k bydleni nel borgo medievale a circa 20 minuti dal mare"
+        }
+      },
+      {
+        "name": {
+          "it": "101 mq commerciali",
+          "en": "101 commercial sqm",
+          "cs": "101 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "3 camere da letto",
+          "en": "3 bedrooms",
+          "cs": "3 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via della Libertà, Massa Marittima",
+          "en": "listed address: Via della Libertà, Massa Marittima",
+          "cs": "uvedena adresa: Via della Libertà, Massa Marittima"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Penthouse in the Historic Centre of Massa Marittima for sale",
+      "cs": "Podkrovni byt v historickem centru Massa Marittima na prodej",
+      "it": "Attico nel centro storico di Massa Marittima in vendita"
+    },
+    "seoDescription": {
+      "en": "Massa Marittima: apartment of 101 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 150,000.",
+      "cs": "Massa Marittima: nemovitost 101 m2, 3 loznice, 2 koupelny. Cena 150 000 EUR.",
+      "it": "Massa Marittima: appartamento di 101 mq, 3 camere, 2 bagni. Prezzo 150.000 euro."
+    },
+    "keywords": [
+      "toscana",
+      "massa-marittima",
+      "apartment",
+      "via-della-liberta",
+      "immobiliare-it",
+      "novita"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127057511/",
+    "_createdAt": "2026-05-15T13:51:03.502Z",
+    "_updatedAt": "2026-05-15T13:51:03.502Z"
+  },
+  {
+    "_id": "local-import-puglia-bilocale-vieste-zaffarano-terrazza-mare-1778853058351-132d3",
+    "_type": "listing",
+    "title": {
+      "en": "One-Bedroom Apartment in Vieste with Sea-View Terrace",
+      "cs": "Bilocale ve Vieste s terasou a vyhledem na more",
+      "it": "Bilocale a Vieste con terrazza vista mare"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "puglia-bilocale-vieste-zaffarano-terrazza-mare"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 148000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "squareFootage": 53
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Vieste",
+          "cs": "Vieste",
+          "it": "Vieste"
+        },
+        "slug": {
+          "current": "vieste"
+        },
+        "region": {
+          "name": {
+            "it": "Puglia",
+            "en": "Apulia",
+            "cs": "Apulie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Raffaele Zaffarano, 5, Vieste",
+        "cs": "Via Raffaele Zaffarano, 5, Vieste",
+        "it": "Via Raffaele Zaffarano, 5, Vieste"
+      },
+      "coordinates": {
+        "lat": 41.8811,
+        "lng": 16.1774
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "description": {
+      "en": "In Vieste, this apartment offers 53 sqm, 2 rooms, 1 bedrooms and 1 bathrooms. The property is located at Via Raffaele Zaffarano, 5, Vieste and is a practical option for buyers looking in Apulia with clear figures and a defined asking price.\n\nThe key point is top floor con grande terrazza panoramica vicino al Pizzomunno. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Vieste nabizi tato nemovitost 53 m2, 2 mistnosti, 1 loznice a 1 koupelny. Nachazi se na adrese Via Raffaele Zaffarano, 5, Vieste a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Apulie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je posledni patro con grande terrazza panoramica vicino al Pizzomunno. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Vieste, proponiamo appartamento con 53 mq, 2 locali, 1 camere e 1 bagni. La proprieta si trova in Via Raffaele Zaffarano, 5, Vieste e rappresenta una proposta concreta per chi cerca casa in Puglia con prezzo definito e dati verificabili.\n\nIl punto forte dell annuncio e ultimo piano con grande terrazza panoramica vicino al Pizzomunno. Dalla descrizione emerge inoltre: A Vieste, a due passi dalla famosa spiaggia del Pizzomunno e dal centro storico, in un tranquillo quartiere residenziale, proponiamo in vendita un bellissimo appartamento con un ampio terrazzo vista mare. L'appartamento è collocato all'ultimo piano di un tranquillo condominio e dispone di camera da letto, cucina abitabile, bagno ed un ampio terrazzo al piano molto panoramico, con vista sulla baia della Scialara, meglio nota come spiaggia del Pizzomunno, e sul Castello Svevo. I punti di forza di questo appartamento sono la vicinanza al mare ed al corso principale, raggiungibili facilmente a piedi; la possibilità di poter parcheggiare nelle vicinanze della casa gratuitamente; la presenza di un ampio terrazzo tra i più alti del paese, potendo godere quindi di una privacy e tranquillità assolute. Per le sue caratteristiche uniche, questo appartamento può essere utilizzato sia come casa per passare le vacanze, sia per locarlo ai vacanzieri, garantendo un'ottima redditività.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/01-gallery-1.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/02-gallery-10.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/03-gallery-11.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/04-gallery-12.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/05-gallery-2.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/06-gallery-3.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/07-gallery-4.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/08-gallery-5.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/09-gallery-6.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/10-gallery-7.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/11-gallery-8.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/12-gallery-9.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/13-main.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "ultimo piano con grande terrazza panoramica vicino al Pizzomunno",
+          "en": "top floor con grande terrazza panoramica vicino al Pizzomunno",
+          "cs": "posledni patro con grande terrazza panoramica vicino al Pizzomunno"
+        }
+      },
+      {
+        "name": {
+          "it": "53 mq commerciali",
+          "en": "53 commercial sqm",
+          "cs": "53 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "2 locali",
+          "en": "2 rooms",
+          "cs": "2 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "1 camere da letto",
+          "en": "1 bedrooms",
+          "cs": "1 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Raffaele Zaffarano, 5, Vieste",
+          "en": "listed address: Via Raffaele Zaffarano, 5, Vieste",
+          "cs": "uvedena adresa: Via Raffaele Zaffarano, 5, Vieste"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "One-Bedroom Apartment in Vieste with Sea-View Terrace for sale",
+      "cs": "Bilocale ve Vieste s terasou a vyhledem na more na prodej",
+      "it": "Bilocale a Vieste con terrazza vista mare in vendita"
+    },
+    "seoDescription": {
+      "en": "Vieste: apartment of 53 sqm, 1 bedrooms, 1 bathrooms. Asking price EUR 148,000.",
+      "cs": "Vieste: nemovitost 53 m2, 1 loznice, 1 koupelny. Cena 148 000 EUR.",
+      "it": "Vieste: appartamento di 53 mq, 1 camere, 1 bagni. Prezzo 148.000 euro."
+    },
+    "keywords": [
+      "puglia",
+      "vieste",
+      "apartment",
+      "via-raffaele-zaffarano",
+      "immobiliare-it",
+      "novita"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/118887047/",
+    "_createdAt": "2026-05-15T13:50:58.351Z",
+    "_updatedAt": "2026-05-15T13:50:58.351Z"
+  },
+  {
+    "_id": "local-import-campania-casa-indipendente-salerno-collina-1778853104394-f26kl",
+    "_type": "listing",
+    "title": {
+      "en": "Panoramic Villa in Massa Lubrense with Garden",
+      "cs": "Panoramaticka vila v Massa Lubrense se zahradou",
+      "it": "Villa panoramica a Massa Lubrense con giardino"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "campania-casa-indipendente-salerno-collina"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 1390000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 6,
+      "bathrooms": 3,
+      "squareFootage": 195
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Massa Lubrense",
+          "cs": "Massa Lubrense",
+          "it": "Massa Lubrense"
+        },
+        "slug": {
+          "current": "massa-lubrense"
+        },
+        "region": {
+          "name": {
+            "it": "Campania",
+            "en": "Campania",
+            "cs": "Kampanie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Massa Lubrense",
+        "cs": "Massa Lubrense",
+        "it": "Massa Lubrense"
+      },
+      "coordinates": {
+        "lat": 40.6039,
+        "lng": 14.3473
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "description": {
+      "en": "In Massa Lubrense, this villa offers 195 sqm, 6 rooms, 6 bedrooms and 3 bathrooms. The property is located at Massa Lubrense and is a practical option for buyers looking in Campania with clear figures and a defined asking price.\n\nThe key point is villa collinare con giardino, terrazzo panoramico e parcheggio. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Massa Lubrense nabizi tato nemovitost 195 m2, 6 mistnosti, 6 loznice a 3 koupelny. Nachazi se na adrese Massa Lubrense a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Kampanie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je villa collinare con giardino, terrazzo panoramico e parcheggio. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Massa Lubrense, proponiamo villa con 195 mq, 6 locali, 6 camere e 3 bagni. La proprieta si trova in Massa Lubrense e rappresenta una proposta concreta per chi cerca casa in Campania con prezzo definito e dati verificabili.\n\nIl punto forte dell annuncio e villa collinare con giardino, terrazzo panoramico e parcheggio. Dalla descrizione emerge inoltre: Nella zona collinare di Massa Lubrense, lungo la strada che collega il bellissimo paese con Sant'Agata sui due golfi, proponiamo in vendita una splendida villa immersa nel verde, posta in posizione panoramica e circondata da un meraviglioso e rigoglioso giardino di proprietà, in parte terrazzato, dove poter anche immaginare di realizzare una piscina riservata. La villa, edificata negli anni 80 con regolare licenza edilizia, si sviluppa su due piani ed è composta, al piano terra, da un ampio salone con affaccio sul giardino, due camere da letto, tre bagni, cucina abitabile e ampio ripostiglio. Una comoda scala porta al piano superiore dove troviamo 4 camere da letto ed altri due bagni. Due camere hanno accesso allo splendido terrazzo a livello da cui si gode un meraviglioso panorama sul golfo e su Capri oltre che sulle colline ed il verde circostante. Il meraviglioso giardino, dotato anche di un accesso indipendente, circonda quasi interamente la villa ed è diviso un una zona pianeggiante, dove è posta una piacevole zone di pergolato con tavolo da pranzo esterno con brace e forno per le pizze, ed una zona terrazzata, molto riservata, dove potre realizzare anche una piscina parzialmente fuori terra, cosa che rende la sua realizzazione più agevole dal punto di vista amministrativo e più economico da quello realizzativo. Nella proprietà sono incluse due ampie zone pertinenziali per il parcheggio sufficienti per ospitare fino a 5 auto\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/campania-casa-indipendente-salerno-collina/01-gallery-1.jpg",
+      "/uploads/properties/campania-casa-indipendente-salerno-collina/02-gallery-2.jpg",
+      "/uploads/properties/campania-casa-indipendente-salerno-collina/03-gallery-5.jpg",
+      "/uploads/properties/campania-casa-indipendente-salerno-collina/04-gallery-6.jpg",
+      "/uploads/properties/campania-casa-indipendente-salerno-collina/05-gallery-7.jpg",
+      "/uploads/properties/campania-casa-indipendente-salerno-collina/06-main.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villa collinare con giardino, terrazzo panoramico e parcheggio",
+          "en": "villa collinare con giardino, terrazzo panoramico e parcheggio",
+          "cs": "villa collinare con giardino, terrazzo panoramico e parcheggio"
+        }
+      },
+      {
+        "name": {
+          "it": "195 mq commerciali",
+          "en": "195 commercial sqm",
+          "cs": "195 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "6 locali",
+          "en": "6 rooms",
+          "cs": "6 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "6 camere da letto",
+          "en": "6 bedrooms",
+          "cs": "6 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "3 bagni",
+          "en": "3 bathrooms",
+          "cs": "3 koupelny"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Panoramic Villa in Massa Lubrense with Garden for sale",
+      "cs": "Panoramaticka vila v Massa Lubrense se zahradou na prodej",
+      "it": "Villa panoramica a Massa Lubrense con giardino in vendita"
+    },
+    "seoDescription": {
+      "en": "Massa Lubrense: villa of 195 sqm, 6 bedrooms, 3 bathrooms. Asking price EUR 1,390,000.",
+      "cs": "Massa Lubrense: nemovitost 195 m2, 6 loznice, 3 koupelny. Cena 1 390 000 EUR.",
+      "it": "Massa Lubrense: villa di 195 mq, 6 camere, 3 bagni. Prezzo 1.390.000 euro."
+    },
+    "keywords": [
+      "campania",
+      "massa-lubrense",
+      "villa",
+      "immobiliare-it",
+      "novita"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/119908972/",
+    "_createdAt": "2026-05-15T13:51:44.390Z",
+    "_updatedAt": "2026-05-15T13:51:44.390Z"
+  },
+  {
+    "_id": "local-import-friuli-venezia-giulia-trilocale-sella-nevea-terrazza-1778853002283-wf91b",
+    "_type": "listing",
+    "title": {
+      "en": "Two-Bedroom Apartment with Terrace in Sella Nevea",
+      "cs": "Trilocale s terasou v Sella Nevea",
+      "it": "Trilocale con terrazza a Sella Nevea"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "friuli-venezia-giulia-trilocale-sella-nevea-terrazza"
+    },
+    "propertyType": "apartment",
+    "price": {
+      "amount": 150000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 95
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Chiusaforte",
+          "cs": "Chiusaforte",
+          "it": "Chiusaforte"
+        },
+        "slug": {
+          "current": "chiusaforte"
+        },
+        "region": {
+          "name": {
+            "it": "Friuli-Venezia Giulia",
+            "en": "Friuli-Venezia Giulia",
+            "cs": "Furlansko-Julske Benatsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Località Sella Nevea, Chiusaforte",
+        "cs": "Località Sella Nevea, Chiusaforte",
+        "it": "Località Sella Nevea, Chiusaforte"
+      },
+      "coordinates": {
+        "lat": 46.3911,
+        "lng": 13.4736
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "description": {
+      "en": "In Chiusaforte, this apartment offers 95 sqm, 3 rooms, 2 bedrooms and 1 bathrooms. The property is located at Località Sella Nevea, Chiusaforte and is a practical option for buyers looking in Friuli-Venezia Giulia with clear figures and a defined asking price.\n\nThe key point is holiday apartment vicino agli impianti sciistici del Monte Canin. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Chiusaforte nabizi tato nemovitost 95 m2, 3 mistnosti, 2 loznice a 1 koupelny. Nachazi se na adrese Località Sella Nevea, Chiusaforte a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Furlansko-Julske Benatsko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je rekreacni byt vicino agli impianti sciistici del Monte Canin. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Chiusaforte, proponiamo appartamento con 95 mq, 3 locali, 2 camere e 1 bagni. La proprieta si trova in Località Sella Nevea, Chiusaforte e rappresenta una proposta concreta per chi cerca casa in Friuli-Venezia Giulia con prezzo definito e dati verificabili.\n\nIl punto forte dell annuncio e appartamento per vacanze vicino agli impianti sciistici del Monte Canin. Dalla descrizione emerge inoltre: In località Sella Nevea, nota stazione sciistica del Monte Canin e rinomata meta di turismo invernale ed estivo, proponiamo in vendita appartamento al primo piano con ampia terrazza perimetrale e box auto di proprietà. L’immobile è composto da soggiorno con cucina a vista, due camere da letto, bagno completo con box doccia. La terrazza si sviluppa lungo tutto il perimetro dell’appartamento e regala un’ampia vista aperta sull’intera conca di Sella Nevea, ideale per godersi il paesaggio delle Alpi Giulie in ogni stagione. A completare la proprietà troviamo un box auto privato e un parcheggio esterno riservato al condominio, molto comodi sia nei periodi di alta stagione sia per chi utilizza l’immobile come base per le proprie vacanze.Riscaldamento a, acqua calda e fredda compresa nelle spese condominiali. Punto di forza di questa soluzione è la posizione: l’appartamento si trova a breve distanza dalla partenza della cabinovia e dall’arrivo delle piste da sci che salgono al Monte Canin, permettendo di raggiungere gli impianti in pochi minuti senza necessità di lunghi spostamenti. La località di Sella Nevea è inoltre strategica per chi ama esplorare il territorio: il confine sloveno e Cave del Predil con il suo suggestivo lago si trovano a circa 3 km, mentre Tarvisio è raggiungibile in circa 20–30 minuti di auto, offrendo ulteriori servizi, negozi e collegamenti. Soluzione ideale per famiglie, appassionati di sci e sport di montagna o come casa vacanza/investimento in un contesto naturale di grande pregio a due passi da Slovenia e Austria I dati e le planimetrie contenute nel presente annuncio pubblicitario, sono di natura indicativa e non costituiscono né potranno costituire contenuto e/o elementi di riferimento ai fini di eventuali futuri contratti e/o per la determinazione del loro contenuto. Alcune delle immagini presenti, potrebbero essere state realizzate con l’ausilio dell’intelligenza artificiale, a titolo puramente dimostrativo.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/01-gallery-1.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/02-gallery-10.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/03-gallery-11.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/04-gallery-12.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/05-gallery-2.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/06-gallery-3.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/07-gallery-4.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/08-gallery-5.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/09-gallery-6.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/10-gallery-7.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/11-gallery-8.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/12-gallery-9.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/13-main.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "appartamento per vacanze vicino agli impianti sciistici del Monte Canin",
+          "en": "holiday apartment vicino agli impianti sciistici del Monte Canin",
+          "cs": "rekreacni byt vicino agli impianti sciistici del Monte Canin"
+        }
+      },
+      {
+        "name": {
+          "it": "95 mq commerciali",
+          "en": "95 commercial sqm",
+          "cs": "95 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "1 bagni",
+          "en": "1 bathrooms",
+          "cs": "1 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Località Sella Nevea, Chiusaforte",
+          "en": "listed address: Località Sella Nevea, Chiusaforte",
+          "cs": "uvedena adresa: Località Sella Nevea, Chiusaforte"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Two-Bedroom Apartment with Terrace in Sella Nevea for sale",
+      "cs": "Trilocale s terasou v Sella Nevea na prodej",
+      "it": "Trilocale con terrazza a Sella Nevea in vendita"
+    },
+    "seoDescription": {
+      "en": "Chiusaforte: apartment of 95 sqm, 2 bedrooms, 1 bathrooms. Asking price EUR 150,000.",
+      "cs": "Chiusaforte: nemovitost 95 m2, 2 loznice, 1 koupelny. Cena 150 000 EUR.",
+      "it": "Chiusaforte: appartamento di 95 mq, 2 camere, 1 bagni. Prezzo 150.000 euro."
+    },
+    "keywords": [
+      "friuli-venezia-giulia",
+      "chiusaforte",
+      "apartment",
+      "localita-sella-nevea",
+      "immobiliare-it",
+      "novita"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127758516/",
+    "_createdAt": "2026-05-15T13:50:02.282Z",
+    "_updatedAt": "2026-05-15T13:50:02.282Z"
+  },
+  {
+    "_id": "local-import-lombardia-villetta-schiera-predore-via-plazza-iseo-1778852984121-xly4i",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Townhouse in Predore, Lake Iseo",
+      "cs": "Zrekonstruovany radovy dum v Predore u jezera Iseo",
+      "it": "Villetta a schiera ristrutturata a Predore, Lago d'Iseo"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "lombardia-villetta-schiera-predore-via-plazza-iseo"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 285000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 114
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Predore",
+          "cs": "Predore",
+          "it": "Predore"
+        },
+        "slug": {
+          "current": "predore"
+        },
+        "region": {
+          "name": {
+            "it": "Lombardia",
+            "en": "Lombardy",
+            "cs": "Lombardie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Plazza, 55, Predore",
+        "cs": "Via Plazza, 55, Predore",
+        "it": "Via Plazza, 55, Predore"
+      },
+      "coordinates": {
+        "lat": 45.6819,
+        "lng": 10.0181
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "description": {
+      "en": "In Predore, this house offers 114 sqm, 3 rooms, 2 bedrooms and 2 bathrooms. The property is located at Via Plazza, 55, Predore and is a practical option for buyers looking in Lombardy with clear figures and a defined asking price.\n\nThe key point is townhouse renovated in 2022 con due giardini, balconi e box auto. The layout and size make the property suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+      "cs": "V lokalite Predore nabizi tato nemovitost 114 m2, 3 mistnosti, 2 loznice a 2 koupelny. Nachazi se na adrese Via Plazza, 55, Predore a predstavuje praktickou moznost pro kupujici, kteri hledaji nemovitost v regionu Lombardie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabidky je radovy dum zrekonstruovany v roce 2022 con due giardini, balconi e box auto. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupi je nutne proverit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+      "it": "A Predore, proponiamo casa indipendente con 114 mq, 3 locali, 2 camere e 2 bagni. La proprieta si trova in Via Plazza, 55, Predore e rappresenta una proposta concreta per chi cerca casa in Lombardia con prezzo definito e dati verificabili.\n\nIl punto forte dell annuncio e villetta ristrutturata nel 2022 con due giardini, balconi e box auto. Dalla descrizione emerge inoltre: A Predore, in posizione tranquilla e a breve distanza dal Lago d’Iseo, proponiamo villetta a schiera completamente ristrutturata nel 2022, pronta da abitare e inserita in un contesto residenziale curato. L’abitazione si sviluppa su più livelli ed è caratterizzata da ambienti luminosi e ben distribuiti. Piano terra: accesso tramite giardino privato frontale, ideale come zona relax o pranzo all’aperto. Internamente troviamo una zona giorno open space con soggiorno e cucina a vista e un bagno di servizio. Sul retro è presente un secondo giardino privato, che garantisce maggiore privacy e spazio esterno aggiuntivo. Piano primo: zona notte composta da due camere da letto, secondo bagno e due balconi. Dalla camera matrimoniale si gode di una piacevole vista sul lago. Piano interrato: collegato direttamente all’abitazione tramite scala interna privata, con ampio box auto, comodo anche come spazio per biciclette, moto o deposito. Per maggiori informazioni, contattare il numero +39 346.616.6779 - Nicolò\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto."
+    },
+    "images": [
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/01-gallery-1.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/02-gallery-10.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/03-gallery-11.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/04-gallery-12.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/05-gallery-2.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/06-gallery-3.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/07-gallery-4.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/08-gallery-5.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/09-gallery-6.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/10-gallery-7.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/11-gallery-8.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/12-gallery-9.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/13-main.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/14-plan.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "villetta ristrutturata nel 2022 con due giardini, balconi e box auto",
+          "en": "townhouse renovated in 2022 con due giardini, balconi e box auto",
+          "cs": "radovy dum zrekonstruovany v roce 2022 con due giardini, balconi e box auto"
+        }
+      },
+      {
+        "name": {
+          "it": "114 mq commerciali",
+          "en": "114 commercial sqm",
+          "cs": "114 m2 komercni plochy"
+        }
+      },
+      {
+        "name": {
+          "it": "3 locali",
+          "en": "3 rooms",
+          "cs": "3 mistnosti"
+        }
+      },
+      {
+        "name": {
+          "it": "2 camere da letto",
+          "en": "2 bedrooms",
+          "cs": "2 loznice"
+        }
+      },
+      {
+        "name": {
+          "it": "2 bagni",
+          "en": "2 bathrooms",
+          "cs": "2 koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "indirizzo indicato: Via Plazza, 55, Predore",
+          "en": "listed address: Via Plazza, 55, Predore",
+          "cs": "uvedena adresa: Via Plazza, 55, Predore"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Townhouse in Predore, Lake Iseo for sale",
+      "cs": "Zrekonstruovany radovy dum v Predore u jezera Iseo na prodej",
+      "it": "Villetta a schiera ristrutturata a Predore, Lago d'Iseo in vendita"
+    },
+    "seoDescription": {
+      "en": "Predore: house of 114 sqm, 2 bedrooms, 2 bathrooms. Asking price EUR 285,000.",
+      "cs": "Predore: nemovitost 114 m2, 2 loznice, 2 koupelny. Cena 285 000 EUR.",
+      "it": "Predore: casa indipendente di 114 mq, 2 camere, 2 bagni. Prezzo 285.000 euro."
+    },
+    "keywords": [
+      "lombardia",
+      "predore",
+      "house",
+      "via-plazza",
+      "immobiliare-it",
+      "novita"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127929536/",
+    "_createdAt": "2026-05-15T13:49:44.107Z",
+    "_updatedAt": "2026-05-15T13:49:44.107Z"
+  },
+  {
     "_id": "local-import-puglia-villa-san-giovanni-rotondo-sp43-1778417415596-cdo74",
     "_type": "listing",
     "title": {
