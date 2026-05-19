@@ -3,15 +3,15 @@ import { getAllProperties } from '@/lib/propertyApi'
 import JsonLd from '@/components/seo/JsonLd'
 import { buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
 
-const TITLE_CS = 'Nemovitosti v Italii - byty, vily, domy a statky | ' + SITE_NAME
+const TITLE_CS = 'Nemovitosti v Itálii - byty, vily, domy a statky | ' + SITE_NAME
 const DESCRIPTION_CS =
-  'Aktualni nabidka nemovitosti v Italii pro ceske kupujici. Byty, vily, rodinne domy a rustikalni statky napric italskymi regiony s pravni a technickou kontrolou.'
+  'Aktuální nabídka nemovitostí v Itálii pro české kupující. Byty, vily, rodinne domy a rustikalni statky napric italskymi regiony s právní a technickou kontrolou.'
 
 export const metadata = {
   title: TITLE_CS,
   description: DESCRIPTION_CS,
   keywords:
-    'nemovitosti Italie, koupit dum v Italii, byty Italie, vily Italie, statky Italie, real estate Italy, properties Italy, immobiliare Italia',
+    'nemovitostí Itálie, koupit dum v Itálii, byty Itálie, vily Itálie, statky Itálie, real estate Italy, properties Italy, immobiliare Italia',
   alternates: {
     canonical: '/properties',
     languages: {
@@ -65,12 +65,12 @@ export default async function PropertiesLayout({ children }) {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     '@id': url,
-    name: 'Nemovitosti v Italii',
+    name: 'Nemovitosti v Itálii',
     description: DESCRIPTION_CS,
     numberOfItems: properties.length,
     itemListElement: properties.slice(0, 50).map((property, index) => {
       const slug = property?.slug?.current
-      const title = getLocalized(property?.title, 'cs', 'Nemovitost v Italii')
+      const title = getLocalized(property?.title, 'cs', 'Nemovitost v Itálii')
       return {
         '@type': 'ListItem',
         position: index + 1,
@@ -109,13 +109,13 @@ function PropertiesSeoContent({ properties }) {
         overflow: 'hidden'
       }}
     >
-      <h1>Nemovitosti v Italii</h1>
+      <h1>Nemovitosti v Itálii</h1>
       <p>{DESCRIPTION_CS}</p>
       <ul>
         {properties.map((property) => {
           const slug = property?.slug?.current
           if (!slug) return null
-          const title = getLocalized(property?.title, 'cs', 'Nemovitost v Italii')
+          const title = getLocalized(property?.title, 'cs', 'Nemovitost v Itálii')
           const city = getLocalized(property?.location?.city?.name, 'cs', '')
           const region = getLocalized(property?.location?.city?.region?.name, 'cs', '')
           const description = getLocalized(property?.description, 'cs', '').slice(0, 200)

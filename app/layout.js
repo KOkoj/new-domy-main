@@ -29,9 +29,9 @@ const sora = Sora({
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'Domy v Italii - Pruvodce koupi domu v Italii pro Cechy',
-  description: 'Pomahame Cechum s koupi nemovitosti v Italii. Luxusni vily, byty a statky v nejkrasnejsich italskych regionech.',
-  keywords: 'domy v Italii, nemovitosti Italie, koupe domu Italie, Italian properties, real estate Italy, villas Italy',
+  title: 'Domy v Itálii - Průvodce koupí domů v Itálii pro Čechy',
+  description: 'Pomáháme Čechům s koupí nemovitostí v Itálii. Luxusni vily, byty a statky v nejkrasnejsich italských regionech.',
+  keywords: 'domy v Itálii, nemovitostí Itálie, koupe domů Itálie, Italian properties, real estate Italy, villas Italy',
   alternates: {
     canonical: '/'
   },
@@ -45,8 +45,8 @@ export const metadata = {
         follow: true
       },
   openGraph: {
-    title: 'Domy v Italii - Pruvodce koupi domu v Italii',
-    description: 'Pomahame Cechum s koupi nemovitosti v Italii. Jasne, prakticky a bez stresu.',
+    title: 'Domy v Itálii - Průvodce koupí domů v Itálii',
+    description: 'Pomáháme Čechům s koupí nemovitostí v Itálii. Jasne, prakticky a bez stresu.',
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: 'cs_CZ',
@@ -54,8 +54,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Domy v Italii - Pruvodce koupi domu v Italii',
-    description: 'Pomahame Cechum s koupi nemovitosti v Italii. Jasne, prakticky a bez stresu.'
+    title: 'Domy v Itálii - Průvodce koupí domů v Itálii',
+    description: 'Pomáháme Čechům s koupí nemovitostí v Itálii. Jasne, prakticky a bez stresu.'
   },
 }
 

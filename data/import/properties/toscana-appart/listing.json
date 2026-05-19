@@ -1,7 +1,7 @@
 {
   "title_it": "Bilocale a Firenze.",
   "title_en": "Rustic house in Tuscany - to be completed",
-  "title_cs": "Rustikální dům v Toskansku - k doplneni",
+  "title_cs": "Rustikální dům v Toskansku - k doplnění",
   "propertyType": "house",
   "propertyType_it": "rustico",
   "region_it": "Toscana",
@@ -10,7 +10,7 @@
   "city_cs": "Firenze",
   "address_it": "Firenze, Toscana",
   "address_en": "Florence, Tuscany",
-  "address_cs": "Firenze, Toskansko",
+  "address_cs": "Firenze, Toskánsko",
   "price": 337000,
   "rooms": 2,
   "bedrooms": 1,
@@ -20,18 +20,18 @@
     {
       "it": "Da compilare",
       "en": "To be completed",
-      "cs": "K doplneni"
+      "cs": "K doplnění"
     }
   ],
   "description_it": "appartamento ristrutturato con giardino\n\nA due passi da Piazza Santa Maria Novella e dalla stazione centrale, proponiamo in vendita un bilocale ristrutturato situato al piano terra, attualmente adibito a locazioni turistiche.\nL'immobile si compone di una zona giorno con cucina separata e un soggiorno con accesso diretto a una corte esterna privata di circa 10mq, ideale per momenti di relax all'aperto.\nLa camera da letto presenta un bagno di servizio en suite, oltre a un bagno principale finestrato con box doccia.\nL'appartamento è caratterizzato da travi di legno a vista che donano calore e carattere agli ambienti.\nL'immobile è termosingolo, dotato di aria condizionata e con spese condominiali irrisorie.\nViene venduto completamente arredato.",
   "description_en": "Description text to insert",
-  "description_cs": "Text popisu k doplneni",
+  "description_cs": "Text popisu k doplnění",
   "seo_title_it": "Rustico in vendita in Toscana",
   "seo_title_en": "Rustic house for sale in Tuscany",
   "seo_title_cs": "Rustikální dům na prodej v Toskansku",
   "seo_description_it": "Inserire meta description SEO in italiano (150-160 caratteri).",
   "seo_description_en": "Insert SEO meta description in English (150-160 characters).",
-  "seo_description_cs": "Vlozte SEO meta popis v cestine (150-160 znaku).",
+  "seo_description_cs": "Vložte SEO meta popis v češtině (150-160 znaků).",
   "status": "available",
   "featured": false,
   "keywords": [],

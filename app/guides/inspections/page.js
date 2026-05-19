@@ -129,7 +129,7 @@ export default function InspectionsGuidePage() {
                 </h3>
                 <p className="text-amber-800 leading-relaxed">
                   {language === "cs"
-                    ? "Prohlídka nemovitosti v Itálii není jen „návštěva domu“. Je to chvíle, kdy se ukáže, zda bude koupě skutečně bezpečná, nebo zda skrývá technické, právní či stavební problémy, které z inzerátu nejsou patrné."
+                    ? "Prohlídka nemovitostí v Itálii není jen „návštěva domů“. Je to chvíle, kdy se ukáže, zda bude koupě skutečně bezpečná, nebo zda skrývá technické, právní či stavební problémy, které z inzerátu nejsou patrné."
                     : language === "it"
                       ? "La visita immobiliare in Italia non è solo una “visita alla casa”. È il momento in cui si capisce se l’acquisto sarà realmente sicuro o se nasconde criticità tecniche, legali o strutturali che non emergono dall’annuncio."
                       : "A property visit in Italy is not just a “house viewing.” It is the moment when you understand whether the purchase is truly safe or hides technical, legal, or structural issues that are not visible in the listing."}
@@ -152,7 +152,7 @@ export default function InspectionsGuidePage() {
                   <CardTitle className="flex items-center mb-8">
                     <Eye className="h-6 w-6 mr-3" />
                     {language === "cs"
-                      ? "Co je cílem prohlídky nemovitosti"
+                      ? "Co je cílem prohlídky nemovitostí"
                       : language === "it"
                         ? "Qual è lo scopo della visita immobiliare"
                         : "What Is the Purpose of Property Inspection"}
@@ -171,7 +171,7 @@ export default function InspectionsGuidePage() {
                       <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-700">
                         {language === "cs"
-                          ? "Ověřit skutečný stav nemovitosti"
+                          ? "Ověřit skutečný stav nemovitostí"
                           : language === "it"
                             ? "Verificare lo stato reale della proprietà"
                             : "Verify the actual condition of the property"}
@@ -241,7 +241,7 @@ export default function InspectionsGuidePage() {
                     <div className="p-4 bg-slate-50 border-l-4 border-l-blue-500 rounded">
                       <p className="font-semibold text-slate-800 mb-2">
                         {language === "cs"
-                          ? "Celkový stav nemovitosti"
+                          ? "Celkový stav nemovitostí"
                           : language === "it"
                             ? "Stato generale dell'immobile"
                             : "Overall property condition"}
@@ -342,7 +342,7 @@ export default function InspectionsGuidePage() {
                       <div>
                         <p className="font-semibold text-slate-800">
                           {language === "cs"
-                            ? "Skutečný stav nemovitosti"
+                            ? "Skutečný stav nemovitostí"
                             : language === "it"
                               ? "Stato reale della proprietà"
                               : "Actual condition of the property"}
@@ -408,7 +408,7 @@ export default function InspectionsGuidePage() {
                   <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                     <p className="text-red-900 font-semibold whitespace-pre-line">
                       {language === "cs"
-                        ? "Notář nekontroluje technický stav nemovitosti a neprovádí fyzickou prohlídku.\nSpoléhat se výhradně na notáře je jedna z nejčastějších chyb zahraničních kupujících."
+                        ? "Notář nekontroluje technický stav nemovitostí a neprovádí fyzickou prohlídku.\nSpoléhat se výhradně na notáře je jedna z nejčastějších chyb zahraničních kupujících."
                         : language === "it"
                           ? "Il notaio non controlla lo stato tecnico dell’immobile e non effettua sopralluoghi.\nAffidarsi esclusivamente al notaio è uno degli errori più comuni degli acquirenti stranieri."
                           : "The notary does not check the technical condition of the property and does not perform on-site inspections.\nRelying exclusively on the notary is one of the most common mistakes foreign buyers make."}

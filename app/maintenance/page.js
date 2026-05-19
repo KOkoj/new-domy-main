@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Stand-by | Domy v Italii',
+  title: 'Stand-by | Domy v Itálii',
   description: 'Web je dočasně nedostupný, zatímco dokončujeme finální úpravy.',
   robots: {
     index: false,

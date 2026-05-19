@@ -513,13 +513,13 @@ export default function MostBeautifulSmallTownsItalyPage() {
   const t = CONTENT[language] || CONTENT.cs
   const sidebarTitle =
     language === 'cs'
-      ? 'Doporucena nabidka partnera'
+      ? 'Doporucena nabídka partnera'
       : language === 'it'
         ? 'Offerta partner consigliata'
         : 'Recommended Partner Offer'
   const sidebarText =
     language === 'cs'
-      ? 'Overene rezervace a cestovni nabidky.'
+      ? 'Overene rezervace a cestovni nabídky.'
       : language === 'it'
         ? 'Prenotazioni verificate e in sicurezza.'
         : 'Verified booking and travel deal.'
@@ -551,7 +551,7 @@ export default function MostBeautifulSmallTownsItalyPage() {
           <div className="max-w-[1200px] mx-auto lg:grid lg:grid-cols-[minmax(0,1fr)_200px] lg:gap-8 xl:gap-12">
             <article className="max-w-4xl lg:max-w-none space-y-8">
             <Button asChild variant="outline" className="inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-700">
-              <Link href="/clanky/pruvodce-italii">
+              <Link href="/články/průvodce-italii">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 {t.navArticles}
               </Link>

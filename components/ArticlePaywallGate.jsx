@@ -13,8 +13,8 @@ function isProtectedArticlePath(pathname) {
   if (pathname === '/regions') return false
   if (pathname.startsWith('/regions/')) return true
 
-  if (pathname === '/clanky/pruvodce-italii') return false
-  if (pathname.startsWith('/clanky/pruvodce-italii/')) return true
+  if (pathname === '/články/průvodce-italii') return false
+  if (pathname.startsWith('/články/průvodce-italii/')) return true
 
   if (pathname.startsWith('/blog/regions/')) return true
 

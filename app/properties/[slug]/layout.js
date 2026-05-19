@@ -53,7 +53,7 @@ export async function generateMetadata({ params }) {
 
   if (!property) {
     return {
-      title: 'Property not found | Domy v Italii',
+      title: 'Property not found | Domy v Itálii',
       robots: {
         index: false,
         follow: false
@@ -70,13 +70,13 @@ export async function generateMetadata({ params }) {
   const description = buildDescription(property)
 
   return {
-    title: `${title} | Domy v Italii`,
+    title: `${title} | Domy v Itálii`,
     description,
     alternates: {
       canonical: canonicalPath
     },
     openGraph: {
-      title: `${title} | Domy v Italii`,
+      title: `${title} | Domy v Itálii`,
       description,
       url: absoluteUrl(canonicalPath),
       type: 'article',
@@ -84,7 +84,7 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | Domy v Italii`,
+      title: `${title} | Domy v Itálii`,
       description,
       images: image ? [image] : undefined
     },

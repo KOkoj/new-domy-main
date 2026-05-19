@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import PropertyImage from '@/components/PropertyImage'
 import { getPropertyImage } from '@/lib/getPropertyImage'
 import NewPropertyRibbon from '@/components/NewPropertyRibbon'
+import NoAgencyBadge from '@/components/NoAgencyBadge'
 
 const LABELS = {
   cs: {
@@ -95,6 +96,7 @@ function transformProperty(prop, index) {
     createdAt: prop._createdAt || prop.createdAt || '',
     updatedAt: prop._updatedAt || prop.updatedAt || '',
     isNew: Boolean(prop.isNew || prop.newListing),
+    noAgency: Boolean(prop.noAgency || prop.no_agency || prop.badges?.includes('no-agency')),
   }
 }
 
@@ -148,6 +150,11 @@ function SlideCard({ property, language, labels }) {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-800/40 via-transparent to-transparent" />
 
         {property.isNew && <NewPropertyRibbon language={language} />}
+        {property.noAgency && (
+          <div className="absolute right-3 top-3 z-20 pointer-events-none">
+            <NoAgencyBadge language={language} className="px-2.5 py-1 text-[10px] tracking-[0.1em]" />
+          </div>
+        )}
 
         {statusLabel && (
           <div className="absolute left-3 top-3 z-20 pointer-events-none">

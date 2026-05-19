@@ -12,7 +12,7 @@ import ProtectedContentLink from '@/components/ProtectedContentLink'
 
 const ARTICLES = [
   {
-    slug: 'kolik-stoji-dovolena-v-italii-v-roce-2026',
+    slug: 'kolik-stoji-dovolená-v-italii-v-roce-2026',
     title: {
       en: 'How Much Does a Holiday in Italy Cost in 2026?',
       cs: 'Kolik stojí dovolená v Itálii v roce 2026',
@@ -32,10 +32,10 @@ const ARTICLES = [
       cs: 'Italské pobřeží k článku o rozpočtu na dovolenou',
       it: 'Costa italiana per un articolo sul budget vacanza'
     },
-    link: '/clanky/pruvodce-italii/kolik-stoji-dovolena-v-italii-v-roce-2026'
+    link: '/články/průvodce-italii/kolik-stoji-dovolená-v-italii-v-roce-2026'
   },
   {
-    slug: 'nejkrasnejsi-mala-mesta-v-italii',
+    slug: 'nejkrasnejsi-mala-města-v-italii',
     title: {
       en: 'The Most Beautiful Small Towns in Italy',
       cs: 'Nejkrásnější malá města v Itálii',
@@ -55,18 +55,18 @@ const ARTICLES = [
       cs: 'Historické italské městečko',
       it: 'Borgo storico italiano'
     },
-    link: '/clanky/pruvodce-italii/nejkrasnejsi-mala-mesta-v-italii'
+    link: '/články/průvodce-italii/nejkrasnejsi-mala-města-v-italii'
   },
   {
-    slug: 'rekonstrukce-domu-v-italii',
+    slug: 'rekonstrukce-domů-v-italii',
     title: {
       en: 'How much does house renovation in Italy cost?',
-      cs: 'Kolik stojí rekonstrukce domu v Itálii?',
+      cs: 'Kolik stojí rekonstrukce domů v Itálii?',
       it: 'Quanto costa ristrutturare una casa in Italia?'
     },
     excerpt: {
       en: 'Indicative renovation ranges, key cost factors, and what to verify before buying an older property in Italy.',
-      cs: 'Orientační ceny rekonstrukce, hlavní faktory nákladů a co ověřit ještě před koupí starší nemovitosti v Itálii.',
+      cs: 'Orientační ceny rekonstrukce, hlavní faktory nákladů a co ověřit ještě před koupí starší nemovitostí v Itálii.',
       it: 'Fasce orientative di ristrutturazione, fattori di costo principali e verifiche da fare prima di acquistare un immobile datato in Italia.'
     },
     date: '2026-03-10',
@@ -75,10 +75,10 @@ const ARTICLES = [
     image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
     imageAlt: {
       en: 'Construction workers renovating a house',
-      cs: 'Stavební práce při rekonstrukci domu',
+      cs: 'Stavební práce při rekonstrukci domů',
       it: 'Lavori di ristrutturazione su una casa'
     },
-    link: '/guides/rekonstrukce-domu-v-italii'
+    link: '/guides/rekonstrukce-domů-v-italii'
   },
   {
     slug: 'offerta-compromesso-registrazione',
@@ -107,12 +107,12 @@ const ARTICLES = [
     slug: 'real-estate-purchase-system-italy',
     title: {
       en: "How the Italian Property Buying System Really Works (and Why It's Different from the Czech Republic)",
-      cs: 'Jak skute\u010dn\u011b funguje italsk\u00fd syst\u00e9m koup\u011b nemovitosti (a pro\u010d se li\u0161\u00ed od \u010desk\u00e9 republiky)',
+      cs: 'Jak skute\u010dn\u011b funguje italsk\u00fd syst\u00e9m koup\u011b nemovitostí (a pro\u010d se li\u0161\u00ed od \u010desk\u00e9 republiky)',
       it: 'Come funziona davvero il sistema di acquisto immobiliare in Italia (e perché è diverso dalla Repubblica Ceca)'
     },
     excerpt: {
       en: 'How the Italian property buying system really works for foreign buyers, including roles, checks, timing, and risk control.',
-      cs: 'Jak v praxi funguje koupě nemovitosti v Itálii pro zahraniční kupující: role, kontroly, načasování a řízení rizik.',
+      cs: 'Jak v praxi funguje koupě nemovitostí v Itálii pro zahraniční kupující: role, kontroly, načasování a řízení rizik.',
       it: 'Come funziona davvero l’acquisto immobiliare in Italia per chi compra dall’estero: ruoli, controlli, tempi e gestione del rischio.'
     },
     date: '2026-02-11',
@@ -121,7 +121,7 @@ const ARTICLES = [
     image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
     imageAlt: {
       en: 'Documents and planning for a property buying process',
-      cs: 'Dokumenty a plánování procesu koupě nemovitosti',
+      cs: 'Dokumenty a plánování procesu koupě nemovitostí',
       it: 'Documenti e pianificazione del processo di acquisto immobiliare'
     },
     link: '/guides/real-estate-purchase-system-italy'
@@ -130,7 +130,7 @@ const ARTICLES = [
     slug: 'costs-2026',
     title: {
       en: 'How Much Does Buying a House in Italy Really Cost in 2026',
-      cs: 'Kolik skutečně stojí koupě domu v Itálii v roce 2026',
+      cs: 'Kolik skutečně stojí koupě domů v Itálii v roce 2026',
       it: 'Quanto costa realmente acquistare una casa in Italia nel 2026'
     },
     excerpt: {
@@ -153,7 +153,7 @@ const ARTICLES = [
     slug: 'common-mistakes',
     title: {
       en: 'Most Common Mistakes Czechs Make When Buying a House in Italy',
-      cs: 'Nejčastější chyby Čechů při koupi domu v Itálii',
+      cs: 'Nejčastější chyby Čechů při koupí domů v Itálii',
       it: 'Gli errori più comuni dei cechi quando acquistano una casa in Italia'
     },
     excerpt: {
@@ -193,7 +193,7 @@ const ARTICLES = [
     slug: 'choose-region',
     title: {
       en: 'How to Choose the Right Region in Italy for Buying a House (Sea, Mountains, Investment)',
-      cs: 'Jak vybrat správný region v Itálii pro koupi domu (moře, hory, investice)',
+      cs: 'Jak vybrat správný region v Itálii pro koupí domů (moře, hory, investice)',
       it: 'Come scegliere la regione giusta in Italia per acquistare una casa (mare, montagna, investimento)'
     },
     excerpt: {
@@ -239,7 +239,7 @@ const ARTICLES = [
     slug: 'notary-role',
     title: {
       en: 'Notary in Italy: Role and Costs When Buying a House',
-      cs: 'Notář v Itálii: role a náklady při koupi domu',
+      cs: 'Notář v Itálii: role a náklady při koupí domů',
       it: "Il notaio in Italia: ruolo e costi nell'acquisto di una casa"
     },
     excerpt: {
@@ -304,7 +304,7 @@ export default function BlogPage() {
 
   const visibleArticles = useMemo(() => {
     return ARTICLES.filter((article) => {
-      if (article.link?.startsWith('/clanky/pruvodce-italii')) {
+      if (article.link?.startsWith('/články/průvodce-italii')) {
         return false
       }
 
@@ -331,14 +331,14 @@ export default function BlogPage() {
             </div>
             <h1 className="font-bold mb-8 text-slate-800">
               {language === 'cs'
-                ? 'Články o koupi domu v Itálii'
+                ? 'Články o koupí domů v Itálii'
                 : language === 'it'
                   ? "Articoli sull'acquisto di una casa in Italia"
                   : 'Articles About Buying a House in Italy'}
             </h1>
             <p className="text-lg text-gray-500 leading-[1.75] max-w-2xl mx-auto">
               {language === 'cs'
-                ? 'Praktické články, které vám pomohou zorientovat se v procesu koupě nemovitosti v Itálii.'
+                ? 'Praktické články, které vám pomohou zorientovat se v procesu koupě nemovitostí v Itálii.'
                 : language === 'it'
                   ? "Articoli pratici per orientarti nel processo di acquisto di un immobile in Italia."
                   : 'Practical articles to help you navigate the process of buying property in Italy.'}
@@ -370,7 +370,7 @@ export default function BlogPage() {
                         ? 'Nuova sezione con articoli, consigli pratici e curiosità per chi vuole viaggiare in Italia.'
                         : 'New section with articles, practical tips, and curiosities for people planning to travel in Italy.'}
                   </p>
-                  <Link href="/clanky/pruvodce-italii" className="block">
+                  <Link href="/články/průvodce-italii" className="block">
                     <Button className="w-full min-h-[44px] bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-600 hover:to-teal-600 text-white text-xs font-semibold rounded-lg shadow-sm">
                       {language === 'cs' ? 'Otevřít sekci cestování' : language === 'it' ? 'Vai alla sezione viaggi' : 'Open travel section'}
                       <ChevronRight className="h-3.5 w-3.5 ml-1.5" />
@@ -393,7 +393,7 @@ export default function BlogPage() {
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed mb-4">
                     {language === 'cs'
-                      ? 'Podívejte se na FAQ k nákupu nemovitosti v Itálii.'
+                      ? 'Podívejte se na FAQ k nákupu nemovitostí v Itálii.'
                       : language === 'it'
                         ? "Consulta le FAQ sull'acquisto di immobili in Italia."
                         : 'Read the FAQ about buying property in Italy.'}

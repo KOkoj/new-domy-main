@@ -21,6 +21,7 @@ import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import AuthModal from '../../../components/AuthModal'
 import Footer from '@/components/Footer'
 import NewPropertyRibbon, { getNewPropertyLabel } from '@/components/NewPropertyRibbon'
+import NoAgencyBadge, { getNoAgencyLabel } from '@/components/NoAgencyBadge'
 
 function getPropertyStatusLabel(status, language) {
   if (status === 'sold') {
@@ -55,7 +56,7 @@ function isLocalAsset(url) {
   return typeof url === 'string' && url.startsWith('/')
 }
 
-function ImageGallery({ images, title, status, language, isNew }) {
+function ImageGallery({ images, title, status, language, isNew, noAgency }) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
@@ -154,6 +155,11 @@ function ImageGallery({ images, title, status, language, isNew }) {
               className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
             {isNew && <NewPropertyRibbon language={language} />}
+            {noAgency && (
+              <div className="absolute right-4 top-4 z-20 pointer-events-none">
+                <NoAgencyBadge language={language} />
+              </div>
+            )}
             {statusLabel && (
               <div className="absolute left-4 top-4 z-10">
                 <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg ${status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'}`}>
@@ -181,6 +187,11 @@ function ImageGallery({ images, title, status, language, isNew }) {
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
               {isNew && <NewPropertyRibbon language={language} />}
+              {noAgency && (
+                <div className="absolute right-4 top-4 z-20 pointer-events-none">
+                  <NoAgencyBadge language={language} />
+                </div>
+              )}
               {statusLabel && (
                 <div className="absolute left-4 top-4 z-10">
                   <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg ${status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'}`}>
@@ -557,7 +568,9 @@ export default function PropertyDetailClient({ initialProperty = null }) {
             developer: sanityProperty.developer,
             status: sanityProperty.status || 'available',
             featured: sanityProperty.featured || false,
-            isNew: Boolean(sanityProperty.isNew || sanityProperty.newListing)
+            isNew: Boolean(sanityProperty.isNew || sanityProperty.newListing),
+            noAgency: Boolean(sanityProperty.noAgency || sanityProperty.no_agency || sanityProperty.badges?.includes('no-agency')),
+            videoUrl: sanityProperty.videoUrl || sanityProperty.video_url || ''
           }
           
           setProperty(transformedProperty)
@@ -989,6 +1002,11 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                         {getNewPropertyLabel(language)}
                       </Badge>
                     )}
+                    {property.noAgency && (
+                      <Badge className="bg-emerald-700 hover:bg-emerald-800 text-white shadow-sm">
+                        {getNoAgencyLabel(language)}
+                      </Badge>
+                    )}
                     <Badge variant="outline" className="capitalize">
                       {property.status === 'available' 
                         ? (language === 'cs' ? 'Dostupné' : language === 'it' ? 'Disponibile' : 'Available')
@@ -1047,6 +1065,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
               status={property.status}
               language={language}
               isNew={property.isNew}
+              noAgency={property.noAgency}
             />
 
             {/* Property Details */}
@@ -1101,6 +1120,31 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                 </p>
               </CardContent>
             </Card>
+
+            {/* Video tour */}
+            {property.videoUrl && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>
+                    {language === 'cs' ? 'Videoprohl\u00eddka' : language === 'it' ? 'Video tour' : 'Video tour'}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <video
+                    controls
+                    preload="metadata"
+                    className="w-full overflow-hidden rounded-xl bg-black shadow-sm"
+                  >
+                    <source src={property.videoUrl} type="video/mp4" />
+                    {language === 'cs'
+                      ? 'V\u00e1\u0161 prohl\u00ed\u017ee\u010d nepodporuje p\u0159ehr\u00e1v\u00e1n\u00ed videa.'
+                      : language === 'it'
+                      ? 'Il tuo browser non supporta la riproduzione video.'
+                      : 'Your browser does not support video playback.'}
+                  </video>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Amenities */}
             {property.amenities && property.amenities.length > 0 && (

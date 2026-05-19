@@ -9,7 +9,7 @@ export default function Footer({ language = 'en' }) {
     brand: 'Domy v Itálii',
     brandDescription:
       language === 'cs'
-        ? 'Váš důvěryhodný partner pro nalezení správné nemovitosti v Itálii.'
+        ? 'Váš důvěryhodný partner pro nalezení správné nemovitostí v Itálii.'
         : language === 'it'
           ? 'Il tuo partner di fiducia per trovare la proprietà giusta in Italia.'
           : 'Your trusted partner for finding the right property in Italy.',

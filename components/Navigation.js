@@ -164,7 +164,7 @@ export default function Navigation() {
             <Link href="/" data-testid="nav-brand-link" className="relative overflow-visible">
               <Image
                 src="/logo domy.svg"
-                alt="Domy v Italii"
+                alt="Domy v Itálii"
                 width={120}
                 height={115}
                 priority

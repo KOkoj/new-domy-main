@@ -112,7 +112,7 @@ export default function MistakesGuidePage() {
       ? {
           src: '/articles/common-mistakes-laptop-stress.jpg',
           alt: 'Kupující kontrolují dokumenty s poradcem',
-          caption: 'Mnoho chyb nevzniká kvůli domu samotnému, ale kvůli dokumentům čteným pozdě, přeskočeným kontrolám a špatně řízené byrokracii.'
+          caption: 'Mnoho chyb nevzniká kvůli domů samotnému, ale kvůli dokumentům čteným pozdě, přeskočeným kontrolám a špatně řízené byrokracii.'
         }
       : language === 'it'
         ? {
@@ -153,12 +153,12 @@ export default function MistakesGuidePage() {
                 </Link>
               </Button>
               <h1 className="font-bold mb-8 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {language === 'cs' ? 'Nejčastější chyby, které Češi dělají při koupi domu v Itálii' :
+                {language === 'cs' ? 'Nejčastější chyby, které Češi dělají při koupí domů v Itálii' :
                  language === 'it' ? 'Gli errori più comuni che i cechi commettono nell\'acquisto di una casa in Italia' :
                  'Most Common Mistakes Czechs Make When Buying a House in Italy'}
               </h1>
               <p className="text-gray-500 leading-relaxed" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
-                {language === 'cs' ? 'Při koupi domu v Itálii Češi velmi často opakují stejné chyby. Ne proto, že by byli neopatrní, ale proto, že neznají místní pravidla, procesy a souvislosti.' :
+                {language === 'cs' ? 'Při koupí domů v Itálii Češi velmi často opakují stejné chyby. Ne proto, že by byli neopatrní, ale proto, že neznají místní pravidla, procesy a souvislosti.' :
                  language === 'it' ? 'Nell\'acquisto di una casa in Italia, i cechi ripetono molto spesso gli stessi errori. Non perché siano incauti, ma perché non conoscono le regole, i processi e i contesti locali.' :
                  'When buying a house in Italy, Czechs very often repeat the same mistakes. Not because they are careless, but because they don\'t know the local rules, processes, and contexts.'}
               </p>
@@ -178,7 +178,7 @@ export default function MistakesGuidePage() {
                    'Important Notice'}
                 </h3>
                 <p className="text-red-800 leading-relaxed">
-                  {language === 'cs' ? 'Koupě domu v Itálii může být splněným snem, ale bez správných informací se může snadno změnit ve zdroj zbytečných komplikací, stresu a nečekaných výdajů.' :
+                  {language === 'cs' ? 'Koupě domů v Itálii může být splněným snem, ale bez správných informací se může snadno změnit ve zdroj zbytečných komplikací, stresu a nečekaných výdajů.' :
                    language === 'it' ? 'L\'acquisto di una casa in Italia può essere un sogno realizzato, ma senza le giuste informazioni può facilmente trasformarsi in una fonte di complicazioni inutili, stress e spese impreviste.' :
                    'Buying a house in Italy can be a dream come true, but without proper information it can easily turn into a source of unnecessary complications, stress, and unexpected expenses.'}
                 </p>
@@ -197,7 +197,7 @@ export default function MistakesGuidePage() {
                 <CardHeader>
                   <CardTitle className="flex items-center mb-8">
                     <XCircle className="h-6 w-6 mr-3 text-red-600" />
-                    {language === 'cs' ? '1. Spoléhání se pouze na cenu nemovitosti' :
+                    {language === 'cs' ? '1. Spoléhání se pouze na cenu nemovitostí' :
                      language === 'it' ? '1. Affidarsi solo al prezzo dell\'immobile' :
                      '1. Relying Only on Property Price'}
                   </CardTitle>
@@ -305,7 +305,7 @@ export default function MistakesGuidePage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-500 leading-relaxed mb-4" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
-                    {language === 'cs' ? 'Mnoho kupujících řeší jen samotnou koupi, ale ne:' :
+                    {language === 'cs' ? 'Mnoho kupujících řeší jen samotnou koupí, ale ne:' :
                      language === 'it' ? 'Molti acquirenti si occupano solo dell\'acquisto stesso, ma non di:' :
                      'Many buyers only deal with the purchase itself, but not:'}
                   </p>

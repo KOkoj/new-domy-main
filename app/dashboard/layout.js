@@ -46,20 +46,20 @@ const getDashboardMenuItems = (language) => [
     title: language === 'cs' ? 'Oblíbené' : (language === 'it' ? 'Preferiti' : 'My Favorites'),
     href: '/dashboard/favorites',
     icon: Heart,
-    description: language === 'cs' ? 'Uložené nemovitosti' : (language === 'it' ? 'Proprietà salvate' : 'Saved properties')
+    description: language === 'cs' ? 'Uložené nemovitostí' : (language === 'it' ? 'Proprietà salvate' : 'Saved properties')
   },
   {
     title: language === 'cs' ? 'Dotazy' : (language === 'it' ? 'Richieste' : 'My Inquiries'),
     href: '/dashboard/inquiries',
     icon: MessageSquare,
-    description: language === 'cs' ? 'Dotazy na nemovitosti' : (language === 'it' ? 'Richieste proprietà' : 'Property inquiries')
+    description: language === 'cs' ? 'Dotazy na nemovitostí' : (language === 'it' ? 'Richieste proprietà' : 'Property inquiries')
   },
   /*
   {
     title: language === 'cs' ? 'Doporučení' : (language === 'it' ? 'Raccomandazioni' : 'Recommendations'),
     href: '/dashboard/recommendations',
     icon: TrendingUp,
-    description: language === 'cs' ? 'Navržené nemovitosti' : (language === 'it' ? 'Proprietà suggerite' : 'Suggested properties')
+    description: language === 'cs' ? 'Navržené nemovitostí' : (language === 'it' ? 'Proprietà suggerite' : 'Suggested properties')
   },
   */
   {
@@ -283,7 +283,7 @@ export default function DashboardLayout({ children }) {
                 <Link href="/" className="w-full">
                   <Button variant="outline" size="sm" className="w-full justify-start">
                     <Home className="h-4 w-4 mr-2" />
-                    {language === 'cs' ? 'Procházet nemovitosti' : (language === 'it' ? 'Sfoglia proprietà' : 'Browse Properties')}
+                    {language === 'cs' ? 'Procházet nemovitostí' : (language === 'it' ? 'Sfoglia proprietà' : 'Browse Properties')}
                   </Button>
                 </Link>
                 <Button 

@@ -104,9 +104,9 @@ const CONTENT = {
     "category": "Blog",
     "date": "2026-02-11",
     "readTime": "10 min",
-    "title": "Jak skutečně funguje italský systém koupě nemovitosti (a proč se liší od české republiky)",
+    "title": "Jak skutečně funguje italský systém koupě nemovitostí (a proč se liší od české republiky)",
     "intro": [
-      "Nákup nemovitosti v Itálii může být hladký, ale pouze pokud rozumíte tomu, jak je systém postaven.",
+      "Nákup nemovitostí v Itálii může být hladký, ale pouze pokud rozumíte tomu, jak je systém postaven.",
       "Pro české kupující není největším překvapením samotné papírování. Klíčovým problémem je, že povinnosti jsou rozděleny mezi více lidí a kanceláří a nikdo automaticky nekoordinuje vše za vás."
     ],
     "keyIdea": "Klíčová myšlenka: V Itálii je proces bezpečný, když je řízen krok za krokem. Pokud se jedná o jedinou transakci, riskujete zpoždění, skryté náklady a právní nebo technická překvapení.",
@@ -150,7 +150,7 @@ const CONTENT = {
     "risksTitle": "Co se může pokazit, když to zvládnete sami",
     "risks": [
       "Příliš brzy: podepisování nebo placení záloh před dokončením šeků.",
-      "Nesoulad dokumentů: stav nemovitosti se liší od katastrálních nebo povolení.",
+      "Nesoulad dokumentů: stav nemovitostí se liší od katastrálních nebo povolení.",
       "Skrytá omezení: věcná břemena, práva cesty, pravidla kondominia, chráněné prvky.",
       "Překvapení magistrátu: chybějící povolení, nečekaná omezení užívání, zablokované rekonstrukce.",
       "Podhodnocení nákladů: za předpokladu, že katalogová cena je konečná cena.",
@@ -162,7 +162,7 @@ const CONTENT = {
     "costsTitle": "Náklady: hlavní kategorie (bez podrobných čísel)",
     "costsIntro": "Každá transakce je jiná, ale tyto nákladové skupiny by měly být vždy naplánovány.",
     "costs": [
-      "Nákupní daně (závisí na typu nemovitosti a profilu kupujícího)",
+      "Nákupní daně (závisí na typu nemovitostí a profilu kupujícího)",
       "Notářské náklady (poplatky a registrační toky)",
       "Provize agentury (v závislosti na platební struktuře a podmínkách)",
       "Technické kontroly (průzkum, ověření shody, dokumentace)",
@@ -296,20 +296,20 @@ const CONTENT_OVERRIDES = {
   cs: {
     risks: [
       'Příliš brzké závazky: podpis smlouvy nebo složení zálohy ještě před dokončením všech kontrol.',
-      'Nesoulad v dokumentaci: skutečný stav nemovitosti neodpovídá katastru nebo stavebním povolením.',
+      'Nesoulad v dokumentaci: skutečný stav nemovitostí neodpovídá katastru nebo stavebním povolením.',
       'Skryté závazky: věcná břemena, přístupové cesty, pravidla SVJ, chráněné prvky.',
       'Problémy z úřadů: chybějící povolení, omezení užívání, nemožnost provést plánované úpravy.',
       'Podcenění nákladů: představa, že cena v inzerátu je konečná.',
       'Komunikační chyby: drobná nedorozumění, která mohou přerůst v právní nebo finanční problémy.'
     ],
     costs: [
-      'Daně spojené s koupí (podle typu nemovitosti a profilu kupujícího)',
+      'Daně spojené s koupí (podle typu nemovitostí a profilu kupujícího)',
       'Notářské náklady (odměna a poplatky za registraci)',
       'Provize realitní kanceláře (dle struktury platby a podmínek)',
       'Technické prověrky (prohlídka, soulad, dokumentace)',
       'Administrativní výdaje (dokumenty, certifikáty, registrace)',
       'Překladatelské a tlumočnické služby',
-      'Nastavení po koupi (energie, pojištění, onboarding do SVJ)'
+      'Nastavení po koupí (energie, pojištění, onboarding do SVJ)'
     ]
   },
   it: {
@@ -336,9 +336,9 @@ const CONTENT_OVERRIDES = {
 const CLEAN_CONTENT = {
   cs: {
     back: 'Zpět na články',
-    title: 'Jak skutečně funguje italský systém koupě nemovitosti (a proč se liší od České republiky)',
+    title: 'Jak skutečně funguje italský systém koupě nemovitostí (a proč se liší od České republiky)',
     intro: [
-      'Nákup nemovitosti v Itálii může být hladký, ale pouze pokud rozumíte tomu, jak je celý systém postaven.',
+      'Nákup nemovitostí v Itálii může být hladký, ale pouze pokud rozumíte tomu, jak je celý systém postaven.',
       'Pro české kupující není největším překvapením samotná administrativa. Klíčový problém je v tom, že odpovědnosti jsou rozděleny mezi více lidí a institucí a nikdo za vás automaticky nekoordinuje celý proces.'
     ],
     keyIdea:
@@ -464,7 +464,7 @@ export default function RealEstatePurchaseSystemItalyPage() {
     language === 'cs'
       ? {
           src: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80',
-          alt: 'Dokumenty a plánování procesu koupě nemovitosti',
+          alt: 'Dokumenty a plánování procesu koupě nemovitostí',
           caption: 'Proces koupě funguje spolehlivě tehdy, když jsou role, dokumenty a jednotlivé kroky dobře koordinované.'
         }
       : language === 'it'
@@ -483,7 +483,7 @@ export default function RealEstatePurchaseSystemItalyPage() {
     language === 'cs'
       ? {
           src: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80',
-          alt: 'Dokumenty a plánování procesu koupě nemovitosti',
+          alt: 'Dokumenty a plánování procesu koupě nemovitostí',
           caption: 'Proces koupě funguje spolehlivě tehdy, když jsou role, dokumenty a jednotlivé kroky dobře koordinované.'
         }
       : articleImage

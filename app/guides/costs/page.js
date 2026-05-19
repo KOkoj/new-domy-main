@@ -15,17 +15,17 @@ const COPY = {
     home: 'Domů',
     guide: 'Průvodce',
     page: 'Náklady',
-    title: 'Kolik skutečně stojí koupě domu v Itálii v roce 2026',
+    title: 'Kolik skutečně stojí koupě domů v Itálii v roce 2026',
     intro:
       'V tomto článku shrnujeme reálné náklady, daně a poplatky, se kterými je potřeba počítat ještě před podpisem kupní smlouvy.',
     overviewTitle: 'Rychlá orientace',
     overviewBody:
-      'Kupní cena je jen začátek. Finální částka se mění podle daňového režimu, typu nemovitosti, struktury koupě i vedlejších nákladů spojených s aktem.',
+      'Kupní cena je jen začátek. Finální částka se mění podle daňového režimu, typu nemovitostí, struktury koupě i vedlejších nákladů spojených s aktem.',
     lead:
       'Mnoho kupujících vychází pouze z ceny v inzerátu. Právě tady ale často vznikají nepříjemná překvapení. Konečný rozpočet ovlivňují daně, notář, doprovodné služby i technické prověrky.',
-    firstSectionTitle: 'Cena nemovitosti není konečná částka',
+    firstSectionTitle: 'Cena nemovitostí není konečná částka',
     firstSectionBody:
-      'Dvě nemovitosti se stejnou kupní cenou mohou mít velmi odlišné konečné náklady. Rozhoduje právní režim, stav dokumentace, typ prodávajícího i to, zda kupujete jako první nebo další nemovitost.',
+      'Dvě nemovitostí se stejnou kupní cenou mohou mít velmi odlišné konečné náklady. Rozhoduje právní režim, stav dokumentace, typ prodávajícího i to, zda kupujete jako první nebo další nemovitost.',
     firstSectionBullets: [
       'daňový režim a typ prodávajícího',
       'notářské náklady a registrace',
@@ -34,12 +34,12 @@ const COPY = {
     ],
     costTitle: 'Přehled nákladů',
     costSubtitle:
-      'Níže najdete orientační strukturu hlavních položek, se kterými je potřeba při koupi počítat.',
+      'Níže najdete orientační strukturu hlavních položek, se kterými je potřeba při koupí počítat.',
     costs: [
       {
         title: 'Daň z koupě - první nemovitost + rezidence',
         description:
-          'Platí při koupi první nemovitosti v Itálii a při nastavení trvalé rezidence.',
+          'Platí při koupí první nemovitostí v Itálii a při nastavení trvalé rezidence.',
         price: 'EUR 2 % z katastrální hodnoty'
       },
       {
@@ -51,7 +51,7 @@ const COPY = {
       {
         title: 'DPH (nové / rekonstruované do 5 let) - koupě od stavební firmy',
         description:
-          'Uplatní se hlavně při koupi od developera nebo stavební společnosti.',
+          'Uplatní se hlavně při koupí od developera nebo stavební společnosti.',
         price: '10 % nebo 4 % podle režimu'
       },
       {
@@ -75,7 +75,7 @@ const COPY = {
     risks: [
       'jasně spočítané hlavní daně ještě před podpisem',
       'potvrzený notářský rozpočet a vedlejší výdaje',
-      'ověřený právní a technický stav nemovitosti',
+      'ověřený právní a technický stav nemovitostí',
       'rezervu na položky, které v inzerátu nejsou vidět'
     ]
   },
@@ -244,7 +244,7 @@ export default function CostsGuidePage() {
           src: '/articles/costs-money-house.jpg',
           alt: 'Pár řeší peníze s modely domků v pozadí',
           caption:
-            'Skutečné náklady začnou být jasné ve chvíli, kdy vedle ceny domu začnete řešit i všechny související výdaje.'
+            'Skutečné náklady začnou být jasné ve chvíli, kdy vedle ceny domů začnete řešit i všechny související výdaje.'
         }
       : language === 'it'
         ? {

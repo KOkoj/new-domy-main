@@ -165,7 +165,7 @@ const REGION_DATA = {
     },
     highlights: {
       en: ['Wide selection of properties', 'Rich history and culture', 'Affordable to luxury options', 'Beautiful beaches', 'Excellent food', 'Diverse landscapes'],
-      cs: ['Siroky vyber nemovitostí', 'Bohata historie a kultura', 'Od dostupnych po luxusni', 'Krasne plaze', 'Vynikajici jidlo', 'Rozmanite krajiny'],
+      cs: ['Široký výběr nemovitostí', 'Bohatá historie a kultura', 'Od dostupných po luxusní', 'Krásné pláže', 'Vynikající jídlo', 'Rozmanité krajiny'],
       it: ['Ampia scelta di immobili', 'Ricca storia e cultura', 'Da economiche a lussuose', 'Bellissime spiagge', 'Eccellente cibo', 'Paesaggi diversi']
     },
     priceRange: '\u20AC25,000 - \u20AC1,000,000',
@@ -173,7 +173,7 @@ const REGION_DATA = {
     topCities: ['Palermo', 'Catania', 'Taormina', 'Syracuse', 'Cefalù']
   },
   'toscana': {
-    name: { en: 'Tuscany', cs: 'Toskansko', it: 'Toscana' },
+    name: { en: 'Tuscany', cs: 'Toskánsko', it: 'Toscana' },
     image: '/Toscana.png',
     tagline: {
       en: 'Iconic landscapes, strong rental demand, historic cities and premium pricing - Tuscany is one of the most sought-after regions in Italy for international buyers.',
@@ -182,7 +182,7 @@ const REGION_DATA = {
     },
     description: {
       en: 'Tuscany is one of the most internationally recognized regions in Italy. For Czech buyers, it represents prestige, stability, and long-term value.\\n\\nThe region combines strong tourism demand, world-famous cultural heritage, and a solid rental market - especially in Florence and Chianti areas.\\n\\nHowever, Tuscany also comes with higher purchase prices and strong competition in prime locations. Proper due diligence, technical checks, and legal coordination are essential before making an offer.',
-      cs: 'Toskansko je pro mnoho zahranicnich kupujicich symbolem prestize, stability a dlouhodobe hodnoty. Region kombinuje silnou turistickou poptávku, kulturní dedictvi a solidni trh pronajmu, ale take vyšší ceny a silnou konkurenci v premium lokalitách.',
+      cs: 'Toskánsko je pro mnoho zahranicnich kupujicich symbolem prestize, stability a dlouhodobe hodnoty. Region kombinuje silnou turistickou poptávku, kulturní dedictvi a solidni trh pronajmu, ale take vyšší ceny a silnou konkurenci v premium lokalitách.',
       it: 'La Toscana è una delle regioni italiane più riconoscibili a livello internazionale. Per gli acquirenti cechi rappresenta prestigio, stabilità e valore nel lungo termine. La regione combina una forte domanda turistica, patrimonio culturale e un mercato affitti solido, ma anche prezzi più alti e forte competizione nelle zone prime.'
     },
     highlights: {
@@ -218,7 +218,7 @@ const REGION_DATA = {
     bestFor: { en: 'Prestige, wine, culture, rental income', cs: 'Prestiz, vino, kultura, prijem z pronajmu', it: 'Prestigio, vino, cultura, reddito da affitto' },
     bestForList: {
       en: ['Investment with short-term rentals', 'Prestige second home', 'Buyers seeking a stable market'],
-      cs: ['Investice s kratkodobym pronajmem', 'Prestizni druhe bydlení', 'Kupující hledající stabilní trh'],
+      cs: ['Investice s krátkodobým pronájmem', 'Prestižní druhé bydlení', 'Kupující hledající stabilní trh'],
       it: ['Investimento con affitto breve', 'Seconda casa di prestigio', 'Chi vuole mercato stabile']
     },
     topCitiesDetailed: {
@@ -328,10 +328,10 @@ const REGION_DATA = {
         'Monza - strategic location near Milan'
       ],
       cs: [
-        'Milan - siroka nabidka od městských bytu po premium ctvrt',
+        'Milan - siroka nabídka od městských bytu po premium ctvrt',
         'Como a jezerni oblast - vysoce konkurencni premium poptávka',
         'Bergamo - silný poměr hodnoty a kvality',
-        'Brescia - velka nabidka a smíšený cenovy profil',
+        'Brescia - velka nabídka a smíšený cenovy profil',
         'Monza - strategicka poloha blizko Milana'
       ],
       it: [
@@ -969,44 +969,44 @@ const REGION_BUYERS_GUIDANCE_EN = {
 
 const REGION_BUYERS_GUIDANCE_CS = {
   sicilia: {
-    intro: 'Pred koupi na Sicilii zohlednete:',
+    intro: 'Pred koupí na Sicilii zohlednete:',
     items: [
       'Palermo, Catania, Taormina a Syrakusy maji velmi odlisnou likviditu i cenove urovene',
-      'V primorskych oblastech je nutne proverit vliv morskeho prostredi a technicky stav budovy',
-      'Katastralni a urbanistickou dokumentaci je treba kontrolovat obzvlast peclive',
-      'Poptavka po pronajmu je v mnoha turistickych lokalitach silne sezonni',
-      'Dostupnost letist a zakladnich sluzeb vyrazne meni realne vyuziti nemovitosti'
+      'V primorskych oblastech je nutne prověřit vliv morskeho prostredi a technicky stav budovy',
+      'Katastrální a urbanistickou dokumentaci je třeba kontrolovat obzvlášť pečlivě',
+      'Poptavka po pronajmu je v mnoha turistickych lokalitách silne sezonni',
+      'Dostupnost letist a zakladnich služeb vyrazne meni realne využití nemovitostí'
     ],
     outro: 'Na Sicilii zavisi spravna volba na mikro-lokalite: presne srovnani jednotlivych obci a ctvrtí je zasadni.'
   },
   liguria: {
-    intro: 'Pred koupi v Ligurii zohlednete:',
+    intro: 'Pred koupí v Ligurii zohlednete:',
     items: [
-      'Lokality s vyhledem na more maji vyrazne premium oproti vnitrnim zonam',
+      'Lokality s výhledem na more maji vyrazne premium oproti vnitrnim zonam',
       'Pristup, parkovani a sklon terenu primo ovlivnuji uzivani i dalsi prodej',
-      'V nejzadanejsich obcich je nabidka omezena, proto je potreba byt pripraveny i casove',
-      'U starsich primorskych domu byvaji casto vyssi kondominalni naklady',
-      'Je nutne proverit hydrogeologicka rizika a stav opernych konstrukci'
+      'V nejzadanejsich obcích je nabídka omezena, proto je potřeba byt pripraveny i casove',
+      'U starších primorskych domů byvaji casto vyssi kondominalni naklady',
+      'Je nutne prověřit hydrogeologicka rizika a stav opernych konstrukci'
     ],
     outro: 'V Ligurii ma presna adresa vetsi vahu nez samotny nazev obce: mikro-lokalita je rozhodujici.'
   },
   campania: {
-    intro: 'Pred koupi v Kampanii zohlednete:',
+    intro: 'Pred koupí v Kampanii zohlednete:',
     items: [
-      'Neapol je slozity mestsky trh, kde je ctvrt dulezitejsi nez mestske prumery',
-      'Amalfinske pobrezi a Sorrento maji vysoke vstupni ceny a velmi konkurencni nabidku',
-      'Urbanisticky soulad je potreba peclive proverit u historickych nebo delenych nemovitosti',
-      'Logistika a parkovani jsou v mnoha pobreznich lokalitach kriticke faktory',
+      'Neapol je slozity mestsky trh, kde je ctvrt dulezitejsi nez městské prumery',
+      'Amalfinske pobrezi a Sorrento maji vysoke vstupni ceny a velmi konkurencni nabídku',
+      'Urbanistický soulad je potřeba pečlivě prověřit u historických nebo dělených nemovitostí',
+      'Logistika a parkovani jsou v mnoha pobreznich lokalitách kriticke faktory',
       'Mistni pravidla kratkodobeho pronajmu mohou vyrazne zmenit planovany vynos'
     ],
-    outro: 'V Kampanii se vyplati proverit technickou a pravni cast co nejdrive, jeste pred pokrocilym jednanim.'
+    outro: 'V Kampanii se vyplatí prověřit technickou a právní část co nejdříve, ještě před pokročilým jednáním.'
   },
   piemonte: {
-    intro: 'Pred koupi v Piemontu zohlednete:',
+    intro: 'Pred koupí v Piemontu zohlednete:',
     items: [
       'Turin ma odlisnou mestskou dynamiku nez Langhe, Monferrato a alpske oblasti',
-      'V kopcovitych obcich je treba peclive proverit konstrukcni stav starsich domu',
-      'Zemedelske pozemky a vedlejsi stavby vyzaduji jasnou kontrolu vyuziti a omezeni',
+      'V kopcovitých obcích je třeba pečlivě prověřit konstrukční stav starších domů',
+      'Zemedelske pozemky a vedlejsi stavby vyzaduji jasnou kontrolu využití a omezeni',
       'Poptavka po pronajmu je stabilnejsi ve meste a selektivnejsi na venkove',
       'Zimni energeticke naklady a uroven izolace maji velky dopad na rocni rozpocet'
     ],
@@ -1143,7 +1143,7 @@ export default function RegionDetailPage() {
     buyerGuidance?.intro
       ? buyerGuidance.intro
       : language === 'cs'
-      ? 'Před koupí nemovitosti v tomto regionu zohledněte:'
+      ? 'Před koupí nemovitostí v tomto regionu zohledněte:'
       : language === 'it'
         ? 'Prima di acquistare in questa regione, considerate:'
         : 'Before purchasing property in this region, buyers should consider:'
@@ -1224,7 +1224,7 @@ export default function RegionDetailPage() {
         : `Thinking about ${regionName} but not sure where to start?`
   const finalCtaDescription =
     language === 'cs'
-      ? 'Pomáháme českým kupujícím vyhodnotit správnou oblast, typ nemovitosti a investiční potenciál před jakýmkoli závazným krokem.'
+      ? 'Pomáháme českým kupujícím vyhodnotit správnou oblast, typ nemovitostí a investiční potenciál před jakýmkoli závazným krokem.'
       : language === 'it'
         ? 'Aiutiamo gli acquirenti cechi a valutare area, tipo di immobile e potenziale di investimento prima di qualsiasi impegno vincolante.'
         : 'We help Czech buyers evaluate the right area, property type, and investment potential before any binding commitment.'

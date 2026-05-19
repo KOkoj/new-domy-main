@@ -233,7 +233,7 @@ export default function AboutPage() {
             <div className="space-y-6">
               <p className="text-gray-600 leading-[1.75] text-lg">
                 {language === 'cs'
-                  ? 'Nejsme klasická realitní kancelář. Jsme operativní partner, který pomáhá lidem pochopit reálný proces koupě domu v Itálii. Více než prodej služeb je pro nás důležité pomoci vám splnit sen a cítit se po celou dobu podporováni.'
+                  ? 'Nejsme klasická realitní kancelář. Jsme operativní partner, který pomáhá lidem pochopit reálný proces koupě domů v Itálii. Více než prodej služeb je pro nás důležité pomoci vám splnit sen a cítit se po celou dobu podporováni.'
                   : language === 'it'
                   ? 'Non siamo una classica agenzia immobiliare. Siamo un partner operativo per chi vuole capire il processo reale di acquisto in Italia. Più che vendere un servizio, vogliamo aiutarvi a realizzare un sogno sentendovi accompagnati in ogni fase.'
                   : 'We are not a traditional real estate agency. We are an operational partner for buyers who want to understand the real process in Italy. More than selling a service, we want to help you realize a dream while feeling supported throughout the journey.'}

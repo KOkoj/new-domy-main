@@ -33,6 +33,7 @@ import PropertyImage from '@/components/PropertyImage';
 import { getPropertyImage } from '@/lib/getPropertyImage';
 import { formatPriceCompact } from '../../lib/currency';
 import NewPropertyRibbon from '@/components/NewPropertyRibbon';
+import NoAgencyBadge from '@/components/NoAgencyBadge';
 
 const AuthModal = dynamic(() => import('../../components/AuthModal'), { ssr: false });
 
@@ -182,6 +183,11 @@ function PropertyCard({ property, onFavorite, isFavorited, language, currency, o
         />
 
         {property.isNew && <NewPropertyRibbon language={language} />}
+        {property.noAgency && (
+          <div className="absolute right-4 top-16 z-30 pointer-events-none">
+            <NoAgencyBadge language={language} />
+          </div>
+        )}
 
         {statusLabel && (
           <div className="absolute left-4 top-4 z-30 pointer-events-none">
@@ -742,7 +748,8 @@ export default function PropertiesPage() {
               sourceUrl: prop.sourceUrl || '',
               createdAt: prop._createdAt || prop.createdAt || '',
               updatedAt: prop._updatedAt || prop.updatedAt || '',
-              isNew: Boolean(prop.isNew || prop.newListing)
+              isNew: Boolean(prop.isNew || prop.newListing),
+              noAgency: Boolean(prop.noAgency || prop.no_agency || prop.badges?.includes('no-agency'))
             };
           });
 

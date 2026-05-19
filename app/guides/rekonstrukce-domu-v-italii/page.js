@@ -15,7 +15,7 @@ const CONTENT = {
     category: 'Rekonstrukce',
     date: '2026-03-10',
     readTime: '8 min',
-    title: 'Kolik stojí rekonstrukce domu v Itálii?',
+    title: 'Kolik stojí rekonstrukce domů v Itálii?',
     intro: [
       'Mnoho Čechů si myslí, že koupit starší dům v Itálii znamená automaticky vysoké náklady na rekonstrukci.',
       'Realita je často jiná.',
@@ -25,12 +25,12 @@ const CONTENT = {
     introList: [
       'orientační ceny rekonstrukce',
       'co nejvíce ovlivňuje náklady',
-      'na co si dát pozor před koupí domu'
+      'na co si dát pozor před koupí domů'
     ],
     cta1: {
-      title: 'Uvažujete o koupi domu v Itálii?',
+      title: 'Uvažujete o koupí domů v Itálii?',
       text: 'Podívejte se nejdříve na náš přehled celého procesu.',
-      button: 'Jak funguje náš servis při hledání domu v Itálii',
+      button: 'Jak funguje náš servis při hledání domů v Itálii',
       href: '/process'
     },
     section1: {
@@ -75,9 +75,9 @@ const CONTENT = {
       ]
     },
     cta2: {
-      title: 'Chcete vědět, kolik stojí koupě domu v Itálii celkově?',
+      title: 'Chcete vědět, kolik stojí koupě domů v Itálii celkově?',
       text: 'Podívejte se na náš detailní přehled všech nákladů.',
-      button: 'Kolik stojí koupě domu v Itálii',
+      button: 'Kolik stojí koupě domů v Itálii',
       href: '/guides/costs'
     },
     section3: {
@@ -89,18 +89,18 @@ const CONTENT = {
           text: 'Například sever Itálie může být dražší než menší města na jihu.'
         },
         {
-          title: 'Stav nemovitosti',
+          title: 'Stav nemovitostí',
           text: 'Velký rozdíl je mezi domem, který potřebuje jen drobné úpravy, a domem vyžadujícím kompletní rekonstrukci.'
         },
         {
           title: 'Rozsah projektu',
-          text: 'Někdo chce pouze modernizovat interiér. Jiní plánují kompletní přestavbu domu.'
+          text: 'Někdo chce pouze modernizovat interiér. Jiní plánují kompletní přestavbu domů.'
         }
       ]
     },
     cta3: {
       title: 'Hledáte dům v Itálii a nejste si jistí, kolik může stát rekonstrukce?',
-      text: 'Napište nám základní informace: váš rozpočet, region a typ nemovitosti. Pomůžeme vám najít vhodné nabídky.',
+      text: 'Napište nám základní informace: váš rozpočet, region a typ nemovitostí. Pomůžeme vám najít vhodné nabídky.',
       button: 'Kontaktujte nás',
       href: '/contact'
     },
@@ -115,13 +115,13 @@ const CONTENT = {
     },
     cta4: {
       title: 'Připravili jsme také praktický průvodce pro české kupující',
-      text: 'Pokud chcete lépe porozumět nejčastějším chybám při koupi domu v Itálii, můžete si stáhnout náš bezplatný PDF průvodce.',
+      text: 'Pokud chcete lépe porozumět nejčastějším chybám při koupí domů v Itálii, můžete si stáhnout náš bezplatný PDF průvodce.',
       button: 'Stáhnout PDF - 7 nejčastějších chyb',
       href: '/pdfs/errori-comuni.pdf'
     },
     section5: {
       title: 'Závěr',
-      text: 'Rekonstrukce domu v Itálii může být skvělá příležitost vytvořit si vlastní místo na jedinečném místě. Každá nemovitost je ale jiná a proto je vždy důležité analyzovat konkrétní situaci ještě před koupí.'
+      text: 'Rekonstrukce domů v Itálii může být skvělá příležitost vytvořit si vlastní místo na jedinečném místě. Každá nemovitost je ale jiná a proto je vždy důležité analyzovat konkrétní situaci ještě před koupí.'
     },
     finalCta: {
       title: 'Pomáháme Čechům koupit dům v Itálii',
@@ -132,7 +132,7 @@ const CONTENT = {
     breadcrumb: {
       home: 'Domů',
       guide: 'Průvodce',
-      current: 'Rekonstrukce domu v Itálii'
+      current: 'Rekonstrukce domů v Itálii'
     },
     back: 'Články'
   },

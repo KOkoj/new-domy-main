@@ -11,7 +11,7 @@ const TESTIMONIALS = [
   {
     name: 'Adéla Babišová',
     tag: 'Umbria',
-    quote: <>Koupě domu v zahraničí má svoje specifika a rozhodně bych to nepodcenila. Sama jsem se přesvědčila, že tam je tolik detailů, které je lepší vždy ověřit a prověřit. Sama bych se do tohoto procesu nepouštěla — <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">moje nejlepší rozhodnutí bylo spojit síly s Domy v Itálii</span> a nechat si krýt záda od parťáka, který tomu rozumí, má zkušenosti a <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">odhalil chyby v kupní smlouvě</span>, které chystala italská realitka. Vykomunikovala veškeré termíny s notářem a veškerou dokumentaci zkontrolovali do posledního písmenka. <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">Servis vážně na jedničku s hvězdičkou.</span></>,
+    quote: <>Koupě domů v zahraničí má svoje specifika a rozhodně bych to nepodcenila. Sama jsem se přesvědčila, že tam je tolik detailů, které je lepší vždy ověřit a prověřit. Sama bych se do tohoto procesu nepouštěla — <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">moje nejlepší rozhodnutí bylo spojit síly s Domy v Itálii</span> a nechat si krýt záda od parťáka, který tomu rozumí, má zkušenosti a <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">odhalil chyby v kupní smlouvě</span>, které chystala italská realitka. Vykomunikovala veškeré termíny s notářem a veškerou dokumentaci zkontrolovali do posledního písmenka. <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">Servis vážně na jedničku s hvězdičkou.</span></>,
   },
   {
     name: 'Lenka Kluková',
@@ -21,7 +21,7 @@ const TESTIMONIALS = [
   {
     name: 'Marcela Dejlová',
     tag: 'Itálie',
-    quote: <>Děkuji za <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">perfektní servis</span>, pomoc při koupi domu včetně všech nezbytných úředních procedur, osobní asistenci a <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">neuvěřitelně vstřícné, milé a přátelské jednání</span>. Zdravím z Itálie.</>,
+    quote: <>Děkuji za <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">perfektní servis</span>, pomoc při koupí domů včetně všech nezbytných úředních procedur, osobní asistenci a <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">neuvěřitelně vstřícné, milé a přátelské jednání</span>. Zdravím z Itálie.</>,
   },
 ]
 

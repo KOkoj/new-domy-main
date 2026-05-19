@@ -15,9 +15,9 @@ const CONTENT = {
     category: 'Právo',
     date: '2026-03-26',
     readTime: '9 min',
-    title: 'Jak podat nabídku na koupi domu v Itálii: návrh, compromesso a registrace',
+    title: 'Jak podat nabídku na koupí domů v Itálii: návrh, compromesso a registrace',
     intro: [
-      'Při koupi domu v Itálii patří mezi nejvíce podceňované fáze právě období od první nabídky až po registraci compromessa. Právě zde často vznikají chyby, nesprávná očekávání a závazky přijaté příliš brzy.',
+      'Při koupí domů v Itálii patří mezi nejvíce podceňované fáze právě období od první nabídky až po registraci compromessa. Právě zde často vznikají chyby, nesprávná očekávání a závazky přijaté příliš brzy.',
       'Pro kupujícího ze zahraničí není klíčové jen pochopit, jaký dokument podepisuje, ale hlavně kdy se tento dokument stává závazným, jaké částky se skutečně skládají, co musí být napsáno a jaké kontroly je nutné udělat ještě před závazkem.',
       'V tomto článku se záměrně zastavíme ještě před rogitem. Cílem je jasně vysvětlit fázi nabídky, předběžné smlouvy a registrace compromessa.'
     ],
@@ -39,7 +39,7 @@ const CONTENT = {
     proposalText:
       'Návrh koupě je písemná nabídka, ve které kupující uvede cenu, podmínky a lhůtu, ve které může prodávající nabídku přijmout. Dokud není přijata, obecně zůstává návrhem. Po přijetí je ale potřeba velmi pečlivě číst, jak byl dokument napsán: v praxi může zůstat jen mezikrokem směrem ke compromessu, nebo už mít strukturu velmi blízkou skutečné předběžné smlouvě.',
     proposalList: [
-      'správná identifikace stran a nemovitosti',
+      'správná identifikace stran a nemovitostí',
       'nabízená cena a způsob úhrady',
       'případná částka složená jako depozitum, caparra nebo záloha',
       'lhůta pro přijetí',
@@ -74,7 +74,7 @@ const CONTENT = {
     transitionList: [
       'shromáždění a kontrola dostupné dokumentace',
       'ověření bodů, které v návrhu zůstaly nejasné',
-      'nastavení termínů rogita, předání nemovitosti, plateb a předání',
+      'nastavení termínů rogita, předání nemovitostí, plateb a předání',
       'sladění mezi agenturou, prodávajícím, kupujícím, technikem a notářem'
     ],
     transitionAlert:
@@ -84,12 +84,12 @@ const CONTENT = {
       'Compromesso neboli předběžná smlouva je dokument, kterým se prodávající i kupující zavazují uzavřít budoucí kupní smlouvu za sjednaných podmínek. Vlastnictví se jím ještě nepřevádí, ale vzniká skutečný smluvní závazek.',
     compromessoList: [
       'úplné údaje o stranách',
-      'přesný popis nemovitosti a související katastrální údaje',
+      'přesný popis nemovitostí a související katastrální údaje',
       'celková cena a způsob plateb',
       'již zaplacené částky a jejich právní kvalifikace',
       'plánované datum rogita',
       'případné stále otevřené odkládací podmínky',
-      'závazky prodávajícího ohledně dokumentů, souladu a uvolnění nemovitosti',
+      'závazky prodávajícího ohledně dokumentů, souladu a uvolnění nemovitostí',
       'jasné rozdělení nákladů a souvisejících povinností'
     ],
     compromessoNote:

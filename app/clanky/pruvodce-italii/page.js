@@ -42,10 +42,10 @@ const ARTICLES = [
       en: 'Train and bus travel in Italy',
       it: 'Treno e autobus per viaggiare in Italia'
     },
-    link: '/clanky/pruvodce-italii/jak-cestovat-po-italii-levne'
+    link: '/články/průvodce-italii/jak-cestovat-po-italii-levne'
   },
   {
-    slug: 'kolik-stoji-dovolena-v-italii-v-roce-2026',
+    slug: 'kolik-stoji-dovolená-v-italii-v-roce-2026',
     title: {
       cs: 'Kolik stojí dovolená v Itálii v roce 2026',
       en: 'How Much Does a Holiday in Italy Cost in 2026?',
@@ -68,10 +68,10 @@ const ARTICLES = [
       en: 'Italian coast for holiday budget planning',
       it: 'Costa italiana per pianificare il budget vacanza'
     },
-    link: '/clanky/pruvodce-italii/kolik-stoji-dovolena-v-italii-v-roce-2026'
+    link: '/články/průvodce-italii/kolik-stoji-dovolená-v-italii-v-roce-2026'
   },
   {
-    slug: 'nejkrasnejsi-mala-mesta-v-italii',
+    slug: 'nejkrasnejsi-mala-města-v-italii',
     title: {
       cs: 'Nejkrásnější malá města v Itálii',
       en: 'The Most Beautiful Small Towns in Italy',
@@ -94,10 +94,10 @@ const ARTICLES = [
       en: 'Small historic town in Italy',
       it: 'Piccolo borgo storico in Italia'
     },
-    link: '/clanky/pruvodce-italii/nejkrasnejsi-mala-mesta-v-italii'
+    link: '/články/průvodce-italii/nejkrasnejsi-mala-města-v-italii'
   },
   {
-    slug: 'kolik-stoji-jidlo-v-italii-v-roce-2026',
+    slug: 'kolik-stoji-jídlo-v-italii-v-roce-2026',
     title: {
       cs: 'Kolik stojí jídlo v Itálii v roce 2026? Reálné ceny restaurací, pizzerií a supermarketů',
       en: 'How Much Does Food Cost in Italy in 2026? Real Prices for Restaurants, Pizzerias, and Supermarkets',
@@ -120,7 +120,7 @@ const ARTICLES = [
       en: 'Italian food and local cuisine',
       it: 'Cibo italiano e gastronomia locale'
     },
-    link: '/clanky/pruvodce-italii/kolik-stoji-jidlo-v-italii-v-roce-2026'
+    link: '/články/průvodce-italii/kolik-stoji-jídlo-v-italii-v-roce-2026'
   },
   {
     slug: 'kde-se-ubytovat-v-italii-levne',
@@ -146,7 +146,7 @@ const ARTICLES = [
       en: 'Affordable accommodation in Italy',
       it: 'Alloggi convenienti in Italia'
     },
-    link: '/clanky/pruvodce-italii/kde-se-ubytovat-v-italii-levne'
+    link: '/články/průvodce-italii/kde-se-ubytovat-v-italii-levne'
   }
 ]
 
@@ -302,7 +302,7 @@ export default function PruvodceItaliiPage() {
                 </p>
                 <Link href="/blog" className="block">
                   <Button className="w-full min-h-[44px] bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-lg shadow-sm">
-                    {language === 'cs' ? 'Otevrit clanky o koupi' : language === 'it' ? 'Vai agli articoli acquisto' : 'Open buying articles'}
+                    {language === 'cs' ? 'Otevrit články o koupí' : language === 'it' ? 'Vai agli articoli acquisto' : 'Open buying articles'}
                     <ChevronRight className="h-3.5 w-3.5 ml-1.5" />
                   </Button>
                 </Link>

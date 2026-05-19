@@ -8,7 +8,7 @@ const STATIC_ROUTES = [
   '/',
   '/about',
   '/blog',
-  '/clanky/pruvodce-italii',
+  '/články/průvodce-italii',
   '/contact',
   '/faq',
   '/gdpr',

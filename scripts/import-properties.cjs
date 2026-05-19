@@ -8,15 +8,16 @@ const OUTPUT_PROPERTIES_PATH = path.join(process.cwd(), 'data', 'local-propertie
 const PUBLIC_UPLOAD_ROOT = path.join(process.cwd(), 'public', 'uploads', 'properties')
 
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif'])
+const VIDEO_EXTENSIONS = new Set(['.mp4', '.mov', '.webm', '.m4v'])
 const MAX_REMOTE_IMAGE_URLS = 20
 
 const REGION_NAME_MAP = {
   abruzzo: { it: 'Abruzzo', en: 'Abruzzo', cs: 'Abruzzo' },
   basilicata: { it: 'Basilicata', en: 'Basilicata', cs: 'Basilicata' },
-  calabria: { it: 'Calabria', en: 'Calabria', cs: 'Kalabrie' },
-  campania: { it: 'Campania', en: 'Campania', cs: 'Kampanie' },
+  calabria: { it: 'Calabria', en: 'Calabria', cs: 'Kalábrie' },
+  campania: { it: 'Campania', en: 'Campania', cs: 'Kampánie' },
   'emilia-romagna': { it: 'Emilia-Romagna', en: 'Emilia-Romagna', cs: 'Emilie-Romagna' },
-  'friuli-venezia-giulia': { it: 'Friuli-Venezia Giulia', en: 'Friuli-Venezia Giulia', cs: 'Furlansko-Julske Benatsko' },
+  'friuli-venezia-giulia': { it: 'Friuli-Venezia Giulia', en: 'Friuli-Venezia Giulia', cs: 'Furlansko-Julské Benátsko' },
   lazio: { it: 'Lazio', en: 'Lazio', cs: 'Lazio' },
   liguria: { it: 'Liguria', en: 'Liguria', cs: 'Ligurie' },
   lombardia: { it: 'Lombardia', en: 'Lombardy', cs: 'Lombardie' },
@@ -25,12 +26,12 @@ const REGION_NAME_MAP = {
   piemonte: { it: 'Piemonte', en: 'Piedmont', cs: 'Piemont' },
   puglia: { it: 'Puglia', en: 'Apulia', cs: 'Apulie' },
   sardegna: { it: 'Sardegna', en: 'Sardinia', cs: 'Sardinie' },
-  sicilia: { it: 'Sicilia', en: 'Sicily', cs: 'Sicilie' },
-  toscana: { it: 'Toscana', en: 'Tuscany', cs: 'Toskansko' },
-  'trentino-alto-adige': { it: 'Trentino-Alto Adige', en: 'Trentino-Alto Adige', cs: 'Tridentsko-Horni Adize' },
+  sicilia: { it: 'Sicilia', en: 'Sicily', cs: 'Sicílie' },
+  toscana: { it: 'Toscana', en: 'Tuscany', cs: 'Toskánsko' },
+  'trentino-alto-adige': { it: 'Trentino-Alto Adige', en: 'Trentino-Alto Adige', cs: 'Tridentsko-Horní Adiže' },
   umbria: { it: 'Umbria', en: 'Umbria', cs: 'Umbrie' },
-  "valle-d-aosta": { it: "Valle d'Aosta", en: 'Aosta Valley', cs: 'Udoli Aosta' },
-  veneto: { it: 'Veneto', en: 'Veneto', cs: 'Benatsko' }
+  "valle-d-aosta": { it: "Valle d'Aosta", en: 'Aosta Valley', cs: 'Údolí Aosta' },
+  veneto: { it: 'Veneto', en: 'Veneto', cs: 'Benátsko' }
 }
 
 const PROPERTY_TYPE_ALIASES = {
@@ -419,6 +420,47 @@ async function importImages({ folderPath, slug, dryRun }) {
   return importedImagePaths
 }
 
+async function importVideos({ folderPath, slug, dryRun }) {
+  const localVideosDir = path.join(folderPath, 'videos')
+  const importedVideoPaths = []
+
+  try {
+    const entries = await fs.readdir(localVideosDir, { withFileTypes: true })
+    const videoFiles = entries
+      .filter((entry) => entry.isFile())
+      .map((entry) => entry.name)
+      .filter((fileName) => VIDEO_EXTENSIONS.has(path.extname(fileName).toLowerCase()))
+      .sort((a, b) => a.localeCompare(b))
+
+    if (videoFiles.length === 0) return importedVideoPaths
+
+    const destinationDir = path.join(PUBLIC_UPLOAD_ROOT, slug)
+    if (!dryRun) {
+      await fs.mkdir(destinationDir, { recursive: true })
+    }
+
+    for (let index = 0; index < videoFiles.length; index += 1) {
+      const originalName = videoFiles[index]
+      const extension = path.extname(originalName).toLowerCase()
+      const baseName = path.basename(originalName, extension)
+      const safeName = `${String(index + 1).padStart(2, '0')}-${slugify(baseName || `video-${index + 1}`)}${extension}`
+      const sourceFile = path.join(localVideosDir, originalName)
+      const destinationFile = path.join(destinationDir, safeName)
+      const webPath = `/uploads/properties/${slug}/${safeName}`
+
+      if (!dryRun) {
+        await fs.copyFile(sourceFile, destinationFile)
+      }
+
+      importedVideoPaths.push(webPath)
+    }
+  } catch {
+    return importedVideoPaths
+  }
+
+  return importedVideoPaths
+}
+
 function findCoordinates(listing) {
   const lat = toNumber(pick(listing, ['lat', 'latitude'], NaN), NaN)
   const lng = toNumber(pick(listing, ['lng', 'lon', 'longitude'], NaN), NaN)
@@ -672,6 +714,12 @@ async function transformFolderToProperty({
     dryRun
   })
 
+  const videosFromFolder = await importVideos({
+    folderPath,
+    slug: finalSlug,
+    dryRun
+  })
+
   const rawImageUrls = Array.isArray(listing.image_urls)
     ? listing.image_urls.map((value) => normalizeWhitespace(value)).filter(Boolean)
     : []
@@ -693,6 +741,11 @@ async function transformFolderToProperty({
   const lotSize = toNumber(pick(listing, ['lotSize', 'lot_size', 'giardino_mq'], 0), 0)
   const price = toNumber(pick(listing, ['price', 'price_eur'], 0), 0)
   const coordinates = findCoordinates(listing)
+  const badges = Array.isArray(listing.badges)
+    ? listing.badges.map((item) => normalizeWhitespace(item)).filter(Boolean)
+    : []
+  const noAgency = Boolean(listing.noAgency || listing.no_agency || badges.includes('no-agency'))
+  const videoUrl = normalizeWhitespace(pick(listing, ['videoUrl', 'video_url'], '')) || videosFromFolder[0] || ''
   const now = new Date().toISOString()
 
   const property = {
@@ -750,6 +803,9 @@ async function transformFolderToProperty({
     status: normalizeWhitespace(pick(listing, ['status'], 'available')) || 'available',
     featured: Boolean(listing.featured),
     isNew: Boolean(listing.isNew || listing.newListing),
+    noAgency,
+    ...(badges.length > 0 ? { badges } : {}),
+    ...(videoUrl ? { videoUrl } : {}),
     description: {
       en: descriptionEn || descriptionIt,
       cs: descriptionCs || descriptionIt,
@@ -780,6 +836,7 @@ async function transformFolderToProperty({
       folderName,
       slug: finalSlug,
       imageCount: images.length,
+      videoCount: videosFromFolder.length,
       amenityCount: amenities.length,
       droppedImageUrls,
       overLimitImageUrls

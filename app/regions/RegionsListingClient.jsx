@@ -100,7 +100,7 @@ const REGION_CARD_WARNINGS = {
   lazio: {
     en: 'Rome and provincial markets behave differently; old buildings require careful legal and condo due diligence.',
     it: 'Roma e province hanno dinamiche diverse; sugli edifici datati serve una due diligence legale e condominiale accurata.',
-    cs: '?Řím a provincie maji odlišnou dynamiku; u starších domu je nutna pecliva právně i kondominiální kontrola.'
+    cs: '?Řím a provincie maji odlišnou dynamiku; u starších domů je nutna pecliva právně i kondominiální kontrola.'
   },
   sicilia: {
     en: 'Sicily is highly micro-market based: cadastral compliance and exact location matter more than island averages.',
@@ -130,12 +130,12 @@ const REGION_CARD_WARNINGS = {
   puglia: {
     en: 'Trulli and masserie can require complex compliance checks; seasonal rental assumptions must be realistic.',
     it: 'Trulli e masserie possono richiedere controlli complessi di conformità; le stime di affitto stagionale vanno fatte con prudenza.',
-    cs: 'Trulli a masserie mohou vyzadovat slozite kontroly souladu; odhady sezonniho pronajmu je treba nastavit realisticky.'
+    cs: 'Trulli a masserie mohou vyzadovat slozite kontroly souladu; odhady sezonniho pronajmu je třeba nastavit realisticky.'
   },
   umbria: {
     en: 'Rural charm is strong, but resale timing can be longer and technical condition varies greatly by property.',
     it: 'Il fascino rurale è forte, ma i tempi di rivendita possono essere più lunghi e le condizioni tecniche molto variabili.',
-    cs: 'Venkovský charakter je silný, ale doba dalsiho prodeje může být delší a technický stav se hodne liší dům od domu.'
+    cs: 'Venkovský charakter je silný, ale doba dalsiho prodeje může být delší a technický stav se hodne liší dům od domů.'
   },
   'friuli-venezia-giulia': {
     en: 'Border accessibility is excellent, but coastal weather exposure and micro-area dynamics must be assessed precisely.',
@@ -160,7 +160,7 @@ const REGION_CARD_WARNINGS = {
   'trentino-alto-adige': {
     en: 'Mountain quality is high, but local rules, condo bylaws, and winter operating costs require careful planning.',
     it: 'La qualità montana è alta, ma regole locali, regolamenti condominiali e costi invernali richiedono pianificazione accurata.',
-    cs: 'Horská kvalita je vysoké, ale místní pravidla, kondominiální řád a zimní provozní náklady vyžadují pečlivé plánování.'
+    cs: 'Horská kvalita je vysoká, ale místní pravidla, kondominiální řád a zimní provozní náklady vyžadují pečlivé plánování.'
   },
   'valle-d-aosta': {
     en: 'Inventory is limited in top resorts; technical checks and quick decision readiness are critical.',
@@ -461,7 +461,7 @@ export default function RegionsListingClient({ initialRegions }) {
               
 
 <h1 className="font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent px-2">
-  {language === 'cs' ? 'Koup\u011b domu v It\u00e1lii: kter\u00fd region zvolit?' :
+  {language === 'cs' ? 'Koup\u011b domů v It\u00e1lii: kter\u00fd region zvolit?' :
    language === 'it' ? 'Comprare casa in Italia: quale regione scegliere?' :
    'Buying a House in Italy: Which Region Should You Choose?'}
 </h1>
@@ -476,7 +476,7 @@ export default function RegionsListingClient({ initialRegions }) {
 
         <div className="container mx-auto px-6" style={{maxWidth:"1600px"}}>
           <h2 className="font-semibold text-blue-600/80 mb-8 text-center">
-            {language === 'cs' ? 'Koup\u011b domu v It\u00e1lii - Ceny, regiony a dostupn\u00e9 nemovitostí' :
+            {language === 'cs' ? 'Koup\u011b domů v It\u00e1lii - Ceny, regiony a dostupn\u00e9 nemovitostí' :
              language === 'it' ? 'Comprare casa in Italia - Prezzi, regioni e immobili disponibili' :
              'Buying a House in Italy - Prices, Regions, and Available Properties'}
           </h2>
@@ -654,7 +654,7 @@ export default function RegionsListingClient({ initialRegions }) {
                     className="w-full sm:w-auto max-w-full whitespace-normal break-words text-center leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base transition-all duration-300 shadow-lg"
                     onClick={() => window.open('https://www.dpbolvw.net/click-101629596-15735418', '_blank')}
                   >
-                    {language === 'cs' ? 'Najit ubytovani (Booking.com)' : language === 'it' ? 'Trova alloggio (Booking.com)' : 'Find Accommodation (Booking.com)'}
+                    {language === 'cs' ? 'Najít ubytovani (Booking.com)' : language === 'it' ? 'Trova alloggio (Booking.com)' : 'Find Accommodation (Booking.com)'}
                   </Button>
                   <Button
                     size="lg"

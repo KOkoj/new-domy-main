@@ -410,25 +410,25 @@ export default function CheapTravelItalyArticlePage() {
   const t = CONTENT[language] || CONTENT.cs
   const sidebarTitle =
     language === 'cs'
-      ? 'Doporucena nabidka partnera'
+      ? 'Doporucena nabídka partnera'
       : language === 'it'
         ? 'Offerta partner consigliata'
         : 'Recommended Partner Offer'
   const sidebarText =
     language === 'cs'
-      ? 'Overene rezervace a cestovni nabidky.'
+      ? 'Overene rezervace a cestovni nabídky.'
       : language === 'it'
         ? 'Prenotazioni verificate e in sicurezza.'
         : 'Verified booking and travel deal.'
   const carCta =
     language === 'cs'
-      ? { miniText: 'Hledate pronajem auta pro cestu po Italii?', button: 'Najit pronajem auta' }
+      ? { miniText: 'Hledáte pronájem auta pro cestu po Itálii?', button: 'Najít pronájem auta' }
       : language === 'it'
         ? { miniText: "Cerchi un'auto a noleggio per il viaggio?", button: 'Cerca auto a noleggio' }
         : { miniText: 'Looking for a rental car for your route?', button: 'Find Car Rental' }
   const flightCta =
     language === 'cs'
-      ? { miniText: 'Hledate lety na vase terminy?', button: 'Hledat lety' }
+      ? { miniText: 'Hledáte lety na vase terminy?', button: 'Hledat lety' }
       : language === 'it'
         ? { miniText: 'Cerchi voli per le tue date?', button: 'Cerca voli' }
         : { miniText: 'Looking for flights for your dates?', button: 'Search Flights' }
@@ -436,7 +436,7 @@ export default function CheapTravelItalyArticlePage() {
     language === 'cs'
       ? {
           src: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=1400&q=80',
-          alt: 'Vlak a autobus pro cestovani po Italii',
+          alt: 'Vlak a autobus pro cestování po Itálii',
           caption: 'Nejlepsi pomer ceny a flexibility obvykle prinese kombinace vlaku, autobusu a vcasne rezervace.'
         }
       : language === 'it'
@@ -460,7 +460,7 @@ export default function CheapTravelItalyArticlePage() {
           <div className="max-w-[1200px] mx-auto lg:grid lg:grid-cols-[minmax(0,1fr)_200px] lg:gap-8 xl:gap-12">
             <article className="max-w-4xl lg:max-w-none space-y-8">
             <Button asChild variant="outline" className="inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-700">
-              <Link href="/clanky/pruvodce-italii">
+              <Link href="/články/průvodce-italii">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 {t.navArticles}
               </Link>

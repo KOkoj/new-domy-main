@@ -7,7 +7,7 @@ const t = {
   cs: {
     badge: 'Zdarma navždy',
     heading: 'Klub pro klienty',
-    sub: 'Exkluzivní prostor pro každého, kdo uvažuje o nemovitosti v Itálii.',
+    sub: 'Exkluzivní prostor pro každého, kdo uvažuje o nemovitostí v Itálii.',
     free: 'Registrace je zcela bezplatná a zůstane bezplatná navždy — žádné skryté poplatky, žádné předplatné.',
     benefitsTitle: 'Co získáte přístupem do klubu',
     benefits: [
