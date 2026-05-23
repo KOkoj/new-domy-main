@@ -263,7 +263,7 @@ export async function GET(request, { params }) {
     }
 
     // Inquiries endpoints
-    if (path[0] === 'inquiries') {
+    if (path[0] === 'inquiries' && path.length === 1) {
       const access = await requireAdminApiAccess()
       if (!access.ok) return access.response
 
@@ -388,7 +388,7 @@ export async function POST(request, { params }) {
     }
 
     // Submit inquiry
-    if (path[0] === 'inquiries') {
+    if (path[0] === 'inquiries' && path.length === 1) {
       if (!supabase) return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
       
       const { listingId, name, email, message, propertyTitle, phone, type = 'property' } = body
