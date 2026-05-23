@@ -81,6 +81,25 @@ export async function POST(request) {
       .eq('id', inquiryId)
 
     if (updateError) {
+      const isMissingRespondedColumn =
+        updateError.code === 'PGRST204' ||
+        String(updateError.message || '').includes("'responded' column") ||
+        String(updateError.message || '').includes('responded')
+
+      if (isMissingRespondedColumn) {
+        console.warn(
+          '[INQUIRY RESPONSE] Email sent, but inquiry status was not persisted because the responded column is missing.'
+        )
+
+        return NextResponse.json({
+          success: true,
+          provider: result.provider,
+          statusCode: result.statusCode,
+          warning:
+            'Response email sent, but the inquiry status could not be saved because the responded column is missing in Supabase.'
+        })
+      }
+
       return NextResponse.json({ error: updateError.message }, { status: 500 })
     }
 
