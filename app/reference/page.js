@@ -21,7 +21,7 @@ const TESTIMONIALS = [
   {
     name: 'Marcela Dejlová',
     tag: 'Itálie',
-    quote: <>Děkuji za <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">perfektní servis</span>, pomoc při koupí domů včetně všech nezbytných úředních procedur, osobní asistenci a <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">neuvěřitelně vstřícné, milé a přátelské jednání</span>. Zdravím z Itálie.</>,
+    quote: <>Děkuji za <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">perfektní servis</span>, pomoc při koupi domu včetně všech nezbytných úředních procedur, osobní asistenci a <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">neuvěřitelně vstřícné, milé a přátelské jednání</span>. Zdravím z Itálie.</>,
   },
 ]
 
