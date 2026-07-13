@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getPropertyBySlug } from '@/lib/propertyApi'
-import { getPropertyImageList } from '@/lib/getPropertyImage'
+import { transformPropertyForClient } from '@/lib/propertyTransform'
 import PropertyDetailClient from './PropertyDetailClient'
 
 export const dynamic = 'force-dynamic'
@@ -138,32 +138,10 @@ export default async function PropertyDetailPage({ params }) {
     notFound()
   }
 
-  // Mirror the transform the client component used to do on mount, so the
-  // shape passed in matches what the existing UI expects.
-  const property = {
-    _id: sanityProperty._id,
-    title: sanityProperty.title,
-    slug: sanityProperty.slug,
-    propertyType: sanityProperty.propertyType,
-    price: sanityProperty.price,
-    description: sanityProperty.description,
-    seoTitle: sanityProperty.seoTitle,
-    seoDescription: sanityProperty.seoDescription,
-    specifications: sanityProperty.specifications,
-    location: sanityProperty.location,
-    images: getPropertyImageList(sanityProperty),
-    mainImage: 0,
-    amenities: sanityProperty.amenities || [],
-    developer: sanityProperty.developer,
-    status: sanityProperty.status || 'available',
-    featured: sanityProperty.featured || false,
-    isNew: Boolean(sanityProperty.isNew || sanityProperty.newListing),
-    noAgency: Boolean(
-      sanityProperty.noAgency ||
-      sanityProperty.no_agency ||
-      sanityProperty.badges?.includes('no-agency')
-    ),
-    videoUrl: sanityProperty.videoUrl || sanityProperty.video_url || ''
+  const property = transformPropertyForClient(sanityProperty)
+
+  if (!property) {
+    notFound()
   }
 
   return (

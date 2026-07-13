@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import PropertyImage from '@/components/PropertyImage'
-import { getPropertyImageList, PROPERTY_IMAGE_FALLBACK } from '@/lib/getPropertyImage'
+import { PROPERTY_IMAGE_FALLBACK } from '@/lib/getPropertyImage'
 import { useParams } from 'next/navigation'
-import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, User, X, ChevronLeft, ChevronRight, ZoomIn, Menu } from 'lucide-react'
+import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, User, X, ChevronLeft, ChevronRight, ZoomIn, Menu, Play } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -22,6 +22,7 @@ import AuthModal from '../../../components/AuthModal'
 import Footer from '@/components/Footer'
 import NewPropertyRibbon, { getNewPropertyLabel } from '@/components/NewPropertyRibbon'
 import NoAgencyBadge, { getNoAgencyLabel } from '@/components/NoAgencyBadge'
+import { buildGalleryMedia, transformPropertyForClient } from '@/lib/propertyTransform'
 
 function getPropertyStatusLabel(status, language) {
   if (status === 'sold') {
@@ -56,21 +57,30 @@ function isLocalAsset(url) {
   return typeof url === 'string' && url.startsWith('/')
 }
 
-function ImageGallery({ images, title, status, language, isNew, noAgency }) {
+function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgency }) {
+  const media = useMemo(() => buildGalleryMedia(images, videoUrl), [images, videoUrl])
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
   const [failedIndices, setFailedIndices] = useState(() => new Set())
+  const videoRef = useRef(null)
   const statusLabel = getPropertyStatusLabel(status, language)
+
+  const imageCount = media.filter((item) => item.type === 'image').length
+  const hasVideo = media.some((item) => item.type === 'video')
+  const videoLabel = language === 'cs' ? 'Videoprohlídka' : language === 'it' ? 'Video tour' : 'Video tour'
 
   useEffect(() => { setMounted(true) }, [])
 
-  // When the underlying images array changes (e.g. navigating between
-  // properties), drop any "this slot failed" marks so the new property gets a
-  // clean slate and isn't punished for the previous property's dead URLs.
   useEffect(() => {
     setFailedIndices((prev) => (prev.size === 0 ? prev : new Set()))
-  }, [images])
+  }, [images, videoUrl])
+
+  useEffect(() => {
+    if (!lightboxOpen && videoRef.current) {
+      videoRef.current.pause()
+    }
+  }, [lightboxOpen, lightboxIndex])
 
   const markFailed = useCallback((idx) => {
     setFailedIndices((prev) => {
@@ -81,15 +91,12 @@ function ImageGallery({ images, title, status, language, isNew, noAgency }) {
     })
   }, [])
 
-  // Single source of truth for "what URL should slot `idx` actually display".
-  // If the slot has reported an upstream failure, every component that renders
-  // it (hero, thumbnail mosaic, lightbox main, lightbox strip) collapses to
-  // the same fallback URL, so they can never disagree the way the hero used
-  // to disagree with the lightbox.
   const srcAt = useCallback((idx) => {
+    const item = media[idx]
+    if (!item || item.type !== 'image') return PROPERTY_IMAGE_FALLBACK
     if (failedIndices.has(idx)) return PROPERTY_IMAGE_FALLBACK
-    return images[idx]
-  }, [failedIndices, images])
+    return item.src
+  }, [failedIndices, media])
 
   const openLightbox = (index) => {
     setLightboxIndex(index)
@@ -98,24 +105,24 @@ function ImageGallery({ images, title, status, language, isNew, noAgency }) {
 
   const closeLightbox = () => setLightboxOpen(false)
 
-  const prevImage = useCallback(() => {
-    setLightboxIndex((i) => (i - 1 + images.length) % images.length)
-  }, [images.length])
+  const prevItem = useCallback(() => {
+    setLightboxIndex((i) => (i - 1 + media.length) % media.length)
+  }, [media.length])
 
-  const nextImage = useCallback(() => {
-    setLightboxIndex((i) => (i + 1) % images.length)
-  }, [images.length])
+  const nextItem = useCallback(() => {
+    setLightboxIndex((i) => (i + 1) % media.length)
+  }, [media.length])
 
   useEffect(() => {
     if (!lightboxOpen) return
     const onKey = (e) => {
-      if (e.key === 'ArrowLeft') prevImage()
-      else if (e.key === 'ArrowRight') nextImage()
+      if (e.key === 'ArrowLeft') prevItem()
+      else if (e.key === 'ArrowRight') nextItem()
       else if (e.key === 'Escape') closeLightbox()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [lightboxOpen, prevImage, nextImage])
+  }, [lightboxOpen, prevItem, nextItem])
 
   useEffect(() => {
     if (lightboxOpen) {
@@ -126,7 +133,51 @@ function ImageGallery({ images, title, status, language, isNew, noAgency }) {
     return () => { document.body.style.overflow = '' }
   }, [lightboxOpen])
 
-  if (!images || images.length === 0) {
+  const renderVideoTile = (index, className = '') => (
+    <div
+      className={`relative overflow-hidden cursor-pointer group bg-slate-900 ${className}`}
+      onClick={() => openLightbox(index)}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-black" />
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-white">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/15 ring-2 ring-white/40 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+          <Play className="h-7 w-7 fill-white text-white ml-1" />
+        </div>
+        <span className="text-xs font-semibold uppercase tracking-[0.18em]">{videoLabel}</span>
+      </div>
+    </div>
+  )
+
+  const renderMediaTile = (index, options = {}) => {
+    const item = media[index]
+    if (!item) return null
+
+    if (item.type === 'video') {
+      return renderVideoTile(index, options.className || '')
+    }
+
+    return (
+      <div
+        className={`relative overflow-hidden cursor-zoom-in group ${options.className || ''}`}
+        onClick={() => openLightbox(index)}
+      >
+        <PropertyImage
+          key={srcAt(index)}
+          src={srcAt(index)}
+          alt={options.alt || `${title} - ${index + 1}`}
+          fill
+          sizes={options.sizes || '33vw'}
+          priority={options.priority}
+          onUpstreamError={() => markFailed(index)}
+          className={options.imageClassName || 'object-cover transition-transform duration-500 group-hover:scale-[1.05]'}
+        />
+        {options.overlay}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
+      </div>
+    )
+  }
+
+  if (!media || media.length === 0) {
     return (
       <div className="aspect-[4/3] w-full bg-gray-200 rounded-xl flex items-center justify-center">
         <span className="text-gray-400">No images available</span>
@@ -134,103 +185,106 @@ function ImageGallery({ images, title, status, language, isNew, noAgency }) {
     )
   }
 
+  const badgeOverlay = (
+    <>
+      {isNew && <NewPropertyRibbon language={language} />}
+      {noAgency && (
+        <div className="absolute right-4 top-4 z-20 pointer-events-none">
+          <NoAgencyBadge language={language} />
+        </div>
+      )}
+      {statusLabel && (
+        <div className="absolute left-4 top-4 z-10">
+          <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg ${status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'}`}>
+            {statusLabel}
+          </span>
+        </div>
+      )}
+    </>
+  )
+
+  const heroIndex = 0
+  const videoIndex = media.findIndex((item) => item.type === 'video')
+  const mosaicSlots = [1, 2, 3, 4]
+
   return (
     <>
-      {/* Gallery mosaic */}
       <div className="relative">
-        {images.length === 1 ? (
-          /* Single image — full width */
+        {media.length === 1 ? (
           <div
             className="relative aspect-[4/3] overflow-hidden rounded-xl cursor-zoom-in group"
             onClick={() => openLightbox(0)}
           >
-            <PropertyImage
-              key={srcAt(0)}
-              src={srcAt(0)}
-              alt={title}
-              fill
-              sizes="(min-width: 1024px) 66vw, 100vw"
-              priority={isLocalAsset(images[0])}
-              onUpstreamError={() => markFailed(0)}
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            />
-            {isNew && <NewPropertyRibbon language={language} />}
-            {noAgency && (
-              <div className="absolute right-4 top-4 z-20 pointer-events-none">
-                <NoAgencyBadge language={language} />
-              </div>
-            )}
-            {statusLabel && (
-              <div className="absolute left-4 top-4 z-10">
-                <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg ${status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'}`}>
-                  {statusLabel}
-                </span>
-              </div>
-            )}
-          </div>
-        ) : (
-          /* Multi-image mosaic: hero left + grid right */
-          <div className="grid grid-cols-[3fr_2fr] gap-2 rounded-xl overflow-hidden h-[260px] sm:h-[480px]">
-            {/* Hero */}
-            <div
-              className="relative overflow-hidden cursor-zoom-in group h-full"
-              onClick={() => openLightbox(0)}
-            >
+            {media[0].type === 'video' ? (
+              renderVideoTile(0, 'h-full rounded-xl')
+            ) : (
               <PropertyImage
                 key={srcAt(0)}
                 src={srcAt(0)}
                 alt={title}
                 fill
-                sizes="(min-width: 640px) 58vw, 75vw"
-                priority={isLocalAsset(images[0])}
+                sizes="(min-width: 1024px) 66vw, 100vw"
+                priority={isLocalAsset(media[0].src)}
                 onUpstreamError={() => markFailed(0)}
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
-              {isNew && <NewPropertyRibbon language={language} />}
-              {noAgency && (
-                <div className="absolute right-4 top-4 z-20 pointer-events-none">
-                  <NoAgencyBadge language={language} />
-                </div>
+            )}
+            {badgeOverlay}
+          </div>
+        ) : (
+          <div className="grid grid-cols-[3fr_2fr] gap-2 rounded-xl overflow-hidden h-[260px] sm:h-[480px]">
+            <div
+              className="relative overflow-hidden cursor-zoom-in group h-full"
+              onClick={() => openLightbox(heroIndex)}
+            >
+              {media[heroIndex].type === 'video' ? (
+                renderVideoTile(heroIndex, 'h-full')
+              ) : (
+                <PropertyImage
+                  key={srcAt(heroIndex)}
+                  src={srcAt(heroIndex)}
+                  alt={title}
+                  fill
+                  sizes="(min-width: 640px) 58vw, 75vw"
+                  priority={isLocalAsset(media[heroIndex].src)}
+                  onUpstreamError={() => markFailed(heroIndex)}
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
               )}
-              {statusLabel && (
-                <div className="absolute left-4 top-4 z-10">
-                  <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg ${status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'}`}>
-                    {statusLabel}
-                  </span>
-                </div>
-              )}
+              {badgeOverlay}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             </div>
 
-            {/* Right column: 2 stacked on mobile, 2×2 grid on sm+ */}
             <div className="grid grid-cols-1 grid-rows-2 sm:grid-cols-2 sm:grid-rows-2 gap-2 h-full">
-              {[1, 2, 3, 4].map((slot) => {
-                const img = images[slot]
+              {mosaicSlots.map((slot) => {
                 const mobileHide = slot >= 3 ? 'hidden sm:block' : ''
-                if (!img) {
+                const item = media[slot]
+
+                if (!item) {
+                  if (slot === 4 && hasVideo && videoIndex >= 0) {
+                    return (
+                      <div key={`video-slot-${slot}`} className={`h-full ${mobileHide}`}>
+                        {renderVideoTile(videoIndex, 'h-full')}
+                      </div>
+                    )
+                  }
                   return <div key={slot} className={`bg-gray-100 ${mobileHide}`} />
                 }
-                const showOverlay = slot === 4 && images.length > 5
+
+                const showOverlay = slot === 4 && media.length > 5
                 return (
-                  <div
-                    key={slot}
-                    className={`relative overflow-hidden cursor-zoom-in group ${mobileHide}`}
-                    onClick={() => openLightbox(slot)}
-                  >
-                    <PropertyImage
-                      src={srcAt(slot)}
-                      alt={`${title} - ${slot + 1}`}
-                      fill
-                      sizes="(min-width: 640px) 20vw, 33vw"
-                      onUpstreamError={() => markFailed(slot)}
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300" />
-                    {showOverlay && (
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center pointer-events-none">
-                        <span className="text-white text-lg font-semibold">+{images.length - 5}</span>
-                      </div>
-                    )}
+                  <div key={slot} className={`h-full ${mobileHide}`}>
+                    {item.type === 'video'
+                      ? renderVideoTile(slot, 'h-full')
+                      : renderMediaTile(slot, {
+                          alt: `${title} - ${slot + 1}`,
+                          sizes: '(min-width: 640px) 20vw, 33vw',
+                          overlay: showOverlay ? (
+                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center pointer-events-none">
+                              <span className="text-white text-lg font-semibold">+{media.length - 5}</span>
+                            </div>
+                          ) : null,
+                        })}
                   </div>
                 )
               })}
@@ -238,30 +292,33 @@ function ImageGallery({ images, title, status, language, isNew, noAgency }) {
           </div>
         )}
 
-        {/* "Show all photos" button */}
-        {images.length > 1 && (
+        {media.length > 1 && (
           <button
             onClick={() => openLightbox(0)}
             className="absolute bottom-4 right-4 z-10 flex items-center gap-2 rounded-lg bg-white/95 border border-gray-200 px-4 py-2 text-sm font-medium text-gray-800 shadow-md hover:bg-white hover:shadow-lg transition-all duration-200"
           >
             <ZoomIn className="h-4 w-4" />
             {language === 'cs'
-              ? `Všechny fotky (${images.length})`
+              ? hasVideo
+                ? `Všechny fotky a video (${imageCount + 1})`
+                : `Všechny fotky (${imageCount})`
               : language === 'it'
-              ? `Tutte le foto (${images.length})`
-              : `All ${images.length} photos`}
+              ? hasVideo
+                ? `Tutte le foto e il video (${imageCount + 1})`
+                : `Tutte le foto (${imageCount})`
+              : hasVideo
+              ? `All photos and video (${imageCount + 1})`
+              : `All ${imageCount} photos`}
           </button>
         )}
       </div>
 
-      {/* Lightbox */}
       {lightboxOpen && mounted && createPortal(
         <div
           style={{ position: 'fixed', inset: 0, zIndex: 9999 }}
           className="flex items-center justify-center bg-black/90"
           onClick={closeLightbox}
         >
-          {/* Close */}
           <button
             className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/25 transition-colors"
             onClick={closeLightbox}
@@ -270,60 +327,74 @@ function ImageGallery({ images, title, status, language, isNew, noAgency }) {
             <X className="h-5 w-5" />
           </button>
 
-          {/* Counter */}
           <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 rounded-full bg-black/50 px-4 py-1.5 text-sm text-white">
-            {lightboxIndex + 1} / {images.length}
+            {lightboxIndex + 1} / {media.length}
           </div>
 
-          {/* Prev */}
-          {images.length > 1 && (
+          {media.length > 1 && (
             <button
               className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-gray-900 shadow-xl hover:bg-gray-100 active:scale-95 transition-all"
-              onClick={(e) => { e.stopPropagation(); prevImage() }}
-              aria-label="Previous image"
+              onClick={(e) => { e.stopPropagation(); prevItem() }}
+              aria-label="Previous"
             >
               <ChevronLeft className="h-7 w-7" />
             </button>
           )}
 
-          {/* Image */}
           <div
             className="relative max-h-[80vh] max-w-[90vw] w-full h-full flex items-center justify-center pb-20"
             onClick={(e) => e.stopPropagation()}
           >
-            <PropertyImage
-              key={lightboxIndex}
-              src={srcAt(lightboxIndex)}
-              alt={`${title} - Image ${lightboxIndex + 1}`}
-              fill
-              sizes="90vw"
-              className="object-contain"
-              priority={isLocalAsset(images[lightboxIndex])}
-              onUpstreamError={() => markFailed(lightboxIndex)}
-            />
+            {media[lightboxIndex]?.type === 'video' ? (
+              <video
+                ref={videoRef}
+                key={media[lightboxIndex].src}
+                controls
+                autoPlay
+                playsInline
+                preload="metadata"
+                className="max-h-[75vh] max-w-[90vw] w-full rounded-xl bg-black shadow-2xl"
+              >
+                <source src={media[lightboxIndex].src} type="video/mp4" />
+                {language === 'cs'
+                  ? 'Váš prohlížeč nepodporuje přehrávání videa.'
+                  : language === 'it'
+                  ? 'Il tuo browser non supporta la riproduzione video.'
+                  : 'Your browser does not support video playback.'}
+              </video>
+            ) : (
+              <PropertyImage
+                key={lightboxIndex}
+                src={srcAt(lightboxIndex)}
+                alt={`${title} - Image ${lightboxIndex + 1}`}
+                fill
+                sizes="90vw"
+                className="object-contain"
+                priority={isLocalAsset(media[lightboxIndex]?.src)}
+                onUpstreamError={() => markFailed(lightboxIndex)}
+              />
+            )}
           </div>
 
-          {/* Next */}
-          {images.length > 1 && (
+          {media.length > 1 && (
             <button
               className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white text-gray-900 shadow-xl hover:bg-gray-100 active:scale-95 transition-all"
-              onClick={(e) => { e.stopPropagation(); nextImage() }}
-              aria-label="Next image"
+              onClick={(e) => { e.stopPropagation(); nextItem() }}
+              aria-label="Next"
             >
               <ChevronRight className="h-7 w-7" />
             </button>
           )}
 
-          {/* Thumbnail strip */}
-          {images.length > 1 && (
+          {media.length > 1 && (
             <div
               className="absolute bottom-0 left-0 right-0 z-10 bg-black/60 px-4 py-3"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex gap-2 overflow-x-auto pb-1 justify-center">
-                {images.map((img, idx) => (
+                {media.map((item, idx) => (
                   <button
-                    key={idx}
+                    key={`${item.type}-${item.src}-${idx}`}
                     onClick={() => setLightboxIndex(idx)}
                     className={`relative flex-shrink-0 h-14 w-20 overflow-hidden rounded-sm transition-all duration-200 ${
                       idx === lightboxIndex
@@ -331,14 +402,20 @@ function ImageGallery({ images, title, status, language, isNew, noAgency }) {
                         : 'opacity-40 hover:opacity-70'
                     }`}
                   >
-                    <PropertyImage
-                      src={srcAt(idx)}
-                      alt={`${title} - ${idx + 1}`}
-                      fill
-                      sizes="80px"
-                      onUpstreamError={() => markFailed(idx)}
-                      className="object-cover"
-                    />
+                    {item.type === 'video' ? (
+                      <div className="absolute inset-0 flex items-center justify-center bg-slate-900">
+                        <Play className="h-5 w-5 text-white fill-white" />
+                      </div>
+                    ) : (
+                      <PropertyImage
+                        src={srcAt(idx)}
+                        alt={`${title} - ${idx + 1}`}
+                        fill
+                        sizes="80px"
+                        onUpstreamError={() => markFailed(idx)}
+                        className="object-cover"
+                      />
+                    )}
                   </button>
                 ))}
               </div>
@@ -552,26 +629,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
         const response = await fetch(`/api/properties/${slug}`)
         if (response.ok) {
           const sanityProperty = await response.json()
-          
-          // Transform Sanity property to match expected format
-          const transformedProperty = {
-            _id: sanityProperty._id,
-            title: sanityProperty.title,
-            slug: sanityProperty.slug,
-            propertyType: sanityProperty.propertyType,
-            price: sanityProperty.price,
-            description: sanityProperty.description,
-            specifications: sanityProperty.specifications,
-            location: sanityProperty.location,
-            images: getPropertyImageList(sanityProperty),
-            amenities: sanityProperty.amenities || [],
-            developer: sanityProperty.developer,
-            status: sanityProperty.status || 'available',
-            featured: sanityProperty.featured || false,
-            isNew: Boolean(sanityProperty.isNew || sanityProperty.newListing),
-            noAgency: Boolean(sanityProperty.noAgency || sanityProperty.no_agency || sanityProperty.badges?.includes('no-agency')),
-            videoUrl: sanityProperty.videoUrl || sanityProperty.video_url || ''
-          }
+          const transformedProperty = transformPropertyForClient(sanityProperty)
           
           setProperty(transformedProperty)
           
@@ -1059,8 +1117,9 @@ export default function PropertyDetailClient({ initialProperty = null }) {
             </div>
 
             {/* Image Gallery */}
-            <ImageGallery 
-              images={property.images || []} 
+            <MediaGallery 
+              images={property.images || []}
+              videoUrl={property.videoUrl}
               title={getLocalizedText(property.title, 'Property')} 
               status={property.status}
               language={language}
@@ -1120,31 +1179,6 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                 </p>
               </CardContent>
             </Card>
-
-            {/* Video tour */}
-            {property.videoUrl && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>
-                    {language === 'cs' ? 'Videoprohl\u00eddka' : language === 'it' ? 'Video tour' : 'Video tour'}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <video
-                    controls
-                    preload="metadata"
-                    className="w-full overflow-hidden rounded-xl bg-black shadow-sm"
-                  >
-                    <source src={property.videoUrl} type="video/mp4" />
-                    {language === 'cs'
-                      ? 'V\u00e1\u0161 prohl\u00ed\u017ee\u010d nepodporuje p\u0159ehr\u00e1v\u00e1n\u00ed videa.'
-                      : language === 'it'
-                      ? 'Il tuo browser non supporta la riproduzione video.'
-                      : 'Your browser does not support video playback.'}
-                  </video>
-                </CardContent>
-              </Card>
-            )}
 
             {/* Amenities */}
             {property.amenities && property.amenities.length > 0 && (
