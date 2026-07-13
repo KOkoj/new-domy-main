@@ -15,6 +15,7 @@
         "check:encoding": "node scripts/check-encoding.cjs",
         "import:properties": "node scripts/import-properties.cjs",
         "seed:properties": "node scripts/seed-properties-to-supabase.cjs",
+        "audit:images": "node scripts/audit-property-images.cjs",
         "type-check": "node scripts/type-check.cjs",
         "test": "node --test tests/*.test.cjs",
         "i18n:sync": "node scripts/sync-cs-translations.cjs",
