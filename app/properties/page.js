@@ -37,6 +37,12 @@ import PropertyCard from './PropertyCard';
 
 const AuthModal = dynamic(() => import('../../components/AuthModal'), { ssr: false });
 
+const getPropertyTimestamp = (property) => {
+  const value = property?.createdAt || property?.updatedAt || property?._createdAt || property?._updatedAt;
+  const timestamp = Date.parse(value || '');
+  return Number.isFinite(timestamp) ? timestamp : 0;
+};
+
 // Dynamically import map components to avoid SSR issues
 const MapComponent = dynamic(() => import('../../components/PropertyMap'), {
   loading: () => (
@@ -278,7 +284,11 @@ export default function PropertiesPage() {
               slug: prop.slug?.current || prop.slug || '',
               sanityId: prop._id,
               status: prop.status || 'available',
-              sourceUrl: prop.sourceUrl || ''
+              sourceUrl: prop.sourceUrl || '',
+              createdAt: prop._createdAt || prop.createdAt || '',
+              updatedAt: prop._updatedAt || prop.updatedAt || '',
+              isNew: Boolean(prop.isNew || prop.newListing),
+              noAgency: Boolean(prop.noAgency || prop.no_agency || prop.badges?.includes('no-agency'))
             };
           });
 
@@ -430,7 +440,7 @@ export default function PropertiesPage() {
         return sorted.sort((a, b) => b.price - a.price);
       case 'newest':
       default:
-        return sorted.sort((a, b) => b.id - a.id);
+        return sorted.sort((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a));
     }
   }, [filteredProperties, sortBy]);
 

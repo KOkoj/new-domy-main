@@ -1,0 +1,76 @@
+{
+  "slug": "liguria-appartamento-varazze-san-giacomo-vista-mare",
+  "title_it": "Appartamento su due livelli con terrazzi vista mare a Varazze",
+  "title_en": "Two-Level Apartment with Sea-View Terraces in Varazze",
+  "title_cs": "Mezonetovy byt s terasami a výhledem na more ve Varazze",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Liguria",
+  "city_it": "Varazze",
+  "city_en": "Varazze",
+  "city_cs": "Varazze",
+  "address_it": "Via San Giacomo 23C, Piani di San Giacomo, Varazze (SV), Liguria",
+  "address_en": "Via San Giacomo 23C, Piani di San Giacomo, Varazze (SV), Liguria",
+  "address_cs": "Via San Giacomo 23C, Piani di San Giacomo, Varazze (SV), Ligurie",
+  "price": 320000,
+  "rooms": 4,
+  "bedrooms": 3,
+  "bathrooms": 1,
+  "square_meters": 128,
+  "parking": 2,
+  "features": [
+    {
+      "it": "Appartamento di circa 128 m2 su due livelli",
+      "en": "Apartment of approx. 128 sqm over two levels",
+      "cs": "Byt cca 128 m2 ve dvou úrovních"
+    },
+    {
+      "it": "Posizione dominante ai Piani di San Giacomo",
+      "en": "Dominant position in Piani di San Giacomo",
+      "cs": "Dominantni poloha v Piani di San Giacomo"
+    },
+    {
+      "it": "Ampio terrazzo con vista mare",
+      "en": "Large terrace with sea view",
+      "cs": "Velká terasa s výhledem na moře"
+    },
+    {
+      "it": "Ingresso indipendente",
+      "en": "Independent entrance",
+      "cs": "Samostatný vstup"
+    },
+    {
+      "it": "Tre camere potenziali e bagno finestrato",
+      "en": "Up to three bedrooms and windowed bathroom",
+      "cs": "Možnost tri ložnic a koupelna s oknem"
+    },
+    {
+      "it": "Due posti auto scoperti di proprieta",
+      "en": "Two private uncovered parking spaces",
+      "cs": "Dve soukroma venkovni parkovaci mista"
+    }
+  ],
+  "description_it": "A Varazze, nella zona dei Piani di San Giacomo e a pochi minuti dal mare, proponiamo un appartamento su due livelli di circa 128 m2, inserito in un piccolo caseggiato con ingresso indipendente.\n\nIl piano principale ospita una zona giorno ampia con angolo cottura e accesso a un grande terrazzo con vista mare. La camera esposta a nord offre un secondo terrazzo privato e il bagno e finestrato con doccia. Al piano superiore si trova una spaziosa camera matrimoniale, divisibile per ricavare una terza camera, oltre a ripostiglio e locale sgombero.\n\nLa proprieta e in buone condizioni, dispone di riscaldamento autonomo e include due posti auto scoperti in un piazzale accessibile tramite cancello e sbarra elettrica. Ottima come prima casa, casa vacanze o investimento per affitti brevi.",
+  "description_en": "In Varazze, in the Piani di San Giacomo area and a few minutes from the sea, we offer a two-level apartment of approx. 128 sqm, set in a small building with independent entrance.\n\nThe main level includes a spacious living area with kitchenette and access to a large sea-view terrace. The north-facing bedroom has a second private terrace, and the bathroom is windowed with shower. Upstairs there is a spacious double bedroom, which can be divided to create a third bedroom, plus a storage room and utility space.\n\nThe property is in good condition, has independent heating, and includes two private uncovered parking spaces in a forecourt accessible through a gate and electric barrier. Excellent as a main home, holiday home, or short-rental investment.",
+  "description_cs": "Ve Varazze, v oblasti Piani di San Giacomo a nekolik minut od more, nabizime mezonetovy byt o plose cca 128 m2 v malem dome se samostatnym vstupem.\n\nHlavni uroven zahrnuje prostornou obytnou cast s kuchynskym koutem a vstupem na velkou terasu s výhledem na more. Loznice orientovana na sever ma druhou soukromou terasu a koupelna je s oknem a sprchou. V hornim patre je prostorna dvouluzkova loznice, kterou lze rozdelit a vytvorit treti loznici, dale komora a technicky/odkladaci prostor.\n\nNemovitost je v dobrem stavu, ma samostatne topeni a zahrnuje dve soukroma venkovni parkovaci mista na plose pristupne pres branu a elektrickou zavoru. Vhodne jako hlavní bydleni, dovolenkovy byt nebo investice pro kratkodobe pronajmy.",
+  "seo_title_it": "Appartamento vista mare in vendita a Varazze San Giacomo",
+  "seo_title_en": "Sea-View Apartment for Sale in Varazze San Giacomo",
+  "seo_title_cs": "Byt s výhledem na more na prodej ve Varazze San Giacomo",
+  "seo_description_it": "Appartamento di 128 m2 a Varazze su due livelli, terrazzi vista mare, ingresso indipendente, 3 camere potenziali e 2 posti auto.",
+  "seo_description_en": "128 sqm two-level apartment in Varazze with sea-view terraces, independent entrance, up to 3 bedrooms, and 2 parking spaces.",
+  "seo_description_cs": "Mezonetovy byt 128 m2 ve Varazze s terasami a výhledem na more, samostatnym vstupem, moznosti 3 loznic a 2 parkovacimi misty.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "varazze",
+    "san giacomo",
+    "vista mare",
+    "terrazzo",
+    "appartamento",
+    "liguria"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/119903200/",
+  "lat": 44.3783,
+  "lng": 8.6237,
+  "image_urls": []
+}

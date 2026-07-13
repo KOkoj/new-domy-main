@@ -2,7 +2,7 @@ import JsonLd from '@/components/seo/JsonLd'
 import { getGuideSeo } from '@/lib/seo/contentPages'
 import { buildArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
 
-const seo = getGuideSeo('rekonstrukce-domu-v-italii')
+const seo = getGuideSeo('rekonstrukce-domů-v-italii')
 
 export const metadata = buildArticleMetadata(seo)
 

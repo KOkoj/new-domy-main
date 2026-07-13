@@ -17,8 +17,7 @@ import { REGION_CURIOSITIES } from '../regionCuriosities'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 
 const DEFAULT_BOOKING_LINK = 'https://www.dpbolvw.net/click-101629596-15735418'
-const REGION_WIDGET_LINK = 'https://www.dpbolvw.net/click-101629596-17122707'
-const REGION_WIDGET_IMAGE = 'https://www.awltovhc.com/image-101629596-17122707'
+const REGION_CAR_RENTAL_LINK = 'https://www.tkqlhce.com/click-101629596-17122732'
 const REGION_BOOKING_LINKS = {
   lombardia:
     'https://www.booking.com/searchresults.cs.html?aid=1522416&label=affnetcj-15735418_pub-7711899_site-101629596_pname-Creavita+sro_clkid-_cjevent-23f68d511e0e11f183fd00400a18ba73&lang=cs&sid=f9245db3ab66c6aaf5f923e76887184f&sb=1&sb_lp=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.cs.html%3Faid%3D1522416%26label%3Daffnetcj-15735418_pub-7711899_site-101629596_pname-Creavita%2520sro_clkid-_cjevent-23f68d511e0e11f183fd00400a18ba73%26sid%3Df9245db3ab66c6aaf5f923e76887184f%26sb_price_type%3Dtotal%26&ss=Riva+del+Garda%2C+Trentino-Alto+Adige%2C+Italia&is_ski_area=&checkin_year=&checkin_month=&checkout_year=&checkout_month=&flex_window=0&efdco=1&group_adults=2&group_children=0&no_rooms=1&b_h4u_keep_filters=&from_sf=1&ss_raw=lago+di+garda&ac_position=1&ac_langcode=it&ac_click_type=b&ac_meta=GhA2YTdmNTcxNGExNmIwMjlmIAEoATICaXQ6DWxhZ28gZGkgZ2FyZGFAAEoAUAA%3D&dest_id=-126468&dest_type=city&place_id_lat=45.88506&place_id_lon=10.838951&search_pageview_id=8f4d570d21da0186&search_selected=true&search_pageview_id=8f4d570d21da0186&ac_suggestion_list_length=5&ac_suggestion_theme_list_length=0',
@@ -166,7 +165,7 @@ const REGION_DATA = {
     },
     highlights: {
       en: ['Wide selection of properties', 'Rich history and culture', 'Affordable to luxury options', 'Beautiful beaches', 'Excellent food', 'Diverse landscapes'],
-      cs: ['Siroky vyber nemovitostí', 'Bohata historie a kultura', 'Od dostupnych po luxusni', 'Krasne plaze', 'Vynikajici jidlo', 'Rozmanite krajiny'],
+      cs: ['Široký výběr nemovitostí', 'Bohatá historie a kultura', 'Od dostupných po luxusní', 'Krásné pláže', 'Vynikající jídlo', 'Rozmanité krajiny'],
       it: ['Ampia scelta di immobili', 'Ricca storia e cultura', 'Da economiche a lussuose', 'Bellissime spiagge', 'Eccellente cibo', 'Paesaggi diversi']
     },
     priceRange: '\u20AC25,000 - \u20AC1,000,000',
@@ -174,7 +173,7 @@ const REGION_DATA = {
     topCities: ['Palermo', 'Catania', 'Taormina', 'Syracuse', 'Cefalù']
   },
   'toscana': {
-    name: { en: 'Tuscany', cs: 'Toskansko', it: 'Toscana' },
+    name: { en: 'Tuscany', cs: 'Toskánsko', it: 'Toscana' },
     image: '/Toscana.png',
     tagline: {
       en: 'Iconic landscapes, strong rental demand, historic cities and premium pricing - Tuscany is one of the most sought-after regions in Italy for international buyers.',
@@ -183,7 +182,7 @@ const REGION_DATA = {
     },
     description: {
       en: 'Tuscany is one of the most internationally recognized regions in Italy. For Czech buyers, it represents prestige, stability, and long-term value.\\n\\nThe region combines strong tourism demand, world-famous cultural heritage, and a solid rental market - especially in Florence and Chianti areas.\\n\\nHowever, Tuscany also comes with higher purchase prices and strong competition in prime locations. Proper due diligence, technical checks, and legal coordination are essential before making an offer.',
-      cs: 'Toskansko je pro mnoho zahranicnich kupujicich symbolem prestize, stability a dlouhodobe hodnoty. Region kombinuje silnou turistickou poptávku, kulturní dedictvi a solidni trh pronajmu, ale take vyšší ceny a silnou konkurenci v premium lokalitách.',
+      cs: 'Toskánsko je pro mnoho zahranicnich kupujicich symbolem prestize, stability a dlouhodobe hodnoty. Region kombinuje silnou turistickou poptávku, kulturní dedictvi a solidni trh pronajmu, ale take vyšší ceny a silnou konkurenci v premium lokalitách.',
       it: 'La Toscana è una delle regioni italiane più riconoscibili a livello internazionale. Per gli acquirenti cechi rappresenta prestigio, stabilità e valore nel lungo termine. La regione combina una forte domanda turistica, patrimonio culturale e un mercato affitti solido, ma anche prezzi più alti e forte competizione nelle zone prime.'
     },
     highlights: {
@@ -219,7 +218,7 @@ const REGION_DATA = {
     bestFor: { en: 'Prestige, wine, culture, rental income', cs: 'Prestiz, vino, kultura, prijem z pronajmu', it: 'Prestigio, vino, cultura, reddito da affitto' },
     bestForList: {
       en: ['Investment with short-term rentals', 'Prestige second home', 'Buyers seeking a stable market'],
-      cs: ['Investice s kratkodobym pronajmem', 'Prestizni druhe bydlení', 'Kupující hledající stabilní trh'],
+      cs: ['Investice s krátkodobým pronájmem', 'Prestižní druhé bydlení', 'Kupující hledající stabilní trh'],
       it: ['Investimento con affitto breve', 'Seconda casa di prestigio', 'Chi vuole mercato stabile']
     },
     topCitiesDetailed: {
@@ -256,9 +255,9 @@ const REGION_DATA = {
       it: 'Milano, Lago di Como e micro-mercati strategici per obiettivi diversi'
     },
     description: {
-      en: 'Placeholder: this detailed Lombardy guide is being prepared. We will soon add full local strategy, city-by-city analysis, legal/technical checkpoints, and practical buyer scenarios.',
-      cs: 'Placeholder: tento detailni pruvodce Lombardii pripravujeme. Brzy doplnime lokální strategii, analyzu mest, pravni a technicke kontroly i praktické scenare kupujicich.',
-      it: 'Placeholder: questa guida dettagliata sulla Lombardia è in preparazione. A breve aggiungeremo strategia locale, analisi città per città, controlli legali e tecnici e scenari pratici.'
+      en: 'Lombardy is one of Italy’s most liquid and diverse markets. Milan drives urban demand, Lake Como attracts premium international buyers, and secondary cities such as Bergamo, Brescia and Monza offer more balanced entry points. The right strategy depends on whether the goal is personal use, rental income, relocation or long-term capital preservation.',
+      cs: 'Lombardie patří k nejlikvidnějším a nejrozmanitějším trhům v Itálii. Milán táhne městskou poptávku, Lago di Como přitahuje prémiové zahraniční kupující a města jako Bergamo, Brescia nebo Monza nabízejí vyváženější vstupní úrovně. Správná strategie závisí na tom, zda jde o vlastní užívání, pronájem, přesun nebo dlouhodobé uchování hodnoty.',
+      it: 'La Lombardia è uno dei mercati più liquidi e diversificati d’Italia. Milano guida la domanda urbana, il Lago di Como attira acquirenti internazionali premium e città come Bergamo, Brescia e Monza offrono punti di ingresso più equilibrati. La strategia corretta dipende dall’obiettivo: uso personale, reddito da locazione, trasferimento o conservazione del valore nel lungo periodo.'
     },
     highlights: {
       en: [
@@ -329,10 +328,10 @@ const REGION_DATA = {
         'Monza - strategic location near Milan'
       ],
       cs: [
-        'Milan - siroka nabidka od městských bytu po premium ctvrt',
+        'Milan - siroka nabídka od městských bytu po premium ctvrt',
         'Como a jezerni oblast - vysoce konkurencni premium poptávka',
         'Bergamo - silný poměr hodnoty a kvality',
-        'Brescia - velka nabidka a smíšený cenovy profil',
+        'Brescia - velka nabídka a smíšený cenovy profil',
         'Monza - strategicka poloha blizko Milana'
       ],
       it: [
@@ -970,44 +969,44 @@ const REGION_BUYERS_GUIDANCE_EN = {
 
 const REGION_BUYERS_GUIDANCE_CS = {
   sicilia: {
-    intro: 'Pred koupi na Sicilii zohlednete:',
+    intro: 'Pred koupí na Sicilii zohlednete:',
     items: [
       'Palermo, Catania, Taormina a Syrakusy maji velmi odlisnou likviditu i cenove urovene',
-      'V primorskych oblastech je nutne proverit vliv morskeho prostredi a technicky stav budovy',
-      'Katastralni a urbanistickou dokumentaci je treba kontrolovat obzvlast peclive',
-      'Poptavka po pronajmu je v mnoha turistickych lokalitach silne sezonni',
-      'Dostupnost letist a zakladnich sluzeb vyrazne meni realne vyuziti nemovitosti'
+      'V primorskych oblastech je nutne prověřit vliv morskeho prostredi a technicky stav budovy',
+      'Katastrální a urbanistickou dokumentaci je třeba kontrolovat obzvlášť pečlivě',
+      'Poptavka po pronajmu je v mnoha turistickych lokalitách silne sezonni',
+      'Dostupnost letist a zakladnich služeb vyrazne meni realne využití nemovitostí'
     ],
     outro: 'Na Sicilii zavisi spravna volba na mikro-lokalite: presne srovnani jednotlivych obci a ctvrtí je zasadni.'
   },
   liguria: {
-    intro: 'Pred koupi v Ligurii zohlednete:',
+    intro: 'Pred koupí v Ligurii zohlednete:',
     items: [
-      'Lokality s vyhledem na more maji vyrazne premium oproti vnitrnim zonam',
+      'Lokality s výhledem na more maji vyrazne premium oproti vnitrnim zonam',
       'Pristup, parkovani a sklon terenu primo ovlivnuji uzivani i dalsi prodej',
-      'V nejzadanejsich obcich je nabidka omezena, proto je potreba byt pripraveny i casove',
-      'U starsich primorskych domu byvaji casto vyssi kondominalni naklady',
-      'Je nutne proverit hydrogeologicka rizika a stav opernych konstrukci'
+      'V nejzadanejsich obcích je nabídka omezena, proto je potřeba byt pripraveny i casove',
+      'U starších primorskych domů byvaji casto vyssi kondominalni naklady',
+      'Je nutne prověřit hydrogeologicka rizika a stav opernych konstrukci'
     ],
     outro: 'V Ligurii ma presna adresa vetsi vahu nez samotny nazev obce: mikro-lokalita je rozhodujici.'
   },
   campania: {
-    intro: 'Pred koupi v Kampanii zohlednete:',
+    intro: 'Pred koupí v Kampanii zohlednete:',
     items: [
-      'Neapol je slozity mestsky trh, kde je ctvrt dulezitejsi nez mestske prumery',
-      'Amalfinske pobrezi a Sorrento maji vysoke vstupni ceny a velmi konkurencni nabidku',
-      'Urbanisticky soulad je potreba peclive proverit u historickych nebo delenych nemovitosti',
-      'Logistika a parkovani jsou v mnoha pobreznich lokalitach kriticke faktory',
+      'Neapol je slozity mestsky trh, kde je ctvrt dulezitejsi nez městské prumery',
+      'Amalfinske pobrezi a Sorrento maji vysoke vstupni ceny a velmi konkurencni nabídku',
+      'Urbanistický soulad je potřeba pečlivě prověřit u historických nebo dělených nemovitostí',
+      'Logistika a parkovani jsou v mnoha pobreznich lokalitách kriticke faktory',
       'Mistni pravidla kratkodobeho pronajmu mohou vyrazne zmenit planovany vynos'
     ],
-    outro: 'V Kampanii se vyplati proverit technickou a pravni cast co nejdrive, jeste pred pokrocilym jednanim.'
+    outro: 'V Kampanii se vyplatí prověřit technickou a právní část co nejdříve, ještě před pokročilým jednáním.'
   },
   piemonte: {
-    intro: 'Pred koupi v Piemontu zohlednete:',
+    intro: 'Pred koupí v Piemontu zohlednete:',
     items: [
       'Turin ma odlisnou mestskou dynamiku nez Langhe, Monferrato a alpske oblasti',
-      'V kopcovitych obcich je treba peclive proverit konstrukcni stav starsich domu',
-      'Zemedelske pozemky a vedlejsi stavby vyzaduji jasnou kontrolu vyuziti a omezeni',
+      'V kopcovitých obcích je třeba pečlivě prověřit konstrukční stav starších domů',
+      'Zemedelske pozemky a vedlejsi stavby vyzaduji jasnou kontrolu využití a omezeni',
       'Poptavka po pronajmu je stabilnejsi ve meste a selektivnejsi na venkove',
       'Zimni energeticke naklady a uroven izolace maji velky dopad na rocni rozpocet'
     ],
@@ -1046,25 +1045,25 @@ function createPlaceholderRegion(slug = '') {
     },
     image: '/Toscana.png',
     tagline: {
-      en: 'Detailed regional guide in preparation',
-      cs: 'Detailni regionální pruvodce se pripravuje',
-      it: 'Guida dettagliata della regione in preparazione'
+      en: 'Regional overview for Italian property buyers',
+      cs: 'Regionální přehled pro kupující nemovitostí v Itálii',
+      it: 'Panoramica regionale per chi compra casa in Italia'
     },
     description: {
-      en: 'Placeholder: this region page is being prepared. We will add detailed pricing bands, city-level breakdown, legal and technical checkpoints, and practical buyer scenarios soon.',
-      cs: 'Placeholder: tato stránka regionů je v priprave. Brzy doplnime detailni cenova pasma, rozpis mest, pravni a technicke kontroly i praktické scenare kupujicich.',
-      it: 'Questa pagina regione è in preparazione. A breve aggiungeremo fasce prezzo dettagliate, analisi delle città, controlli legali/tecnici e scenari pratici.'
+      en: 'This regional page gives a practical first orientation for buyers comparing locations in Italy. Use it as a starting point to evaluate lifestyle, accessibility, services, property types and the level of technical and legal due diligence needed before making an offer.',
+      cs: 'Tato regionální stránka slouží jako praktická první orientace pro kupující, kteří porovnávají lokality v Itálii. Pomáhá posoudit životní styl, dostupnost, služby, typy nemovitostí a rozsah technických a právních kontrol před podáním nabídky.',
+      it: 'Questa pagina regionale offre un primo orientamento pratico per chi confronta diverse località in Italia. Serve per valutare stile di vita, accessibilità, servizi, tipologie immobiliari e livello di verifiche tecniche e legali necessario prima di fare un’offerta.'
     },
     highlights: {
-      en: ['Guide coming soon', 'Market mapping in progress', 'Legal and technical checks', 'Practical buyer focus'],
-      cs: ['Pruvodce bude brzy', 'Mapovani trhu v priprave', 'Právní a technicke kontroly', 'Prakticky fokus kupujiciho'],
-      it: ['Guida in arrivo', 'Mappatura mercato in corso', 'Controlli legali e tecnici', 'Focus pratico per acquirenti']
+      en: ['Lifestyle and access', 'Local market context', 'Legal and technical checks', 'Practical buyer focus'],
+      cs: ['Životní styl a dostupnost', 'Lokální tržní kontext', 'Právní a technické kontroly', 'Praktický fokus kupujícího'],
+      it: ['Stile di vita e accessibilità', 'Contesto del mercato locale', 'Controlli legali e tecnici', 'Focus pratico per acquirenti']
     },
-    priceRange: 'TBD',
+    priceRange: 'Market dependent',
     bestFor: {
-      en: 'Guide preview',
-      cs: 'Nahled pruvodce',
-      it: 'Anteprima guida'
+      en: 'Initial regional comparison',
+      cs: 'První porovnání regionů',
+      it: 'Primo confronto tra regioni'
     },
     topCities: [prettyName]
   }
@@ -1144,7 +1143,7 @@ export default function RegionDetailPage() {
     buyerGuidance?.intro
       ? buyerGuidance.intro
       : language === 'cs'
-      ? 'Před koupí nemovitosti v tomto regionu zohledněte:'
+      ? 'Před koupí nemovitostí v tomto regionu zohledněte:'
       : language === 'it'
         ? 'Prima di acquistare in questa regione, considerate:'
         : 'Before purchasing property in this region, buyers should consider:'
@@ -1225,7 +1224,7 @@ export default function RegionDetailPage() {
         : `Thinking about ${regionName} but not sure where to start?`
   const finalCtaDescription =
     language === 'cs'
-      ? 'Pomáháme českým kupujícím vyhodnotit správnou oblast, typ nemovitosti a investiční potenciál před jakýmkoli závazným krokem.'
+      ? 'Pomáháme českým kupujícím vyhodnotit správnou oblast, typ nemovitostí a investiční potenciál před jakýmkoli závazným krokem.'
       : language === 'it'
         ? 'Aiutiamo gli acquirenti cechi a valutare area, tipo di immobile e potenziale di investimento prima di qualsiasi impegno vincolante.'
         : 'We help Czech buyers evaluate the right area, property type, and investment potential before any binding commitment.'
@@ -1484,37 +1483,40 @@ export default function RegionDetailPage() {
                     <p key={index}>{line}</p>
                   ))}
                 </div>
-                <div className="mt-8 rounded-2xl border border-slate-200 bg-[#f7f6f3] px-5 py-4">
-                  <p className="text-lg font-semibold text-slate-800">
-                    {language === 'cs'
-                      ? 'Chcete tato města navštívit pohodlně?'
-                      : language === 'it'
-                        ? 'Vuoi visitare queste città comodamente?'
-                        : 'Do you want to visit these cities comfortably?'}
-                  </p>
-                  <p className="mt-2 text-slate-600">
-                    {language === 'cs'
-                      ? 'Tady najdete správné řešení.'
-                      : language === 'it'
-                        ? 'Qui trovi la soluzione giusta.'
-                        : 'Here you can find the right solution.'}
-                  </p>
-                </div>
                 <div className="mt-8 pt-6 border-t border-gray-100">
-                  <a
-                    href={REGION_WIDGET_LINK}
-                    target="_blank"
-                    rel="nofollow sponsored noopener noreferrer"
-                    className="block w-[40%] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-transform duration-300 hover:shadow-md"
-                  >
-                    <img
-                      src={REGION_WIDGET_IMAGE}
-                      width="660"
-                      height="270"
-                      alt=""
-                      className="block h-auto w-full"
-                    />
-                  </a>
+                  <div className="rounded-2xl border border-blue-100 bg-blue-50/70 p-5">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                      <div>
+                        <p className="text-lg font-semibold text-slate-900">
+                          {language === 'cs'
+                            ? 'Potřebujete auto pro cestu po regionu?'
+                            : language === 'it'
+                              ? 'Ti serve un’auto per visitare la regione?'
+                              : 'Need a car to explore the region?'}
+                        </p>
+                        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                          {language === 'cs'
+                            ? 'Porovnejte nabídky autopůjčoven a naplánujte si pohodlné přesuny mezi městy, vesnicemi a pobřežím.'
+                            : language === 'it'
+                              ? 'Confronta le offerte di autonoleggio e organizza facilmente gli spostamenti tra città, borghi e costa.'
+                              : 'Compare car rental offers and plan easy transfers between cities, villages, and the coast.'}
+                        </p>
+                      </div>
+                      <a
+                        href={REGION_CAR_RENTAL_LINK}
+                        target="_blank"
+                        rel="nofollow sponsored noopener noreferrer"
+                        className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-700 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
+                      >
+                        {language === 'cs'
+                          ? 'Najít půjčení auta'
+                          : language === 'it'
+                            ? 'Trova un’auto a noleggio'
+                            : 'Find a rental car'}
+                        <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>

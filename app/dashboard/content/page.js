@@ -64,6 +64,11 @@ export default function ContentPage() {
   }, [])
 
   const loadContent = async () => {
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
+
     try {
       setLoading(true)
       const { data, error } = await supabase

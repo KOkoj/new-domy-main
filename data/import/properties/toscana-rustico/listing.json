@@ -1,7 +1,7 @@
 {
   "title_it": "Rustico in Toscana - da completare",
   "title_en": "Rustic house in Tuscany - to be completed",
-  "title_cs": "Rustikální dům v Toskansko - k doplneni",
+  "title_cs": "Rustikální dům v Toskánsko - k doplnění",
   "propertyType": "house",
   "propertyType_it": "rustico",
   "region_it": "Toscana",
@@ -10,7 +10,7 @@
   "city_cs": "Florencie",
   "address_it": "Firenze, Toscana",
   "address_en": "Florence, Tuscany",
-  "address_cs": "Florencie, Toskansko",
+  "address_cs": "Florencie, Toskánsko",
   "price": 0,
   "rooms": 0,
   "bedrooms": 0,
@@ -20,18 +20,18 @@
     {
       "it": "Da compilare",
       "en": "To be completed",
-      "cs": "K doplneni"
+      "cs": "K doplnění"
     }
   ],
   "description_it": "Testo descrizione da inserire",
   "description_en": "Description text to insert",
-  "description_cs": "Text popisu k doplneni",
+  "description_cs": "Text popisu k doplnění",
   "seo_title_it": "Rustico in vendita in Toscana",
   "seo_title_en": "Rustic house for sale in Tuscany",
-  "seo_title_cs": "Rustikální dům na prodej v Toskansko",
+  "seo_title_cs": "Rustikální dům na prodej v Toskánsko",
   "seo_description_it": "Inserire meta description SEO in italiano (150-160 caratteri).",
   "seo_description_en": "Insert SEO meta description in English (150-160 characters).",
-  "seo_description_cs": "Vlozte SEO meta popis v cestine (150-160 znaku).",
+  "seo_description_cs": "Vložte SEO meta popis v češtině (150-160 znaků).",
   "status": "available",
   "featured": false,
   "keywords": [],

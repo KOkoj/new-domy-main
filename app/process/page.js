@@ -67,7 +67,7 @@ const PROCESS_STEPS = [
       },
       {
         en: 'Region & property type preferences',
-        cs: 'Preference regionu a typu nemovitosti',
+        cs: 'Preference regionu a typu nemovitostí',
         it: 'Preferenze di regione e tipo di proprietà'
       },
       {
@@ -91,7 +91,7 @@ const PROCESS_STEPS = [
     },
     subtitle: {
       en: 'Finding Your Perfect Match',
-      cs: 'Nalezení ideální nemovitosti',
+      cs: 'Nalezení ideální nemovitostí',
       it: 'Trovare la tua scelta perfetta'
     },
     description: {
@@ -282,7 +282,7 @@ const PROCESS_STEPS = [
     },
     description: {
       en: 'The final deed is signed in the presence of a Notary (Notaio), and full payment is made. You officially become the owner of your Italian property!',
-      cs: 'Konečný akt je podepsán v přítomnosti notáře (Notaio) a provede se úplná platba. Oficiálně se stanete vlastníkem své italské nemovitosti!',
+      cs: 'Konečný akt je podepsán v přítomnosti notáře (Notaio) a provede se úplná platba. Oficiálně se stanete vlastníkem své italské nemovitostí!',
       it: 'L\'atto finale viene firmato alla presenza di un Notaio e viene effettuato il pagamento completo. Diventi ufficialmente proprietario del tuo immobile italiano!'
     },
     duration: {
@@ -310,7 +310,7 @@ const PROCESS_STEPS = [
       },
       {
         en: 'Keys handover & property access',
-        cs: 'Předání klíčů a přístup k nemovitosti',
+        cs: 'Předání klíčů a přístup k nemovitostí',
         it: 'Consegna delle chiavi e accesso all\'immobile'
       }
     ]
@@ -395,7 +395,7 @@ const COSTS_OVERVIEW = [
     amount: { en: '2% of purchase price', cs: '2 % z kupní ceny', it: '2% del prezzo di acquisto' },
     description: { 
       en: 'Applies when buying your first property in Italy and establishing permanent residence',
-      cs: 'Platí při koupi první nemovitosti v Itálii a zřízení trvalého pobytu',
+      cs: 'Platí při koupí první nemovitostí v Itálii a zřízení trvalého pobytu',
       it: 'Si applica quando acquisti la prima proprietà in Italia e stabilisci la residenza permanente'
     }
   },
@@ -409,7 +409,7 @@ const COSTS_OVERVIEW = [
     }
   },
   {
-    title: { en: 'VAT (New/Renovated Properties)', cs: 'DPH (nové/zrekonstruované nemovitosti)', it: 'IVA (immobili nuovi/ristrutturati)' },
+    title: { en: 'VAT (New/Renovated Properties)', cs: 'DPH (nové/zrekonstruované nemovitostí)', it: 'IVA (immobili nuovi/ristrutturati)' },
     amount: { en: '10% (or 4% with residency)', cs: '10 % (nebo 4 % při trvalém pobytu)', it: '10% (o 4% con residenza)' },
     description: { 
       en: 'Applies to new or recently renovated properties (replaces purchase tax in these cases)',
@@ -419,7 +419,7 @@ const COSTS_OVERVIEW = [
   },
   {
     title: { en: 'Notary Fees', cs: 'Notářské poplatky', it: 'Spese notarili' },
-    amount: { en: '1-2.5% of property value', cs: '1–2,5 % hodnoty nemovitosti', it: '1-2,5% del valore dell\'immobile' },
+    amount: { en: '1-2.5% of property value', cs: '1–2,5 % hodnoty nemovitostí', it: '1-2,5% del valore dell\'immobile' },
     description: { 
       en: 'Set by law (notary decree). Includes deed preparation, tax collection, and property transfer oversight',
       cs: 'Stanoveny zákonem (notářský dekret). Zahrnuje přípravu smlouvy, výběr daní a dohled nad převodem',
@@ -489,7 +489,7 @@ export default function ProcessPage() {
                    'Are you planning to buy a house or apartment in Italy and want to be sure the entire process runs correctly and without unnecessary complications?'}
                 </p>
                 <p className="text-lg text-gray-600 leading-[1.75]">
-                  {language === 'cs' ? 'Koupě nemovitosti v Itálii funguje trochu jinak než v České republice. Postup je odlišný, jednotlivé kroky na sebe navazují jinak a pro kupujícího může být někdy těžké se v tom zorientovat.' :
+                  {language === 'cs' ? 'Koupě nemovitostí v Itálii funguje trochu jinak než v České republice. Postup je odlišný, jednotlivé kroky na sebe navazují jinak a pro kupujícího může být někdy těžké se v tom zorientovat.' :
                    language === 'it' ? 'L\'acquisto di un immobile in Italia funziona in modo un po\' diverso rispetto alla Repubblica Ceca. La procedura è differente, le singole fasi si susseguono in modo diverso e per un acquirente può essere a volte difficile orientarsi.' :
                    'Buying property in Italy works a little differently than in the Czech Republic. The procedure is different, the individual steps follow one another differently, and for a buyer it can sometimes be difficult to navigate.'}
                 </p>
@@ -611,7 +611,7 @@ export default function ProcessPage() {
                 <div className="mt-8 p-6 bg-slate-50 border border-slate-200 rounded-xl">
                   <p className="text-slate-700 leading-[1.75]">
                     <strong>
-                      {language === 'cs' ? 'Tento obsah je určen speciálně pro české zájemce o nemovitosti v Itálii' :
+                      {language === 'cs' ? 'Tento obsah je určen speciálně pro české zájemce o nemovitostí v Itálii' :
                        language === 'it' ? 'Questo contenuto è pensato specificamente per gli acquirenti cechi interessati agli immobili in Italia' :
                        'This content is specifically designed for Czech buyers interested in Italian property'}
                     </strong>
@@ -757,7 +757,7 @@ export default function ProcessPage() {
                   </CardHeader>
                   <CardContent className="p-8">
                     <p className="text-gray-600 mb-6 leading-[1.75]">
-                      {language === 'cs' ? 'Kromě kupní ceny nemovitosti, zde jsou typické dodatečné náklady spojené s koupí italské nemovitosti:' :
+                      {language === 'cs' ? 'Kromě kupní ceny nemovitostí, zde jsou typické dodatečné náklady spojené s koupí italské nemovitostí:' :
                        language === 'it' ? 'Oltre al prezzo di acquisto dell\'immobile, ecco i costi aggiuntivi tipici associati all\'acquisto di una proprietà italiana:' :
                        'In addition to the property purchase price, here are the typical additional costs associated with buying Italian property:'}
                     </p>
@@ -788,7 +788,7 @@ export default function ProcessPage() {
                           {language === 'cs' ? 'Poznámka:' : language === 'it' ? 'Nota:' : 'Note:'}
                         </strong>
                         {' '}
-                        {language === 'cs' ? 'Skutečné náklady se mohou lišit v závislosti na hodnotě nemovitosti, umístění a specifických okolnostech. Poskytneme vám podrobný rozpis nákladů během konzultace.' :
+                        {language === 'cs' ? 'Skutečné náklady se mohou lišit v závislosti na hodnotě nemovitostí, umístění a specifických okolnostech. Poskytneme vám podrobný rozpis nákladů během konzultace.' :
                          language === 'it' ? 'I costi effettivi possono variare in base al valore dell\'immobile, alla posizione e alle circostanze specifiche. Vi forniremo un dettaglio completo dei costi durante la consulenza.' :
                          'Actual costs may vary based on property value, location, and specific circumstances. We\'ll provide you with a detailed cost breakdown during consultation.'}
                       </p>
@@ -841,7 +841,7 @@ export default function ProcessPage() {
                       size="lg"
                       className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold px-6 py-6 text-sm transition-all duration-300 shadow-lg w-full"
                     >
-                      {language === 'cs' ? 'Zobrazit nemovitosti' :
+                      {language === 'cs' ? 'Zobrazit nemovitostí' :
                        language === 'it' ? 'Vedi le proprietà' :
                        'View properties'}
                       <ChevronRight className="h-5 w-5 ml-2" />

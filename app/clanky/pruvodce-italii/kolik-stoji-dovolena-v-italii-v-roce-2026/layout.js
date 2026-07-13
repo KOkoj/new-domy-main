@@ -2,7 +2,7 @@ import JsonLd from '@/components/seo/JsonLd'
 import { getTravelArticleSeo } from '@/lib/seo/contentPages'
 import { buildArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
 
-const seo = getTravelArticleSeo('kolik-stoji-dovolena-v-italii-v-roce-2026')
+const seo = getTravelArticleSeo('kolik-stoji-dovolená-v-italii-v-roce-2026')
 
 export const metadata = buildArticleMetadata(seo)
 
@@ -12,7 +12,7 @@ export default function HolidayCostsItaly2026Layout({ children }) {
       <JsonLd
         data={buildBreadcrumbJsonLd([
           { name: 'Home', path: '/' },
-          { name: 'Průvodce Itálií', path: '/clanky/pruvodce-italii' },
+          { name: 'Průvodce Itálií', path: '/články/průvodce-italii' },
           { name: seo.title, path: seo.path }
         ])}
       />

@@ -50,13 +50,13 @@ export async function generateMetadata({ params }) {
   const nameEn = region?.name?.en || formatSlugName(canonicalSlug || rawSlug)
   const nameIt = region?.name?.it || nameEn
 
-  const titleCs = `${nameCs}: pruvodce koupi nemovitosti v Italii | ${SITE_NAME}`
+  const titleCs = `${nameCs}: průvodce koupí nemovitostí v Itálii | ${SITE_NAME}`
   const titleEn = `${nameEn}: buying guide and property strategy | ${SITE_NAME}`
   const titleIt = `${nameIt}: guida all'acquisto immobiliare in Italia | ${SITE_NAME}`
 
   const descriptionCs =
     shortenForMeta(region?.description?.cs) ||
-    `Pruvodce koupi nemovitosti v regionu ${nameCs}: ceny, mesta, pravni kontrola a strategie nakupu v Italii.`
+    `Průvodce koupí nemovitostí v regionu ${nameCs}: ceny, města, právní kontrola a strategie nákupu v Itálii.`
   const descriptionEn =
     shortenForMeta(region?.description?.en) ||
     `Regional buying guide for ${nameEn}: pricing, cities, checks, and strategy for buying property in Italy.`
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }) {
   return {
     title: titleCs,
     description: descriptionCs,
-    keywords: `nemovitosti ${nameCs}, koupit dum ${nameCs}, ${nameEn} real estate, property in ${nameEn}, vila ${nameCs}, byty ${nameCs}, ${nameIt} immobiliare`,
+    keywords: `nemovitostí ${nameCs}, koupit dum ${nameCs}, ${nameEn} real estate, property in ${nameEn}, vila ${nameCs}, byty ${nameCs}, ${nameIt} immobiliare`,
     alternates: {
       canonical: canonicalPath,
       languages: {
@@ -127,7 +127,7 @@ export default async function RegionDetailLayout({ children, params }) {
     '@type': 'WebPage',
     '@id': url,
     url,
-    name: `${nameCs} - pruvodce koupi nemovitosti`,
+    name: `${nameCs} - průvodce koupí nemovitostí`,
     description,
     inLanguage: 'cs-CZ',
     isPartOf: {
@@ -194,7 +194,7 @@ function RegionSeoContent({ region, canonicalSlug }) {
       }}
     >
       <article>
-        <h1>{nameCs}: pruvodce koupi nemovitosti v Italii</h1>
+        <h1>{nameCs}: průvodce koupí nemovitostí v Itálii</h1>
         {taglineCs ? <p>{taglineCs}</p> : null}
         {descriptionCs ? <p>{descriptionCs}</p> : null}
         {region?.priceRange ? (
@@ -214,7 +214,7 @@ function RegionSeoContent({ region, canonicalSlug }) {
         ) : null}
         {topCitiesCs.length > 0 ? (
           <>
-            <h2>Hlavni mesta a oblasti</h2>
+            <h2>Hlavní města a oblasti</h2>
             <ul>
               {topCitiesCs.map((city, idx) => (
                 <li key={idx}>{city}</li>

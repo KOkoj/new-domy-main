@@ -1,0 +1,87 @@
+{
+  "slug": "veneto-villa-bifamiliare-crespino-via-trieste",
+  "title_it": "Villa bifamiliare con ampi spazi a Crespino",
+  "title_en": "Semi-Detached Villa with Generous Spaces in Crespino",
+  "title_cs": "Prostorna polovina vily v Crespinu",
+  "propertyType": "villa",
+  "propertyType_it": "villa",
+  "region_it": "Veneto",
+  "city_it": "Crespino",
+  "city_en": "Crespino",
+  "city_cs": "Crespino",
+  "address_it": "Via Trieste, Crespino",
+  "address_en": "Via Trieste, Crespino",
+  "address_cs": "Via Trieste, Crespino",
+  "price": 95000,
+  "rooms": 6,
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "square_meters": 285,
+  "features": [
+    {
+      "it": "villa bifamiliare del 1983 in zona residenziale",
+      "en": "semi-detached villa from 1983 in a residential area",
+      "cs": "polovina vily z roku 1983 v rezidencni oblasti"
+    },
+    {
+      "it": "285 mq commerciali",
+      "en": "285 commercial sqm",
+      "cs": "285 m2 komerční plochy"
+    },
+    {
+      "it": "6 locali",
+      "en": "6 rooms",
+      "cs": "6 místností"
+    },
+    {
+      "it": "2 camere da letto",
+      "en": "2 bedrooms",
+      "cs": "2 ložnice"
+    },
+    {
+      "it": "2 bagni",
+      "en": "2 bathrooms",
+      "cs": "2 koupelny"
+    },
+    {
+      "it": "indirizzo indicato: Via Trieste",
+      "en": "listed address: Via Trieste",
+      "cs": "uvedena adresa: Via Trieste"
+    }
+  ],
+  "description_it": "A Crespino, proponiamo villa con 285 mq, 6 locali, 2 camere e 2 bagni. La proprieta si trova in Via Trieste, Crespino e rappresenta una soluzione concreta per chi cerca una casa in Veneto con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e villa bifamiliare del 1983 in zona residenziale. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto.",
+  "description_en": "In Crespino, this villa offers 285 sqm, 6 rooms, 2 bedrooms and 2 bathrooms. The property is located at Via Trieste, Crespino and is a practical option for buyers looking in Veneto with clear figures and a defined asking price.\n\nThe key point is semi-detached villa from 1983 in a residential area. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+  "description_cs": "V lokalite Crespino nabizi tato nemovitost 285 m2, 6 mistnosti, 2 loznice a 2 koupelny. Nachazi se na adrese Via Trieste, Crespino a predstavuje praktickou moznost pro kupující, kteri hledaji nemovitost v regionu Benatsko s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabídky je polovina vily z roku 1983 v rezidencni oblasti. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupí je nutne prověřit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+  "seo_title_it": "Villa bifamiliare con ampi spazi a Crespino in vendita",
+  "seo_title_en": "Semi-Detached Villa with Generous Spaces in Crespino for sale",
+  "seo_title_cs": "Prostorna polovina vily v Crespinu na prodej",
+  "seo_description_it": "Crespino: villa di 285 mq, 2 camere, 2 bagni. Prezzo 95.000 euro.",
+  "seo_description_en": "Crespino: villa of 285 sqm, 2 bedrooms, 2 bathrooms. Asking price EUR 95,000.",
+  "seo_description_cs": "Crespino: nemovitost 285 m2, 2 loznice, 2 koupelny. Cena 95000 EUR.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "veneto",
+    "crespino",
+    "villa",
+    "via-trieste",
+    "immobiliare-it"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/128365194/",
+  "lat": 44.9829,
+  "lng": 11.89,
+  "image_urls": [
+    "https://pwm.im-cdn.it/image/1907019718/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1907020144/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1907020152/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1907020164/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1907020168/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1907020176/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1907020182/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1907020190/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1907020196/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1907020202/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1907020208/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1907020220/xxl.jpg"
+  ]
+}

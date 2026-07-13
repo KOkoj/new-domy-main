@@ -487,7 +487,7 @@ function RegionCard({ region, language = 'en' }) {
           <Button 
               className="w-full"
           >
-            {language === 'cs' ? 'Zobrazit nemovitosti' : 
+            {language === 'cs' ? 'Zobrazit nemovitostí' : 
              language === 'it' ? 'Visualizza proprietà' : 
              'View Properties'}
             <ChevronRight className="h-4 w-4 ml-2" />

@@ -22,6 +22,7 @@ import {
   Settings
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
 import Link from 'next/link'
 
@@ -50,10 +51,12 @@ export default function SavedSearchesManagement() {
   }, [])
 
   const loadSavedSearches = async () => {
-    if (!supabase) return
     try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
+      const user = await getDashboardUser(supabase)
+      if (!user || !supabase) {
+        setLoading(false)
+        return
+      }
       
       setUser(user)
 

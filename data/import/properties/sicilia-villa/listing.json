@@ -1,7 +1,7 @@
 {
   "title_it": "Villa in Sicilia - da completare",
   "title_en": "Villa in Sicily - to be completed",
-  "title_cs": "Vila v Sicilie - k doplneni",
+  "title_cs": "Vila v Sicílie - k doplnění",
   "propertyType": "villa",
   "propertyType_it": "villa",
   "region_it": "Sicilia",
@@ -10,7 +10,7 @@
   "city_cs": "Palermo",
   "address_it": "Palermo, Sicilia",
   "address_en": "Palermo, Sicily",
-  "address_cs": "Palermo, Sicilie",
+  "address_cs": "Palermo, Sicílie",
   "price": 0,
   "rooms": 0,
   "bedrooms": 0,
@@ -20,18 +20,18 @@
     {
       "it": "Da compilare",
       "en": "To be completed",
-      "cs": "K doplneni"
+      "cs": "K doplnění"
     }
   ],
   "description_it": "Testo descrizione da inserire",
   "description_en": "Description text to insert",
-  "description_cs": "Text popisu k doplneni",
+  "description_cs": "Text popisu k doplnění",
   "seo_title_it": "Villa in vendita in Sicilia",
   "seo_title_en": "Villa for sale in Sicily",
-  "seo_title_cs": "Vila na prodej v Sicilie",
+  "seo_title_cs": "Vila na prodej v Sicílie",
   "seo_description_it": "Inserire meta description SEO in italiano (150-160 caratteri).",
   "seo_description_en": "Insert SEO meta description in English (150-160 characters).",
-  "seo_description_cs": "Vlozte SEO meta popis v cestine (150-160 znaku).",
+  "seo_description_cs": "Vložte SEO meta popis v češtině (150-160 znaků).",
   "status": "available",
   "featured": false,
   "keywords": [],

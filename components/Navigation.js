@@ -164,7 +164,7 @@ export default function Navigation() {
             <Link href="/" data-testid="nav-brand-link" className="relative overflow-visible">
               <Image
                 src="/logo domy.svg"
-                alt="Domy v Italii"
+                alt="Domy v Itálii"
                 width={120}
                 height={115}
                 priority
@@ -296,6 +296,24 @@ export default function Navigation() {
               </Link>
             )}
 
+            {/* Mobile language selector */}
+            <div className="sm:hidden flex items-center bg-white/10 backdrop-blur-md rounded-full px-1 py-1 shadow-sm border border-white/15 gap-0.5">
+              {['en', 'cs', 'it'].map((lang) => (
+                <button
+                  key={lang}
+                  onClick={() => handleLanguageChange(lang)}
+                  className={`px-2 py-1 rounded-full text-[11px] font-medium leading-none transition-all duration-200 ${
+                    language === lang
+                      ? 'bg-white/20 text-white shadow-sm'
+                      : 'text-white/50 hover:text-white/80 hover:bg-white/5'
+                  }`}
+                  data-testid={`mobile-language-option-${lang}`}
+                >
+                  {lang.toUpperCase()}
+                </button>
+              ))}
+            </div>
+
             {/* Mobile menu button */}
             <button
               className="lg:hidden p-2 rounded-lg cursor-pointer text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200"
@@ -372,22 +390,6 @@ export default function Navigation() {
                 {language === 'cs' ? 'Přihlásit / Registrovat' : (language === 'it' ? 'Accedi / Registrati' : 'Login / Register')}
               </button>
             )}
-            {/* Language selector for mobile */}
-            <div className="flex gap-2 pt-3 mt-2 border-t border-white/10">
-              {['en', 'cs', 'it'].map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => { handleLanguageChange(lang); setIsMenuOpen(false) }}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium leading-none cursor-pointer transition-all duration-200 ${
-                    language === lang 
-                      ? 'bg-copper-500/30 text-copper-200 ring-1 ring-copper-400/40' 
-                      : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
-                  }`}
-                >
-                  {lang.toUpperCase()}
-                </button>
-              ))}
-            </div>
           </div>
         </div>
       </div>

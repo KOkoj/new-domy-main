@@ -39,7 +39,7 @@ const PRODUCT_LABELS = {
 
 const TEXT = {
   cs: {
-    title: 'Operativní PDF pro ty, kdo chtějí mít jasno před rozhodnutím o koupi (metodicky a s kontrolou)',
+    title: 'Operativní PDF pro ty, kdo chtějí mít jasno před rozhodnutím o koupí (metodicky a s kontrolou)',
     intro:
       'Tyto dokumenty nejsou obecné články, ale důležité materiály připravené systematicky a v některých částech vycházejí z reálných situací při nákupu v Itálii.',
     body:
@@ -58,7 +58,7 @@ const TEXT = {
     paymentNoticeBody:
       'Platba probíhá přes zabezpečenou platební bránu a je v souladu s platnou legislativou.',
     paymentNoticeCta: 'Zobrazit GDPR',
-    legalSectionTitle: 'Povinne pravni potvrzeni pred zaplacenim',
+    legalSectionTitle: 'Povinne právní potvrzeni pred zaplacenim',
     billingSectionTitle: 'Fakturacni a danove udaje',
     invoiceRequestedLabel: 'Pozaduji danovy doklad nebo fakturu, pokud je to pro mou situaci relevantni.',
     companyNameLabel: 'Nazev spolecnosti nebo jmeno pro fakturaci',
@@ -67,10 +67,10 @@ const TEXT = {
     billingHelper:
       'Stripe Checkout bude vyzadovat fakturacni adresu, danove udaje a kontaktni informace. Pokud potrebujete danovy doklad, vyplnte i tato pole.',
     pdfDisclaimer:
-      'Tento PDF slouzi pouze pro obecne informacni a operativni ucely. Nejde o individualni pravni, danove, notarske ani technicke poradenstvi. Pro konkretni situaci je nutne posouzeni kvalifikovanym odbornikem.',
+      'Tento PDF slouzi pouze pro obecne informacni a operativni ucely. Nejde o individualni právní, danove, notarske ani technicke poradenstvi. Pro konkretni situaci je nutne posouzeni kvalifikovanym odbornikem.',
     termsLink: 'Obchodni podminky',
     privacyLink: 'GDPR',
-    legalError: 'Pro pokracovani je nutne potvrdit vsechny pravni souhlasy.',
+    legalError: 'Pro pokracovani je nutne potvrdit všechny právní souhlasy.',
     digitalRightsInfo:
       'Digitalni obsah bude dodan ihned po potvrzeni platby a tim zanika pravo na odstoupeni po zahajeni stahovani.',
     loading: 'Načítám...',
@@ -244,7 +244,7 @@ export default function PremiumLandingPage() {
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <Link href="/guides">
                     <Button className="bg-slate-900 hover:bg-slate-800 text-white">
-                      {language === 'cs' ? 'Prejit na pruvodce' : language === 'it' ? 'Vai alle guide' : 'Go to guides'}
+                      {language === 'cs' ? 'Prejit na průvodce' : language === 'it' ? 'Vai alle guide' : 'Go to guides'}
                     </Button>
                   </Link>
                   <Link href="/contact">
@@ -338,7 +338,7 @@ export default function PremiumLandingPage() {
             <Link href="/" className="relative">
               <img
                 src="/logo domy.svg"
-                alt="Domy v Italii"
+                alt="Domy v Itálii"
                 className="h-12 w-auto"
                 style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))' }}
               />

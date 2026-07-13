@@ -10,12 +10,12 @@ import ProtectedContentLink from '@/components/ProtectedContentLink'
 
 const GUIDES = [
   {
-    slug: 'rekonstrukce-domu-v-italii',
+    slug: 'rekonstrukce-domů-v-italii',
     date: '2026-03-10',
     readTime: '8 min',
     title: {
       en: 'How much does house renovation in Italy cost?',
-      cs: 'Kolik stojí rekonstrukce domu v Itálii?',
+      cs: 'Kolik stojí rekonstrukce domů v Itálii?',
       it: 'Quanto costa ristrutturare una casa in Italia?'
     },
     excerpt: {
@@ -30,7 +30,7 @@ const GUIDES = [
     readTime: '10 min',
     title: {
       en: 'How the Italian Property Buying System Really Works (and Why It’s Different from the Czech Republic)',
-      cs: 'Jak skutečně funguje italský systém koupě nemovitosti (a proč se liší od České republiky)',
+      cs: 'Jak skutečně funguje italský systém koupě nemovitostí (a proč se liší od České republiky)',
       it: 'Come funziona davvero il sistema di acquisto immobiliare in Italia (e perché è diverso dalla Repubblica Ceca)'
     },
     excerpt: {
@@ -75,7 +75,7 @@ const GUIDES = [
     readTime: '7 min',
     title: {
       en: 'Most common mistakes when buying in Italy',
-      cs: 'Nejčastější chyby při koupi v Itálii',
+      cs: 'Nejčastější chyby při koupí v Itálii',
       it: 'Gli errori più comuni nell’acquisto in Italia'
     },
     excerpt: {
@@ -90,7 +90,7 @@ const GUIDES = [
     readTime: '8 min',
     title: {
       en: 'Real costs of buying a house in Italy',
-      cs: 'Reálné náklady na koupi domu v Itálii',
+      cs: 'Reálné náklady na koupí domů v Itálii',
       it: 'Costi reali per acquistare una casa in Italia'
     },
     excerpt: {
@@ -109,7 +109,7 @@ const UI = {
   },
   cs: {
     badge: 'Hub průvodců',
-    title: 'Všechny průvodce ke koupi nemovitosti v Itálii',
+    title: 'Všechny průvodce ke koupí nemovitostí v Itálii',
     subtitle: 'Strukturované zdroje pro zahraniční kupující od prvního plánování až po finální podpis.'
   },
   it: {

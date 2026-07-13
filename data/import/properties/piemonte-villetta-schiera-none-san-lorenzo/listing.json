@@ -1,0 +1,77 @@
+{
+  "slug": "piemonte-villetta-schiera-none-san-lorenzo",
+  "title_it": "Villetta a schiera con giardino e garage a None",
+  "title_en": "Terraced House with Garden and Garage in None",
+  "title_cs": "Radovy dum se zahradou a garazi v None",
+  "propertyType": "house",
+  "propertyType_it": "villetta a schiera",
+  "region_it": "Piemonte",
+  "city_it": "None",
+  "city_en": "None",
+  "city_cs": "None",
+  "address_it": "Via San Lorenzo 7, centro, None (TO), Piemonte",
+  "address_en": "Via San Lorenzo 7, town centre, None (TO), Piedmont",
+  "address_cs": "Via San Lorenzo 7, centrum, None (TO), Piemont",
+  "price": 235000,
+  "rooms": 6,
+  "bedrooms": 3,
+  "bathrooms": 3,
+  "square_meters": 240,
+  "parking": 2,
+  "features": [
+    {
+      "it": "Villetta a schiera di circa 240 m2 su quattro livelli",
+      "en": "Terraced house of approx. 240 sqm over four levels",
+      "cs": "Řadový dům cca 240 m2 ve ctyrech úrovních"
+    },
+    {
+      "it": "Giardino privato e cortile pavimentato di circa 200 m2",
+      "en": "Private garden and approx. 200 sqm paved courtyard",
+      "cs": "Soukroma zahrada a dlazdeny dvur cca 200 m2"
+    },
+    {
+      "it": "Garage interno e posto auto nel passo carraio",
+      "en": "Internal garage and parking space in the driveway",
+      "cs": "Vnitrni garáž a parkovaci misto v prijezdu"
+    },
+    {
+      "it": "Possibile divisione in due unita indipendenti",
+      "en": "Can be divided into two independent units",
+      "cs": "Možnost rozdeleni na dve samostatné jednotky"
+    },
+    {
+      "it": "Tre terrazzi, mansarda abitabile e cantina/deposito",
+      "en": "Three terraces, habitable attic, and storage areas",
+      "cs": "Tri terasy, obyvatelne podkrovi a ulozne prostory"
+    },
+    {
+      "it": "Riscaldamento autonomo, camino, stufa a legna e impianto di allarme",
+      "en": "Independent heating, fireplace, wood stove, and alarm system",
+      "cs": "Samostatné topeni, krb, kamna na drevo a alarm"
+    }
+  ],
+  "description_it": "A None, in via San Lorenzo 7, proponiamo una villetta a schiera con giardino, garage e cortile privato. L'immobile, costruito nel 1997 e rifinito in paramano, offre circa 240 m2 distribuiti su quattro livelli: piano terra, primo piano, secondo piano e mansarda abitabile.\n\nAl piano terra si trovano una cucina arredata, bagno con doccia e garage interno. Il primo piano ospita un grande soggiorno con camino, terrazzo, camera matrimoniale con terrazzo privato e bagno con vasca. Il secondo piano offre un'ulteriore zona giorno con cucina e soggiorno open space, camera con terrazzo e bagno. La mansarda abitabile include una grande camera con cabina armadio e possibilita di ricavare un bagno privato.\n\nLa proprieta dispone di cortile pavimentato di circa 200 m2, giardino, posto auto nel passo carraio, riscaldamento autonomo con caldaia a condensazione, camino, stufa a legna, infissi in legno massello con vetri antisfondamento e impianto di allarme. La distribuzione consente anche una facile divisione in due unita abitative indipendenti.",
+  "description_en": "In None, on Via San Lorenzo 7, we offer a terraced house with garden, garage, and private courtyard. Built in 1997 and finished with exposed brickwork, the property provides approx. 240 sqm over four levels: ground floor, first floor, second floor, and habitable attic.\n\nThe ground floor includes a fitted kitchen, bathroom with shower, and internal garage. The first floor features a large living room with fireplace, terrace, double bedroom with private terrace, and bathroom with tub. The second floor offers an additional living area with open-plan kitchen and lounge, bedroom with terrace, and bathroom. The habitable attic includes a large bedroom with walk-in wardrobe and the possibility of creating a private bathroom.\n\nThe property includes an approx. 200 sqm paved courtyard, garden, parking space in the driveway, independent heating with condensing boiler, fireplace, wood stove, solid wood windows with safety glass, and alarm system. The layout also allows easy division into two independent residential units.",
+  "description_cs": "V None, ve Via San Lorenzo 7, nabizime radovy dum se zahradou, garazi a soukromym dvorem. Nemovitost byla postavena v roce 1997, ma cihlovou fasadu a nabizi cca 240 m2 ve ctyrech urovnich: prizemi, prvni patro, druhé patro a obyvatelne podkrovi.\n\nV prizemi je zarizena kuchyne, koupelna se sprchou a vnitrni garaz. Prvni patro zahrnuje velky obyvak s krbem, terasu, dvouluzkovou loznici se soukromou terasou a koupelnu s vanou. Druhé patro nabizi dalsi obytnou cast s otevrenou kuchyni a obyvakem, loznici s terasou a koupelnu. Obyvatelne podkrovi obsahuje velkou loznici se satnou a moznosti vybudovat soukromou koupelnu.\n\nSoucasti nemovitostí je dlazdeny dvur cca 200 m2, zahrada, parkovaci misto v prijezdu, samostatne topeni s kondenzacnim kotlem, krb, kamna na drevo, okna z masivniho dreva s bezpecnostnimi skly a alarm. Dispozice umoznuje take jednoduche rozdeleni na dve samostatne bytove jednotky.",
+  "seo_title_it": "Villetta a schiera con giardino in vendita a None",
+  "seo_title_en": "Terraced House with Garden for Sale in None",
+  "seo_title_cs": "Radovy dum se zahradou na prodej v None",
+  "seo_description_it": "Villetta a schiera di 240 m2 a None: 3 camere, 3 bagni, giardino, cortile 200 m2, garage, terrazzi e possibilita di due unita indipendenti.",
+  "seo_description_en": "240 sqm terraced house in None: 3 bedrooms, 3 bathrooms, garden, 200 sqm courtyard, garage, terraces, and possible split into two units.",
+  "seo_description_cs": "Radovy dum 240 m2 v None: 3 loznice, 3 koupelny, zahrada, dvur 200 m2, garaz, terasy a moznost rozdeleni na dve jednotky.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "none",
+    "via san lorenzo",
+    "villetta a schiera",
+    "giardino",
+    "garage",
+    "torino",
+    "piemonte"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/128449506/",
+  "lat": 44.9368,
+  "lng": 7.5342,
+  "image_urls": []
+}

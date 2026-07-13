@@ -7,6 +7,7 @@
  * Usage:
  *   node scripts/seed-properties-to-supabase.cjs            # upsert all
  *   node scripts/seed-properties-to-supabase.cjs --dry-run  # preview only
+ *   node scripts/seed-properties-to-supabase.cjs --only=slug-a,slug-b
  *   node scripts/seed-properties-to-supabase.cjs --truncate # wipe table first
  *
  * Reads NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY from the
@@ -26,6 +27,13 @@ const BATCH_SIZE = 100
 const argv = process.argv.slice(2)
 const DRY_RUN = argv.includes('--dry-run')
 const TRUNCATE = argv.includes('--truncate')
+const ONLY_SLUGS = new Set(
+  (argv.find((arg) => arg.startsWith('--only=')) || '')
+    .slice('--only='.length)
+    .split(',')
+    .map((slug) => slug.trim())
+    .filter(Boolean)
+)
 
 async function loadDotEnvLocal() {
   let raw
@@ -97,7 +105,10 @@ async function main() {
     auth: { persistSession: false, autoRefreshToken: false }
   })
 
-  const properties = await readProperties()
+  let properties = await readProperties()
+  if (ONLY_SLUGS.size > 0) {
+    properties = properties.filter((property) => ONLY_SLUGS.has(property?.slug?.current || property?._id))
+  }
   const rows = properties.map(rowFor).filter(Boolean)
   const skipped = properties.length - rows.length
 

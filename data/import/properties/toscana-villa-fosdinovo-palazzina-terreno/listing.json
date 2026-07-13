@@ -1,0 +1,76 @@
+{
+  "slug": "toscana-villa-fosdinovo-palazzina-terreno",
+  "title_it": "Villa ristrutturata con veranda e terreno a Fosdinovo",
+  "title_en": "Renovated Villa with Veranda and Land in Fosdinovo",
+  "title_cs": "Zrekonstruovana vila s verandou a pozemkem ve Fosdinovu",
+  "propertyType": "villa",
+  "propertyType_it": "villa",
+  "region_it": "Toscana",
+  "city_it": "Fosdinovo",
+  "city_en": "Fosdinovo",
+  "city_cs": "Fosdinovo",
+  "address_it": "Via Palazzina 16, Fosdinovo (MS), Toscana",
+  "address_en": "Via Palazzina 16, Fosdinovo (MS), Tuscany",
+  "address_cs": "Via Palazzina 16, Fosdinovo (MS), Toskánsko",
+  "price": 340000,
+  "rooms": 5,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "square_meters": 143,
+  "parking": 2,
+  "features": [
+    {
+      "it": "Villa semi-indipendente di circa 143 m2",
+      "en": "Semi-detached villa of approx. 143 sqm",
+      "cs": "Polosamostatna vila cca 143 m2"
+    },
+    {
+      "it": "Ristrutturazione completa nel 2015",
+      "en": "Fully renovated in 2015",
+      "cs": "Kompletni rekonstrukce v roce 2015"
+    },
+    {
+      "it": "Zona living open space con cucina abitabile",
+      "en": "Open-plan living area with eat-in kitchen",
+      "cs": "Otevrena obytna část s obyvatelnou kuchyni"
+    },
+    {
+      "it": "Tre camere e due bagni",
+      "en": "Three bedrooms and two bathrooms",
+      "cs": "Tri ložnice a dve koupelny"
+    },
+    {
+      "it": "Veranda per pranzi all'aperto",
+      "en": "Veranda for outdoor dining",
+      "cs": "Veranda pro venkovni stolovani"
+    },
+    {
+      "it": "Terreno privato di circa 3.000 m2",
+      "en": "Approx. 3,000 sqm of private land",
+      "cs": "Soukromy pozemek cca 3 000 m2"
+    }
+  ],
+  "description_it": "A Fosdinovo, in via Palazzina 16, proponiamo una villa semi-indipendente immersa nella tranquillita della Lunigiana, completamente ristrutturata nel 2015 con equilibrio tra carattere rustico e comfort moderno.\n\nL'ingresso apre su una luminosa zona living open space, dove cucina abitabile e soggiorno creano un ambiente conviviale, servito da un primo bagno al piano terra. Al piano superiore la zona notte offre tre camere, due matrimoniali e una singola, oltre a un secondo bagno.\n\nGli spazi esterni sono il vero valore aggiunto: una veranda ideale per pranzi all'aperto e un terreno privato di circa 3.000 m2 che circonda la casa.",
+  "description_en": "In Fosdinovo, on Via Palazzina 16, we offer a semi-detached villa immersed in the quiet of Lunigiana, fully renovated in 2015 with a balance of rustic character and modern comfort.\n\nThe entrance opens into a bright open-plan living area, where the eat-in kitchen and lounge create a convivial space, served by a first bathroom on the ground floor. Upstairs, the sleeping area includes three bedrooms, two doubles and one single, plus a second bathroom.\n\nThe outdoor spaces are the key feature: a veranda ideal for outdoor dining and approx. 3,000 sqm of private land surrounding the house.",
+  "description_cs": "Ve Fosdinovu, ve Via Palazzina 16, nabizime polosamostatnou vilu v klidu Lunigiany, kompletne zrekonstruovanou v roce 2015 s vyvazenim rustikalniho charakteru a moderniho komfortu.\n\nVstup vede do svetle otevrene obytne casti, kde obyvatelna kuchyne a salon vytvareji prijemny spolecensky prostor, obslouzeny prvni koupelnou v prizemi. V hornim patre je nocni cast se tremi loznicemi, dvema dvouluzkovymi a jednou jednoluzkovou, plus druha koupelna.\n\nHlavni hodnotou jsou venkovni prostory: veranda idealni pro stolovani venku a soukromy pozemek cca 3 000 m2 obklopujici dum.",
+  "seo_title_it": "Villa con terreno in vendita a Fosdinovo",
+  "seo_title_en": "Villa with Land for Sale in Fosdinovo",
+  "seo_title_cs": "Vila s pozemkem na prodej ve Fosdinovu",
+  "seo_description_it": "Villa di 143 m2 a Fosdinovo, ristrutturata nel 2015, con 3 camere, 2 bagni, veranda e terreno privato di circa 3.000 m2.",
+  "seo_description_en": "143 sqm villa in Fosdinovo, renovated in 2015, with 3 bedrooms, 2 bathrooms, veranda, and approx. 3,000 sqm of private land.",
+  "seo_description_cs": "Vila 143 m2 ve Fosdinovu, rekonstrukce 2015, 3 loznice, 2 koupelny, veranda a soukromy pozemek cca 3 000 m2.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "fosdinovo",
+    "via palazzina",
+    "villa",
+    "terreno",
+    "veranda",
+    "toscana"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/128833486/",
+  "lat": 44.1211,
+  "lng": 10.005,
+  "image_urls": []
+}

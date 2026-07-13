@@ -56,7 +56,7 @@ const DEFAULT_MILAN_PROPERTY = {
       slug: { current: 'milano' },
       region: {
         name: { en: 'Lombardy', cs: 'Lombardie', it: 'Lombardia' },
-        country: { en: 'Italy', cs: 'Italie', it: 'Italia' }
+        country: { en: 'Italy', cs: 'Itálie', it: 'Italia' }
       }
     },
     address: {
@@ -273,11 +273,11 @@ export default function ContentManagement() {
           specifications: item.specifications || { rooms: 0, bedrooms: 0, bathrooms: 0, squareFootage: 0 },
           location: item.location || {
             city: {
-              name: { en: 'Italy', cs: 'Italie', it: 'Italia' },
+              name: { en: 'Italy', cs: 'Itálie', it: 'Italia' },
               slug: { current: 'italy' },
               region: {
-                name: { en: 'Italy', cs: 'Italie', it: 'Italia' },
-                country: { en: 'Italy', cs: 'Italie', it: 'Italia' }
+                name: { en: 'Italy', cs: 'Itálie', it: 'Italia' },
+                country: { en: 'Italy', cs: 'Itálie', it: 'Italia' }
               }
             },
             address: { en: '', cs: '', it: '' }
@@ -358,7 +358,7 @@ export default function ContentManagement() {
           slug: property.location?.city?.slug || { current: '' },
           region: property.location?.city?.region || {
             name: { en: '', cs: '', it: '' },
-            country: { en: 'Italy', cs: 'Italie', it: 'Italia' }
+            country: { en: 'Italy', cs: 'Itálie', it: 'Italia' }
           }
         },
         address: { en: '', cs: '', it: '', ...(property.location?.address || {}) },
@@ -1503,7 +1503,7 @@ export default function ContentManagement() {
                         description: { ...(prev.description || {}), cs: e.target.value }
                       }))}
                       rows={6}
-                      placeholder="Zadejte podrobný popis nemovitosti v češtině..."
+                      placeholder="Zadejte podrobný popis nemovitostí v češtině..."
                       className="resize-y"
                     />
                     <p className="text-xs text-gray-500 mt-1">

@@ -191,7 +191,7 @@ const CONTENT = {
       {
         title: '8. Omezení odpovědnosti',
         paragraphs: [
-          'Obsah slouží jako obecné informační a operativní vodítko. Rozhodnutí týkající se nákupu nemovitosti, daní, notářských kroků, investic, povolení nebo compliance vyžadují posouzení konkrétního případu kvalifikovanými odborníky.'
+          'Obsah slouží jako obecné informační a operativní vodítko. Rozhodnutí týkající se nákupu nemovitostí, daní, notářských kroků, investic, povolení nebo compliance vyžadují posouzení konkrétního případu kvalifikovanými odborníky.'
         ]
       },
       {

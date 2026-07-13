@@ -8,6 +8,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import PropertyImage from '@/components/PropertyImage';
 import { formatPriceCompact } from '@/lib/currency';
 import { getLocalizedValue, getPropertyTypeLabel, getStatusLabel } from '@/lib/propertyDisplay';
+import NewPropertyRibbon from '@/components/NewPropertyRibbon';
+import NoAgencyBadge from '@/components/NoAgencyBadge';
 import { PAGE_LABELS } from './filterConfig';
 
 // PropertyCard component matching homepage design
@@ -58,6 +60,13 @@ export default function PropertyCard({ property, onFavorite, isFavorited, langua
           className="object-cover group-hover:scale-110 transition-transform duration-300 ease-out"
           data-testid="property-image"
         />
+
+        {property.isNew && <NewPropertyRibbon language={language} />}
+        {property.noAgency && (
+          <div className="absolute right-4 top-16 z-30 pointer-events-none">
+            <NoAgencyBadge language={language} />
+          </div>
+        )}
 
         {statusLabel && (
           <div className="absolute left-4 top-4 z-30 pointer-events-none">

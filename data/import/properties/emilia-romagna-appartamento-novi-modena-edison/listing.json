@@ -1,0 +1,76 @@
+{
+  "slug": "emilia-romagna-appartamento-novi-modena-edison",
+  "title_it": "Trilocale ristrutturato in palazzina riqualificata a Novi di Modena",
+  "title_en": "Renovated Two-Bedroom Apartment in Upgraded Building in Novi di Modena",
+  "title_cs": "Zrekonstruovany byt 3+kk v revitalizovanem dome v Novi di Modena",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Emilia-Romagna",
+  "city_it": "Novi di Modena",
+  "city_en": "Novi di Modena",
+  "city_cs": "Novi di Modena",
+  "address_it": "Via Thomas Alva Edison 15, Novi di Modena (MO), Emilia-Romagna",
+  "address_en": "Via Thomas Alva Edison 15, Novi di Modena (MO), Emilia-Romagna",
+  "address_cs": "Via Thomas Alva Edison 15, Novi di Modena (MO), Emilia-Romagna",
+  "price": 73000,
+  "rooms": 3,
+  "bedrooms": 1,
+  "bathrooms": 1,
+  "square_meters": 63,
+  "parking": 1,
+  "features": [
+    {
+      "it": "Appartamento completamente ristrutturato",
+      "en": "Fully renovated apartment",
+      "cs": "Kompletne zrekonstruovaný byt"
+    },
+    {
+      "it": "Palazzina con cappotto e adeguamento antisismico",
+      "en": "Building with thermal insulation and seismic upgrade",
+      "cs": "Dům se zateplenim a seizmickym posilenim"
+    },
+    {
+      "it": "Primo piano con ascensore",
+      "en": "First floor with lift",
+      "cs": "Prvni patro s vytahem"
+    },
+    {
+      "it": "Zona giorno con angolo cottura",
+      "en": "Living area with kitchenette",
+      "cs": "Obytna část s kuchynskym koutem"
+    },
+    {
+      "it": "Camera matrimoniale e mezza camera",
+      "en": "Double bedroom and small second room",
+      "cs": "Dvouluzkova ložnice a mensi pokoj"
+    },
+    {
+      "it": "Garage di servizio al piano terra",
+      "en": "Service garage on the ground floor",
+      "cs": "Servisni garáž v prizemi"
+    }
+  ],
+  "description_it": "A Novi di Modena, in via Thomas Alva Edison 15, proponiamo un trilocale completamente ristrutturato al primo piano con ascensore, all'interno di una palazzina recentemente riqualificata.\n\nL'edificio e stato oggetto di interventi importanti, tra cui cappotto termico, adeguamento antisismico e rinnovo delle parti comuni. L'appartamento offre ingresso su zona giorno con angolo cottura, camera matrimoniale, mezza camera utilizzabile come studio o stanza armadi, e bagno finestrato con doccia.\n\nCompletano la proprieta infissi in PVC doppio vetro, riscaldamento autonomo, aria condizionata e garage di servizio al piano terra.",
+  "description_en": "In Novi di Modena, on Via Thomas Alva Edison 15, this fully renovated apartment is located on the first floor with lift, inside a recently upgraded building.\n\nThe building has undergone major works, including thermal insulation, seismic upgrade, and renovation of common areas. The apartment includes a living area with kitchenette, double bedroom, small second room suitable as study or wardrobe room, and windowed bathroom with shower.\n\nPVC double-glazed windows, independent heating, air conditioning, and a service garage on the ground floor complete the property.",
+  "description_cs": "V Novi di Modena, ve Via Thomas Alva Edison 15, nabizime kompletne zrekonstruovany byt v prvnim patre s vytahem, v nedavno revitalizovanem dome.\n\nBudova prosla dulezitymi pracemi vcetne zatepleni, seizmickeho posileni a obnovy spolecnych casti. Byt nabizi obytnou cast s kuchynskym koutem, dvouluzkovou loznici, mensi pokoj vhodny jako pracovna nebo satna a koupelnu s oknem a sprchou.\n\nSoucasti jsou plastova okna s dvojsklem, autonomni topeni, klimatizace a servisni garaz v prizemi.",
+  "seo_title_it": "Trilocale ristrutturato in vendita a Novi di Modena",
+  "seo_title_en": "Renovated Two-Bedroom Apartment for Sale in Novi di Modena",
+  "seo_title_cs": "Zrekonstruovany byt na prodej v Novi di Modena",
+  "seo_description_it": "Appartamento ristrutturato di 63 m2 a Novi di Modena, con ascensore, garage, riscaldamento autonomo e aria condizionata.",
+  "seo_description_en": "Renovated 63 sqm apartment in Novi di Modena with lift, garage, independent heating, and air conditioning.",
+  "seo_description_cs": "Zrekonstruovany byt 63 m2 v Novi di Modena s vytahem, garazi, autonomnim topenim a klimatizaci.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "novi di modena",
+    "modena",
+    "trilocale",
+    "ristrutturato",
+    "garage",
+    "emilia-romagna"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/125754995/",
+  "lat": 44.8936,
+  "lng": 10.8956,
+  "image_urls": []
+}

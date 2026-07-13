@@ -88,12 +88,12 @@ const INQUIRY_TYPES = [
   },
   {
     en: 'Property Viewing',
-    cs: 'Prohlídka nemovitosti',
+    cs: 'Prohlídka nemovitostí',
     it: 'Visita immobiliare'
   },
   {
     en: 'Purchase Consultation',
-    cs: 'Konzultace o koupi',
+    cs: 'Konzultace o koupí',
     it: 'Consulenza acquisto'
   },
   {
@@ -207,7 +207,7 @@ export default function ContactPage() {
                'Contact Us'}
             </h1>
             <p className="text-lg text-gray-500 leading-[1.75] max-w-2xl mx-auto">
-              {language === 'cs' ? 'Přemýšlíte o koupi domu v Itálii? Napište nám – ozveme se vám s praktickými informacemi a navrhneme další krok.' :
+              {language === 'cs' ? 'Přemýšlíte o koupí domů v Itálii? Napište nám – ozveme se vám s praktickými informacemi a navrhneme další krok.' :
                language === 'it' ? 'Stai pensando di acquistare una casa in Italia? Scrivici - ti contatteremo con informazioni pratiche e suggeriremo il prossimo passo.' :
                'Thinking about buying a house in Italy? Write to us - we\'ll get back to you with practical information and suggest the next step.'}
             </p>
@@ -473,7 +473,7 @@ export default function ContactPage() {
             <Card className="max-w-3xl mx-auto bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
               <CardContent className="p-8 md:p-12">
                 <h3 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                  {language === 'cs' ? 'Prozkoumejte naše nemovitosti' :
+                  {language === 'cs' ? 'Prozkoumejte naše nemovitostí' :
                    language === 'it' ? 'Esplora le nostre proprietà' :
                    'Explore Our Properties'}
                 </h3>
@@ -485,7 +485,7 @@ export default function ContactPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link href="/properties" className="w-full sm:w-auto">
                     <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg">
-                      {language === 'cs' ? 'Zobrazit nemovitosti' :
+                      {language === 'cs' ? 'Zobrazit nemovitostí' :
                        language === 'it' ? 'Visualizza proprietà' :
                        'View Properties'}
                     </Button>

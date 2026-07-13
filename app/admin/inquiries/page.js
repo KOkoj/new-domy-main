@@ -113,18 +113,21 @@ export default function InquiryManagement() {
 
     setSending(true)
     try {
-      // In a real application, you'd send an email here
-      // For demo purposes, we'll just simulate the response
-      
-      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate API call
-      
-      // Update inquiry status
-      const { error } = await supabase
-        .from('inquiries')
-        .update({ responded: true })
-        .eq('id', selectedInquiry.id)
+      const response = await fetch('/api/inquiries/respond', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          inquiryId: selectedInquiry.id,
+          responseText,
+          propertyTitle: selectedInquiry.listingId
+        })
+      })
 
-      if (error) throw error
+      const result = await response.json().catch(() => ({}))
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || result.details || 'Failed to send response')
+      }
 
       // Update local state
       setInquiries(prev => prev.map(inquiry => 
@@ -138,7 +141,7 @@ export default function InquiryManagement() {
       alert(t('admin.inquiries.responseSent', language))
     } catch (error) {
       console.error('Error sending response:', error)
-      alert(t('admin.inquiries.responseFailed', language))
+      alert(`${t('admin.inquiries.responseFailed', language)}: ${error.message}`)
     } finally {
       setSending(false)
     }
@@ -384,13 +387,6 @@ export default function InquiryManagement() {
         </CardContent>
       </Card>
 
-      {/* Demo Alert */}
-      <Alert>
-        <AlertCircle className="h-4 w-4" />
-        <AlertDescription>
-          <strong>{t('admin.layout.demoMode', language)}:</strong> {t('admin.inquiries.demoNote', language)}
-        </AlertDescription>
-      </Alert>
     </div>
   )
 }

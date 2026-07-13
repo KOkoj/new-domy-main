@@ -20,7 +20,7 @@ const FAQ_ITEMS = [
     },
     answer: {
       en: 'Yes. Citizens of the Czech Republic can buy property in Italy without restrictions – houses and apartments, for both recreational and investment purposes.',
-      cs: 'Ano. Občané České republiky mohou v Itálii bez omezení kupovat nemovitosti – domy i byty, a to jak pro rekreační, tak investiční účely.',
+      cs: 'Ano. Občané České republiky mohou v Itálii bez omezení kupovat nemovitostí – domy i byty, a to jak pro rekreační, tak investiční účely.',
       it: 'Sì. I cittadini della Repubblica Ceca possono acquistare immobili in Italia senza restrizioni – case e appartamenti, sia per scopi ricreativi che di investimento.'
     }
   },
@@ -32,31 +32,31 @@ const FAQ_ITEMS = [
     },
     answer: {
       en: 'No. Permanent residence in Italy is not a condition for buying a house or apartment. However, the buyer must complete certain administrative steps that differ from the Czech system.',
-      cs: 'Ne. Trvalý pobyt v Itálii není podmínkou pro koupi domu nebo bytu. Kupující však musí splnit určité administrativní kroky, které se liší od českého systému.',
+      cs: 'Ne. Trvalý pobyt v Itálii není podmínkou pro koupí domů nebo bytu. Kupující však musí splnit určité administrativní kroky, které se liší od českého systému.',
       it: 'No. La residenza permanente in Italia non è una condizione per l\'acquisto di una casa o appartamento. Tuttavia, l\'acquirente deve completare alcuni passaggi amministrativi diversi dal sistema ceco.'
     }
   },
   {
     question: {
       en: 'What is the role of the notary when buying property?',
-      cs: 'Jakou roli má notář při koupi nemovitosti?',
+      cs: 'Jakou roli má notář při koupí nemovitostí?',
       it: 'Qual è il ruolo del notaio nell\'acquisto di un immobile?'
     },
     answer: {
       en: 'The notary in Italy plays a key role. They ensure the legal correctness of the entire transaction, verify ownership rights, and transfer the property to the new owner. Their role is different from the Czech Republic and is often underestimated by Czech buyers. The notary has criminal liability for their actions by law.',
-      cs: 'Notář v Itálii hraje klíčovou roli. Zajišťuje právní správnost celé transakce, kontrolu vlastnických práv a převod nemovitosti na nového majitele. Jeho role je jiná než v Česku a často bývá českými kupujícími podceňována. Notář má ze zákona trestněprávní odpovědnost za svá jednání.',
+      cs: 'Notář v Itálii hraje klíčovou roli. Zajišťuje právní správnost celé transakce, kontrolu vlastnických práv a převod nemovitostí na nového majitele. Jeho role je jiná než v Česku a často bývá českými kupujícími podceňována. Notář má ze zákona trestněprávní odpovědnost za svá jednání.',
       it: 'Il notaio in Italia svolge un ruolo chiave. Garantisce la correttezza legale dell\'intera transazione, verifica i diritti di proprietà e trasferisce l\'immobile al nuovo proprietario. Il suo ruolo è diverso dalla Repubblica Ceca e spesso viene sottovalutato dagli acquirenti cechi. Il notaio ha responsabilità penale per le sue azioni per legge.'
     }
   },
   {
     question: {
       en: 'What are the main costs associated with buying a house?',
-      cs: 'Jaké jsou hlavní náklady spojené s koupí domu?',
+      cs: 'Jaké jsou hlavní náklady spojené s koupí domů?',
       it: 'Quali sono i principali costi associati all\'acquisto di una casa?'
     },
     answer: {
       en: 'In addition to the property price itself, you need to count on: taxes and fees, notary costs, possible real estate agency commission, and technical inspections and documentation. The total costs may vary by region and property type. Generally, expect an additional 10–15% on top of the purchase price.',
-      cs: 'Kromě samotné ceny nemovitosti je nutné počítat zejména s: daněmi a poplatky, notářskými náklady, případnou provizí realitní kanceláře a technickými kontrolami a dokumentací. Celkové náklady se mohou lišit podle regionu i typu nemovitosti. Obecně počítejte s rezervou přibližně 10–15 % z kupní ceny.',
+      cs: 'Kromě samotné ceny nemovitostí je nutné počítat zejména s: daněmi a poplatky, notářskými náklady, případnou provizí realitní kanceláře a technickými kontrolami a dokumentací. Celkové náklady se mohou lišit podle regionu i typu nemovitostí. Obecně počítejte s rezervou přibližně 10–15 % z kupní ceny.',
       it: 'Oltre al prezzo dell\'immobile stesso, è necessario contare: tasse e spese, costi notarili, eventuale commissione dell\'agenzia immobiliare e ispezioni tecniche e documentazione. I costi totali possono variare per regione e tipo di immobile. In generale, prevedete un ulteriore 10-15% sopra il prezzo di acquisto.'
     }
   },
@@ -68,7 +68,7 @@ const FAQ_ITEMS = [
     },
     answer: {
       en: 'The length of the process depends on the specific property, documents, and region. Usually it takes several weeks to months from the first selection to signing the purchase agreement with the notary. The preparation of the purchase contract in Italy can take approximately 1 to 3 months.',
-      cs: 'Délka procesu závisí na konkrétní nemovitosti, dokumentech a regionu. Obvykle se jedná o několik týdnů až měsíců od prvního výběru po podpis kupní smlouvy u notáře. Proces přípravy kupní smlouvy může v Itálii trvat přibližně 1 až 3 měsíce.',
+      cs: 'Délka procesu závisí na konkrétní nemovitostí, dokumentech a regionu. Obvykle se jedná o několik týdnů až měsíců od prvního výběru po podpis kupní smlouvy u notáře. Proces přípravy kupní smlouvy může v Itálii trvat přibližně 1 až 3 měsíce.',
       it: 'La durata del processo dipende dall\'immobile specifico, dai documenti e dalla regione. Di solito si tratta di diverse settimane o mesi dalla prima selezione alla firma del contratto di acquisto dal notaio. La preparazione del contratto di acquisto in Italia può richiedere circa 1-3 mesi.'
     }
   },
@@ -80,7 +80,7 @@ const FAQ_ITEMS = [
     },
     answer: {
       en: 'Partially yes. Some steps can be handled remotely. However, we usually recommend a personal visit to the property and attendance at the notary signing, so that the buyer has full control over the entire process.',
-      cs: 'Částečně ano. Některé kroky lze řešit i na dálku. Většinou však doporučujeme osobní návštěvu nemovitosti a účast u podpisu u notáře, aby měl kupující plnou kontrolu nad celým procesem.',
+      cs: 'Částečně ano. Některé kroky lze řešit i na dálku. Většinou však doporučujeme osobní návštěvu nemovitostí a účast u podpisu u notáře, aby měl kupující plnou kontrolu nad celým procesem.',
       it: 'Parzialmente sì. Alcuni passaggi possono essere gestiti a distanza. Tuttavia, di solito raccomandiamo una visita personale all\'immobile e la partecipazione alla firma dal notaio, affinché l\'acquirente abbia il pieno controllo sull\'intero processo.'
     }
   },
@@ -99,12 +99,12 @@ const FAQ_ITEMS = [
   {
     question: {
       en: 'What are the most common mistakes Czechs make when buying a house in Italy?',
-      cs: 'Jaké chyby Češi při koupi domu v Itálii dělají nejčastěji?',
+      cs: 'Jaké chyby Češi při koupí domů v Itálii dělají nejčastěji?',
       it: 'Quali sono gli errori più comuni che i cechi commettono quando acquistano una casa in Italia?'
     },
     answer: {
       en: 'The most common problems don\'t arise from carelessness, but from: unfamiliarity with local administration, the assumption that everything works the same as in the Czech Republic, underestimating the technical condition of the property, and missing information before the first step. These "details" often determine whether the purchase will be a pleasant experience or an unnecessarily complicated process.',
-      cs: 'Nejčastější problémy nevznikají kvůli nepozornosti, ale kvůli: neznalosti místní administrativy, předpokladu, že vše funguje stejně jako v Česku, podcenění technického stavu nemovitosti a chybějícím informacím ještě před prvním krokem. Právě tyto „detaily" často rozhodují, zda bude koupě příjemnou zkušeností, nebo zbytečně složitým procesem.',
+      cs: 'Nejčastější problémy nevznikají kvůli nepozornosti, ale kvůli: neznalosti místní administrativy, předpokladu, že vše funguje stejně jako v Česku, podcenění technického stavu nemovitostí a chybějícím informacím ještě před prvním krokem. Právě tyto „detaily" často rozhodují, zda bude koupě příjemnou zkušeností, nebo zbytečně složitým procesem.',
       it: 'I problemi più comuni non sorgono per disattenzione, ma per: scarsa conoscenza dell\'amministrazione locale, il presupposto che tutto funzioni come nella Repubblica Ceca, sottovalutazione delle condizioni tecniche dell\'immobile e mancanza di informazioni prima del primo passo. Questi "dettagli" spesso determinano se l\'acquisto sarà un\'esperienza piacevole o un processo inutilmente complicato.'
     }
   }
@@ -147,12 +147,12 @@ export default function FAQPage() {
               <span className="text-sm text-slate-600 font-medium">FAQ</span>
             </div>
             <h1 className="font-extrabold mb-6 text-slate-800">
-              {language === 'cs' ? 'Časté dotazy ke koupi domu v Itálii' :
+              {language === 'cs' ? 'Časté dotazy ke koupí domů v Itálii' :
                language === 'it' ? 'Domande frequenti sull\'acquisto di una casa in Italia' :
                'FAQ - Buying a House in Italy'}
             </h1>
             <p className="text-lg text-gray-500 leading-[1.75] max-w-2xl mx-auto">
-              {language === 'cs' ? 'Koupě nemovitosti v Itálii vyvolává u českých zájemců mnoho otázek. Proces se v mnoha ohledech liší od České republiky.' :
+              {language === 'cs' ? 'Koupě nemovitostí v Itálii vyvolává u českých zájemců mnoho otázek. Proces se v mnoha ohledech liší od České republiky.' :
                language === 'it' ? 'L\'acquisto di un immobile in Italia solleva molte domande tra gli interessati cechi. Il processo differisce per molti aspetti dalla Repubblica Ceca.' :
                'Buying property in Italy raises many questions for Czech interested buyers. The process differs in many ways from the Czech Republic.'}
             </p>
@@ -236,7 +236,7 @@ export default function FAQPage() {
                          'Step by Step'}
                       </h4>
                       <p className="text-sm text-gray-600">
-                        {language === 'cs' ? 'Celý postup koupě nemovitosti v Itálii.' :
+                        {language === 'cs' ? 'Celý postup koupě nemovitostí v Itálii.' :
                          language === 'it' ? 'L\'intero processo di acquisto di un immobile in Italia.' :
                          'The entire process of buying property in Italy.'}
                       </p>
@@ -250,7 +250,7 @@ export default function FAQPage() {
                          'Italian Regions'}
                       </h4>
                       <p className="text-sm text-gray-600">
-                        {language === 'cs' ? 'Kde dává koupě domu největší smysl.' :
+                        {language === 'cs' ? 'Kde dává koupě domů největší smysl.' :
                          language === 'it' ? 'Dove ha più senso acquistare una casa.' :
                          'Where buying a house makes the most sense.'}
                       </p>
@@ -264,7 +264,7 @@ export default function FAQPage() {
                          'Purchase Costs'}
                       </h4>
                       <p className="text-sm text-gray-600">
-                        {language === 'cs' ? 'Kolik skutečně stojí koupě domu v Itálii.' :
+                        {language === 'cs' ? 'Kolik skutečně stojí koupě domů v Itálii.' :
                          language === 'it' ? 'Quanto costa realmente acquistare una casa in Italia.' :
                          'How much it really costs to buy a house in Italy.'}
                       </p>

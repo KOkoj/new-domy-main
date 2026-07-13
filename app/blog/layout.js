@@ -1,14 +1,14 @@
 import { absoluteUrl, SITE_NAME } from '@/lib/siteConfig'
 
-const TITLE_CS = 'Pruvodci a clanky o Italii | ' + SITE_NAME
+const TITLE_CS = 'Pruvodci a články o Itálii | ' + SITE_NAME
 const DESCRIPTION_CS =
-  'Pruvodci a clanky o Italii pro kupujici nemovitosti i cestovatele: ceny, regiony, pravni proces, prakticke planovani a mistni kontext.'
+  'Pruvodci a články o Itálii pro kupující nemovitostí i cestovatele: ceny, regiony, právní proces, praktické plánování a místní kontext.'
 
 export const metadata = {
   title: TITLE_CS,
   description: DESCRIPTION_CS,
   keywords:
-    'clanky Italie, pruvodce Italii, koupit nemovitost v Italii, dovolena v Italii, rekonstrukce v Italii, italske regiony, italian buying guide',
+    'články Itálie, průvodce Itálii, koupit nemovitost v Itálii, dovolená v Itálii, rekonstrukce v Itálii, italske regiony, italian buying guide',
   alternates: {
     canonical: '/blog',
     languages: {

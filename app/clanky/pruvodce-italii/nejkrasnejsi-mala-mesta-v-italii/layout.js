@@ -2,7 +2,7 @@ import JsonLd from '@/components/seo/JsonLd'
 import { getTravelArticleSeo } from '@/lib/seo/contentPages'
 import { buildArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
 
-const seo = getTravelArticleSeo('nejkrasnejsi-mala-mesta-v-italii')
+const seo = getTravelArticleSeo('nejkrasnejsi-mala-města-v-italii')
 
 export const metadata = buildArticleMetadata(seo)
 
@@ -12,7 +12,7 @@ export default function MostBeautifulSmallTownsItalyLayout({ children }) {
       <JsonLd
         data={buildBreadcrumbJsonLd([
           { name: 'Home', path: '/' },
-          { name: 'Průvodce Itálií', path: '/clanky/pruvodce-italii' },
+          { name: 'Průvodce Itálií', path: '/články/průvodce-italii' },
           { name: seo.title, path: seo.path }
         ])}
       />

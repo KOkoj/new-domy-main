@@ -1,0 +1,89 @@
+{
+  "slug": "lazio-bilocale-viterbo-mattonara",
+  "title_it": "Bilocale a Viterbo in via della Mattonara",
+  "title_en": "One-Bedroom Apartment in Viterbo, Via della Mattonara",
+  "title_cs": "Dvoupokojovy byt ve Viterbu, Via della Mattonara",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Lazio",
+  "city_it": "Viterbo",
+  "city_en": "Viterbo",
+  "city_cs": "Viterbo",
+  "address_it": "Via della Mattonara, Viterbo",
+  "address_en": "Via della Mattonara, Viterbo",
+  "address_cs": "Via della Mattonara, Viterbo",
+  "price": 105000,
+  "rooms": 2,
+  "bedrooms": 1,
+  "bathrooms": 1,
+  "square_meters": 50,
+  "features": [
+    {
+      "it": "bilocale compatto a San Martino al Cimino",
+      "en": "bilocale compatto a San Martino al Cimino",
+      "cs": "bilocale compatto a San Martino al Cimino"
+    },
+    {
+      "it": "50 mq commerciali",
+      "en": "50 commercial sqm",
+      "cs": "50 m2 komerční plochy"
+    },
+    {
+      "it": "2 locali",
+      "en": "2 rooms",
+      "cs": "2 místnosti"
+    },
+    {
+      "it": "1 camere da letto",
+      "en": "1 bedrooms",
+      "cs": "1 ložnice"
+    },
+    {
+      "it": "1 bagni",
+      "en": "1 bathrooms",
+      "cs": "1 koupelna"
+    },
+    {
+      "it": "indirizzo indicato: Via della Mattonara",
+      "en": "listed address: Via della Mattonara",
+      "cs": "uvedena adresa: Via della Mattonara"
+    }
+  ],
+  "description_it": "A Viterbo, proponiamo appartamento con 50 mq, 2 locali, 1 camere e 1 bagni. La proprieta si trova in Via della Mattonara, Viterbo e rappresenta una soluzione concreta per chi cerca una casa in Lazio con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e bilocale compatto a San Martino al Cimino. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto.",
+  "description_en": "In Viterbo, this apartment offers 50 sqm, 2 rooms, 1 bedrooms and 1 bathrooms. The property is located at Via della Mattonara, Viterbo and is a practical option for buyers looking in Lazio with clear figures and a defined asking price.\n\nThe key point is bilocale compatto a San Martino al Cimino. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+  "description_cs": "V lokalite Viterbo nabizi tato nemovitost 50 m2, 2 mistnosti, 1 loznice a 1 koupelny. Nachazi se na adrese Via della Mattonara, Viterbo a predstavuje praktickou moznost pro kupující, kteri hledaji nemovitost v regionu Lazio s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabídky je bilocale compatto a San Martino al Cimino. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupí je nutne prověřit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+  "seo_title_it": "Bilocale a Viterbo in via della Mattonara in vendita",
+  "seo_title_en": "One-Bedroom Apartment in Viterbo, Via della Mattonara for sale",
+  "seo_title_cs": "Dvoupokojovy byt ve Viterbu, Via della Mattonara na prodej",
+  "seo_description_it": "Viterbo: appartamento di 50 mq, 1 camere, 1 bagni. Prezzo 105.000 euro.",
+  "seo_description_en": "Viterbo: apartment of 50 sqm, 1 bedrooms, 1 bathrooms. Asking price EUR 105,000.",
+  "seo_description_cs": "Viterbo: nemovitost 50 m2, 1 loznice, 1 koupelny. Cena 105000 EUR.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "lazio",
+    "viterbo",
+    "apartment",
+    "via-della-mattonara",
+    "immobiliare-it"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/128638238/",
+  "lat": 42.4043,
+  "lng": 12.1037,
+  "image_urls": [
+    "https://pwm.im-cdn.it/image/1913594652/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595348/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595354/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595364/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595368/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595374/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595384/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595388/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595400/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595408/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595416/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595420/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595426/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1913595434/xxl.jpg"
+  ]
+}

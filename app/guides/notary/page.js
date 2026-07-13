@@ -15,17 +15,17 @@ const COPY = {
     home: 'Domů',
     guide: 'Průvodce',
     page: 'Notář v Itálii',
-    title: 'Notář v Itálii: role a náklady při koupi domu',
+    title: 'Notář v Itálii: role a náklady při koupí domů',
     intro:
-      'Notář hraje při koupi domu v Itálii zásadní roli. Jeho funkce se ale v mnoha ohledech liší od toho, na co jsou čeští kupující zvyklí.',
+      'Notář hraje při koupí domů v Itálii zásadní roli. Jeho funkce se ale v mnoha ohledech liší od toho, na co jsou čeští kupující zvyklí.',
     imageAlt: 'Pár před dokumenty s poradcem',
     imageCaption:
-      'Notářská fáze je o dokumentech, podpisu a právní jistotě, ne o prvním dojmu z nemovitosti.',
+      'Notářská fáze je o dokumentech, podpisu a právní jistotě, ne o prvním dojmu z nemovitostí.',
     warning:
       'Pro mnoho českých kupujících představuje notář úplnou záruku.\nVe skutečnosti je jeho role zásadní, ale omezená na konkrétní právní odpovědnosti.\nVše, co se děje před notářským aktem a kolem něj, zůstává na odpovědnosti kupujícího.',
     roleTitle: 'Jaká je role notáře v Itálii',
     roleBody:
-      'Notář v Itálii není pouze svědek podpisu. Je to nezávislý veřejný činitel, který odpovídá za právní správnost převodu nemovitosti.',
+      'Notář v Itálii není pouze svědek podpisu. Je to nezávislý veřejný činitel, který odpovídá za právní správnost převodu nemovitostí.',
     roleChecks: [
       'ověřit vlastnická práva prodávajícího',
       'zkontrolovat zápisy v katastru',
@@ -41,7 +41,7 @@ const COPY = {
     whenBullets: [
       'nevybírá nemovitost',
       'neposuzuje výhodnost koupě',
-      'nekontroluje technický stav domu'
+      'nekontroluje technický stav domů'
     ],
     whenClosing:
       'Všechna tato rozhodnutí probíhají dlouho před zapojením notáře a často jsou nejcitlivější částí celého nákupního procesu.',
@@ -49,9 +49,9 @@ const COPY = {
     checksYesTitle: 'Notář kontroluje:',
     checksYes: ['vlastnická práva', 'právní omezení, dluhy a zástavy', 'správnost dokumentace'],
     checksNoTitle: 'Notář nekontroluje:',
-    checksNoBody: 'Technický stav nemovitosti. Spoléhat se pouze na notáře je častou chybou.',
+    checksNoBody: 'Technický stav nemovitostí. Spoléhat se pouze na notáře je častou chybou.',
     checksClosing:
-      'Proto je spoléhat se výhradně na notáře jedním z nejčastějších omylů zahraničních kupujících. Technická kontrola, soulad dokumentů, skutečný stav nemovitosti i dohodnuté podmínky vyžadují širší koordinaci.',
+      'Proto je spoléhat se výhradně na notáře jedním z nejčastějších omylů zahraničních kupujících. Technická kontrola, soulad dokumentů, skutečný stav nemovitostí i dohodnuté podmínky vyžadují širší koordinaci.',
     chooseTitle: 'Kdo notáře vybírá a kdo ho platí',
     chooseLead: 'V Itálii je běžné, že:',
     chooseBuyerTitle: 'Kupující může vybrat notáře',
@@ -65,7 +65,7 @@ const COPY = {
       'Vybrat správného notáře, sladit termíny, správně připravit dokumenty a ověřit, že je vše před aktem připravené, je odpovědnost, která často padá na kupujícího.\nA právě v této fázi se objevuje mnoho problémů.',
     costsTitle: 'Některé náklady na notáře',
     costsLead: 'Cena notáře se liší podle:',
-    costsBullets: ['kupní ceny nemovitosti', 'typu převodu', 'výše daní'],
+    costsBullets: ['kupní ceny nemovitostí', 'typu převodu', 'výše daní'],
     costsIncludesTitle: 'Notářské náklady obvykle zahrnují:',
     costsIncludes: ['odměnu notáře', 'povinné daně', 'administrativní poplatky'],
     costsClosing:

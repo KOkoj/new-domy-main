@@ -1,0 +1,87 @@
+{
+  "slug": "umbria-quadrilocale-terni-maratta-narni",
+  "title_it": "Quadrilocale a Terni, zona Maratta",
+  "title_en": "Four-Room Apartment in Terni, Maratta Area",
+  "title_cs": "Ctyrpokojovy byt v Terni, oblast Maratta",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Umbria",
+  "city_it": "Terni",
+  "city_en": "Terni",
+  "city_cs": "Terni",
+  "address_it": "Via Narni, Terni",
+  "address_en": "Via Narni, Terni",
+  "address_cs": "Via Narni, Terni",
+  "price": 65000,
+  "rooms": 4,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "square_meters": 100,
+  "features": [
+    {
+      "it": "quadrilocale con tre camere a Maratta",
+      "en": "quadrilocale con tre camere a Maratta",
+      "cs": "quadrilocale con tre camere a Maratta"
+    },
+    {
+      "it": "100 mq commerciali",
+      "en": "100 commercial sqm",
+      "cs": "100 m2 komerční plochy"
+    },
+    {
+      "it": "4 locali",
+      "en": "4 rooms",
+      "cs": "4 místnosti"
+    },
+    {
+      "it": "3 camere da letto",
+      "en": "3 bedrooms",
+      "cs": "3 ložnice"
+    },
+    {
+      "it": "2 bagni",
+      "en": "2 bathrooms",
+      "cs": "2 koupelny"
+    },
+    {
+      "it": "indirizzo indicato: Via Narni",
+      "en": "listed address: Via Narni",
+      "cs": "uvedena adresa: Via Narni"
+    }
+  ],
+  "description_it": "A Terni, proponiamo appartamento con 100 mq, 4 locali, 3 camere e 2 bagni. La proprieta si trova in Via Narni, Terni e rappresenta una soluzione concreta per chi cerca una casa in Umbria con dati chiari e prezzo definito.\n\nIl punto forte dell annuncio e quadrilocale con tre camere a Maratta. La distribuzione interna e la metratura rendono l immobile adatto sia a uso personale sia a valutazioni di investimento, secondo le esigenze dell acquirente.\n\nLa proposta richiede come sempre verifica documentale, controllo tecnico e sopralluogo prima di qualsiasi decisione di acquisto.",
+  "description_en": "In Terni, this apartment offers 100 sqm, 4 rooms, 3 bedrooms and 2 bathrooms. The property is located at Via Narni, Terni and is a practical option for buyers looking in Umbria with clear figures and a defined asking price.\n\nThe key point is quadrilocale con tre camere a Maratta. The internal layout and size make it suitable for personal use or for an investment assessment, depending on the buyer's goals.\n\nAs always, documents, technical condition and an on-site visit should be checked before any purchase decision.",
+  "description_cs": "V lokalite Terni nabizi tato nemovitost 100 m2, 4 mistnosti, 3 loznice a 2 koupelny. Nachazi se na adrese Via Narni, Terni a predstavuje praktickou moznost pro kupující, kteri hledaji nemovitost v regionu Umbrie s jasnymi udaji a stanovenou cenou.\n\nHlavnim bodem nabídky je quadrilocale con tre camere a Maratta. Dispozice a velikost mohou davat smysl jak pro vlastni uzivani, tak pro investicni posouzeni podle cilu kupujiciho.\n\nPred rozhodnutim o koupí je nutne prověřit dokumentaci, technicky stav a nemovitost osobne navstivit.",
+  "seo_title_it": "Quadrilocale a Terni, zona Maratta in vendita",
+  "seo_title_en": "Four-Room Apartment in Terni, Maratta Area for sale",
+  "seo_title_cs": "Ctyrpokojovy byt v Terni, oblast Maratta na prodej",
+  "seo_description_it": "Terni: appartamento di 100 mq, 3 camere, 2 bagni. Prezzo 65.000 euro.",
+  "seo_description_en": "Terni: apartment of 100 sqm, 3 bedrooms, 2 bathrooms. Asking price EUR 65,000.",
+  "seo_description_cs": "Terni: nemovitost 100 m2, 3 loznice, 2 koupelny. Cena 65000 EUR.",
+  "status": "available",
+  "featured": false,
+  "keywords": [
+    "umbria",
+    "terni",
+    "apartment",
+    "via-narni",
+    "immobiliare-it"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/123692641/",
+  "lat": 42.5498,
+  "lng": 12.6248,
+  "image_urls": [
+    "https://pwm.im-cdn.it/image/1795160671/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1795160715/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1795160725/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1795160733/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1795160735/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1795160687/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1892257538/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1795160713/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1795160683/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1795160695/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1795160705/xxl.jpg",
+    "https://pwm.im-cdn.it/image/1795160723/xxl.jpg"
+  ]
+}

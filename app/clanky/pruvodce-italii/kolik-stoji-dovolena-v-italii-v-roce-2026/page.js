@@ -512,8 +512,8 @@ export default function HolidayCostsItaly2026Page() {
     language === 'cs'
       ? {
           src: '/house_amalfi.jpg',
-          alt: 'Dovolena v Italii a planovani rozpoctu',
-          caption: 'Celkovy rozpocet na dovolenou nejvice ovlivni termin, region a zvoleny styl cestovani.'
+          alt: 'Dovolená v Itálii a plánování rozpočtu',
+          caption: 'Celkovy rozpocet na dovolenou nejvice ovlivni termin, region a zvoleny styl cestování.'
         }
       : language === 'it'
         ? {
@@ -535,7 +535,7 @@ export default function HolidayCostsItaly2026Page() {
         <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
           <article className="max-w-4xl mx-auto space-y-8" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <Button asChild variant="outline" className="inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-700">
-              <Link href="/clanky/pruvodce-italii">
+              <Link href="/články/průvodce-italii">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 {t.navArticles}
               </Link>

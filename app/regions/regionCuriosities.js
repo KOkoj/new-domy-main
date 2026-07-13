@@ -110,7 +110,7 @@ export const REGION_CURIOSITIES = {
       'Ligurie je úzký region mezi mořem a horami.',
       'Cinque Terre je na seznamu UNESCO a pod silnou krajinnou ochranou.',
       'Pesto alla Genovese a Basilico Genovese DOP jsou významné místní symboly.',
-      'Sklon terénu, přístupové cesty a terasy mohou výrazně ovlivnit užívání nemovitosti.'
+      'Sklon terénu, přístupové cesty a terasy mohou výrazně ovlivnit užívání nemovitostí.'
     ],
     it: [
       'La Liguria è una regione stretta tra mare e montagne.',
@@ -369,7 +369,7 @@ export const REGION_CURIOSITIES = {
     cs: [
       'Italské Alpy pokrývají více regionů s velmi odlišným tržním profilem.',
       'Mnoho alpských údolí zachovává dvojjazyčný nebo trojjazyčný kulturní kontext.',
-      'Přístup k lanovkám, nadmořská výška a zimní logistika silně ovlivňují hodnotu nemovitosti.',
+      'Přístup k lanovkám, nadmořská výška a zimní logistika silně ovlivňují hodnotu nemovitostí.',
       'Hydrogeologická a lavinová omezení mohou ovlivnit stavební povolení.'
     ],
     it: [

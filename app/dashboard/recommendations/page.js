@@ -27,6 +27,7 @@ import {
   ChevronRight
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 import { t } from '../../../lib/translations'
 import Link from 'next/link'
@@ -171,10 +172,9 @@ export default function PropertyRecommendations() {
   }, [recommendations, filterType, minMatchScore])
 
   const loadUserData = async () => {
-    if (!supabase) return
     try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
+      const user = await getDashboardUser(supabase)
+      if (!user || !supabase) return
       
       setUser(user)
 

@@ -61,7 +61,7 @@ function formatPriceForSeo(price) {
 function PropertySeoContent({ property }) {
   if (!property) return null
 
-  const title = getLocalized(property.title, 'cs', 'Nemovitost v Italii')
+  const title = getLocalized(property.title, 'cs', 'Nemovitost v Itálii')
   const description =
     getLocalized(property.description, 'cs', '') ||
     getLocalized(property.seoDescription, 'cs', '')
@@ -93,7 +93,7 @@ function PropertySeoContent({ property }) {
             {address ? `, ${address}` : ''}
             {city ? `, ${city}` : ''}
             {region ? `, ${region}` : ''}
-            , Italie
+            , Itálie
           </p>
         ) : null}
         {formattedPrice ? <p>Cena: {formattedPrice}</p> : null}

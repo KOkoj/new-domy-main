@@ -6,7 +6,7 @@ const SAMPLE_REGIONS = [
     name: {
       en: 'Tuscany - tradition, prestige and rental income',
       it: 'Toscana - tradizione, prestigio e reddito da affitto',
-      cs: 'Toskansko - tradice, prestiz a prijem z pronajmu'
+      cs: 'Toskánsko - tradice, prestiz a prijem z pronajmu'
     },
     slug: { current: 'toscana' },
     country: 'Italy',
@@ -104,7 +104,7 @@ const SAMPLE_REGIONS = [
   },
   {
     _id: '5',
-    name: { en: 'Sicily', it: 'Sicilia', cs: 'Sicilie' },
+    name: { en: 'Sicily', it: 'Sicilia', cs: 'Sicílie' },
     slug: { current: 'sicilia' },
     country: 'Italy',
     description: {
@@ -200,7 +200,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Culinary capital of Italy with Bologna, Parma, and Modena. Rich food culture, historic cities, and excellent quality of life.',
       it: 'Capitale culinaria d\'Italia con Bologna, Parma e Modena. Ricca cultura alimentare e qualità di vita eccellente.',
-      cs: 'Kulinarske hlavni město Itálie s bohatou potravinovou kulturou.'
+      cs: 'Kulinarske hlavní město Itálie s bohatou potravinovou kulturou.'
     },
     image: '/Emilia-Romagna.jpg',
     propertyCount: 380,

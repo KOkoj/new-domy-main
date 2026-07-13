@@ -9,6 +9,8 @@ import { Badge } from '@/components/ui/badge'
 import PropertyImage from '@/components/PropertyImage'
 import { getPropertyImage } from '@/lib/getPropertyImage'
 import { getLocalizedValue } from '@/lib/propertyDisplay'
+import NewPropertyRibbon from '@/components/NewPropertyRibbon'
+import NoAgencyBadge from '@/components/NoAgencyBadge'
 
 const LABELS = {
   cs: {
@@ -86,7 +88,16 @@ function transformProperty(prop, index) {
     status: prop.status || 'available',
     slug: prop.slug?.current || prop.slug || prop._id || '',
     featured: prop.featured || false,
+    createdAt: prop._createdAt || prop.createdAt || '',
+    updatedAt: prop._updatedAt || prop.updatedAt || '',
+    isNew: Boolean(prop.isNew || prop.newListing),
+    noAgency: Boolean(prop.noAgency || prop.no_agency || prop.badges?.includes('no-agency')),
   }
+}
+
+function getPropertyTimestamp(property) {
+  const timestamp = Date.parse(property?.createdAt || property?.updatedAt || '')
+  return Number.isFinite(timestamp) ? timestamp : 0
 }
 
 function shuffle(arr) {
@@ -132,6 +143,13 @@ function SlideCard({ property, language, labels }) {
           className="w-full h-auto object-cover aspect-[320/208] group-hover:scale-105 transition-transform duration-300 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-800/40 via-transparent to-transparent" />
+
+        {property.isNew && <NewPropertyRibbon language={language} />}
+        {property.noAgency && (
+          <div className="absolute right-3 top-3 z-20 pointer-events-none">
+            <NoAgencyBadge language={language} className="px-2.5 py-1 text-[10px] tracking-[0.1em]" />
+          </div>
+        )}
 
         {statusLabel && (
           <div className="absolute left-3 top-3 z-20 pointer-events-none">
@@ -235,7 +253,11 @@ export default function PropertySlider({ language = 'en' }) {
         const data = await res.json()
         if (Array.isArray(data) && data.length > 0) {
           const transformed = data.map(transformProperty)
-          setProperties(shuffle(transformed))
+          const newProperties = transformed
+            .filter((property) => property.isNew)
+            .sort((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a))
+          const otherProperties = shuffle(transformed.filter((property) => !property.isNew))
+          setProperties([...newProperties, ...otherProperties])
         }
       } catch {
         // silently fail — slider simply won't render

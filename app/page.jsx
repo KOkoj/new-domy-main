@@ -25,33 +25,33 @@ async function fetchPropertiesSafely() {
 }
 
 const PROPERTY_TYPES_CS = [
-  { slug: 'apartment', label: 'Byty v Italii', description: 'Mestske byty v italskych mestech a lokalitach s turistickou poptavkou.' },
-  { slug: 'house', label: 'Domy v Italii', description: 'Rodinne domy s pozemkem v ruznych italskych regionech.' },
-  { slug: 'villa', label: 'Vily v Italii', description: 'Luxusni vily s pozemkem, bazenem a vyhledem.' },
+  { slug: 'apartment', label: 'Byty v Itálii', description: 'Městské byty v italských mestech a lokalitách s turistickou poptávkou.' },
+  { slug: 'house', label: 'Domy v Itálii', description: 'Rodinné domy s pozemkem v různých italských regionech.' },
+  { slug: 'villa', label: 'Vily v Itálii', description: 'Luxusni vily s pozemkem, bazénem a výhledem.' },
   { slug: 'rustic', label: 'Rustikalni statky a casaly', description: 'Tradicni italske rustikalni domy a statky vhodne k rekonstrukci.' },
-  { slug: 'land', label: 'Pozemky v Italii', description: 'Stavebni a zemedelske pozemky v italskych regionech.' }
+  { slug: 'land', label: 'Pozemky v Itálii', description: 'Stavební a zemědělské pozemky v italských regionech.' }
 ]
 
 const HOMEPAGE_FAQS_CS = [
   {
-    q: 'Mohu jako Cech koupit nemovitost v Italii?',
-    a: 'Ano. Italie umoznuje obcanum EU vcetne Cechu kupovat nemovitosti za stejnych podminek jako mistnim. Nepotrebujete italske obcanstvi ani trvaly pobyt.'
+    q: 'Mohu jako Čech koupit nemovitost v Itálii?',
+    a: 'Ano. Itálie umoznuje obcanum EU vcetne Cechu kupovat nemovitostí za stejnych podminek jako mistnim. Nepotrebujete italske obcanstvi ani trvaly pobyt.'
   },
   {
-    q: 'Jake jsou typicke naklady na koupi nemovitosti v Italii?',
+    q: 'Jake jsou typicke naklady na koupí nemovitostí v Itálii?',
     a: 'Krome kupni ceny pocitejte s notarskymi poplatky, dani z prevodu (registracni dan), katastralnimi poplatky a pripadnym pravnim a technickym setrenim. Soucet vedlejsich nakladu se obvykle pohybuje mezi 8 az 15 procenty kupni ceny u rezidence non-prima casa.'
   },
   {
     q: 'Jak dlouho trva proces koupe?',
-    a: 'Od prvni nabidky po zapis do katastru obvykle 2 az 4 mesice, podle slozitosti pravnich a technickych kontrol a rychlosti notare.'
+    a: 'Od prvni nabídky po zapis do katastru obvykle 2 az 4 mesice, podle slozitosti pravnich a technickych kontrol a rychlosti notare.'
   },
   {
     q: 'Potrebuji italske bankovni spojeni nebo italske danove cislo?',
-    a: 'Ano, k podpisu kupni smlouvy budete potrebovat italske danove cislo (codice fiscale). Bankovni ucet v Italii neni podminkou, ale velmi usnadnuje placeni rocnich dani a vyuctovani.'
+    a: 'Ano, k podpisu kupni smlouvy budete potrebovat italske danove cislo (codice fiscale). Bankovni ucet v Itálii neni podminkou, ale velmi usnadnuje placeni rocnich dani a vyuctovani.'
   },
   {
-    q: 'Ktere regiony jsou pro ceske kupujici nejatraktivnejsi?',
-    a: 'Mezi nejcastejsi volby patri Toskansko, Lombardie (jezera), Liguria, Marche, Abruzzo a Puglie. Volba zavisi na rozpoctu, planovanem vyuziti a dostupnosti.'
+    q: 'Ktere regiony jsou pro české kupující nejatraktivnejsi?',
+    a: 'Mezi nejcastejsi volby patri Toskánsko, Lombardie (jezera), Liguria, Marche, Abruzzo a Puglie. Volba zavisi na rozpočtu, planovanem využití a dostupnosti.'
   }
 ]
 
@@ -70,11 +70,11 @@ function HomeSeoContent({ properties }) {
       }}
     >
       <header>
-        <h1>Domy v Italii - kompletni pruvodce koupi nemovitosti v Italii pro Cechy</h1>
+        <h1>Domy v Itálii - kompletni průvodce koupí nemovitostí v Itálii pro Čechy</h1>
         <p>
-          Pomahame ceskym kupujicim s nakupem nemovitosti v Italii: byty, vily,
+          Pomáháme českým kupujícím s nakupem nemovitostí v Itálii: byty, vily,
           rodinne domy a rustikalni statky napric vsemi italskymi regiony.
-          Nabizime pravni a technicke setreni, podporu s codice fiscale,
+          Nabizime právní a technicke setreni, podporu s codice fiscale,
           notarem a celym procesem od prvni prohlidky po zapis do katastru.
         </p>
       </header>
@@ -82,8 +82,8 @@ function HomeSeoContent({ properties }) {
       <section>
         <h2>Italske regiony - kde koupit nemovitost</h2>
         <p>
-          Italie ma 20 regionu a kazdy ma svuj specificky trh, cenovou hladinu
-          a dynamiku. Niz najdete pruvodce koupi pro nejvyznamnejsi regiony.
+          Itálie ma 20 regionu a kazdy ma svuj specificky trh, cenovou hladinu
+          a dynamiku. Niz najdete průvodce koupí pro nejvyznamnejsi regiony.
         </p>
         <ul>
           {regions.map(([slug, region]) => {
@@ -102,7 +102,7 @@ function HomeSeoContent({ properties }) {
       </section>
 
       <section>
-        <h2>Typy nemovitosti v Italii</h2>
+        <h2>Typy nemovitostí v Itálii</h2>
         <ul>
           {PROPERTY_TYPES_CS.map((type) => (
             <li key={type.slug}>
@@ -114,12 +114,12 @@ function HomeSeoContent({ properties }) {
 
       {properties && properties.length > 0 ? (
         <section>
-          <h2>Aktualni nabidka nemovitosti v Italii</h2>
+          <h2>Aktuální nabídka nemovitostí v Itálii</h2>
           <ul>
             {properties.slice(0, 12).map((property) => {
               const slug = property?.slug?.current
               if (!slug) return null
-              const title = getLocalized(property?.title, 'cs', 'Nemovitost v Italii')
+              const title = getLocalized(property?.title, 'cs', 'Nemovitost v Itálii')
               const city = getLocalized(property?.location?.city?.name, 'cs', '')
               const region = getLocalized(property?.location?.city?.region?.name, 'cs', '')
               const description = getLocalized(property?.description, 'cs', '').slice(0, 200)
@@ -136,13 +136,13 @@ function HomeSeoContent({ properties }) {
             })}
           </ul>
           <p>
-            <a href="/properties">Zobrazit vsechny nemovitosti v Italii</a>
+            <a href="/properties">Zobrazit všechny nemovitostí v Itálii</a>
           </p>
         </section>
       ) : null}
 
       <section>
-        <h2>Casto kladene otazky o koupi nemovitosti v Italii</h2>
+        <h2>Často kladene otázky o koupí nemovitostí v Itálii</h2>
         <dl>
           {HOMEPAGE_FAQS_CS.map((faq, idx) => (
             <div key={idx}>
@@ -156,13 +156,13 @@ function HomeSeoContent({ properties }) {
       </section>
 
       <section>
-        <h2>Pruvodci a clanky</h2>
+        <h2>Pruvodci a články</h2>
         <ul>
           <li>
-            <a href="/clanky/pruvodce-italii">Pruvodce Italii</a>
+            <a href="/články/průvodce-italii">Průvodce Itálii</a>
           </li>
           <li>
-            <a href="/blog">Clanky a pruvodci</a>
+            <a href="/blog">Články a pruvodci</a>
           </li>
           <li>
             <a href="/process">Jak probiha proces koupe</a>

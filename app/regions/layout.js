@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Buy Property in Italy by Region: Prices, Cities, Strategy | Domy v Italii',
+  title: 'Buy Property in Italy by Region: Prices, Cities, Strategy | Domy v Itálii',
   description:
     'Compare Italian regions before buying: realistic price bands, top cities, legal checks, taxes, and buyer strategy for Tuscany, Lombardy, Veneto, Sicily, and more.',
   keywords: [
@@ -12,14 +12,14 @@ export const metadata = {
     'foreign buyers Italy'
   ],
   openGraph: {
-    title: 'Buy Property in Italy by Region | Domy v Italii',
+    title: 'Buy Property in Italy by Region | Domy v Itálii',
     description:
       'Regional property guides for Italy: prices, cities, legal due diligence, and practical strategy for foreign buyers.',
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Buy Property in Italy by Region | Domy v Italii',
+    title: 'Buy Property in Italy by Region | Domy v Itálii',
     description:
       'Regional property guides for Italy: prices, cities, legal due diligence, and practical strategy for foreign buyers.'
   }
