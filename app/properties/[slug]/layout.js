@@ -2,6 +2,7 @@ import { getPropertyBySlug, getAllProperties } from '@/lib/propertyApi'
 import { absoluteUrl } from '@/lib/siteConfig'
 import JsonLd from '@/components/seo/JsonLd'
 import { buildPropertyJsonLd } from '@/lib/seo/contentSeo'
+import { getLocalizedValue } from '@/lib/propertyDisplay'
 
 // Re-fetch fresh listings every hour. Properties newly added after a deploy
 // are still rendered on demand and then cached.
@@ -20,12 +21,6 @@ export async function generateStaticParams() {
   }
 }
 
-function getLocalizedValue(value, language = 'en', fallback = '') {
-  if (value && typeof value === 'object') {
-    return value[language] || value.en || value.it || value.cs || fallback
-  }
-  return value || fallback
-}
 
 function buildDescription(property) {
   const localized =

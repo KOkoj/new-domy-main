@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import PropertyImage from '@/components/PropertyImage'
 import { getPropertyImage } from '@/lib/getPropertyImage'
+import { getLocalizedValue } from '@/lib/propertyDisplay'
 
 const LABELS = {
   cs: {
@@ -49,12 +50,6 @@ function formatPrice(amount, currency = 'EUR') {
   return `${amount} ${currency}`
 }
 
-function getLocalizedValue(value, language, fallback = '') {
-  if (value && typeof value === 'object') {
-    return value[language] || value.en || value.it || value.cs || fallback
-  }
-  return value || fallback
-}
 
 function getPropertyHref(property) {
   if (property.slug?.current) return `/properties/${property.slug.current}`
