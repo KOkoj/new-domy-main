@@ -156,7 +156,14 @@ export default async function PropertyDetailPage({ params }) {
     amenities: sanityProperty.amenities || [],
     developer: sanityProperty.developer,
     status: sanityProperty.status || 'available',
-    featured: sanityProperty.featured || false
+    featured: sanityProperty.featured || false,
+    isNew: Boolean(sanityProperty.isNew || sanityProperty.newListing),
+    noAgency: Boolean(
+      sanityProperty.noAgency ||
+      sanityProperty.no_agency ||
+      sanityProperty.badges?.includes('no-agency')
+    ),
+    videoUrl: sanityProperty.videoUrl || sanityProperty.video_url || ''
   }
 
   return (
