@@ -3,8 +3,6 @@ import { getPropertyBySlug } from '@/lib/propertyApi'
 import { transformPropertyForClient } from '@/lib/propertyTransform'
 import PropertyDetailClient from './PropertyDetailClient'
 
-export const dynamic = 'force-dynamic'
-
 function getLocalized(value, language = 'cs', fallback = '') {
   if (value === null || value === undefined || value === '') return fallback
   if (typeof value === 'string') return value
