@@ -1069,7 +1069,7 @@ function createPlaceholderRegion(slug = '') {
   }
 }
 
-export default function RegionDetailPage() {
+export default function RegionDetailClient({ initialProperties = [] }) {
   const params = useParams()
   const [language, setLanguage] = useState('en')
   const rawSlug = Array.isArray(params?.slug) ? params.slug[0] : (params?.slug || '')
@@ -1611,7 +1611,7 @@ export default function RegionDetailPage() {
         </div>
       </div>
 
-      <PropertySlider language={language} />
+      <PropertySlider language={language} initialProperties={initialProperties} />
       <Footer language={language} />
       {shouldShowRegionalWidget ? (
         <Script

@@ -45,12 +45,9 @@ export default function PropertyCard({ property, onFavorite, isFavorited, langua
     >
       <Link
         href={propertyHref}
-        className="absolute inset-0 z-10"
+        className="flex flex-1 flex-col"
         data-testid="property-card-link"
       >
-        <span className="sr-only">View property details</span>
-      </Link>
-
       <div className="relative overflow-hidden h-48 sm:h-64" data-testid="property-image-container">
         <PropertyImage
           src={property.image}
@@ -92,21 +89,6 @@ export default function PropertyCard({ property, onFavorite, isFavorited, langua
             {localizedTypeLabel}
           </Badge>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className={`p-2.5 rounded-full transition-all duration-300 active:scale-95 shadow-lg backdrop-blur-sm border border-white/20 ${
-              isFavorited
-                ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white hover:shadow-red-500/25'
-                : 'bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:shadow-slate-500/25'
-            }`}
-            onClick={handleFavoriteClick}
-            data-testid="favorite-button"
-            data-property-id={property.id}
-            data-favorited={isFavorited}
-          >
-            <Heart className={`h-4 w-4 ${isFavorited ? 'fill-current' : ''}`} />
-          </Button>
         </div>
 
         {/* Price overlay */}
@@ -161,6 +143,23 @@ export default function PropertyCard({ property, onFavorite, isFavorited, langua
           </div>
         </div>
       </CardContent>
+      </Link>
+
+      <Button
+        variant="ghost"
+        size="icon"
+        className={`absolute right-4 top-4 z-30 p-2.5 rounded-full transition-all duration-300 active:scale-95 shadow-lg backdrop-blur-sm border border-white/20 ${
+          isFavorited
+            ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white hover:shadow-red-500/25'
+            : 'bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white hover:shadow-slate-500/25'
+        }`}
+        onClick={handleFavoriteClick}
+        data-testid="favorite-button"
+        data-property-id={property.id}
+        data-favorited={isFavorited}
+      >
+        <Heart className={`h-4 w-4 ${isFavorited ? 'fill-current' : ''}`} />
+      </Button>
     </Card>
   )
 }

@@ -89,48 +89,7 @@ export default async function PropertiesLayout({ children }) {
     <>
       <JsonLd data={itemList} />
       <JsonLd data={breadcrumb} />
-      <PropertiesSeoContent properties={properties} />
       {children}
     </>
-  )
-}
-
-function PropertiesSeoContent({ properties }) {
-  if (!properties || properties.length === 0) return null
-
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        left: '-10000px',
-        top: 'auto',
-        width: '1px',
-        height: '1px',
-        overflow: 'hidden'
-      }}
-    >
-      <h1>Nemovitosti v Itálii</h1>
-      <p>{DESCRIPTION_CS}</p>
-      <ul>
-        {properties.map((property) => {
-          const slug = property?.slug?.current
-          if (!slug) return null
-          const title = getLocalized(property?.title, 'cs', 'Nemovitost v Itálii')
-          const city = getLocalized(property?.location?.city?.name, 'cs', '')
-          const region = getLocalized(property?.location?.city?.region?.name, 'cs', '')
-          const description = getLocalized(property?.description, 'cs', '').slice(0, 200)
-          return (
-            <li key={slug}>
-              <a href={`/properties/${slug}`}>
-                <strong>{title}</strong>
-                {city ? `, ${city}` : ''}
-                {region ? `, ${region}` : ''}
-              </a>
-              {description ? <p>{description}</p> : null}
-            </li>
-          )
-        })}
-      </ul>
-    </div>
   )
 }

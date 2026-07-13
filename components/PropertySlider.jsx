@@ -100,13 +100,16 @@ function getPropertyTimestamp(property) {
   return Number.isFinite(timestamp) ? timestamp : 0
 }
 
-function shuffle(arr) {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
+function prepareProperties(rawProperties = []) {
+  const transformed = rawProperties.map(transformProperty)
+  const newProperties = transformed
+    .filter((property) => property.isNew)
+    .sort((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a))
+  const otherProperties = transformed
+    .filter((property) => !property.isNew)
+    .sort((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a))
+
+  return [...newProperties, ...otherProperties]
 }
 
 function SlideCard({ property, language, labels }) {
@@ -123,10 +126,7 @@ function SlideCard({ property, language, labels }) {
 
   return (
     <Card className="group relative cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden border border-gray-100 shadow-md bg-white rounded-2xl flex flex-col h-full">
-      <Link href={href} className="absolute inset-0 z-10">
-        <span className="sr-only">{labels.viewDetails}</span>
-      </Link>
-
+      <Link href={href} className="flex h-full flex-col">
       {/*
         Explicit width + height let the browser reserve the exact 320×208 space
         before the image downloads, eliminating layout shift. w-full + h-auto
@@ -209,14 +209,14 @@ function SlideCard({ property, language, labels }) {
           )}
         </div>
       </CardContent>
+      </Link>
     </Card>
   )
 }
 
-export default function PropertySlider({ language = 'en' }) {
+export default function PropertySlider({ language = 'en', initialProperties = [] }) {
   const labels = LABELS[language] || LABELS.en
-  const [properties, setProperties] = useState([])
-  const [loading, setLoading] = useState(true)
+  const properties = prepareProperties(initialProperties)
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start',
@@ -244,60 +244,6 @@ export default function PropertySlider({ language = 'en' }) {
       emblaApi.off('reInit', onSelect)
     }
   }, [emblaApi, onSelect])
-
-  useEffect(() => {
-    async function load() {
-      try {
-        const res = await fetch('/api/properties')
-        if (!res.ok) throw new Error('Failed')
-        const data = await res.json()
-        if (Array.isArray(data) && data.length > 0) {
-          const transformed = data.map(transformProperty)
-          const newProperties = transformed
-            .filter((property) => property.isNew)
-            .sort((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a))
-          const otherProperties = shuffle(transformed.filter((property) => !property.isNew))
-          setProperties([...newProperties, ...otherProperties])
-        }
-      } catch {
-        // silently fail — slider simply won't render
-      } finally {
-        setLoading(false)
-      }
-    }
-    load()
-  }, [])
-
-  // Render a same-height skeleton while fetching so the section never has
-  // zero height — the #1 cause of layout shift for this component.
-  if (loading) {
-    return (
-      <section className="bg-gray-50 border-t border-gray-100 py-16" aria-hidden="true">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-8">
-            <div className="space-y-2">
-              <div className="h-7 w-72 rounded-md bg-gray-200 animate-pulse" />
-              <div className="h-1 w-12 rounded-full bg-gray-200 animate-pulse" />
-            </div>
-          </div>
-          <div className="flex gap-5 overflow-hidden">
-            {[0, 1, 2, 3].map((i) => (
-              <div key={i} className="flex-[0_0_280px] sm:flex-[0_0_300px] lg:flex-[0_0_320px] shrink-0">
-                <div className="rounded-2xl overflow-hidden bg-white shadow-md border border-gray-100">
-                  <div className="w-full aspect-[320/208] bg-gray-200 animate-pulse" />
-                  <div className="p-4 space-y-2">
-                    <div className="h-4 w-3/4 rounded bg-gray-200 animate-pulse" />
-                    <div className="h-3 w-1/2 rounded bg-gray-200 animate-pulse" />
-                    <div className="h-3 w-1/3 rounded bg-gray-200 animate-pulse mt-3" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   if (properties.length === 0) return null
 

@@ -1,4 +1,7 @@
 import RegionsListingClient from './RegionsListingClient'
+import { getAllProperties } from '@/lib/propertyApi'
+
+export const revalidate = 3600
 
 const SAMPLE_REGIONS = [
   {
@@ -434,6 +437,19 @@ const NORMALIZED_SAMPLE_REGIONS = SAMPLE_REGIONS.map((region) => {
   }
 })
 
-export default function RegionsPage() {
-  return <RegionsListingClient initialRegions={NORMALIZED_SAMPLE_REGIONS} />
+export default async function RegionsPage() {
+  let initialProperties = []
+
+  try {
+    initialProperties = await getAllProperties(new URLSearchParams())
+  } catch (error) {
+    console.error('Regions property fetch failed:', error)
+  }
+
+  return (
+    <RegionsListingClient
+      initialRegions={NORMALIZED_SAMPLE_REGIONS}
+      initialProperties={initialProperties}
+    />
+  )
 }

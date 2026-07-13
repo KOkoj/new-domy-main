@@ -23,7 +23,7 @@ import { readLanguageFromBrowser, readCurrencyFromBrowser, persistLanguage, pers
 
 export default function HomePageClient({ initialProperties = [] }) {
   const SHOW_HOME_ARCHIVED_SECTIONS = false
-  const [properties, setProperties] = useState(initialProperties)
+  const properties = initialProperties
   
   // Background images for hero section.
   // Pre-optimised at 960 px wide with a 1.5 px blur (invisible under the
@@ -36,7 +36,6 @@ export default function HomePageClient({ initialProperties = [] }) {
       alt: "Italský venkov — hero pozadí"
     }
   ]
-  const [filteredProperties, setFilteredProperties] = useState(initialProperties)
   const [favorites, setFavorites] = useState(new Set())
   const [filters, setFilters] = useState({})
   const [user, setUser] = useState(null)
@@ -78,34 +77,6 @@ export default function HomePageClient({ initialProperties = [] }) {
 
     window.addEventListener('languageChange', handleLanguageChange)
     return () => window.removeEventListener('languageChange', handleLanguageChange)
-  }, [])
-
-  const loadProperties = async () => {
-    try {
-      const response = await fetch('/api/properties')
-      if (response.ok) {
-        const sanityProperties = await response.json()
-        if (sanityProperties && Array.isArray(sanityProperties) && sanityProperties.length > 0) {
-          setProperties(sanityProperties)
-          setFilteredProperties(sanityProperties)
-        } else {
-          console.warn('Homepage received empty or invalid properties list')
-        }
-      } else {
-        console.error('Homepage fetch failed:', response.status, response.statusText)
-      }
-    } catch (error) {
-      // Properties will remain empty array if fetch fails
-    }
-  }
-
-  useEffect(() => {
-    // The Server Component shell normally seeds initialProperties, so this
-    // mount fetch is only used when the page is rendered without them
-    // (legacy or test scenarios).
-    if (!initialProperties || initialProperties.length === 0) {
-      loadProperties()
-    }
   }, [])
 
   // Initialize Lenis smooth scroll
@@ -603,47 +574,6 @@ export default function HomePageClient({ initialProperties = [] }) {
       }
     }
   }, [selectedPropertyType, properties])
-
-  useEffect(() => {
-    // Apply filters
-    let filtered = properties
-    
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase()
-      filtered = filtered.filter(p => {
-        const titleEn = typeof p.title === 'object' ? p.title.en : p.title
-        const cityName = typeof p.location?.city?.name === 'object' ? p.location?.city?.name?.en : p.location?.city?.name
-        const descEn = typeof p.description === 'object' ? p.description.en : p.description
-
-        return (
-          titleEn?.toLowerCase().includes(query) ||
-          cityName?.toLowerCase().includes(query) ||
-          descEn?.toLowerCase().includes(query)
-        )
-      })
-    }
-    
-    if (filters.type) {
-      filtered = filtered.filter(p => p.propertyType === filters.type)
-    }
-    
-    if (filters.location) {
-      const location = filters.location.toLowerCase()
-      filtered = filtered.filter(p => 
-        p.location?.city?.name?.en?.toLowerCase().includes(location)
-      )
-    }
-    
-    if (filters.minPrice) {
-      filtered = filtered.filter(p => p.price.amount >= parseInt(filters.minPrice))
-    }
-    
-    if (filters.maxPrice) {
-      filtered = filtered.filter(p => p.price.amount <= parseInt(filters.maxPrice))
-    }
-    
-    setFilteredProperties(filtered)
-  }, [properties, filters, searchQuery])
 
   const loadFavorites = async () => {
     try {
@@ -2697,7 +2627,7 @@ export default function HomePageClient({ initialProperties = [] }) {
         </div>
       </div>
 
-      <PropertySlider language={language} />
+      <PropertySlider language={language} initialProperties={initialProperties} />
       {/* Footer */}
       <Footer language={language} />
       

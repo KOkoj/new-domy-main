@@ -22,7 +22,6 @@ import { supabase } from '../../lib/supabase';
 import Footer from '../../components/Footer';
 import RegionBanner from '../../components/RegionBanner';
 import Navigation from '@/components/Navigation';
-import { getPropertyImage } from '@/lib/getPropertyImage';
 import { resolvePropertyType, getLocalizedValue } from '@/lib/propertyDisplay';
 import {
   REGION_LABEL_BY_SLUG,
@@ -56,7 +55,7 @@ const MapComponent = dynamic(() => import('../../components/PropertyMap'), {
   ssr: false
 });
 
-export default function PropertiesPage() {
+export default function PropertiesClient({ initialProperties = [] }) {
   const [filters, setFilters] = useState({
     search: '',
     propertyType: '',
@@ -80,9 +79,7 @@ export default function PropertiesPage() {
   const [currency, setCurrency] = useState('EUR');
 
   // Properties state
-  const [properties, setProperties] = useState([]);
-  const [loadingProperties, setLoadingProperties] = useState(true);
-  const [useSanity, setUseSanity] = useState(false);
+  const properties = initialProperties;
   const [userFavorites, setUserFavorites] = useState(new Set());
   
   // Pagination state
@@ -213,104 +210,6 @@ export default function PropertiesPage() {
     setDisplayedCount(12);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [filters, sortBy]);
-
-  // Load properties from Sanity API
-  useEffect(() => {
-    loadProperties();
-  }, []);
-
-  const loadProperties = async () => {
-    try {
-      setLoadingProperties(true);
-      // Try to fetch from Sanity API
-      const response = await fetch('/api/properties');
-      
-      if (response.ok) {
-        const sanityProperties = await response.json();
-        
-        if (sanityProperties && Array.isArray(sanityProperties) && sanityProperties.length > 0) {
-          // Transform Sanity data to match our property card format
-          const transformedProperties = sanityProperties.map((prop, index) => {
-            const regionName =
-              prop.location?.city?.region?.name?.en ||
-              prop.location?.city?.region?.name?.it ||
-              prop.location?.city?.region?.name?.cs ||
-              prop.location?.city?.name?.it ||
-              prop.location?.city?.name ||
-              'Italy';
-
-            const regionSlug =
-              prop.location?.city?.region?.slug?.current ||
-              toRegionSlug(regionName);
-
-            const titleI18n = {
-              en: prop.title?.en || prop.title?.it || prop.title?.cs || (typeof prop.title === 'string' ? prop.title : ''),
-              it: prop.title?.it || prop.title?.en || prop.title?.cs || (typeof prop.title === 'string' ? prop.title : ''),
-              cs: prop.title?.cs || prop.title?.en || prop.title?.it || (typeof prop.title === 'string' ? prop.title : '')
-            };
-
-            const typeContext = [
-              prop.propertyType,
-              prop.slug?.current || prop.slug,
-              titleI18n.en,
-              titleI18n.it,
-              titleI18n.cs
-            ]
-              .filter(Boolean)
-              .join(' ');
-
-            const resolvedType = resolvePropertyType(prop.propertyType, typeContext);
-
-            return {
-              id: prop._id || `sanity-${index}`,
-              title: titleI18n.en || 'Untitled Property',
-              titleI18n,
-              type: resolvedType,
-              region: regionName,
-              regionSlug,
-              price: prop.price?.amount || 0,
-              rooms: prop.specifications?.rooms || prop.specifications?.bedrooms || 0,
-              bedrooms: prop.specifications?.bedrooms || 0,
-              bathrooms: prop.specifications?.bathrooms || 0,
-              area: prop.specifications?.squareFootage || 0,
-              image: getPropertyImage(prop),
-              location: prop.location?.coordinates
-                ? [prop.location.coordinates.lat || prop.location.coordinates[1], prop.location.coordinates.lng || prop.location.coordinates[0]]
-                : [42.8333, 12.8333],
-              views: 0,
-              terrain: 'mountains',
-              amenities: prop.amenities?.map(a => a.name?.en?.toLowerCase().replace(/\s+/g, '_')) || [],
-              description: prop.description?.en || prop.description?.it || prop.description || '',
-              slug: prop.slug?.current || prop.slug || '',
-              sanityId: prop._id,
-              status: prop.status || 'available',
-              sourceUrl: prop.sourceUrl || '',
-              createdAt: prop._createdAt || prop.createdAt || '',
-              updatedAt: prop._updatedAt || prop.updatedAt || '',
-              isNew: Boolean(prop.isNew || prop.newListing),
-              noAgency: Boolean(prop.noAgency || prop.no_agency || prop.badges?.includes('no-agency'))
-            };
-          });
-
-          setProperties(transformedProperties);
-          setUseSanity(true);
-          setLoadingProperties(false);
-          return;
-        }
-      }
-      
-      // If Sanity fails or returns no properties, leave empty
-      setProperties([]);
-      setUseSanity(false);
-    } catch (error) {
-      console.log('Sanity API not available or not configured:', error);
-      // Properties will remain empty if fetch fails
-      setProperties([]);
-      setUseSanity(false);
-    } finally {
-      setLoadingProperties(false);
-    }
-  };
 
   // Check URL parameters from homepage quick filters/search
   useEffect(() => {
@@ -890,7 +789,7 @@ export default function PropertiesPage() {
               )}
 
               {/* No results — Contact Us CTA */}
-              {!loadingProperties && sortedProperties.length === 0 && (
+              {sortedProperties.length === 0 && (
                 <div
                   className="relative overflow-hidden rounded-2xl border border-amber-100/80 shadow-lg p-6 sm:p-12 text-center"
                   style={{
