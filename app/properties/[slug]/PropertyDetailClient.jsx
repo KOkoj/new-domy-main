@@ -452,6 +452,7 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           listingId: propertyId,
+          propertyTitle,
           ...formData
         })
       })

@@ -191,18 +191,28 @@ export default function ConciergePage() {
       // Structure the message with metadata
       const fullMessage = `Subject: ${newTicket.subject}\nCategory: ${newTicket.category}\nPriority: ${newTicket.priority}\nContact Method: ${newTicket.contactMethod}\n\n${newTicket.description}`
 
-      // NOTE: inquiries table uses camelCase columns (userId, listingId, etc)
-      const { error } = await supabase.from('inquiries').insert({
-        userId: user.id,
-        name: user.user_metadata?.name || user.email?.split('@')[0] || 'Club Member',
-        email: user.email,
-        listingId: 'Concierge Request',
-        type: 'concierge',
-        message: fullMessage,
-        phone: null 
+      // Submit through the inquiries API (not a direct table insert) so the
+      // admin notification and confirmation emails fire like every other
+      // inquiry type.
+      const response = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: user.user_metadata?.name || user.email?.split('@')[0] || 'Club Member',
+          email: user.email,
+          listingId: 'Concierge Request',
+          propertyTitle: 'Concierge Request',
+          type: 'concierge',
+          message: fullMessage,
+          phone: null
+        })
       })
 
-      if (error) throw error
+      const result = await response.json().catch(() => ({}))
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Failed to submit concierge request')
+      }
 
       setMessage({ 
         type: 'success', 

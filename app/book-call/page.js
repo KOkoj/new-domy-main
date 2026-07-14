@@ -107,7 +107,10 @@ export default function BookCallPage() {
           phone: formData.phone,
           message: bookingSummary,
           type: 'call_booking',
-          propertyTitle: 'Call booking'
+          propertyTitle: 'Call booking',
+          preferredDate: formData.preferredDate,
+          preferredTime: formData.preferredTime,
+          timezone: formData.timezone
         })
       })
 

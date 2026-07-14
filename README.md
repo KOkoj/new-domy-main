@@ -118,21 +118,23 @@ A modern Next.js 14 web application helping Czech buyers find properties in Ital
 
 ### 2. Email Recipients Configuration
 
-**Current State:** Emails are sent to users for notifications. System emails are logged to console in development.
+**Current State:** Every inquiry (general contact, property, call booking,
+concierge) submitted through `/api/inquiries` now sends two transactional
+emails: an admin notification to `ADMIN_NOTIFY_EMAIL` with the inquiry
+details and a link to `/admin/inquiries`, and a Czech-language confirmation
+to the inquirer's email (sent regardless of auth state, never gated on the
+`marketing_emails` preference). Both are logged to `email_logs`
+(`inquiry_admin_notification` / `inquiry_confirmation`), and a failed send
+never blocks the inquiry insert.
 
 **Needs Work:**
-- [ ] **Admin Notifications** - Configure which admins receive inquiry notifications
-- [ ] **Email Routing** - Set up email routing rules (who gets what)
-- [ ] **CC/BCC Configuration** - Add support for CC/BCC on important emails
+- [ ] **Multiple Admin Recipients** - `ADMIN_NOTIFY_EMAIL` only supports a single address today; add CC/BCC or a list for team routing
 - [ ] **Unsubscribe Links** - Add proper unsubscribe handling for marketing emails
 - [ ] **Bounce Handling** - Implement bounce and complaint handling from SendGrid
 
-**Configuration needed in:**
-- `lib/emailService.js` - Add recipient configuration
-- Create `.env` variables for admin email addresses:
+**Configuration needed in `.env`:**
   ```
-  ADMIN_EMAIL_PRIMARY=admin@domyvitalii.cz
-  ADMIN_EMAIL_INQUIRIES=inquiries@domyvitalii.cz
+  ADMIN_NOTIFY_EMAIL=inquiries@domyvitalii.cz
   SENDGRID_FROM_EMAIL=noreply@domyvitalii.cz
   ```
 
@@ -295,6 +297,9 @@ SANITY_API_TOKEN=your_sanity_token
 SENDGRID_API_KEY=SG.your_sendgrid_api_key
 SENDGRID_FROM_EMAIL=noreply@yourdomain.com
 
+# Inbox that receives a notification for every new inquiry
+ADMIN_NOTIFY_EMAIL=admin@yourdomain.com
+
 # Private free-PDF lead magnets (Supabase Storage; bucket must be PRIVATE)
 FREE_PDF_BUCKET=pdfs-private
 FREE_PDF_PATH_INSPECTIONS=free/inspections-guide.pdf
@@ -323,6 +328,7 @@ DEBUG=true
 | `SANITY_API_TOKEN` | No | Sanity API token for mutations |
 | `SENDGRID_API_KEY` | No | SendGrid API key (must start with SG.) |
 | `SENDGRID_FROM_EMAIL` | No | Verified sender email for SendGrid |
+| `ADMIN_NOTIFY_EMAIL` | No | Inbox that receives a notification for every new inquiry |
 | `FREE_PDF_BUCKET` | Yes for lead gate | Private Supabase Storage bucket |
 | `FREE_PDF_PATH_INSPECTIONS` | Yes for lead gate | Private inspections PDF object path |
 | `FREE_PDF_PATH_MISTAKES` | Yes for lead gate | Private mistakes PDF object path |
@@ -355,6 +361,9 @@ In Supabase SQL Editor, run these scripts in order:
 
 -- 4. Free PDF email leads
 -- File: setup-leads.sql
+
+-- 5. Inquiry inquiryType/propertyTitle columns (admin + confirmation emails)
+-- File: add-inquiry-metadata-columns.sql
 ```
 
 ### 3. Configure Authentication
