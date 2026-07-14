@@ -17,23 +17,23 @@ async function fetchPropertiesSafely() {
 const HOMEPAGE_FAQS_CS = [
   {
     q: 'Mohu jako Čech koupit nemovitost v Itálii?',
-    a: 'Ano. Itálie umoznuje obcanum EU vcetne Cechu kupovat nemovitostí za stejnych podminek jako mistnim. Nepotrebujete italske obcanstvi ani trvaly pobyt.'
+    a: 'Ano. Itálie umožňuje občanům EU včetně Čechů kupovat nemovitosti za stejných podmínek jako místním. Nepotřebujete italské občanství ani trvalý pobyt.'
   },
   {
-    q: 'Jake jsou typicke naklady na koupí nemovitostí v Itálii?',
-    a: 'Krome kupni ceny pocitejte s notarskymi poplatky, dani z prevodu (registracni dan), katastralnimi poplatky a pripadnym pravnim a technickym setrenim. Soucet vedlejsich nakladu se obvykle pohybuje mezi 8 az 15 procenty kupni ceny u rezidence non-prima casa.'
+    q: 'Jaké jsou typické náklady na koupi nemovitostí v Itálii?',
+    a: 'Kromě kupní ceny počítejte s notářskými poplatky, daní z převodu (registrační daň), katastrálními poplatky a případným právním a technickým šetřením. Součet vedlejších nákladů se obvykle pohybuje mezi 8 až 15 procenty kupní ceny u rezidence non-prima casa.'
   },
   {
-    q: 'Jak dlouho trva proces koupe?',
-    a: 'Od prvni nabídky po zapis do katastru obvykle 2 az 4 mesice, podle slozitosti pravnich a technickych kontrol a rychlosti notare.'
+    q: 'Jak dlouho trvá proces koupě?',
+    a: 'Od první nabídky po zápis do katastru obvykle 2 až 4 měsíce, podle složitosti právních a technických kontrol a rychlosti notáře.'
   },
   {
-    q: 'Potrebuji italske bankovni spojeni nebo italske danove cislo?',
-    a: 'Ano, k podpisu kupni smlouvy budete potrebovat italske danove cislo (codice fiscale). Bankovni ucet v Itálii neni podminkou, ale velmi usnadnuje placeni rocnich dani a vyuctovani.'
+    q: 'Potřebuji italské bankovní spojení nebo italské daňové číslo?',
+    a: 'Ano, k podpisu kupní smlouvy budete potřebovat italské daňové číslo (codice fiscale). Bankovní účet v Itálii není podmínkou, ale velmi usnadňuje placení ročních daní a vyúčtování.'
   },
   {
-    q: 'Ktere regiony jsou pro české kupující nejatraktivnejsi?',
-    a: 'Mezi nejcastejsi volby patri Toskánsko, Lombardie (jezera), Liguria, Marche, Abruzzo a Puglie. Volba zavisi na rozpočtu, planovanem využití a dostupnosti.'
+    q: 'Které regiony jsou pro české kupující nejatraktivnější?',
+    a: 'Mezi nejčastější volby patří Toskánsko, Lombardie (jezera), Ligurie, Marche, Abruzzo a Puglia. Volba závisí na rozpočtu, plánovaném využití a dostupnosti.'
   }
 ]
 

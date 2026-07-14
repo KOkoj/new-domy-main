@@ -283,7 +283,7 @@ export default function DashboardLayout({ children }) {
                 <Link href="/" className="w-full">
                   <Button variant="outline" size="sm" className="w-full justify-start">
                     <Home className="h-4 w-4 mr-2" />
-                    {language === 'cs' ? 'Procházet nemovitostí' : (language === 'it' ? 'Sfoglia proprietà' : 'Browse Properties')}
+                    {language === 'cs' ? 'Procházet nemovitosti' : (language === 'it' ? 'Sfoglia proprietà' : 'Browse Properties')}
                   </Button>
                 </Link>
                 <Button 

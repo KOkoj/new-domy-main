@@ -16,9 +16,9 @@ const CONTENT = {
     category: 'Právo',
     date: '2026-03-26',
     readTime: '9 min',
-    title: 'Jak podat nabídku na koupí domů v Itálii: návrh, compromesso a registrace',
+    title: 'Jak podat nabídku na koupi domů v Itálii: návrh, compromesso a registrace',
     intro: [
-      'Při koupí domů v Itálii patří mezi nejvíce podceňované fáze právě období od první nabídky až po registraci compromessa. Právě zde často vznikají chyby, nesprávná očekávání a závazky přijaté příliš brzy.',
+      'Při koupi domů v Itálii patří mezi nejvíce podceňované fáze právě období od první nabídky až po registraci compromessa. Právě zde často vznikají chyby, nesprávná očekávání a závazky přijaté příliš brzy.',
       'Pro kupujícího ze zahraničí není klíčové jen pochopit, jaký dokument podepisuje, ale hlavně kdy se tento dokument stává závazným, jaké částky se skutečně skládají, co musí být napsáno a jaké kontroly je nutné udělat ještě před závazkem.',
       'V tomto článku se záměrně zastavíme ještě před rogitem. Cílem je jasně vysvětlit fázi nabídky, předběžné smlouvy a registrace compromessa.'
     ],

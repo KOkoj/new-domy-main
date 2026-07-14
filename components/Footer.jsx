@@ -9,7 +9,7 @@ export default function Footer({ language = 'en' }) {
     brand: 'Domy v Itálii',
     brandDescription:
       language === 'cs'
-        ? 'Váš důvěryhodný partner pro nalezení správné nemovitostí v Itálii.'
+        ? 'Váš důvěryhodný partner pro nalezení správné nemovitosti v Itálii.'
         : language === 'it'
           ? 'Il tuo partner di fiducia per trovare la proprietà giusta in Italia.'
           : 'Your trusted partner for finding the right property in Italy.',
@@ -20,8 +20,8 @@ export default function Footer({ language = 'en' }) {
     contactUs: language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contattaci' : 'Contact Us',
     faq: 'FAQ',
     cookies: 'Cookie Policy',
-    companyLabel: language === 'cs' ? 'ICO' : language === 'it' ? 'P.IVA' : 'ID',
-    vatLabel: language === 'cs' ? 'DIC' : language === 'it' ? 'VAT' : 'VAT',
+    companyLabel: language === 'cs' ? 'IČO' : language === 'it' ? 'P.IVA' : 'ID',
+    vatLabel: language === 'cs' ? 'DIČ' : language === 'it' ? 'VAT' : 'VAT',
     generalDisclaimer:
       language === 'cs'
         ? 'Obsah webu má obecné informační účely a nenahrazuje posouzení konkrétního případu. Pro úvodní individuální konzultaci nás můžete kontaktovat přímo.'

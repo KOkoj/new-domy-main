@@ -58,21 +58,21 @@ const TEXT = {
     paymentNoticeBody:
       'Platba probíhá přes zabezpečenou platební bránu a je v souladu s platnou legislativou.',
     paymentNoticeCta: 'Zobrazit GDPR',
-    legalSectionTitle: 'Povinne právní potvrzeni pred zaplacenim',
-    billingSectionTitle: 'Fakturacni a danove udaje',
-    invoiceRequestedLabel: 'Pozaduji danovy doklad nebo fakturu, pokud je to pro mou situaci relevantni.',
-    companyNameLabel: 'Nazev spolecnosti nebo jmeno pro fakturaci',
-    taxReferenceLabel: 'DIC, VAT nebo danovy identifikator',
-    billingNoteLabel: 'Poznamka k fakturaci nebo podpore',
+    legalSectionTitle: 'Povinné právní potvrzení před zaplacením',
+    billingSectionTitle: 'Fakturační a daňové údaje',
+    invoiceRequestedLabel: 'Požaduji daňový doklad nebo fakturu, pokud je to pro mou situaci relevantní.',
+    companyNameLabel: 'Název společnosti nebo jméno pro fakturaci',
+    taxReferenceLabel: 'DIČ, VAT nebo daňový identifikátor',
+    billingNoteLabel: 'Poznámka k fakturaci nebo podpoře',
     billingHelper:
-      'Stripe Checkout bude vyzadovat fakturacni adresu, danove udaje a kontaktni informace. Pokud potrebujete danovy doklad, vyplnte i tato pole.',
+      'Stripe Checkout bude vyžadovat fakturační adresu, daňové údaje a kontaktní informace. Pokud potřebujete daňový doklad, vyplňte i tato pole.',
     pdfDisclaimer:
-      'Tento PDF slouzi pouze pro obecne informacni a operativni ucely. Nejde o individualni právní, danove, notarske ani technicke poradenstvi. Pro konkretni situaci je nutne posouzeni kvalifikovanym odbornikem.',
-    termsLink: 'Obchodni podminky',
+      'Tento PDF slouží pouze pro obecné informační a operativní účely. Nejde o individuální právní, daňové, notářské ani technické poradenství. Pro konkrétní situaci je nutné posouzení kvalifikovaným odborníkem.',
+    termsLink: 'Obchodní podmínky',
     privacyLink: 'GDPR',
-    legalError: 'Pro pokracovani je nutne potvrdit všechny právní souhlasy.',
+    legalError: 'Pro pokračování je nutné potvrdit všechny právní souhlasy.',
     digitalRightsInfo:
-      'Digitalni obsah bude dodan ihned po potvrzeni platby a tim zanika pravo na odstoupeni po zahajeni stahovani.',
+      'Digitální obsah bude dodán ihned po potvrzení platby a tím zaniká právo na odstoupení po zahájení stahování.',
     loading: 'Načítám...',
     back: 'Zpět'
   },
@@ -229,14 +229,14 @@ export default function PremiumLandingPage() {
               <CardContent className="space-y-4">
                 <p className="text-slate-700 leading-[1.75]">
                   {language === 'cs'
-                    ? 'Tuto cast zatim nezverejnujeme. Pri spusteni webu zustane sekce premium vypnuta a bude oznacena jako pripravovana.'
+                    ? 'Tuto část zatím nezveřejňujeme. Při spuštění webu zůstane sekce premium vypnutá a bude označena jako připravovaná.'
                     : language === 'it'
                       ? 'Questa sezione non viene pubblicata per ora. Al lancio del sito i PDF premium restano disattivati e segnalati come prossimamente disponibili.'
                       : 'This section is not being published yet. At launch, premium PDFs stay disabled and are marked as coming soon.'}
                 </p>
                 <p className="text-slate-600">
                   {language === 'cs'
-                    ? 'Muzete dal pouzit bezplatne materialy a kontaktni formular.'
+                    ? 'Můžete dál použít bezplatné materiály a kontaktní formulář.'
                     : language === 'it'
                       ? 'Puoi continuare a usare i materiali gratuiti e il form contatti.'
                       : 'You can continue using the free materials and the contact form.'}
@@ -244,7 +244,7 @@ export default function PremiumLandingPage() {
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <Link href="/guides">
                     <Button className="bg-slate-900 hover:bg-slate-800 text-white">
-                      {language === 'cs' ? 'Prejit na průvodce' : language === 'it' ? 'Vai alle guide' : 'Go to guides'}
+                      {language === 'cs' ? 'Přejít na průvodce' : language === 'it' ? 'Vai alle guide' : 'Go to guides'}
                     </Button>
                   </Link>
                   <Link href="/contact">

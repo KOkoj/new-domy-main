@@ -828,7 +828,7 @@ export default function HomePageClient({ initialProperties = [] }) {
           >
             <Search className="h-4 w-4 opacity-70 group-hover:opacity-100 transition-opacity" />
             <span style={{ fontSize: '0.9375rem', fontWeight: 500, letterSpacing: '0.01em' }}>
-              {language === 'cs' ? 'Prohledat vybrané nemovitostí' :
+              {language === 'cs' ? 'Prohledat vybrané nemovitosti' :
                language === 'it' ? 'Sfoglia gli immobili disponibili' :
                'Browse available properties'}
             </span>
@@ -1160,7 +1160,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                     },
                     excerpt: {
                       en: 'Everything you need to know about documents, taxes, and procedures for buying property in Italy.',
-                      cs: 'Vše, co potřebujete vědět o dokumentech, daních a postupech při koupí nemovitostí v Itálii.',
+                      cs: 'Vše, co potřebujete vědět o dokumentech, daních a postupech při koupi nemovitostí v Itálii.',
                       it: 'Tutto quello che devi sapere sui documenti, tasse e procedure per acquistare immobili in Italia.'
                     },
                     category: { en: 'Legal', cs: 'Právo', it: 'Legale' },
@@ -1171,7 +1171,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                   {
                     title: {
                       en: 'Most Common Czech Mistakes When Buying in Italy',
-                      cs: 'Nejčastější chyby Čechů při koupí domů v Itálii',
+                      cs: 'Nejčastější chyby Čechů při koupi domů v Itálii',
                       it: 'Errori più comuni dei cechi nell\'acquisto in Italia'
                     },
                     excerpt: {
@@ -1293,7 +1293,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                'Explore Italy\'s Most Wanted Regions'}
             </h2>
             <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-              {language === 'cs' ? 'Ne celá Itálie je stejná. Vyberte si region, který vyhovuje vašemu rozpočtu, životnímu stylu a investičním cílům. Prohlédněte si nemovitostí v oblastech, které milujete.' :
+              {language === 'cs' ? 'Ne celá Itálie je stejná. Vyberte si region, který vyhovuje vašemu rozpočtu, životnímu stylu a investičním cílům. Prohlédněte si nemovitosti v oblastech, které milujete.' :
                language === 'it' ? 'Non tutta l\'Italia è uguale. Scegli una regione che si adatti al tuo budget, stile di vita e obiettivi di investimento. Esplora le proprietà nelle aree che ami.' : 
                'Not all of Italy is the same. Choose a region that fits your budget, lifestyle, and investment goals. Explore properties in the areas you love.'}
             </p>
@@ -1741,7 +1741,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                   </div>
                 </div>
                 <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 px-6 rounded-lg text-base transition-colors duration-200 mt-auto">
-                  {language === 'cs' ? 'Zobrazit podobné nemovitostí' :
+                  {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
                    language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
                 </button>
@@ -1810,7 +1810,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                   </div>
                 </div>
                 <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 mt-auto">
-                  {language === 'cs' ? 'Zobrazit podobné nemovitostí' :
+                  {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
                    language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
                 </button>
@@ -1879,7 +1879,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                   </div>
                 </div>
                 <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2 px-4 rounded-lg text-base transition-all duration-300 mt-auto">
-                  {language === 'cs' ? 'Zobrazit podobné nemovitostí' :
+                  {language === 'cs' ? 'Zobrazit podobné nemovitosti' :
                    language === 'it' ? 'Vedi proprietà simili' :
                    'See similar properties'}
                 </button>
@@ -2193,7 +2193,7 @@ export default function HomePageClient({ initialProperties = [] }) {
             {[
               {
                 question: {
-                  cs: 'Jaké daně a poplatky mohu očekávat při koupí v Itálii?',
+                  cs: 'Jaké daně a poplatky mohu očekávat při koupi v Itálii?',
                   en: 'What taxes and fees should I expect when buying in Italy?',
                   it: 'Quali tasse e commissioni devo aspettarmi quando acquisto in Italia?'
                 },
@@ -2205,12 +2205,12 @@ export default function HomePageClient({ initialProperties = [] }) {
               },
               {
                 question: {
-                  cs: 'Mohou cizinci kupovat nemovitostí v Itálii?',
+                  cs: 'Mohou cizinci kupovat nemovitosti v Itálii?',
                   en: 'Can foreigners buy property in Italy?',
                   it: 'Gli stranieri possono acquistare proprietà in Italia?'
                 },
                 answer: {
-                  cs: 'Ano, cizinci mohou kupovat nemovitostí v Itálii bez omezení. Budete potřebovat Codice Fiscale (daňové identifikační číslo) a italský bankovní účet. Občané mimo EU mohou potřebovat dodatečnou dokumentaci.',
+                  cs: 'Ano, cizinci mohou kupovat nemovitosti v Itálii bez omezení. Budete potřebovat Codice Fiscale (daňové identifikační číslo) a italský bankovní účet. Občané mimo EU mohou potřebovat dodatečnou dokumentaci.',
                   en: 'Yes, foreigners can buy property in Italy without restrictions. You\'ll need a Codice Fiscale (tax ID number) and an Italian bank account. Non-EU citizens may need additional documentation.',
                   it: 'Sì, gli stranieri possono acquistare proprietà in Italia senza restrizioni. Avrai bisogno di un Codice Fiscale (numero di identificazione fiscale) e di un conto bancario italiano. I cittadini non UE potrebbero aver bisogno di documentazione aggiuntiva.'
                 }
@@ -2246,7 +2246,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                   it: 'Opzioni di mutuo per non residenti?'
                 },
                 answer: {
-                  cs: 'Italské banky poskytují hypotéky nerezidentům, typicky až 50-60% hodnoty nemovitostí. Budete potřebovat doklad o příjmech, bankovní výpisy a dobré kreditní skóre. Úrokové sazby jsou konkurenceschopné pro občany EU.',
+                  cs: 'Italské banky poskytují hypotéky nerezidentům, typicky až 50-60% hodnoty nemovitosti. Budete potřebovat doklad o příjmech, bankovní výpisy a dobré kreditní skóre. Úrokové sazby jsou konkurenceschopné pro občany EU.',
                   en: 'Italian banks offer mortgages to non-residents, typically up to 50-60% of property value. You\'ll need proof of income, bank statements, and good credit score. Interest rates are competitive for EU citizens.',
                   it: 'Le banche italiane offrono mutui ai non residenti, tipicamente fino al 50-60% del valore della proprietà. Avrai bisogno di prova di reddito, estratti conto bancari e un buon punteggio di credito. I tassi di interesse sono competitivi per i cittadini UE.'
                 }
@@ -2270,7 +2270,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                   it: 'Costi correnti (IMU, TARI, spese condominiali)?'
                 },
                 answer: {
-                  cs: 'Roční náklady zahrnují: IMU (obecní daň z nemovitostí, 0,4-1,06 % katastrální hodnoty), TARI (daň z odpadu, €200-600/rok), poplatky za bytové družstvo (pokud se vztahují, €50-200/měsíc), energie a pojištění. Počítejte s 1-2 % hodnoty nemovitostí ročně.',
+                  cs: 'Roční náklady zahrnují: IMU (obecní daň z nemovitostí, 0,4-1,06 % katastrální hodnoty), TARI (daň z odpadu, €200-600/rok), poplatky za bytové družstvo (pokud se vztahují, €50-200/měsíc), energie a pojištění. Počítejte s 1-2 % hodnoty nemovitosti ročně.',
                   en: 'Annual costs include: IMU (municipal property tax, 0.4-1.06% of cadastral value), TARI (waste tax, €200-600/year), condo fees (if applicable, €50-200/month), utilities, and insurance. Budget 1-2% of property value per year.',
                   it: 'I costi annuali includono: IMU (imposta municipale, 0,4-1,06% del valore catastale), TARI (tassa rifiuti, €200-600/anno), spese condominiali (se applicabili, €50-200/mese), utenze e assicurazione. Budget 1-2% del valore della proprietà all\'anno.'
                 }

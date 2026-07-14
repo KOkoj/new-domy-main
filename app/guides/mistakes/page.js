@@ -75,12 +75,12 @@ export default function MistakesGuidePage() {
                 </Link>
               </Button>
               <h1 className="font-bold mb-8 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                {language === 'cs' ? 'Nejčastější chyby, které Češi dělají při koupí domů v Itálii' :
+                {language === 'cs' ? 'Nejčastější chyby, které Češi dělají při koupi domů v Itálii' :
                  language === 'it' ? 'Gli errori più comuni che i cechi commettono nell\'acquisto di una casa in Italia' :
                  'Most Common Mistakes Czechs Make When Buying a House in Italy'}
               </h1>
               <p className="text-gray-500 leading-relaxed" style={{color:'#4a4a4a', lineHeight:'1.75'}}>
-                {language === 'cs' ? 'Při koupí domů v Itálii Češi velmi často opakují stejné chyby. Ne proto, že by byli neopatrní, ale proto, že neznají místní pravidla, procesy a souvislosti.' :
+                {language === 'cs' ? 'Při koupi domů v Itálii Češi velmi často opakují stejné chyby. Ne proto, že by byli neopatrní, ale proto, že neznají místní pravidla, procesy a souvislosti.' :
                  language === 'it' ? 'Nell\'acquisto di una casa in Italia, i cechi ripetono molto spesso gli stessi errori. Non perché siano incauti, ma perché non conoscono le regole, i processi e i contesti locali.' :
                  'When buying a house in Italy, Czechs very often repeat the same mistakes. Not because they are careless, but because they don\'t know the local rules, processes, and contexts.'}
               </p>

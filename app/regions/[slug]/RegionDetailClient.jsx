@@ -138,7 +138,7 @@ const REGION_DATA = {
     },
     description: {
       en: 'Calabria, the toe of Italy\'s boot, is known for its stunning Tyrrhenian and Ionian coastlines, dramatic mountain scenery, and remarkably affordable real estate. It\'s one of the regions where Czech buyers can find properties at very attractive prices while enjoying authentic southern Italian lifestyle.',
-      cs: 'Kalábrie, špička italské boty, je známá svým úchvatným tyrhénským a jónským pobřežím, dramatickou horskou scenérií a překvapivě dostupnými nemovitostmi. Je to jeden z regionů, kde čeští kupující mohou najít nemovitostí za velmi zajímavé ceny a zároveň si užívat autentický jihoitalský životní styl.',
+      cs: 'Kalábrie, špička italské boty, je známá svým úchvatným tyrhénským a jónským pobřežím, dramatickou horskou scenérií a překvapivě dostupnými nemovitostmi. Je to jeden z regionů, kde čeští kupující mohou najít nemovitosti za velmi zajímavé ceny a zároveň si užívat autentický jihoitalský životní styl.',
       it: 'La Calabria, la punta dello stivale italiano, è nota per le sue splendide coste tirreniche e ioniche, il paesaggio montano spettacolare e gli immobili sorprendentemente accessibili.'
     },
     highlights: {
@@ -177,12 +177,12 @@ const REGION_DATA = {
     image: '/Toscana.png',
     tagline: {
       en: 'Iconic landscapes, strong rental demand, historic cities and premium pricing - Tuscany is one of the most sought-after regions in Italy for international buyers.',
-      cs: 'Ikonicka italska krajina - tradice, vinice a vyšší ceny',
+      cs: 'Ikonická italská krajina - tradice, vinice a vyšší ceny',
       it: 'Paesaggi iconici, forte domanda di affitto, città storiche e prezzi premium: la Toscana è tra le regioni più richieste in Italia dagli acquirenti internazionali.'
     },
     description: {
       en: 'Tuscany is one of the most internationally recognized regions in Italy. For Czech buyers, it represents prestige, stability, and long-term value.\\n\\nThe region combines strong tourism demand, world-famous cultural heritage, and a solid rental market - especially in Florence and Chianti areas.\\n\\nHowever, Tuscany also comes with higher purchase prices and strong competition in prime locations. Proper due diligence, technical checks, and legal coordination are essential before making an offer.',
-      cs: 'Toskánsko je pro mnoho zahranicnich kupujicich symbolem prestize, stability a dlouhodobe hodnoty. Region kombinuje silnou turistickou poptávku, kulturní dedictvi a solidni trh pronajmu, ale take vyšší ceny a silnou konkurenci v premium lokalitách.',
+      cs: 'Toskánsko je pro mnoho zahraničních kupujících symbolem prestiže, stability a dlouhodobé hodnoty. Region kombinuje silnou turistickou poptávku, kulturní dědictví a solidní trh pronájmů, ale také vyšší ceny a silnou konkurenci v prémiových lokalitách.',
       it: 'La Toscana è una delle regioni italiane più riconoscibili a livello internazionale. Per gli acquirenti cechi rappresenta prestigio, stabilità e valore nel lungo termine. La regione combina una forte domanda turistica, patrimonio culturale e un mercato affitti solido, ma anche prezzi più alti e forte competizione nelle zone prime.'
     },
     highlights: {
@@ -194,7 +194,7 @@ const REGION_DATA = {
         'Developed infrastructure',
         'Established expat communities'
       ],
-      cs: ['Svetove jmeno regionů', 'Silný potencial kratkodobeho pronajmu', 'Stabilni dlouhodoba hodnota', 'Vysoka mezinárodní likvidita', 'Rozvinuta infrastruktura', 'Zavedene expat komunity'],
+      cs: ['Světové jméno regionu', 'Silný potenciál krátkodobého pronájmu', 'Stabilní dlouhodobá hodnota', 'Vysoká mezinárodní likvidita', 'Rozvinutá infrastruktura', 'Zavedené expat komunity'],
       it: ['Riconoscimento globale del brand', 'Forte potenziale di affitto breve', 'Valori immobiliari stabili nel lungo periodo', 'Alta liquidità internazionale', 'Infrastrutture sviluppate', 'Comunità expat consolidate']
     },
     priceRange: '\u20AC180,000 - \u20AC1,500,000',
@@ -205,9 +205,9 @@ const REGION_DATA = {
         'Luxury villa with land: \u20AC2M+'
       ],
       cs: [
-        'Mensi být v mensich městech: od \u20AC150-200k',
+        'Menší byt v menších městech: od \u20AC150-200k',
         'Zrekonstruovaný statek: \u20AC400k-1.5M',
-        'Luxusni vila s pozemkem: \u20AC2M+'
+        'Luxusní vila s pozemkem: \u20AC2M+'
       ],
       it: [
         'Piccolo appartamento in centri secondari: da \u20AC150-200k',
@@ -215,7 +215,7 @@ const REGION_DATA = {
         'Villa di lusso con terreno: \u20AC2M+'
       ]
     },
-    bestFor: { en: 'Prestige, wine, culture, rental income', cs: 'Prestiz, vino, kultura, prijem z pronajmu', it: 'Prestigio, vino, cultura, reddito da affitto' },
+    bestFor: { en: 'Prestige, wine, culture, rental income', cs: 'Prestiž, víno, kultura, příjem z pronájmu', it: 'Prestigio, vino, cultura, reddito da affitto' },
     bestForList: {
       en: ['Investment with short-term rentals', 'Prestige second home', 'Buyers seeking a stable market'],
       cs: ['Investice s krátkodobým pronájmem', 'Prestižní druhé bydlení', 'Kupující hledající stabilní trh'],
@@ -287,9 +287,9 @@ const REGION_DATA = {
         'Luxury properties: \u20AC2M-\u20AC5M+'
       ],
       cs: [
-        'Mesto Milan: casto \u20AC350k-\u20AC1.5M+',
-        'Lago di Como: bezne nad \u20AC1M',
-        'Luxusni nemovitostí: \u20AC2M-\u20AC5M+'
+        'Město Milán: často \u20AC350k-\u20AC1.5M+',
+        'Lago di Como: běžně nad \u20AC1M',
+        'Luxusní nemovitosti: \u20AC2M-\u20AC5M+'
       ],
       it: [
         'Milano città: spesso 350k-1.5M+',
@@ -969,48 +969,48 @@ const REGION_BUYERS_GUIDANCE_EN = {
 
 const REGION_BUYERS_GUIDANCE_CS = {
   sicilia: {
-    intro: 'Pred koupí na Sicilii zohlednete:',
+    intro: 'Před koupí na Sicílii zohledněte:',
     items: [
-      'Palermo, Catania, Taormina a Syrakusy maji velmi odlisnou likviditu i cenove urovene',
-      'V primorskych oblastech je nutne prověřit vliv morskeho prostredi a technicky stav budovy',
+      'Palermo, Catania, Taormina a Syrakusy mají velmi odlišnou likviditu i cenové úrovně',
+      'V přímořských oblastech je nutné prověřit vliv mořského prostředí a technický stav budovy',
       'Katastrální a urbanistickou dokumentaci je třeba kontrolovat obzvlášť pečlivě',
-      'Poptavka po pronajmu je v mnoha turistickych lokalitách silne sezonni',
-      'Dostupnost letist a zakladnich služeb vyrazne meni realne využití nemovitostí'
+      'Poptávka po pronájmu je v mnoha turistických lokalitách silně sezónní',
+      'Dostupnost letišť a základních služeb výrazně mění reálné využití nemovitostí'
     ],
-    outro: 'Na Sicilii zavisi spravna volba na mikro-lokalite: presne srovnani jednotlivych obci a ctvrtí je zasadni.'
+    outro: 'Na Sicílii závisí správná volba na mikrolokalitě: přesné srovnání jednotlivých obcí a čtvrtí je zásadní.'
   },
   liguria: {
-    intro: 'Pred koupí v Ligurii zohlednete:',
+    intro: 'Před koupí v Ligurii zohledněte:',
     items: [
-      'Lokality s výhledem na more maji vyrazne premium oproti vnitrnim zonam',
-      'Pristup, parkovani a sklon terenu primo ovlivnuji uzivani i dalsi prodej',
-      'V nejzadanejsich obcích je nabídka omezena, proto je potřeba byt pripraveny i casove',
-      'U starších primorskych domů byvaji casto vyssi kondominalni naklady',
-      'Je nutne prověřit hydrogeologicka rizika a stav opernych konstrukci'
+      'Lokality s výhledem na moře mají výrazné prémium oproti vnitřním zónám',
+      'Přístup, parkování a sklon terénu přímo ovlivňují užívání i další prodej',
+      'V nejžádanějších obcích je nabídka omezená, proto je potřeba být připraven i časově',
+      'U starších přímořských domů bývají často vyšší kondominiální náklady',
+      'Je nutné prověřit hydrogeologická rizika a stav opěrných konstrukcí'
     ],
-    outro: 'V Ligurii ma presna adresa vetsi vahu nez samotny nazev obce: mikro-lokalita je rozhodujici.'
+    outro: 'V Ligurii má přesná adresa větší váhu než samotný název obce: mikrolokalita je rozhodující.'
   },
   campania: {
-    intro: 'Pred koupí v Kampanii zohlednete:',
+    intro: 'Před koupí v Kampanii zohledněte:',
     items: [
-      'Neapol je slozity mestsky trh, kde je ctvrt dulezitejsi nez městské prumery',
-      'Amalfinske pobrezi a Sorrento maji vysoke vstupni ceny a velmi konkurencni nabídku',
+      'Neapol je složitý městský trh, kde je čtvrť důležitější než městské průměry',
+      'Amalfské pobřeží a Sorrento mají vysoké vstupní ceny a velmi konkurenční nabídku',
       'Urbanistický soulad je potřeba pečlivě prověřit u historických nebo dělených nemovitostí',
-      'Logistika a parkovani jsou v mnoha pobreznich lokalitách kriticke faktory',
-      'Mistni pravidla kratkodobeho pronajmu mohou vyrazne zmenit planovany vynos'
+      'Logistika a parkování jsou v mnoha pobřežních lokalitách kritické faktory',
+      'Místní pravidla krátkodobého pronájmu mohou výrazně změnit plánovaný výnos'
     ],
     outro: 'V Kampanii se vyplatí prověřit technickou a právní část co nejdříve, ještě před pokročilým jednáním.'
   },
   piemonte: {
-    intro: 'Pred koupí v Piemontu zohlednete:',
+    intro: 'Před koupí v Piemontu zohledněte:',
     items: [
-      'Turin ma odlisnou mestskou dynamiku nez Langhe, Monferrato a alpske oblasti',
+      'Turín má odlišnou městskou dynamiku než Langhe, Monferrato a alpské oblasti',
       'V kopcovitých obcích je třeba pečlivě prověřit konstrukční stav starších domů',
-      'Zemedelske pozemky a vedlejsi stavby vyzaduji jasnou kontrolu využití a omezeni',
-      'Poptavka po pronajmu je stabilnejsi ve meste a selektivnejsi na venkove',
-      'Zimni energeticke naklady a uroven izolace maji velky dopad na rocni rozpocet'
+      'Zemědělské pozemky a vedlejší stavby vyžadují jasnou kontrolu využití a omezení',
+      'Poptávka po pronájmu je stabilnější ve městě a selektivnější na venkově',
+      'Zimní energetické náklady a úroveň izolace mají velký dopad na roční rozpočet'
     ],
-    outro: 'V Piemontu vznika nejlepsi volba z realisticke rovnovahy mezi stylem zivota a budouci likviditou.'
+    outro: 'V Piemontu vzniká nejlepší volba z realistické rovnováhy mezi stylem života a budoucí likviditou.'
   }
 }
 

@@ -302,7 +302,7 @@ export default function PruvodceItaliiPage() {
                 </p>
                 <Link href="/blog" className="block">
                   <Button className="w-full min-h-[44px] bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-lg shadow-sm">
-                    {language === 'cs' ? 'Otevrit články o koupí' : language === 'it' ? 'Vai agli articoli acquisto' : 'Open buying articles'}
+                    {language === 'cs' ? 'Otevřít články o koupi' : language === 'it' ? 'Vai agli articoli acquisto' : 'Open buying articles'}
                     <ChevronRight className="h-3.5 w-3.5 ml-1.5" />
                   </Button>
                 </Link>

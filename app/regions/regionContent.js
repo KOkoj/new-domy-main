@@ -4,12 +4,12 @@
     image: "/Toscana.png",
     tagline: {
       en: "Buying property in Tuscany: premium locations, strong tourism demand, and long-term value",
-      cs: "Koupě nemovitostí v Toskansku: premium lokality, silná turistická poptávka a dlouhodobé hodnota",
+      cs: "Koupě nemovitostí v Toskánsku: prémiové lokality, silná turistická poptávka a dlouhodobá hodnota",
       it: "Comprare casa in Toscana: località premium, forte domanda turistica e valore nel lungo periodo"
     },
     description: {
       en: "Tuscany remains one of the strongest names in Italian real estate for international buyers. Florence, Siena, Lucca, and the Chianti countryside combine cultural prestige with consistent rental demand.\\n\\nFor buyers focused on lifestyle and capital preservation, Tuscany offers a resilient market, especially in areas with year-round tourism and strong transport links.\\n\\nCompetition is high in prime zones, so technical checks, legal verification, and realistic offer strategy are essential before signing.",
-      cs: "Toskánsko je dlouhodobé jedna z nejsilnejsich znacek na italskem realitnim trhu pro zahraničně kupující. Florencie, Siena, Lucca a oblast Chianti kombinují prestiz s stabilní poptávkou po pronajmu.\\n\\nPro kupující, kteří hledají životně styl i ochranu hodnoty, nabízí Toskánsko odolny trh hlavně v lokalitách s celoročně turistikou a dobrou dopravou.\\n\\nV nejlepsich zonach je silná konkurence, proto je před nabídkou nutna technická i právně kontrola a realisticka cenova strategie.",
+      cs: "Toskánsko je dlouhodobě jedna z nejsilnějších značek na italském realitním trhu pro zahraniční kupující. Florencie, Siena, Lucca a oblast Chianti kombinují prestiž se stabilní poptávkou po pronájmu.\\n\\nPro kupující, kteří hledají životní styl i ochranu hodnoty, nabízí Toskánsko odolný trh hlavně v lokalitách s celoroční turistikou a dobrou dopravou.\\n\\nV nejlepších zónách je silná konkurence, proto je před nabídkou nutná technická i právní kontrola a realistická cenová strategie.",
       it: "La Toscana resta uno dei nomi più forti del mercato immobiliare italiano per gli acquirenti internazionali. Firenze, Siena, Lucca e la campagna del Chianti uniscono prestigio culturale e domanda locativa stabile.\\n\\nPer chi cerca qualità della vita e tutela del capitale, la Toscana offre un mercato resiliente, soprattutto nelle aree con turismo tutto l'anno e buoni collegamenti.\\n\\nNelle zone prime la concorrenza è alta: verifiche tecniche, controllo legale e strategia d'offerta realistica sono fondamentali prima di firmare."
     },
     highlights: {
@@ -22,12 +22,12 @@
         "Developed services for foreign owners"
       ],
       cs: [
-        "Globalni znacka regionů pro kupující",
-        "Silná poptávka po kratkodobem pronajmu",
-        "Vysoka likvidita v premium mikro-lokalitách",
-        "Prestizni venkov i historická centra",
-        "Stabilni dlouhodobé pozice",
-        "Rozvinute služby pro zahraničně majitele"
+        "Globální značka regionu pro kupující",
+        "Silná poptávka po krátkodobém pronájmu",
+        "Vysoká likvidita v prémiových mikrolokalitách",
+        "Prestižní venkov i historická centra",
+        "Stabilní dlouhodobé pozice",
+        "Rozvinuté služby pro zahraniční majitele"
       ],
       it: [
         "Brand regionale riconosciuto a livello globale",
@@ -46,9 +46,9 @@
         "Prime luxury villas: frequently €2M+"
       ],
       cs: [
-        "Mensi města: často od €180k-350k",
-        "Zrekonstruovaný statek: bě?ně €450k-1.5M",
-        "Premium luxusní vily: často €2M+"
+        "Menší města: často od €180k-350k",
+        "Zrekonstruovaný statek: běžně €450k-1.5M",
+        "Prémiové luxusní vily: často €2M+"
       ],
       it: [
         "Centri secondari: spesso da €180k-350k",
@@ -58,7 +58,7 @@
     },
     bestFor: {
       en: "Prestige, lifestyle, rental demand",
-      cs: "Prestiz, životně styl, poptávka po pronajmu",
+      cs: "Prestiž, životní styl, poptávka po pronájmu",
       it: "Prestigio, stile di vita, domanda locativa"
     },
     bestForList: {
@@ -69,7 +69,7 @@
       ],
       cs: [
         "Kupující hledající ikonický italský styl života",
-        "Investoři do turistický silnych mikro-trhu",
+        "Investoři do turisticky silných mikrotrhů",
         "Rodiny hledající stabilní dlouhodobou hodnotu"
       ],
       it: [
@@ -89,9 +89,9 @@
       cs: [
         "Florencie - premium městský trh se silnou mezinárodní poptávkou",
         "Siena - historická kvalita a stabilní středně vyšší ceny",
-        "Lucca - elegantni město s rostouci zahraničně poptávkou",
+        "Lucca - elegantní město s rostoucí zahraniční poptávkou",
         "Pisa - smíšený trh s vlivem univerzity a letiště",
-        "Arezzo - dostupnější vstup oproti premium castem Toskanska"
+        "Arezzo - dostupnější vstup oproti prémiovým částem Toskánska"
       ],
       it: [
         "Firenze - mercato urbano prime con forte domanda internazionale",
@@ -113,7 +113,7 @@
     },
     description: {
       en: "Lombardy is one of Italy's most strategic regions for buyers who want liquidity, infrastructure, and multiple market profiles in one territory. Milan drives the largest urban demand, while Lake Como covers the premium second-home segment.\\n\\nThe region includes very different micro-zones: central city, suburban commuter belts, lakefront, and provincial centers with lower entry prices.\\n\\nIn Lombardy, location precision is critical. Technical and legal checks should be coordinated before any offer, especially in older stock and high-value transactions.",
-      cs: "Lombardie patří mezi nejstrategičtější regiony v Itálii pro kupující, kteří chtějí likviditu, infrastrukturu a více typů trhu v jednom území. Milan táhne nejsilnější městskou poptávku, zatímco Lago di Como je premium segment druhého bydlení.\\n\\nRegion má velmi odlišné mikro-zóny: centrum města, příměstské oblastí, jezerní lokality a provinční města s nižším vstupem.\\n\\nV Lombardii je přesný výběr lokality rozhodující. Technické a právní kontroly je nutné koordinovat před podáním nabídky, hlavně u starších nemovitostí a vyšších cen.",
+      cs: "Lombardie patří mezi nejstrategičtější regiony v Itálii pro kupující, kteří chtějí likviditu, infrastrukturu a více typů trhu v jednom území. Milan táhne nejsilnější městskou poptávku, zatímco Lago di Como je premium segment druhého bydlení.\\n\\nRegion má velmi odlišné mikro-zóny: centrum města, příměstské oblasti, jezerní lokality a provinční města s nižším vstupem.\\n\\nV Lombardii je přesný výběr lokality rozhodující. Technické a právní kontroly je nutné koordinovat před podáním nabídky, hlavně u starších nemovitostí a vyšších cen.",
       it: "La Lombardia è una delle regioni più strategiche d'Italia per chi cerca liquidità, infrastruttura e più profili di mercato nello stesso territorio. Milano guida la domanda urbana, mentre il Lago di Como copre il segmento premium delle seconde case.\\n\\nLa regione include micro-zone molto diverse: centro città, cintura suburbana, aree lago e province con ingresso più accessibile.\\n\\nIn Lombardia la scelta della micro-zona è decisiva. Verifiche tecniche e legali vanno coordinate prima dell'offerta, soprattutto su immobili datati e operazioni di fascia alta."
     },
     highlights: {
@@ -126,12 +126,12 @@
         "High resale potential in selected micro-zones"
       ],
       cs: [
-        "Silný městský trh Milana a vysoká likvidita",
-        "Lago di Como s premium mezinárodní poptávkou",
-        "Siroka nabídka od vstupnich po luxury nemovitostí",
-        "Silná poptávka po pronajmu v jádrových městech",
-        "Vyborna dopravní dostupnost dalnice i zeleznice",
-        "Vysoky potencial dalsiho prodeje ve vybraných lokalitách"
+        "Silný městský trh Milána a vysoká likvidita",
+        "Lago di Como s prémiovou mezinárodní poptávkou",
+        "Široká nabídka od vstupních po luxusní nemovitosti",
+        "Silná poptávka po pronájmu v jádrových městech",
+        "Výborná dopravní dostupnost dálnice i železnice",
+        "Vysoký potenciál dalšího prodeje ve vybraných lokalitách"
       ],
       it: [
         "Mercato urbano di Milano e alta liquidità",
@@ -151,8 +151,8 @@
       ],
       cs: [
         "Milan město: často €350k-1.5M+",
-        "Lago di Como: bě?ně nad €1M",
-        "Luxury nemovitostí: obvykle €2M-5M+"
+        "Lago di Como: běžně nad €1M",
+        "Luxury nemovitosti: obvykle €2M-5M+"
       ],
       it: [
         "Milano città: spesso €350k-1.5M+",
@@ -162,7 +162,7 @@
     },
     bestFor: {
       en: "Urban demand, premium lake lifestyle, resale liquidity",
-      cs: "Mestska poptávka, premium jezerni styl, likvidita při prodeji",
+      cs: "Městská poptávka, prémiový jezerní styl, likvidita při prodeji",
       it: "Domanda urbana, lifestyle lago premium, liquidità in uscita"
     },
     bestForList: {
@@ -172,9 +172,9 @@
         "Investors prioritizing market liquidity"
       ],
       cs: [
-        "Kupující zaměření na městské příležitosti v Milane",
-        "Kupující druhého bydlení v premium jezerních lokalitách",
-        "Investoři, kteří preferuji likvidni trh"
+        "Kupující zaměření na městské příležitosti v Miláně",
+        "Kupující druhého bydlení v prémiových jezerních lokalitách",
+        "Investoři, kteří preferují likvidní trh"
       ],
       it: [
         "Chi punta sulle opportunità di Milano città",
@@ -191,11 +191,11 @@
         "Monza - strategic commuter market near Milan"
       ],
       cs: [
-        "Milan - nejsilnejsi městské poptávka a široké cenove spektrum",
-        "Como - premium jezerni poptávka s mezinarodnimi kupujícími",
+        "Milán - nejsilnější městská poptávka a široké cenové spektrum",
+        "Como - prémiová jezerní poptávka s mezinárodními kupujícími",
         "Bergamo - vyvážený poměr kvalita/hodnota a silné služby",
         "Brescia - větší nabídka a smíšený rezidenční trh",
-        "Monza - strategicky trh blizko Milana pro dojizdeni"
+        "Monza - strategický trh blízko Milána pro dojíždění"
       ],
       it: [
         "Milano - domanda urbana più forte e ampio spettro prezzi",
@@ -212,12 +212,12 @@
     image: "/Veneto.webp",
     tagline: {
       en: "Buying property in Veneto: Venice, Verona, and diversified demand from city to lake",
-      cs: "Koupě nemovitostí ve Venetu: Benatky, Verona a diverzifikovana poptávka od mest po jezera",
+      cs: "Koupě nemovitostí ve Venetu: Benátky, Verona a diverzifikovaná poptávka od měst po jezera",
       it: "Comprare casa in Veneto: Venezia, Verona e domanda diversificata tra città e lago"
     },
     description: {
       en: "Veneto is one of Italy's most balanced regions for buyers: major cultural cities, business areas, and tourism-driven locations in one market. Venice and Verona support premium demand, while secondary cities can offer better entry points.\\n\\nThe region also benefits from Lake Garda demand and strong domestic tourism, which can support short-stay strategies in selected areas.\\n\\nMicro-location matters: historic centers, flood-risk zones, and tourism regulation should always be assessed before purchase.",
-      cs: "Veneto je jeden z nejvyváženějších regionů v Itálii: kulturní města, podnikatelské oblastí i turistické lokality na jednom trhu. Benatky a Verona drží premium poptávku, zatímco vedlejší města mohou nabídnout dostupnější vstup.\\n\\nRegion profituje i z poptávky kolem Lago di Garda a silné domácí turistiky, které může podpořit krátkodobé pronajmy ve vybraných zonach.\\n\\nMikro-lokalita je klíčová: historická centra, rizikové zóny a turistická regulace se musí prověřit před koupí.",
+      cs: "Veneto je jeden z nejvyváženějších regionů v Itálii: kulturní města, podnikatelské oblasti i turistické lokality na jednom trhu. Benátky a Verona drží prémiovou poptávku, zatímco vedlejší města mohou nabídnout dostupnější vstup.\\n\\nRegion profituje i z poptávky kolem Lago di Garda a silné domácí turistiky, které může podpořit krátkodobé pronájmy ve vybraných zónách.\\n\\nMikrolokalita je klíčová: historická centra, rizikové zóny a turistická regulace se musí prověřit před koupí.",
       it: "Il Veneto è una delle regioni più bilanciate d'Italia: grandi città culturali, aree business e località turistiche nello stesso mercato. Venezia e Verona sostengono la domanda premium, mentre i centri secondari offrono accessi più graduali.\\n\\nLa regione beneficia anche della domanda del Lago di Garda e di un turismo interno molto forte, utile per strategie short-stay nelle zone giuste.\\n\\nLa micro-localizzazione è decisiva: centri storici, zone a rischio e regole sul turismo vanno sempre verificate prima dell'acquisto."
     },
     highlights: {
@@ -230,12 +230,12 @@
         "Lake and city combination in one region"
       ],
       cs: [
-        "Benatky a Verona s globalni atraktivitou",
-        "Diverzifikovane trhy napric provinciemi",
+        "Benátky a Verona s globální atraktivitou",
+        "Diverzifikované trhy napříč provinciemi",
         "Silná turistická a short-stay poptávka",
-        "Dobre dalnicni a zeleznicni spojení",
-        "Prumyslove a business koridory",
-        "Kombinace jezera a města v jednom regionů"
+        "Dobré dálniční a železniční spojení",
+        "Průmyslové a business koridory",
+        "Kombinace jezera a města v jednom regionu"
       ],
       it: [
         "Venezia e Verona con richiamo internazionale",
@@ -254,9 +254,9 @@
         "Prime lake or historic assets: frequently €1M+"
       ],
       cs: [
-        "Vedlejsi města: často €140k-320k",
+        "Vedlejší města: často €140k-320k",
         "Hlavní městské lokality: obvykle €300k-900k",
-        "Premium jezerni nebo historické nemovitostí: často €1M+"
+        "Prémiové jezerní nebo historické nemovitosti: často €1M+"
       ],
       it: [
         "Centri secondari: spesso €140k-320k",
@@ -266,7 +266,7 @@
     },
     bestFor: {
       en: "City lifestyle, tourism demand, diversified entry points",
-      cs: "Mestsky styl, turistická poptávka, diverzifikovany vstup",
+      cs: "Městský styl, turistická poptávka, diverzifikovaný vstup",
       it: "Stile urbano, domanda turistica, ingressi diversificati"
     },
     bestForList: {
@@ -295,10 +295,10 @@
         "Treviso - strong quality-of-life appeal near Venice"
       ],
       cs: [
-        "Benatky - unikatni fond, prisna omezeni, premium poptávka",
-        "Verona - odolna městské poptávka a silné služby",
-        "Padova - trh tazeny univerzitou a byznysem",
-        "Vicenza - prumyslova zakladna s vyvazenymi cenami",
+        "Benátky - unikátní fond, přísná omezení, prémiová poptávka",
+        "Verona - odolná městská poptávka a silné služby",
+        "Padova - trh tažený univerzitou a byznysem",
+        "Vicenza - průmyslová základna s vyváženými cenami",
         "Treviso - silná kvalita života blizko Benátek"
       ],
       it: [
@@ -316,12 +316,12 @@
     image: "/Lazio.webp",
     tagline: {
       en: "Buying property in Lazio: Rome capital market plus coastal and hill-town alternatives",
-      cs: "Koupě nemovitostí v Laziu: trh hlavního města Rima plus pobřežní a venkovské alternativy",
+      cs: "Koupě nemovitostí v Laziu: trh hlavního města Říma plus pobřežní a venkovské alternativy",
       it: "Comprare casa nel Lazio: mercato di Roma capitale e alternative su costa e borghi"
     },
     description: {
       en: "Lazio combines Italy's capital market with secondary areas that can offer more accessible pricing and different lifestyle models. Rome remains the strategic core with stable domestic and international demand.\\n\\nOutside Rome, buyers can evaluate coastal towns, hill areas, and provincial cities with different entry levels and rental dynamics.\\n\\nIn this region, legal and condominium due diligence is especially important in older urban buildings and historic areas.",
-      cs: "Lazio kombinuje trh hlavního města s vedlejšími oblastmi, které mohou nabídnout dostupnější vstup i jiný životní model. Řím zůstává strategické jádro se stabilní domácí i mezinárodní poptávkou.\\n\\nMimo Řím lze hodnotit pobřežní města, kopcovité oblastí a provinční centra s odlišnou cenovou hladinou i pronajmovou dynamikou.\\n\\nV tomto regionů je zvlášť důležité právní i technická due diligence, hlavně ve starších městských domech a historických částech.",
+      cs: "Lazio kombinuje trh hlavního města s vedlejšími oblastmi, které mohou nabídnout dostupnější vstup i jiný životní model. Řím zůstává strategické jádro se stabilní domácí i mezinárodní poptávkou.\\n\\nMimo Řím lze hodnotit pobřežní města, kopcovité oblasti a provinční centra s odlišnou cenovou hladinou i pronájmovou dynamikou.\\n\\nV tomto regionu je zvlášť důležitá právní i technická due diligence, hlavně ve starších městských domech a historických částech.",
       it: "Il Lazio unisce il mercato della capitale con aree secondarie che offrono ingressi più accessibili e stili di vita differenti. Roma resta il nucleo strategico con domanda stabile nazionale e internazionale.\\n\\nFuori Roma si possono valutare località costiere, zone collinari e città di provincia con livelli di prezzo e dinamiche locative diverse.\\n\\nIn questa regione la due diligence legale e condominiale è molto importante, soprattutto negli edifici urbani datati e nelle zone storiche."
     },
     highlights: {
@@ -334,12 +334,12 @@
         "Multiple strategies from lifestyle to rental"
       ],
       cs: [
-        "Hluboky trh Rima a celoročně poptávka",
-        "Pobřežní i vnitřní alternativy v jednom regionů",
-        "Velka nabídka v městských oblastech",
-        "Silne dopravní napojeni",
+        "Hluboký trh Říma a celoroční poptávka",
+        "Pobřežní i vnitřní alternativy v jednom regionu",
+        "Velká nabídka v městských oblastech",
+        "Silné dopravní napojení",
         "Kombinace turismu a businessu",
-        "Vice strategii od lifestyle po pronájem"
+        "Více strategií od lifestyle po pronájem"
       ],
       it: [
         "Profondita del mercato romano e domanda annuale",
@@ -358,9 +358,9 @@
         "Prime historic or luxury assets: frequently €1.5M+"
       ],
       cs: [
-        "Okraj Rima a provincie: často €150k-350k",
-        "Centralni a poloscentralni Řím: obvykle €350k-1.2M",
-        "Premium historické nebo luxury nemovitostí: často €1.5M+"
+        "Okraj Říma a provincie: často €150k-350k",
+        "Centrální a poloscentrální Řím: obvykle €350k-1.2M",
+        "Prémiové historické nebo luxury nemovitosti: často €1.5M+"
       ],
       it: [
         "Periferia di Roma e provincia: spesso €150k-350k",
@@ -370,7 +370,7 @@
     },
     bestFor: {
       en: "Capital city demand, mixed strategies, urban lifestyle",
-      cs: "Poptávka hlavního města, smíšený př?stup, městské styl",
+      cs: "Poptávka hlavního města, smíšený přístup, městský styl",
       it: "Domanda da capitale, strategie miste, stile urbano"
     },
     bestForList: {
@@ -380,9 +380,9 @@
         "Owners seeking capital city services year-round"
       ],
       cs: [
-        "Kupující zaměření na dlouhodobou likviditu Rima",
+        "Kupující zaměření na dlouhodobou likviditu Říma",
         "Investoři kombinující vstup do města i provincie",
-        "Majitelé hledající celoročně služby hlavního města"
+        "Majitelé hledající celoroční služby hlavního města"
       ],
       it: [
         "Chi punta sulla liquidità di lungo periodo a Roma",
@@ -399,11 +399,11 @@
         "Tivoli area - historic setting near Rome demand belt"
       ],
       cs: [
-        "Řím - široké městské poptávka s velmi odlisnymi mikro-cenami",
-        "Viterbo - historicky profil a mirnejsi vstupní ceny",
-        "Latina - blízkost pobřeží a prakticky rezidenční fond",
-        "Frosinone - dostupnější trh s dojizdenim do města",
-        "Oblast Tivoli - historické prostredi blizko poptávky Rima"
+        "Řím - široká městská poptávka s velmi odlišnými mikrocenami",
+        "Viterbo - historický profil a mírnější vstupní ceny",
+        "Latina - blízkost pobřeží a praktický rezidenční fond",
+        "Frosinone - dostupnější trh s dojížděním do města",
+        "Oblast Tivoli - historické prostředí blízko poptávky Říma"
       ],
       it: [
         "Roma - domanda urbana ampia con micro-prezzi molto diversi",
@@ -420,12 +420,12 @@
     image: "/Sicilia.jpg",
     tagline: {
       en: "Buying property in Sicily: wide price spectrum from value opportunities to premium coastal assets",
-      cs: "Koupě nemovitostí na Sicilii: široké cenove spektrum od dostupných příležitosti po premium pobřeží",
+      cs: "Koupě nemovitostí na Sicílii: široké cenové spektrum od dostupných příležitostí po prémiové pobřeží",
       it: "Comprare casa in Sicilia: ampio spettro prezzi da opportunità accessibili ad asset costieri premium"
     },
     description: {
       en: "Sicily offers one of the broadest real estate ranges in Italy. Buyers can find historic city apartments, village homes, renovation projects, and high-end coastal villas in the same macro-region.\\n\\nDemand is highly location-specific: markets like Palermo, Catania, Taormina, and Syracuse differ significantly in liquidity and rental profile.\\n\\nFor foreign buyers, the key is to match objective and micro-area: holiday use, yield strategy, or long-term living require different property filters.",
-      cs: "Sicílie nabízí jedno z nejširších realitních spekter v Itálii. Kupující zde najdou byty v historických městech, domy v obcích, rekonstrukční projekty i high-end pobřežní vily v rámci jednoho regionů.\\n\\nPoptavka je velmi lokální: Palermo, Catania, Taormina a Syrakusy se výrazně liší likviditou i pronájmovým profilem.\\n\\nPro zahraničně kupující je klíčové sladit cíl a mikro-lokalitu: dovolená, výnos nebo dlouhodobé bydlení vyžadují odlišný filtr nemovitostí.",
+      cs: "Sicílie nabízí jedno z nejširších realitních spekter v Itálii. Kupující zde najdou byty v historických městech, domy v obcích, rekonstrukční projekty i high-end pobřežní vily v rámci jednoho regionu.\\n\\nPoptávka je velmi lokální: Palermo, Catania, Taormina a Syrakusy se výrazně liší likviditou i pronájmovým profilem.\\n\\nPro zahraniční kupující je klíčové sladit cíl a mikrolokalitu: dovolená, výnos nebo dlouhodobé bydlení vyžadují odlišný filtr nemovitostí.",
       it: "La Sicilia offre uno dei range immobiliari più ampi d'Italia. Nello stesso macro-territorio trovi appartamenti in città storiche, case nei borghi, progetti da ristrutturare e ville costiere di fascia alta.\\n\\nLa domanda è molto localizzata: Palermo, Catania, Taormina e Siracusa hanno profili di liquidità e affitto differenti.\\n\\nPer l'acquirente estero, la chiave è allineare obiettivo e micro-zona: uso vacanza, strategia a reddito o vita stabile richiedono filtri diversi."
     },
     highlights: {
@@ -438,12 +438,12 @@
         "Potential value opportunities in secondary areas"
       ],
       cs: [
-        "Velmi široké vstupní i cenove moznosti",
+        "Velmi široké vstupní i cenové možnosti",
         "Silný turismus ve vybraných pobřežních centrech",
-        "Historicky fond ve městech i moznosti v obcích",
-        "Příjemné klima a celoročně využití",
-        "Velke rozdily podle mikro-lokality",
-        "Hodnotove příležitosti ve vedlejsich oblastech"
+        "Historický fond ve městech i možnosti v obcích",
+        "Příjemné klima a celoroční využití",
+        "Velké rozdíly podle mikrolokality",
+        "Hodnotové příležitosti ve vedlejších oblastech"
       ],
       it: [
         "Range molto ampio di prezzi e ingressi",
@@ -462,9 +462,9 @@
         "Prime sea-view or luxury assets: frequently €1M+"
       ],
       cs: [
-        "Vedlejsi města: často €70k-250k",
+        "Vedlejší města: často €70k-250k",
         "Hlavní městské a pobřežní zóny: obvykle €250k-900k",
-        "Premium výhled na moře nebo luxury nemovitostí: často €1M+"
+        "Prémiový výhled na moře nebo luxury nemovitosti: často €1M+"
       ],
       it: [
         "Centri secondari: spesso €70k-250k",
@@ -474,7 +474,7 @@
     },
     bestFor: {
       en: "Diversity, climate, mixed budgets",
-      cs: "Diverzita, klima, ruzne rozpocty",
+      cs: "Diverzita, klima, různé rozpočty",
       it: "Diversita, clima, budget differenziati"
     },
     bestForList: {
@@ -486,7 +486,7 @@
       cs: [
         "Kupující hledající širokou volbu a flexibilitu",
         "Kupující dovolenkového bydlení u moře",
-        "Investoři zaměření na vybrane turistické lokality"
+        "Investoři zaměření na vybrané turistické lokality"
       ],
       it: [
         "Chi cerca ampia scelta e flessibilità",
@@ -503,11 +503,11 @@
         "Cefalu - smaller but high-demand coastal profile"
       ],
       cs: [
-        "Palermo - velky městský trh se širokou nabídkou",
-        "Catania - silná městské dynamika a dostupnost letiště",
-        "Taormina - premium turistický mikro-trh",
-        "Syrakusy - historická atraktivita se stabilní navstevnosti",
-        "Cefalu - méně, ale poptavane pobřežní město"
+        "Palermo - velký městský trh se širokou nabídkou",
+        "Catania - silná městská dynamika a dostupnost letiště",
+        "Taormina - prémiový turistický mikro-trh",
+        "Syrakusy - historická atraktivita se stabilní návštěvností",
+        "Cefalù - menší, ale poptávané pobřežní město"
       ],
       it: [
         "Palermo - grande mercato urbano con stock ampio",
@@ -524,12 +524,12 @@
     image: "/Liguria.webp",
     tagline: {
       en: "Buying property in Liguria: Riviera lifestyle, sea views, and tight supply in prime zones",
-      cs: "Koupě nemovitostí v Ligurii: riviera lifestyle, vyhledy na moře a omezena nabídka v premium zonach",
+      cs: "Koupě nemovitostí v Ligurii: riviera lifestyle, výhledy na moře a omezená nabídka v prémiových zónách",
       it: "Comprare casa in Liguria: stile Riviera, vista mare e offerta limitata nelle zone prime"
     },
     description: {
       en: "Liguria is a narrow coastal market where geography strongly shapes pricing. Prime sea-view positions and well-connected coastal towns can command significant premiums compared with inland alternatives.\\n\\nThe region attracts buyers for second homes, mild climate, and proximity to both Milan and the French border.\\n\\nBecause inventory is often limited in sought-after towns, negotiation speed, technical inspection, and clear legal preparation are crucial.",
-      cs: "Ligurie je úzký pobřežní trh, kde geografie silně ovlivňuje ceny. Premium polohy s výhledem na moře a dobře dostupná města často dosahují výrazně vyšších cen oproti vnitřním oblastem.\\n\\nRegion přitahuje kupující druhých domovů díky mírnému klimatu a blizkosti Milana i francouzské hranice.\\n\\nProtoze v top lokalitách bývá omezený fond, je důležité rychlost rozhodnutí, technická kontrola a jasná právní příprava.",
+      cs: "Ligurie je úzký pobřežní trh, kde geografie silně ovlivňuje ceny. Prémiové polohy s výhledem na moře a dobře dostupná města často dosahují výrazně vyšších cen oproti vnitřním oblastem.\\n\\nRegion přitahuje kupující druhých domovů díky mírnému klimatu a blízkosti Milána i francouzské hranice.\\n\\nProtože v top lokalitách bývá omezený fond, je důležitá rychlost rozhodnutí, technická kontrola a jasná právní příprava.",
       it: "La Liguria è un mercato costiero stretto dove la geografia incide molto sui prezzi. Le posizioni vista mare e i comuni costieri ben collegati hanno spesso premium importanti rispetto alle aree interne.\\n\\nLa regione attrae acquirenti di seconde case per clima mite e vicinanza a Milano e al confine francese.\\n\\nCon uno stock spesso limitato nelle località più richieste, velocità negoziale, verifica tecnica e preparazione legale sono decisive."
     },
     highlights: {
@@ -542,10 +542,10 @@
         "Limited stock in prime municipalities"
       ],
       cs: [
-        "Znacka italské riviery a silná poptávka",
-        "Premium ceny za výhled na moře ve vybraných zonach",
-        "Mirne klima a celoročně atraktivita",
-        "Blízkost ekonomickych center severní Itálie",
+        "Značka italské riviery a silná poptávka",
+        "Prémiové ceny za výhled na moře ve vybraných zónách",
+        "Mírné klima a celoroční atraktivita",
+        "Blízkost ekonomických center severní Itálie",
         "Atraktivní profil pro druhé bydlení",
         "Omezený fond v nejžádanějších městech"
       ],
@@ -566,7 +566,7 @@
         "Prime Riviera addresses: frequently €1.5M+"
       ],
       cs: [
-        "Vnitrni oblastí: často €160k-350k",
+        "Vnitřní oblasti: často €160k-350k",
         "Pobřežní rezidenční zóny: obvykle €350k-1.2M",
         "Top adresy riviery: často €1.5M+"
       ],
@@ -578,7 +578,7 @@
     },
     bestFor: {
       en: "Sea lifestyle, second home, premium micro-zones",
-      cs: "Život u moře, druhé bydlení, premium mikro-lokality",
+      cs: "Život u moře, druhé bydlení, prémiové mikrolokality",
       it: "Lifestyle mare, seconda casa, micro-zone premium"
     },
     bestForList: {
@@ -588,9 +588,9 @@
         "Investors targeting selective high-demand towns"
       ],
       cs: [
-        "Kupující druhého bydlení se zamerenim na moře",
+        "Kupující druhého bydlení se zaměřením na moře",
         "Majitelé hledající mírné klima a pobřežní život",
-        "Investoři zaměření na vybrane vysoce poptavane lokality"
+        "Investoři zaměření na vybrané vysoce poptávané lokality"
       ],
       it: [
         "Acquirenti di seconde case orientati al mare",
@@ -611,7 +611,7 @@
         "La Spezia - vstupní bod poptávky do Cinque Terre",
         "Sanremo - zavedený profil druhého bydlení a dlouhodobého pobytu",
         "Oblast Portofino - ultra-premium pobřežní segment",
-        "Provincie Savona - kombinace dostupnosti a pristupu k mori"
+        "Provincie Savona - kombinace dostupnosti a přístupu k moři"
       ],
       it: [
         "Genova - mercato urbano principale con prezzi eterogenei",
@@ -633,7 +633,7 @@
     },
     description: {
       en: "Campania combines one of Italy's largest southern urban markets with globally recognized coastal destinations. Naples offers broad inventory and city liquidity, while Amalfi and Sorrento represent high-end, tourism-driven segments.\\n\\nThe region's performance varies strongly by municipality and neighborhood. Entry prices and rental dynamics can change significantly even within short distances.\\n\\nFor foreign buyers, structured due diligence is critical: urban compliance, building condition, and local rules for rental activity should be validated early.",
-      cs: "Kampanie kombinuje jeden z největších jižních městských trhu v Itálii s globálně známými pobřežními destinacemi. Neapol nabízí širokou nabídku a mestskou likviditu, zatímco Amalfi a Sorrento jsou high-end turistické segmenty.\\n\\nVykon regionů se silné liší podle města i čtvrti. Vstupni ceny a pronajmove chovani se mohou menit i na kratkou vzdálenost.\\n\\nPro zahraničně kupující je nezbytna strukturovana due diligence: urbanistická shoda, technický stav domů a lokální pravidla pronajmu musí být overena včas.",
+      cs: "Kampanie kombinuje jeden z největších jižních městských trhů v Itálii s globálně známými pobřežními destinacemi. Neapol nabízí širokou nabídku a městskou likviditu, zatímco Amalfi a Sorrento jsou high-end turistické segmenty.\\n\\nVýkon regionu se silně liší podle města i čtvrti. Vstupní ceny a pronájmové chování se mohou měnit i na krátkou vzdálenost.\\n\\nPro zahraniční kupující je nezbytná strukturovaná due diligence: urbanistická shoda, technický stav domů a lokální pravidla pronájmu musí být ověřena včas.",
       it: "La Campania unisce uno dei principali mercati urbani del Sud con destinazioni costiere di fama mondiale. Napoli offre stock ampio e liquidità urbana, mentre Amalfi e Sorrento rappresentano segmenti high-end legati al turismo.\\n\\nLa performance regionale cambia molto per comune e quartiere. Prezzi d'ingresso e dinamiche locative possono variare anche a breve distanza.\\n\\nPer gli acquirenti esteri, la due diligence deve essere rigorosa: conformità urbanistica, stato tecnico e regole locali sugli affitti vanno verificate subito."
     },
     highlights: {
@@ -646,12 +646,12 @@
         "High location sensitivity by neighborhood"
       ],
       cs: [
-        "Velky městský trh Neapole",
-        "Globalni turistické pobřežní destinace",
+        "Velký městský trh Neapole",
+        "Globální turistické pobřežní destinace",
         "Široký rozsah od města po luxury pobřeží",
-        "Silný sezónní potencial",
-        "Kulturni a lifestyle atraktivita",
-        "Silná zavislost na přesné lokalite"
+        "Silný sezónní potenciál",
+        "Kulturní a lifestyle atraktivita",
+        "Silná závislost na přesné lokalitě"
       ],
       it: [
         "Profondita e volume del mercato napoletano",
@@ -671,8 +671,8 @@
       ],
       cs: [
         "Provinční a okrajové zóny: často €120k-300k",
-        "Neapol a hlavní městské oblastí: obvykle €300k-900k",
-        "Top nemovitostí Amalfi/Sorrento: často €1.5M+"
+        "Neapol a hlavní městské oblasti: obvykle €300k-900k",
+        "Top nemovitosti Amalfi/Sorrento: často €1.5M+"
       ],
       it: [
         "Province e zone esterne: spesso €120k-300k",
@@ -693,7 +693,7 @@
       ],
       cs: [
         "Kupující kombinující městské i pobřežní varianty",
-        "Investoři zaměření na vybrane turistické huby",
+        "Investoři zaměření na vybrané turistické huby",
         "Majitelé preferující klima a středomořský styl života"
       ],
       it: [
@@ -711,11 +711,11 @@
         "Avellino - inland alternative with budget flexibility"
       ],
       cs: [
-        "Neapol - hluboky městský trh s heterogenimi ctvrtmi",
-        "Salerno - rostouci profil a př?stup k Amalfi",
-        "Sorrento - premium turistický trh s vysokou poptávkou",
-        "Caserta - provinční centrum s nizsim vstupem",
-        "Avellino - vnitřní alternativa s flexibilnejsim rozpoctem"
+        "Neapol - hluboký městský trh s heterogenními čtvrtmi",
+        "Salerno - rostoucí profil a přístup k Amalfi",
+        "Sorrento - prémiový turistický trh s vysokou poptávkou",
+        "Caserta - provinční centrum s nižším vstupem",
+        "Avellino - vnitřní alternativa s flexibilnějším rozpočtem"
       ],
       it: [
         "Napoli - mercato urbano profondo con micro-zone eterogenee",
@@ -732,12 +732,12 @@
     image: "/Piemonte.jpg",
     tagline: {
       en: "Buying property in Piedmont: Turin, wine territories, and value-driven northern Italy",
-      cs: "Koupě nemovitostí v Piemontu: Turin, vinařské oblastí a hodnotovy sever Itálie",
+      cs: "Koupě nemovitostí v Piemontu: Turín, vinařské oblasti a hodnotový sever Itálie",
       it: "Comprare casa in Piemonte: Torino, territori del vino e valore nel Nord Italia"
     },
     description: {
       en: "Piedmont offers a strong combination of urban, wine-country, and mountain-influenced markets. Turin provides scale and services, while Langhe and Monferrato areas attract lifestyle and hospitality buyers.\\n\\nCompared with some premium northern regions, Piedmont can provide more balanced entry pricing with solid quality-of-life fundamentals.\\n\\nMarket depth varies by area, so purchase strategy should align clearly with objective: personal use, rental activity, or long-term relocation.",
-      cs: "Piemont nabízí silnou kombinaci městského trhu, vinařských oblastí a podhorských lokalit. Turin poskytuje rozsah a služby, zatímco Langhe a Monferrato přitahují lifestyle i hospitality kupující.\\n\\nVe srovnání s některými premium regiony severu může Piemont nabídnout vyváženější vstupní ceny při velmi dobře kvalitě života.\\n\\nHloubka trhu se liší podle lokality, proto má být strategie koupě jasně svázána s cilem: vlastní užívání, pronájem, nebo přesun na delší dobu.",
+      cs: "Piemont nabízí silnou kombinaci městského trhu, vinařských oblastí a podhorských lokalit. Turín poskytuje rozsah a služby, zatímco Langhe a Monferrato přitahují lifestyle i hospitality kupující.\\n\\nVe srovnání s některými prémiovými regiony severu může Piemont nabídnout vyváženější vstupní ceny při velmi dobré kvalitě života.\\n\\nHloubka trhu se liší podle lokality, proto má být strategie koupě jasně svázána s cílem: vlastní užívání, pronájem, nebo přesun na delší dobu.",
       it: "Il Piemonte combina in modo efficace mercato urbano, territori del vino e aree pedemontane. Torino garantisce scala e servizi, mentre Langhe e Monferrato attirano acquirenti lifestyle e hospitality.\\n\\nRispetto ad alcune regioni premium del Nord, il Piemonte può offrire ingressi più bilanciati mantenendo buona qualità della vita.\\n\\nLa profondità del mercato cambia per area: la strategia d'acquisto deve essere allineata all'obiettivo, tra uso personale, reddito o trasferimento."
     },
     highlights: {
@@ -750,12 +750,12 @@
         "Diverse stock from city to countryside"
       ],
       cs: [
-        "Městské a business centrum Turin",
-        "Světov? známé vinařské oblastí",
+        "Městské a business centrum Turín",
+        "Světově známé vinařské oblasti",
         "Vyvážené ceny v mnoha městech",
         "Silná gastronomie a lifestyle identita",
-        "Dobra dopravní dostupnost severu",
-        "Diverzni fond od města po venkov"
+        "Dobrá dopravní dostupnost severu",
+        "Diverzní fond od města po venkov"
       ],
       it: [
         "Torino centro urbano e business",
@@ -774,9 +774,9 @@
         "Premium wine estate or luxury villas: frequently €1M+"
       ],
       cs: [
-        "Vedlejsi města a obce: často €130k-320k",
-        "Městské zóny Turina: obvykle €250k-800k",
-        "Premium vinařské usedlosti nebo luxury vily: často €1M+"
+        "Vedlejší města a obce: často €130k-320k",
+        "Městské zóny Turína: obvykle €250k-800k",
+        "Prémiové vinařské usedlosti nebo luxury vily: často €1M+"
       ],
       it: [
         "Città secondarie e borghi: spesso €130k-320k",
@@ -786,7 +786,7 @@
     },
     bestFor: {
       en: "Wine lifestyle, urban services, balanced entry",
-      cs: "Vinarsky lifestyle, městské služby, vyvážený vstup",
+      cs: "Vinařský lifestyle, městské služby, vyvážený vstup",
       it: "Lifestyle vino, servizi urbani, ingresso bilanciato"
     },
     bestForList: {
@@ -815,11 +815,11 @@
         "Alba area - premium wine-country positioning"
       ],
       cs: [
-        "Turin - široké městský trh se silnou sluzbovou zakladnou",
-        "Alessandria - dostupnější provinční vstup s logistickou roli",
-        "Asti - poptávka navazana na vino a lifestyle",
+        "Turín - široký městský trh se silnou službovou základnou",
+        "Alessandria - dostupnější provinční vstup s logistickou rolí",
+        "Asti - poptávka navázaná na víno a lifestyle",
         "Cuneo - smíšený rezidenční trh a brána do hor",
-        "Oblast Alba - premium pozice vinarskeho venkova"
+        "Oblast Alba - prémiová pozice vinařského venkova"
       ],
       it: [
         "Torino - mercato urbano ampio con base servizi forte",
@@ -836,7 +836,7 @@
     image: "/Emilia-Romagna.jpg",
     tagline: {
       en: "Buying property in Emilia-Romagna: strong economy, quality cities, and reliable long-term demand",
-      cs: "Koupě nemovitostí v Emilia-Romagna: silná ekonomika, kvalitní města a spolehliva dlouhodobé poptávka",
+      cs: "Koupě nemovitostí v Emilia-Romagna: silná ekonomika, kvalitní města a spolehlivá dlouhodobá poptávka",
       it: "Comprare casa in Emilia-Romagna: economia forte, città di qualità e domanda stabile nel lungo periodo"
     },
     description: {
@@ -855,11 +855,11 @@
       ],
       cs: [
         "Silná lokální ekonomika a služby",
-        "Vyvazena poptávka rezidentu i studentu",
-        "Vysoke ukazatele kvality života",
-        "Vice městských profilu v jednom regionů",
-        "Solidni dopravní napojeni",
-        "Nizsi volatilita nez u ciste turistickych trhu"
+        "Vyvážená poptávka rezidentů i studentů",
+        "Vysoké ukazatele kvality života",
+        "Více městských profilů v jednom regionu",
+        "Solidní dopravní napojení",
+        "Nižší volatilita než u čistě turistických trhů"
       ],
       it: [
         "Economia locale forte e servizi sviluppati",
@@ -880,7 +880,7 @@
       cs: [
         "Provinční centra: často €140k-320k",
         "Bologna a hlavní městské zóny: obvykle €300k-900k",
-        "Premium historické nebo luxury nemovitostí: často €1M+"
+        "Prémiové historické nebo luxury nemovitosti: často €1M+"
       ],
       it: [
         "Centri provinciali: spesso €140k-320k",
@@ -890,7 +890,7 @@
     },
     bestFor: {
       en: "Stability, services, long-term holding",
-      cs: "Stabilita, služby, dlouhodobé drzeni",
+      cs: "Stabilita, služby, dlouhodobé držení",
       it: "Stabilita, servizi, holding di lungo periodo"
     },
     bestForList: {
@@ -900,7 +900,7 @@
         "Buyers prioritizing infrastructure and services"
       ],
       cs: [
-        "Rodiny planujici relokaci a celoročně bydlení",
+        "Rodiny plánující relokaci a celoroční bydlení",
         "Investoři preferující nižší volatilitu",
         "Kupující kladoucí důraz na infrastrukturu a služby"
       ],
@@ -919,11 +919,11 @@
         "Rimini - tourism-driven coastal opportunities"
       ],
       cs: [
-        "Bologna - nejsilnejsi regionální poptávka a likvidita",
+        "Bologna - nejsilnější regionální poptávka a likvidita",
         "Parma - kvalitní rezidenční trh se stabilním profilem",
-        "Modena - vyvazena městské poptávka s prumyslovou zakladnou",
-        "Ravenna - kombinace pobrezniho a kulturniho trhu",
-        "Rimini - turistický orientovane pobřežní příležitosti"
+        "Modena - vyvážená městská poptávka s průmyslovou základnou",
+        "Ravenna - kombinace pobřežního a kulturního trhu",
+        "Rimini - turisticky orientované pobřežní příležitosti"
       ],
       it: [
         "Bologna - domanda regionale più forte e liquidità elevata",
@@ -958,12 +958,12 @@
         "Growing foreign buyer interest"
       ],
       cs: [
-        "Silná lifestyle a dovolenkova poptávka",
-        "Ikonicke trulli a masseria nemovitostí",
-        "Atraktivní pobřežní i vnitřní moznosti",
-        "Dobre klima a dlouha sezona",
+        "Silná lifestyle a dovolenková poptávka",
+        "Ikonické trulli a masseria nemovitosti",
+        "Atraktivní pobřežní i vnitřní možnosti",
+        "Dobré klima a dlouhá sezóna",
         "V mnoha oblastech stále dostupné vstupní ceny",
-        "Rostouci zajem zahraničních kupujících"
+        "Rostoucí zájem zahraničních kupujících"
       ],
       it: [
         "Forte domanda lifestyle e casa vacanza",
@@ -982,9 +982,9 @@
         "Premium restored masseria/villas: frequently €1M+"
       ],
       cs: [
-        "Vedlejsi města: často €90k-250k",
-        "Populární pobřežní a historické oblastí: obvykle €250k-750k",
-        "Premium zrekonstruovane masseria/vily: často €1M+"
+        "Vedlejší města: často €90k-250k",
+        "Populární pobřežní a historické oblasti: obvykle €250k-750k",
+        "Prémiové zrekonstruované masseria/vily: často €1M+"
       ],
       it: [
         "Centri secondari: spesso €90k-250k",
@@ -1004,9 +1004,9 @@
         "Investors looking for medium entry with upside"
       ],
       cs: [
-        "Kupující hledající autenticky jih Itálie",
+        "Kupující hledající autentický jih Itálie",
         "Majitelé kombinující vlastní užívání a sezónní pronájem",
-        "Investoři hledající středně vstup s růstovým potenciálem"
+        "Investoři hledající střední vstup s růstovým potenciálem"
       ],
       it: [
         "Chi cerca il Sud Italia autentico",
@@ -1025,9 +1025,9 @@
       cs: [
         "Bari - hlavní městský hub se silnými službami",
         "Lecce - silná historická a lifestyle poptávka",
-        "Oblast Ostuni - premium profil bileho města",
+        "Oblast Ostuni - prémiový profil bílého města",
         "Alberobello - unikátní turistická identita se stockem trulli",
-        "Provincie Brindisi - kombinace pobřeží a hodnotovych příležitosti"
+        "Provincie Brindisi - kombinace pobřeží a hodnotových příležitostí"
       ],
       it: [
         "Bari - hub urbano principale con servizi completi",
@@ -1044,12 +1044,12 @@
     image: "/Umbria.webp",
     tagline: {
       en: "Buying property in Umbria: quieter alternative to Tuscany with solid value profile",
-      cs: "Koupě nemovitostí v Umbrii: klidnejsi alternativa k Toskansku se solidnim hodnotovym profilem",
+      cs: "Koupě nemovitostí v Umbrii: klidnější alternativa k Toskánsku se solidním hodnotovým profilem",
       it: "Comprare casa in Umbria: alternativa più tranquilla alla Toscana con buon profilo valore"
     },
     description: {
       en: "Umbria is often chosen by buyers who like central Italy but want lower pressure and more accessible pricing than many Tuscan hotspots. The region is known for hill towns, rural landscapes, and a slower rhythm.\\n\\nIt can work well for personal use, long stays, and selective holiday rental in areas with stable visitor flow.\\n\\nAs with rural assets elsewhere in Italy, cadastral and technical checks are essential before offer, especially for older properties.",
-      cs: "Umbrie je často volena kupujícími, kteří chtějí středně Itálii, ale s menším tlakem trhu a dostupnejsimi cenami nez v mnoha částech Toskanska. Region je známý kopcovitými mesty, venkovem a pomalejsim tempem.\\n\\nDobre funguje pro vlastní užívání, delší pobyty i selektivni dovolenkovy pronájem v lokalitách se stabilní navstevnosti.\\n\\nStejne jako u jinych venkovskych nemovitostí v Itálii je před nabídkou nutna katastrálně i technická kontrola, hlavně u starších domů.",
+      cs: "Umbrie je často volena kupujícími, kteří chtějí střední Itálii, ale s menším tlakem trhu a dostupnějšími cenami než v mnoha částech Toskánska. Region je známý kopcovitými městy, venkovem a pomalejším tempem.\\n\\nDobře funguje pro vlastní užívání, delší pobyty i selektivní dovolenkový pronájem v lokalitách se stabilní návštěvností.\\n\\nStejně jako u jiných venkovských nemovitostí v Itálii je před nabídkou nutná katastrální i technická kontrola, hlavně u starších domů.",
       it: "L'Umbria viene scelta da chi ama il Centro Italia ma cerca meno pressione di mercato e prezzi più accessibili rispetto a molte zone toscane. Il territorio è noto per borghi collinari, paesaggi rurali e ritmo più lento.\\n\\nFunziona bene per uso personale, soggiorni lunghi e affitto vacanza selettivo dove il flusso visitatori è stabile.\\n\\nCome per altri asset rurali in Italia, controlli catastali e tecnici sono fondamentali prima dell'offerta, soprattutto su immobili datati."
     },
     highlights: {
@@ -1062,12 +1062,12 @@
         "Selective rental opportunities"
       ],
       cs: [
-        "Poloha ve středně Itálii s menším trznim tlakem",
-        "Silný venkovsky lifestyle profil",
-        "Dostupnejsi nez mnoho prime casti Toskanska",
-        "Historicka města a kulturní hloubka",
+        "Poloha ve střední Itálii s menším tržním tlakem",
+        "Silný venkovský lifestyle profil",
+        "Dostupnější než mnoho prime částí Toskánska",
+        "Historická města a kulturní hloubka",
         "Dobrý fit pro delší pobyty",
-        "Selektivní pronajmove příležitosti"
+        "Selektivní pronájmové příležitosti"
       ],
       it: [
         "Posizione centrale con minore pressione di mercato",
@@ -1086,9 +1086,9 @@
         "Premium estates and villas: frequently €900k+"
       ],
       cs: [
-        "Mensi města: často €100k-250k",
-        "Zrekonstruovane venkovské domy: obvykle €250k-700k",
-        "Premium usedlosti a vily: často €900k+"
+        "Menší města: často €100k-250k",
+        "Zrekonstruované venkovské domy: obvykle €250k-700k",
+        "Prémiové usedlosti a vily: často €900k+"
       ],
       it: [
         "Centri minori: spesso €100k-250k",
@@ -1098,7 +1098,7 @@
     },
     bestFor: {
       en: "Quiet lifestyle, countryside, value focus",
-      cs: "Klidny lifestyle, venkov, fokus na hodnotu",
+      cs: "Klidný lifestyle, venkov, fokus na hodnotu",
       it: "Lifestyle tranquillo, campagna, focus valore"
     },
     bestForList: {
@@ -1108,9 +1108,9 @@
         "Investors focused on selective rural demand"
       ],
       cs: [
-        "Kupující hledající středně Itálii s méně konkurenci",
+        "Kupující hledající střední Itálii s menší konkurencí",
         "Majitelé preferující klidné dlouhodobé užívání",
-        "Investoři zaměření na selektivni venkovskou poptávku"
+        "Investoři zaměření na selektivní venkovskou poptávku"
       ],
       it: [
         "Chi cerca Centro Italia con minore competizione",
@@ -1128,10 +1128,10 @@
       ],
       cs: [
         "Perugia - regionální centrum se službami a univerzitní poptávkou",
-        "Assisi - silná historická atraktivita a navstevnost",
-        "Orvieto - strategicka poloha mezi Rimem a Florencii",
+        "Assisi - silná historická atraktivita a návštěvnost",
+        "Orvieto - strategická poloha mezi Římem a Florencií",
         "Spoleto - kulturní identita a kvalitní rezidenční fond",
-        "Todi - premium segment mensiho města a lifestyle"
+        "Todi - prémiový segment menšího města a lifestyle"
       ],
       it: [
         "Perugia - centro regionale con servizi e domanda universitaria",
@@ -1148,12 +1148,12 @@
     image: "/Friuli-Venezia Giulia.avif",
     tagline: {
       en: "Buying property in Friuli Venezia Giulia: Alps, Adriatic, and high accessibility from Central Europe",
-      cs: "Koupě nemovitostí ve Friuli Venezia Giulia: Alpy, Jadran a vysoké dostupnost ze střední Evropy",
+      cs: "Koupě nemovitostí ve Friuli Venezia Giulia: Alpy, Jadran a vysoká dostupnost ze střední Evropy",
       it: "Comprare casa in Friuli Venezia Giulia: Alpi, Adriatico e alta accessibilita dall'Europa centrale"
     },
     description: {
       en: "Friuli Venezia Giulia is a strategic border region for buyers coming from Central Europe. It combines Adriatic coastline, alpine areas, and business corridors around Trieste and Udine.\\n\\nCompared with more famous northern regions, it can still offer attractive entry points while maintaining strong infrastructure.\\n\\nFor buyers targeting year-round use, logistics and proximity make this region particularly practical.",
-      cs: "Friuli Venezia Giulia je strategicky pohraniční region pro kupující ze střední Evropy. Kombinuje jadranské pobřeží, alpské oblastí a business koridory kolem Terstu a Udine.\\n\\nOproti známějším severním regionům zde mohou být stále zajímavé vstupní ceny při zachování kvalitní infrastruktury.\\n\\nPro kupující, kteří chtějí celoročně využití, je tento region velmi prakticky díky logistice a blizkosti.",
+      cs: "Friuli Venezia Giulia je strategicky pohraniční region pro kupující ze střední Evropy. Kombinuje jadranské pobřeží, alpské oblasti a business koridory kolem Terstu a Udine.\\n\\nOproti známějším severním regionům zde mohou být stále zajímavé vstupní ceny při zachování kvalitní infrastruktury.\\n\\nPro kupující, kteří chtějí celoroční využití, je tento region velmi praktický díky logistice a blízkosti.",
       it: "Il Friuli Venezia Giulia è una regione di confine strategica per acquirenti dell'Europa centrale. Unisce costa adriatica, aree alpine e corridoi economici intorno a Trieste e Udine.\\n\\nRispetto ad altre regioni del Nord più note, può ancora offrire ingressi interessanti con infrastruttura solida.\\n\\nPer chi vuole utilizzo annuale, la vicinanza e la logistica rendono questa regione molto pratica."
     },
     highlights: {
@@ -1167,11 +1167,11 @@
       ],
       cs: [
         "Blízkost Rakouska a Slovinska",
-        "More i hory v jednom regionů",
+        "Moře i hory v jednom regionu",
         "Silná dostupnost po silnici",
         "Vyvážené ceny v mnoha oblastech",
-        "Terst jako logisticky a sluzbovy hub",
-        "Dobrý fit pro celoročně využití"
+        "Terst jako logistický a službový hub",
+        "Dobrý fit pro celoroční využití"
       ],
       it: [
         "Vicino ad Austria e Slovenia",
@@ -1190,9 +1190,9 @@
         "Prime coastal or alpine assets: frequently €800k+"
       ],
       cs: [
-        "Vedlejsi obce: často €80k-220k",
+        "Vedlejší obce: často €80k-220k",
         "Hlavní městské zóny: obvykle €220k-650k",
-        "Premium pobřežní nebo alpské nemovitostí: často €800k+"
+        "Prémiové pobřežní nebo alpské nemovitosti: často €800k+"
       ],
       it: [
         "Comuni secondari: spesso €80k-220k",
@@ -1202,7 +1202,7 @@
     },
     bestFor: {
       en: "Accessibility, mixed landscape, year-round usage",
-      cs: "Dostupnost, kombinace krajiny, celoročně využití",
+      cs: "Dostupnost, kombinace krajiny, celoroční využití",
       it: "Accessibilita, paesaggio misto, uso annuale"
     },
     bestForList: {
@@ -1212,9 +1212,9 @@
         "Owners prioritizing practical year-round use"
       ],
       cs: [
-        "Kupující, kteří chtějí snadny př?stup z česk? republiky",
+        "Kupující, kteří chtějí snadný přístup z České republiky",
         "Rodiny hledající flexibilitu moře i hory",
-        "Majitelé preferující praktické celoročně využití"
+        "Majitelé preferující praktické celoroční využití"
       ],
       it: [
         "Chi cerca accesso facile dalla Repubblica Ceca",
@@ -1231,10 +1231,10 @@
         "Grado area - seasonal coastal demand profile"
       ],
       cs: [
-        "Terst - pobřežní město s mezinarodnim profilem",
+        "Terst - pobřežní město s mezinárodním profilem",
         "Udine - stabilní regionální centrum se službami",
-        "Gorizia - pohraniční dynamika a selektivni příležitosti",
-        "Pordenone - prakticky rezidenční trh",
+        "Gorizia - pohraniční dynamika a selektivní příležitosti",
+        "Pordenone - praktický rezidenční trh",
         "Oblast Grado - sezónní pobřežní poptávka"
       ],
       it: [
@@ -1252,12 +1252,12 @@
     image: "/calabria.jpg",
     tagline: {
       en: "Buying property in Calabria: coastal lifestyle with some of Italy's most accessible entry prices",
-      cs: "Koupě nemovitostí v Kalabrii: pobřežní lifestyle s jednimi z nejdostupnejsich vstupnich cen v Itálii",
+      cs: "Koupě nemovitostí v Kalabrii: pobřežní lifestyle s jedněmi z nejdostupnějších vstupních cen v Itálii",
       it: "Comprare casa in Calabria: lifestyle costiero con alcuni degli ingressi più accessibili d'Italia"
     },
     description: {
       en: "Calabria is often evaluated by buyers looking for budget efficiency and authentic southern context. Coastal towns can offer compelling value compared with many central and northern regions.\\n\\nThe market is less liquid than prime urban regions, so buying strategy should prioritize quality micro-location and realistic exit horizon.\\n\\nFor long-stay owners and lifestyle buyers, Calabria can offer strong climate value and lower carrying costs.",
-      cs: "Kalabrie je často hodnocena kupujícími, kteří hledají rozpoctovou efektivitu a autenticky jih Itálie. Pobřežní města mohou nabídnout zajimavou hodnotu oproti mnoha strednim a severním regionům.\\n\\nTrh je mene likvidni nez v prime městských regionech, proto by strategie mela klast důraz na kvalitu mikro-lokality a realisticky horizont vystupu.\\n\\nPro dlouhodobé uzivatele a lifestyle kupující může Kalabrie prinest silný klimaticky benefit i nižší provozní náklady.",
+      cs: "Kalabrie je často hodnocena kupujícími, kteří hledají rozpočtovou efektivitu a autentický jih Itálie. Pobřežní města mohou nabídnout zajímavou hodnotu oproti mnoha středním a severním regionům.\\n\\nTrh je méně likvidní než v prime městských regionech, proto by strategie měla klást důraz na kvalitu mikrolokality a realistický horizont výstupu.\\n\\nPro dlouhodobé uživatele a lifestyle kupující může Kalabrie přinést silný klimatický benefit i nižší provozní náklady.",
       it: "La Calabria viene spesso valutata da chi cerca efficienza di budget e contesto autentico del Sud. I comuni costieri possono offrire valore competitivo rispetto a molte aree del Centro-Nord.\\n\\nIl mercato è meno liquido delle regioni urbane prime: la strategia deve puntare su micro-zona di qualità e orizzonte di uscita realistico.\\n\\nPer proprietari long-stay e buyer lifestyle, la Calabria può offrire buon valore climatico e costi di mantenimento più bassi."
     },
     highlights: {
@@ -1271,11 +1271,11 @@
       ],
       cs: [
         "Velmi dostupné vstupní ceny",
-        "Dlouhe pobřeží a lifestyle u moře",
-        "Nizsi prubezne náklady vlastnictvi",
-        "Autenticky jihoitalsky kontext",
-        "Hodnotove orientovany nakupni profil",
-        "Potencial rustu ve vybraných pobřežních kapsach"
+        "Dlouhé pobřeží a lifestyle u moře",
+        "Nižší průběžné náklady vlastnictví",
+        "Autentický jihoitalský kontext",
+        "Hodnotově orientovaný nákupní profil",
+        "Potenciál růstu ve vybraných pobřežních kapsách"
       ],
       it: [
         "Prezzi d'ingresso molto accessibili",
@@ -1294,9 +1294,9 @@
         "Prime sea-view homes: frequently €500k+"
       ],
       cs: [
-        "Vedlejsi vnitřní oblastí: často €50k-150k",
+        "Vedlejší vnitřní oblasti: často €50k-150k",
         "Populární pobřežní zóny: obvykle €150k-400k",
-        "Premium domy s výhledem na moře: často €500k+"
+        "Prémiové domy s výhledem na moře: často €500k+"
       ],
       it: [
         "Aree interne secondarie: spesso €50k-150k",
@@ -1306,7 +1306,7 @@
     },
     bestFor: {
       en: "Accessible budget, sea lifestyle, long-stay use",
-      cs: "Dostupny rozpočet, lifestyle u moře, dlouhodobé užívání",
+      cs: "Dostupný rozpočet, lifestyle u moře, dlouhodobé užívání",
       it: "Budget accessibile, lifestyle mare, uso long-stay"
     },
     bestForList: {
@@ -1335,11 +1335,11 @@
         "Scalea area - value-driven seasonal demand"
       ],
       cs: [
-        "Oblast Tropea - silná pobřežní dovolenkova atraktivita",
+        "Oblast Tropea - silná pobřežní dovolenková atraktivita",
         "Reggio Calabria - regionální město s praktickými službami",
         "Cosenza - vnitřní centrum a nižší vstupní ceny",
-        "Catanzaro - administrativni centrum se smisenym fondem",
-        "Oblast Scalea - hodnotove orientovana sezónní poptávka"
+        "Catanzaro - administrativní centrum se smíšeným fondem",
+        "Oblast Scalea - hodnotově orientovaná sezónní poptávka"
       ],
       it: [
         "Area Tropea - forte attrattiva costiera vacanziera",
@@ -1356,12 +1356,12 @@
     image: "/abruzzo.jpg",
     tagline: {
       en: "Buying property in Abruzzo: mountains, sea, and one of central Italy's best value regions",
-      cs: "Koupě nemovitostí v Abruzzu: hory, moře a jeden z nejhodnotnejsich regionů střední Itálie",
+      cs: "Koupě nemovitostí v Abruzzu: hory, moře a jeden z nejhodnotnějších regionů střední Itálie",
       it: "Comprare casa in Abruzzo: montagna, mare e uno dei migliori rapporti valore del Centro Italia"
     },
     description: {
       en: "Abruzzo is known for strong natural diversity and comparatively accessible pricing. It combines Adriatic coast, mountain areas, and smaller cities where entry can be far below major tourist hotspots.\\n\\nThe region is attractive for buyers seeking space, nature, and lower cost of ownership while staying within reach of larger central Italian corridors.\\n\\nAs always, property condition and compliance checks remain key, especially for older village homes and rural assets.",
-      cs: "Abruzzo je známý silnou prirodni diverzitou a relativně dostupnymi cenami. Kombinuje jadranské pobřeží, horské oblastí a méně města, kde je vstup často výrazně nižší nez v hlavnich turistickych regionech.\\n\\nRegion je atraktivni pro kupující, kteří hledají prostor, prirodu a nižší náklady vlastnictvi při zachování dostupnosti střední Itálie.\\n\\nStejne jako jinde zůstává klíčová kontrola technickeho stavu a souladu, hlavně u starších venkovskych domů a ruralnich nemovitostí.",
+      cs: "Abruzzo je známé silnou přírodní diverzitou a relativně dostupnými cenami. Kombinuje jadranské pobřeží, horské oblasti a menší města, kde je vstup často výrazně nižší než v hlavních turistických regionech.\\n\\nRegion je atraktivní pro kupující, kteří hledají prostor, přírodu a nižší náklady vlastnictví při zachování dostupnosti střední Itálie.\\n\\nStejně jako jinde zůstává klíčová kontrola technického stavu a souladu, hlavně u starších venkovských domů a rurálních nemovitostí.",
       it: "L'Abruzzo è noto per la forte diversità naturale e prezzi relativamente accessibili. Unisce costa adriatica, aree montane e centri minori con ingressi spesso inferiori rispetto agli hotspot turistici principali.\\n\\nÈ una regione interessante per chi cerca spazio, natura e costo di possesso più basso restando collegato ai corridoi del Centro Italia.\\n\\nCome sempre, stato immobile e conformità restano centrali, soprattutto su case datate nei borghi o asset rurali."
     },
     highlights: {
@@ -1374,12 +1374,12 @@
         "Good fit for long-stay personal use"
       ],
       cs: [
-        "Silný hodnotovy profil ve středně Itálii",
+        "Silný hodnotový profil ve střední Itálii",
         "Kombinace moře a hor",
-        "Nizsi náklady vlastnictvi v mnoha městech",
-        "Národně parky a prirodni lifestyle",
-        "Flexibilni moznosti od pobřeží po vnitřní oblastí",
-        "Dobrý fit pro dlouhodobé osobni užívání"
+        "Nižší náklady vlastnictví v mnoha městech",
+        "Národní parky a přírodní lifestyle",
+        "Flexibilní možnosti od pobřeží po vnitřní oblasti",
+        "Dobrý fit pro dlouhodobé osobní užívání"
       ],
       it: [
         "Profilo valore forte nel Centro Italia",
@@ -1398,9 +1398,9 @@
         "Premium renovated assets: frequently €600k+"
       ],
       cs: [
-        "Vnitrni obce: často €70k-180k",
+        "Vnitřní obce: často €70k-180k",
         "Pobřežní a hlavní města: obvykle €180k-450k",
-        "Premium zrekonstruovane nemovitostí: často €600k+"
+        "Prémiové zrekonstruované nemovitosti: často €600k+"
       ],
       it: [
         "Comuni interni: spesso €70k-180k",
@@ -1410,7 +1410,7 @@
     },
     bestFor: {
       en: "Nature, value, balanced lifestyle",
-      cs: "Priroda, hodnota, vyvážený lifestyle",
+      cs: "Příroda, hodnota, vyvážený lifestyle",
       it: "Natura, valore, lifestyle equilibrato"
     },
     bestForList: {
@@ -1420,9 +1420,9 @@
         "Investors looking for selective low-entry opportunities"
       ],
       cs: [
-        "Kupující hledající hodnotu před prestiznim brandingem",
+        "Kupující hledající hodnotu před prestižním brandingem",
         "Majitelé zaměření na prostor a dlouhodobé užívání",
-        "Investoři hledající selektivni nizko-vstupní příležitosti"
+        "Investoři hledající selektivní nízko-vstupní příležitosti"
       ],
       it: [
         "Chi cerca valore più che brand di prestigio",
@@ -1439,11 +1439,11 @@
         "Vasto area - coastal demand with value entry profile"
       ],
       cs: [
-        "Pescara - pobřežní město s nejsilnejsi regionální likviditou",
+        "Pescara - pobřežní město s nejsilnější regionální likviditou",
         "L'Aquila - vnitřní metropole s oblastmi po rekonstrukci",
-        "Chieti - prakticky provinční trh",
-        "Teramo - vyvazena dostupnost mezi pobrezim a vnitrozemim",
-        "Oblast Vasto - pobřežní poptávka s hodnotovym vstupem"
+        "Chieti - praktický provinční trh",
+        "Teramo - vyvážená dostupnost mezi pobřežím a vnitrozemím",
+        "Oblast Vasto - pobřežní poptávka s hodnotovým vstupem"
       ],
       it: [
         "Pescara - città costiera con liquidità regionale più forte",
@@ -1460,12 +1460,12 @@
     image: "/Sardegna.jpg",
     tagline: {
       en: "Buying property in Sardinia: beach lifestyle from accessible towns to ultra-premium coast",
-      cs: "Koupě nemovitostí na Sardinii: plazovy lifestyle od dostupných mest po ultra-premium pobřeží",
+      cs: "Koupě nemovitostí na Sardinii: plážový lifestyle od dostupných měst po ultra-prémiové pobřeží",
       it: "Comprare casa in Sardegna: lifestyle mare da centri accessibili a costa ultra-premium"
     },
     description: {
       en: "Sardinia is a highly segmented island market. Buyers can choose between affordable inland or secondary coastal areas and high-value zones such as Costa Smeralda.\\n\\nThe island appeals to lifestyle buyers, second-home owners, and premium coastal investors. Demand patterns are strongly seasonal and micro-location dependent.\\n\\nTransport links, property management model, and realistic occupancy assumptions should be part of the decision before purchase.",
-      cs: "Sardinie je silné segmentovany ostrovni trh. Kupující mohou volit mezi dostupnejsim vnitřním nebo vedlejsim pobrezim a high-value lokalitami typu Costa Smeralda.\\n\\nOstrov přitahuje lifestyle kupující, majitele druhého bydlení i premium pobřežní investory. Poptávka je výrazně sezónní a zavisla na mikro-lokalite.\\n\\nPred koupí je důležité zapocitat dopravní dostupnost, model správy nemovitostí a realisticky predpoklad obsazenosti.",
+      cs: "Sardinie je silně segmentovaný ostrovní trh. Kupující mohou volit mezi dostupnějším vnitřním nebo vedlejším pobřežím a high-value lokalitami typu Costa Smeralda.\\n\\nOstrov přitahuje lifestyle kupující, majitele druhého bydlení i prémiové pobřežní investory. Poptávka je výrazně sezónní a závislá na mikrolokalitě.\\n\\nPřed koupí je důležité započítat dopravní dostupnost, model správy nemovitostí a realistický předpoklad obsazenosti.",
       it: "La Sardegna è un mercato insulare molto segmentato. Si passa da aree interne o costiere secondarie più accessibili a zone di altissimo valore come Costa Smeralda.\\n\\nL'isola attrae buyer lifestyle, proprietari di seconde case e investitori coastal premium. Le dinamiche della domanda sono fortemente stagionali e locali.\\n\\nPrima dell'acquisto vanno valutati collegamenti, modello di gestione e ipotesi realistiche di occupazione."
     },
     highlights: {
@@ -1478,12 +1478,12 @@
         "Strong micro-location price gaps"
       ],
       cs: [
-        "Ikonicke pláž?e a silná dovolenkova atraktivita",
-        "Ultra-premium i hodnotove segmenty na jednom ostrove",
-        "Silná poptávka po druhem bydlení",
+        "Ikonické pláže a silná dovolenková atraktivita",
+        "Ultra-prémiové i hodnotové segmenty na jednom ostrově",
+        "Silná poptávka po druhém bydlení",
         "Výrazná lokální identita a lifestyle",
-        "Sezoni pronajmove příležitosti",
-        "Velke cenové rozdíly podle mikro-lokality"
+        "Sezónní pronájmové příležitosti",
+        "Velké cenové rozdíly podle mikrolokality"
       ],
       it: [
         "Spiagge iconiche e forte richiamo vacanziero",
@@ -1502,9 +1502,9 @@
         "Costa Smeralda prime assets: frequently €2M+"
       ],
       cs: [
-        "Vedlejsi města: často €120k-300k",
+        "Vedlejší města: často €120k-300k",
         "Populární pobřežní zóny: obvykle €300k-1.2M",
-        "Top nemovitostí Costa Smeralda: často €2M+"
+        "Top nemovitosti Costa Smeralda: často €2M+"
       ],
       it: [
         "Centri secondari: spesso €120k-300k",
@@ -1514,7 +1514,7 @@
     },
     bestFor: {
       en: "Second home, beach lifestyle, premium coast",
-      cs: "Druhé bydlení, plazovy lifestyle, premium pobřeží",
+      cs: "Druhé bydlení, plážový lifestyle, prémiové pobřeží",
       it: "Seconda casa, lifestyle mare, costa premium"
     },
     bestForList: {
@@ -1526,7 +1526,7 @@
       cs: [
         "Lifestyle kupující zaměření na moře a klima",
         "Majitelé druhého bydlení se sezónním využitím",
-        "Investoři do premium pobřežních mikro-zon"
+        "Investoři do prémiových pobřežních mikrozón"
       ],
       it: [
         "Buyer lifestyle orientati a mare e clima",
@@ -1544,9 +1544,9 @@
       ],
       cs: [
         "Cagliari - největší městský trh s celoročními službami",
-        "Olbia - vstupní brana poptávky Costa Smeralda",
-        "Alghero - pobřežní město se silnym dovolenkovym profilem",
-        "Sassari - provinční trh s nizsim vstupem",
+        "Olbia - vstupní brána poptávky Costa Smeralda",
+        "Alghero - pobřežní město se silným dovolenkovým profilem",
+        "Sassari - provinční trh s nižším vstupem",
         "Oblast Porto Cervo - ultra-premium pobřežní fond"
       ],
       it: [
@@ -1564,7 +1564,7 @@
     image: "/Trentino-Alto Adige.jpg",
     tagline: {
       en: "Buying property in Trentino-Alto Adige: alpine quality, year-round use, and premium mountain demand",
-      cs: "Koupě nemovitostí v Trentino-Alto Adige: alpská kvalita, celoročně využití a premium horská poptávka",
+      cs: "Koupě nemovitostí v Trentino-Alto Adige: alpská kvalita, celoroční využití a prémiová horská poptávka",
       it: "Comprare casa in Trentino-Alto Adige: qualità alpina, uso annuale e domanda premium in montagna"
     },
     description: {
@@ -1582,12 +1582,12 @@
         "Cross-border accessibility advantages"
       ],
       cs: [
-        "Premium alpské pozicování",
-        "Celoročně turistická poptávka",
+        "Prémiové alpské pozicování",
+        "Celoroční turistická poptávka",
         "Silný profil kvality života",
-        "Vyborna horská infrastruktura",
-        "Stabilni dlouhodobé atraktivita",
-        "Vyhody preshranicni dostupnosti"
+        "Výborná horská infrastruktura",
+        "Stabilní dlouhodobá atraktivita",
+        "Výhody přeshraniční dostupnosti"
       ],
       it: [
         "Posizionamento alpino premium",
@@ -1606,7 +1606,7 @@
         "Prime chalet/luxury positions: frequently €1.5M+"
       ],
       cs: [
-        "Vedlejsi horská města: často €180k-450k",
+        "Vedlejší horská města: často €180k-450k",
         "Hlavní alpská centra: obvykle €450k-1.2M",
         "Top chalet/luxury pozice: často €1.5M+"
       ],
@@ -1618,7 +1618,7 @@
     },
     bestFor: {
       en: "Mountain lifestyle, quality, year-round usability",
-      cs: "Horsky lifestyle, kvalita, celoročně vyuzitelnost",
+      cs: "Horský lifestyle, kvalita, celoroční využitelnost",
       it: "Lifestyle montagna, qualità, utilizzo annuale"
     },
     bestForList: {
@@ -1630,7 +1630,7 @@
       cs: [
         "Kupující preferující alpskou kvalitu a služby",
         "Majitelé využívající nemovitost v zimě i létě",
-        "Investoři zaměření na premium horské segmenty"
+        "Investoři zaměření na prémiové horské segmenty"
       ],
       it: [
         "Chi cerca qualità alpina e servizi elevati",
@@ -1647,11 +1647,11 @@
         "Madonna di Campiglio zone - top mountain tourism segment"
       ],
       cs: [
-        "Bolzano - premium centrum městské i alpské poptávky",
+        "Bolzano - prémiové centrum městské i alpské poptávky",
         "Trento - stabilní městský profil se silnými službami",
-        "Merano - vysoce zadany lifestyle a wellness segment",
+        "Merano - vysoce žádaný lifestyle a wellness segment",
         "Oblast Bressanone - kvalitní alpský rezidenční profil",
-        "Zona Madonna di Campiglio - top horsky turistický segment"
+        "Zóna Madonna di Campiglio - top horský turistický segment"
       ],
       it: [
         "Bolzano - centro premium tra domanda urbana e alpina",
@@ -1668,12 +1668,12 @@
     image: "/Trentino-Alto Adige.jpg",
     tagline: {
       en: "Buying property in Aosta Valley: compact alpine market with premium ski destinations",
-      cs: "Koupě nemovitostí ve Valle d'Aosta: kompaktní alpský trh s premium lyžařskými destinacemi",
+      cs: "Koupě nemovitostí ve Valle d'Aosta: kompaktní alpský trh s prémiovými lyžařskými destinacemi",
       it: "Comprare casa in Valle d'Aosta: mercato alpino compatto con destinazioni sci premium"
     },
     description: {
       en: "Aosta Valley is a small but high-identity alpine region. Demand concentrates in ski and mountain lifestyle locations, where quality stock can command premium pricing.\\n\\nThe market is compact, so inventory can be limited and negotiation windows short in top resorts.\\n\\nFor buyers focused on mountain use and long-term quality, it remains one of Italy's most distinctive alpine choices.",
-      cs: "Valle d'Aosta je malý, ale výrazně profilovaný alpský region. Poptávka se koncentruje do lyžařských a horských lifestyle lokalit, kde kvalitní fond často drží premium ceny.\\n\\nTrh je kompaktní, proto může být nabídka omezena a vyjednávací okno v top resortech krátké.\\n\\nPro kupující zaměření na horské využití a dlouhodobou kvalitu jde o jednu z nejvýraznějších alpskych voleb v Itálii.",
+      cs: "Valle d'Aosta je malý, ale výrazně profilovaný alpský region. Poptávka se koncentruje do lyžařských a horských lifestyle lokalit, kde kvalitní fond často drží prémiové ceny.\\n\\nTrh je kompaktní, proto může být nabídka omezena a vyjednávací okno v top resortech krátké.\\n\\nPro kupující zaměřené na horské využití a dlouhodobou kvalitu jde o jednu z nejvýraznějších alpských voleb v Itálii.",
       it: "La Valle d'Aosta è una regione alpina piccola ma molto identitaria. La domanda si concentra nelle località sciistiche e lifestyle, dove lo stock di qualità mantiene prezzi premium.\\n\\nIl mercato è compatto: nelle località top l'offerta può essere limitata e le finestre negoziali brevi.\\n\\nPer chi cerca uso montagna e qualità di lungo periodo, resta una delle scelte alpine più distintive in Italia."
     },
     highlights: {
@@ -1686,12 +1686,12 @@
         "Limited prime inventory"
       ],
       cs: [
-        "Kompaktni premium alpský trh",
+        "Kompaktní prémiový alpský trh",
         "Profil top lyžařských destinací",
-        "Silná poptávka po druhem bydlení",
-        "Vyrazny horsky lifestyle",
-        "Preshranicni dostupnost",
-        "Omezený fond prime nemovitostí"
+        "Silná poptávka po druhém bydlení",
+        "Výrazný horský lifestyle",
+        "Přeshraniční dostupnost",
+        "Omezený fond prémiových nemovitostí"
       ],
       it: [
         "Mercato alpino premium e compatto",
@@ -1710,9 +1710,9 @@
         "Prime ski properties: frequently €1.3M+"
       ],
       cs: [
-        "Vedlejsi obce: často €170k-380k",
+        "Vedlejší obce: často €170k-380k",
         "Hlavní horské huby: obvykle €380k-1.1M",
-        "Prime lyžařské nemovitostí: často €1.3M+"
+        "Prémiové lyžařské nemovitosti: často €1.3M+"
       ],
       it: [
         "Comuni secondari: spesso €170k-380k",
@@ -1722,7 +1722,7 @@
     },
     bestFor: {
       en: "Ski lifestyle, second home, alpine premium",
-      cs: "Lyžařský lifestyle, druhé bydlení, alpské premium",
+      cs: "Lyžařský lifestyle, druhé bydlení, alpské prémium",
       it: "Lifestyle sci, seconda casa, alpine premium"
     },
     bestForList: {
@@ -1733,8 +1733,8 @@
       ],
       cs: [
         "Kupující zaměření na horské a lyžařské využití",
-        "Majitelé preferující kompaktní premium alpské trhy",
-        "Investoři do selektivni poptávky resortu"
+        "Majitelé preferující kompaktní prémiové alpské trhy",
+        "Investoři do selektivní poptávky resortu"
       ],
       it: [
         "Chi punta su uso montagna e sci",
@@ -1752,9 +1752,9 @@
       ],
       cs: [
         "Aosta - regionální centrum se službami",
-        "Courmayeur - premium mezinárodně horská poptávka",
+        "Courmayeur - prémiová mezinárodní horská poptávka",
         "La Thuile - lyžařský profil druhého bydlení",
-        "Oblast Cogne - prirodni alpský lifestyle",
+        "Oblast Cogne - přírodní alpský lifestyle",
         "Saint-Vincent - smíšený rezidenční a turistický profil"
       ],
       it: [
@@ -1777,7 +1777,7 @@
     },
     description: {
       en: "Alias page for Lombardy. Main guide content mirrors the Lombardia page.",
-      cs: "Alias stránka pro Lombardii. Hlavní obsah odpovida strance Lombardia.",
+      cs: "Alias stránka pro Lombardii. Hlavní obsah odpovídá stránce Lombardia.",
       it: "Pagina alias per la Lombardia. Il contenuto principale coincide con la guida Lombardia."
     },
     highlights: {
@@ -1794,17 +1794,17 @@
     image: "/Veneto.webp",
     tagline: {
       en: "Buying property around Lake Garda: high demand, accessibility, and year-round leisure profile",
-      cs: "Koupě nemovitostí kolem Lago di Garda: silná poptávka, dostupnost a celoročně leisure profil",
+      cs: "Koupě nemovitostí kolem Lago di Garda: silná poptávka, dostupnost a celoroční leisure profil",
       it: "Comprare casa intorno al Lago di Garda: alta domanda, accessibilita e uso leisure annuale"
     },
     description: {
       en: "Lake Garda is one of the most liquid leisure micro-markets in northern Italy, shared across Veneto, Lombardy, and Trentino.\\n\\nDemand is strong from both domestic and international buyers, and pricing is highly micro-location dependent around the shoreline.\\n\\nThis page works as a thematic guide for the lake area; for full region-specific strategy also review Veneto, Lombardia, and Trentino-Alto Adige pages.",
-      cs: "Lago di Garda je jeden z nejlikvidnějších leisure mikro-trhu severní Itálie, rozdělený mezi Veneto, Lombardii a Trentino.\\n\\nPoptavka je silná od domácích i zahraničních kupujících a ceny jsou velmi závislé na přesné poloze okolo jezera.\\n\\nTato stránka funguje jako tematický průvodce oblastí jezera; pro regionální strategii viz i Veneto, Lombardia a Trentino-Alto Adige.",
+      cs: "Lago di Garda je jeden z nejlikvidnějších leisure mikro-trhů severní Itálie, rozdělený mezi Veneto, Lombardii a Trentino.\\n\\nPoptávka je silná od domácích i zahraničních kupujících a ceny jsou velmi závislé na přesné poloze okolo jezera.\\n\\nTato stránka funguje jako tematický průvodce oblastí jezera; pro regionální strategii viz i Veneto, Lombardia a Trentino-Alto Adige.",
       it: "Il Lago di Garda è uno dei micro-mercati leisure più liquidi del Nord Italia, distribuito tra Veneto, Lombardia e Trentino.\\n\\nLa domanda è forte sia domestica sia internazionale e i prezzi dipendono molto dalla micro-zona sul lago.\\n\\nQuesta pagina è una guida tematica dell'area; per strategia regionale completa vedi anche Veneto, Lombardia e Trentino-Alto Adige."
     },
     highlights: {
       en: ["High leisure demand", "Year-round usability", "Excellent accessibility", "Premium waterfront stock", "Tourism-driven rental market", "Strong micro-zone differences"],
-      cs: ["Silná leisure poptávka", "Celoročně vyuzitelnost", "Vyborna dostupnost", "Premium waterfront fond", "Turisticky pronajmovy trh", "Silne rozdily mikro-zon"],
+      cs: ["Silná leisure poptávka", "Celoroční využitelnost", "Výborná dostupnost", "Prémiový waterfront fond", "Turisticky pronájmový trh", "Silné rozdíly mikrozón"],
       it: ["Domanda leisure elevata", "Utilizzo annuale", "Ottima accessibilita", "Stock premium sul lago", "Mercato affitti trainato dal turismo", "Forti differenze micro-zona"]
     },
     priceRange: "€180,000 - €2,500,000+",
@@ -1816,21 +1816,21 @@
     image: "/Trentino-Alto Adige.jpg",
     tagline: {
       en: "Buying property in the Italian Alps: ski, mountain lifestyle, and premium seasonal demand",
-      cs: "Koupě nemovitostí v italských Alpach: lyze, horsky lifestyle a premium sezónní poptávka",
+      cs: "Koupě nemovitostí v italských Alpach: lyžování, horský lifestyle a prémiová sezónní poptávka",
       it: "Comprare casa nelle Alpi Italiane: sci, lifestyle montagna e domanda premium stagionale"
     },
     description: {
       en: "The Italian Alps span multiple regions and include both premium resort markets and more accessible mountain towns.\\n\\nDemand is usually driven by winter sports, summer outdoor activity, and second-home usage.\\n\\nThis thematic page complements region-specific guides such as Trentino-Alto Adige and Valle d'Aosta.",
-      cs: "Italské Alpy zahrnují více regionů a kombinují premium resort trhy i dostupnější horská města.\\n\\nPoptávku obvykle tvoří zimní sporty, letní outdoor aktivity a druhé bydlení.\\n\\nTato tematická stránka doplňuje regionální průvodce jako Trentino-Alto Adige a Valle d'Aosta.",
+      cs: "Italské Alpy zahrnují více regionů a kombinují prémiové resort trhy i dostupnější horská města.\\n\\nPoptávku obvykle tvoří zimní sporty, letní outdoor aktivity a druhé bydlení.\\n\\nTato tematická stránka doplňuje regionální průvodce jako Trentino-Alto Adige a Valle d'Aosta.",
       it: "Le Alpi italiane coprono più regioni e includono mercati resort premium e località montane più accessibili.\\n\\nLa domanda è guidata da sport invernali, attività estive e seconde case.\\n\\nQuesta pagina tematica integra guide regionali come Trentino-Alto Adige e Valle d'Aosta."
     },
     highlights: {
       en: ["Winter and summer usage", "Strong second-home profile", "Premium ski destinations", "Lifestyle-focused demand", "Mountain quality-of-life", "Selective high-value micro-markets"],
-      cs: ["Zimní i letní využití", "Silný profil druhého bydlení", "Premium lyžařské destinace", "Lifestyle poptávka", "Horská kvalita života", "Selektivní high-value mikro-trhy"],
+      cs: ["Zimní i letní využití", "Silný profil druhého bydlení", "Prémiové lyžařské destinace", "Lifestyle poptávka", "Horská kvalita života", "Selektivní high-value mikro-trhy"],
       it: ["Uso inverno-estate", "Forte profilo seconde case", "Destinazioni sci premium", "Domanda lifestyle", "Alta qualità della vita in montagna", "Micro-mercati selettivi high-value"]
     },
     priceRange: "€170,000 - €2,500,000+",
-    bestFor: { en: "Mountain lifestyle", cs: "Horsky lifestyle", it: "Lifestyle montagna" },
+    bestFor: { en: "Mountain lifestyle", cs: "Horský lifestyle", it: "Lifestyle montagna" },
     topCities: ["Bolzano", "Trento", "Courmayeur", "Merano", "Cortina"]
   }
 }

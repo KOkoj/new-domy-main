@@ -16,7 +16,7 @@ import ProtectedContentLink from '@/components/ProtectedContentLink'
 const CLEAN_REGION_CARD_WARNINGS = {
   toscana: {
     it: "Immobili storici e rurali richiedono spesso verifiche urbanistiche e tecniche rigorose prima dell'offerta.",
-    cs: 'Historické a venkovské nemovitostí často vyžadují přísnou urbanistickou i technickou kontrolu před nabídkou.'
+    cs: 'Historické a venkovské nemovitosti často vyžadují přísnou urbanistickou i technickou kontrolu před nabídkou.'
   },
   lazio: {
     cs: 'Řím a provincie mají odlišnou dynamiku; u starších domů je nutná pečlivá právní i kondominiální kontrola.'
@@ -85,7 +85,7 @@ const REGION_CARD_WARNINGS = {
   toscana: {
     en: 'Historic and rural assets often need strict urban planning and technical checks before offer.',
     it: "Immobili storici e rurali richiedono spesso verifiche urbanistiche e tecniche rigorose prima dell'offerta.",
-    cs: 'Historicke a venkovské nemovitostí ?asto vyžadují prisnou urbanistickou i technickou kontrolu před nabídkou.'
+    cs: 'Historické a venkovské nemovitosti často vyžadují přísnou urbanistickou i technickou kontrolu před nabídkou.'
   },
   lombardia: {
     en: 'Micro-location drives value in Lombardy: transport links, condo costs, and building condition are decisive.',
@@ -95,47 +95,47 @@ const REGION_CARD_WARNINGS = {
   veneto: {
     en: 'In historic and lagoon-linked areas, flood exposure and local rental regulation must be checked early.',
     it: 'Nelle aree storiche e lagunari vanno verificati presto rischio acqua alta e regolamenti locali sugli affitti.',
-    cs: 'V historických a lagunovych oblastech je nutné včas prověřit riziko zaplav a místní pravidla pronajmu.'
+    cs: 'V historických a lagunových oblastech je nutné včas prověřit riziko záplav a místní pravidla pronájmu.'
   },
   lazio: {
     en: 'Rome and provincial markets behave differently; old buildings require careful legal and condo due diligence.',
     it: 'Roma e province hanno dinamiche diverse; sugli edifici datati serve una due diligence legale e condominiale accurata.',
-    cs: '?Řím a provincie maji odlišnou dynamiku; u starších domů je nutna pecliva právně i kondominiální kontrola.'
+    cs: 'Řím a provincie mají odlišnou dynamiku; u starších domů je nutná pečlivá právní i kondominiální kontrola.'
   },
   sicilia: {
     en: 'Sicily is highly micro-market based: cadastral compliance and exact location matter more than island averages.',
     it: 'In Sicilia conta la micro-zona: conformità catastale e posizione precisa pesano più delle medie regionali.',
-    cs: 'Na Sicilii rozhoduje mikro-lokalita: katastrálně soulad a presna poloha jsou dulezitejsi nez regionální prumery.'
+    cs: 'Na Sicílii rozhoduje mikrolokalita: katastrální soulad a přesná poloha jsou důležitější než regionální průměry.'
   },
   liguria: {
     en: 'Sea-view premiums are high, but access, parking, and slope exposure can strongly impact usability and resale.',
     it: 'Le vista mare hanno premium elevato, ma accesso, parcheggio e pendenza incidono molto su uso e rivendita.',
-    cs: 'Výhled na moře ma vysoké premium, ale př?stup, parkování a sklon terénu silné ovlivňují užívání i prodejnost.'
+    cs: 'Výhled na moře má vysoké prémium, ale přístup, parkování a sklon terénu silně ovlivňují užívání i prodejnost.'
   },
   campania: {
     en: 'Neighborhood selection is critical: logistics, urban compliance, and rental rules vary sharply by municipality.',
     it: 'La scelta del quartiere è decisiva: logistica, conformità urbanistica e regole sugli affitti cambiano molto da comune a comune.',
-    cs: 'Výběr čtvrti je klíčový: logistika, urbanistická shoda i pravidla pronajmu se výrazně liší podle obce.'
+    cs: 'Výběr čtvrti je klíčový: logistika, urbanistická shoda i pravidla pronájmu se výrazně liší podle obce.'
   },
   piemonte: {
     en: 'City and countryside profiles differ: check heating efficiency and legal status carefully in older rural stock.',
     it: 'Città e campagna hanno profili diversi: sugli immobili rurali datati vanno verificati bene efficienza e stato legale.',
-    cs: 'Městské a venkovské trhy jsou odlišné: u starších venkovskych nemovitostí proverujte efektivitu vytápění i právně stav.'
+    cs: 'Městské a venkovské trhy jsou odlišné: u starších venkovských nemovitostí prověřujte efektivitu vytápění i právní stav.'
   },
   'emilia-romagna': {
     en: 'Stable demand is a strength, but plain-area hydro risk and building efficiency checks remain essential.',
     it: "La domanda stabile è un punto forte, ma restano essenziali verifiche su rischio idraulico ed efficienza edilizia.",
-    cs: 'Stabilni poptávka je vyhoda, ale zasadni jsou kontroly hydraulickeho rizika a energeticke efektivity budov.'
+    cs: 'Stabilní poptávka je výhoda, ale zásadní jsou kontroly hydraulického rizika a energetické efektivity budov.'
   },
   puglia: {
     en: 'Trulli and masserie can require complex compliance checks; seasonal rental assumptions must be realistic.',
     it: 'Trulli e masserie possono richiedere controlli complessi di conformità; le stime di affitto stagionale vanno fatte con prudenza.',
-    cs: 'Trulli a masserie mohou vyzadovat slozite kontroly souladu; odhady sezonniho pronajmu je třeba nastavit realisticky.'
+    cs: 'Trulli a masserie mohou vyžadovat složité kontroly souladu; odhady sezónního pronájmu je třeba nastavit realisticky.'
   },
   umbria: {
     en: 'Rural charm is strong, but resale timing can be longer and technical condition varies greatly by property.',
     it: 'Il fascino rurale è forte, ma i tempi di rivendita possono essere più lunghi e le condizioni tecniche molto variabili.',
-    cs: 'Venkovský charakter je silný, ale doba dalsiho prodeje může být delší a technický stav se hodne liší dům od domů.'
+    cs: 'Venkovský charakter je silný, ale doba dalšího prodeje může být delší a technický stav se hodně liší dům od domu.'
   },
   'friuli-venezia-giulia': {
     en: 'Border accessibility is excellent, but coastal weather exposure and micro-area dynamics must be assessed precisely.',
@@ -145,17 +145,17 @@ const REGION_CARD_WARNINGS = {
   calabria: {
     en: 'Entry prices are attractive, but market liquidity is lower; budget for technical upgrades before purchase.',
     it: "I prezzi d'ingresso sono interessanti, ma la liquidità è inferiore; prevedete budget per adeguamenti tecnici.",
-    cs: 'Vstupni ceny jsou atraktivni, ale likvidita trhu je nižší; pocitejte s rozpoctem na technické upravy.'
+    cs: 'Vstupní ceny jsou atraktivní, ale likvidita trhu je nižší; počítejte s rozpočtem na technické úpravy.'
   },
   abruzzo: {
     en: 'Great value profile, but seismic context and distance to services should be verified property by property.',
     it: 'Profilo prezzo/valore molto buono, ma contesto sismico e distanza dai servizi vanno verificati immobile per immobile.',
-    cs: 'Poměrný výkon/cena je výborný, ale seismicky kontext a vzdálenost služeb je nutné prověřit u každé nemovitostí.'
+    cs: 'Poměr výkon/cena je výborný, ale seismický kontext a vzdálenost služeb je nutné prověřit u každé nemovitosti.'
   },
   sardegna: {
     en: 'Seasonality, transport links, and management setup are key factors for both personal use and rental yield.',
     it: 'Stagionalità, collegamenti e modello di gestione sono fattori chiave sia per uso personale sia per rendimento.',
-    cs: 'Sezónnost, dopravní spojení a model správy jsou klíčové faktory pro vlastní užívání i výnos z pronajmu.'
+    cs: 'Sezónnost, dopravní spojení a model správy jsou klíčové faktory pro vlastní užívání i výnos z pronájmu.'
   },
   'trentino-alto-adige': {
     en: 'Mountain quality is high, but local rules, condo bylaws, and winter operating costs require careful planning.',
@@ -165,12 +165,12 @@ const REGION_CARD_WARNINGS = {
   'valle-d-aosta': {
     en: 'Inventory is limited in top resorts; technical checks and quick decision readiness are critical.',
     it: 'Nelle località top lo stock è limitato: verifiche tecniche e rapidità decisionale sono fondamentali.',
-    cs: 'V top strediscich je nabídka omezena; technické kontroly a rychla pripravenost rozhodnout jsou zasadni.'
+    cs: 'V top střediscích je nabídka omezená; technické kontroly a rychlá připravenost rozhodnout jsou zásadní.'
   },
   'lago-di-garda': {
     en: 'Pricing changes sharply by shoreline micro-zone; verify local short-rental rules before committing.',
     it: 'I prezzi cambiano molto per micro-zona sul lago; verificate le regole locali sugli affitti brevi prima di impegnarvi.',
-    cs: 'Ceny se silné liší podle mikro-lokality u jezera; před závazkem proverujte místní pravidla kratkodobeho pronajmu.'
+    cs: 'Ceny se silně liší podle mikrolokality u jezera; před závazkem prověřujte místní pravidla krátkodobého pronájmu.'
   },
   alpy: {
     en: 'Each valley has different demand and regulation; winter access and heating standards are central.',
@@ -361,7 +361,7 @@ function RegionCard({ region, language = 'en' }) {
           <Button 
             className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 transition-all duration-300"
           >
-            {language === 'cs' ? 'Zobrazit nemovitostí' : 
+            {language === 'cs' ? 'Zobrazit nemovitosti' : 
              language === 'it' ? 'Visualizza proprietà' :
              'View Properties'}
             <ChevronRight className="h-4 w-4 ml-2" />
@@ -466,7 +466,7 @@ export default function RegionsListingClient({ initialRegions, initialProperties
    'Buying a House in Italy: Which Region Should You Choose?'}
 </h1>
 <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed whitespace-pre-line px-4">
-  {language === 'cs' ? 'It\u00e1lie nab\u00edz\u00ed 20 velmi odli\u0161n\u00fdch region\u016f: mo\u0159e, hory, historick\u00e1 m\u011bsta, venkovsk\u00e9 oblastí a z\u00f3ny s vysok\u00fdm investi\u010dn\u00edm potenci\u00e1lem.\nV\u00fdb\u011br spr\u00e1vn\u00e9ho regionů je \u010dasto d\u016fle\u017eit\u011bj\u0161\u00ed ne\u017e samotn\u00fd d\u016fm.\nKa\u017ed\u00e1 oblast m\u00e1 odli\u0161n\u00e1 pravidla, ceny, zdan\u011bn\u00ed a dynamiku trhu.' :
+  {language === 'cs' ? 'Itálie nabízí 20 velmi odlišných regionů: moře, hory, historická města, venkovské oblasti a zóny s vysokým investičním potenciálem.\nVýběr správného regionu je často důležitější než samotný dům.\nKaždá oblast má odlišná pravidla, ceny, zdanění a dynamiku trhu.' :
    language === 'it' ? "L'Italia offre 20 regioni molto diverse tra loro: mare, montagna, città storiche, aree rurali e zone ad alto potenziale d'investimento.\nScegliere la regione giusta è spesso più importante della casa stessa.\nOgni area ha regole, prezzi, fiscalità e dinamiche di mercato differenti." :
    'Italy offers 20 very different regions: sea, mountains, historic cities, rural areas and zones with high investment potential.\nChoosing the right region is often more important than the house itself.\nEach area has different rules, prices, taxation and market dynamics.'}
 </p>
@@ -476,7 +476,7 @@ export default function RegionsListingClient({ initialRegions, initialProperties
 
         <div className="container mx-auto px-6" style={{maxWidth:"1600px"}}>
           <h2 className="font-semibold text-blue-600/80 mb-8 text-center">
-            {language === 'cs' ? 'Koup\u011b domů v It\u00e1lii - Ceny, regiony a dostupn\u00e9 nemovitostí' :
+            {language === 'cs' ? 'Koup\u011b domů v It\u00e1lii - Ceny, regiony a dostupn\u00e9 nemovitosti' :
              language === 'it' ? 'Comprare casa in Italia - Prezzi, regioni e immobili disponibili' :
              'Buying a House in Italy - Prices, Regions, and Available Properties'}
           </h2>

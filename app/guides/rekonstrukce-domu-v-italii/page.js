@@ -29,7 +29,7 @@ const CONTENT = {
       'na co si dát pozor před koupí domů'
     ],
     cta1: {
-      title: 'Uvažujete o koupí domů v Itálii?',
+      title: 'Uvažujete o koupi domů v Itálii?',
       text: 'Podívejte se nejdříve na náš přehled celého procesu.',
       button: 'Jak funguje náš servis při hledání domů v Itálii',
       href: '/process'
@@ -116,7 +116,7 @@ const CONTENT = {
     },
     cta4: {
       title: 'Připravili jsme také praktický průvodce pro české kupující',
-      text: 'Pokud chcete lépe porozumět nejčastějším chybám při koupí domů v Itálii, můžete si stáhnout náš bezplatný PDF průvodce.',
+      text: 'Pokud chcete lépe porozumět nejčastějším chybám při koupi domů v Itálii, můžete si stáhnout náš bezplatný PDF průvodce.',
       button: 'Stáhnout PDF - 7 nejčastějších chyb',
       href: '/pdfs/errori-comuni.pdf'
     },

@@ -130,11 +130,11 @@ export default function ContentManagement() {
   const syncLabel = language === 'cs' ? 'Synchronizovat' : language === 'it' ? 'Sincronizza' : 'Sync'
   const syncDoneMessage = (count) => {
     if (count > 0) {
-      if (language === 'cs') return `Synchronizovano ${count} nemovitostí do admin panelu.`
+      if (language === 'cs') return `Synchronizováno ${count} nemovitostí do admin panelu.`
       if (language === 'it') return `Sincronizzate ${count} proprietà nel pannello admin.`
       return `Synced ${count} properties into Admin panel.`
     }
-    if (language === 'cs') return 'Nemovitosti v admin panelu jsou jiz synchronizovane.'
+    if (language === 'cs') return 'Nemovitosti v admin panelu jsou již synchronizované.'
     if (language === 'it') return 'Le proprietà nel pannello admin sono già sincronizzate.'
     return 'Admin properties were already in sync.'
   }

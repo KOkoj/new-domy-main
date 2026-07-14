@@ -16,9 +16,9 @@ const COPY = {
     home: 'Domů',
     guide: 'Průvodce',
     page: 'Notář v Itálii',
-    title: 'Notář v Itálii: role a náklady při koupí domů',
+    title: 'Notář v Itálii: role a náklady při koupi domů',
     intro:
-      'Notář hraje při koupí domů v Itálii zásadní roli. Jeho funkce se ale v mnoha ohledech liší od toho, na co jsou čeští kupující zvyklí.',
+      'Notář hraje při koupi domů v Itálii zásadní roli. Jeho funkce se ale v mnoha ohledech liší od toho, na co jsou čeští kupující zvyklí.',
     imageAlt: 'Pár před dokumenty s poradcem',
     imageCaption:
       'Notářská fáze je o dokumentech, podpisu a právní jistotě, ne o prvním dojmu z nemovitostí.',

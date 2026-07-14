@@ -395,7 +395,7 @@ const COSTS_OVERVIEW = [
     amount: { en: '2% of purchase price', cs: '2 % z kupní ceny', it: '2% del prezzo di acquisto' },
     description: { 
       en: 'Applies when buying your first property in Italy and establishing permanent residence',
-      cs: 'Platí při koupí první nemovitostí v Itálii a zřízení trvalého pobytu',
+      cs: 'Platí při koupi první nemovitosti v Itálii a zřízení trvalého pobytu',
       it: 'Si applica quando acquisti la prima proprietà in Italia e stabilisci la residenza permanente'
     }
   },
@@ -757,7 +757,7 @@ export default function ProcessPage() {
                   </CardHeader>
                   <CardContent className="p-8">
                     <p className="text-gray-600 mb-6 leading-[1.75]">
-                      {language === 'cs' ? 'Kromě kupní ceny nemovitostí, zde jsou typické dodatečné náklady spojené s koupí italské nemovitostí:' :
+                      {language === 'cs' ? 'Kromě kupní ceny nemovitostí, zde jsou typické dodatečné náklady spojené s koupí italské nemovitosti:' :
                        language === 'it' ? 'Oltre al prezzo di acquisto dell\'immobile, ecco i costi aggiuntivi tipici associati all\'acquisto di una proprietà italiana:' :
                        'In addition to the property purchase price, here are the typical additional costs associated with buying Italian property:'}
                     </p>
@@ -841,7 +841,7 @@ export default function ProcessPage() {
                       size="lg"
                       className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold px-6 py-6 text-sm transition-all duration-300 shadow-lg w-full"
                     >
-                      {language === 'cs' ? 'Zobrazit nemovitostí' :
+                      {language === 'cs' ? 'Zobrazit nemovitosti' :
                        language === 'it' ? 'Vedi le proprietà' :
                        'View properties'}
                       <ChevronRight className="h-5 w-5 ml-2" />

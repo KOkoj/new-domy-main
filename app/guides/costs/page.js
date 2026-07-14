@@ -35,12 +35,12 @@ const COPY = {
     ],
     costTitle: 'Přehled nákladů',
     costSubtitle:
-      'Níže najdete orientační strukturu hlavních položek, se kterými je potřeba při koupí počítat.',
+      'Níže najdete orientační strukturu hlavních položek, se kterými je potřeba při koupi počítat.',
     costs: [
       {
         title: 'Daň z koupě - první nemovitost + rezidence',
         description:
-          'Platí při koupí první nemovitostí v Itálii a při nastavení trvalé rezidence.',
+          'Platí při koupi první nemovitosti v Itálii a při nastavení trvalé rezidence.',
         price: 'EUR 2 % z katastrální hodnoty'
       },
       {
@@ -52,7 +52,7 @@ const COPY = {
       {
         title: 'DPH (nové / rekonstruované do 5 let) - koupě od stavební firmy',
         description:
-          'Uplatní se hlavně při koupí od developera nebo stavební společnosti.',
+          'Uplatní se hlavně při koupi od developera nebo stavební společnosti.',
         price: '10 % nebo 4 % podle režimu'
       },
       {

@@ -100,7 +100,7 @@ export const PAGE_LABELS = {
     loadingMap: 'Načítám mapu...',
     showFilters: 'Zobrazit filtry',
     hideFilters: 'Skrýt filtry',
-    title: 'Nemovitosti v Itálii',
+    title: 'Nemovitosti v Itálii na prodej',
     propertiesCount: 'nemovitostí',
     propertyType: 'Typ nemovitosti',
     region: 'Region',

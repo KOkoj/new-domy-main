@@ -67,7 +67,6 @@ export async function generateMetadata({ params }) {
   return {
     title: titleCs,
     description: descriptionCs,
-    keywords: `nemovitostí ${nameCs}, koupit dum ${nameCs}, ${nameEn} real estate, property in ${nameEn}, vila ${nameCs}, byty ${nameCs}, ${nameIt} immobiliare`,
     alternates: {
       canonical: canonicalPath,
       languages: {
@@ -136,7 +135,7 @@ export default async function RegionDetailLayout({ children, params }) {
       url: SITE_URL
     },
     breadcrumb: buildBreadcrumbJsonLd([
-      { name: 'Domu', path: '/' },
+      { name: 'Domů', path: '/' },
       { name: 'Regiony', path: '/regions' },
       { name: nameCs, path: canonicalPath }
     ])

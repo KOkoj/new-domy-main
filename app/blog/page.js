@@ -153,7 +153,7 @@ const ARTICLES = [
     slug: 'common-mistakes',
     title: {
       en: 'Most Common Mistakes Czechs Make When Buying a House in Italy',
-      cs: 'Nejčastější chyby Čechů při koupí domů v Itálii',
+      cs: 'Nejčastější chyby Čechů při koupi domů v Itálii',
       it: 'Gli errori più comuni dei cechi quando acquistano una casa in Italia'
     },
     excerpt: {
@@ -193,7 +193,7 @@ const ARTICLES = [
     slug: 'choose-region',
     title: {
       en: 'How to Choose the Right Region in Italy for Buying a House (Sea, Mountains, Investment)',
-      cs: 'Jak vybrat správný region v Itálii pro koupí domů (moře, hory, investice)',
+      cs: 'Jak vybrat správný region v Itálii pro koupi domů (moře, hory, investice)',
       it: 'Come scegliere la regione giusta in Italia per acquistare una casa (mare, montagna, investimento)'
     },
     excerpt: {
@@ -239,7 +239,7 @@ const ARTICLES = [
     slug: 'notary-role',
     title: {
       en: 'Notary in Italy: Role and Costs When Buying a House',
-      cs: 'Notář v Itálii: role a náklady při koupí domů',
+      cs: 'Notář v Itálii: role a náklady při koupi domů',
       it: "Il notaio in Italia: ruolo e costi nell'acquisto di una casa"
     },
     excerpt: {
@@ -331,7 +331,7 @@ export default function BlogPage() {
             </div>
             <h1 className="font-bold mb-8 text-slate-800">
               {language === 'cs'
-                ? 'Články o koupí domů v Itálii'
+                ? 'Články o koupi domů v Itálii'
                 : language === 'it'
                   ? "Articoli sull'acquisto di una casa in Italia"
                   : 'Articles About Buying a House in Italy'}

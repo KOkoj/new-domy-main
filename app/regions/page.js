@@ -9,14 +9,14 @@ const SAMPLE_REGIONS = [
     name: {
       en: 'Tuscany - tradition, prestige and rental income',
       it: 'Toscana - tradizione, prestigio e reddito da affitto',
-      cs: 'Toskánsko - tradice, prestiz a prijem z pronajmu'
+      cs: 'Toskánsko - tradice, prestiž a příjem z pronájmu'
     },
     slug: { current: 'toscana' },
     country: 'Italy',
     description: {
       en: 'Iconic region for foreign buyers. Higher prices than the south, but a strong rental market and stable long-term value.',
       it: 'Regione iconica per acquirenti stranieri. Prezzi più alti rispetto al sud, ma forte mercato affitti e valore stabile nel tempo.',
-      cs: 'Ikonicky region pro zahraničně kupujíc?. Vyssi ceny nez na jihu, ale silný trh kratkodobych pronajmu a stabilní hodnota v case.'
+      cs: 'Ikonický region pro zahraniční kupující. Vyšší ceny než na jihu, ale silný trh krátkodobých pronájmů a stabilní hodnota v čase.'
     },
     image: '/Toscana.png',
     propertyCount: 1250,
@@ -34,7 +34,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Economic powerhouse of Italy with Milan as its capital. Modern properties, business opportunities, and alpine retreats.',
       it: 'Potenza economica d\'Italia con Milano come capitale.',
-      cs: 'Ekonomicka mocnost Itálie s Milanem jako hlavnim mestem.'
+      cs: 'Ekonomická mocnost Itálie s Milánem jako hlavním městem.'
     },
     image: '/Lombardia.jpg',
     propertyCount: 2100,
@@ -55,9 +55,9 @@ const SAMPLE_REGIONS = [
       ],
       cs: [
         '\u20AC180,000 - \u20AC2,500,000',
-        '- Mesto Milan: ?asto \u20AC350k-\u20AC1.5M+',
-        '- Lago di Como: bě?ně nad \u20AC1M',
-        '- Luxusni nemovitostí: \u20AC2M-\u20AC5M+'
+        '- Město Milán: často \u20AC350k-\u20AC1.5M+',
+        '- Lago di Como: běžně nad \u20AC1M',
+        '- Luxusní nemovitosti: \u20AC2M-\u20AC5M+'
       ]
     },
     warning: {
@@ -77,7 +77,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Home to Venice, Verona, and Lake Garda. Rich history, romantic cities, and diverse landscapes from mountains to coast.',
       it: 'Casa di Venezia, Verona e del Lago di Garda. Storia ricca, città romantiche e paesaggi diversi.',
-      cs: 'Domov Benátek, Verony a Lago di Garda s bohatou historii.'
+      cs: 'Domov Benátek, Verony a Lago di Garda s bohatou historií.'
     },
     image: '/Veneto.webp',
     propertyCount: 520,
@@ -95,7 +95,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Home to Rome, the Eternal City. Rich history, ancient monuments, and vibrant modern life in Italy\'s capital region.',
       it: 'Casa di Roma, la Città Eterna. Storia ricca, monumenti antichi e vita moderna vibrante.',
-      cs: 'Domov Rima, vecneho města, s bohatou historii a antickymi pamatkami.'
+      cs: 'Domov Říma, věčného města, s bohatou historií a antickými památkami.'
     },
     image: '/Lazio.webp',
     propertyCount: 680,
@@ -113,7 +113,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Italy\'s largest island offering diverse landscapes from beaches to mountains, rich history, and excellent value properties.',
       it: "La più grande isola d'Italia che offre paesaggi diversi dalle spiagge alle montagne.",
-      cs: 'Nejvetsi ostrov Itálie nabizejici rozmanite krajiny od plazi po hory.'
+      cs: 'Největší ostrov Itálie nabízející rozmanité krajiny od pláží po hory.'
     },
     image: '/Sicilia.jpg',
     propertyCount: 890,
@@ -167,7 +167,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Alpine beauty, world-class wines, and elegant cities. Home to Turin and the Langhe wine region.',
       it: 'Bellezza alpina, vini di classe mondiale e città eleganti.',
-      cs: 'Alpska krasa, vina svetove urovne a elegantni města.'
+      cs: 'Alpská krása, vína světové úrovně a elegantní města.'
     },
     image: '/Piemonte.jpg',
     propertyCount: 320,
@@ -185,7 +185,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Mediterranean island paradise with pristine beaches, ancient nuraghe towers, and unique culture.',
       it: 'Paradiso dell\'isola mediterranea con spiagge incontaminate e torri nuragiche antiche.',
-      cs: 'Stredomorsky ostrovni raj s nedotcenymi plazemi a prastarymi nuragskymi vezemi.'
+      cs: 'Středomořský ostrovní ráj s nedotčenými plážemi a prastarými nuragskými věžemi.'
     },
     image: '/Sardegna.jpg',
     propertyCount: 340,
@@ -203,7 +203,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Culinary capital of Italy with Bologna, Parma, and Modena. Rich food culture, historic cities, and excellent quality of life.',
       it: 'Capitale culinaria d\'Italia con Bologna, Parma e Modena. Ricca cultura alimentare e qualità di vita eccellente.',
-      cs: 'Kulinarske hlavní město Itálie s bohatou potravinovou kulturou.'
+      cs: 'Kulinářské hlavní město Itálie s bohatou potravinovou kulturou.'
     },
     image: '/Emilia-Romagna.jpg',
     propertyCount: 380,
@@ -221,7 +221,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Heel of Italy with whitewashed trulli houses, olive groves, and stunning Adriatic coastline. Authentic southern charm.',
       it: 'Tallone d\'Italia con trulli imbiancati, uliveti e costa adriatica mozzafiato.',
-      cs: 'Pata Itálie s bilymi trulli domy a uchvatnym Jadranskym pobrezim.'
+      cs: 'Pata Itálie s bílými trulli domy a úchvatným jadranským pobřežím.'
     },
     image: '/Puglia.webp',
     propertyCount: 280,
@@ -239,7 +239,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Green heart of Italy with medieval hill towns, spiritual heritage, and peaceful countryside. Perfect for authentic Italian living.',
       it: 'Cuore verde d\'Italia con borghi medievali, patrimonio spirituale e campagna pacifica.',
-      cs: 'Zelene srdce Itálie se stredovekymi mestecky a klidnym venkovem.'
+      cs: 'Zelené srdce Itálie se středověkými městečky a klidným venkovem.'
     },
     image: '/Umbria.webp',
     propertyCount: 165,
@@ -257,7 +257,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Where the Alps meet the Adriatic - close to Austria and Slovenia. Excellent accessibility from Czech Republic with diverse landscapes.',
       it: "Dove le Alpi incontrano l'Adriatico, vicino ad Austria e Slovenia. Eccellente accessibilità dalla Repubblica Ceca.",
-      cs: 'Kde se Alpy setkavaji s Jadranem - blizko Rakouska a Slovinska. Vynikajici dostupnost z CR.'
+      cs: 'Kde se Alpy setkávají s Jadranem - blízko Rakouska a Slovinska. Výborná dostupnost z ČR.'
     },
     image: '/Friuli-Venezia Giulia.avif',
     propertyCount: 180,
@@ -275,7 +275,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'The toe of Italy\'s boot with stunning coastlines and remarkably affordable real estate. Beautiful beaches and authentic southern culture.',
       it: 'La punta dello stivale italiano con coste mozzafiato e immobili sorprendentemente accessibili.',
-      cs: 'Spicka italské boty s uchvatnym pobrezim a pozoruhodne dostupnymi nemovitostmi.'
+      cs: 'Špička italské boty s úchvatným pobřežím a pozoruhodně dostupnými nemovitostmi.'
     },
     image: '/calabria.jpg',
     propertyCount: 220,
@@ -293,7 +293,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'The greenest region in Europe with national parks, mountains, and Adriatic coastline. Remarkably affordable property prices.',
       it: "La regione più verde d'Europa con parchi nazionali, montagne e costa adriatica. Prezzi immobiliari sorprendentemente accessibili.",
-      cs: 'Nejzelenejsi region Evropy s narodnimi parky, horami a jadranskym pobrezim. Pozoruhodne dostupné ceny nemovitostí.'
+      cs: 'Nejzelenější region Evropy s národními parky, horami a jadranským pobřežím. Pozoruhodně dostupné ceny nemovitostí.'
     },
     image: '/abruzzo.jpg',
     propertyCount: 150,
@@ -311,7 +311,7 @@ const SAMPLE_REGIONS = [
     description: {
       en: 'Italian Alps at their finest - skiing, hiking, and year-round mountain activities. Austrian and Italian culture blend beautifully.',
       it: "Le Alpi italiane al meglio: sci, escursionismo e attività montane tutto l'anno. Cultura austriaca e italiana si fondono splendidamente.",
-      cs: 'Italské Alpy v nejlepsim - lyzovani, turistika a celoročně horské aktivity. Rakouska a italské kultura se krasne prolina.'
+      cs: 'Italské Alpy v nejlepší podobě - lyžování, turistika a celoroční horské aktivity. Rakouská a italská kultura se krásně prolínají.'
     },
     image: '/Trentino-Alto Adige.jpg',
     propertyCount: 240,
@@ -340,7 +340,7 @@ const CLEAN_REGION_CARD_COPY = {
         '€180,000 - €2,500,000',
         '- Město Milán: často €350k-€1.5M+',
         '- Lago di Como: běžně nad €1M',
-        '- Luxusní nemovitostí: €2M-€5M+'
+        '- Luxusní nemovitosti: €2M-€5M+'
       ]
     },
     warning: {

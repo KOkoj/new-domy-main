@@ -55,7 +55,7 @@ const MapComponent = dynamic(() => import('../../components/PropertyMap'), {
   ssr: false
 });
 
-export default function PropertiesClient({ initialProperties = [] }) {
+export default function PropertiesClient({ initialProperties = [], intro = null }) {
   const [filters, setFilters] = useState({
     search: '',
     propertyType: '',
@@ -475,6 +475,7 @@ export default function PropertiesClient({ initialProperties = [] }) {
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 text-center">
             {pageLabels.title}
           </h1>
+          {intro}
           <p className="text-sm text-gray-400 text-center mb-5">
             {language === 'cs' ? 'Vyhledejte podle lokality, typu nebo vybavení' :
              language === 'it' ? 'Cerca per posizione, tipo o servizi' :

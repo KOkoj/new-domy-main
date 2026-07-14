@@ -279,14 +279,14 @@ export default function RegionBlogPage() {
                'Ready to Find Your Home in Italy?'}
             </h2>
             <p className="text-xl text-blue-100 mb-8">
-              {language === 'cs' ? 'Prohlédněte si nemovitostí v tomto regionu' : 
+              {language === 'cs' ? 'Prohlédněte si nemovitosti v tomto regionu' : 
                language === 'it' ? 'Esplora le proprietà in questa regione' :
                'Explore properties in this region'}
             </p>
             <Link href={`/properties?region=${slug || ''}`}>
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-4">
                 <BookOpen className="h-5 w-5 mr-2" />
-                {language === 'cs' ? 'Prohlédnout nemovitostí' : 
+                {language === 'cs' ? 'Prohlédnout nemovitosti' : 
                  language === 'it' ? 'Visualizza proprietà' :
                  'View Properties'}
               </Button>

@@ -75,7 +75,7 @@ const GUIDES = [
     readTime: '7 min',
     title: {
       en: 'Most common mistakes when buying in Italy',
-      cs: 'Nejčastější chyby při koupí v Itálii',
+      cs: 'Nejčastější chyby při koupi v Itálii',
       it: 'Gli errori più comuni nell’acquisto in Italia'
     },
     excerpt: {
@@ -90,7 +90,7 @@ const GUIDES = [
     readTime: '8 min',
     title: {
       en: 'Real costs of buying a house in Italy',
-      cs: 'Reálné náklady na koupí domů v Itálii',
+      cs: 'Reálné náklady na koupi domů v Itálii',
       it: 'Costi reali per acquistare una casa in Italia'
     },
     excerpt: {
@@ -109,7 +109,7 @@ const UI = {
   },
   cs: {
     badge: 'Hub průvodců',
-    title: 'Všechny průvodce ke koupí nemovitostí v Itálii',
+    title: 'Všechny průvodce ke koupi nemovitostí v Itálii',
     subtitle: 'Strukturované zdroje pro zahraniční kupující od prvního plánování až po finální podpis.'
   },
   it: {
