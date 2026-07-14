@@ -42,10 +42,10 @@ const ARTICLES = [
       en: 'Train and bus travel in Italy',
       it: 'Treno e autobus per viaggiare in Italia'
     },
-    link: '/články/průvodce-italii/jak-cestovat-po-italii-levne'
+    link: '/clanky/pruvodce-italii/jak-cestovat-po-italii-levne'
   },
   {
-    slug: 'kolik-stoji-dovolená-v-italii-v-roce-2026',
+    slug: 'kolik-stoji-dovolena-v-italii-v-roce-2026',
     title: {
       cs: 'Kolik stojí dovolená v Itálii v roce 2026',
       en: 'How Much Does a Holiday in Italy Cost in 2026?',
@@ -68,10 +68,10 @@ const ARTICLES = [
       en: 'Italian coast for holiday budget planning',
       it: 'Costa italiana per pianificare il budget vacanza'
     },
-    link: '/články/průvodce-italii/kolik-stoji-dovolená-v-italii-v-roce-2026'
+    link: '/clanky/pruvodce-italii/kolik-stoji-dovolena-v-italii-v-roce-2026'
   },
   {
-    slug: 'nejkrasnejsi-mala-města-v-italii',
+    slug: 'nejkrasnejsi-mala-mesta-v-italii',
     title: {
       cs: 'Nejkrásnější malá města v Itálii',
       en: 'The Most Beautiful Small Towns in Italy',
@@ -94,10 +94,10 @@ const ARTICLES = [
       en: 'Small historic town in Italy',
       it: 'Piccolo borgo storico in Italia'
     },
-    link: '/články/průvodce-italii/nejkrasnejsi-mala-města-v-italii'
+    link: '/clanky/pruvodce-italii/nejkrasnejsi-mala-mesta-v-italii'
   },
   {
-    slug: 'kolik-stoji-jídlo-v-italii-v-roce-2026',
+    slug: 'kolik-stoji-jidlo-v-italii-v-roce-2026',
     title: {
       cs: 'Kolik stojí jídlo v Itálii v roce 2026? Reálné ceny restaurací, pizzerií a supermarketů',
       en: 'How Much Does Food Cost in Italy in 2026? Real Prices for Restaurants, Pizzerias, and Supermarkets',
@@ -120,7 +120,7 @@ const ARTICLES = [
       en: 'Italian food and local cuisine',
       it: 'Cibo italiano e gastronomia locale'
     },
-    link: '/články/průvodce-italii/kolik-stoji-jídlo-v-italii-v-roce-2026'
+    link: '/clanky/pruvodce-italii/kolik-stoji-jidlo-v-italii-v-roce-2026'
   },
   {
     slug: 'kde-se-ubytovat-v-italii-levne',
@@ -146,7 +146,7 @@ const ARTICLES = [
       en: 'Affordable accommodation in Italy',
       it: 'Alloggi convenienti in Italia'
     },
-    link: '/články/průvodce-italii/kde-se-ubytovat-v-italii-levne'
+    link: '/clanky/pruvodce-italii/kde-se-ubytovat-v-italii-levne'
   }
 ]
 

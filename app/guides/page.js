@@ -10,7 +10,7 @@ import ProtectedContentLink from '@/components/ProtectedContentLink'
 
 const GUIDES = [
   {
-    slug: 'rekonstrukce-domů-v-italii',
+    slug: 'rekonstrukce-domu-v-italii',
     date: '2026-03-10',
     readTime: '8 min',
     title: {

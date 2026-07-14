@@ -3,13 +3,13 @@
   description:
     'Praktické cestovní články o Itálii: ceny dovolené, doprava, jídlo, ubytování a inspirace na nejkrásnější malá města.',
   alternates: {
-    canonical: '/články/průvodce-italii'
+    canonical: '/clanky/pruvodce-italii'
   },
   openGraph: {
     title: 'Průvodce Itálií | Domy v Itálii',
     description:
       'Praktické cestovní články o Itálii: ceny dovolené, doprava, jídlo, ubytování a inspirace na nejkrásnější malá města.',
-    url: 'https://www.domyvitalii.cz/články/průvodce-italii',
+    url: 'https://www.domyvitalii.cz/clanky/pruvodce-italii',
     type: 'website',
     siteName: 'Domy v Itálii'
   }

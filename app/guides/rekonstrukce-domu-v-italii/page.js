@@ -118,7 +118,7 @@ const CONTENT = {
       title: 'Připravili jsme také praktický průvodce pro české kupující',
       text: 'Pokud chcete lépe porozumět nejčastějším chybám při koupi domů v Itálii, můžete si stáhnout náš bezplatný PDF průvodce.',
       button: 'Stáhnout PDF - 7 nejčastějších chyb',
-      href: '/pdfs/errori-comuni.pdf'
+      href: '/guides/mistakes/free-pdf'
     },
     section5: {
       title: 'Závěr',
@@ -239,7 +239,7 @@ const CONTENT = {
       title: 'We also prepared a practical guide for Czech buyers',
       text: 'If you want to better understand the most common mistakes when buying in Italy, you can download our free PDF guide.',
       button: 'Download PDF - 7 most common mistakes',
-      href: '/pdfs/errori-comuni.pdf'
+      href: '/guides/mistakes/free-pdf'
     },
     section5: {
       title: 'Conclusion',
@@ -360,7 +360,7 @@ const CONTENT = {
       title: 'Abbiamo preparato anche una guida pratica per acquirenti cechi',
       text: 'Se vuoi capire meglio gli errori più frequenti nell\'acquisto in Italia, puoi scaricare il nostro PDF gratuito.',
       button: 'Scarica PDF - 7 errori più comuni',
-      href: '/pdfs/errori-comuni.pdf'
+      href: '/guides/mistakes/free-pdf'
     },
     section5: {
       title: 'Conclusione',

@@ -10,6 +10,7 @@ import PropertySlider from '@/components/PropertySlider'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
+import LeadMagnetBanner from '@/components/LeadMagnetBanner'
 
 const PUBLISHED_AT = '2026-05-10'
 
@@ -652,7 +653,7 @@ export default function FoodCostsItaly2026Page() {
         <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
           <article className="max-w-4xl mx-auto space-y-8" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <Button asChild variant="outline" className="inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-700">
-              <Link href="/články/průvodce-italii">
+              <Link href="/clanky/pruvodce-italii">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 {t.navArticles}
               </Link>
@@ -773,6 +774,8 @@ export default function FoodCostsItaly2026Page() {
               gygLabel={t.partnerMid.gyg}
             />
 
+            <LeadMagnetBanner assetKey="mistakes" language={language} />
+
             <Card className="bg-white border border-slate-200">
               <CardHeader>
                 <CardTitle className="mb-8">{t.hiddenTitle}</CardTitle>
@@ -817,6 +820,8 @@ export default function FoodCostsItaly2026Page() {
                 </Button>
               </CardContent>
             </Card>
+
+            <LeadMagnetBanner assetKey="mistakes" language={language} />
 
             <Card className="bg-white border border-slate-200">
               <CardHeader>

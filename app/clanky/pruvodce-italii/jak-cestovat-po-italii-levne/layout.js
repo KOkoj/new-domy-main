@@ -12,7 +12,7 @@ export default function JakCestovatPoItaliiLevneLayout({ children }) {
       <JsonLd
         data={buildBreadcrumbJsonLd([
           { name: 'Home', path: '/' },
-          { name: 'Průvodce Itálií', path: '/články/průvodce-italii' },
+          { name: 'Průvodce Itálií', path: '/clanky/pruvodce-italii' },
           { name: seo.title, path: seo.path }
         ])}
       />

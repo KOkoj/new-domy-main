@@ -15,6 +15,7 @@ import PropertySlider from '@/components/PropertySlider'
 import { REGION_DATA_OVERRIDES } from '../regionContent'
 import { REGION_CURIOSITIES } from '../regionCuriosities'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
+import LeadMagnetBanner from '@/components/LeadMagnetBanner'
 
 const DEFAULT_BOOKING_LINK = 'https://www.dpbolvw.net/click-101629596-15735418'
 const REGION_CAR_RENTAL_LINK = 'https://www.tkqlhce.com/click-101629596-17122732'
@@ -1603,6 +1604,10 @@ export default function RegionDetailClient({ initialProperties = [] }) {
                 </div>
               </CardContent>
             </Card>
+          </div>
+
+          <div className="max-w-4xl mx-auto mt-10">
+            <LeadMagnetBanner assetKey="mistakes" language={language} />
           </div>
 
           <div className="max-w-4xl mx-auto mt-10">

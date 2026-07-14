@@ -12,7 +12,7 @@ import ProtectedContentLink from '@/components/ProtectedContentLink'
 
 const ARTICLES = [
   {
-    slug: 'kolik-stoji-dovolená-v-italii-v-roce-2026',
+    slug: 'kolik-stoji-dovolena-v-italii-v-roce-2026',
     title: {
       en: 'How Much Does a Holiday in Italy Cost in 2026?',
       cs: 'Kolik stojí dovolená v Itálii v roce 2026',
@@ -32,10 +32,10 @@ const ARTICLES = [
       cs: 'Italské pobřeží k článku o rozpočtu na dovolenou',
       it: 'Costa italiana per un articolo sul budget vacanza'
     },
-    link: '/články/průvodce-italii/kolik-stoji-dovolená-v-italii-v-roce-2026'
+    link: '/clanky/pruvodce-italii/kolik-stoji-dovolena-v-italii-v-roce-2026'
   },
   {
-    slug: 'nejkrasnejsi-mala-města-v-italii',
+    slug: 'nejkrasnejsi-mala-mesta-v-italii',
     title: {
       en: 'The Most Beautiful Small Towns in Italy',
       cs: 'Nejkrásnější malá města v Itálii',
@@ -55,10 +55,10 @@ const ARTICLES = [
       cs: 'Historické italské městečko',
       it: 'Borgo storico italiano'
     },
-    link: '/články/průvodce-italii/nejkrasnejsi-mala-města-v-italii'
+    link: '/clanky/pruvodce-italii/nejkrasnejsi-mala-mesta-v-italii'
   },
   {
-    slug: 'rekonstrukce-domů-v-italii',
+    slug: 'rekonstrukce-domu-v-italii',
     title: {
       en: 'How much does house renovation in Italy cost?',
       cs: 'Kolik stojí rekonstrukce domů v Itálii?',
@@ -78,7 +78,7 @@ const ARTICLES = [
       cs: 'Stavební práce při rekonstrukci domů',
       it: 'Lavori di ristrutturazione su una casa'
     },
-    link: '/guides/rekonstrukce-domů-v-italii'
+    link: '/guides/rekonstrukce-domu-v-italii'
   },
   {
     slug: 'offerta-compromesso-registrazione',
@@ -304,7 +304,7 @@ export default function BlogPage() {
 
   const visibleArticles = useMemo(() => {
     return ARTICLES.filter((article) => {
-      if (article.link?.startsWith('/články/průvodce-italii')) {
+      if (article.link?.startsWith('/clanky/pruvodce-italii')) {
         return false
       }
 
@@ -370,7 +370,7 @@ export default function BlogPage() {
                         ? 'Nuova sezione con articoli, consigli pratici e curiosità per chi vuole viaggiare in Italia.'
                         : 'New section with articles, practical tips, and curiosities for people planning to travel in Italy.'}
                   </p>
-                  <Link href="/články/průvodce-italii" className="block">
+                  <Link href="/clanky/pruvodce-italii" className="block">
                     <Button className="w-full min-h-[44px] bg-gradient-to-r from-emerald-700 to-teal-700 hover:from-emerald-600 hover:to-teal-600 text-white text-xs font-semibold rounded-lg shadow-sm">
                       {language === 'cs' ? 'Otevřít sekci cestování' : language === 'it' ? 'Vai alla sezione viaggi' : 'Open travel section'}
                       <ChevronRight className="h-3.5 w-3.5 ml-1.5" />
