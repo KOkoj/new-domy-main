@@ -245,7 +245,7 @@ export default function PropertyRecommendations() {
     try {
       const { error } = await supabase
         .from('favorites')
-        .insert([{ userId: user.id, listingId: propertyId }])
+        .insert([{ user_id: user.id, listing_id: propertyId }])
 
       if (error && error.code !== '23505') { // Ignore duplicate key error
         throw error

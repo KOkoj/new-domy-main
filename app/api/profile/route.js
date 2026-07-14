@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { getProfileDisplayName, splitFullName } from '@/lib/profileName'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -50,16 +51,32 @@ async function ensureAuthenticatedUser(supabase) {
 }
 
 function buildProfileFromUser(user) {
+  const rawName =
+    user.user_metadata?.name ||
+    user.user_metadata?.full_name ||
+    user.email?.split('@')[0] ||
+    'User'
+  const { firstName, lastName } = splitFullName(rawName)
+
   return {
     id: user.id,
-    name:
-      user.user_metadata?.name ||
-      user.user_metadata?.full_name ||
-      user.email?.split('@')[0] ||
-      'User',
+    first_name: firstName || 'User',
+    last_name: lastName || null,
     role: String(user.email || '').trim().toLowerCase() === 'luca.croce@domyvitalii.cz'
       ? 'admin'
       : 'user'
+  }
+}
+
+// Legacy consumers (e.g. DashboardLayoutClient.jsx) read `profile.name` as a
+// display string. Keep returning that shape, derived from the canonical
+// first_name/last_name columns, without writing back to the legacy `name`
+// column.
+function withDisplayName(profile, user) {
+  if (!profile) return profile
+  return {
+    ...profile,
+    name: getProfileDisplayName(profile, user?.email)
   }
 }
 
@@ -92,7 +109,7 @@ export async function POST() {
         NextResponse.json({
           success: true,
           message: 'Profile already exists',
-          profile: existingProfile
+          profile: withDisplayName(existingProfile, user)
         })
       )
     }
@@ -120,7 +137,7 @@ export async function POST() {
       NextResponse.json({
         success: true,
         message: 'Profile created successfully',
-        profile: createdProfile
+        profile: withDisplayName(createdProfile, user)
       })
     )
   } catch (error) {
@@ -174,7 +191,7 @@ export async function GET() {
     return applyCookies(
       NextResponse.json({
         success: true,
-        profile
+        profile: withDisplayName(profile, user)
       })
     )
   } catch (error) {

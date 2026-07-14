@@ -19,6 +19,7 @@ import {
   Mail
 } from 'lucide-react'
 import { t } from '@/lib/translations'
+import { getProfileDisplayName } from '@/lib/profileName'
 
 export default function AdminShell({ children, user, profile }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -190,7 +191,7 @@ export default function AdminShell({ children, user, profile }) {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">
-                  {profile?.name || user?.user_metadata?.name || user?.email}
+                  {getProfileDisplayName(profile, user?.user_metadata?.name || user?.email)}
                 </p>
                 <Badge variant="secondary" className="text-xs">
                   {t('admin.layout.admin', language)}

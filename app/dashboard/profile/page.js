@@ -28,7 +28,8 @@ import { t } from '../../../lib/translations'
 export default function ProfileManagement() {
   const [user, setUser] = useState(null)
   const [profile, setProfile] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     phone: '',
     location: '',
     bio: '',
@@ -92,7 +93,8 @@ export default function ProfileManagement() {
 
       if (profileData) {
         setProfile({
-          name: profileData.name || '',
+          firstName: profileData.first_name || '',
+          lastName: profileData.last_name || '',
           phone: profileData.phone || '',
           location: profileData.location || '',
           bio: profileData.bio || '',
@@ -121,12 +123,13 @@ export default function ProfileManagement() {
       const { error } = await supabase
         .from('profiles')
         .update({
-          name: profile.name,
+          first_name: profile.firstName,
+          last_name: profile.lastName,
           phone: profile.phone,
           location: profile.location,
           bio: profile.bio,
           preferences: profile.preferences,
-          updatedAt: new Date().toISOString()
+          updated_at: new Date().toISOString()
         })
         .eq('id', user.id)
 
@@ -257,15 +260,28 @@ export default function ProfileManagement() {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="name">{t('club.profile.fullName', language)}</Label>
+                  <Label htmlFor="firstName">{t('club.profile.firstName', language)}</Label>
                   <Input
-                    id="name"
+                    id="firstName"
                     type="text"
-                    value={profile.name}
-                    onChange={(e) => setProfile(prev => ({ ...prev, name: e.target.value }))}
-                    placeholder={t('club.profile.fullNamePlaceholder', language)}
+                    value={profile.firstName}
+                    onChange={(e) => setProfile(prev => ({ ...prev, firstName: e.target.value }))}
+                    placeholder={t('club.profile.firstNamePlaceholder', language)}
                   />
                 </div>
+                <div>
+                  <Label htmlFor="lastName">{t('club.profile.lastName', language)}</Label>
+                  <Input
+                    id="lastName"
+                    type="text"
+                    value={profile.lastName}
+                    onChange={(e) => setProfile(prev => ({ ...prev, lastName: e.target.value }))}
+                    placeholder={t('club.profile.lastNamePlaceholder', language)}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="email">{t('club.profile.emailAddress', language)}</Label>
                   <Input
@@ -277,9 +293,6 @@ export default function ProfileManagement() {
                   />
                   <p className="text-xs text-gray-500 mt-1">{t('club.profile.emailCannotChange', language)}</p>
                 </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="phone">{t('club.profile.phoneNumber', language)}</Label>
                   <Input

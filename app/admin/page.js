@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
 import { t } from '@/lib/translations'
+import { getProfileDisplayName } from '@/lib/profileName'
 import Link from 'next/link'
 
 export default function AdminDashboard() {
@@ -81,7 +82,7 @@ export default function AdminDashboard() {
       const { data: recentUsers } = await supabase
         .from('profiles')
         .select('*')
-        .order('createdAt', { ascending: false })
+        .order('created_at', { ascending: false })
         .limit(5)
       
       // Load recent inquiries
@@ -233,11 +234,11 @@ export default function AdminDashboard() {
                         <Users className="h-4 w-4 text-blue-600" />
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">{user.name || 'Unknown User'}</p>
+                        <p className="font-medium text-gray-900">{getProfileDisplayName(user) || 'Unknown User'}</p>
                         <div className="flex items-center space-x-2">
                           <Badge variant="secondary" className="text-xs">{user.role}</Badge>
                           <span className="text-xs text-gray-500">
-                            {new Date(user.createdAt).toLocaleDateString()}
+                            {new Date(user.created_at).toLocaleDateString()}
                           </span>
                         </div>
                       </div>

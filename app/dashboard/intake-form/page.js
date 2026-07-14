@@ -24,6 +24,7 @@ import {
 import { supabase } from '../../../lib/supabase'
 import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
+import { getProfileDisplayName, splitFullName } from '../../../lib/profileName'
 
 const PROPERTY_TYPES = ['Villa', 'House', 'Apartment', 'Farmhouse', 'Castle', 'Commercial', 'Land']
 const ITALIAN_REGIONS = [
@@ -314,7 +315,7 @@ export default function IntakeForm() {
         
         setFormData(prev => ({
           ...prev,
-          fullName: profile.name || '',
+          fullName: getProfileDisplayName(profile, '') || '',
           email: user.email || '',
           phone: profile.phone || '',
           
@@ -341,12 +342,14 @@ export default function IntakeForm() {
 
     try {
       // 1. Update Profile (Name, Phone) - non-blocking for intake form
+      const { firstName, lastName } = splitFullName(formData.fullName)
       const { error: profileError } = await supabase
         .from('profiles')
         .update({
-          name: formData.fullName,
+          first_name: firstName,
+          last_name: lastName || null,
           phone: formData.phone,
-          updatedAt: new Date().toISOString()
+          updated_at: new Date().toISOString()
         })
         .eq('id', user.id)
 

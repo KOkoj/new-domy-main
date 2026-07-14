@@ -23,7 +23,6 @@ import {
   Trash2,
   Edit
 } from 'lucide-react'
-import { supabase } from '../../../lib/supabase'
 import { t } from '@/lib/translations'
 
 export default function UserManagement() {
@@ -67,73 +66,31 @@ export default function UserManagement() {
   const loadUsers = async () => {
     try {
       setLoading(true)
-      
-      // Load users with their activity data
-      const { data: profiles, error: profilesError } = await supabase
-        .from('profiles')
-        .select('*')
-        .order('createdAt', { ascending: false })
 
-      if (profilesError) throw profilesError
+      // Single request to a server route: it uses the service-role client
+      // to fetch profiles + auth emails + batched activity counts (one
+      // IN(...) query per stats table, not one per user).
+      const response = await fetch('/api/admin/users')
+      const payload = await response.json()
 
-      // Load user statistics (favorites, saved searches, inquiries)
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to load users')
+      }
+
+      const loadedUsers = payload.users || []
       const userStatsData = {}
-      
-      for (const user of profiles || []) {
-        // Get favorites count
-        const { count: favoritesCount } = await supabase
-          .from('favorites')
-          .select('*', { count: 'exact', head: true })
-          .eq('userId', user.id)
-        
-        // Get saved searches count
-        const { count: searchesCount } = await supabase
-          .from('saved_searches')
-          .select('*', { count: 'exact', head: true })
-          .eq('userId', user.id)
-        
-        // Get inquiries count
-        const { count: inquiriesCount } = await supabase
-          .from('inquiries')
-          .select('*', { count: 'exact', head: true })
-          .eq('userId', user.id)
-
-        userStatsData[user.id] = {
-          favorites: favoritesCount || 0,
-          savedSearches: searchesCount || 0,
-          inquiries: inquiriesCount || 0,
+      loadedUsers.forEach((user) => {
+        userStatsData[user.id] = user.stats || {
+          favorites: 0,
+          savedSearches: 0,
+          inquiries: 0,
           forms: 0,
           webinars: 0,
           documents: 0
         }
-        
-        // Get intake forms count
-        const { count: formsCount } = await supabase
-          .from('client_intake_forms')
-          .select('*', { count: 'exact', head: true })
-          .eq('user_id', user.id)
-          
-        if (formsCount) userStatsData[user.id].forms = formsCount
+      })
 
-        // Get webinar registrations count
-        const { count: webinarsCount } = await supabase
-          .from('webinar_registrations')
-          .select('*', { count: 'exact', head: true })
-          .eq('user_id', user.id)
-          
-        if (webinarsCount) userStatsData[user.id].webinars = webinarsCount
-        
-        // Get document access count
-        const { count: docsCount } = await supabase
-          .from('document_access_logs')
-          .select('*', { count: 'exact', head: true })
-          .eq('user_id', user.id)
-          
-        if (docsCount) userStatsData[user.id].documents = docsCount
-
-      }
-
-      setUsers(profiles || [])
+      setUsers(loadedUsers)
       setUserStats(userStatsData)
     } catch (error) {
       console.error('Error loading users:', error)
@@ -163,12 +120,16 @@ export default function UserManagement() {
 
   const updateUserRole = async (userId, newRole) => {
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .update({ role: newRole })
-        .eq('id', userId)
+      const response = await fetch('/api/admin/users', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, role: newRole })
+      })
+      const payload = await response.json()
 
-      if (error) throw error
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to update user role')
+      }
 
       // Update local state
       setUsers(prev => prev.map(user => 
@@ -271,7 +232,7 @@ export default function UserManagement() {
             <div className="text-2xl font-bold">{users.filter(u => {
               const dayAgo = new Date()
               dayAgo.setDate(dayAgo.getDate() - 1)
-              return new Date(u.createdAt) > dayAgo
+              return new Date(u.created_at) > dayAgo
             }).length}</div>
             <div className="text-sm text-gray-600">{t('admin.users.newLast24h', language)}</div>
           </CardContent>
@@ -317,7 +278,7 @@ export default function UserManagement() {
                           </span>
                           <span className="flex items-center">
                             <Calendar className="h-3 w-3 mr-1" />
-                            {new Date(user.createdAt).toLocaleDateString()}
+                            {new Date(user.created_at).toLocaleDateString()}
                           </span>
                         </div>
                       </div>

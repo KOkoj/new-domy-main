@@ -93,7 +93,8 @@ export async function POST(request) {
         .insert([
           {
             id: testUserId,
-            name: 'Test User',
+            first_name: 'Test',
+            last_name: 'User',
             role: 'user'
           }
         ])
