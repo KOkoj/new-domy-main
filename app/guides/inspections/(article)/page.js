@@ -15,6 +15,7 @@ import Link from "next/link";
 import Image from "next/image";
 import InformationalDisclaimer from "@/components/legal/InformationalDisclaimer";
 import Footer from "@/components/Footer";
+import PaywalledContent from "@/components/guides/PaywalledContent";
 import Navigation from "@/components/Navigation";
 
 export default function InspectionsGuidePage() {
@@ -112,6 +113,7 @@ export default function InspectionsGuidePage() {
               </p>
             </div>
 
+            <PaywalledContent>
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-8">
               <Image src={articleImage.src} alt={articleImage.alt} width={1400} height={800} sizes="(min-width: 768px) 768px, 100vw" className="w-full h-64 md:h-80 object-cover" />
               <p className="px-4 py-3 text-sm text-slate-600">{articleImage.caption}</p>
@@ -741,6 +743,7 @@ export default function InspectionsGuidePage() {
                 </CardContent>
               </Card>
             </div>
+            </PaywalledContent>
           </div>
         </div>
       </div>

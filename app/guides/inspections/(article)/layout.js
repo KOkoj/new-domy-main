@@ -2,11 +2,11 @@ import JsonLd from '@/components/seo/JsonLd'
 import { getGuideSeo } from '@/lib/seo/contentPages'
 import { buildPaywalledArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
 
-const seo = getGuideSeo('mistakes')
+const seo = getGuideSeo('inspections')
 
 export const metadata = buildArticleMetadata(seo)
 
-export default function MistakesGuideLayout({ children }) {
+export default function InspectionsGuideLayout({ children }) {
   return (
     <>
       <JsonLd

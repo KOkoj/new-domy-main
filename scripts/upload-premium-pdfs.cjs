@@ -41,11 +41,11 @@ async function main() {
 
   const uploads = [
     {
-      source: path.join(root, 'public', 'pdfs', 'PDF Premium Domy 1.pdf (1).pdf'),
+      source: path.join(root, 'private', 'pdfs', 'premium-domy.pdf'),
       target: env.PREMIUM_PDF_PATH_DOMY || 'premium/premium-domy.pdf'
     },
     {
-      source: path.join(root, 'public', 'pdfs', 'Premium NOTÁŘ.pdf'),
+      source: path.join(root, 'private', 'pdfs', 'premium-notary.pdf'),
       target: env.PREMIUM_PDF_PATH_NOTARY || 'premium/premium-notary.pdf'
     }
   ]

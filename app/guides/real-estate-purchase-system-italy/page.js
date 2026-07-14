@@ -11,6 +11,7 @@ import PropertySlider from '@/components/PropertySlider'
 import { Button } from '@/components/ui/button'
 import { supabase } from '@/lib/supabase'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
+import PaywalledContent from '@/components/guides/PaywalledContent'
 
 const CONTENT = {
   "en": {
@@ -554,6 +555,7 @@ export default function RealEstatePurchaseSystemItalyPage() {
               </div>
             </div>
 
+            <PaywalledContent>
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
               <Image src={displayImage.src} alt={displayImage.alt} width={1400} height={800} sizes="(min-width: 768px) 768px, 100vw" className="w-full h-64 md:h-80 object-cover" />
               <p className="text-sm text-slate-600 px-4 py-3">{displayImage.caption}</p>
@@ -672,6 +674,7 @@ export default function RealEstatePurchaseSystemItalyPage() {
                 </Button>
               </div>
             </Box>
+            </PaywalledContent>
           </div>
         </div>
         <section className="pb-12">

@@ -1,6 +1,6 @@
 import JsonLd from '@/components/seo/JsonLd'
 import { getGuideSeo } from '@/lib/seo/contentPages'
-import { buildArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
+import { buildPaywalledArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
 
 const seo = getGuideSeo('real-estate-purchase-system-italy')
 
@@ -16,7 +16,7 @@ export default function RealEstatePurchaseSystemItalyLayout({ children }) {
           { name: seo.title, path: seo.path }
         ])}
       />
-      <JsonLd data={buildArticleJsonLd(seo)} />
+      <JsonLd data={buildPaywalledArticleJsonLd(seo)} />
       {children}
     </>
   )

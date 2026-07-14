@@ -1,22 +1,23 @@
 import JsonLd from '@/components/seo/JsonLd'
 import { getGuideSeo } from '@/lib/seo/contentPages'
-import { buildArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
+import { buildArticleMetadata, buildBreadcrumbJsonLd, buildPaywalledArticleJsonLd } from '@/lib/seo/contentSeo'
 
-const seo = getGuideSeo('inspections')
+const seo = getGuideSeo('inspections-free-pdf')
 
 export const metadata = buildArticleMetadata(seo)
 
-export default function InspectionsGuideLayout({ children }) {
+export default function InspectionsFreePdfLayout({ children }) {
   return (
     <>
       <JsonLd
         data={buildBreadcrumbJsonLd([
           { name: 'Home', path: '/' },
           { name: 'Guides', path: '/guides' },
+          { name: getGuideSeo('inspections').title, path: getGuideSeo('inspections').path },
           { name: seo.title, path: seo.path }
         ])}
       />
-      <JsonLd data={buildArticleJsonLd(seo)} />
+      <JsonLd data={buildPaywalledArticleJsonLd(seo)} />
       {children}
     </>
   )

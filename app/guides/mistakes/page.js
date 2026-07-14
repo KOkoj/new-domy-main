@@ -1,22 +1,17 @@
 ﻿'use client'
 
 import { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
 import { ArrowLeft, AlertTriangle, XCircle, CheckCircle, FileWarning } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
 import Image from 'next/image'
-import { supabase } from '../../../lib/supabase'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import Footer from '@/components/Footer'
+import PaywalledContent from '@/components/guides/PaywalledContent'
 import Navigation from '@/components/Navigation'
 
-const FreePdfUpsellModal = dynamic(() => import('../../../components/FreePdfUpsellModal'), { ssr: false })
-
 export default function MistakesGuidePage() {
-  const [user, setUser] = useState(null)
-  const [isFreePdfUpsellOpen, setIsFreePdfUpsellOpen] = useState(false)
   const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
@@ -33,79 +28,6 @@ export default function MistakesGuidePage() {
     window.addEventListener('languageChange', handleLanguageChange)
     return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
-
-  useEffect(() => {
-    if (!supabase) return
-    const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      setUser(user)
-    }
-    checkUser()
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user || null)
-    })
-
-    return () => subscription.unsubscribe()
-  }, [])
-
-  const handleFreePdfDownload = () => {
-    if (typeof window !== 'undefined') {
-      window.open('/pdfs/errori-comuni.pdf', '_blank', 'noopener,noreferrer')
-    }
-
-    setIsFreePdfUpsellOpen(true)
-
-    fetch('/api/free-pdf/upsell', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        pdfKey: 'mistakes-guide',
-        language,
-        sourcePath: '/guides/mistakes'
-      }),
-      keepalive: true
-    }).catch((error) => {
-      console.error('[FREE PDF UPSELL] Trigger error:', error)
-    })
-  }
-
-  const upsellCopy =
-    language === 'cs'
-      ? {
-          title: 'Chcete i prémiové PDF?',
-          body: 'Bezplatné PDF jste už stáhli. Pokud chcete praktičtější a podrobnější materiál, můžete si odemknout také placené PDF.',
-          bullets: [
-            'konkrétní prevence častých chyb',
-            'jasnější práce s náklady a riziky',
-            'praktická struktura kroků a dokumentů'
-          ],
-          cta: 'Zobrazit prémiové PDF',
-          secondary: 'Později'
-        }
-      : language === 'it'
-        ? {
-            title: 'Vuoi continuare dopo il PDF gratuito?',
-            body: 'Hai già scaricato il PDF gratuito. Se vuoi fare il passo successivo, puoi proseguire con le guide gratuite oppure contattarci per capire come impostare il percorso nel tuo caso.',
-            bullets: [
-              'guida gratuita su costi e tasse',
-              'approfondimento gratuito sul ruolo del notaio',
-              'contatto diretto per orientarti sui prossimi passi'
-            ],
-            cta: 'Contattaci',
-            secondary: 'Più tardi'
-          }
-        : {
-            title: 'Do you want to continue after the free PDF?',
-            body: 'You already downloaded the free PDF. If you want to take the next step, continue with the free guides or contact us to understand what makes sense in your case.',
-            bullets: [
-              'free guide about costs and taxes',
-              'free guide about the notary role',
-              'direct contact for the next steps'
-            ],
-            cta: 'Contact us',
-            secondary: 'Later'
-          }
 
   const articleImage =
     language === 'cs'
@@ -164,6 +86,7 @@ export default function MistakesGuidePage() {
               </p>
             </div>
 
+            <PaywalledContent>
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-8">
               <Image src={articleImage.src} alt={articleImage.alt} width={1400} height={800} sizes="(min-width: 768px) 768px, 100vw" className="w-full h-64 md:h-80 object-cover" />
               <p className="text-sm text-slate-600 px-4 py-3">{articleImage.caption}</p>
@@ -354,12 +277,14 @@ export default function MistakesGuidePage() {
                      'Want to learn more about common mistakes?'}
                   </p>
                   <Button
-                    onClick={handleFreePdfDownload}
+                    asChild
                     className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-500 hover:to-indigo-500 border border-blue-400/40 shadow-sm"
                   >
-                    {language === 'cs' ? 'Stáhnout PDF' :
-                     language === 'it' ? 'Scarica il PDF' :
-                     'Download PDF'}
+                    <Link href="/guides/mistakes/free-pdf">
+                      {language === 'cs' ? 'Získat PDF zdarma' :
+                       language === 'it' ? 'Ottieni il PDF gratuito' :
+                       'Get the free PDF'}
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -423,21 +348,12 @@ export default function MistakesGuidePage() {
                 </Button>
               </Link>
             </div>
+            </PaywalledContent>
           </div>
         </div>
       </div>
 
       <Footer language={language} />
-
-      <FreePdfUpsellModal
-        open={isFreePdfUpsellOpen}
-        onOpenChange={setIsFreePdfUpsellOpen}
-        language={language}
-        copy={upsellCopy}
-        user={user}
-        premiumProductKey="premium-domy"
-        sourcePath="/guides/mistakes"
-      />
     </div>
   )
 }

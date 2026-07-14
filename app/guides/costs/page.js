@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
+import PaywalledContent from '@/components/guides/PaywalledContent'
 
 const COPY = {
   cs: {
@@ -320,6 +321,7 @@ export default function CostsGuidePage() {
               <p className="leading-relaxed text-gray-500" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.intro}</p>
             </div>
 
+            <PaywalledContent>
             <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white">
               <img
                 src={articleImage.src}
@@ -433,6 +435,7 @@ export default function CostsGuidePage() {
             </div>
 
             <InformationalDisclaimer language={language} className="mt-14" />
+            </PaywalledContent>
           </div>
         </div>
       </div>

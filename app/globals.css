@@ -681,7 +681,7 @@ html {
 /* =============================================
    Article Paywall Gate
    When <ArticlePaywallGate /> is active for a logged-out visitor on a
-   protected article (regions, guides, klub articles), we render the page
+   protected buying guide (/guides/*), we render the page
    so they see a teaser of the top, then lock scroll. The fixed bottom
    overlay (~55vh) blurs the rest and surfaces the register/login CTA card.
 

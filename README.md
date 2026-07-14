@@ -295,6 +295,11 @@ SANITY_API_TOKEN=your_sanity_token
 SENDGRID_API_KEY=SG.your_sendgrid_api_key
 SENDGRID_FROM_EMAIL=noreply@yourdomain.com
 
+# Private free-PDF lead magnets (Supabase Storage)
+FREE_PDF_BUCKET=documents
+FREE_PDF_PATH_INSPECTIONS=free/inspections-guide.pdf
+FREE_PDF_PATH_MISTAKES=free/nejcastejsi-chyby-pri-koupi-v-italii.pdf
+
 # Google Gemini AI (AI Email Generation)
 # Get free API key: https://aistudio.google.com/app/apikey
 GEMINI_API_KEY=your_gemini_api_key
@@ -318,6 +323,9 @@ DEBUG=true
 | `SANITY_API_TOKEN` | No | Sanity API token for mutations |
 | `SENDGRID_API_KEY` | No | SendGrid API key (must start with SG.) |
 | `SENDGRID_FROM_EMAIL` | No | Verified sender email for SendGrid |
+| `FREE_PDF_BUCKET` | Yes for lead gate | Private Supabase Storage bucket |
+| `FREE_PDF_PATH_INSPECTIONS` | Yes for lead gate | Private inspections PDF object path |
+| `FREE_PDF_PATH_MISTAKES` | Yes for lead gate | Private mistakes PDF object path |
 | `GEMINI_API_KEY` | No | Google Gemini API key for AI emails |
 
 ---
@@ -344,6 +352,9 @@ In Supabase SQL Editor, run these scripts in order:
 
 -- 3. Premium club tables (optional)
 -- File: add-premium-club-tables-only.sql
+
+-- 4. Free PDF email leads
+-- File: setup-leads.sql
 ```
 
 ### 3. Configure Authentication
@@ -363,6 +374,7 @@ In Supabase Dashboard → Authentication → URL Configuration:
 | `inquiries` | Property inquiries from users |
 | `notification_preferences` | Email notification settings |
 | `email_logs` | Email tracking and history |
+| `leads` | Double-opt-in email leads for protected free PDFs |
 | `intake_forms` | Client questionnaires |
 | `club_documents` | Premium club documents |
 | `club_content` | Premium videos, guides, articles |
@@ -461,6 +473,27 @@ Email types:
 - `welcome` - New user onboarding
 - `inquiry-response` - Property inquiry confirmation
 - `property-alert` - New property notifications
+
+### Free PDF email gate
+
+1. Run `db/setup-leads.sql` after the email notification migration.
+2. Create or reuse a **private** Supabase Storage bucket and upload the two
+   files at the paths configured by `FREE_PDF_PATH_INSPECTIONS` and
+   `FREE_PDF_PATH_MISTAKES`.
+3. Anonymous visitors submit the form, receive a double-opt-in email, confirm,
+   and are redirected to `/dekujeme`, where a fresh one-hour signed download
+   starts. A one-hour signed backup link is also emailed at confirmation.
+4. Logged-in Klub users download directly; the server records their lead using
+   their authenticated email. An existing unsubscribe is never reversed by a
+   download.
+5. Both lead emails are written to `email_logs`. One-click unsubscribe uses the
+   lead token and immediately marks the lead `unsubscribed`.
+
+The public endpoint uses an in-memory IP limit (5 submissions per 15 minutes).
+This is per application instance; use a distributed limiter before high-volume
+deployment. Never copy gated files into `public/`: legacy `/pdfs/*.pdf` URLs are
+not redirected, and the former inspections/mistakes asset URLs intentionally
+return 404. Public PDFs unrelated to the lead gate may still exist.
 
 ### Translation System
 

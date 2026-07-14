@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import emailService from '@/lib/emailService'
+import { getSupabaseAdminClient } from '@/lib/supabaseAdmin'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -97,6 +98,21 @@ export async function POST(request) {
       !Array.isArray(data?.user?.identities) || data.user.identities.length > 0
 
     if (isLikelyNewUser && data?.user?.email) {
+      try {
+        const admin = getSupabaseAdminClient()
+        const { error: leadLinkError } = await admin
+          .from('leads')
+          .update({ user_id: data.user.id })
+          .eq('email', normalizedEmail)
+          .is('user_id', null)
+        if (leadLinkError) {
+          console.error('[SIGNUP] Lead linking failed:', leadLinkError.message)
+        }
+      } catch (leadLinkError) {
+        // Signup must continue if the optional leads migration is not installed yet.
+        console.error('[SIGNUP] Lead linking failed:', leadLinkError?.message || leadLinkError)
+      }
+
       try {
         const displayName =
           (typeof data.user.user_metadata?.name === 'string' && data.user.user_metadata.name.trim()) ||

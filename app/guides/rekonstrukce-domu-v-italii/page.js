@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import Footer from '@/components/Footer'
+import PaywalledContent from '@/components/guides/PaywalledContent'
 import Navigation from '@/components/Navigation'
 
 const CONTENT = {
@@ -496,6 +497,7 @@ export default function RenovationGuideItalyPage() {
               </div>
             </div>
 
+            <PaywalledContent>
             <div className="space-y-8">
               <CtaCard title={t.cta1.title} text={t.cta1.text} button={t.cta1.button} href={t.cta1.href} />
 
@@ -604,6 +606,7 @@ export default function RenovationGuideItalyPage() {
 
               <CtaCard title={t.finalCta.title} text={t.finalCta.text} button={t.finalCta.button} href={t.finalCta.href} tone="dark" />
             </div>
+            </PaywalledContent>
           </div>
         </div>
         <div className="max-w-5xl mx-auto px-4 pb-12">

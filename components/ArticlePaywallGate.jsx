@@ -10,18 +10,19 @@ const AuthModal = dynamic(() => import('@/components/AuthModal'), { ssr: false }
 
 function isProtectedArticlePath(pathname) {
   if (!pathname) return false
-  if (pathname === '/regions') return false
-  if (pathname.startsWith('/regions/')) return true
-
-  if (pathname === '/články/průvodce-italii') return false
-  if (pathname.startsWith('/články/průvodce-italii/')) return true
-
-  if (pathname.startsWith('/blog/regions/')) return true
-
   if (pathname === '/guides') return false
-  if (pathname.startsWith('/guides/')) return true
+  if (
+    pathname === '/guides/inspections/free-pdf' ||
+    pathname === '/guides/mistakes/free-pdf'
+  ) {
+    return false
+  }
+  return pathname.startsWith('/guides/')
+}
 
-  return false
+const PDF_LANDING_PATHS = {
+  '/guides/inspections': '/guides/inspections/free-pdf',
+  '/guides/mistakes': '/guides/mistakes/free-pdf'
 }
 
 const COPY = {
@@ -38,6 +39,7 @@ const COPY = {
     ],
     register: 'Registrovat zdarma',
     login: 'Přihlásit se',
+    pdfAlternative: 'Nechcete zakládat účet? Stáhněte si klíčové body v PDF za váš e-mail',
     close: 'Zavřít a vrátit se'
   },
   en: {
@@ -53,6 +55,7 @@ const COPY = {
     ],
     register: 'Register for free',
     login: 'Log in',
+    pdfAlternative: 'Don’t want an account? Get the key points as a PDF for your email',
     close: 'Close and go back'
   },
   it: {
@@ -68,6 +71,7 @@ const COPY = {
     ],
     register: 'Registrati gratis',
     login: 'Accedi',
+    pdfAlternative: 'Non vuoi creare un account? Ricevi i punti chiave in PDF via e-mail',
     close: 'Chiudi e torna indietro'
   }
 }
@@ -188,6 +192,7 @@ export default function ArticlePaywallGate() {
   if (!isLocked && !authOpen) return null
 
   const copy = COPY[language] || COPY.en
+  const pdfLandingPath = PDF_LANDING_PATHS[pathname]
 
   const handleOpenLogin = () => {
     setAuthTab('login')
@@ -316,6 +321,14 @@ export default function ArticlePaywallGate() {
                       {copy.login}
                     </Button>
                   </div>
+                  {pdfLandingPath ? (
+                    <a
+                      href={pdfLandingPath}
+                      className="mt-3 block text-center text-xs leading-relaxed text-slate-500 underline decoration-slate-300 underline-offset-4 hover:text-slate-700"
+                    >
+                      {copy.pdfAlternative}
+                    </a>
+                  ) : null}
                   <button
                     onClick={handleClose}
                     className="mt-3 w-full flex items-center justify-center gap-1.5 text-sm text-slate-400 hover:text-slate-600 transition-colors"

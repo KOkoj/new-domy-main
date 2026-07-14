@@ -106,7 +106,7 @@ export async function proxy(request) {
   // IMPORTANT: Do not run code between createServerClient and getUser().
   // A simple mistake could cause hard-to-debug random logouts.
   // We only call getUser() to refresh auth cookies if needed; gating of
-  // protected articles is handled client-side by <ArticlePaywallGate /> so
+  // protected buying guides (/guides/*) is handled client-side by <ArticlePaywallGate /> so
   // logged-out visitors can see a teaser + register CTA instead of being
   // bounced to /login.
   await supabase.auth.getUser()

@@ -8,6 +8,7 @@ import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
 import { Button } from '@/components/ui/button'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
+import PaywalledContent from '@/components/guides/PaywalledContent'
 
 const CONTENT = {
   cs: {
@@ -475,6 +476,7 @@ export default function OfferCompromessoRegistrationPage() {
               </div>
             </div>
 
+            <PaywalledContent>
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=80"
@@ -618,6 +620,7 @@ export default function OfferCompromessoRegistrationPage() {
                 </Button>
               </div>
             </Box>
+            </PaywalledContent>
           </div>
         </div>
         <section className="pb-12">

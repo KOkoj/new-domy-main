@@ -2,18 +2,16 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Download, FileText } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft, FileText } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import EmailGateModal from "@/components/EmailGateModal";
 import InformationalDisclaimer from "@/components/legal/InformationalDisclaimer";
 import PremiumPdfComingSoonTrigger from "@/components/PremiumPdfComingSoonTrigger";
 import Footer from "@/components/Footer";
-
-const PDF_URL = "/pdfs/visite%20nuovo%20sito.pdf";
+import PaywalledContent from "@/components/guides/PaywalledContent";
 
 export default function InspectionsFreePdfLandingPage() {
   const [language, setLanguage] = useState("cs");
-  const [downloaded, setDownloaded] = useState(false);
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem("preferred-language");
@@ -30,8 +28,6 @@ export default function InspectionsFreePdfLandingPage() {
         title: "Guida PDF gratuita: visite immobiliari in Italia",
         intro:
           "Una sintesi pratica per preparare le visite, fare le domande giuste e ridurre errori prima di fare offerte. Dentro trovi una traccia semplice da usare durante la visita, per non perdere dettagli importanti.",
-        primaryCta: "Scarica PDF gratuito",
-        downloadedNote: "Download avviato. Controlla anche la cartella download del telefono.",
         softTitle: "Per continuare:",
         premiumDescription:
           "Se vuoi approfondire il tema, puoi proseguire con le guide gratuite oppure contattarci per capire quali verifiche hanno più senso nel tuo caso.",
@@ -47,8 +43,6 @@ export default function InspectionsFreePdfLandingPage() {
         title: "Free PDF guide: property inspections in Italy",
         intro:
           "A practical summary to prepare your visits, ask the right questions, and reduce mistakes before making offers. Inside, you get a simple checklist you can use during the visit.",
-        primaryCta: "Download free PDF",
-        downloadedNote: "Download started. Check your phone downloads folder as well.",
         softTitle: "To continue:",
         premiumDescription:
           "If you want to go deeper, continue with the free guides or contact us to understand which checks matter most in your case.",
@@ -63,8 +57,6 @@ export default function InspectionsFreePdfLandingPage() {
       title: "Bezplatný PDF průvodce: prohlídky nemovitostí v Itálii",
       intro:
         "Praktické shrnutí pro přípravu prohlídek, správné otázky a menší riziko chyb před podáním nabídky. Uvnitř najdete jednoduchý checklist, který můžete použít přímo při návštěvě.",
-      primaryCta: "Stáhnout bezplatné PDF",
-      downloadedNote: "Stahování bylo spuštěno. Zkontrolujte i složku stažených souborů v telefonu.",
       softTitle: "Pokud chcete jít více do hloubky:",
       premiumDescription:
         "Pokud chcete cílenější a praktičtější podklady před finálním rozhodnutím, připravili jsme i konkrétnější prémiová PDF, která pomáhají odstranit klíčové nejasnosti kolem rizik, nákladů a postupu.",
@@ -73,25 +65,6 @@ export default function InspectionsFreePdfLandingPage() {
       backToProcess: "Přejít na celý proces",
     };
   }, [language]);
-
-  const handleDownload = () => {
-    if (typeof window !== "undefined") {
-      window.open(PDF_URL, "_blank", "noopener,noreferrer");
-    }
-
-    setDownloaded(true);
-
-    fetch("/api/free-pdf/upsell", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        pdfKey: "inspections-guide",
-        language,
-        sourcePath: "/guides/inspections/free-pdf",
-      }),
-      keepalive: true,
-    }).catch(() => {});
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 px-6 py-16 md:py-24">
@@ -119,17 +92,8 @@ export default function InspectionsFreePdfLandingPage() {
           <CardContent className="space-y-5 sm:space-y-6">
             <p className="text-gray-500 leading-relaxed text-sm sm:text-base" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.intro}</p>
 
-            <Button
-              onClick={handleDownload}
-              className="w-full sm:w-auto bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white"
-            >
-              <Download className="h-4 w-4 mr-2" />
-              {copy.primaryCta}
-            </Button>
-
-            {downloaded ? (
-              <p className="text-sm text-emerald-700">{copy.downloadedNote}</p>
-            ) : null}
+            <PaywalledContent className="space-y-5 sm:space-y-6">
+            <EmailGateModal source="pdf_inspections" assetKey="inspections" />
 
             <div className="pt-1">
               <p className="text-sm text-slate-600 mb-3">{copy.softTitle}</p>
@@ -160,6 +124,7 @@ export default function InspectionsFreePdfLandingPage() {
             </div>
 
             <InformationalDisclaimer language={language} variant="pdf" />
+            </PaywalledContent>
           </CardContent>
         </Card>
       </div>
