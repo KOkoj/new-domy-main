@@ -122,8 +122,8 @@ export default function AdminShell({ children, user, profile }) {
       <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
-        <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between h-16 px-6 border-b">
+        <div className="flex flex-col h-full overflow-hidden">
+          <div className="flex-shrink-0 flex items-center justify-between h-16 px-6 border-b">
             <Link href="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Home className="h-4 w-4 text-white" />
@@ -135,14 +135,14 @@ export default function AdminShell({ children, user, profile }) {
             </button>
           </div>
 
-          <div className="p-2 mx-4 mb-2 bg-green-50 border border-green-200 rounded">
+          <div className="flex-shrink-0 p-2 mx-4 mb-2 bg-green-50 border border-green-200 rounded">
             <div className="flex items-center space-x-1">
               <Shield className="h-3 w-3 text-green-700" />
               <span className="text-xs font-medium text-green-800">Admin access enforced</span>
             </div>
           </div>
 
-          <div className="px-4 py-2">
+          <div className="flex-shrink-0 px-4 py-2">
             <div className="flex items-center space-x-2 bg-gray-100 rounded-lg p-1">
               <button
                 onClick={() => switchLanguage('cs')}
@@ -163,7 +163,7 @@ export default function AdminShell({ children, user, profile }) {
             </div>
           </div>
 
-          <nav className="flex-1 px-4 py-4 space-y-2">
+          <nav className="flex-1 min-h-0 overflow-y-auto sidebar-scroll px-4 py-4 space-y-2">
             {adminMenuItems.map((item) => {
               const Icon = item.icon
               return (
@@ -183,7 +183,7 @@ export default function AdminShell({ children, user, profile }) {
             })}
           </nav>
 
-          <div className="p-4 border-t">
+          <div className="flex-shrink-0 p-4 border-t">
             <div className="flex items-center space-x-3 mb-3">
               <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                 <Users className="h-4 w-4 text-blue-600" />
