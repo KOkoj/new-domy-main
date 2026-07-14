@@ -58,23 +58,43 @@ export async function POST(request) {
 
   const user = await getAuthenticatedUser(supabase)
 
-  const { data, error } = await supabase
-    .from('inquiries')
-    .insert([
-      {
-        listingId: listingId || null,
-        name,
-        email,
-        message,
-        userId: user?.id || null,
-        phone: phone || null,
-        type,
-        inquiryType: inquiryType || null,
-        propertyTitle: propertyTitle || null,
-      },
-    ])
-    .select()
-    .single()
+  const insertPayload = {
+    listingId: listingId || null,
+    name,
+    email,
+    message,
+    userId: user?.id || null,
+    phone: phone || null,
+    type,
+    inquiryType: inquiryType || null,
+    propertyTitle: propertyTitle || null,
+  }
+
+  let { data, error } = await supabase.from('inquiries').insert([insertPayload]).select().single()
+
+  if (error) {
+    const isMissingMetadataColumn =
+      error.code === '42703' ||
+      error.code === 'PGRST204' ||
+      /column .*(inquiryType|propertyTitle).* does not exist/i.test(error.message || '')
+
+    if (isMissingMetadataColumn) {
+      // db/add-inquiry-metadata-columns.sql hasn't been run yet. Never lose the
+      // lead over a missing column: retry without the new fields.
+      console.warn(
+        '[INQUIRIES] inquiryType/propertyTitle columns missing (run db/add-inquiry-metadata-columns.sql). Retrying insert without them:',
+        error.message
+      )
+
+      const fallbackPayload = { ...insertPayload }
+      delete fallbackPayload.inquiryType
+      delete fallbackPayload.propertyTitle
+
+      const retry = await supabase.from('inquiries').insert([fallbackPayload]).select().single()
+      data = retry.data
+      error = retry.error
+    }
+  }
 
   if (error) {
     return applyCookies(NextResponse.json({ error: error.message }, { status: 500 }))
