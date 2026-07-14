@@ -91,7 +91,7 @@ export async function GET(request) {
     }
 
     const supabaseAdmin = getSupabaseAdminClient()
-    const bucket = process.env.PREMIUM_PDF_BUCKET || 'documents'
+    const bucket = process.env.PREMIUM_PDF_BUCKET || 'pdfs-private'
     const filePath = getStoragePathForProduct(productKey)
 
     if (!filePath) {

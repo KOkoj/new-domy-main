@@ -295,8 +295,8 @@ SANITY_API_TOKEN=your_sanity_token
 SENDGRID_API_KEY=SG.your_sendgrid_api_key
 SENDGRID_FROM_EMAIL=noreply@yourdomain.com
 
-# Private free-PDF lead magnets (Supabase Storage)
-FREE_PDF_BUCKET=documents
+# Private free-PDF lead magnets (Supabase Storage; bucket must be PRIVATE)
+FREE_PDF_BUCKET=pdfs-private
 FREE_PDF_PATH_INSPECTIONS=free/inspections-guide.pdf
 FREE_PDF_PATH_MISTAKES=free/nejcastejsi-chyby-pri-koupi-v-italii.pdf
 

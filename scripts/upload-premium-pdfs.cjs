@@ -26,7 +26,7 @@ async function main() {
 
   const supabaseUrl = env.NEXT_PUBLIC_SUPABASE_URL
   const serviceRoleKey = env.SUPABASE_SERVICE_ROLE_KEY
-  const bucket = env.PREMIUM_PDF_BUCKET || 'documents'
+  const bucket = env.PREMIUM_PDF_BUCKET || 'pdfs-private'
 
   if (!supabaseUrl) {
     throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL')

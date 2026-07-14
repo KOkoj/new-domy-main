@@ -15,7 +15,7 @@ Run this SQL in Supabase SQL Editor:
 
 ## 2. Upload private PDFs to Supabase Storage
 
-Use your `documents` bucket (or another private bucket) and upload:
+Use your `pdfs-private` bucket (or another private bucket) and upload:
 
 - `premium/premium-notary.pdf`
 - `premium/premium-domy.pdf`
@@ -47,7 +47,7 @@ Set these in `.env.local` (and in production env):
 - `STRIPE_WEBHOOK_SECRET`
 - `STRIPE_PRICE_PREMIUM_NOTARY`
 - `STRIPE_PRICE_PREMIUM_DOMY`
-- `PREMIUM_PDF_BUCKET` (default: `documents`)
+- `PREMIUM_PDF_BUCKET` (default: `pdfs-private`)
 - `PREMIUM_PDF_PATH_NOTARY`
 - `PREMIUM_PDF_PATH_DOMY`
 - `NEXT_PUBLIC_BASE_URL` (must match your app URL)
