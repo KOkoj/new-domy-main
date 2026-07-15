@@ -300,7 +300,7 @@ export default function ProfileManagement() {
                     type="tel"
                     value={profile.phone}
                     onChange={(e) => setProfile(prev => ({ ...prev, phone: e.target.value }))}
-                    placeholder="+1 (555) 000-0000"
+                    placeholder={t('forms.intake.phonePlaceholder', language)}
                   />
                 </div>
                 <div>

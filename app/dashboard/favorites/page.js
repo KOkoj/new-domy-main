@@ -199,7 +199,7 @@ export default function FavoritesManagement() {
       setFavorites(prev => prev.filter(fav => fav.id !== favoriteId))
     } catch (error) {
       console.error('Error removing favorite:', error)
-      alert('Failed to remove favorite')
+      alert(t('club.favoritesPage.removeError', language))
     }
   }
 

@@ -8,17 +8,33 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim())
 }
 
+const ALLOWED_INQUIRY_TYPES = new Set([
+  'General Inquiry',
+  'Property Viewing',
+  'Purchase Consultation',
+  'Legal Assistance',
+  'Property Management',
+  'Other'
+])
+
+function wasEmailDelivered(result) {
+  return result?.success === true && result.provider !== 'simulation'
+}
+
 async function logEmailAttempt(supabaseAdmin, { userId, emailType, recipientEmail, subject, result, metadata }) {
   if (!supabaseAdmin || !recipientEmail) return
 
   try {
+    const delivered = wasEmailDelivered(result)
     const { error } = await supabaseAdmin.from('email_logs').insert({
       user_id: userId || null,
       email_type: emailType,
       recipient_email: recipientEmail,
       subject,
-      status: result?.success ? 'sent' : 'failed',
-      error_message: result?.success ? null : result?.error || result?.message || 'Unknown email error',
+      status: delivered ? 'sent' : 'failed',
+      error_message: delivered
+        ? null
+        : result?.error || result?.message || 'Email provider did not accept delivery',
       metadata: metadata || null
     })
 
@@ -41,7 +57,13 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
   }
 
-  const body = await request.json()
+  let body
+  try {
+    body = await request.json()
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+  }
+
   const {
     listingId,
     name,
@@ -55,6 +77,17 @@ export async function POST(request) {
     preferredTime,
     timezone
   } = body
+
+  if (!String(name || '').trim() || !isValidEmail(email) || !String(message || '').trim()) {
+    return NextResponse.json(
+      { error: 'Name, a valid email address, and message are required' },
+      { status: 400 }
+    )
+  }
+
+  if (type === 'general' && !ALLOWED_INQUIRY_TYPES.has(inquiryType)) {
+    return NextResponse.json({ error: 'Invalid inquiry type' }, { status: 400 })
+  }
 
   const user = await getAuthenticatedUser(supabase)
 
@@ -100,9 +133,12 @@ export async function POST(request) {
     return applyCookies(NextResponse.json({ error: error.message }, { status: 500 }))
   }
 
-  // Never let a SendGrid hiccup lose a lead: the insert above already
-  // succeeded, so emails below are best-effort and always logged.
+  // Save the lead before attempting delivery, but only report full success
+  // when both required transactional emails are accepted by the provider.
   let supabaseAdmin = null
+  let adminNotificationResult = null
+  let confirmationResult = null
+
   try {
     const { getSupabaseAdminClient } = await import('@/lib/supabaseAdmin')
     supabaseAdmin = getSupabaseAdminClient()
@@ -113,7 +149,7 @@ export async function POST(request) {
   try {
     const { default: emailService } = await import('@/lib/emailService')
 
-    const adminNotificationResult = await emailService.sendAdminInquiryNotification({
+    adminNotificationResult = await emailService.sendAdminInquiryNotification({
       type,
       name,
       email,
@@ -152,7 +188,7 @@ export async function POST(request) {
     try {
       const { default: emailService } = await import('@/lib/emailService')
 
-      const confirmationResult = await emailService.sendInquiryConfirmation({
+      confirmationResult = await emailService.sendInquiryConfirmation({
         userEmail: email,
         userName: name,
         type,
@@ -176,7 +212,6 @@ export async function POST(request) {
         console.error('Failed to send inquiry confirmation email:', confirmationResult?.error)
       }
     } catch (emailError) {
-      // Don't fail the inquiry if the confirmation email fails.
       console.error('Failed to send inquiry confirmation email:', emailError)
       await logEmailAttempt(supabaseAdmin, {
         userId: user?.id || null,
@@ -187,7 +222,38 @@ export async function POST(request) {
         metadata: { inquiryId: data?.id, type, listingId: listingId || null }
       })
     }
+  } else {
+    confirmationResult = { success: false, error: 'Invalid recipient email' }
   }
 
-  return applyCookies(NextResponse.json({ success: true, data }))
+  const failedDeliveries = [
+    !wasEmailDelivered(adminNotificationResult) ? 'admin_notification' : null,
+    !wasEmailDelivered(confirmationResult) ? 'sender_confirmation' : null
+  ].filter(Boolean)
+
+  if (failedDeliveries.length > 0) {
+    return applyCookies(
+      NextResponse.json(
+        {
+          success: false,
+          inquirySaved: true,
+          inquiryId: data?.id,
+          error: 'Inquiry saved, but required email delivery failed',
+          failedDeliveries
+        },
+        { status: 502 }
+      )
+    )
+  }
+
+  return applyCookies(
+    NextResponse.json({
+      success: true,
+      data,
+      emailDelivery: {
+        adminNotification: adminNotificationResult.provider,
+        senderConfirmation: confirmationResult.provider
+      }
+    })
+  )
 }

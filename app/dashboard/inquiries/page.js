@@ -217,7 +217,7 @@ export default function InquiriesManagement() {
               <div className="relative">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                 <Input
-                  placeholder="Search inquiries by property or message..."
+                  placeholder={t('club.inquiriesPage.searchPlaceholder', language)}
                   className="pl-10"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -229,9 +229,9 @@ export default function InquiriesManagement() {
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
             >
-              <option value="all">All Status</option>
-              <option value="pending">Pending</option>
-              <option value="responded">Responded</option>
+              <option value="all">{t('club.inquiriesPage.allStatuses', language)}</option>
+              <option value="pending">{t('club.inquiriesPage.pending', language)}</option>
+              <option value="responded">{t('club.inquiriesPage.responded', language)}</option>
             </select>
           </div>
         </CardContent>

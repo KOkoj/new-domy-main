@@ -71,9 +71,9 @@ const TICKET_CATEGORIES = [
 ]
 
 const PRIORITY_LEVELS = [
-  { value: 'low', label: 'Low', color: 'text-green-400' },
-  { value: 'medium', label: 'Medium', color: 'text-yellow-400' },
-  { value: 'high', label: 'High', color: 'text-red-400' }
+  { value: 'low', color: 'text-green-400' },
+  { value: 'medium', color: 'text-yellow-400' },
+  { value: 'high', color: 'text-red-400' }
 ]
 
 // Light mode colors
@@ -90,6 +90,9 @@ export default function ConciergePage() {
   const [message, setMessage] = useState({ type: '', text: '' })
   const [tickets, setTickets] = useState([])
   const [language, setLanguage] = useState('en')
+  const categoryLabels = t('club.conciergePage.categories', language)
+  const priorityLabels = t('club.conciergePage.priorities', language)
+  const statusLabels = t('club.conciergePage.statuses', language)
 
   const [newTicket, setNewTicket] = useState({
     subject: '',
@@ -235,7 +238,7 @@ export default function ConciergePage() {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
       console.error('Error submitting ticket:', error)
-      setMessage({ type: 'error', text: 'Failed to submit request: ' + error.message })
+      setMessage({ type: 'error', text: t('club.conciergePage.errorSubmit', language) })
     } finally {
       setSubmitting(false)
     }
@@ -252,9 +255,10 @@ export default function ConciergePage() {
   }
 
   const formatDate = (dateString) => {
-    if (!dateString) return 'N/A'
+    if (!dateString) return '—'
     const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', { 
+    const locale = language === 'cs' ? 'cs-CZ' : language === 'it' ? 'it-IT' : 'en-US'
+    return date.toLocaleDateString(locale, {
       month: 'short', 
       day: 'numeric',
       year: 'numeric'
@@ -380,8 +384,8 @@ export default function ConciergePage() {
                       required
                     >
                       <option value="">{t('club.conciergePage.selectCategory', language)}</option>
-                      {TICKET_CATEGORIES.map((cat) => (
-                        <option key={cat} value={cat}>{cat}</option>
+                      {TICKET_CATEGORIES.map((cat, index) => (
+                        <option key={cat} value={cat}>{categoryLabels[index] || cat}</option>
                       ))}
                     </select>
                   </div>
@@ -394,9 +398,9 @@ export default function ConciergePage() {
                       onChange={(e) => setNewTicket(prev => ({ ...prev, priority: e.target.value }))}
                       className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                     >
-                      {PRIORITY_LEVELS.map((priority) => (
+                      {PRIORITY_LEVELS.map((priority, index) => (
                         <option key={priority.value} value={priority.value}>
-                          {priority.label}
+                          {priorityLabels[index] || priority.value}
                         </option>
                       ))}
                     </select>
@@ -468,14 +472,16 @@ export default function ConciergePage() {
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="text-lg font-semibold text-gray-900">{ticket.subject}</h3>
                         <Badge className={getStatusBadge(ticket.status)}>
-                          {ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1)}
+                          {ticket.status === 'in-progress'
+                            ? statusLabels.inProgress
+                            : statusLabels[ticket.status] || ticket.status}
                         </Badge>
                       </div>
                       
                       <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
                         <span className="flex items-center">
                           <User className="h-4 w-4 mr-1" />
-                          {ticket.category}
+                          {categoryLabels[TICKET_CATEGORIES.indexOf(ticket.category)] || ticket.category}
                         </span>
                         <span className="flex items-center">
                           <Clock className="h-4 w-4 mr-1" />
@@ -489,7 +495,7 @@ export default function ConciergePage() {
 
                       <div className="flex items-center gap-2">
                         <Badge variant="outline" className="border-copper-200 text-copper-600 text-xs">
-                          {t('club.conciergePage.priority', language)}: {ticket.priority}
+                          {t('club.conciergePage.priority', language)}: {priorityLabels[PRIORITY_LEVELS.findIndex((item) => item.value === ticket.priority)] || ticket.priority}
                         </Badge>
                         <span className="text-xs text-gray-400">
                           {t('club.conciergePage.lastUpdate', language)}: {formatDate(ticket.lastUpdate)}

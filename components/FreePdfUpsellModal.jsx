@@ -7,6 +7,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { getMarketingConsentUiCopy } from '@/lib/marketingConsent'
 import { supabase } from '@/lib/supabase'
+import { t } from '@/lib/translations'
 
 export default function FreePdfUpsellModal({
   open,
@@ -25,6 +26,7 @@ export default function FreePdfUpsellModal({
   const [comingSoonMessage, setComingSoonMessage] = useState('')
 
   const legalCopy = useMemo(() => getMarketingConsentUiCopy(language), [language])
+  const tr = (key) => t(`forms.premium.${key}`, language)
   useEffect(() => {
     if (!open) {
       setConsentChecked(false)
@@ -88,25 +90,19 @@ export default function FreePdfUpsellModal({
 
         const payload = await response.json().catch(() => ({}))
         if (!response.ok || payload?.success !== true) {
-          throw new Error(payload?.error || 'Unable to save consent')
+          throw new Error(tr('consentError'))
         }
 
         setHasMarketingConsent(true)
       } catch (error) {
-        setConsentError(error?.message || 'Errore salvataggio consenso')
+        setConsentError(error?.message || tr('consentError'))
         return
       } finally {
         setIsSavingConsent(false)
       }
     }
 
-    setComingSoonMessage(
-      language === 'cs'
-        ? 'Prémiové PDF budou dostupné brzy.'
-        : language === 'en'
-          ? 'Premium PDFs will be available soon.'
-          : 'Disponibile prossimamente.'
-    )
+    setComingSoonMessage(tr('comingSoon'))
   }
 
   return (
@@ -132,19 +128,11 @@ export default function FreePdfUpsellModal({
             <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-3 space-y-2">
               {isLoadingPrefs ? (
                 <p className="text-xs text-slate-600">
-                  {language === 'cs'
-                    ? 'Ověřujeme nastavení e-mailů...'
-                    : language === 'it'
-                      ? 'Verifica preferenze email in corso...'
-                      : 'Checking email preferences...'}
+                  {tr('checkingPreferences')}
                 </p>
               ) : hasMarketingConsent ? (
                 <p className="text-xs text-emerald-700">
-                  {language === 'cs'
-                    ? 'Marketingový souhlas už máte aktivní. Můžete ho kdykoli změnit v nastavení účtu.'
-                    : language === 'it'
-                      ? 'Il consenso marketing è già attivo. Puoi modificarlo in qualsiasi momento nelle preferenze account.'
-                      : 'Marketing consent is already active. You can change it anytime in your account preferences.'}
+                  {tr('consentActive')}
                 </p>
               ) : (
                 <>
@@ -196,7 +184,7 @@ export default function FreePdfUpsellModal({
               className="bg-slate-900 hover:bg-slate-800 text-white"
             >
               {isSavingConsent
-                ? (language === 'cs' ? 'Ukládám...' : language === 'it' ? 'Salvataggio...' : 'Saving...')
+                ? tr('saving')
                 : copy.cta}
             </Button>
             <Button

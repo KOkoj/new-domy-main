@@ -21,6 +21,13 @@ import { supabase } from '../lib/supabase'
 import { t } from '../lib/translations'
 import { readLanguageFromBrowser, readCurrencyFromBrowser, persistLanguage, persistCurrency, DEFAULT_LANGUAGE, DEFAULT_CURRENCY, getInitialLanguage, getInitialCurrency } from '../lib/userPreferences'
 
+const WEBINAR_REGION_VALUES = [
+  'abruzzo', 'basilicata', 'calabria', 'campania', 'emilia-romagna',
+  'friuli-venezia-giulia', 'lazio', 'liguria', 'lombardia', 'marche',
+  'molise', 'piemonte', 'puglia', 'sardegna', 'sicilia', 'toscana',
+  'trentino-alto-adige', 'umbria', 'valle-daosta', 'veneto'
+]
+
 export default function HomePageClient({ initialProperties = [] }) {
   const SHOW_HOME_ARCHIVED_SECTIONS = false
   const properties = initialProperties
@@ -1994,160 +2001,49 @@ export default function HomePageClient({ initialProperties = [] }) {
             <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  {language === 'cs' ? 'Rezervujte si místo' :
-                   language === 'it' ? 'Riserva il Tuo Posto' :
-                   'Reserve Your Seat'}
+                  {t('forms.webinar.title', language)}
                 </h3>
                 <p className="text-gray-600">
-                  {language === 'cs' ? 'Nemůžete se zúčastnit? Získejte nahrávku přes Klub pro klienty.' :
-                   language === 'it' ? 'Non riesci a partecipare? Ricevi la registrazione tramite Klub pro klienty.' :
-                   'Can\'t make it? Get the recording via Klub pro klienty.'}
+                  {t('forms.webinar.subtitle', language)}
                 </p>
               </div>
 
               <form className="space-y-6">
                 <div>
                   <label className="block text-base font-medium text-gray-700 mb-2">
-                    {language === 'cs' ? 'Celé jméno' :
-                     language === 'it' ? 'Nome completo' :
-                     'Full Name'}
+                    {t('forms.webinar.fullName', language)}
                   </label>
                   <input 
                     type="text" 
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                    placeholder={language === 'cs' ? 'Vaše jméno' :
-                                 language === 'it' ? 'Il tuo nome' :
-                                 'Your name'}
+                    placeholder={t('forms.webinar.fullNamePlaceholder', language)}
                   />
                 </div>
 
                 <div>
                   <label className="block text-base font-medium text-gray-700 mb-2">
-                    {language === 'cs' ? 'Email' :
-                     language === 'it' ? 'Email' :
-                     'Email Address'}
+                    {t('forms.webinar.email', language)}
                   </label>
                   <input 
                     type="email" 
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
-                    placeholder={language === 'cs' ? 'vas-email@priklad.cz' :
-                                 language === 'it' ? 'la-tua-email@esempio.com' :
-                                 'your-email@example.com'}
+                    placeholder={t('forms.webinar.emailPlaceholder', language)}
                   />
                 </div>
 
                 <div>
                   <label className="block text-base font-medium text-gray-700 mb-2">
-                    {language === 'cs' ? 'Zájem o region' :
-                     language === 'it' ? 'Regione di interesse' :
-                     'Region of Interest'}
+                    {t('forms.webinar.region', language)}
                   </label>
                   <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent">
                     <option value="">
-                      {language === 'cs' ? 'Vyberte region' :
-                       language === 'it' ? 'Seleziona una regione' :
-                       'Select a region'}
+                      {t('forms.webinar.selectRegion', language)}
                     </option>
-                    <option value="abruzzo">
-                      {language === 'cs' ? 'Abruzzo' :
-                       language === 'it' ? 'Abruzzo' :
-                       'Abruzzo'}
-                    </option>
-                    <option value="basilicata">
-                      {language === 'cs' ? 'Basilicata' :
-                       language === 'it' ? 'Basilicata' :
-                       'Basilicata'}
-                    </option>
-                    <option value="calabria">
-                      {language === 'cs' ? 'Kalábrie' :
-                       language === 'it' ? 'Calabria' :
-                       'Calabria'}
-                    </option>
-                    <option value="campania">
-                      {language === 'cs' ? 'Kampánie' :
-                       language === 'it' ? 'Campania' :
-                       'Campania'}
-                    </option>
-                    <option value="emilia-romagna">
-                      {language === 'cs' ? 'Emilia-Romagna' :
-                       language === 'it' ? 'Emilia-Romagna' :
-                       'Emilia-Romagna'}
-                    </option>
-                    <option value="friuli-venezia-giulia">
-                      {language === 'cs' ? 'Friuli-Venezia Giulia' :
-                       language === 'it' ? 'Friuli-Venezia Giulia' :
-                       'Friuli-Venezia Giulia'}
-                    </option>
-                    <option value="lazio">
-                      {language === 'cs' ? 'Lazio' :
-                       language === 'it' ? 'Lazio' :
-                       'Lazio'}
-                    </option>
-                    <option value="liguria">
-                      {language === 'cs' ? 'Ligurie' :
-                       language === 'it' ? 'Liguria' :
-                       'Liguria'}
-                    </option>
-                    <option value="lombardia">
-                      {language === 'cs' ? 'Lombardie' :
-                       language === 'it' ? 'Lombardia' :
-                       'Lombardy'}
-                    </option>
-                    <option value="marche">
-                      {language === 'cs' ? 'Marche' :
-                       language === 'it' ? 'Marche' :
-                       'Marche'}
-                    </option>
-                    <option value="molise">
-                      {language === 'cs' ? 'Molise' :
-                       language === 'it' ? 'Molise' :
-                       'Molise'}
-                    </option>
-                    <option value="piemonte">
-                      {language === 'cs' ? 'Piemont' :
-                       language === 'it' ? 'Piemonte' :
-                       'Piedmont'}
-                    </option>
-                    <option value="puglia">
-                      {language === 'cs' ? 'Puglie' :
-                       language === 'it' ? 'Puglia' :
-                       'Puglia'}
-                    </option>
-                    <option value="sardegna">
-                      {language === 'cs' ? 'Sardinie' :
-                       language === 'it' ? 'Sardegna' :
-                       'Sardinia'}
-                    </option>
-                    <option value="sicilia">
-                      {language === 'cs' ? 'Sicílie' :
-                       language === 'it' ? 'Sicilia' :
-                       'Sicily'}
-                    </option>
-                    <option value="toscana">
-                      {language === 'cs' ? 'Toskánsko' :
-                       language === 'it' ? 'Toscana' :
-                       'Tuscany'}
-                    </option>
-                    <option value="trentino-alto-adige">
-                      {language === 'cs' ? 'Trentino-Alto Adige' :
-                       language === 'it' ? 'Trentino-Alto Adige' :
-                       'Trentino-Alto Adige'}
-                    </option>
-                    <option value="umbria">
-                      {language === 'cs' ? 'Umbrie' :
-                       language === 'it' ? 'Umbria' :
-                       'Umbria'}
-                    </option>
-                    <option value="valle-daosta">
-                      {language === 'cs' ? 'Valle d\'Aosta' :
-                       language === 'it' ? 'Valle d\'Aosta' :
-                       'Valle d\'Aosta'}
-                    </option>
-                    <option value="veneto">
-                      {language === 'cs' ? 'Benátsko' :
-                       language === 'it' ? 'Veneto' :
-                       'Veneto'}
-                    </option>
+                    {WEBINAR_REGION_VALUES.map((value, index) => (
+                      <option key={value} value={value}>
+                        {t('forms.webinar.regions', language)[index] || value}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -2155,15 +2051,11 @@ export default function HomePageClient({ initialProperties = [] }) {
                   type="submit"
                   className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-4 px-6 rounded-lg text-lg transition-all duration-200 hover:shadow-lg shadow-lg"
                 >
-                  {language === 'cs' ? 'Rezervovat místo' :
-                   language === 'it' ? 'Riserva il Posto' :
-                   'Reserve a Seat'}
+                  {t('forms.webinar.submit', language)}
                 </button>
 
                 <p className="text-xs text-gray-500 text-center">
-                  {language === 'cs' ? 'Registrací souhlasíte s přijímáním e-mailových aktualizací.' :
-                   language === 'it' ? 'Iscrivendoti, accetti di ricevere aggiornamenti via email.' :
-                   'By signing up, you agree to receive email updates.'}
+                  {t('forms.webinar.consent', language)}
                 </p>
 
                 <FormPrivacyNotice language={language} purpose="webinar" className="text-left" />
@@ -2655,8 +2547,8 @@ export default function HomePageClient({ initialProperties = [] }) {
         onAuthSuccess={handleAuthSuccess}
         defaultTab={authModalTab}
         language={language}
-        title={language === 'cs' ? 'Přihlášení vyžadováno' : language === 'it' ? 'Accesso richiesto' : 'Login required'}
-        message={language === 'cs' ? 'Pro uložení nemovitostí do oblíbených se prosím přihlaste nebo si vytvořte bezplatný účet.' : language === 'it' ? 'Per salvare una proprietà nei preferiti devi accedere o creare un account gratuito.' : 'To save a property to your favorites, please log in or create a free account.'}
+        title={t('auth.loginRequired', language)}
+        message={t('auth.favoriteLoginMessage', language)}
       />
     </div>
   )

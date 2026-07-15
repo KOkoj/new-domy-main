@@ -108,7 +108,7 @@ export default function SavedSearchesManagement() {
   const saveSearch = async () => {
     if (!supabase) return
     if (!editingSearch.name.trim()) {
-      alert('Please enter a name for your search')
+      alert(t('club.searchesPage.nameRequired', language))
       return
     }
 
@@ -151,13 +151,13 @@ export default function SavedSearchesManagement() {
       setEditingSearch(null)
     } catch (error) {
       console.error('Error saving search:', error)
-      alert('Failed to save search')
+      alert(t('club.searchesPage.saveError', language))
     }
   }
 
   const deleteSearch = async (searchId) => {
     if (!supabase) return
-    if (!confirm('Are you sure you want to delete this saved search?')) return
+    if (!confirm(t('club.searchesPage.deleteConfirm', language))) return
 
     try {
       const { error } = await supabase
@@ -171,7 +171,7 @@ export default function SavedSearchesManagement() {
       setSavedSearches(prev => prev.filter(s => s.id !== searchId))
     } catch (error) {
       console.error('Error deleting search:', error)
-      alert('Failed to delete search')
+      alert(t('club.searchesPage.deleteError', language))
     }
   }
 
@@ -191,7 +191,7 @@ export default function SavedSearchesManagement() {
       ))
     } catch (error) {
       console.error('Error toggling notifications:', error)
-      alert('Failed to update notifications')
+      alert(t('club.searchesPage.notificationsError', language))
     }
   }
 
@@ -342,15 +342,17 @@ export default function SavedSearchesManagement() {
         <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>
-              {editingSearch?.id === 'new' ? 'Create New Search' : 'Edit Saved Search'}
+              {editingSearch?.id === 'new'
+                ? t('club.searchesPage.createTitle', language)
+                : t('club.searchesPage.editTitle', language)}
             </DialogTitle>
           </DialogHeader>
           {editingSearch && (
             <div className="space-y-4">
               <div>
-                <label className="text-sm font-medium mb-1 block">Search Name</label>
+                <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.nameLabel', language)}</label>
                 <Input
-                  placeholder="e.g., Lake Como Villas Under 2M"
+                  placeholder={t('club.searchesPage.namePlaceholder', language)}
                   value={editingSearch.name}
                   onChange={(e) => setEditingSearch(prev => ({ ...prev, name: e.target.value }))}
                 />
@@ -358,7 +360,7 @@ export default function SavedSearchesManagement() {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Property Type</label>
+                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.propertyType', language)}</label>
                   <select
                     className="w-full px-3 py-2 border border-gray-300 rounded-md"
                     value={editingSearch.filters.type || ''}
@@ -367,17 +369,17 @@ export default function SavedSearchesManagement() {
                       filters: { ...prev.filters, type: e.target.value }
                     }))}
                   >
-                    <option value="">Any Type</option>
-                    <option value="villa">Villa</option>
-                    <option value="house">House</option>
-                    <option value="apartment">Apartment</option>
-                    <option value="commercial">Commercial</option>
+                    <option value="">{t('club.searchesPage.anyType', language)}</option>
+                    <option value="villa">{t('club.searchesPage.villa', language)}</option>
+                    <option value="house">{t('club.searchesPage.house', language)}</option>
+                    <option value="apartment">{t('club.searchesPage.apartment', language)}</option>
+                    <option value="commercial">{t('club.searchesPage.commercial', language)}</option>
                   </select>
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Location</label>
+                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.location', language)}</label>
                   <Input
-                    placeholder="City or region"
+                    placeholder={t('club.searchesPage.locationPlaceholder', language)}
                     value={editingSearch.filters.location || ''}
                     onChange={(e) => setEditingSearch(prev => ({
                       ...prev,
@@ -389,7 +391,7 @@ export default function SavedSearchesManagement() {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Min Price (EUR)</label>
+                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.minPrice', language)}</label>
                   <Input
                     type="number"
                     placeholder="0"
@@ -401,10 +403,10 @@ export default function SavedSearchesManagement() {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Max Price (EUR)</label>
+                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.maxPrice', language)}</label>
                   <Input
                     type="number"
-                    placeholder="No limit"
+                    placeholder={t('club.searchesPage.noLimit', language)}
                     value={editingSearch.filters.maxPrice || ''}
                     onChange={(e) => setEditingSearch(prev => ({
                       ...prev,
@@ -416,7 +418,7 @@ export default function SavedSearchesManagement() {
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Min Bedrooms</label>
+                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.minBedrooms', language)}</label>
                   <select
                     className="w-full px-3 py-2 border border-gray-300 rounded-md"
                     value={editingSearch.filters.bedrooms || ''}
@@ -425,7 +427,7 @@ export default function SavedSearchesManagement() {
                       filters: { ...prev.filters, bedrooms: e.target.value }
                     }))}
                   >
-                    <option value="">Any</option>
+                    <option value="">{t('club.searchesPage.any', language)}</option>
                     <option value="1">1+</option>
                     <option value="2">2+</option>
                     <option value="3">3+</option>
@@ -434,7 +436,7 @@ export default function SavedSearchesManagement() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-1 block">Min Bathrooms</label>
+                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.minBathrooms', language)}</label>
                   <select
                     className="w-full px-3 py-2 border border-gray-300 rounded-md"
                     value={editingSearch.filters.bathrooms || ''}
@@ -443,7 +445,7 @@ export default function SavedSearchesManagement() {
                       filters: { ...prev.filters, bathrooms: e.target.value }
                     }))}
                   >
-                    <option value="">Any</option>
+                    <option value="">{t('club.searchesPage.any', language)}</option>
                     <option value="1">1+</option>
                     <option value="2">2+</option>
                     <option value="3">3+</option>
@@ -460,17 +462,19 @@ export default function SavedSearchesManagement() {
                   onChange={(e) => setEditingSearch(prev => ({ ...prev, notifications: e.target.checked }))}
                 />
                 <label htmlFor="notifications" className="text-sm font-medium">
-                  Send me email alerts when new properties match this search
+                  {t('club.searchesPage.alertsLabel', language)}
                 </label>
               </div>
               
               <div className="flex justify-end space-x-2 pt-4">
                 <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                  Cancel
+                  {t('club.searchesPage.cancel', language)}
                 </Button>
                 <Button onClick={saveSearch}>
                   <Save className="h-4 w-4 mr-2" />
-                  {editingSearch.id === 'new' ? 'Create Search' : 'Update Search'}
+                  {editingSearch.id === 'new'
+                    ? t('club.searchesPage.create', language)
+                    : t('club.searchesPage.update', language)}
                 </Button>
               </div>
             </div>

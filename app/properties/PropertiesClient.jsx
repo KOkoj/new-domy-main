@@ -23,6 +23,7 @@ import Footer from '../../components/Footer';
 import RegionBanner from '../../components/RegionBanner';
 import Navigation from '@/components/Navigation';
 import { resolvePropertyType, getLocalizedValue } from '@/lib/propertyDisplay';
+import { t } from '@/lib/translations';
 import {
   REGION_LABEL_BY_SLUG,
   toRegionSlug,
@@ -936,8 +937,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
         language={language}
-        title={language === 'cs' ? 'Přihlášení vyžadováno' : language === 'it' ? 'Accesso richiesto' : 'Login required'}
-        message={language === 'cs' ? 'Pro uložení nemovitosti do oblíbených se prosím přihlaste nebo si vytvořte bezplatný účet.' : language === 'it' ? 'Per salvare una proprietà nei preferiti devi accedere o creare un account gratuito.' : 'To save a property to your favorites, please log in or create a free account.'}
+        title={t('auth.loginRequired', language)}
+        message={t('auth.favoriteLoginMessage', language)}
       />
     </div>
   )

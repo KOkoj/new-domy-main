@@ -169,6 +169,8 @@ export default function IntakeForm() {
   const [showExtendedForm, setShowExtendedForm] = useState(false)
   const [language, setLanguage] = useState('en')
   const extendedFormRef = useRef(null)
+  const intakeOptions = t('forms.intake.options', language)
+  const intakeText = (key) => t(`forms.intake.${key}`, language)
 
   const handleToggleExtendedForm = () => {
     const opening = !showExtendedForm
@@ -425,7 +427,7 @@ export default function IntakeForm() {
       console.error('Error saving form full details:', JSON.stringify(error, null, 2))
       setMessage({ 
         type: 'error', 
-        text: `Failed to save: ${error.message || error.code || 'Unknown error'}. Check console for details.` 
+        text: intakeText('saveError')
       })
     } finally {
       setSaving(false)
@@ -498,7 +500,7 @@ export default function IntakeForm() {
                 id="fullName"
                 value={formData.fullName}
                 onChange={(e) => handleChange('fullName', e.target.value)}
-                placeholder="Your full name"
+                placeholder={intakeText('fullNamePlaceholder')}
                 className="bg-white border-gray-200 text-gray-900"
                 data-testid="intake-form-fullname-input"
               />
@@ -510,7 +512,7 @@ export default function IntakeForm() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleChange('email', e.target.value)}
-                placeholder="your.email@example.com"
+                placeholder={intakeText('emailPlaceholder')}
                 className="bg-white border-gray-200 text-gray-900"
                 data-testid="intake-form-email-input"
               />
@@ -524,7 +526,7 @@ export default function IntakeForm() {
                 id="phone"
                 value={formData.phone}
                 onChange={(e) => handleChange('phone', e.target.value)}
-                placeholder="+1 (555) 000-0000"
+                placeholder={intakeText('phonePlaceholder')}
                 className="bg-white border-gray-200 text-gray-900"
                 data-testid="intake-form-phone-input"
               />
@@ -535,7 +537,7 @@ export default function IntakeForm() {
                 id="nationality"
                 value={formData.nationality}
                 onChange={(e) => handleChange('nationality', e.target.value)}
-                placeholder="Your nationality"
+                placeholder={intakeText('nationalityPlaceholder')}
                 className="bg-white border-gray-200 text-gray-900"
                 data-testid="intake-form-nationality-input"
               />
@@ -548,7 +550,7 @@ export default function IntakeForm() {
               id="currentLocation"
               value={formData.currentLocation}
               onChange={(e) => handleChange('currentLocation', e.target.value)}
-              placeholder="City, Country"
+              placeholder={intakeText('locationPlaceholder')}
               className="bg-white border-gray-200 text-gray-900"
               data-testid="intake-form-location-input"
             />
@@ -570,7 +572,7 @@ export default function IntakeForm() {
             <Label className="text-gray-700 text-base font-medium" data-testid="intake-form-property-types-label">{t('club.intakeFormPage.propertyTypes', language)} *</Label>
             <p className="text-sm text-gray-500 mb-3" data-testid="intake-form-property-types-description">{t('club.intakeFormPage.selectAll', language)}</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3" data-testid="intake-form-property-types-grid">
-              {PROPERTY_TYPES.map((type) => (
+              {PROPERTY_TYPES.map((type, index) => (
                 <button
                   key={type}
                   onClick={() => toggleArrayField('propertyTypes', type)}
@@ -581,7 +583,7 @@ export default function IntakeForm() {
                   }`}
                   data-testid={`intake-form-property-type-${type.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  {type}
+                  {intakeOptions.propertyTypes[index] || type}
                 </button>
               ))}
             </div>
@@ -625,8 +627,8 @@ export default function IntakeForm() {
               data-testid="intake-form-budget-select"
             >
               <option value="" data-testid="intake-form-budget-placeholder">{t('club.intakeFormPage.selectBudget', language)}</option>
-              {BUDGET_RANGES.map((range) => (
-                <option key={range} value={range} data-testid={`intake-form-budget-${range.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>{range}</option>
+              {BUDGET_RANGES.map((range, index) => (
+                <option key={range} value={range} data-testid={`intake-form-budget-${range.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>{intakeOptions.budgetRanges[index] || range}</option>
               ))}
             </select>
           </div>
@@ -737,8 +739,8 @@ export default function IntakeForm() {
                   className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                 >
                   <option value="">{t('club.intakeFormPage.selectDistance', language)}</option>
-                  {DISTANCE_FROM_SEA.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                  {DISTANCE_FROM_SEA.map((option, index) => (
+                    <option key={option} value={option}>{intakeOptions.seaDistances[index] || option}</option>
                   ))}
                 </select>
               </div>
@@ -753,8 +755,8 @@ export default function IntakeForm() {
                   className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                 >
                   <option value="">{t('club.intakeFormPage.selectAirportDistance', language)}</option>
-                  {DISTANCE_FROM_AIRPORT.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                  {DISTANCE_FROM_AIRPORT.map((option, index) => (
+                    <option key={option} value={option}>{intakeOptions.airportDistances[index] || option}</option>
                   ))}
                 </select>
               </div>
@@ -769,8 +771,8 @@ export default function IntakeForm() {
                   className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                 >
                   <option value="">{t('club.intakeFormPage.selectLocationType', language)}</option>
-                  {DISTANCE_FROM_CITY.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                  {DISTANCE_FROM_CITY.map((option, index) => (
+                    <option key={option} value={option}>{intakeOptions.cityDistances[index] || option}</option>
                   ))}
                 </select>
               </div>
@@ -779,7 +781,7 @@ export default function IntakeForm() {
               <div>
                 <Label className="text-gray-700 text-base font-medium">{t('club.intakeFormPage.importantProximity', language)}</Label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-2">
-                  {PROXIMITY_PREFERENCES.map((proximity) => (
+                  {PROXIMITY_PREFERENCES.map((proximity, index) => (
                     <button
                       key={proximity}
                       type="button"
@@ -790,7 +792,7 @@ export default function IntakeForm() {
                           : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                       }`}
                     >
-                      {proximity}
+                      {intakeOptions.proximity[index] || proximity}
                     </button>
                   ))}
                 </div>
@@ -817,8 +819,8 @@ export default function IntakeForm() {
                   className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                 >
                   <option value="">{t('club.intakeFormPage.selectAge', language)}</option>
-                  {PROPERTY_AGE_OPTIONS.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                  {PROPERTY_AGE_OPTIONS.map((option, index) => (
+                    <option key={option} value={option}>{intakeOptions.propertyAges[index] || option}</option>
                   ))}
                 </select>
               </div>
@@ -833,8 +835,8 @@ export default function IntakeForm() {
                   className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                 >
                   <option value="">{t('club.intakeFormPage.selectCondition', language)}</option>
-                  {PROPERTY_CONDITION_OPTIONS.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                  {PROPERTY_CONDITION_OPTIONS.map((option, index) => (
+                    <option key={option} value={option}>{intakeOptions.conditions[index] || option}</option>
                   ))}
                 </select>
               </div>
@@ -849,8 +851,8 @@ export default function IntakeForm() {
                   className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                 >
                   <option value="">{t('club.intakeFormPage.selectRenovation', language)}</option>
-                  {RENOVATION_WILLINGNESS.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                  {RENOVATION_WILLINGNESS.map((option, index) => (
+                    <option key={option} value={option}>{intakeOptions.renovations[index] || option}</option>
                   ))}
                 </select>
               </div>
@@ -865,8 +867,8 @@ export default function IntakeForm() {
                   className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                 >
                   <option value="">{t('club.intakeFormPage.selectLandSize', language)}</option>
-                  {LAND_SIZE_OPTIONS.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                  {LAND_SIZE_OPTIONS.map((option, index) => (
+                    <option key={option} value={option}>{intakeOptions.landSizes[index] || option}</option>
                   ))}
                 </select>
               </div>
@@ -881,8 +883,8 @@ export default function IntakeForm() {
                   className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                 >
                   <option value="">{t('club.intakeFormPage.selectClimate', language)}</option>
-                  {CLIMATE_PREFERENCES.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                  {CLIMATE_PREFERENCES.map((option, index) => (
+                    <option key={option} value={option}>{intakeOptions.climates[index] || option}</option>
                   ))}
                 </select>
               </div>
@@ -897,8 +899,8 @@ export default function IntakeForm() {
                   className="w-full mt-2 p-3 rounded-lg bg-white border border-gray-200 text-gray-900"
                 >
                   <option value="">{t('club.intakeFormPage.selectTourist', language)}</option>
-                  {TOURIST_AREA_PREFERENCES.map((option) => (
-                    <option key={option} value={option}>{option}</option>
+                  {TOURIST_AREA_PREFERENCES.map((option, index) => (
+                    <option key={option} value={option}>{intakeOptions.touristAreas[index] || option}</option>
                   ))}
                 </select>
               </div>
@@ -926,8 +928,8 @@ export default function IntakeForm() {
               data-testid="intake-form-timeline-select"
             >
               <option value="" data-testid="intake-form-timeline-placeholder">{t('club.intakeFormPage.selectTimeline', language)}</option>
-              {TIMELINE_OPTIONS.map((option) => (
-                <option key={option} value={option} data-testid={`intake-form-timeline-${option.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>{option}</option>
+              {TIMELINE_OPTIONS.map((option, index) => (
+                <option key={option} value={option} data-testid={`intake-form-timeline-${option.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>{intakeOptions.timelines[index] || option}</option>
               ))}
             </select>
           </div>
@@ -942,8 +944,8 @@ export default function IntakeForm() {
               data-testid="intake-form-purpose-select"
             >
               <option value="">{t('club.intakeFormPage.selectPurpose', language)}</option>
-              {PURCHASE_REASONS.map((reason) => (
-                <option key={reason} value={reason}>{reason}</option>
+              {PURCHASE_REASONS.map((reason, index) => (
+                <option key={reason} value={reason}>{intakeOptions.purchaseReasons[index] || reason}</option>
               ))}
             </select>
           </div>
@@ -958,8 +960,8 @@ export default function IntakeForm() {
               data-testid="intake-form-financing-select"
             >
               <option value="">{t('club.intakeFormPage.selectFinancing', language)}</option>
-              {FINANCING_OPTIONS.map((option) => (
-                <option key={option} value={option}>{option}</option>
+              {FINANCING_OPTIONS.map((option, index) => (
+                <option key={option} value={option}>{intakeOptions.financing[index] || option}</option>
               ))}
             </select>
           </div>
@@ -1011,8 +1013,8 @@ export default function IntakeForm() {
               data-testid="intake-form-referral-select"
             >
               <option value="">{t('club.intakeFormPage.selectOption', language)}</option>
-              {HOW_HEARD_OPTIONS.map((option) => (
-                <option key={option} value={option}>{option}</option>
+              {HOW_HEARD_OPTIONS.map((option, index) => (
+                <option key={option} value={option}>{intakeOptions.referralSources[index] || option}</option>
               ))}
             </select>
           </div>

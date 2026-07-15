@@ -109,7 +109,7 @@ export default function DocumentsPage() {
   const openDocument = async (doc) => {
     const url = await resolveDocumentUrl(doc)
     if (!url) {
-      alert('Document link is unavailable. Please contact support or re-upload the file.')
+      alert(t('club.documentsPage.unavailable', language))
       return
     }
 

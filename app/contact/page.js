@@ -11,6 +11,7 @@ import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
+import { t } from '@/lib/translations'
 
 const CONTACT_INFO = [
   {
@@ -80,37 +81,13 @@ const TEAM_CONTACTS = [
   }
 ]
 
-const INQUIRY_TYPES = [
-  {
-    en: 'General Inquiry',
-    cs: 'Obecný dotaz',
-    it: 'Richiesta generale'
-  },
-  {
-    en: 'Property Viewing',
-    cs: 'Prohlídka nemovitostí',
-    it: 'Visita immobiliare'
-  },
-  {
-    en: 'Purchase Consultation',
-    cs: 'Konzultace o koupi',
-    it: 'Consulenza acquisto'
-  },
-  {
-    en: 'Legal Assistance',
-    cs: 'Právní pomoc',
-    it: 'Assistenza legale'
-  },
-  {
-    en: 'Property Management',
-    cs: 'Správa nemovitostí',
-    it: 'Gestione immobiliare'
-  },
-  {
-    en: 'Other',
-    cs: 'Jiné',
-    it: 'Altro'
-  }
+const INQUIRY_TYPE_VALUES = [
+  'General Inquiry',
+  'Property Viewing',
+  'Purchase Consultation',
+  'Legal Assistance',
+  'Property Management',
+  'Other'
 ]
 
 export default function ContactPage() {
@@ -124,6 +101,8 @@ export default function ContactPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
+  const tr = (key) => t(`forms.contact.${key}`, language)
+  const inquiryTypeLabels = tr('inquiryTypes')
 
   useEffect(() => {
     // Load saved language preference
@@ -158,9 +137,10 @@ export default function ContactPage() {
           propertyTitle: 'General Contact Inquiry'
         })
       })
+      const result = await response.json().catch(() => null)
 
-      if (!response.ok) {
-        throw new Error('Failed to send message')
+      if (!response.ok || !result?.success) {
+        throw new Error(result?.error || 'Failed to send message')
       }
 
       setSubmitStatus('success')
@@ -319,11 +299,7 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl overflow-hidden">
                 <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
-                  <CardTitle className="text-xl md:text-2xl font-bold text-slate-800">
-                    {language === 'cs' ? 'Pošlete nám zprávu' :
-                     language === 'it' ? 'Inviaci un messaggio' :
-                     'Send Us a Message'}
-                  </CardTitle>
+                  <CardTitle className="text-xl md:text-2xl font-bold text-slate-800">{tr('formTitle')}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-6 md:p-8">
                   {/* Success Message */}
@@ -331,17 +307,15 @@ export default function ContactPage() {
                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
                       <div>
-                        <h4 className="font-semibold text-green-800">
-                          {language === 'cs' ? 'Zpráva odeslána!' :
-                           language === 'it' ? 'Messaggio inviato!' :
-                           'Message Sent!'}
-                        </h4>
-                        <p className="text-sm text-green-700">
-                          {language === 'cs' ? 'Děkujeme za vaši zprávu. Brzy vás budeme kontaktovat.' :
-                           language === 'it' ? 'Grazie per il messaggio. Ti contatteremo presto.' :
-                           'Thank you for your message. We\'ll contact you soon.'}
-                        </p>
+                        <h4 className="font-semibold text-green-800">{tr('sentTitle')}</h4>
+                        <p className="text-sm text-green-700">{tr('sentDescription')}</p>
                       </div>
+                    </div>
+                  )}
+
+                  {submitStatus === 'error' && (
+                    <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+                      {tr('error')}
                     </div>
                   )}
 
@@ -350,33 +324,25 @@ export default function ContactPage() {
                     {/* Name and Email Row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-slate-800">
-                          {language === 'cs' ? 'Jméno' :
-                           language === 'it' ? 'Nome' :
-                           'Name'} *
-                        </label>
+                        <label className="block text-sm font-semibold text-slate-800">{tr('name')} *</label>
                         <Input
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          placeholder={language === 'cs' ? 'Vaše jméno' : language === 'it' ? 'Il tuo nome' : 'Your name'}
+                          placeholder={tr('namePlaceholder')}
                           className="border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-slate-800">
-                          {language === 'cs' ? 'Email' :
-                           language === 'it' ? 'Email' :
-                           'Email'} *
-                        </label>
+                        <label className="block text-sm font-semibold text-slate-800">{tr('email')} *</label>
                         <Input
                           type="email"
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          placeholder={language === 'cs' ? 'vas@email.cz' : language === 'it' ? 'tuo@email.it' : 'your@email.com'}
+                          placeholder={tr('emailPlaceholder')}
                           className="border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
                         />
                       </div>
@@ -385,26 +351,18 @@ export default function ContactPage() {
                     {/* Phone and Inquiry Type Row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-slate-800">
-                          {language === 'cs' ? 'Telefon' :
-                           language === 'it' ? 'Telefono' :
-                           'Phone'}
-                        </label>
+                        <label className="block text-sm font-semibold text-slate-800">{tr('phone')}</label>
                         <Input
                           type="tel"
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          placeholder="+420 123 456 789"
+                          placeholder={tr('phonePlaceholder')}
                           className="border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-slate-800">
-                          {language === 'cs' ? 'Typ dotazu' :
-                           language === 'it' ? 'Tipo di richiesta' :
-                           'Inquiry Type'} *
-                        </label>
+                        <label className="block text-sm font-semibold text-slate-800">{tr('inquiryType')} *</label>
                         <select
                           name="inquiryType"
                           value={formData.inquiryType}
@@ -413,11 +371,11 @@ export default function ContactPage() {
                           className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
                         >
                           <option value="">
-                            {language === 'cs' ? 'Vyberte typ' : language === 'it' ? 'Seleziona tipo' : 'Select type'}
+                            {tr('selectType')}
                           </option>
-                          {INQUIRY_TYPES.map((type, index) => (
-                            <option key={index} value={type.en}>
-                              {type[language]}
+                          {INQUIRY_TYPE_VALUES.map((value, index) => (
+                            <option key={value} value={value}>
+                              {inquiryTypeLabels[index] || value}
                             </option>
                           ))}
                         </select>
@@ -426,18 +384,14 @@ export default function ContactPage() {
 
                     {/* Message Field */}
                     <div className="space-y-2">
-                      <label className="block text-sm font-semibold text-slate-800">
-                        {language === 'cs' ? 'Zpráva' :
-                         language === 'it' ? 'Messaggio' :
-                         'Message'} *
-                      </label>
+                      <label className="block text-sm font-semibold text-slate-800">{tr('message')} *</label>
                       <Textarea
                         name="message"
                         value={formData.message}
                         onChange={handleInputChange}
                         required
                         rows={6}
-                        placeholder={language === 'cs' ? 'Napište nám svou zprávu...' : language === 'it' ? 'Scrivi il tuo messaggio...' : 'Write your message...'}
+                        placeholder={tr('messagePlaceholder')}
                         className="border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 resize-none"
                       />
                     </div>
@@ -453,12 +407,12 @@ export default function ContactPage() {
                     >
                       {isSubmitting ? (
                         <span className="animate-pulse">
-                          {language === 'cs' ? 'Odesílání...' : language === 'it' ? 'Invio...' : 'Sending...'}
+                          {tr('sending')}
                         </span>
                       ) : (
                         <>
                           <Send className="h-5 w-5 mr-2" />
-                          {language === 'cs' ? 'Odeslat zprávu' : language === 'it' ? 'Invia messaggio' : 'Send Message'}
+                          {tr('send')}
                         </>
                       )}
                     </Button>

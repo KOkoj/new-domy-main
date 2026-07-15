@@ -23,6 +23,7 @@ import Footer from '@/components/Footer'
 import NewPropertyRibbon, { getNewPropertyLabel } from '@/components/NewPropertyRibbon'
 import NoAgencyBadge, { getNoAgencyLabel } from '@/components/NoAgencyBadge'
 import { buildGalleryMedia, transformPropertyForClient } from '@/lib/propertyTransform'
+import { t } from '@/lib/translations'
 
 function getPropertyStatusLabel(status, language) {
   if (status === 'sold') {
@@ -158,7 +159,7 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
 
     return (
       <div
-        className={`relative overflow-hidden cursor-zoom-in group ${options.className || ''}`}
+        className={`relative h-full w-full overflow-hidden cursor-zoom-in group ${options.className || ''}`}
         onClick={() => openLightbox(index)}
       >
         <PropertyImage
@@ -428,19 +429,27 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
 }
 
 function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
-  const getDefaultMessage = (lang, title) => {
-    if (lang === 'cs') return `Dobrý den, mám zájem o ${title}. Můžete mi prosím poskytnout více informací?`
-    if (lang === 'it') return `Salve, sono interessato a ${title}. Potrebbe fornirmi maggiori informazioni?`
-    return `Hi, I'm interested in ${title}. Could you please provide more information?`
-  }
+  const tr = (key) => t(`forms.propertyInquiry.${key}`, language)
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: getDefaultMessage(language, propertyTitle)
+    message: t('forms.propertyInquiry.defaultMessage', language)
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+
+  useEffect(() => {
+    const translatedDefaults = ['cs', 'en', 'it'].map((lang) =>
+      t('forms.propertyInquiry.defaultMessage', lang)
+    )
+    setFormData((prev) => ({
+      ...prev,
+      message: !prev.message || translatedDefaults.includes(prev.message)
+        ? tr('defaultMessage')
+        : prev.message
+    }))
+  }, [language])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -456,18 +465,16 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
           ...formData
         })
       })
+      const result = await response.json().catch(() => null)
 
-      if (response.ok) {
+      if (response.ok && result?.success) {
         setSubmitted(true)
       } else {
-        throw new Error('Failed to submit inquiry')
+        throw new Error(result?.error || 'Failed to submit inquiry')
       }
     } catch (error) {
       console.error('Error submitting inquiry:', error)
-      const errorMsg = language === 'cs' ? 'Nepodařilo se odeslat dotaz. Zkuste to prosím znovu.' :
-                       language === 'it' ? 'Impossibile inviare la richiesta. Per favore riprova.' :
-                       'Failed to submit inquiry. Please try again.'
-      alert(errorMsg)
+      alert(tr('error'))
     } finally {
       setIsSubmitting(false)
     }
@@ -482,14 +489,8 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
           </div>
-          <h3 className="text-lg font-semibold mb-2">
-            {language === 'cs' ? 'Dotaz odeslán!' : language === 'it' ? 'Richiesta Inviata!' : 'Inquiry Sent!'}
-          </h3>
-          <p className="text-gray-600">
-            {language === 'cs' ? 'Děkujeme za váš zájem. Brzy se vám ozveme.' :
-             language === 'it' ? 'Grazie per il vostro interesse. Vi risponderemo presto.' :
-             'Thank you for your interest. We\'ll get back to you soon.'}
-          </p>
+          <h3 className="text-lg font-semibold mb-2">{tr('sentTitle')}</h3>
+          <p className="text-gray-600">{tr('sentDescription')}</p>
         </CardContent>
       </Card>
     )
@@ -498,50 +499,41 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>
-          {language === 'cs' ? 'Kontaktovat nás' : language === 'it' ? 'Contatta Agente' : 'Contact Agent'}
-        </CardTitle>
+        <CardTitle>{tr('title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="text-sm font-medium mb-1 block">
-              {language === 'cs' ? 'Jméno' : language === 'it' ? 'Nome' : 'Name'}
-            </label>
+            <label className="text-sm font-medium mb-1 block">{tr('name')}</label>
             <Input
               required
               value={formData.name}
               onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-              placeholder={language === 'cs' ? 'Vaše celé jméno' : language === 'it' ? 'Il tuo nome completo' : 'Your full name'}
+              placeholder={tr('namePlaceholder')}
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-1 block">Email</label>
+            <label className="text-sm font-medium mb-1 block">{tr('email')}</label>
             <Input
               type="email"
               required
               value={formData.email}
               onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-              placeholder="your.email@example.com"
+              placeholder={tr('emailPlaceholder')}
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-1 block">
-              {language === 'cs' ? 'Zpráva' : language === 'it' ? 'Messaggio' : 'Message'}
-            </label>
+            <label className="text-sm font-medium mb-1 block">{tr('message')}</label>
             <Textarea
               required
               value={formData.message}
               onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-              placeholder={language === 'cs' ? 'Vaše zpráva...' : language === 'it' ? 'Il tuo messaggio...' : 'Your message...'}
+              placeholder={tr('messagePlaceholder')}
               rows={4}
             />
           </div>
           <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting 
-              ? (language === 'cs' ? 'Odesílání...' : language === 'it' ? 'Invio...' : 'Sending...')
-              : (language === 'cs' ? 'Odeslat dotaz' : language === 'it' ? 'Invia Richiesta' : 'Send Inquiry')
-            }
+            {isSubmitting ? tr('sending') : tr('send')}
           </Button>
           <FormPrivacyNotice language={language} purpose="property" />
         </form>
@@ -1319,8 +1311,8 @@ export default function PropertyDetailClient({ initialProperty = null }) {
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
         language={language}
-        title={language === 'cs' ? 'Přihlášení vyžadováno' : language === 'it' ? 'Accesso richiesto' : 'Login required'}
-        message={language === 'cs' ? 'Pro uložení nemovitosti do oblíbených se prosím přihlaste nebo si vytvořte bezplatný účet.' : language === 'it' ? 'Per salvare una proprietà nei preferiti devi accedere o creare un account gratuito.' : 'To save a property to your favorites, please log in or create a free account.'}
+        title={t('auth.loginRequired', language)}
+        message={t('auth.favoriteLoginMessage', language)}
       />
     </div>
   )

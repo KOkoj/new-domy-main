@@ -240,10 +240,10 @@ export default function WebinarsPage() {
       setRegistrations(prev => [...prev, webinarId])
       
       // TODO: Send confirmation email
-      alert('Successfully registered! You will receive a confirmation email with the webinar link.')
+      alert(t('club.webinarsPage.registerSuccess', language))
     } catch (error) {
       console.error('Error registering for webinar:', error)
-      alert('Failed to register. Please try again.')
+      alert(t('club.webinarsPage.registerError', language))
     }
   }
 
@@ -251,10 +251,10 @@ export default function WebinarsPage() {
     try {
       // TODO: Remove registration from database
       setRegistrations(prev => prev.filter(id => id !== webinarId))
-      alert('Registration cancelled successfully.')
+      alert(t('club.webinarsPage.unregisterSuccess', language))
     } catch (error) {
       console.error('Error cancelling registration:', error)
-      alert('Failed to cancel registration. Please try again.')
+      alert(t('club.webinarsPage.unregisterError', language))
     }
   }
 
@@ -264,7 +264,8 @@ export default function WebinarsPage() {
       const date = new Date(dateString)
       // Check for Invalid Date
       if (isNaN(date.getTime())) return ''
-      return date.toLocaleDateString('en-US', { 
+      const locale = language === 'cs' ? 'cs-CZ' : language === 'it' ? 'it-IT' : 'en-US'
+      return date.toLocaleDateString(locale, {
         weekday: 'long',
         month: 'long', 
         day: 'numeric',
@@ -346,7 +347,7 @@ END:VCALENDAR`
                     <div className="flex-shrink-0" data-testid={`webinar-upcoming-${webinar.id}-date-container`}>
                       <div className="w-24 h-24 bg-gradient-to-br from-copper-500 to-copper-700 rounded-lg flex flex-col items-center justify-center text-white" data-testid={`webinar-upcoming-${webinar.id}-date-badge`}>
                         <div className="text-xs font-semibold uppercase" data-testid={`webinar-upcoming-${webinar.id}-date-month`}>
-                          {new Date(webinar.date).toLocaleDateString('en-US', { month: 'short' })}
+                          {new Date(webinar.date).toLocaleDateString(language === 'cs' ? 'cs-CZ' : language === 'it' ? 'it-IT' : 'en-US', { month: 'short' })}
                         </div>
                         <div className="text-3xl font-bold" data-testid={`webinar-upcoming-${webinar.id}-date-day`}>
                           {new Date(webinar.date).getDate()}
@@ -493,7 +494,7 @@ END:VCALENDAR`
                       </span>
                       <span className="flex items-center" data-testid={`webinar-past-${webinar.id}-views-info`}>
                         <Users className="h-4 w-4 mr-1" data-testid={`webinar-past-${webinar.id}-views-icon`} />
-                        {webinar.views || 0} views
+                        {webinar.views || 0} {t('club.webinarsPage.views', language)}
                       </span>
                     </div>
 

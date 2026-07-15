@@ -18,6 +18,7 @@ import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import { PREMIUM_PDFS_ENABLED } from '@/lib/featureFlags'
 import PremiumPdfComingSoonTrigger from '@/components/PremiumPdfComingSoonTrigger'
+import { t as translate } from '@/lib/translations'
 
 const PRICE_BY_PRODUCT = {
   'premium-domy': { original: 250, discounted: 85 },
@@ -312,7 +313,7 @@ export default function PremiumLandingPage() {
 
       window.location.assign(payload.url)
     } catch (error) {
-      alert(error?.message || 'Checkout error')
+      alert(translate('forms.premium.checkoutError', language))
     } finally {
       setIsLoadingCheckout(false)
     }

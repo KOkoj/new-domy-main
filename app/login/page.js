@@ -12,6 +12,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Mail, Lock, User, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
+import { t } from '@/lib/translations'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -19,12 +20,14 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [activeTab, setActiveTab] = useState('login')
+  const [language, setLanguage] = useState('en')
   const router = useRouter()
   const searchParams = useSearchParams()
   const tabParam = searchParams.get('tab')
   const redirectParam = searchParams.get('redirect')
   const errorParam = searchParams.get('error')
   const redirectPath = redirectParam && redirectParam.startsWith('/') ? redirectParam : '/dashboard'
+  const tr = (key) => t(`auth.${key}`, language)
 
   const [loginForm, setLoginForm] = useState({
     email: '',
@@ -49,7 +52,7 @@ export default function LoginPage() {
     if (!response.ok) {
       return {
         ok: false,
-        error: payload?.error || 'Server login failed'
+        error: payload?.error || tr('serverLoginFailed')
       }
     }
 
@@ -67,7 +70,7 @@ export default function LoginPage() {
     if (!response.ok) {
       return {
         ok: false,
-        error: payload?.error || 'Server signup failed'
+        error: payload?.error || tr('serverSignupFailed')
       }
     }
 
@@ -76,6 +79,15 @@ export default function LoginPage() {
       hasSession: Boolean(payload?.hasSession)
     }
   }
+
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('preferred-language')
+    if (savedLanguage) setLanguage(savedLanguage)
+
+    const handleLanguageChange = (event) => setLanguage(event.detail)
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
+  }, [])
 
   useEffect(() => {
     if (tabParam === 'signup' || tabParam === 'login') {
@@ -87,12 +99,12 @@ export default function LoginPage() {
     if (!errorParam) return
 
     const callbackErrors = {
-      'auth-not-configured': 'Authentication is not configured on the server.',
-      'auth-callback-failed': 'Authentication confirmation failed. Please try logging in again.'
+      'auth-not-configured': tr('authNotConfigured'),
+      'auth-callback-failed': tr('authCallbackFailed')
     }
 
     setError(callbackErrors[errorParam] || decodeURIComponent(errorParam))
-  }, [errorParam])
+  }, [errorParam, language])
 
   // Check if user is already logged in
   useEffect(() => {
@@ -118,7 +130,7 @@ export default function LoginPage() {
     setError('')
 
     if (!loginForm.email || !loginForm.password) {
-      setError('Please fill in all fields')
+      setError(tr('fillAllFields'))
       setIsLoading(false)
       return
     }
@@ -126,11 +138,11 @@ export default function LoginPage() {
     try {
       const result = await loginViaServer(loginForm.email, loginForm.password)
       if (!result.ok) {
-        setError(result.error)
+        setError(tr('serverLoginFailed'))
         return
       }
 
-      setSuccess('Login successful! Redirecting...')
+      setSuccess(tr('loginSuccessRedirect'))
       try {
         await fetch('/api/profile', { method: 'POST' })
       } catch (profileError) {
@@ -140,7 +152,7 @@ export default function LoginPage() {
         window.location.assign(redirectPath)
       }, 1000)
     } catch (err) {
-      setError('Unable to connect to authentication service. Please try again.')
+      setError(tr('connectionError'))
     } finally {
       setIsLoading(false)
     }
@@ -153,19 +165,19 @@ export default function LoginPage() {
     setError('')
 
     if (!signupForm.name || !signupForm.email || !signupForm.password) {
-      setError('Please fill in all fields')
+      setError(tr('fillAllFields'))
       setIsLoading(false)
       return
     }
 
     if (signupForm.password !== signupForm.confirmPassword) {
-      setError('Passwords do not match')
+      setError(tr('passwordsDoNotMatch'))
       setIsLoading(false)
       return
     }
 
     if (signupForm.password.length < 6) {
-      setError('Password must be at least 6 characters')
+      setError(tr('passwordTooShort'))
       setIsLoading(false)
       return
     }
@@ -178,15 +190,15 @@ export default function LoginPage() {
       )
 
       if (!result.ok) {
-        setError(result.error)
+        setError(tr('serverSignupFailed'))
         return
       }
 
       const hasSession = Boolean(result?.hasSession)
       setSuccess(
         hasSession
-          ? 'Account created successfully! Redirecting...'
-          : 'Account created successfully! Please check your email to confirm your account.'
+          ? tr('accountCreatedSession')
+          : tr('accountCreatedEmail')
       )
       
       // Try to create profile manually as fallback
@@ -203,11 +215,11 @@ export default function LoginPage() {
       } else {
         setTimeout(() => {
           setActiveTab('login')
-          setSuccess('You can now log in with your credentials.')
+          setSuccess(tr('readyToLogin'))
         }, 3000)
       }
     } catch (err) {
-      setError('Unable to connect to authentication service. Please try again.')
+      setError(tr('connectionError'))
     } finally {
       setIsLoading(false)
     }
@@ -226,8 +238,8 @@ export default function LoginPage() {
             priority
             className="h-16 w-auto mx-auto mb-4"
           />
-          <h1 className="text-2xl font-bold text-white">Welcome to Klub pro klienty</h1>
-          <p className="text-gray-400 mt-2">Sign in to access exclusive features</p>
+          <h1 className="text-2xl font-bold text-white">{tr('welcome')}</h1>
+          <p className="text-gray-400 mt-2">{tr('welcomeSubtitle')}</p>
         </div>
 
         <Card className="bg-slate-800 border-amber-400/20">
@@ -235,23 +247,23 @@ export default function LoginPage() {
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="grid w-full grid-cols-2 bg-slate-700">
                 <TabsTrigger value="login" className="data-[state=active]:bg-amber-600">
-                  Login
+                  {tr('login')}
                 </TabsTrigger>
                 <TabsTrigger value="signup" className="data-[state=active]:bg-amber-600">
-                  Sign Up
+                  {tr('signup')}
                 </TabsTrigger>
               </TabsList>
 
               <TabsContent value="login" className="space-y-4 mt-6">
                 <form onSubmit={handleLogin} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="login-email" className="text-gray-300">Email</Label>
+                    <Label htmlFor="login-email" className="text-gray-300">{tr('email')}</Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                       <Input
                         id="login-email"
                         type="email"
-                        placeholder="your.email@example.com"
+                        placeholder={tr('emailPlaceholder')}
                         className="pl-10 bg-slate-900 border-amber-400/20 text-white"
                         value={loginForm.email}
                         onChange={(e) => setLoginForm(prev => ({ ...prev, email: e.target.value }))}
@@ -261,13 +273,13 @@ export default function LoginPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="login-password" className="text-gray-300">Password</Label>
+                    <Label htmlFor="login-password" className="text-gray-300">{tr('password')}</Label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                       <Input
                         id="login-password"
                         type={showPassword ? "text" : "password"}
-                        placeholder="Enter your password"
+                        placeholder={tr('passwordPlaceholder')}
                         className="pl-10 pr-10 bg-slate-900 border-amber-400/20 text-white"
                         value={loginForm.password}
                         onChange={(e) => setLoginForm(prev => ({ ...prev, password: e.target.value }))}
@@ -302,23 +314,23 @@ export default function LoginPage() {
                     className="w-full bg-amber-600 hover:bg-amber-700 text-white" 
                     disabled={isLoading}
                   >
-                    {isLoading ? 'Signing in...' : 'Sign In'}
+                    {isLoading ? tr('signingIn') : tr('signIn')}
                   </Button>
 
-                  <FormPrivacyNotice language="en" purpose="account" className="bg-slate-900/60 border-amber-400/20" />
+                  <FormPrivacyNotice language={language} purpose="account" className="bg-slate-900/60 border-amber-400/20" />
                 </form>
               </TabsContent>
 
               <TabsContent value="signup" className="space-y-4 mt-6">
                 <form onSubmit={handleSignup} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="signup-name" className="text-gray-300">Full Name</Label>
+                    <Label htmlFor="signup-name" className="text-gray-300">{tr('fullName')}</Label>
                     <div className="relative">
                       <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                       <Input
                         id="signup-name"
                         type="text"
-                        placeholder="Your full name"
+                        placeholder={tr('fullNamePlaceholder')}
                         className="pl-10 bg-slate-900 border-amber-400/20 text-white"
                         value={signupForm.name}
                         onChange={(e) => setSignupForm(prev => ({ ...prev, name: e.target.value }))}
@@ -328,13 +340,13 @@ export default function LoginPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="signup-email" className="text-gray-300">Email</Label>
+                    <Label htmlFor="signup-email" className="text-gray-300">{tr('email')}</Label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                       <Input
                         id="signup-email"
                         type="email"
-                        placeholder="your.email@example.com"
+                        placeholder={tr('emailPlaceholder')}
                         className="pl-10 bg-slate-900 border-amber-400/20 text-white"
                         value={signupForm.email}
                         onChange={(e) => setSignupForm(prev => ({ ...prev, email: e.target.value }))}
@@ -344,13 +356,13 @@ export default function LoginPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="signup-password" className="text-gray-300">Password</Label>
+                    <Label htmlFor="signup-password" className="text-gray-300">{tr('password')}</Label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                       <Input
                         id="signup-password"
                         type={showPassword ? "text" : "password"}
-                        placeholder="Create a password (min 6 characters)"
+                        placeholder={tr('passwordMinLength')}
                         className="pl-10 pr-10 bg-slate-900 border-amber-400/20 text-white"
                         value={signupForm.password}
                         onChange={(e) => setSignupForm(prev => ({ ...prev, password: e.target.value }))}
@@ -367,13 +379,13 @@ export default function LoginPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="signup-confirm" className="text-gray-300">Confirm Password</Label>
+                    <Label htmlFor="signup-confirm" className="text-gray-300">{tr('confirmPassword')}</Label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                       <Input
                         id="signup-confirm"
                         type="password"
-                        placeholder="Confirm your password"
+                        placeholder={tr('confirmPasswordPlaceholder')}
                         className="pl-10 bg-slate-900 border-amber-400/20 text-white"
                         value={signupForm.confirmPassword}
                         onChange={(e) => setSignupForm(prev => ({ ...prev, confirmPassword: e.target.value }))}
@@ -401,29 +413,29 @@ export default function LoginPage() {
                     className="w-full bg-amber-600 hover:bg-amber-700 text-white" 
                     disabled={isLoading}
                   >
-                    {isLoading ? 'Creating account...' : 'Create Account'}
+                    {isLoading ? tr('creatingAccount') : tr('createAccount')}
                   </Button>
 
-                  <FormPrivacyNotice language="en" purpose="account" className="bg-slate-900/60 border-amber-400/20" />
+                  <FormPrivacyNotice language={language} purpose="account" className="bg-slate-900/60 border-amber-400/20" />
                 </form>
               </TabsContent>
             </Tabs>
 
             <div className="text-center text-sm text-gray-400 mt-6 space-y-1">
               <p>
-                By signing up, you agree to our{' '}
+                {tr('termsText')}{' '}
                 <Link href="/terms" className="underline">
-                  Terms of Sale
+                  {tr('termsLink')}
                 </Link>{' '}
-                and{' '}
+                {tr('and')}{' '}
                 <Link href="/gdpr" className="underline">
-                  Privacy Notice
+                  {tr('privacyLink')}
                 </Link>
                 .
               </p>
               <p>
                 <Link href="/cookies" className="underline">
-                  Cookie Policy
+                  {tr('cookiePolicy')}
                 </Link>
               </p>
             </div>
@@ -436,7 +448,7 @@ export default function LoginPage() {
             onClick={() => router.push('/')}
             className="border-amber-400/20 text-amber-400 hover:bg-amber-400/10"
           >
-            ← Back to Homepage
+            ← {tr('backToHomepage')}
           </Button>
         </div>
       </div>

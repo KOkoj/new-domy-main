@@ -11,6 +11,7 @@ import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
 import { supabase } from '@/lib/supabase'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
+import { t } from '@/lib/translations'
 
 const TIMEZONE_OPTIONS = [
   'Europe/Prague',
@@ -20,9 +21,9 @@ const TIMEZONE_OPTIONS = [
 ]
 
 const CALL_MODE_OPTIONS = [
-  { value: 'google_meet', it: 'Google Meet' },
-  { value: 'whatsapp', it: 'WhatsApp' },
-  { value: 'phone_call', it: 'Telefonata' }
+  { value: 'google_meet', label: 'Google Meet' },
+  { value: 'whatsapp', label: 'WhatsApp' },
+  { value: 'phone_call', translationKey: 'phoneCall' }
 ]
 
 export default function BookCallPage() {
@@ -39,6 +40,7 @@ export default function BookCallPage() {
     callMode: 'google_meet',
     message: ''
   })
+  const tr = (key) => t(`forms.bookCall.${key}`, language)
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')
@@ -79,7 +81,7 @@ export default function BookCallPage() {
   const getCallModeLabel = (mode) => {
     if (mode === 'google_meet') return 'Google Meet'
     if (mode === 'whatsapp') return 'WhatsApp'
-    return language === 'it' ? 'Telefonata' : language === 'cs' ? 'Telefonát' : 'Phone call'
+    return tr('phoneCall')
   }
 
   const handleSubmit = async (event) => {
@@ -161,35 +163,19 @@ export default function BookCallPage() {
 
           <Card className="max-w-3xl mx-auto bg-white border-gray-200 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-slate-800">
-                {language === 'cs'
-                  ? 'Richiesta di appuntamento'
-                  : language === 'it'
-                  ? 'Richiesta appuntamento'
-                  : 'Appointment request'}
-              </CardTitle>
+              <CardTitle className="text-slate-800">{tr('formTitle')}</CardTitle>
             </CardHeader>
             <CardContent>
               {submitStatus === 'success' && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
                   <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                  <p className="text-green-800 text-sm">
-                    {language === 'cs'
-                      ? 'Děkujeme, žádost byla odeslána. Brzy vám potvrdíme termín.'
-                      : language === 'it'
-                      ? 'Grazie, richiesta inviata. Ti confermeremo presto l\'orario.'
-                      : 'Thanks, your request has been sent. We will confirm your slot shortly.'}
-                  </p>
+                  <p className="text-green-800 text-sm">{tr('success')}</p>
                 </div>
               )}
 
               {submitStatus === 'error' && (
                 <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                  {language === 'cs'
-                    ? 'Invio non riuscito. Riprova tra qualche minuto.'
-                    : language === 'it'
-                    ? 'Invio non riuscito. Riprova tra qualche minuto.'
-                    : 'Submission failed. Please try again in a few minutes.'}
+                  {tr('error')}
                 </div>
               )}
 
@@ -199,7 +185,7 @@ export default function BookCallPage() {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder={language === 'it' ? 'Nome e cognome *' : 'Full name *'}
+                    placeholder={tr('fullNamePlaceholder')}
                     required
                   />
                   <Input
@@ -207,7 +193,7 @@ export default function BookCallPage() {
                     type="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="Email *"
+                    placeholder={tr('emailPlaceholder')}
                     required
                   />
                 </div>
@@ -217,7 +203,7 @@ export default function BookCallPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder={language === 'it' ? 'Telefono / WhatsApp *' : 'Phone / WhatsApp *'}
+                    placeholder={tr('phonePlaceholder')}
                     required
                   />
                   <select
@@ -229,7 +215,7 @@ export default function BookCallPage() {
                   >
                     {CALL_MODE_OPTIONS.map((option) => (
                       <option key={option.value} value={option.value}>
-                        {option.it}
+                        {option.translationKey ? tr(option.translationKey) : option.label}
                       </option>
                     ))}
                   </select>
@@ -277,11 +263,7 @@ export default function BookCallPage() {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={5}
-                  placeholder={
-                    language === 'it'
-                      ? 'Scrivi qui il contesto: obiettivo, budget, regione di interesse, urgenza...'
-                      : 'Write your context: goal, budget, region of interest, urgency...'
-                  }
+                  placeholder={tr('contextPlaceholder')}
                 />
 
                 <FormPrivacyNotice language={language} purpose="contact" />
@@ -289,11 +271,11 @@ export default function BookCallPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Video className="h-4 w-4" />
-                    {language === 'it' ? 'Durata tipica: 20 minuti' : 'Typical duration: 20 minutes'}
+                    {tr('typicalDuration')}
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Phone className="h-4 w-4" />
-                    {language === 'it' ? 'Conferma via email' : 'Confirmation by email'}
+                    {tr('emailConfirmation')}
                   </div>
                 </div>
 
@@ -303,11 +285,11 @@ export default function BookCallPage() {
                   className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white py-6"
                 >
                   {isSubmitting ? (
-                    language === 'it' ? 'Invio in corso...' : 'Sending...'
+                    tr('sending')
                   ) : (
                     <>
                       <Send className="h-4 w-4 mr-2" />
-                      {language === 'it' ? 'Invia richiesta' : 'Send request'}
+                      {tr('send')}
                     </>
                   )}
                 </Button>

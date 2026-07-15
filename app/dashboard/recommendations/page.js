@@ -251,10 +251,10 @@ export default function PropertyRecommendations() {
         throw error
       }
 
-      alert('Added to favorites!')
+      alert(t('club.recommendationsPage.addedToFavorites', language))
     } catch (error) {
       console.error('Error adding to favorites:', error)
-      alert('Failed to add to favorites')
+      alert(t('club.recommendationsPage.addError', language))
     }
   }
 

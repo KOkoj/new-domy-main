@@ -56,7 +56,7 @@ export default function AuthModal({
     if (!response.ok) {
       return {
         ok: false,
-        error: payload?.error || 'Server login failed'
+        error: payload?.error || tr('serverLoginFailed')
       }
     }
 
@@ -77,7 +77,7 @@ export default function AuthModal({
     if (!response.ok) {
       return {
         ok: false,
-        error: payload?.error || 'Server signup failed'
+        error: payload?.error || tr('serverSignupFailed')
       }
     }
 
@@ -102,7 +102,7 @@ export default function AuthModal({
     try {
       const result = await loginViaServer(loginForm.email, loginForm.password)
       if (!result.ok) {
-        setError(result.error)
+        setError(tr('serverLoginFailed'))
         return
       }
 
@@ -156,7 +156,7 @@ export default function AuthModal({
       )
 
       if (!result.ok) {
-        setError(result.error)
+        setError(tr('serverSignupFailed'))
         return
       }
 

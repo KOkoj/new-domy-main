@@ -35,7 +35,7 @@ export default function NotificationPreferences({ language = 'en' }) {
       }
     } catch (error) {
       console.error('Error fetching preferences:', error);
-      toast.error('Failed to load notification preferences');
+      toast.error(t('club.notificationsPage.loadError', language));
     } finally {
       setLoading(false);
     }
