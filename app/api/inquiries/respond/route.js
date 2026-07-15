@@ -63,7 +63,10 @@ export async function POST(request) {
     const result = await emailService.sendInquiryResponse({
       userEmail: inquiry.email,
       userName: inquiry.name,
-      propertyTitle: body?.propertyTitle || inquiry.listingId || 'property inquiry',
+      // Only pass a human-readable title. listingId is a slug (e.g.
+      // "local-import-friuli-...-1779192847787") and must never leak into the
+      // client-facing subject; with no title the email uses a generic subject.
+      propertyTitle: body?.propertyTitle || inquiry.propertyTitle || null,
       inquiryMessage: inquiry.message,
       responseMessage: responseText
     })

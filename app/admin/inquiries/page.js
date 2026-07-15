@@ -119,7 +119,9 @@ export default function InquiryManagement() {
         body: JSON.stringify({
           inquiryId: selectedInquiry.id,
           responseText,
-          propertyTitle: selectedInquiry.listingId
+          // Only the human-readable title; listingId is a slug and must never
+          // appear in the client-facing email subject.
+          propertyTitle: selectedInquiry.propertyTitle || null
         })
       })
 
