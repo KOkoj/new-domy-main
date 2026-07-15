@@ -15,7 +15,8 @@ import {
   Menu,
   X,
   Shield,
-  Video
+  Video,
+  Mail
 } from 'lucide-react'
 import { t } from '@/lib/translations'
 import { getProfileDisplayName } from '@/lib/profileName'
@@ -60,6 +61,12 @@ export default function AdminShell({ children, user, profile }) {
       descKey: 'admin.menu.inquiriesDesc',
       href: '/admin/inquiries',
       icon: MessageSquare
+    },
+    {
+      titleKey: 'admin.menu.leads',
+      descKey: 'admin.menu.leadsDesc',
+      href: '/admin/leads',
+      icon: Mail
     },
     {
       titleKey: 'admin.menu.intakeForms',
