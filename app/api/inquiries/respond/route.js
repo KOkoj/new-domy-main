@@ -28,7 +28,7 @@ export async function POST(request) {
 
     if (!emailService.isConfigured) {
       return NextResponse.json(
-        { error: 'SendGrid is not configured. Set SENDGRID_API_KEY and SENDGRID_FROM_EMAIL to send real response emails.' },
+        { error: 'Resend is not configured. Set RESEND_API_KEY and RESEND_FROM_EMAIL to send real response emails.' },
         { status: 503 }
       )
     }

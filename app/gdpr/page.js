@@ -38,7 +38,7 @@ const CONTENT = {
         title: '4. Destinatari e fornitori',
         paragraphs: [
           'I dati possono essere trattati, nei limiti necessari, da fornitori tecnici e commerciali usati per erogare il servizio, inclusi hosting e database, autenticazione, pagamenti, email transazionali, CMS e servizi AI/automazione quando attivati.',
-          'In base alla configurazione del sito, i principali fornitori possono includere Supabase, Stripe, SendGrid, Sanity, OpenAI e Google Gemini.'
+          'In base alla configurazione del sito, i principali fornitori possono includere Supabase, Stripe, Resend, Sanity, OpenAI e Google Gemini.'
         ]
       },
       {
@@ -113,7 +113,7 @@ const CONTENT = {
         title: '4. Recipients and service providers',
         paragraphs: [
           'Data may be processed, only where necessary, by technical and commercial providers used to operate the service, including hosting and database providers, authentication, payments, transactional email, CMS and AI or automation providers when enabled.',
-          'Depending on the live configuration, key providers may include Supabase, Stripe, SendGrid, Sanity, OpenAI and Google Gemini.'
+          'Depending on the live configuration, key providers may include Supabase, Stripe, Resend, Sanity, OpenAI and Google Gemini.'
         ]
       },
       {
@@ -188,7 +188,7 @@ const CONTENT = {
         title: '4. Příjemci a poskytovatelé',
         paragraphs: [
           'Údaje mohou být v nezbytném rozsahu zpracovávány technickými a obchodními poskytovateli služeb, kteří jsou potřeba pro provoz webu, včetně hostingu a databáze, autentizace, plateb, transakčních e-mailů, CMS a AI služeb, pokud jsou aktivní.',
-          'Podle aktuální konfigurace mohou mezi hlavní poskytovatele patřit Supabase, Stripe, SendGrid, Sanity, OpenAI a Google Gemini.'
+          'Podle aktuální konfigurace mohou mezi hlavní poskytovatele patřit Supabase, Stripe, Resend, Sanity, OpenAI a Google Gemini.'
         ]
       },
       {

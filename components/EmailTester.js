@@ -277,9 +277,9 @@ export default function EmailTester() {
         </CardHeader>
         <CardContent className="space-y-2">
           <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-            <span className="text-sm font-medium">SendGrid Email Service</span>
-            <Badge variant={process.env.NEXT_PUBLIC_SENDGRID_CONFIGURED === 'true' ? 'default' : 'secondary'}>
-              {process.env.NEXT_PUBLIC_SENDGRID_CONFIGURED === 'true' ? 'Configured' : 'Not Configured'}
+            <span className="text-sm font-medium">Resend Email Service</span>
+            <Badge variant={process.env.NEXT_PUBLIC_RESEND_CONFIGURED === 'true' ? 'default' : 'secondary'}>
+              {process.env.NEXT_PUBLIC_RESEND_CONFIGURED === 'true' ? 'Configured' : 'Not Configured'}
             </Badge>
           </div>
           <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
@@ -290,14 +290,14 @@ export default function EmailTester() {
           </div>
           <Alert className="mt-4">
             <AlertDescription className="text-sm">
-              {process.env.NEXT_PUBLIC_SENDGRID_CONFIGURED !== 'true' && process.env.NEXT_PUBLIC_GEMINI_CONFIGURED !== 'true' ? (
+              {process.env.NEXT_PUBLIC_RESEND_CONFIGURED !== 'true' && process.env.NEXT_PUBLIC_GEMINI_CONFIGURED !== 'true' ? (
                 <>
-                  <strong>Demo Mode:</strong> Both SendGrid and Gemini are not configured. 
+                  <strong>Demo Mode:</strong> Both Resend and Gemini are not configured. 
                   Emails will be logged to console with static templates.
                 </>
-              ) : process.env.NEXT_PUBLIC_SENDGRID_CONFIGURED !== 'true' ? (
+              ) : process.env.NEXT_PUBLIC_RESEND_CONFIGURED !== 'true' ? (
                 <>
-                  <strong>Simulation Mode:</strong> SendGrid not configured. 
+                  <strong>Simulation Mode:</strong> Resend not configured. 
                   Emails will be logged to console but not actually sent.
                 </>
               ) : process.env.NEXT_PUBLIC_GEMINI_CONFIGURED !== 'true' ? (
@@ -490,7 +490,7 @@ export default function EmailTester() {
           <ul className="list-disc list-inside mt-2 space-y-1 text-sm">
             <li>If Google Gemini is configured, emails use AI-generated warm, context-aware content (FREE!)</li>
             <li>If Gemini is not available, falls back to professional static templates</li>
-            <li>If SendGrid is not configured, emails are logged to console instead of being sent</li>
+            <li>If Resend is not configured, emails are logged to console instead of being sent</li>
             <li>The Cron Job checks all saved searches and sends alerts to matching users</li>
           </ul>
         </AlertDescription>

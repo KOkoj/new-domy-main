@@ -1,6 +1,6 @@
 # Domy v Itálii - Italian Property Platform
 
-A modern Next.js 14 web application helping Czech buyers find properties in Italy. Built with Supabase, Sanity CMS, SendGrid, and Google Gemini AI.
+A modern Next.js 14 web application helping Czech buyers find properties in Italy. Built with Supabase, Sanity CMS, Resend, and Google Gemini AI.
 
 ---
 
@@ -48,7 +48,7 @@ A modern Next.js 14 web application helping Czech buyers find properties in Ital
 | **Database** | PostgreSQL via Supabase |
 | **Authentication** | Supabase Auth |
 | **CMS** | Sanity.io |
-| **Email Service** | SendGrid |
+| **Email Service** | Resend |
 | **AI** | Google Gemini (for AI-generated emails) |
 | **Maps** | Leaflet / OpenStreetMap |
 | **Animations** | Framer Motion |
@@ -71,7 +71,7 @@ A modern Next.js 14 web application helping Czech buyers find properties in Ital
 - Image uploads and management
 - Multi-language content support (EN/CS/IT)
 
-### Email Service (SendGrid + Gemini AI)
+### Email Service (Resend + Gemini AI)
 - Welcome emails for new users
 - Inquiry confirmation emails
 - Property alert notifications
@@ -130,12 +130,12 @@ never blocks the inquiry insert.
 **Needs Work:**
 - [ ] **Multiple Admin Recipients** - `ADMIN_NOTIFY_EMAIL` only supports a single address today; add CC/BCC or a list for team routing
 - [ ] **Unsubscribe Links** - Add proper unsubscribe handling for marketing emails
-- [ ] **Bounce Handling** - Implement bounce and complaint handling from SendGrid
+- [ ] **Bounce Handling** - Implement bounce and complaint handling from Resend
 
 **Configuration needed in `.env`:**
   ```
   ADMIN_NOTIFY_EMAIL=inquiries@domyvitalii.cz
-  SENDGRID_FROM_EMAIL=noreply@domyvitalii.cz
+  RESEND_FROM_EMAIL=noreply@domyvitalii.cz
   ```
 
 ### 3. Static Content Updates
@@ -293,9 +293,9 @@ NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2023-05-03
 SANITY_API_TOKEN=your_sanity_token
 
-# SendGrid (Email Service)
-SENDGRID_API_KEY=SG.your_sendgrid_api_key
-SENDGRID_FROM_EMAIL=noreply@yourdomain.com
+# Resend (Email Service)
+RESEND_API_KEY=re_your_resend_api_key
+RESEND_FROM_EMAIL=noreply@yourdomain.com
 
 # Inbox that receives a notification for every new inquiry
 ADMIN_NOTIFY_EMAIL=admin@yourdomain.com
@@ -326,8 +326,8 @@ DEBUG=true
 | `NEXT_PUBLIC_BASE_URL` | Yes | Your app's URL (localhost:3000 for dev) |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | No | Sanity CMS project ID |
 | `SANITY_API_TOKEN` | No | Sanity API token for mutations |
-| `SENDGRID_API_KEY` | No | SendGrid API key (must start with SG.) |
-| `SENDGRID_FROM_EMAIL` | No | Verified sender email for SendGrid |
+| `RESEND_API_KEY` | No | Resend API key (must start with re_) |
+| `RESEND_FROM_EMAIL` | No | Verified sender email for Resend |
 | `ADMIN_NOTIFY_EMAIL` | No | Inbox that receives a notification for every new inquiry |
 | `FREE_PDF_BUCKET` | Yes for lead gate | Private Supabase Storage bucket |
 | `FREE_PDF_PATH_INSPECTIONS` | Yes for lead gate | Private inspections PDF object path |
@@ -437,7 +437,7 @@ In Supabase Dashboard → Authentication → URL Configuration:
 ├── lib/                          # Utility libraries
 │   ├── supabase.js               # Supabase client configuration
 │   ├── sanity.js                 # Sanity CMS client & queries
-│   ├── emailService.js           # Email service (SendGrid + Gemini)
+│   ├── emailService.js           # Email service (Resend + Gemini)
 │   ├── translations.js           # Multi-language translations
 │   ├── currency.js               # Currency formatting
 │   └── utils.js                  # General utilities
@@ -476,7 +476,7 @@ The email system (`lib/emailService.js`) supports:
 
 1. **AI-Generated Content** - Uses Google Gemini to create personalized email content
 2. **Fallback Templates** - Static templates when AI is unavailable
-3. **Development Mode** - Logs emails to console when SendGrid isn't configured
+3. **Development Mode** - Logs emails to console when Resend isn't configured
 
 Email types:
 - `welcome` - New user onboarding
@@ -588,12 +588,12 @@ See `VERCEL-DEPLOYMENT-GUIDE.md` for detailed instructions.
 3. Configure schema for properties, regions, cities
 4. Add API credentials to environment
 
-### SendGrid Setup
+### Resend Setup
 
-1. Create account at [sendgrid.com](https://sendgrid.com)
-2. Verify sender email address
+1. Create account at [resend.com](https://resend.com)
+2. Verify sender domain/email address
 3. Generate API key
-4. Add to `SENDGRID_API_KEY` environment variable
+4. Add to `RESEND_API_KEY` environment variable
 
 ### Google Gemini Setup
 
@@ -662,8 +662,8 @@ To add/edit translations:
 
 **"Emails not sending"**
 - In development, emails log to console (normal!)
-- For production, verify `SENDGRID_API_KEY` starts with `SG.`
-- Check SendGrid sender verification
+- For production, verify `RESEND_API_KEY` starts with `re_`
+- Check Resend sender verification
 
 **"AI emails not generating"**
 - Verify `GEMINI_API_KEY` is set
@@ -717,7 +717,7 @@ Types: Add, Fix, Update, Remove, Refactor, Docs
 - **Next.js Docs:** [nextjs.org/docs](https://nextjs.org/docs)
 - **Supabase Docs:** [supabase.com/docs](https://supabase.com/docs)
 - **Sanity Docs:** [sanity.io/docs](https://sanity.io/docs)
-- **SendGrid Docs:** [docs.sendgrid.com](https://docs.sendgrid.com)
+- **Resend Docs:** [resend.com/docs](https://resend.com/docs)
 - **Tailwind CSS:** [tailwindcss.com/docs](https://tailwindcss.com/docs)
 
 ---

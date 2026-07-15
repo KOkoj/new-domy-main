@@ -112,8 +112,9 @@ NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2023-05-03
 SANITY_API_TOKEN=your-sanity-token
 
-# SendGrid (for email notifications)
-SENDGRID_API_KEY=your-sendgrid-api-key
+# Resend (for email notifications)
+RESEND_API_KEY=your-resend-api-key
+RESEND_FROM_EMAIL=your-verified-sender@yourdomain.com
 
 # OpenAI (for AI-generated content)
 OPENAI_API_KEY=your-openai-api-key
@@ -176,7 +177,7 @@ Now that you have your Vercel URL:
 
 - [ ] Click "Sign Up" or "Login"
 - [ ] Create a new account
-- [ ] Verify email functionality (if SendGrid is configured)
+- [ ] Verify email functionality (if Resend is configured)
 - [ ] Log in successfully
 - [ ] Access `/dashboard` when logged in
 - [ ] Log out works
@@ -225,9 +226,9 @@ npm run build
 
 ### Email Not Sending
 
-**SendGrid not working**
-- Verify `SENDGRID_API_KEY` is correct
-- Check SendGrid dashboard for sending quota
+**Resend not working**
+- Verify `RESEND_API_KEY` and `RESEND_FROM_EMAIL` are correct
+- Check Resend dashboard for sending quota
 - In development, emails are logged to console instead
 
 ---
@@ -292,7 +293,7 @@ git push origin main
 
 1. **Set up monitoring:** Enable Vercel Analytics
 2. **Add custom domain:** Make it professional
-3. **Configure SendGrid:** Enable email notifications
+3. **Configure Resend:** Enable email notifications
 4. **Add Sanity CMS:** Start adding property content
 5. **Set up backups:** Export Supabase data regularly
 

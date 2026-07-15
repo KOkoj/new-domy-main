@@ -82,7 +82,7 @@ The platform now runs with:
 ## Next Steps
 
 - **Add Real Data**: Connect Sanity CMS for property management
-- **Email Service**: Add SendGrid for real email notifications
+- **Email Service**: Add Resend for real email notifications
 - **Customize**: Modify the sample data and styling
 - **Deploy**: Push to Vercel, Netlify, or your preferred platform
 

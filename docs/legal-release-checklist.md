@@ -17,7 +17,7 @@ This checklist is an operational release checklist for the current project. It i
 - [ ] Register of processing activities maintained outside the repo
 - [ ] Data retention schedule defined for accounts, purchases, consent logs, and support requests
 - [ ] Data subject request workflow defined for access, deletion, rectification, portability, and objection
-- [ ] Processor list reviewed: Supabase, Stripe, SendGrid, Sanity, OpenAI, Google Gemini, and any future providers
+- [ ] Processor list reviewed: Supabase, Stripe, Resend, Sanity, OpenAI, Google Gemini, and any future providers
 - [ ] DPAs or equivalent contractual terms accepted with all processors
 - [ ] Cross-border transfer basis reviewed for non-EEA providers
 

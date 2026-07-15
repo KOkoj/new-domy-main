@@ -43,15 +43,16 @@ SANITY_API_TOKEN=
 
 ---
 
-### SendGrid (For Email Notifications)
+### Resend (For Email Notifications)
 
 ```env
-SENDGRID_API_KEY=
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=
 ```
 
-**Where to get:** SendGrid Dashboard → Settings → API Keys → Create API Key
+**Where to get:** Resend Dashboard → API Keys → Create API Key
 
-**Permissions needed:** Full Access (or Mail Send permission)
+**Permissions needed:** Sending access, plus a verified domain/sender for `RESEND_FROM_EMAIL`
 
 ---
 
@@ -79,7 +80,7 @@ CORS_ORIGINS=https://your-app.vercel.app,https://your-custom-domain.com
 
 - ✅ **NEVER** commit `.env.local` or any file with real API keys to Git
 - ✅ Keep `SUPABASE_SERVICE_ROLE_KEY` secret (it has admin access)
-- ✅ Keep `SENDGRID_API_KEY` secret
+- ✅ Keep `RESEND_API_KEY` secret
 - ✅ Keep `OPENAI_API_KEY` secret
 - ✅ Only `NEXT_PUBLIC_*` variables are exposed to the browser
 - ✅ All other variables are server-side only
@@ -103,7 +104,8 @@ NEXT_PUBLIC_SANITY_PROJECT_ID=
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2023-05-03
 SANITY_API_TOKEN=
-SENDGRID_API_KEY=
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=
 OPENAI_API_KEY=
 CORS_ORIGINS=https://your-app.vercel.app
 ```
@@ -167,9 +169,9 @@ If you need to change a variable:
 
 ### Issue: Emails not sending
 **Solution:**
-1. Verify `SENDGRID_API_KEY` is set
-2. Check SendGrid dashboard for errors
-3. Without SendGrid, emails log to console (check Vercel logs)
+1. Verify `RESEND_API_KEY` and `RESEND_FROM_EMAIL` are set
+2. Check Resend dashboard for errors
+3. Without Resend, emails log to console (check Vercel logs)
 
 ---
 
