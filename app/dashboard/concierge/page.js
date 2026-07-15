@@ -25,39 +25,6 @@ import { supabase } from '../../../lib/supabase'
 import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
 
-const SAMPLE_TICKETS = [
-  {
-    id: 1,
-    subject: 'Property Viewing Request - Villa in Tuscany',
-    category: 'Property Viewing',
-    status: 'open',
-    priority: 'high',
-    createdAt: '2025-10-01',
-    lastUpdate: '2025-10-05',
-    messages: 3
-  },
-  {
-    id: 2,
-    subject: 'Tax Documentation Question',
-    category: 'Legal Support',
-    status: 'in-progress',
-    priority: 'medium',
-    createdAt: '2025-09-28',
-    lastUpdate: '2025-10-04',
-    messages: 5
-  },
-  {
-    id: 3,
-    subject: 'Mortgage Pre-approval Assistance',
-    category: 'Financing',
-    status: 'resolved',
-    priority: 'medium',
-    createdAt: '2025-09-20',
-    lastUpdate: '2025-09-25',
-    messages: 8
-  }
-]
-
 const TICKET_CATEGORIES = [
   'General Inquiry',
   'Property Viewing',

@@ -863,10 +863,9 @@ export default function ContentManagement() {
 
       {/* Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="properties">{t('admin.content.properties', language)}</TabsTrigger>
           <TabsTrigger value="regions">{t('admin.content.regions', language)}</TabsTrigger>
-          <TabsTrigger value="settings">{t('admin.content.settings', language)}</TabsTrigger>
         </TabsList>
 
         {/* Properties Tab */}
@@ -1098,57 +1097,6 @@ export default function ContentManagement() {
           </Card>
         </TabsContent>
 
-        {/* Settings Tab */}
-        <TabsContent value="settings" className="space-y-6">
-          <h2 className="text-xl font-semibold">{t('admin.content.platformSettings', language)}</h2>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>{t('admin.content.siteConfiguration', language)}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium mb-1 block">{t('admin.content.siteName', language)}</label>
-                  <Input defaultValue="Domy v Itálii" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">{t('admin.content.defaultCurrency', language)}</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md">
-                    <option value="EUR">EUR (€)</option>
-                    <option value="USD">USD ($)</option>
-                    <option value="CZK">CZK (Kč)</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">{t('admin.content.contactEmail', language)}</label>
-                  <Input defaultValue="info@domyvitalii.com" />
-                </div>
-                <Button>{t('admin.content.saveSettings', language)}</Button>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>{t('admin.content.emailTemplates', language)}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium mb-1 block">{t('admin.content.welcomeEmailSubject', language)}</label>
-                  <Input defaultValue="Welcome to Domy v Itálii!" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">{t('admin.content.inquiryAutoResponse', language)}</label>
-                  <Textarea 
-                    defaultValue="Thank you for your inquiry. We'll get back to you within 24 hours."
-                    rows={3}
-                  />
-                </div>
-                <Button>{t('admin.content.updateTemplates', language)}</Button>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
       </Tabs>
 
       {/* Property Edit Modal */}

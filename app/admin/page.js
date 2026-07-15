@@ -8,7 +8,6 @@ import {
   Users, 
   MessageSquare, 
   Home, 
-  TrendingUp,
   Activity,
   Calendar,
   Heart,
@@ -131,7 +130,6 @@ export default function AdminDashboard() {
       icon: Users,
       color: 'text-blue-600',
       bgColor: 'bg-blue-100',
-      change: '+12%',
       href: '/admin/users'
     },
     {
@@ -140,7 +138,6 @@ export default function AdminDashboard() {
       icon: MessageSquare,
       color: 'text-slate-800',
       bgColor: 'bg-slate-100',
-      change: '+8%',
       href: '/admin/inquiries'
     },
     {
@@ -149,7 +146,6 @@ export default function AdminDashboard() {
       icon: Heart,
       color: 'text-red-600',
       bgColor: 'bg-red-100',
-      change: '+23%',
       href: '/admin/users'
     },
     {
@@ -158,7 +154,6 @@ export default function AdminDashboard() {
       icon: Search,
       color: 'text-purple-600',
       bgColor: 'bg-purple-100',
-      change: '+15%',
       href: '/admin/users'
     }
   ]
@@ -194,11 +189,6 @@ export default function AdminDashboard() {
                     <div>
                       <p className="text-sm font-medium text-gray-600">{stat.title}</p>
                       <p className="text-3xl font-bold text-gray-900 mt-2">{stat.value}</p>
-                      <div className="flex items-center mt-2">
-                        <TrendingUp className="h-4 w-4 text-slate-800 mr-1" />
-                        <span className="text-sm text-slate-800 font-medium">{stat.change}</span>
-                        <span className="text-sm text-gray-500 ml-1">{t('admin.dashboard.vsLastMonth', language)}</span>
-                      </div>
                     </div>
                     <div className={`p-3 rounded-full ${stat.bgColor}`}>
                       <Icon className={`h-6 w-6 ${stat.color}`} />
@@ -322,41 +312,6 @@ export default function AdminDashboard() {
                 <span>{t('admin.dashboard.manageContent', language)}</span>
               </Button>
             </Link>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* System Status */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
-            <Activity className="h-5 w-5" />
-            <span>{t('admin.dashboard.systemStatus', language)}</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg">
-              <div className="w-3 h-3 bg-slate-500 rounded-full"></div>
-              <div>
-                <p className="font-medium text-slate-900">{t('admin.dashboard.database', language)}</p>
-                <p className="text-sm text-slate-700">{t('admin.dashboard.connected', language)}</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg">
-              <div className="w-3 h-3 bg-slate-500 rounded-full"></div>
-              <div>
-                <p className="font-medium text-slate-900">{t('admin.dashboard.authentication', language)}</p>
-                <p className="text-sm text-slate-700">{t('admin.dashboard.active', language)}</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-3 p-3 bg-slate-50 rounded-lg">
-              <div className="w-3 h-3 bg-slate-500 rounded-full"></div>
-              <div>
-                <p className="font-medium text-slate-900">{t('admin.dashboard.apiServices', language)}</p>
-                <p className="text-sm text-slate-700">{t('admin.dashboard.operational', language)}</p>
-              </div>
-            </div>
           </div>
         </CardContent>
       </Card>

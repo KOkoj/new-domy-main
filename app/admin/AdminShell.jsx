@@ -15,8 +15,7 @@ import {
   Menu,
   X,
   Shield,
-  Video,
-  Mail
+  Video
 } from 'lucide-react'
 import { t } from '@/lib/translations'
 import { getProfileDisplayName } from '@/lib/profileName'
@@ -85,13 +84,8 @@ export default function AdminShell({ children, user, profile }) {
       descKey: 'admin.menu.clubContentDesc',
       href: '/admin/club-content',
       icon: Video
-    },
-    {
-      titleKey: 'admin.menu.emailSystem',
-      descKey: 'admin.menu.emailSystemDesc',
-      href: '/admin/email-test',
-      icon: Mail
     }
+    // /admin/email-test is intentionally not in the nav; it stays reachable by URL.
   ]
 
   const handleLogout = async () => {

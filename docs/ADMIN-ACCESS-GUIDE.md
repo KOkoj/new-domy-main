@@ -1,115 +1,63 @@
-# How to Access the Admin Panel
+# Admin Panel — Access & Overview
 
-## Quick Access Methods
+## Who can access `/admin`
 
-### Method 1: Navigation Link (Easiest)
-1. **Login** to your account on the website
-2. Once logged in, you'll see an **"Admin"** button in the top navigation bar (next to your name)
-3. Click the **"Admin"** button to access the admin panel
-4. The admin panel is located at: `https://yourdomain.com/admin`
+Access is enforced **server-side** in `app/admin/layout.js` via `getAdminAccess()`
+(`lib/adminAuth.js`). A user is an admin when either:
 
-### Method 2: Direct URL
-1. **Login** to your account first
-2. Navigate directly to: `https://yourdomain.com/admin`
-3. The admin panel will check your authentication and grant access
+1. Their `profiles.role` is `'admin'`, or
+2. Their email is listed in the `ADMIN_EMAILS` environment variable
+   (comma-separated allowlist; empty by default).
 
-### Method 3: From Dashboard
-1. Login to your account
-2. Go to `/dashboard` (user dashboard)
-3. You can navigate to admin from the navigation bar
+Non-admins are redirected away from every `/admin` page. All `/api/admin/*`
+routes independently enforce the same check via `requireAdminApiAccess()` and
+perform database/storage operations with the Supabase **service-role** client.
 
-## Admin Panel Features
+### Granting admin access
 
-Once you access `/admin`, you'll have access to:
+- Preferred: set `role = 'admin'` on the user's row in the `profiles` table
+  (Supabase dashboard or SQL).
+- Alternative: add the user's email to `ADMIN_EMAILS` in the environment
+  (see `env.template`).
 
-### Main Dashboard (`/admin`)
-- Overview statistics (users, inquiries, favorites, searches)
-- Recent users and inquiries
-- Quick action links
-- System status
+## Pages
 
-### User Management (`/admin/users`)
-- View all registered users
-- Filter and search users
-- Update user roles (admin/user)
-- View user activity statistics
+```
+/admin               → Dashboard: user/inquiry/favorite/search counts, recent users & inquiries
+/admin/users         → User management: list, search, filter, change roles (via /api/admin/users)
+/admin/inquiries     → Inquiry triage: list, search, respond by email, pending/responded status
+/admin/intake-forms  → Submitted client intake forms
+/admin/documents     → Premium document upload/management (via /api/admin/documents)
+/admin/content       → Properties & regions (Sanity CMS, via /api/content)
+/admin/club-content  → Klub premium content (via /api/admin/club-content)
+/admin/email-test    → Email/system testing tool (not in the nav; direct URL only)
+```
 
-### Inquiry Management (`/admin/inquiries`)
-- View all property inquiries
-- Respond to inquiries
-- Filter by status (pending/responded)
-- Search inquiries
+## Environment variables that affect admin
 
-### Content Management (`/admin/content`)
-- **Properties Tab:**
-  - View all properties from Sanity CMS
-  - Create new properties
-  - Edit existing properties
-  - Delete properties
-  - View property statistics
-  
-- **Regions Tab:**
-  - View all regions from Sanity CMS
-  - (Future: Edit/create regions)
+| Variable | Purpose |
+| --- | --- |
+| `ADMIN_EMAILS` | Comma-separated emails always treated as admins |
+| `ADMIN_NOTIFY_EMAIL` | Inbox notified about new inquiries |
+| `ADMIN_LAUNCH_TOOLS_ENABLED` | Enables AI translation / description tools in `/admin/content` |
+| `RESEND_API_KEY` | Real email sending (otherwise emails are logged to console) |
+| `GEMINI_API_KEY` | AI-generated email content (otherwise static templates) |
+| `CRON_SECRET` | Required for cron endpoints and the manual alert trigger in `/admin/email-test` |
 
-- **Settings Tab:**
-  - Site configuration
-  - Email templates
+## Database policies
 
-### Email Testing (`/admin/email-test`)
-- Test email notifications
-- Verify email service configuration
-
-## Authentication Requirements
-
-**Current Setup:**
-- Any authenticated user can access the admin panel (demo mode)
-- In production, you may want to restrict this to users with `role: 'admin'` in their profile
-
-**To Restrict Admin Access:**
-1. Update `app/admin/layout.js`
-2. Change the role check from allowing all authenticated users to requiring `role === 'admin'`
+Run `db/final-admin-rls.sql` (Supabase SQL editor) to apply the canonical RLS
+for `premium_documents`, `premium_content`, and the `documents` storage bucket.
+Admin writes to those tables go through server API routes with the service-role
+key, so no permissive client-side write policies are needed.
 
 ## Troubleshooting
 
-### "Access Denied" Error
-- Make sure you're logged in
-- Check if your user profile has the correct role
-- Try logging out and logging back in
-
-### Admin Panel Not Loading
-- Check browser console for errors
-- Verify you're logged in
-- Try clearing browser cache
-
-### Can't See Properties in Content Management
-- Verify Sanity CMS is configured (check environment variables)
-- Check that you have properties in your Sanity dataset
-- Look for error messages in the admin panel
-
-## URL Structure
-
-```
-/admin                    → Admin Dashboard
-/admin/users              → User Management
-/admin/inquiries           → Inquiry Management
-/admin/content             → Content Management (Sanity CMS)
-/admin/email-test          → Email Testing
-```
-
-## Next Steps After Accessing Admin
-
-1. **Configure Sanity CMS** - Add your Sanity credentials to enable content management
-2. **Test Content Management** - Try creating a test property
-3. **Review User Management** - Check registered users and their roles
-4. **Check Inquiries** - Respond to any pending inquiries
-5. **Test Email System** - Verify email notifications are working
-
-## Security Notes
-
-⚠️ **Important:** The current setup allows any authenticated user to access admin. For production:
-- Implement proper role-based access control
-- Restrict admin access to verified administrators only
-- Consider adding 2FA for admin accounts
-- Log admin actions for audit purposes
-
+- **Redirected away from /admin** — your profile role is not `'admin'` and your
+  email is not in `ADMIN_EMAILS`. Fix either and log in again.
+- **401/403 from /api/admin/*** — same cause; the API routes re-check access on
+  every request.
+- **Content page empty** — Sanity credentials are missing; check
+  `NEXT_PUBLIC_SANITY_PROJECT_ID` and `SANITY_API_TOKEN`.
+- **Emails not arriving** — check the status card on `/admin/email-test`; if
+  Resend is not configured, emails are only logged to the server console.

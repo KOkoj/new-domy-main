@@ -18,8 +18,7 @@ import {
   Home,
   Reply,
   CheckCircle,
-  Clock,
-  AlertCircle
+  Clock
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
 import { t } from '@/lib/translations'
@@ -72,11 +71,9 @@ export default function InquiryManagement() {
 
       if (error) throw error
 
-      // Add demo status field for each inquiry
       const inquiriesWithStatus = (inquiriesData || []).map(inquiry => ({
         ...inquiry,
-        status: inquiry.responded ? 'responded' : 'pending', // Demo field
-        priority: Math.random() > 0.7 ? 'high' : 'normal' // Demo field
+        status: inquiry.responded ? 'responded' : 'pending'
       }))
 
       setInquiries(inquiriesWithStatus)
@@ -158,14 +155,6 @@ export default function InquiryManagement() {
     }
   }
 
-  const getPriorityColor = (priority) => {
-    switch (priority) {
-      case 'high': return 'text-red-600'
-      case 'normal': return 'text-gray-600'
-      default: return 'text-gray-600'
-    }
-  }
-
   if (loading) {
     return (
       <div className="space-y-6">
@@ -229,7 +218,7 @@ export default function InquiryManagement() {
       </Card>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-4 text-center">
             <MessageSquare className="h-8 w-8 text-blue-600 mx-auto mb-2" />
@@ -251,13 +240,6 @@ export default function InquiryManagement() {
             <div className="text-sm text-gray-600">{t('admin.inquiries.respondedCard', language)}</div>
           </CardContent>
         </Card>
-        <Card>
-          <CardContent className="p-4 text-center">
-            <AlertCircle className="h-8 w-8 text-red-600 mx-auto mb-2" />
-            <div className="text-2xl font-bold">{inquiries.filter(i => i.priority === 'high').length}</div>
-            <div className="text-sm text-gray-600">{t('admin.inquiries.highPriority', language)}</div>
-          </CardContent>
-        </Card>
       </div>
 
       {/* Inquiries List */}
@@ -277,11 +259,6 @@ export default function InquiryManagement() {
                         <Badge className={getStatusColor(inquiry.status)}>
                           {t(`admin.inquiries.${inquiry.status}`, language)}
                         </Badge>
-                        {inquiry.priority === 'high' && (
-                          <Badge variant="destructive" className="text-xs">
-                            {t('admin.inquiries.highPriorityBadge', language)}
-                          </Badge>
-                        )}
                       </div>
                       <div className="flex items-center space-x-4 text-sm text-gray-600 mb-2">
                         <span className="flex items-center">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,6 +14,24 @@ export default function EmailTester() {
   const [testName, setTestName] = useState('Test User');
   const [loading, setLoading] = useState({});
   const [responses, setResponses] = useState({});
+  const [systemStatus, setSystemStatus] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetch('/api/admin/status')
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => {
+        if (!cancelled) setSystemStatus(data);
+      })
+      .catch(() => {
+        if (!cancelled) setSystemStatus(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   /**
    * Test Welcome Email
@@ -178,7 +196,7 @@ export default function EmailTester() {
     setResponses({ ...responses, cron: null });
 
     try {
-      const response = await fetch('/api/cron/alerts', {
+      const response = await fetch('/api/admin/trigger-alerts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -276,43 +294,58 @@ export default function EmailTester() {
           <CardTitle>System Status</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
-          <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-            <span className="text-sm font-medium">Resend Email Service</span>
-            <Badge variant={process.env.NEXT_PUBLIC_RESEND_CONFIGURED === 'true' ? 'default' : 'secondary'}>
-              {process.env.NEXT_PUBLIC_RESEND_CONFIGURED === 'true' ? 'Configured' : 'Not Configured'}
-            </Badge>
-          </div>
-          <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-            <span className="text-sm font-medium">Google Gemini AI Content Generation</span>
-            <Badge variant={process.env.NEXT_PUBLIC_GEMINI_CONFIGURED === 'true' ? 'default' : 'secondary'}>
-              {process.env.NEXT_PUBLIC_GEMINI_CONFIGURED === 'true' ? 'Configured' : 'Not Configured'}
-            </Badge>
-          </div>
-          <Alert className="mt-4">
-            <AlertDescription className="text-sm">
-              {process.env.NEXT_PUBLIC_RESEND_CONFIGURED !== 'true' && process.env.NEXT_PUBLIC_GEMINI_CONFIGURED !== 'true' ? (
-                <>
-                  <strong>Demo Mode:</strong> Both Resend and Gemini are not configured. 
-                  Emails will be logged to console with static templates.
-                </>
-              ) : process.env.NEXT_PUBLIC_RESEND_CONFIGURED !== 'true' ? (
-                <>
-                  <strong>Simulation Mode:</strong> Resend not configured. 
-                  Emails will be logged to console but not actually sent.
-                </>
-              ) : process.env.NEXT_PUBLIC_GEMINI_CONFIGURED !== 'true' ? (
-                <>
-                  <strong>Static Mode:</strong> Gemini not configured. 
-                  Emails will use static templates instead of AI-generated content.
-                </>
-              ) : (
-                <>
-                  <strong>Live Mode:</strong> Both services configured. 
-                  Emails will be sent with AI-generated content (powered by Google Gemini).
-                </>
-              )}
-            </AlertDescription>
-          </Alert>
+          {systemStatus === null ? (
+            <div className="flex items-center p-2 text-sm text-gray-500">
+              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+              Loading service status...
+            </div>
+          ) : (
+            <>
+              <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                <span className="text-sm font-medium">Resend Email Service</span>
+                <Badge variant={systemStatus.resendConfigured ? 'default' : 'secondary'}>
+                  {systemStatus.resendConfigured ? 'Configured' : 'Not Configured'}
+                </Badge>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                <span className="text-sm font-medium">Google Gemini AI Content Generation</span>
+                <Badge variant={systemStatus.geminiConfigured ? 'default' : 'secondary'}>
+                  {systemStatus.geminiConfigured ? 'Configured' : 'Not Configured'}
+                </Badge>
+              </div>
+              <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                <span className="text-sm font-medium">Cron Secret (manual alert trigger)</span>
+                <Badge variant={systemStatus.cronSecretConfigured ? 'default' : 'secondary'}>
+                  {systemStatus.cronSecretConfigured ? 'Configured' : 'Not Configured'}
+                </Badge>
+              </div>
+              <Alert className="mt-4">
+                <AlertDescription className="text-sm">
+                  {!systemStatus.resendConfigured && !systemStatus.geminiConfigured ? (
+                    <>
+                      <strong>Demo Mode:</strong> Both Resend and Gemini are not configured. 
+                      Emails will be logged to console with static templates.
+                    </>
+                  ) : !systemStatus.resendConfigured ? (
+                    <>
+                      <strong>Simulation Mode:</strong> Resend not configured. 
+                      Emails will be logged to console but not actually sent.
+                    </>
+                  ) : !systemStatus.geminiConfigured ? (
+                    <>
+                      <strong>Static Mode:</strong> Gemini not configured. 
+                      Emails will use static templates instead of AI-generated content.
+                    </>
+                  ) : (
+                    <>
+                      <strong>Live Mode:</strong> Both services configured. 
+                      Emails will be sent with AI-generated content (powered by Google Gemini).
+                    </>
+                  )}
+                </AlertDescription>
+              </Alert>
+            </>
+          )}
         </CardContent>
       </Card>
 
