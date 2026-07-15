@@ -14,7 +14,6 @@ import {
   Search,
   AlertCircle
 } from 'lucide-react'
-import { supabase } from '../../lib/supabase'
 import { t } from '@/lib/translations'
 import { getProfileDisplayName } from '@/lib/profileName'
 import Link from 'next/link'
@@ -57,47 +56,22 @@ export default function AdminDashboard() {
 
   const loadDashboardData = async () => {
     try {
-      // Load user count
-      const { count: userCount } = await supabase
-        .from('profiles')
-        .select('*', { count: 'exact', head: true })
-      
-      // Load inquiries count
-      const { count: inquiryCount } = await supabase
-        .from('inquiries')
-        .select('*', { count: 'exact', head: true })
-      
-      // Load favorites count
-      const { count: favoriteCount } = await supabase
-        .from('favorites')
-        .select('*', { count: 'exact', head: true })
-      
-      // Load saved searches count
-      const { count: searchCount } = await supabase
-        .from('saved_searches')
-        .select('*', { count: 'exact', head: true })
-      
-      // Load recent users
-      const { data: recentUsers } = await supabase
-        .from('profiles')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(5)
-      
-      // Load recent inquiries
-      const { data: recentInquiries } = await supabase
-        .from('inquiries')
-        .select('*')
-        .order('createdAt', { ascending: false })
-        .limit(5)
+      // Server route with the service-role client: returns true sitewide
+      // counts instead of the RLS-scoped rows the browser client can see.
+      const response = await fetch('/api/admin/stats')
+      const payload = await response.json()
+
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to load dashboard stats')
+      }
 
       setStats({
-        totalUsers: userCount || 0,
-        totalInquiries: inquiryCount || 0,
-        totalFavorites: favoriteCount || 0,
-        totalSavedSearches: searchCount || 0,
-        recentUsers: recentUsers || [],
-        recentInquiries: recentInquiries || [],
+        totalUsers: payload.totals?.users || 0,
+        totalInquiries: payload.totals?.inquiries || 0,
+        totalFavorites: payload.totals?.favorites || 0,
+        totalSavedSearches: payload.totals?.savedSearches || 0,
+        recentUsers: payload.recentUsers || [],
+        recentInquiries: payload.recentInquiries || [],
         loading: false
       })
     } catch (error) {
