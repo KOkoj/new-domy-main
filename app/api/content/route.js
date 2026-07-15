@@ -26,6 +26,9 @@ function isSanityConfigured() {
 
 // GET - Fetch all properties or regions
 export async function GET(request) {
+  const access = await requireAdminApiAccess()
+  if (!access.ok) return access.response
+
   const url = new URL(request.url)
   const type = url.searchParams.get('type') || 'properties'
 

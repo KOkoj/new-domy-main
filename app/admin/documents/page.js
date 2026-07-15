@@ -22,10 +22,7 @@ import {
   AlertCircle,
   Plus
 } from 'lucide-react'
-import { supabase } from '../../../lib/supabase'
 import { t } from '@/lib/translations'
-
-const STORAGE_BUCKET = 'documents'
 
 export default function DocumentManagement() {
   const [documents, setDocuments] = useState([])
@@ -76,18 +73,14 @@ export default function DocumentManagement() {
   const loadDocuments = async () => {
     try {
       setLoading(true)
-      const { data, error } = await supabase
-        .from('premium_documents')
-        .select('*')
-        .order('uploaded_at', { ascending: false })
+      const response = await fetch('/api/admin/documents')
+      const payload = await response.json()
 
-      if (error) {
-        // If table doesn't exist yet, we might get an error. 
-        // In a real scenario we'd handle this better, but for now we'll just log it.
-        console.error('Error loading documents:', error)
-      } else {
-        setDocuments(data || [])
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to load documents')
       }
+
+      setDocuments(payload.documents || [])
     } catch (error) {
       console.error('Error loading documents:', error)
     } finally {
@@ -107,52 +100,23 @@ export default function DocumentManagement() {
 
     setIsUploading(true)
     try {
-      if (!supabase) {
-        throw new Error('Supabase is not configured')
+      const formData = new FormData()
+      formData.append('file', newDoc.file)
+      formData.append('name', newDoc.name)
+      formData.append('description', newDoc.description)
+      formData.append('category', newDoc.category)
+
+      const response = await fetch('/api/admin/documents', {
+        method: 'POST',
+        body: formData
+      })
+      const payload = await response.json()
+
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to upload document')
       }
 
-      const safeFileName = newDoc.file.name.replace(/\s+/g, '-')
-      const storagePath = `premium/${Date.now()}_${safeFileName}`
-
-      const { error: uploadError } = await supabase.storage
-        .from(STORAGE_BUCKET)
-        .upload(storagePath, newDoc.file, {
-          cacheControl: '3600',
-          upsert: false,
-          contentType: newDoc.file.type || undefined
-        })
-
-      if (uploadError) {
-        throw uploadError
-      }
-
-      const { data: publicUrlData } = supabase.storage
-        .from(STORAGE_BUCKET)
-        .getPublicUrl(storagePath)
-
-      const fileUrl = publicUrlData?.publicUrl || storagePath
-      const fileSize = `${(newDoc.file.size / 1024 / 1024).toFixed(2)} MB`
-      const fileType = newDoc.file.name.split('.').pop().toUpperCase()
-
-      // 2. Insert metadata into database
-      const { data, error } = await supabase
-        .from('premium_documents')
-        .insert({
-          name: newDoc.name,
-          description: newDoc.description,
-          category: newDoc.category,
-          file_url: fileUrl,
-          file_size: fileSize,
-          file_type: fileType,
-          is_public: false, // Default to premium only
-          uploaded_at: new Date().toISOString()
-        })
-        .select()
-        .single()
-
-      if (error) throw error
-
-      setDocuments([data, ...documents])
+      setDocuments([payload.document, ...documents])
       setUploadDialogOpen(false)
       setNewDoc({ name: '', description: '', category: 'Legal Documents', file: null })
       alert(t('admin.documents.uploadSuccess', language))
@@ -168,12 +132,14 @@ export default function DocumentManagement() {
     if (!confirm(t('admin.documents.deleteConfirm', language))) return
 
     try {
-      const { error } = await supabase
-        .from('premium_documents')
-        .delete()
-        .eq('id', id)
+      const response = await fetch(`/api/admin/documents?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE'
+      })
+      const payload = await response.json()
 
-      if (error) throw error
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to delete document')
+      }
 
       setDocuments(documents.filter(doc => doc.id !== id))
     } catch (error) {

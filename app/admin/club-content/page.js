@@ -24,7 +24,6 @@ import {
   Clock,
   Calendar
 } from 'lucide-react'
-import { supabase } from '../../../lib/supabase'
 import { t } from '@/lib/translations'
 
 export default function ClubContentManagement() {
@@ -56,8 +55,6 @@ export default function ClubContentManagement() {
     }
   }, [])
 
-  const STORAGE_BUCKET = 'documents' // Using the same bucket for now, ideally 'premium-content'
-
   useEffect(() => {
     loadContent()
   }, [])
@@ -65,13 +62,14 @@ export default function ClubContentManagement() {
   const loadContent = async () => {
     try {
       setLoading(true)
-      const { data, error } = await supabase
-        .from('premium_content')
-        .select('*')
-        .order('created_at', { ascending: false })
+      const response = await fetch('/api/admin/club-content')
+      const payload = await response.json()
 
-      if (error) throw error
-      setContent(data || [])
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to load content')
+      }
+
+      setContent(payload.content || [])
     } catch (err) {
       console.error('Error loading content:', err)
       setError('Failed to load content')
@@ -107,12 +105,15 @@ export default function ClubContentManagement() {
     if (!confirm(t('admin.clubContent.deleteConfirm', language))) return
 
     try {
-      const { error } = await supabase
-        .from('premium_content')
-        .delete()
-        .eq('id', id)
+      const response = await fetch(`/api/admin/club-content?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE'
+      })
+      const payload = await response.json()
 
-      if (error) throw error
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to delete content')
+      }
+
       await loadContent()
     } catch (err) {
       console.error('Error deleting item:', err)
@@ -126,21 +127,20 @@ export default function ClubContentManagement() {
 
     setUploading(true)
     try {
-      const fileExt = file.name.split('.').pop()
-      const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`
-      const filePath = `premium-content/${fileName}`
+      const formData = new FormData()
+      formData.append('file', file)
 
-      const { error: uploadError } = await supabase.storage
-        .from(STORAGE_BUCKET)
-        .upload(filePath, file)
+      const response = await fetch('/api/admin/club-content/upload', {
+        method: 'POST',
+        body: formData
+      })
+      const payload = await response.json()
 
-      if (uploadError) throw uploadError
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to upload file')
+      }
 
-      const { data: { publicUrl } } = supabase.storage
-        .from(STORAGE_BUCKET)
-        .getPublicUrl(filePath)
-
-      setEditingItem(prev => ({ ...prev, [field]: publicUrl }))
+      setEditingItem(prev => ({ ...prev, [field]: payload.url }))
     } catch (err) {
       console.error('Error uploading file:', err)
       setError('Failed to upload file')
@@ -157,7 +157,6 @@ export default function ClubContentManagement() {
 
     setSaving(true)
     try {
-      // Prepare data for save
       const dataToSave = {
         title: editingItem.title,
         description: editingItem.description,
@@ -174,17 +173,16 @@ export default function ClubContentManagement() {
         published_at: editingItem.published_at || new Date().toISOString()
       }
 
-      if (editingItem.id) {
-        const { error } = await supabase
-          .from('premium_content')
-          .update(dataToSave)
-          .eq('id', editingItem.id)
-        if (error) throw error
-      } else {
-        const { error } = await supabase
-          .from('premium_content')
-          .insert([dataToSave])
-        if (error) throw error
+      const isUpdate = Boolean(editingItem.id)
+      const response = await fetch('/api/admin/club-content', {
+        method: isUpdate ? 'PATCH' : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(isUpdate ? { ...dataToSave, id: editingItem.id } : dataToSave)
+      })
+      const payload = await response.json()
+
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to save content')
       }
 
       setIsModalOpen(false)
