@@ -9,7 +9,9 @@ import {
   X,
   MapPin,
   Map as MapIcon,
+  List as ListIcon,
   ChevronRight,
+  ChevronDown,
   SlidersHorizontal,
   Mail,
   MessageCircle,
@@ -71,7 +73,9 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   const [sortBy, setSortBy] = useState('newest');
   const [selectedPropertyId, setSelectedPropertyId] = useState(null);
   const [hoveredPropertyId, setHoveredPropertyId] = useState(null);
-  const [showMap, setShowMap] = useState(false);
+  // 'list' = classic sidebar + grid, 'split' = list left / map right (Airbnb-style)
+  const [viewMode, setViewMode] = useState('list');
+  const [showFilterBar, setShowFilterBar] = useState(false);
   
   // Navigation state (user only used for Favorites functionality)
   const [user, setUser] = useState(null);
@@ -218,6 +222,11 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     const regionParam = urlParams.get('region');
     const searchParam = urlParams.get('search');
     const amenityParam = (urlParams.get('amenity') || '').toLowerCase();
+    const viewParam = (urlParams.get('view') || '').toLowerCase();
+
+    if (viewParam === 'split' || viewParam === 'map') {
+      setViewMode('split');
+    }
     const validAmenityIds = new Set(amenities.map((amenity) => amenity.id));
     const nextFilters = {};
 
@@ -241,6 +250,17 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       setFilters((prev) => ({ ...prev, ...nextFilters }));
     }
   }, []);
+
+  // Persist view mode in the URL (?view=split) without triggering navigation
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (viewMode === 'split') {
+      url.searchParams.set('view', 'split');
+    } else {
+      url.searchParams.delete('view');
+    }
+    window.history.replaceState(window.history.state, '', url);
+  }, [viewMode]);
 
   // Scroll to top when region banner appears
   useEffect(() => {
@@ -344,6 +364,18 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
 
   // Check if there are more properties to load
   const hasMoreProperties = sortedProperties.length > displayedCount;
+
+  // Number of active filters (shown on the split-view filter bar toggle)
+  const activeFilterCount = useMemo(() => {
+    let count = 0;
+    if (filters.propertyType) count += 1;
+    if (filters.region) count += 1;
+    if (filters.rooms) count += 1;
+    if (filters.priceFrom) count += 1;
+    if (filters.priceTo) count += 1;
+    count += filters.amenities.length;
+    return count;
+  }, [filters]);
 
   const clearFilters = () => {
     setFilters({
@@ -572,6 +604,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
           )}
           
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
+            {viewMode === 'list' && (
+            <>
             {/* Mobile Filter Toggle Button */}
             <div className="lg:hidden">
               <Button
@@ -715,13 +749,15 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 </div>
               </div>
             </div>
+            </>
+            )}
 
             {/* Main Content Area */}
             <div className="flex-1 min-w-0">
               {/* Top Controls Bar */}
               <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg p-4 sm:p-6 mb-4 sm:mb-6">
                 <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-                  <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                     {/* Sort Dropdown */}
                     <select
                       value={sortBy}
@@ -733,43 +769,170 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                       <option value="expensive">{pageLabels.sortExpensive}</option>
                     </select>
 
+                    {/* Filters toggle (split view uses the horizontal bar) */}
+                    {viewMode === 'split' && (
+                      <Button
+                        onClick={() => setShowFilterBar(!showFilterBar)}
+                        variant="outline"
+                        className="border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-gray-900 font-semibold text-xs sm:text-sm px-3 sm:px-4 py-2 shadow-sm whitespace-nowrap"
+                        data-testid="filter-bar-toggle"
+                      >
+                        <SlidersHorizontal className="h-4 w-4 sm:mr-2" />
+                        <span className="hidden sm:inline">{pageLabels.filtersLabel}</span>
+                        {activeFilterCount > 0 && (
+                          <span className="ml-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-slate-800 px-1.5 text-[11px] font-bold text-white">
+                            {activeFilterCount}
+                          </span>
+                        )}
+                        <ChevronDown className={`ml-1 h-3.5 w-3.5 transition-transform duration-200 ${showFilterBar ? 'rotate-180' : ''}`} />
+                      </Button>
+                    )}
+                  </div>
 
-                    {/* Map Toggle Button */}
-                    <Button
-                      onClick={() => setShowMap(!showMap)}
-                      className={`${
-                        showMap
-                          ? 'bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow-lg hover:shadow-xl'
-                          : 'bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white shadow-md hover:shadow-lg'
-                      } font-bold text-xs sm:text-sm px-3 sm:px-6 py-2 sm:py-3 transition-all duration-300 border-0 whitespace-nowrap`}
+                  {/* View mode segmented control */}
+                  <div
+                    className="inline-flex self-start sm:self-auto rounded-xl border border-gray-300 bg-gray-50 p-1 shadow-sm"
+                    role="group"
+                    data-testid="view-mode-toggle"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setViewMode('list')}
+                      aria-pressed={viewMode === 'list'}
+                      className={`flex items-center gap-1.5 rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                        viewMode === 'list'
+                          ? 'bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow'
+                          : 'text-gray-600 hover:text-gray-900'
+                      }`}
+                      data-testid="view-mode-list"
                     >
-                      <MapIcon className="h-4 w-4 sm:h-5 sm:w-5 sm:mr-2" />
-                      <span className="hidden sm:inline">{showMap ? pageLabels.hideMap : pageLabels.showMap}</span>
-                    </Button>
+                      <ListIcon className="h-4 w-4" />
+                      {pageLabels.viewList}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setViewMode('split')}
+                      aria-pressed={viewMode === 'split'}
+                      className={`flex items-center gap-1.5 rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                        viewMode === 'split'
+                          ? 'bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow'
+                          : 'text-gray-600 hover:text-gray-900'
+                      }`}
+                      data-testid="view-mode-map"
+                    >
+                      <MapIcon className="h-4 w-4" />
+                      {pageLabels.viewMap}
+                    </button>
                   </div>
                 </div>
               </div>
 
-              {/* Map View (when toggled) */}
-              {showMap && (
-                <div className="bg-white border border-gray-200 rounded-2xl shadow-lg mb-4 sm:mb-6 overflow-hidden">
-                  <div className="h-[300px] sm:h-[400px] lg:h-[500px] relative">
-                    <MapComponent
-                      properties={sortedProperties}
-                      selectedId={selectedPropertyId}
-                      hoveredId={hoveredPropertyId}
-                      onSelect={setSelectedPropertyId}
-                      onHover={setHoveredPropertyId}
-                      currency={currency}
-                      language={language}
-                    />
+              {/* Horizontal collapsible filter bar (split view only) */}
+              {viewMode === 'split' && showFilterBar && (
+                <div
+                  className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg p-4 sm:p-5 mb-4 sm:mb-6"
+                  data-testid="horizontal-filter-bar"
+                >
+                  <div className="flex flex-wrap items-end gap-3 sm:gap-4">
+                    <div className="min-w-[150px] flex-1 sm:flex-none">
+                      <label className="mb-1 block text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.propertyType}</label>
+                      <select
+                        value={filters.propertyType}
+                        onChange={(e) => setFilters(prev => ({ ...prev, propertyType: e.target.value }))}
+                        className="w-full rounded-lg border border-gray-300 bg-white p-2 text-sm font-medium text-gray-700 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500"
+                      >
+                        <option value="">—</option>
+                        {propertyTypes.map(type => (
+                          <option key={type.id} value={type.id}>{type.name[language] || type.name.en}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="min-w-[160px] flex-1 sm:flex-none">
+                      <label className="mb-1 block text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.region}</label>
+                      <select
+                        value={filters.region}
+                        onChange={(e) => setFilters(prev => ({ ...prev, region: toRegionSlug(e.target.value) }))}
+                        className="w-full rounded-lg border border-gray-300 bg-white p-2 text-sm font-medium text-gray-700 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500"
+                      >
+                        <option value="">{pageLabels.allRegions}</option>
+                        {Object.entries(REGION_LABEL_BY_SLUG).map(([regionSlug, regionLabel]) => (
+                          <option key={regionSlug} value={regionSlug}>{regionLabel}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="min-w-[110px]">
+                      <label className="mb-1 block text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.layout}</label>
+                      <select
+                        value={filters.rooms}
+                        onChange={(e) => setFilters(prev => ({ ...prev, rooms: e.target.value }))}
+                        className="w-full rounded-lg border border-gray-300 bg-white p-2 text-sm font-medium text-gray-700 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500"
+                      >
+                        <option value="">—</option>
+                        {ROOM_LAYOUT_OPTIONS.map((layoutOption) => (
+                          <option key={layoutOption.id} value={layoutOption.id}>{layoutOption.label}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="w-[110px]">
+                      <label className="mb-1 block text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.from} (€)</label>
+                      <Input
+                        type="number"
+                        placeholder={pageLabels.from}
+                        value={filters.priceFrom}
+                        onChange={(e) => setFilters(prev => ({ ...prev, priceFrom: e.target.value }))}
+                        className="border-gray-300 shadow-sm focus:border-slate-500 focus:ring-2 focus:ring-slate-500"
+                      />
+                    </div>
+                    <div className="w-[110px]">
+                      <label className="mb-1 block text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.to} (€)</label>
+                      <Input
+                        type="number"
+                        placeholder={pageLabels.to}
+                        value={filters.priceTo}
+                        onChange={(e) => setFilters(prev => ({ ...prev, priceTo: e.target.value }))}
+                        className="border-gray-300 shadow-sm focus:border-slate-500 focus:ring-2 focus:ring-slate-500"
+                      />
+                    </div>
+
+                    <Button
+                      variant="ghost"
+                      onClick={clearFilters}
+                      className="ml-auto px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                    >
+                      <X className="mr-1.5 h-4 w-4" />
+                      {pageLabels.clearFilters}
+                    </Button>
+                  </div>
+
+                  <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-gray-100 pt-3">
+                    <span className="text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.amenities}</span>
+                    {amenities.map(amenity => (
+                      <label key={amenity.id} className="flex cursor-pointer items-center gap-1.5">
+                        <Checkbox
+                          checked={filters.amenities.includes(amenity.id)}
+                          onCheckedChange={() => toggleAmenity(amenity.id)}
+                          className="data-[state=checked]:bg-slate-700 data-[state=checked]:border-slate-700"
+                        />
+                        <span className="text-sm font-medium text-gray-700">{amenity.name[language] || amenity.name.en}</span>
+                      </label>
+                    ))}
                   </div>
                 </div>
               )}
 
+              {/* Content: plain grid in list mode, list + sticky map in split mode */}
+              <div className={viewMode === 'split' ? 'flex items-start gap-4 lg:gap-6' : ''}>
+                <div className={viewMode === 'split' ? 'w-full lg:w-1/2 min-w-0' : ''}>
               {/* Properties Grid */}
               {displayedProperties.length > 0 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className={`grid gap-6 ${
+                  viewMode === 'split'
+                    ? 'grid-cols-1 xl:grid-cols-2'
+                    : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+                }`}>
                   {displayedProperties.map(property => (
                     <PropertyCard 
                       key={property.id} 
@@ -916,6 +1079,25 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                     <ChevronRight className="h-6 w-6 transform -rotate-90" />
                   </Button>
                 </div>
+              </div>
+                </div>
+
+                {/* Map panel (split view, desktop): sticky, full height minus header */}
+                {viewMode === 'split' && (
+                  <div className="hidden lg:block lg:w-1/2 lg:sticky lg:top-24">
+                    <div className="h-[calc(100vh-7.5rem)] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
+                      <MapComponent
+                        properties={sortedProperties}
+                        selectedId={selectedPropertyId}
+                        hoveredId={hoveredPropertyId}
+                        onSelect={setSelectedPropertyId}
+                        onHover={setHoveredPropertyId}
+                        currency={currency}
+                        language={language}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
