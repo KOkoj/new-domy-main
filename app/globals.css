@@ -254,13 +254,28 @@
   border-radius: 8px;
 }
 
-/* Custom map markers */
-.custom-marker {
-  background: #3e6343;
-  border: 2px solid white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
+/* Custom map markers (SVG price pins — no default divIcon box) */
+.property-pin,
+.property-cluster {
+  background: transparent;
+  border: none;
+}
+
+/* In-map property card popup: card provides its own chrome */
+.property-map-popup .leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.property-map-popup .leaflet-popup-content {
+  margin: 0;
+  width: 280px !important;
+}
+
+.property-map-popup .leaflet-popup-tip {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Responsive design helpers */

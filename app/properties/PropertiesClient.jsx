@@ -69,8 +69,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   
   const [showRegionBanner, setShowRegionBanner] = useState(false);
   const [sortBy, setSortBy] = useState('newest');
-  const [selectedProperty, setSelectedProperty] = useState(null);
-  const [mapCenter, setMapCenter] = useState([42.8333, 12.8333]);
+  const [selectedPropertyId, setSelectedPropertyId] = useState(null);
+  const [hoveredPropertyId, setHoveredPropertyId] = useState(null);
   const [showMap, setShowMap] = useState(false);
   
   // Navigation state (user only used for Favorites functionality)
@@ -277,13 +277,6 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     }, 600);
   };
 
-  // Update map center when selected property changes
-  useEffect(() => {
-    if (selectedProperty) {
-      setMapCenter(selectedProperty.location);
-    }
-  }, [selectedProperty]);
-
   // Filter properties
   const filteredProperties = useMemo(() => {
     return properties.filter(property => {
@@ -374,7 +367,6 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   };
 
   const handleCardClick = (property) => {
-    setSelectedProperty(property);
     // Navigate to property detail page if slug is available
     if (property.slug) {
       window.location.href = `/properties/${property.slug}`;
@@ -764,10 +756,12 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                   <div className="h-[300px] sm:h-[400px] lg:h-[500px] relative">
                     <MapComponent
                       properties={sortedProperties}
-                      selectedProperty={selectedProperty}
-                      onPropertyClick={handleCardClick}
-                      center={selectedProperty ? selectedProperty.location : [42.8333, 12.8333]}
-                      zoom={selectedProperty ? 10 : 6}
+                      selectedId={selectedPropertyId}
+                      hoveredId={hoveredPropertyId}
+                      onSelect={setSelectedPropertyId}
+                      onHover={setHoveredPropertyId}
+                      currency={currency}
+                      language={language}
                     />
                   </div>
                 </div>
