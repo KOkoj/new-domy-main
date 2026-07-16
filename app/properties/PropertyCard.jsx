@@ -13,7 +13,17 @@ import NoAgencyBadge from '@/components/NoAgencyBadge';
 import { PAGE_LABELS } from './filterConfig';
 
 // PropertyCard component matching homepage design
-export default function PropertyCard({ property, onFavorite, isFavorited, language, currency }) {
+export default function PropertyCard({
+  property,
+  onFavorite,
+  isFavorited,
+  language,
+  currency,
+  onHoverStart,
+  onHoverEnd,
+  isHighlighted = false,
+  isFlashed = false,
+}) {
   const roomsLabel = language === 'cs' ? 'místnosti' : language === 'it' ? 'locali' : 'rooms'
   const bedroomsLabel = language === 'cs' ? 'ložnice' : language === 'it' ? 'camere' : 'bedrooms'
   const viewDetailsLabel = PAGE_LABELS[language]?.viewDetails || PAGE_LABELS.en.viewDetails
@@ -38,10 +48,18 @@ export default function PropertyCard({ property, onFavorite, isFavorited, langua
 
   return (
     <Card
-      className="group relative cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-gray-100 shadow-lg bg-white rounded-2xl flex flex-col h-full hover:border-slate-200/50"
+      className={`group relative cursor-pointer hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-gray-100 shadow-lg bg-white rounded-2xl flex flex-col h-full hover:border-slate-200/50 ${
+        isFlashed
+          ? 'ring-2 ring-red-400 ring-offset-2'
+          : isHighlighted
+          ? 'ring-2 ring-slate-400 ring-offset-2'
+          : ''
+      }`}
       data-testid="property-card"
       data-property-id={property.id}
       data-property-type={property.type}
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
     >
       <Link
         href={propertyHref}

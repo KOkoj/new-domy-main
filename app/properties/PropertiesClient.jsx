@@ -73,6 +73,10 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   const [sortBy, setSortBy] = useState('newest');
   const [selectedPropertyId, setSelectedPropertyId] = useState(null);
   const [hoveredPropertyId, setHoveredPropertyId] = useState(null);
+  // Card that briefly flashes after being selected on the map
+  const [flashedPropertyId, setFlashedPropertyId] = useState(null);
+  // Whether the current hover originated from a map pin (rings the list card)
+  const [hoverFromMap, setHoverFromMap] = useState(false);
   // 'list' = classic sidebar + grid, 'split' = list left / map right (Airbnb-style)
   const [viewMode, setViewMode] = useState('list');
   const [showFilterBar, setShowFilterBar] = useState(false);
@@ -365,6 +369,32 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   // Check if there are more properties to load
   const hasMoreProperties = sortedProperties.length > displayedCount;
 
+  // Map pin selected -> make sure the card is rendered, scroll to it, flash it
+  useEffect(() => {
+    if (!selectedPropertyId) return;
+
+    const index = sortedProperties.findIndex((property) => property.id === selectedPropertyId);
+    if (index === -1) return;
+
+    // The card may be beyond the current pagination window; extend it first
+    // and let this effect re-run once the card is in the DOM.
+    if (index >= displayedCount) {
+      setDisplayedCount(index + 1);
+      return;
+    }
+
+    const element = document.querySelector(
+      `[data-testid="property-card"][data-property-id="${CSS.escape(String(selectedPropertyId))}"]`
+    );
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    setFlashedPropertyId(selectedPropertyId);
+    const timeout = setTimeout(() => setFlashedPropertyId(null), 2500);
+    return () => clearTimeout(timeout);
+  }, [selectedPropertyId, sortedProperties, displayedCount]);
+
   // Number of active filters (shown on the split-view filter bar toggle)
   const activeFilterCount = useMemo(() => {
     let count = 0;
@@ -396,16 +426,6 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       ? prev.amenities.filter(id => id !== amenityId)
       : [...prev.amenities, amenityId]
     }));
-  };
-
-  const handleCardClick = (property) => {
-    // Navigate to property detail page if slug is available
-    if (property.slug) {
-      window.location.href = `/properties/${property.slug}`;
-    } else if (property.sanityId) {
-      // For Sanity properties, try to use slug or _id
-      window.location.href = `/properties/${property.slug || property.sanityId}`;
-    }
   };
 
   const scrollToTop = () => {
@@ -941,7 +961,10 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                       isFavorited={userFavorites.has(property.id)}
                       language={language}
                       currency={currency}
-                      onClick={handleCardClick}
+                      onHoverStart={() => { setHoveredPropertyId(property.id); setHoverFromMap(false); }}
+                      onHoverEnd={() => setHoveredPropertyId(null)}
+                      isHighlighted={hoverFromMap && hoveredPropertyId === property.id}
+                      isFlashed={flashedPropertyId === property.id}
                     />
                   ))}
                 </div>
@@ -1091,7 +1114,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                         selectedId={selectedPropertyId}
                         hoveredId={hoveredPropertyId}
                         onSelect={setSelectedPropertyId}
-                        onHover={setHoveredPropertyId}
+                        onHover={(id) => { setHoveredPropertyId(id); setHoverFromMap(Boolean(id)); }}
                         currency={currency}
                         language={language}
                       />
