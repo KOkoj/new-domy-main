@@ -93,12 +93,12 @@ function createClusterIcon(L, cluster) {
   });
 }
 
-function MapPropertyCard({ property, currency = 'EUR', language = 'cs', onClose, onNavigate }) {
+function MapPropertyCard({ property, currency = 'EUR', language = 'cs', onClose, onNavigate, className = 'w-[280px]' }) {
   const detailLabel =
     language === 'cs' ? 'Zobrazit detail' : language === 'it' ? 'Vedi dettagli' : 'View details';
 
   return (
-    <div className="w-[280px] overflow-hidden rounded-2xl bg-white" data-testid="map-property-card">
+    <div className={`${className} overflow-hidden rounded-2xl bg-white`} data-testid="map-property-card">
       <div className="relative h-[150px] w-full bg-slate-100">
         {property.image && (
           // eslint-disable-next-line @next/next/no-img-element
@@ -157,6 +157,54 @@ function MapPropertyCard({ property, currency = 'EUR', language = 'cs', onClose,
 }
 
 /**
+ * Bottom sheet wrapper used on mobile: swipe down (or tap X) to dismiss.
+ */
+function MapBottomSheet({ children, onClose }) {
+  const [dragY, setDragY] = useState(0);
+  const touchStartYRef = useRef(null);
+
+  const handleTouchStart = (event) => {
+    touchStartYRef.current = event.touches[0].clientY;
+  };
+
+  const handleTouchMove = (event) => {
+    if (touchStartYRef.current === null) return;
+    const delta = event.touches[0].clientY - touchStartYRef.current;
+    if (delta > 0) setDragY(delta);
+  };
+
+  const handleTouchEnd = () => {
+    if (dragY > 80) {
+      onClose();
+    }
+    setDragY(0);
+    touchStartYRef.current = null;
+  };
+
+  return (
+    <div
+      className="absolute inset-x-3 bottom-20 z-[1000]"
+      style={{
+        transform: `translateY(${dragY}px)`,
+        transition: dragY === 0 ? 'transform 0.2s ease-out' : 'none',
+        touchAction: 'none',
+      }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      data-testid="map-bottom-sheet"
+    >
+      <div className="overflow-hidden rounded-2xl shadow-2xl">
+        <div className="flex justify-center bg-white pt-2">
+          <div className="h-1 w-10 rounded-full bg-gray-300" />
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/**
  * PropertyMap v2 — stable Leaflet instance with clustering.
  *
  * Props contract:
@@ -164,8 +212,8 @@ function MapPropertyCard({ property, currency = 'EUR', language = 'cs', onClose,
  * - selectedId / hoveredId: ids controlled by the parent
  * - onSelect(id): marker clicked
  * - onHover(id|null): marker hover state
- * - showCard: when false, marker clicks only call onSelect (parent renders
- *   its own card, e.g. the mobile bottom sheet)
+ * - cardVariant: 'popup' anchors a Leaflet popup at the pin (desktop),
+ *   'sheet' shows a swipe-dismissable bottom card (mobile)
  */
 const PropertyMap = ({
   properties = [],
@@ -173,7 +221,7 @@ const PropertyMap = ({
   hoveredId = null,
   onSelect = () => {},
   onHover = () => {},
-  showCard = true,
+  cardVariant = 'popup',
   currency = 'EUR',
   language = 'cs',
   center = DEFAULT_CENTER,
@@ -192,8 +240,8 @@ const PropertyMap = ({
 
   // Keep latest callbacks/props in refs so marker handlers never go stale and
   // markers don't need rebuilding when callbacks change identity.
-  const callbacksRef = useRef({ onSelect, onHover, showCard });
-  callbacksRef.current = { onSelect, onHover, showCard };
+  const callbacksRef = useRef({ onSelect, onHover, cardVariant });
+  callbacksRef.current = { onSelect, onHover, cardVariant };
 
   const [ready, setReady] = useState(false);
   const [activeProperty, setActiveProperty] = useState(null);
@@ -313,8 +361,8 @@ const PropertyMap = ({
 
       marker.on('click', () => {
         callbacksRef.current.onSelect(property.id);
-        if (callbacksRef.current.showCard && popupContainerRef.current) {
-          setActiveProperty(property);
+        setActiveProperty(property);
+        if (callbacksRef.current.cardVariant === 'popup' && popupContainerRef.current) {
           popupRef.current = L.popup({
             closeButton: false,
             className: 'property-map-popup',
@@ -386,7 +434,7 @@ const PropertyMap = ({
   return (
     <div className="relative h-full w-full">
       <div ref={containerRef} className="z-0 h-full min-h-[300px] w-full" data-testid="property-map" />
-      {showCard &&
+      {cardVariant === 'popup' &&
         activeProperty &&
         popupContainerRef.current &&
         createPortal(
@@ -399,6 +447,18 @@ const PropertyMap = ({
           />,
           popupContainerRef.current
         )}
+      {cardVariant === 'sheet' && activeProperty && (
+        <MapBottomSheet onClose={closeCard}>
+          <MapPropertyCard
+            property={activeProperty}
+            currency={currency}
+            language={language}
+            onClose={closeCard}
+            onNavigate={handleNavigate}
+            className="w-full"
+          />
+        </MapBottomSheet>
+      )}
     </div>
   );
 };

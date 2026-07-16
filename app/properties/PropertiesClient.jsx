@@ -77,9 +77,14 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   const [flashedPropertyId, setFlashedPropertyId] = useState(null);
   // Whether the current hover originated from a map pin (rings the list card)
   const [hoverFromMap, setHoverFromMap] = useState(false);
-  // 'list' = classic sidebar + grid, 'split' = list left / map right (Airbnb-style)
+  // 'list' = classic sidebar + grid, 'split' = list left / map right (Airbnb-style);
+  // on mobile, 'split' renders as a full-screen map instead
   const [viewMode, setViewMode] = useState('list');
   const [showFilterBar, setShowFilterBar] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 1023px)').matches : false
+  );
+  const mobileMapActive = viewMode === 'split' && isMobileViewport;
   
   // Navigation state (user only used for Favorites functionality)
   const [user, setUser] = useState(null);
@@ -254,6 +259,26 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       setFilters((prev) => ({ ...prev, ...nextFilters }));
     }
   }, []);
+
+  // Track the lg breakpoint so only one map instance mounts at a time
+  // (mounting Leaflet in a display:none container breaks its sizing)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 1023px)');
+    const handleChange = (event) => setIsMobileViewport(event.matches);
+    setIsMobileViewport(mediaQuery.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Lock body scroll while the mobile full-screen map is open
+  useEffect(() => {
+    if (!mobileMapActive) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileMapActive]);
 
   // Persist view mode in the URL (?view=split) without triggering navigation
   useEffect(() => {
@@ -943,9 +968,11 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 </div>
               )}
 
-              {/* Content: plain grid in list mode, list + sticky map in split mode */}
-              <div className={viewMode === 'split' ? 'flex items-start gap-4 lg:gap-6' : ''}>
-                <div className={viewMode === 'split' ? 'w-full lg:w-1/2 min-w-0' : ''}>
+              {/* Content: plain grid in list mode; in split mode the container is
+                  viewport-height with an independently scrolling list column
+                  (position:sticky is broken here by the root overflow-x-hidden) */}
+              <div className={viewMode === 'split' ? 'flex items-stretch gap-4 lg:gap-6 lg:h-[calc(100vh-9rem)]' : ''}>
+                <div className={viewMode === 'split' ? 'w-full lg:w-1/2 min-w-0 lg:h-full lg:overflow-y-auto lg:pr-1 lg:pb-2' : ''}>
               {/* Properties Grid */}
               {displayedProperties.length > 0 && (
                 <div className={`grid gap-6 ${
@@ -1105,10 +1132,10 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
               </div>
                 </div>
 
-                {/* Map panel (split view, desktop): sticky, full height minus header */}
-                {viewMode === 'split' && (
-                  <div className="hidden lg:block lg:w-1/2 lg:sticky lg:top-24">
-                    <div className="h-[calc(100vh-7.5rem)] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
+                {/* Map panel (split view, desktop): full height beside the scrolling list */}
+                {viewMode === 'split' && !isMobileViewport && (
+                  <div className="hidden lg:block lg:w-1/2 lg:h-full">
+                    <div className="h-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
                       <MapComponent
                         properties={sortedProperties}
                         selectedId={selectedPropertyId}
@@ -1125,6 +1152,44 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Mobile full-screen map (below the fixed header) */}
+      {mobileMapActive && (
+        <div className="fixed inset-x-0 bottom-0 top-20 z-40 lg:hidden" data-testid="mobile-map-overlay">
+          <MapComponent
+            properties={sortedProperties}
+            selectedId={selectedPropertyId}
+            hoveredId={hoveredPropertyId}
+            onSelect={setSelectedPropertyId}
+            onHover={(id) => { setHoveredPropertyId(id); setHoverFromMap(Boolean(id)); }}
+            cardVariant="sheet"
+            currency={currency}
+            language={language}
+          />
+        </div>
+      )}
+
+      {/* Floating view toggle pill (mobile only, Airbnb-style) */}
+      <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 lg:hidden">
+        <button
+          type="button"
+          onClick={() => setViewMode(viewMode === 'split' ? 'list' : 'split')}
+          className="flex items-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-xl transition-transform active:scale-95"
+          data-testid="mobile-view-toggle"
+        >
+          {viewMode === 'split' ? (
+            <>
+              <ListIcon className="h-4 w-4" />
+              {pageLabels.viewList}
+            </>
+          ) : (
+            <>
+              <MapIcon className="h-4 w-4" />
+              {pageLabels.viewMap}
+            </>
+          )}
+        </button>
       </div>
 
       {/* Footer */}
