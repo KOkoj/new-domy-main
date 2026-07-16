@@ -17561,6 +17561,10 @@
         "en": "Via della Pesa, Montelupo Fiorentino (FI), Tuscany",
         "cs": "Via della Pesa, Montelupo Fiorentino (FI), Toskánsko",
         "it": "Via della Pesa, Montelupo Fiorentino (FI), Toscana"
+      },
+      "coordinates": {
+        "lat": 43.7333,
+        "lng": 11.0167
       }
     },
     "status": "available",
