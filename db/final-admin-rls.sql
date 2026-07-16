@@ -34,27 +34,33 @@ BEGIN
   END LOOP;
 END $$;
 
--- Drop the known permissive write policies on the 'documents' storage bucket
--- created by the superseded scripts. (We do not drop unrelated storage
--- policies for other buckets.)
+-- Drop the known policies on the 'documents' storage bucket created by the
+-- superseded scripts and by the manual hotfix, so exactly one canonical set
+-- remains. (We do not drop unrelated storage policies for other buckets.)
 DROP POLICY IF EXISTS "Allow authenticated uploads" ON storage.objects;
 DROP POLICY IF EXISTS "Allow authenticated updates" ON storage.objects;
 DROP POLICY IF EXISTS "Allow authenticated deletes" ON storage.objects;
 DROP POLICY IF EXISTS "Authenticated users can upload documents" ON storage.objects;
 DROP POLICY IF EXISTS "Authenticated users can update documents" ON storage.objects;
 DROP POLICY IF EXISTS "Authenticated users can delete documents" ON storage.objects;
+-- Manually created hotfix policies:
+DROP POLICY IF EXISTS "Authenticated can read documents bucket" ON storage.objects;
+DROP POLICY IF EXISTS "Admins can write documents bucket" ON storage.objects;
+DROP POLICY IF EXISTS "Admins can update documents bucket" ON storage.objects;
+DROP POLICY IF EXISTS "Admins can delete documents bucket" ON storage.objects;
 
 -- ============================================================
 -- 2. premium_documents
 -- ============================================================
 ALTER TABLE public.premium_documents ENABLE ROW LEVEL SECURITY;
 
--- Members (premium/vip) and admins can read; public docs readable by any
--- authenticated user. Writes: service-role only (no policy).
+-- Public docs (is_public = true) readable without auth, preserving the
+-- original semantics. Everything else: members (premium/vip) and admins.
+-- Writes: service-role only (no policy).
 CREATE POLICY "premium_documents_select" ON public.premium_documents
   FOR SELECT
   USING (
-    (is_public = true AND auth.uid() IS NOT NULL)
+    is_public = true
     OR EXISTS (
       SELECT 1 FROM public.profiles
       WHERE profiles.id = auth.uid()
@@ -87,8 +93,11 @@ CREATE POLICY "premium_content_select" ON public.premium_content
 -- ============================================================
 -- 4. Storage: 'documents' bucket
 -- ============================================================
--- Reads stay allowed for authenticated users (dashboard downloads). The
--- bucket itself is public, so public URLs continue to work either way.
+-- Reads stay allowed for authenticated users (dashboard signed-URL
+-- downloads). The bucket itself is public, so public URLs continue to work
+-- either way. No INSERT/UPDATE/DELETE policies are created: all admin writes
+-- go through /api/admin/documents and /api/admin/club-content/upload, which
+-- use the service-role client and bypass RLS.
 DROP POLICY IF EXISTS "Allow authenticated reads" ON storage.objects;
 DROP POLICY IF EXISTS "Authenticated users can view documents" ON storage.objects;
 CREATE POLICY "documents_bucket_read" ON storage.objects
