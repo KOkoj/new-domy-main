@@ -90,6 +90,7 @@ function transformProperty(prop, index) {
     featured: prop.featured || false,
     createdAt: prop._createdAt || prop.createdAt || '',
     updatedAt: prop._updatedAt || prop.updatedAt || '',
+    pinnedRank: Number(prop.pinnedRank) || 0,
     isNew: Boolean(prop.isNew || prop.newListing),
     noAgency: Boolean(prop.noAgency || prop.no_agency || prop.badges?.includes('no-agency')),
   }
@@ -102,14 +103,17 @@ function getPropertyTimestamp(property) {
 
 function prepareProperties(rawProperties = []) {
   const transformed = rawProperties.map(transformProperty)
+  const pinnedProperties = transformed
+    .filter((property) => property.pinnedRank > 0)
+    .sort((a, b) => a.pinnedRank - b.pinnedRank)
   const newProperties = transformed
-    .filter((property) => property.isNew)
+    .filter((property) => property.pinnedRank === 0 && property.isNew)
     .sort((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a))
   const otherProperties = transformed
-    .filter((property) => !property.isNew)
+    .filter((property) => property.pinnedRank === 0 && !property.isNew)
     .sort((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a))
 
-  return [...newProperties, ...otherProperties]
+  return [...pinnedProperties, ...newProperties, ...otherProperties]
 }
 
 function SlideCard({ property, language, labels }) {

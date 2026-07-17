@@ -375,14 +375,24 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   // Sort properties
   const sortedProperties = useMemo(() => {
     const sorted = [...filteredProperties];
+    const sortPinnedFirst = (comparison) => (a, b) => {
+      const aPin = Number(a.pinnedRank) || 0;
+      const bPin = Number(b.pinnedRank) || 0;
+      if (aPin || bPin) {
+        if (!aPin) return 1;
+        if (!bPin) return -1;
+        if (aPin !== bPin) return aPin - bPin;
+      }
+      return comparison(a, b);
+    };
     switch (sortBy) {
       case 'cheapest':
-        return sorted.sort((a, b) => a.price - b.price);
+        return sorted.sort(sortPinnedFirst((a, b) => a.price - b.price));
       case 'expensive':
-        return sorted.sort((a, b) => b.price - a.price);
+        return sorted.sort(sortPinnedFirst((a, b) => b.price - a.price));
       case 'newest':
       default:
-        return sorted.sort((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a));
+        return sorted.sort(sortPinnedFirst((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a)));
     }
   }, [filteredProperties, sortBy]);
 
