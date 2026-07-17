@@ -214,7 +214,7 @@ function extractListingData(harPath, outDir) {
     const mainPath = mainPhoto
       ? (saveImage(outDir, "main", findImageContent(entries, mainPhoto)) || preexisting("main"))
       : preexisting("main");
-    const galleryPaths = photoItems.slice(0, 12).map((item, index) => (
+    const galleryPaths = photoItems.map((item, index) => (
       saveImage(outDir, `gallery-${index + 1}`, findImageContent(entries, item.selectedUrl)) || preexisting(`gallery-${index + 1}`)
     ));
     saved = { planPath, mainPath, galleryPaths };
@@ -240,8 +240,8 @@ function extractListingData(harPath, outDir) {
     advertiserLogo: advertiser?.imageUrls?.large || advertiser?.imageUrls?.small || null,
     mainPhoto,
     planPhoto: planItems[0]?.selectedUrl || null,
-    gallery: photoItems.slice(0, 12).map((item) => item.selectedUrl),
-    galleryDetails: photoItems.slice(0, 12).map((item) => ({
+    gallery: photoItems.map((item) => item.selectedUrl),
+    galleryDetails: photoItems.map((item) => ({
       type: item.type,
       caption: normalizeWhitespace(item.caption || ""),
       url: item.selectedUrl,

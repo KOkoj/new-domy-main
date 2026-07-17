@@ -1,0 +1,73 @@
+{
+  "slug": "calabria-casa-lamezia-terme-vico-vetriera",
+  "title_it": "Casa autonoma su tre livelli a Nicastro",
+  "title_en": "Three-Level Independent House in Nicastro",
+  "title_cs": "Třípodlažní dům v centru Nicastro",
+  "propertyType": "house",
+  "propertyType_it": "casa",
+  "region_it": "Calabria",
+  "city_it": "Lamezia Terme",
+  "city_en": "Lamezia Terme",
+  "city_cs": "Lamezia Terme",
+  "address_it": "Vico Vetriera, Nicastro, Lamezia Terme, Calabria",
+  "address_en": "Vico Vetriera, Nicastro, Lamezia Terme, Calabria",
+  "address_cs": "Vico Vetriera, Nicastro, Lamezia Terme, Kalábrie",
+  "price": 65000,
+  "rooms": 4,
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "square_meters": 90,
+  "features": [
+    {
+      "it": "Soluzione autonoma su tre livelli",
+      "en": "Independent home over three levels",
+      "cs": "Samostatná jednotka ve třech úrovních"
+    },
+    {
+      "it": "Cucina abitabile in muratura",
+      "en": "Built-in eat-in kitchen",
+      "cs": "Zděná obytná kuchyně"
+    },
+    {
+      "it": "Due servizi",
+      "en": "Two bathrooms",
+      "cs": "Dvě koupelny"
+    },
+    {
+      "it": "Posizione centrale a Nicastro",
+      "en": "Central Nicastro location",
+      "cs": "Centrální poloha v Nicastro"
+    }
+  ],
+  "description_it": "In Vico Vetriera, nel centro di Nicastro, soluzione autonoma su tre livelli. Il piano terra comprende cucina abitabile in muratura, soggiorno e pertinenza del sottoscala. Il primo piano si apre su un disimpegno con balconi e conduce a una camera e a un servizio. Il secondo piano presenta una struttura simile e aggiunge un secondo bagno con doccia.",
+  "description_en": "In Vico Vetriera, in central Nicastro, this independent home is arranged over three levels. The ground floor includes a built-in eat-in kitchen, living room and under-stair storage. The first floor opens onto a hallway with balconies and leads to a bedroom and bathroom. The second floor has a similar structure and includes a second bathroom with shower.",
+  "description_cs": "Ve Vico Vetriera, v centrální části Nicastro v Lamezia Terme, je nabízena samostatná jednotka ve třech úrovních.\n\nV přízemí je zděná obytná kuchyně, vstup do pohodlného obývacího pokoje a praktický prostor pod schody. První patro má chodbu s typickými balkony, pokoj a koupelnu. Druhé patro opakuje podobné uspořádání a přidává druhou koupelnu se sprchou.",
+  "seo_title_it": "Casa autonoma su tre livelli a Nicastro",
+  "seo_title_en": "Three-Level Independent House in Nicastro for Sale in Calabria",
+  "seo_title_cs": "Třípodlažní dům v centru Nicastro na prodej v Kalábrii",
+  "seo_description_it": "Casa autonoma su tre livelli a Nicastro: 90 m2, 4 locali, 2 camere, 2 bagni, prezzo 65.000 euro.",
+  "seo_description_en": "Three-Level Independent House in Nicastro: 90 sqm, 4 rooms, 2 bedrooms, 2 bathrooms, asking price EUR 65,000.",
+  "seo_description_cs": "Třípodlažní dům v centru Nicastro: 90 m2, 4 místnosti, 2 ložnice, 2 koupelny, cena 65 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/91989868/",
+  "keywords": [
+    "calabria",
+    "lamezia terme",
+    "immobiliare",
+    "house"
+  ],
+  "image_urls": [],
+  "lat": 38.9742,
+  "lng": 16.3201,
+  "original_title": "Terratetto plurifamiliare Vico Vetriera, Nicastro Sambiase, Lamezia Terme",
+  "original_source_summary": {
+    "city": "Lamezia Terme",
+    "address": "Vico Vetriera",
+    "price": "65000",
+    "surface": "90 m²",
+    "rooms": "4",
+    "bedrooms": "2",
+    "bathrooms": "2"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "toscana-appartamento-massa-marittima-albizzeschi",
+  "title_it": "Appartamento con balcone nel centro di Massa Marittima",
+  "title_en": "Apartment with Balcony in Historic Massa Marittima",
+  "title_cs": "Byt s balkonem u dómu v Massa Marittima",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Toscana",
+  "city_it": "Massa Marittima",
+  "city_en": "Massa Marittima",
+  "city_cs": "Massa Marittima",
+  "address_it": "Via Bernardino degli Albizzeschi 38, Massa Marittima, Toscana",
+  "address_en": "Via Bernardino degli Albizzeschi 38, Massa Marittima, Tuscany",
+  "address_cs": "Via Bernardino degli Albizzeschi 38, Massa Marittima, Toskánsko",
+  "price": 80000,
+  "rooms": 4,
+  "bedrooms": 3,
+  "bathrooms": 1,
+  "square_meters": 74,
+  "features": [
+    {
+      "it": "Secondo piano nel centro storico",
+      "en": "Second floor in the historic centre",
+      "cs": "Druhé patro v historickém centru"
+    },
+    {
+      "it": "A pochi passi da Piazza del Duomo",
+      "en": "A short walk from Piazza del Duomo",
+      "cs": "Jen pár kroků od Piazza del Duomo"
+    },
+    {
+      "it": "Tre stanze adattabili",
+      "en": "Three adaptable rooms",
+      "cs": "Tři prostorné místnosti s variabilním využitím"
+    },
+    {
+      "it": "Balcone raro per il centro storico",
+      "en": "Rare balcony for the historic centre",
+      "cs": "Vzácný balkon v historickém centru"
+    }
+  ],
+  "description_it": "Nel centro storico di Massa Marittima, vicino a Piazza del Duomo, appartamento al secondo piano in Via Albizzeschi. La casa comprende soggiorno con angolo cottura, tre ampie stanze adattabili a camere o ad altri usi, e bagno con doccia. Il balcone è un elemento raro e molto interessante per una proprietà nel centro storico.",
+  "description_en": "In the historic centre of Massa Marittima, near Piazza del Duomo, this second-floor apartment is located on Via Albizzeschi. It includes a living area with kitchenette, three large rooms adaptable as bedrooms or other uses, and a bathroom with shower. The balcony is a rare and valuable feature for a property in the historic centre.",
+  "description_cs": "V historickém centru Massa Marittima, jen pár kroků od Piazza del Duomo, je nabízen byt ve druhém patře ve Via Albizzeschi.\n\nByt tvoří obývací část s kuchyňským koutem, tři prostorné místnosti využitelné jako ložnice nebo jiné pokoje podle potřeb a koupelna se sprchou. Velkou hodnotou je balkon, protože soukromý venkovní prostor je v centru Massa Marittima vzácný.",
+  "seo_title_it": "Appartamento con balcone nel centro di Massa Marittima",
+  "seo_title_en": "Apartment with Balcony in Historic Massa Marittima for Sale in Tuscany",
+  "seo_title_cs": "Byt s balkonem u dómu v Massa Marittima na prodej v Toskánsku",
+  "seo_description_it": "Appartamento con balcone nel centro di Massa Marittima: 74 m2, 4 locali, 3 camere, 1 bagno, prezzo 80.000 euro.",
+  "seo_description_en": "Apartment with Balcony in Historic Massa Marittima: 74 sqm, 4 rooms, 3 bedrooms, 1 bathroom, asking price EUR 80,000.",
+  "seo_description_cs": "Byt s balkonem u dómu v Massa Marittima: 74 m2, 4 místnosti, 3 ložnice, 1 koupelna, cena 80 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/129911682/",
+  "keywords": [
+    "toscana",
+    "massa marittima",
+    "immobiliare"
+  ],
+  "image_urls": [],
+  "lat": 43.0521,
+  "lng": 10.8889,
+  "original_title": "Quadrilocale via bernardino Degli Albizzeschi, 38, Centro, Massa Marittima",
+  "original_source_summary": {
+    "city": "Massa Marittima",
+    "address": "via bernardino Degli Albizzeschi, 38",
+    "price": "80000",
+    "surface": "74 m²",
+    "rooms": "4",
+    "bedrooms": "3",
+    "bathrooms": "1"
+  }
+}

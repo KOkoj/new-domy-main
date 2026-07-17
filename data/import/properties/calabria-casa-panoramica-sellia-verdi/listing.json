@@ -1,0 +1,73 @@
+{
+  "slug": "calabria-casa-panoramica-sellia-verdi",
+  "title_it": "Casa ristrutturata con vista panoramica a Sellia",
+  "title_en": "Renovated House with Panoramic Views in Sellia",
+  "title_cs": "Dům s panoramatickým balkonem v borgu Sellia",
+  "propertyType": "house",
+  "propertyType_it": "casa",
+  "region_it": "Calabria",
+  "city_it": "Sellia",
+  "city_en": "Sellia",
+  "city_cs": "Sellia",
+  "address_it": "Via Giuseppe Verdi 4, Sellia, Calabria",
+  "address_en": "Via Giuseppe Verdi 4, Sellia, Calabria",
+  "address_cs": "Via Giuseppe Verdi 4, Sellia, Kalábrie",
+  "price": 60000,
+  "rooms": 2,
+  "bedrooms": 1,
+  "bathrooms": 2,
+  "square_meters": 108,
+  "features": [
+    {
+      "it": "Casa ristrutturata e arredata",
+      "en": "Renovated and furnished house",
+      "cs": "Zrekonstruovaný a zařízený dům"
+    },
+    {
+      "it": "Balconata panoramica",
+      "en": "Panoramic balcony",
+      "cs": "Panoramatický balkon"
+    },
+    {
+      "it": "Camera con bagno privato",
+      "en": "Bedroom with private bathroom",
+      "cs": "Ložnice s vlastní koupelnou"
+    },
+    {
+      "it": "Deposito da rifinire",
+      "en": "Storage space to finish",
+      "cs": "Skladový prostor k dokončení"
+    }
+  ],
+  "description_it": "Nel borgo di Sellia, casa indipendente ristrutturata e arredata di circa 108 m2. La zona giorno comprende soggiorno-cucina, bagno e balconata con vista sul borgo, sulla valle e verso il mare. Su un altro livello si trova una camera ampia con servizio privato. La corte di pertinenza offre uno spazio esterno, mentre un deposito separato può essere rifinito secondo le esigenze.",
+  "description_en": "In the village of Sellia, this renovated and furnished independent house measures about 108 sqm. The living level includes a living-kitchen area, bathroom and panoramic balcony overlooking the village, valley and towards the sea. Another level contains a large bedroom with private bathroom. A small private courtyard provides outdoor space, while a separate storage room can be finished as needed.",
+  "description_cs": "V Sellii, starém borgu v provincii Catanzaro, je nabízen samostatný dům po rekonstrukci a s vybavením.\n\nDům má dvě úrovně propojené vnitřním schodištěm. Denní část tvoří obývací prostor s kuchyní, koupelna a balkon s výhledem na borgo, údolí a směrem k moři. V další úrovni je velká ložnice s vlastní koupelnou. K dispozici je i venkovní dvorek a skladový prostor, který čeká na dokončení.",
+  "seo_title_it": "Casa ristrutturata con vista panoramica a Sellia",
+  "seo_title_en": "Renovated House with Panoramic Views in Sellia for Sale in Calabria",
+  "seo_title_cs": "Dům s panoramatickým balkonem v borgu Sellia na prodej v Kalábrii",
+  "seo_description_it": "Casa ristrutturata con vista panoramica a Sellia: 108 m2, 2 locali, 1 camere, 2 bagni, prezzo 60.000 euro.",
+  "seo_description_en": "Renovated House with Panoramic Views in Sellia: 108 sqm, 2 rooms, 1 bedrooms, 2 bathrooms, asking price EUR 60,000.",
+  "seo_description_cs": "Dům s panoramatickým balkonem v borgu Sellia: 108 m2, 2 místnosti, 1 ložnice, 2 koupelny, cena 60 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/127572642/",
+  "keywords": [
+    "calabria",
+    "sellia",
+    "immobiliare",
+    "house"
+  ],
+  "image_urls": [],
+  "lat": 38.9832,
+  "lng": 16.6275,
+  "original_title": "Terratetto plurifamiliare via Giuseppe Verdi 4, Sellia",
+  "original_source_summary": {
+    "city": "Sellia",
+    "address": "Via Giuseppe Verdi 4",
+    "price": "60000",
+    "surface": "108 m²",
+    "rooms": "2",
+    "bedrooms": "1",
+    "bathrooms": "2"
+  }
+}

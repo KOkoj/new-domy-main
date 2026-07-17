@@ -1,0 +1,74 @@
+{
+  "slug": "calabria-villa-san-lucido-ss18",
+  "title_it": "Villetta su due livelli con giardino a San Lucido",
+  "title_en": "Two-Level Terraced Villa with Garden in San Lucido",
+  "title_cs": "Řadová vila se zahradou v San Lucidu",
+  "propertyType": "house",
+  "propertyType_it": "casa",
+  "region_it": "Calabria",
+  "city_it": "San Lucido",
+  "city_en": "San Lucido",
+  "city_cs": "San Lucido",
+  "address_it": "Strada Statale 18 Tirrena Inferiore 7, San Lucido, Calabria",
+  "address_en": "Strada Statale 18 Tirrena Inferiore 7, San Lucido, Calabria",
+  "address_cs": "Strada Statale 18 Tirrena Inferiore 7, San Lucido, Kalábrie",
+  "price": 75000,
+  "rooms": 5,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "square_meters": 115,
+  "lotSize": 390,
+  "features": [
+    {
+      "it": "Villetta su due livelli",
+      "en": "Two-level villa",
+      "cs": "Dům ve dvou podlažích"
+    },
+    {
+      "it": "Ampio giardino di circa 390 m2",
+      "en": "Large garden of about 390 sqm",
+      "cs": "Velká zahrada asi 390 m2"
+    },
+    {
+      "it": "Tre camere al primo piano",
+      "en": "Three bedrooms upstairs",
+      "cs": "Tři ložnicové místnosti v patře"
+    },
+    {
+      "it": "Terrazze e balcone",
+      "en": "Terraces and balcony",
+      "cs": "Terasy a balkon"
+    }
+  ],
+  "description_it": "A San Lucido, villetta a schiera di circa 115 m2 su due livelli con giardino di circa 390 m2. Il piano terra comprende ingresso, soggiorno, cucina e servizio. Il primo piano ospita tre vani letto e un secondo servizio. Le fotografie mostrano anche terrazze, balcone e spazi esterni, elementi importanti per un uso estivo o familiare.",
+  "description_en": "In San Lucido, this terraced villa of about 115 sqm is arranged over two levels and includes a garden of around 390 sqm. The ground floor has entrance, living room, kitchen and bathroom. The first floor contains three bedroom rooms and a second bathroom. Photos also show terraces, a balcony and outdoor spaces, important for summer or family use.",
+  "description_cs": "V San Lucidu je nabízen dům ve dvou podlažích o ploše přibližně 115 m2. Stručný inzerát staví nabídku hlavně na jednoduché dispozici a velké zahradě o ploše kolem 390 m2.\n\nV přízemí je vstup, obývací část, kuchyň a koupelna. V patře jsou tři ložnicové místnosti a druhá koupelna. Fotografie ukazují také terasy, balkon a venkovní části.",
+  "seo_title_it": "Villetta su due livelli con giardino a San Lucido",
+  "seo_title_en": "Two-Level Terraced Villa with Garden in San Lucido for Sale in Calabria",
+  "seo_title_cs": "Řadová vila se zahradou v San Lucidu na prodej v Kalábrii",
+  "seo_description_it": "Villetta su due livelli con giardino a San Lucido: 115 m2, 5 locali, 3 camere, 2 bagni, prezzo 75.000 euro.",
+  "seo_description_en": "Two-Level Terraced Villa with Garden in San Lucido: 115 sqm, 5 rooms, 3 bedrooms, 2 bathrooms, asking price EUR 75,000.",
+  "seo_description_cs": "Řadová vila se zahradou v San Lucidu: 115 m2, 5 místnosti, 3 ložnice, 2 koupelny, cena 75 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/127398383/",
+  "keywords": [
+    "calabria",
+    "san lucido",
+    "immobiliare",
+    "house"
+  ],
+  "image_urls": [],
+  "lat": 39.295,
+  "lng": 16.0547,
+  "original_title": "Villa unifamiliare Strada Statale 18 Tirrena Inferiore, 7, San Lucido",
+  "original_source_summary": {
+    "city": "San Lucido",
+    "address": "Strada Statale 18 Tirrena Inferiore, 7",
+    "price": "75000",
+    "surface": "115 m²",
+    "rooms": "5",
+    "bedrooms": "5",
+    "bathrooms": "2"
+  }
+}

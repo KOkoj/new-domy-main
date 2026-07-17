@@ -1,0 +1,72 @@
+{
+  "slug": "toscana-terratetto-pontassieve-santa-brigida",
+  "title_it": "Terratetto da ristrutturare con fondo a Santa Brigida",
+  "title_en": "House to Renovate with Independent Commercial Space in Santa Brigida",
+  "title_cs": "Dům k rekonstrukci se samostatným fondem u Pontassieve",
+  "propertyType": "house",
+  "propertyType_it": "casa",
+  "region_it": "Toscana",
+  "city_it": "Pontassieve",
+  "city_en": "Pontassieve",
+  "city_cs": "Pontassieve",
+  "address_it": "Via del Cimitero 10, Santa Brigida, Pontassieve, Toscana",
+  "address_en": "Via del Cimitero 10, Santa Brigida, Pontassieve, Tuscany",
+  "address_cs": "Via del Cimitero 10, Santa Brigida, Pontassieve, Toskánsko",
+  "price": 98000,
+  "rooms": 3,
+  "bedrooms": 1,
+  "bathrooms": 1,
+  "square_meters": 84,
+  "features": [
+    {
+      "it": "Da ristrutturare",
+      "en": "To renovate",
+      "cs": "K rekonstrukci"
+    },
+    {
+      "it": "Zona giorno con angolo cottura",
+      "en": "Living area with kitchenette",
+      "cs": "Denní zóna s kuchyňským koutem"
+    },
+    {
+      "it": "Fondo C/1 indipendente di circa 30 m2",
+      "en": "Independent C/1 space of about 30 sqm",
+      "cs": "Samostatný fond C/1 asi 30 m2"
+    },
+    {
+      "it": "Colline fiorentine",
+      "en": "Florentine hills",
+      "cs": "Florentské kopce"
+    }
+  ],
+  "description_it": "A Santa Brigida, nelle colline fiorentine, proprietà da ristrutturare composta da abitazione e fondo commerciale indipendente. La parte abitativa comprende zona giorno con angolo cottura, camera, bagno, lavanderia e ampio ripostiglio. Il fondo commerciale di circa 30 m2, categoria C/1, dispone di accesso indipendente e offre uno spazio versatile.",
+  "description_en": "In Santa Brigida, in the Florentine hills, this property to renovate includes a residential portion and an independent commercial space. The home contains a living area with kitchenette, bedroom, bathroom, laundry and large storage room. The commercial unit of about 30 sqm, category C/1, has independent access and offers versatile space.",
+  "description_cs": "V Santa Brigida u Pontassieve, v kopcích nad Florencií, je nabízena nemovitost k rekonstrukci s obytnou částí a samostatným komerčním fondem.\n\nObytná část má denní zónu s kuchyňským koutem, ložnici, koupelnu, prádelnu a velkou komoru. Součástí je také samostatný fond o ploše přibližně 30 m2 v kategorii C/1 s vlastním vstupem, využitelný jako pracovní, skladový nebo obchodní prostor podle možností území.",
+  "seo_title_it": "Terratetto da ristrutturare con fondo a Santa Brigida",
+  "seo_title_en": "House to Renovate with Independent Commercial Space in Santa Brigida for Sale in Tuscany",
+  "seo_title_cs": "Dům k rekonstrukci se samostatným fondem u Pontassieve na prodej v Toskánsku",
+  "seo_description_it": "Terratetto da ristrutturare con fondo a Santa Brigida: 84 m2, 3 locali, 1 camere, 1 bagno, prezzo 98.000 euro.",
+  "seo_description_en": "House to Renovate with Independent Commercial Space in Santa Brigida: 84 sqm, 3 rooms, 1 bedrooms, 1 bathroom, asking price EUR 98,000.",
+  "seo_description_cs": "Dům k rekonstrukci se samostatným fondem u Pontassieve: 84 m2, 3 místnosti, 1 ložnice, 1 koupelna, cena 98 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/129923294/",
+  "keywords": [
+    "toscana",
+    "pontassieve",
+    "immobiliare"
+  ],
+  "image_urls": [],
+  "lat": 43.8528,
+  "lng": 11.3948,
+  "original_title": "Terratetto unifamiliare via del Cimitero 10, Santa Brigida, Pontassieve",
+  "original_source_summary": {
+    "city": "Pontassieve",
+    "address": "Via del Cimitero 10",
+    "price": "98000",
+    "surface": "84 m²",
+    "rooms": "3",
+    "bedrooms": "1",
+    "bathrooms": "1"
+  }
+}

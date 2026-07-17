@@ -1,0 +1,72 @@
+{
+  "slug": "toscana-bilocale-tatti-massa-marittima-posta-vecchia",
+  "title_it": "Bilocale con vista nel borgo di Tatti",
+  "title_en": "One-Bedroom Apartment with Views in the Village of Tatti",
+  "title_cs": "Bilocale s výhledem v borgu Tatti",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Toscana",
+  "city_it": "Massa Marittima",
+  "city_en": "Massa Marittima",
+  "city_cs": "Massa Marittima",
+  "address_it": "Via Posta Vecchia 6, Tatti, Massa Marittima, Toscana",
+  "address_en": "Via Posta Vecchia 6, Tatti, Massa Marittima, Tuscany",
+  "address_cs": "Via Posta Vecchia 6, Tatti, Massa Marittima, Toskánsko",
+  "price": 90000,
+  "rooms": 2,
+  "bedrooms": 1,
+  "bathrooms": 1,
+  "square_meters": 67,
+  "features": [
+    {
+      "it": "Secondo piano nel borgo di Tatti",
+      "en": "Second floor in the village of Tatti",
+      "cs": "Druhé patro v borgu Tatti"
+    },
+    {
+      "it": "Terrazzo con vista",
+      "en": "Terrace with views",
+      "cs": "Terasa s výhledem"
+    },
+    {
+      "it": "Soggiorno luminoso con cucina a vista",
+      "en": "Bright living room with open kitchen",
+      "cs": "Světlý obývací prostor s otevřenou kuchyní"
+    },
+    {
+      "it": "Predisposizione per caldaia a metano",
+      "en": "Prepared for methane boiler connection",
+      "cs": "Příprava pro kotel na metan"
+    }
+  ],
+  "description_it": "Nel borgo di Tatti, appartamento al secondo piano di circa 67 m2. La disposizione comprende una camera da letto, soggiorno luminoso con cucina a vista, bagno e piccolo terrazzo con vista panoramica. La struttura è sana e ben esposta, ma l'abitazione è da personalizzare. Il riscaldamento non è installato; è già predisposto l'allaccio per una caldaia a metano.",
+  "description_en": "In the village of Tatti, this second-floor apartment measures about 67 sqm. It includes one bedroom, a bright living room with open kitchen, bathroom and a small terrace with panoramic views. The structure is sound and well exposed, but the home is to be personalised. Heating is not installed; the connection for a methane boiler is already prepared.",
+  "description_cs": "V charakteristickém borgu Tatti u Massa Marittima je nabízen byt ve druhém patře o ploše přibližně 67 m2.\n\nDispozice zahrnuje ložnici, světlý obývací prostor s otevřenou kuchyní, koupelnu a malou terasu s panoramatickým výhledem. Byt má zdravou konstrukci a dobrou expozici, ale je určený k personalizaci. Vytápění zatím není instalováno, je však připraveno napojení pro kotel na metan.",
+  "seo_title_it": "Bilocale con vista nel borgo di Tatti",
+  "seo_title_en": "One-Bedroom Apartment with Views in the Village of Tatti for Sale in Tuscany",
+  "seo_title_cs": "Bilocale s výhledem v borgu Tatti na prodej v Toskánsku",
+  "seo_description_it": "Bilocale con vista nel borgo di Tatti: 67 m2, 2 locali, 1 camere, 1 bagno, prezzo 90.000 euro.",
+  "seo_description_en": "One-Bedroom Apartment with Views in the Village of Tatti: 67 sqm, 2 rooms, 1 bedrooms, 1 bathroom, asking price EUR 90,000.",
+  "seo_description_cs": "Bilocale s výhledem v borgu Tatti: 67 m2, 2 místnosti, 1 ložnice, 1 koupelna, cena 90 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/121291110/",
+  "keywords": [
+    "toscana",
+    "massa marittima",
+    "immobiliare"
+  ],
+  "image_urls": [],
+  "lat": 43.0226,
+  "lng": 11.0267,
+  "original_title": "Bilocale via Posta Vecchia 6, Tatti, Massa Marittima",
+  "original_source_summary": {
+    "city": "Massa Marittima",
+    "address": "Via Posta Vecchia 6",
+    "price": "90000",
+    "surface": "67 m²",
+    "rooms": "2",
+    "bedrooms": "1",
+    "bathrooms": "1"
+  }
+}

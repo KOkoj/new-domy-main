@@ -70,3 +70,4 @@ temp/
 # Large media files (too big for GitHub)
 public/14439242_3840_2160_24fps.mp4
 *.mp4
+!public/uploads/properties/friuli-venezia-giulia-villa-ravascletto-via-nazionale/ravascletto-video-tour.mp4

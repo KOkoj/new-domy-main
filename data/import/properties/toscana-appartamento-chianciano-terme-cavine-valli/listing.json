@@ -1,0 +1,72 @@
+{
+  "slug": "toscana-appartamento-chianciano-terme-cavine-valli",
+  "title_it": "Appartamento luminoso con terrazze a Chianciano Terme",
+  "title_en": "Bright Apartment with Terraces in Chianciano Terme",
+  "title_cs": "Světlý byt s terasami v Chianciano Terme",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Toscana",
+  "city_it": "Chianciano Terme",
+  "city_en": "Chianciano Terme",
+  "city_cs": "Chianciano Terme",
+  "address_it": "Strada delle Cavine e Valli 33, Chianciano Terme, Toscana",
+  "address_en": "Strada delle Cavine e Valli 33, Chianciano Terme, Tuscany",
+  "address_cs": "Strada delle Cavine e Valli 33, Chianciano Terme, Toskánsko",
+  "price": 70000,
+  "rooms": 4,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "square_meters": 118,
+  "features": [
+    {
+      "it": "Primo piano in trifamiliare",
+      "en": "First floor in a three-family house",
+      "cs": "První patro v domě se třemi jednotkami"
+    },
+    {
+      "it": "Due terrazzi panoramici",
+      "en": "Two panoramic terraces",
+      "cs": "Dvě panoramatické terasy"
+    },
+    {
+      "it": "Garage, cantina e lavanderia",
+      "en": "Garage, cellar and laundry",
+      "cs": "Garáž, sklep a prádelna"
+    },
+    {
+      "it": "Piccola rata di terreno esclusiva",
+      "en": "Small private plot",
+      "cs": "Menší soukromý pozemek"
+    }
+  ],
+  "description_it": "A Chianciano Terme, appartamento ampio e luminoso al primo piano di una trifamiliare, in posizione tranquilla e panoramica. La casa comprende cucina abitabile con stufa a legna e accesso al terrazzo, soggiorno, bagno finestrato con vasca, due camere matrimoniali e ripostiglio. Completano la proprietà due terrazzi, soffitta, garage, cantina, lavanderia e una piccola rata di terreno esclusiva.",
+  "description_en": "In Chianciano Terme, this spacious and bright apartment is on the first floor of a three-family house in a quiet panoramic position. It includes an eat-in kitchen with wood stove and terrace access, living room, windowed bathroom with bathtub, two double bedrooms and storage room. Two terraces, attic, garage, cellar, laundry room and a small private plot complete the property.",
+  "description_cs": "V Chianciano Terme je nabízen prostorný a světlý byt v prvním patře domu se třemi jednotkami, v klidné a panoramatické poloze.\n\nUvnitř je obytná kuchyně s kamny na dřevo a přímým vstupem na terasu, světlý obývací pokoj, koupelna s oknem a vanou, dvě velké manželské ložnice a komora. Hodnotu doplňují dvě panoramatické terasy, půda, garáž, sklep, prádelna a menší soukromý pozemek vhodný jako zahrada nebo orto.",
+  "seo_title_it": "Appartamento luminoso con terrazze a Chianciano Terme",
+  "seo_title_en": "Bright Apartment with Terraces in Chianciano Terme for Sale in Tuscany",
+  "seo_title_cs": "Světlý byt s terasami v Chianciano Terme na prodej v Toskánsku",
+  "seo_description_it": "Appartamento luminoso con terrazze a Chianciano Terme: 118 m2, 4 locali, 2 camere, 1 bagno, prezzo 70.000 euro.",
+  "seo_description_en": "Bright Apartment with Terraces in Chianciano Terme: 118 sqm, 4 rooms, 2 bedrooms, 1 bathroom, asking price EUR 70,000.",
+  "seo_description_cs": "Světlý byt s terasami v Chianciano Terme: 118 m2, 4 místnosti, 2 ložnice, 1 koupelna, cena 70 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/122950630/",
+  "keywords": [
+    "toscana",
+    "chianciano terme",
+    "immobiliare"
+  ],
+  "image_urls": [],
+  "lat": 43.0525,
+  "lng": 11.843,
+  "original_title": "Quadrilocale Strada delle Cavine e Valli 33, Chianciano Terme",
+  "original_source_summary": {
+    "city": "Chianciano Terme",
+    "address": "Strada delle Cavine e Valli 33",
+    "price": "70000",
+    "surface": "118 m²",
+    "rooms": "4",
+    "bedrooms": "2",
+    "bathrooms": "1"
+  }
+}

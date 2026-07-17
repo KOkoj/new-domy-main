@@ -1,0 +1,73 @@
+{
+  "slug": "calabria-villino-panoramico-badolato",
+  "title_it": "Villino panoramico arredato a Badolato Superiore",
+  "title_en": "Furnished Panoramic House in Badolato Superiore",
+  "title_cs": "Panoramatický domek s terasou v Badolatu",
+  "propertyType": "house",
+  "propertyType_it": "casa",
+  "region_it": "Calabria",
+  "city_it": "Badolato",
+  "city_en": "Badolato",
+  "city_cs": "Badolato",
+  "address_it": "Corso Umberto I 2, Badolato, Calabria",
+  "address_en": "Corso Umberto I 2, Badolato, Calabria",
+  "address_cs": "Corso Umberto I 2, Badolato, Kalábrie",
+  "price": 80000,
+  "rooms": 2,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "square_meters": 68,
+  "features": [
+    {
+      "it": "Venduto arredato",
+      "en": "Sold furnished",
+      "cs": "Prodává se zařízený"
+    },
+    {
+      "it": "Terrazzo panoramico",
+      "en": "Panoramic terrace",
+      "cs": "Panoramatická terasa"
+    },
+    {
+      "it": "Giardino privato",
+      "en": "Private garden",
+      "cs": "Soukromá zahrada"
+    },
+    {
+      "it": "Vista dal mare ai monti",
+      "en": "Views from sea to mountains",
+      "cs": "Výhled od moře k horám"
+    }
+  ],
+  "description_it": "A Badolato Superiore, villino a schiera recente, arredato e in ottime condizioni. Il piano terra offre living con angolo cottura, camera e bagno, oltre a un giardino privato utilizzabile per pranzi e cene all'aperto. Al piano superiore la camera matrimoniale si apre direttamente sul terrazzo panoramico, con vista dal mare Ionio ai monti.",
+  "description_en": "In Badolato Superiore, this recent terraced house is furnished and in very good condition. The ground floor offers a living area with kitchenette, bedroom and bathroom, plus a private garden suitable for outdoor meals. Upstairs, the double bedroom opens directly onto the panoramic terrace, with views from the Ionian Sea to the mountains.",
+  "description_cs": "V Badolato Superiore je nabízen menší řadový domek ve velmi dobrém stavu, kompletně zařízený a připravený k užívání.\n\nDům má dvě úrovně. V přízemí je obytný prostor s kuchyňským koutem, ložnice a koupelna, venku pak soukromá zahrada vhodná pro venkovní jídlo a odpočinek. V horním patře je manželská ložnice s přímým vstupem na panoramatickou terasu s výhledem od Jónského moře až k horám.",
+  "seo_title_it": "Villino panoramico arredato a Badolato Superiore",
+  "seo_title_en": "Furnished Panoramic House in Badolato Superiore for Sale in Calabria",
+  "seo_title_cs": "Panoramatický domek s terasou v Badolatu na prodej v Kalábrii",
+  "seo_description_it": "Villino panoramico arredato a Badolato Superiore: 68 m2, 2 locali, 2 camere, 1 bagni, prezzo 80.000 euro.",
+  "seo_description_en": "Furnished Panoramic House in Badolato Superiore: 68 sqm, 2 rooms, 2 bedrooms, 1 bathrooms, asking price EUR 80,000.",
+  "seo_description_cs": "Panoramatický domek s terasou v Badolatu: 68 m2, 2 místnosti, 2 ložnice, 1 koupelny, cena 80 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/124220971/",
+  "keywords": [
+    "calabria",
+    "badolato",
+    "immobiliare",
+    "house"
+  ],
+  "image_urls": [],
+  "lat": 38.568,
+  "lng": 16.5204,
+  "original_title": "Villa a schiera corso Umberto I 2, Centro, Badolato",
+  "original_source_summary": {
+    "city": "Badolato",
+    "address": "Corso Umberto I 2",
+    "price": "80000",
+    "surface": "68 m²",
+    "rooms": "2",
+    "bedrooms": "1",
+    "bathrooms": "1"
+  }
+}
