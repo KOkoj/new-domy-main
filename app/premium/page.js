@@ -161,7 +161,7 @@ export default function PremiumLandingPage() {
   const productKey =
     requestedProduct === 'premium-notary' ? 'premium-notary' : 'premium-domy'
 
-  const [language, setLanguage] = useState('it')
+  const [language, setLanguage] = useState('cs')
   const [user, setUser] = useState(null)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [isLoadingCheckout, setIsLoadingCheckout] = useState(false)

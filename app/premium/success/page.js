@@ -66,7 +66,7 @@ export default function PremiumSuccessPage() {
   const [error, setError] = useState('')
   const [downloadUrl, setDownloadUrl] = useState('')
   const [productKey, setProductKey] = useState('')
-  const [language, setLanguage] = useState('it')
+  const [language, setLanguage] = useState('cs')
 
   const t = TEXT[language] || TEXT.it
 
@@ -221,4 +221,3 @@ export default function PremiumSuccessPage() {
     </div>
   )
 }
-

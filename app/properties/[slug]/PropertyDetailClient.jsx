@@ -559,7 +559,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
   const [isFavorited, setIsFavorited] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [user, setUser] = useState(null)
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const [currency, setCurrency] = useState('EUR')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 

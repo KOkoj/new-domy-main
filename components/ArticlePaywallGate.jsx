@@ -80,7 +80,7 @@ export default function ArticlePaywallGate() {
   const pathname = usePathname()
   const isProtected = isProtectedArticlePath(pathname)
 
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const [authChecked, setAuthChecked] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [authOpen, setAuthOpen] = useState(false)

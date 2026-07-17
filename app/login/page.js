@@ -20,7 +20,7 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [activeTab, setActiveTab] = useState('login')
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const router = useRouter()
   const searchParams = useSearchParams()
   const tabParam = searchParams.get('tab')

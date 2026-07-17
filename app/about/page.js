@@ -140,7 +140,7 @@ const WHO_FOR = [
 ]
 
 export default function AboutPage() {
-  const [language, setLanguage] = useState('it')
+  const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')
@@ -443,4 +443,3 @@ export default function AboutPage() {
     </div>
   )
 }
-

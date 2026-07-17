@@ -415,7 +415,7 @@ function Box({ title, children, tone = 'default' }) {
 }
 
 export default function OfferCompromessoRegistrationPage() {
-  const [language, setLanguage] = useState('it')
+  const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')
