@@ -6,6 +6,20 @@
   // infer the wrong workspace root.
   outputFileTracingRoot: __dirname,
 
+  // NFT follows process.cwd()-based fs reads (e.g. localPropertiesStore) and
+  // can pull import source media into every serverless function. data/import
+  // alone is ~270MB of listing images/videos that must never ship in the
+  // function bundle — only data/local-properties.json is needed at runtime.
+  outputFileTracingExcludes: {
+    '/*': [
+      './data/import/**/*',
+      './scripts/**/*',
+      './docs/**/*',
+      './**/*.mp4',
+      './public/uploads/properties/**/*.mp4',
+    ],
+  },
+
   images: {
     unoptimized: false,
     remotePatterns: [
