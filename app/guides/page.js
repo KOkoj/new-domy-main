@@ -126,7 +126,7 @@ function localize(value, language) {
 }
 
 export default function GuidesHubPage() {
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')
@@ -207,4 +207,3 @@ export default function GuidesHubPage() {
     </div>
   )
 }
-

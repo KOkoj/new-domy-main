@@ -27,7 +27,7 @@ const CALL_MODE_OPTIONS = [
 ]
 
 export default function BookCallPage() {
-  const [language, setLanguage] = useState('it')
+  const [language, setLanguage] = useState('cs')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
   const [formData, setFormData] = useState({

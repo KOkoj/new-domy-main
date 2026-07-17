@@ -373,7 +373,7 @@ function RegionCard({ region, language = 'en' }) {
 }
 
 export default function RegionsListingClient({ initialRegions, initialProperties = [] }) {
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const [regionsData, setRegionsData] = useState(initialRegions)
   const mobileFeaturedRegions = regionsData.slice(0, 5)
   const mobileRemainingRegions = regionsData.slice(5)

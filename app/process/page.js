@@ -447,7 +447,7 @@ const COSTS_OVERVIEW = [
 ]
 
 export default function ProcessPage() {
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState('cs')
   const visibleProcessSteps = PROCESS_STEPS
   const showTimelineAndCosts = false
 
