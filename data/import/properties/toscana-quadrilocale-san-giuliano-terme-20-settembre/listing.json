@@ -1,0 +1,73 @@
+{
+  "slug": "toscana-quadrilocale-san-giuliano-terme-20-settembre",
+  "title_it": "Quadrilocale su due livelli vicino alle Terme di San Giuliano",
+  "title_en": "Two-Level Apartment Near the Thermal Baths in San Giuliano Terme",
+  "title_cs": "Dvoupodlažní byt u lázní v San Giuliano Terme",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Toscana",
+  "city_it": "San Giuliano Terme",
+  "city_en": "San Giuliano Terme",
+  "city_cs": "San Giuliano Terme",
+  "address_it": "Via 20 Settembre 37, San Giuliano Terme, Toscana",
+  "address_en": "Via 20 Settembre 37, San Giuliano Terme, Tuscany",
+  "address_cs": "Via 20 Settembre 37, San Giuliano Terme, Toskánsko",
+  "price": 99000,
+  "rooms": 4,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "square_meters": 75,
+  "features": [
+    {
+      "it": "Appartamento su due livelli in piccola palazzina",
+      "en": "Two-level apartment in a small building",
+      "cs": "Byt ve dvou úrovních v malé budově"
+    },
+    {
+      "it": "A pochi passi dalle terme",
+      "en": "A short walk from the thermal baths",
+      "cs": "Jen pár kroků od lázní"
+    },
+    {
+      "it": "Camera matrimoniale, studio e bagno nuovo",
+      "en": "Double bedroom, study and new bathroom",
+      "cs": "Manželská ložnice, pracovna a nová koupelna"
+    },
+    {
+      "it": "Interessante anche per affitti brevi",
+      "en": "Also interesting for short-term rentals",
+      "cs": "Zajímavé i pro krátkodobé pronájmy"
+    }
+  ],
+  "description_it": "Nel comune di San Giuliano Terme, a pochi passi dalle Terme, proponiamo un appartamento di circa 75 m2 sviluppato su due livelli in una piccola palazzina di sole due unità.\n\nL'ingresso conduce al piano terra, dove si trovano soggiorno-pranzo, cucinotto e ripostiglio. Al piano superiore si sviluppa la zona notte con disimpegno, grande camera matrimoniale con due finestre, studio o stanza armadi e bagno nuovo.\n\nLa posizione vicino alle terme rende la proprietà interessante sia come abitazione personale sia come investimento per locazioni brevi. Prima dell'acquisto è opportuno verificare la documentazione, lo stato delle parti comuni e la reale situazione urbanistica e catastale.",
+  "description_en": "In San Giuliano Terme, a short walk from the thermal baths, this approximately 75 sqm apartment is arranged over two levels in a small building with only two units.\n\nThe ground floor includes a living-dining area, kitchenette and storage room. The upper level contains the sleeping area, with a large double bedroom with two windows, a study or wardrobe room, and a new bathroom.\n\nIts location near the baths makes it interesting both as a personal home and as a short-rental investment. Before purchasing, documentation, common areas and technical compliance should be checked carefully.",
+  "description_cs": "V San Giuliano Terme, jen pár kroků od lázní, je nabízen byt o ploše přibližně 75 m2 ve dvou úrovních, v malé budově se dvěma jednotkami.\n\nV přízemí je obytná část s jídelnou, kuchyňským koutem a komorou. V horním patře se nachází ložnicová část: velká manželská ložnice se dvěma okny, pracovna nebo šatna a nová koupelna.\n\nDíky poloze u lázní může být nemovitost zajímavá jak pro vlastní užívání, tak jako investice pro krátkodobé pronájmy. Před koupí je nutné ověřit dokumentaci, stav společných částí a technickou i katastrální správnost.",
+  "seo_title_it": "Quadrilocale su due livelli vicino alle Terme di San Giuliano",
+  "seo_title_en": "Two-Level Apartment Near the Thermal Baths in San Giuliano Terme for Sale in Tuscany",
+  "seo_title_cs": "Dvoupodlažní byt u lázní v San Giuliano Terme na prodej v Toskánsku",
+  "seo_description_it": "Quadrilocale su due livelli vicino alle Terme di San Giuliano: 75 m2, 4 locali, 2 camere, 1 bagno, prezzo 99.000 euro.",
+  "seo_description_en": "Two-Level Apartment Near the Thermal Baths in San Giuliano Terme: 75 sqm, 4 rooms, 2 bedrooms, 1 bathroom, asking price EUR 99,000.",
+  "seo_description_cs": "Dvoupodlažní byt u lázní v San Giuliano Terme: 75 m2, 4 místnosti, 2 ložnice, 1 koupelna, cena 99 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/127493192/",
+  "keywords": [
+    "toscana",
+    "san giuliano terme",
+    "immobiliare",
+    "apartment"
+  ],
+  "image_urls": [],
+  "lat": 43.7651,
+  "lng": 10.44,
+  "original_title": "Quadrilocale via 20 Settembre 37, San Giuliano Terme Paese, San Giuliano Terme",
+  "original_source_summary": {
+    "city": "San Giuliano Terme",
+    "address": "Via 20 Settembre",
+    "price": "99000",
+    "surface": "75 m²",
+    "rooms": "4",
+    "bedrooms": "2",
+    "bathrooms": "1"
+  }
+}

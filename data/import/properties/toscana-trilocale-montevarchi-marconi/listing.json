@@ -1,0 +1,73 @@
+{
+  "slug": "toscana-trilocale-montevarchi-marconi",
+  "title_it": "Trilocale luminoso in edificio storico a Montevarchi",
+  "title_en": "Bright Three-Room Apartment in a Historic Building in Montevarchi",
+  "title_cs": "Světlý třípokojový byt v Montevarchi",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Toscana",
+  "city_it": "Montevarchi",
+  "city_en": "Montevarchi",
+  "city_cs": "Montevarchi",
+  "address_it": "Via Guglielmo Marconi, Montevarchi, Toscana",
+  "address_en": "Via Guglielmo Marconi, Montevarchi, Tuscany",
+  "address_cs": "Via Guglielmo Marconi, Montevarchi, Toskánsko",
+  "price": 78000,
+  "rooms": 3,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "square_meters": 86,
+  "features": [
+    {
+      "it": "Piano terra in edificio storico",
+      "en": "Ground floor in a historic building",
+      "cs": "Přízemí v historické budově"
+    },
+    {
+      "it": "Ampio soggiorno con cucina a vista",
+      "en": "Large living room with open kitchen",
+      "cs": "Velký obývací pokoj s otevřenou kuchyní"
+    },
+    {
+      "it": "Piccolo terrazzino rialzato",
+      "en": "Small raised terrace",
+      "cs": "Menší zvýšená terasa"
+    },
+    {
+      "it": "Interessante anche come investimento",
+      "en": "Also interesting as an investment",
+      "cs": "Zajímavé i jako investice"
+    }
+  ],
+  "description_it": "A Montevarchi, a pochi minuti dal centro, proponiamo un trilocale luminoso di circa 86 m2 posto al piano terra di un edificio storico.\n\nLa disposizione comprende un ampio soggiorno con cucina a vista e uscita verso un piccolo disimpegno con terrazzino rialzato e comodo ripostiglio sottoscala. La zona notte può essere organizzata con salotto e camera matrimoniale oppure con due camere matrimoniali, in base alle esigenze dell'acquirente. Sono presenti bagno e ulteriore ripostiglio.\n\nLa proprietà è interessante anche come investimento, grazie alla posizione vicina al centro e al prezzo trattabile. Prima dell'acquisto è consigliabile verificare lo stato dell'edificio storico, eventuali spese comuni e la distribuzione effettiva degli ambienti.",
+  "description_en": "In Montevarchi, a few minutes from the centre, this bright three-room apartment of about 86 sqm is located on the ground floor of a historic building.\n\nThe layout includes a large living room with open kitchen and access to a small raised terrace area with convenient under-stair storage. The sleeping area can be arranged as a sitting room plus double bedroom, or as two double bedrooms, depending on the buyer's needs. A bathroom and further storage complete the property.\n\nThe apartment is also interesting as an investment thanks to its location near the centre and negotiable price. The condition of the historic building, shared costs and actual room layout should be checked before purchase.",
+  "description_cs": "V Montevarchi, několik minut od centra, je nabízen světlý třípokojový byt o ploše přibližně 86 m2 v přízemí historické budovy.\n\nDispozice zahrnuje velký obývací pokoj s otevřenou kuchyní a výstupem do menšího prostoru se zvýšenou terasou a praktickým úložným místem pod schody. Noční část lze řešit jako salonek a manželskou ložnici, případně jako dvě manželské ložnice podle potřeb kupujícího. Součástí je koupelna a další komora.\n\nNemovitost je zajímavá i jako investice díky poloze blízko centra a jednatelnější ceně. Před koupí je vhodné ověřit stav historické budovy, společné náklady a skutečné dispoziční řešení.",
+  "seo_title_it": "Trilocale luminoso in edificio storico a Montevarchi",
+  "seo_title_en": "Bright Three-Room Apartment in a Historic Building in Montevarchi for Sale in Tuscany",
+  "seo_title_cs": "Světlý třípokojový byt v Montevarchi na prodej v Toskánsku",
+  "seo_description_it": "Trilocale luminoso in edificio storico a Montevarchi: 86 m2, 3 locali, 2 camere, 1 bagno, prezzo 78.000 euro.",
+  "seo_description_en": "Bright Three-Room Apartment in a Historic Building in Montevarchi: 86 sqm, 3 rooms, 2 bedrooms, 1 bathroom, asking price EUR 78,000.",
+  "seo_description_cs": "Světlý třípokojový byt v Montevarchi: 86 m2, 3 místnosti, 2 ložnice, 1 koupelna, cena 78 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/128926330/",
+  "keywords": [
+    "toscana",
+    "montevarchi",
+    "immobiliare",
+    "apartment"
+  ],
+  "image_urls": [],
+  "lat": 43.5192,
+  "lng": 11.5781,
+  "original_title": "Trilocale via Guglielmo Marconi, Città, Montevarchi",
+  "original_source_summary": {
+    "city": "Montevarchi",
+    "address": "Via Guglielmo Marconi",
+    "price": "78000",
+    "surface": "86 m²",
+    "rooms": "3",
+    "bedrooms": "2",
+    "bathrooms": "1"
+  }
+}

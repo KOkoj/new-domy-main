@@ -1,0 +1,73 @@
+{
+  "slug": "toscana-terratetto-cascina-san-casciano-filicaia",
+  "title_it": "Terratetto toscano con orto a San Casciano di Cascina",
+  "title_en": "Tuscan Terraced House with Garden Plot in San Casciano di Cascina",
+  "title_cs": "Toskánský řadový dům se zahradou v Cascině",
+  "propertyType": "house",
+  "propertyType_it": "casa",
+  "region_it": "Toscana",
+  "city_it": "Cascina",
+  "city_en": "Cascina",
+  "city_cs": "Cascina",
+  "address_it": "Strada Comunale di Filicaia 2, San Casciano, Cascina, Toscana",
+  "address_en": "Strada Comunale di Filicaia 2, San Casciano, Cascina, Tuscany",
+  "address_cs": "Strada Comunale di Filicaia 2, San Casciano, Cascina, Toskánsko",
+  "price": 94000,
+  "rooms": 3,
+  "bedrooms": 1,
+  "bathrooms": 1,
+  "square_meters": 81,
+  "features": [
+    {
+      "it": "Terratetto su due livelli",
+      "en": "Two-level terraced house",
+      "cs": "Řadový dům ve dvou podlažích"
+    },
+    {
+      "it": "Soggiorno con volta a botte",
+      "en": "Living room with barrel vault",
+      "cs": "Obývací prostor s valenou klenbou"
+    },
+    {
+      "it": "Cucina abitabile luminosa",
+      "en": "Bright eat-in kitchen",
+      "cs": "Světlá obytná kuchyně"
+    },
+    {
+      "it": "Orto o giardino indipendente staccato dall'abitazione",
+      "en": "Separate private garden plot",
+      "cs": "Samostatná zahrada nebo orto oddělené od domu"
+    }
+  ],
+  "description_it": "A San Casciano, nel comune di Cascina, proponiamo un terratetto su due livelli di circa 81 m2, inserito in un contesto di paese e con il fascino tipico delle case toscane.\n\nAl piano terra si entra nel soggiorno principale con volta a botte e in una cucina abitabile ampia e luminosa, affacciata sulla strada e sulla piazza. Una scala in marmo conduce al piano superiore, dove si trovano una camera matrimoniale, un vano pluriuso attualmente utilizzato come studio e un bagno finestrato con doccia.\n\nIl valore aggiunto è l'orto o giardino indipendente, separato dall'abitazione, ideale per relax, piccole coltivazioni o spazio esterno privato. La casa è adatta a chi cerca un'abitazione autentica in un contesto tranquillo ma non isolato.",
+  "description_en": "In San Casciano, in the municipality of Cascina, this two-level terraced house of about 81 sqm sits in a village setting and retains the character of traditional Tuscan homes.\n\nThe ground floor includes the main living room with barrel vault and a bright eat-in kitchen overlooking the street and square. A marble staircase leads upstairs to a double bedroom, a multi-purpose room currently used as a study, and a windowed bathroom with shower.\n\nThe separate private garden plot is a key asset, suitable for relaxing, small cultivation or private outdoor use. The house is suited to buyers looking for authentic village living in a quiet but connected setting.",
+  "description_cs": "V San Casciano, v obci Cascina, je nabízen řadový dům o ploše přibližně 81 m2 ve dvou podlažích. Dům stojí v prostředí menší obce a zachovává si charakter tradičního toskánského bydlení.\n\nV přízemí je hlavní obytný prostor s valenou klenbou a velká světlá obytná kuchyně s výhledem do ulice a na náměstí. Mramorové schodiště vede do patra, kde se nachází manželská ložnice, víceúčelová místnost nyní využívaná jako pracovna a koupelna s oknem a sprchou.\n\nHlavní přidanou hodnotou je samostatná zahrada nebo orto oddělené od domu, vhodné pro relax, pěstování nebo soukromé venkovní zázemí. Nemovitost je vhodná pro klienta, který hledá autentický dům v obci, nikoli anonymní byt.",
+  "seo_title_it": "Terratetto toscano con orto a San Casciano di Cascina",
+  "seo_title_en": "Tuscan Terraced House with Garden Plot in San Casciano di Cascina for Sale in Tuscany",
+  "seo_title_cs": "Toskánský řadový dům se zahradou v Cascině na prodej v Toskánsku",
+  "seo_description_it": "Terratetto toscano con orto a San Casciano di Cascina: 81 m2, 3 locali, 1 camere, 1 bagno, prezzo 94.000 euro.",
+  "seo_description_en": "Tuscan Terraced House with Garden Plot in San Casciano di Cascina: 81 sqm, 3 rooms, 1 bedrooms, 1 bathroom, asking price EUR 94,000.",
+  "seo_description_cs": "Toskánský řadový dům se zahradou v Cascině: 81 m2, 3 místnosti, 1 ložnice, 1 koupelna, cena 94 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/129887142/",
+  "keywords": [
+    "toscana",
+    "cascina",
+    "immobiliare",
+    "house"
+  ],
+  "image_urls": [],
+  "lat": 43.6922,
+  "lng": 10.5121,
+  "original_title": "Terratetto unifamiliare Strada Comunale di Filicaia 2, San Frediano Nord - San Casciano, Cascina",
+  "original_source_summary": {
+    "city": "Cascina",
+    "address": "Strada Comunale di Filicaia 2",
+    "price": "94000",
+    "surface": "81 m²",
+    "rooms": "3",
+    "bedrooms": "1",
+    "bathrooms": "1"
+  }
+}

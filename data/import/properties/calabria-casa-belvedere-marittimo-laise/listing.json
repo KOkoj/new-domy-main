@@ -1,0 +1,73 @@
+{
+  "slug": "calabria-casa-belvedere-marittimo-laise",
+  "title_it": "Casa indipendente con terrazza a Belvedere Marittimo",
+  "title_en": "Independent House with Terrace in Belvedere Marittimo",
+  "title_cs": "Samostatný dům s terasou u Belvedere Marittimo",
+  "propertyType": "house",
+  "propertyType_it": "casa",
+  "region_it": "Calabria",
+  "city_it": "Belvedere Marittimo",
+  "city_en": "Belvedere Marittimo",
+  "city_cs": "Belvedere Marittimo",
+  "address_it": "Contrada Laise, Belvedere Marittimo, Calabria",
+  "address_en": "Contrada Laise, Belvedere Marittimo, Calabria",
+  "address_cs": "Contrada Laise, Belvedere Marittimo, Kalábrie",
+  "price": 75000,
+  "rooms": 5,
+  "bedrooms": 3,
+  "bathrooms": 3,
+  "square_meters": 120,
+  "features": [
+    {
+      "it": "Casa su tre livelli",
+      "en": "House over three levels",
+      "cs": "Dům ve třech úrovních"
+    },
+    {
+      "it": "Terrazza e spazio esterno privato",
+      "en": "Terrace and private outdoor area",
+      "cs": "Terasa a soukromý venkovní prostor"
+    },
+    {
+      "it": "Studio indipendente per ospiti",
+      "en": "Independent guest studio",
+      "cs": "Samostatné studio pro hosty"
+    },
+    {
+      "it": "Terreno di pertinenza",
+      "en": "Private plot",
+      "cs": "Vlastní pozemek"
+    }
+  ],
+  "description_it": "A Belvedere Marittimo, in località Laise, casa indipendente di circa 120 m2 su tre livelli, a circa 7 km dal mare. Al piano terra si trovano salone con angolo cottura, bagno e spazio esterno privato. Il primo piano offre due camere, bagno e terrazza. Il piano sottostrada aggiunge un monolocale indipendente con bagno e un magazzino. Completa la proprietà un terreno utilizzabile come giardino, orto o spazio verde.",
+  "description_en": "In the Laise area of Belvedere Marittimo, this independent house of about 120 sqm is arranged over three levels and lies around 7 km from the sea. The ground floor includes a living room with kitchenette, bathroom and private outdoor area. The first floor has two bedrooms, bathroom and terrace. The lower level adds an independent studio with bathroom and a storage room. A private plot completes the property.",
+  "description_cs": "V lokalitě Laise u Belvedere Marittimo je nabízen samostatný dům o ploše přibližně 120 m2, rozložený do tří úrovní a vzdálený asi 7 km od moře.\n\nV přízemí je světlý obytný salon s kuchyňským koutem, koupelna a soukromý venkovní prostor pro posezení. V patře jsou dvě ložnice, další koupelna a terasa s výhledem. Spodní úroveň přidává samostatné studio s koupelnou, vhodné pro hosty, a sklad. K domu patří také pozemek využitelný jako zahrada, orto nebo zelená plocha.",
+  "seo_title_it": "Casa indipendente con terrazza a Belvedere Marittimo",
+  "seo_title_en": "Independent House with Terrace in Belvedere Marittimo for Sale in Calabria",
+  "seo_title_cs": "Samostatný dům s terasou u Belvedere Marittimo na prodej v Kalábrii",
+  "seo_description_it": "Casa indipendente con terrazza a Belvedere Marittimo: 120 m2, 5 locali, 3 camere, 3 bagni, prezzo 75.000 euro.",
+  "seo_description_en": "Independent House with Terrace in Belvedere Marittimo: 120 sqm, 5 rooms, 3 bedrooms, 3 bathrooms, asking price EUR 75,000.",
+  "seo_description_cs": "Samostatný dům s terasou u Belvedere Marittimo: 120 m2, 5 místnosti, 3 ložnice, 3 koupelny, cena 75 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/127039949/",
+  "keywords": [
+    "calabria",
+    "belvedere marittimo",
+    "immobiliare",
+    "house"
+  ],
+  "image_urls": [],
+  "lat": 39.6207,
+  "lng": 15.8586,
+  "original_title": "Villa unifamiliare Contrada Laise, Centro, Belvedere Marittimo",
+  "original_source_summary": {
+    "city": "Belvedere Marittimo",
+    "address": "Contrada Laise",
+    "price": "75000",
+    "surface": "120 m²",
+    "rooms": "5",
+    "bedrooms": "3",
+    "bathrooms": "3"
+  }
+}

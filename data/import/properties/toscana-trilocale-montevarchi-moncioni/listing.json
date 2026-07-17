@@ -1,0 +1,73 @@
+{
+  "slug": "toscana-trilocale-montevarchi-moncioni",
+  "title_it": "Trilocale arredato nel borgo di Moncioni a Montevarchi",
+  "title_en": "Furnished Three-Room Apartment in the Village of Moncioni, Montevarchi",
+  "title_cs": "Zařízený byt v borgu Moncioni u Montevarchi",
+  "propertyType": "apartment",
+  "propertyType_it": "appartamento",
+  "region_it": "Toscana",
+  "city_it": "Montevarchi",
+  "city_en": "Montevarchi",
+  "city_cs": "Montevarchi",
+  "address_it": "Via di Moncioni, Montevarchi, Toscana",
+  "address_en": "Via di Moncioni, Montevarchi, Tuscany",
+  "address_cs": "Via di Moncioni, Montevarchi, Toskánsko",
+  "price": 89000,
+  "rooms": 3,
+  "bedrooms": 1,
+  "bathrooms": 1,
+  "square_meters": 65,
+  "features": [
+    {
+      "it": "Appartamento in borgo collinare",
+      "en": "Apartment in a hill village",
+      "cs": "Byt v kopcovitém borgu"
+    },
+    {
+      "it": "Ingresso privato da scala esterna esclusiva",
+      "en": "Private entrance from an exclusive external staircase",
+      "cs": "Soukromý vstup po vlastním venkovním schodišti"
+    },
+    {
+      "it": "Terrazzo e piccolo magazzino",
+      "en": "Terrace and small storage room",
+      "cs": "Terasa a malý sklad"
+    },
+    {
+      "it": "Venduto arredato",
+      "en": "Sold furnished",
+      "cs": "Prodává se zařízený"
+    }
+  ],
+  "description_it": "Nella zona collinare di Moncioni, a circa 6 km dal centro di Montevarchi, proponiamo un appartamento arredato di circa 65 m2 situato al primo piano all'interno di un borgo caratteristico.\n\nL'abitazione si sviluppa su un unico livello e dispone di ingresso privato tramite scala esterna esclusiva. Gli ambienti comprendono tre vani ampi e un terrazzo, con arredi già inclusi nella vendita. Al piano terra è presente un piccolo magazzino utile come deposito o spazio di servizio.\n\nLa proprietà è adatta a chi cerca una base pronta all'uso nella campagna toscana, con privacy, tranquillità e un contesto di borgo. Può essere valutata anche come investimento per soggiorni brevi o uso ricreativo.",
+  "description_en": "In the hill area of Moncioni, about 6 km from the centre of Montevarchi, this furnished apartment of about 65 sqm is located on the first floor within a characteristic village setting.\n\nThe home is arranged on one level and has a private entrance via an exclusive external staircase. It includes three generous rooms and a terrace, with furnishings already included in the sale. A small ground-floor storage room provides useful additional space.\n\nThe property is suitable for buyers looking for a ready-to-use base in the Tuscan countryside, with privacy, quiet surroundings and village atmosphere. It may also be considered for short stays or recreational use.",
+  "description_cs": "V kopcovité části Moncioni, přibližně 6 km od centra Montevarchi, je nabízen zařízený byt o ploše přibližně 65 m2 v prvním patře charakteristického borgo.\n\nByt je řešen v jedné úrovni a má soukromý vstup po vlastním venkovním schodišti. Nabízí tři prostorné místnosti a terasu, přičemž vybavení je již zahrnuto v ceně. V přízemí se nachází menší sklad, vhodný pro uložení vybavení nebo jako praktické zázemí.\n\nNemovitost je vhodná pro klienta, který hledá hotovou základnu v toskánské krajině, s klidem, soukromím a atmosférou menšího sídla. Lze ji posuzovat také jako rekreační nebo investiční nemovitost pro krátkodobé pobyty.",
+  "seo_title_it": "Trilocale arredato nel borgo di Moncioni a Montevarchi",
+  "seo_title_en": "Furnished Three-Room Apartment in the Village of Moncioni, Montevarchi for Sale in Tuscany",
+  "seo_title_cs": "Zařízený byt v borgu Moncioni u Montevarchi na prodej v Toskánsku",
+  "seo_description_it": "Trilocale arredato nel borgo di Moncioni a Montevarchi: 65 m2, 3 locali, 1 camere, 1 bagno, prezzo 89.000 euro.",
+  "seo_description_en": "Furnished Three-Room Apartment in the Village of Moncioni, Montevarchi: 65 sqm, 3 rooms, 1 bedrooms, 1 bathroom, asking price EUR 89,000.",
+  "seo_description_cs": "Zařízený byt v borgu Moncioni u Montevarchi: 65 m2, 3 místnosti, 1 ložnice, 1 koupelna, cena 89 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/129939054/",
+  "keywords": [
+    "toscana",
+    "montevarchi",
+    "immobiliare",
+    "apartment"
+  ],
+  "image_urls": [],
+  "lat": 43.4993,
+  "lng": 11.5371,
+  "original_title": "Trilocale via di Moncioni, Frazioni Collinari, Montevarchi",
+  "original_source_summary": {
+    "city": "Montevarchi",
+    "address": "Via di Moncioni",
+    "price": "89000",
+    "surface": "65 m²",
+    "rooms": "3",
+    "bedrooms": "1",
+    "bathrooms": "1"
+  }
+}

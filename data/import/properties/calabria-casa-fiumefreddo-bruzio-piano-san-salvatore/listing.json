@@ -1,0 +1,74 @@
+{
+  "slug": "calabria-casa-fiumefreddo-bruzio-piano-san-salvatore",
+  "title_it": "Fabbricato con terreno agricolo a Fiumefreddo Bruzio",
+  "title_en": "Building with Agricultural Land in Fiumefreddo Bruzio",
+  "title_cs": "Dům s velkým zemědělským pozemkem ve Fiumefreddo Bruzio",
+  "propertyType": "house",
+  "propertyType_it": "casa",
+  "region_it": "Calabria",
+  "city_it": "Fiumefreddo Bruzio",
+  "city_en": "Fiumefreddo Bruzio",
+  "city_cs": "Fiumefreddo Bruzio",
+  "address_it": "Località Piano San Salvatore 2, Fiumefreddo Bruzio, Calabria",
+  "address_en": "Località Piano San Salvatore 2, Fiumefreddo Bruzio, Calabria",
+  "address_cs": "Località Piano San Salvatore 2, Fiumefreddo Bruzio, Kalábrie",
+  "price": 80000,
+  "rooms": 4,
+  "bedrooms": 3,
+  "bathrooms": 1,
+  "square_meters": 94,
+  "lotSize": 10400,
+  "features": [
+    {
+      "it": "Intero fabbricato su due piani",
+      "en": "Entire two-floor building",
+      "cs": "Celý dvoupodlažní objekt"
+    },
+    {
+      "it": "Tre magazzini al piano terra",
+      "en": "Three ground-floor storage rooms",
+      "cs": "Tři sklady v přízemí"
+    },
+    {
+      "it": "Terreno agricolo di circa 10.400 m2",
+      "en": "Approx. 10,400 sqm agricultural land",
+      "cs": "Zemědělský pozemek asi 10 400 m2"
+    },
+    {
+      "it": "Ulteriori spazi agricoli e di deposito",
+      "en": "Additional agricultural and storage spaces",
+      "cs": "Další hospodářské a skladové prostory"
+    }
+  ],
+  "description_it": "In località Piano San Salvatore, intero fabbricato su due piani con forte componente agricola. Il piano terra è composto da tre magazzini di circa 90 m2 complessivi. Il primo piano contiene l'abitazione con ingresso-corridoio, cucina abitabile, tre camere e bagno. La proprietà comprende anche circa 10.400 m2 di terreno agricolo e ulteriori magazzini o strutture rurali per circa 180 m2.",
+  "description_en": "In Piano San Salvatore, this entire two-floor building has a strong agricultural component. The ground floor consists of three storage rooms totalling around 90 sqm. The first floor contains the home, with entrance corridor, eat-in kitchen, three rooms and bathroom. The property also includes about 10,400 sqm of agricultural land and further rural/storage buildings of around 180 sqm.",
+  "description_cs": "V lokalitě Piano San Salvatore u Fiumefreddo Bruzio je nabízen celý dvoupodlažní objekt s výrazným hospodářským zázemím.\n\nPřízemí tvoří tři sklady o celkové ploše kolem 90 m2. Obytná část v prvním patře zahrnuje vstupní chodbu, obytnou kuchyni, tři pokoje a koupelnu. Součástí prodeje je zemědělský pozemek o ploše přibližně 10 400 m2 a další skladové nebo hospodářské prostory o ploše kolem 180 m2.",
+  "seo_title_it": "Fabbricato con terreno agricolo a Fiumefreddo Bruzio",
+  "seo_title_en": "Building with Agricultural Land in Fiumefreddo Bruzio for Sale in Calabria",
+  "seo_title_cs": "Dům s velkým zemědělským pozemkem ve Fiumefreddo Bruzio na prodej v Kalábrii",
+  "seo_description_it": "Fabbricato con terreno agricolo a Fiumefreddo Bruzio: 94 m2, 4 locali, 3 camere, 1 bagni, prezzo 80.000 euro.",
+  "seo_description_en": "Building with Agricultural Land in Fiumefreddo Bruzio: 94 sqm, 4 rooms, 3 bedrooms, 1 bathrooms, asking price EUR 80,000.",
+  "seo_description_cs": "Dům s velkým zemědělským pozemkem ve Fiumefreddo Bruzio: 94 m2, 4 místnosti, 3 ložnice, 1 koupelny, cena 80 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/121113808/",
+  "keywords": [
+    "calabria",
+    "fiumefreddo bruzio",
+    "immobiliare",
+    "house"
+  ],
+  "image_urls": [],
+  "lat": 39.2344,
+  "lng": 16.0685,
+  "original_title": "Terratetto unifamiliare Località Piano San Salvatore, 2, Centro, Fiumefreddo Bruzio",
+  "original_source_summary": {
+    "city": "Fiumefreddo Bruzio",
+    "address": "Località Piano San Salvatore, 2",
+    "price": "80000",
+    "surface": "94 m²",
+    "rooms": "4",
+    "bedrooms": "3",
+    "bathrooms": "1"
+  }
+}

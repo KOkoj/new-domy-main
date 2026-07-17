@@ -1,0 +1,73 @@
+{
+  "slug": "calabria-casa-ristrutturata-rovito-san-nicola",
+  "title_it": "Casa ristrutturata nel centro di Rovito",
+  "title_en": "Renovated House in the Centre of Rovito",
+  "title_cs": "Zrekonstruovaný dům v centru Rovita",
+  "propertyType": "house",
+  "propertyType_it": "casa",
+  "region_it": "Calabria",
+  "city_it": "Rovito",
+  "city_en": "Rovito",
+  "city_cs": "Rovito",
+  "address_it": "Piazza San Nicola 13, Rovito, Calabria",
+  "address_en": "Piazza San Nicola 13, Rovito, Calabria",
+  "address_cs": "Piazza San Nicola 13, Rovito, Kalábrie",
+  "price": 58000,
+  "rooms": 3,
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "square_meters": 80,
+  "features": [
+    {
+      "it": "Completamente ristrutturata",
+      "en": "Fully renovated",
+      "cs": "Po kompletní rekonstrukci"
+    },
+    {
+      "it": "Soggiorno con camino",
+      "en": "Living room with fireplace",
+      "cs": "Obývací pokoj s krbem"
+    },
+    {
+      "it": "Due balconi",
+      "en": "Two balconies",
+      "cs": "Dva balkony"
+    },
+    {
+      "it": "Soffitta ampliabile",
+      "en": "Attic with potential",
+      "cs": "Půda s možností další místnosti"
+    }
+  ],
+  "description_it": "Nel centro di Rovito, a circa 10 minuti da Cosenza, casa indipendente su due livelli completamente ristrutturata. Il piano inferiore comprende ingresso, soggiorno con camino, cucinotto, bagno e balcone. Il piano superiore ospita due camere, un secondo bagno e un altro balcone con vista. La soffitta ampia permette di valutare la creazione di un ulteriore vano.",
+  "description_en": "In the centre of Rovito, around 10 minutes from Cosenza, this independent two-level house has been fully renovated. The lower level includes an entrance, living room with fireplace, kitchenette, bathroom and balcony. Upstairs there are two bedrooms, a second bathroom and another balcony with views. The large attic offers potential for an additional room.",
+  "description_cs": "V centru Rovita, přibližně 10 minut od Cosenzy, stojí samostatný dům po kompletní rekonstrukci.\n\nDispozice je ve dvou podlažích: dole vstup, obývací pokoj s krbem, kuchyňský kout, koupelna a balkon; nahoře dvě ložnice, druhá koupelna a další balkon s výhledem. Nad domem je prostorná půda, kde lze podle inzerátu vytvořit ještě další místnost. Popis zdůrazňuje nové výplně, tepelný plášť a lepší energetické vlastnosti.",
+  "seo_title_it": "Casa ristrutturata nel centro di Rovito",
+  "seo_title_en": "Renovated House in the Centre of Rovito for Sale in Calabria",
+  "seo_title_cs": "Zrekonstruovaný dům v centru Rovita na prodej v Kalábrii",
+  "seo_description_it": "Casa ristrutturata nel centro di Rovito: 80 m2, 3 locali, 2 camere, 2 bagni, prezzo 58.000 euro.",
+  "seo_description_en": "Renovated House in the Centre of Rovito: 80 sqm, 3 rooms, 2 bedrooms, 2 bathrooms, asking price EUR 58,000.",
+  "seo_description_cs": "Zrekonstruovaný dům v centru Rovita: 80 m2, 3 místnosti, 2 ložnice, 2 koupelny, cena 58 000 EUR.",
+  "status": "available",
+  "featured": false,
+  "source_url": "https://www.immobiliare.it/annunci/119389703/",
+  "keywords": [
+    "calabria",
+    "rovito",
+    "immobiliare",
+    "house"
+  ],
+  "image_urls": [],
+  "lat": 39.3056,
+  "lng": 16.3152,
+  "original_title": "Terratetto plurifamiliare piazza San Nicola 13, Centro, Rovito",
+  "original_source_summary": {
+    "city": "Rovito",
+    "address": "Piazza San Nicola 13",
+    "price": "58000",
+    "surface": "80 m²",
+    "rooms": "3",
+    "bedrooms": "2",
+    "bathrooms": "2"
+  }
+}
