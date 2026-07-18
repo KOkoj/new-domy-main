@@ -652,6 +652,9 @@ export default function RegionsListingClient({ initialRegions, initialProperties
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <Button
                     size="lg"
+                    data-affiliate-partner="booking"
+                    data-affiliate-placement="regions-travel-tools"
+                    data-affiliate-href={AFFILIATE_LINKS.booking.default}
                     className="w-full sm:w-auto max-w-full whitespace-normal break-words text-center leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base transition-all duration-300 shadow-lg"
                     onClick={() => window.open(AFFILIATE_LINKS.booking.default, '_blank')}
                   >
@@ -659,6 +662,9 @@ export default function RegionsListingClient({ initialRegions, initialProperties
                   </Button>
                   <Button
                     size="lg"
+                    data-affiliate-partner="getyourguide"
+                    data-affiliate-placement="regions-travel-tools"
+                    data-affiliate-href={AFFILIATE_LINKS.getYourGuide.default}
                     className="w-full sm:w-auto max-w-full whitespace-normal break-words text-center leading-tight bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base transition-all duration-300 shadow-lg"
                     onClick={() => window.open(AFFILIATE_LINKS.getYourGuide.default, '_blank')}
                   >
