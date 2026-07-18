@@ -17,6 +17,7 @@ import InformationalDisclaimer from "@/components/legal/InformationalDisclaimer"
 import Footer from "@/components/Footer";
 import PaywalledContent from "@/components/guides/PaywalledContent";
 import Navigation from "@/components/Navigation";
+import { AFFILIATE_LINKS } from "@/lib/affiliateLinks";
 
 export default function InspectionsGuidePage() {
   const [language, setLanguage] = useState("cs");
@@ -530,7 +531,7 @@ export default function InspectionsGuidePage() {
                   </ul>
                   <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <Link
-                      href="https://www.booking.com/"
+                      href={AFFILIATE_LINKS.booking.direct}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -543,7 +544,7 @@ export default function InspectionsGuidePage() {
                       </Button>
                     </Link>
                     <Link
-                      href="https://www.getyourguide.com/"
+                      href={AFFILIATE_LINKS.getYourGuide.direct}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -565,13 +566,13 @@ export default function InspectionsGuidePage() {
                           : "Insure your trip"}
                     </p>
                     <a
-                      href="https://www.dpbolvw.net/click-101629596-13502304"
+                      href={AFFILIATE_LINKS.insurance.property.click}
                       target="_top"
                       rel="nofollow sponsored noopener noreferrer"
                       className="mt-3 inline-block max-w-full overflow-hidden rounded-xl border border-amber-200 bg-white shadow-sm"
                     >
                       <img
-                        src="https://www.tqlkg.com/image-101629596-13502304"
+                        src={AFFILIATE_LINKS.insurance.property.image}
                         width="468"
                         height="60"
                         alt="cestovni pojisteni AXA se slevou 50 %"
@@ -758,4 +759,3 @@ export default function InspectionsGuidePage() {
     </div>
   );
 }
-

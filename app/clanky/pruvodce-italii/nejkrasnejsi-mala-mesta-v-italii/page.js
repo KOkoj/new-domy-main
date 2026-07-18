@@ -11,16 +11,17 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import LeadMagnetBanner from '@/components/LeadMagnetBanner'
+import { AFFILIATE_LINKS } from '@/lib/affiliateLinks'
 
 const PUBLISHED_AT = '2026-03-12'
 
 const TRAVEL_PARTNER_LINKS = {
-  booking: 'https://www.booking.com/searchresults.cs.html?ss=Italia&order=early_year_deals_upsorter&label=gen173rf-10Eg5kZWFscy1jYW1wYWlnbiiCAjjoB0gFWANoOogBAZgBM7gBF8gBDNgBA-gBAfgBAYgCAaICDm1lbWJlcnMuY2ouY29tqAIBuAKpjMzNBsACAdICJGQzM2IxZGFiLWM0NjUtNGRlMS04Zjc1LTEwNWQyNjJkZTAyM9gCAeACAQ&aid=304142&lang=cs&sb=1&src_elem=sb&dest_id=104&dest_type=country&ac_position=0&ac_click_type=b&ac_langcode=it&ac_suggestion_list_length=5&search_selected=true&search_pageview_id=fd70821489bb0dca&ac_meta=GhBmZDcwODIxNDg5YmIwZGNhIAAoATICaXQ6Bkl0YWxpYQ%3D%3D&checkin=2026-03-13&checkout=2026-03-14&group_adults=2&no_rooms=1&group_children=0&lpsrc=sb',
-  getYourGuide: 'https://gyg.me/fnMmh4S3'
+  booking: AFFILIATE_LINKS.booking.italySearch,
+  getYourGuide: AFFILIATE_LINKS.getYourGuide.italyGuide
 }
 const BORGI_SIDEBAR_WIDGET = {
-  href: 'https://www.dpbolvw.net/click-101629596-17122710',
-  image: 'https://www.lduhtrp.net/image-101629596-17122710'
+  href: AFFILIATE_LINKS.banners.villages.click,
+  image: AFFILIATE_LINKS.banners.villages.image
 }
 
 const CONTENT = {

@@ -12,6 +12,7 @@ import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
 import { REGION_DATA_OVERRIDES } from './regionContent'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
+import { AFFILIATE_LINKS } from '@/lib/affiliateLinks'
 
 const CLEAN_REGION_CARD_WARNINGS = {
   toscana: {
@@ -652,14 +653,14 @@ export default function RegionsListingClient({ initialRegions, initialProperties
                   <Button
                     size="lg"
                     className="w-full sm:w-auto max-w-full whitespace-normal break-words text-center leading-tight bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base transition-all duration-300 shadow-lg"
-                    onClick={() => window.open('https://www.dpbolvw.net/click-101629596-15735418', '_blank')}
+                    onClick={() => window.open(AFFILIATE_LINKS.booking.default, '_blank')}
                   >
                     {language === 'cs' ? 'Najít ubytovani (Booking.com)' : language === 'it' ? 'Trova alloggio (Booking.com)' : 'Find Accommodation (Booking.com)'}
                   </Button>
                   <Button
                     size="lg"
                     className="w-full sm:w-auto max-w-full whitespace-normal break-words text-center leading-tight bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold px-4 sm:px-8 py-3 sm:py-6 text-sm sm:text-base transition-all duration-300 shadow-lg"
-                    onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}
+                    onClick={() => window.open(AFFILIATE_LINKS.getYourGuide.default, '_blank')}
                   >
                     {language === 'cs' ? 'V\u00fdlety a pr\u016fvodce (GetYourGuide)' : language === 'it' ? 'Escursioni e guide (GetYourGuide)' : 'Tours & Guides (GetYourGuide)'}
                   </Button>
