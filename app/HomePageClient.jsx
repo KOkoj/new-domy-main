@@ -2435,7 +2435,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                     : 'We and our clients rely on trusted partners.'}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div role="button" tabIndex={0} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open(AFFILIATE_LINKS.getYourGuide.default, '_blank')}>
+                  <div role="button" tabIndex={0} data-affiliate-partner="getyourguide" data-affiliate-placement="homepage-travel-modal" data-affiliate-href={AFFILIATE_LINKS.getYourGuide.default} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open(AFFILIATE_LINKS.getYourGuide.default, '_blank')}>
                     <Plane className="w-5 h-5 text-slate-700" />
                     <div className="text-left">
                       <p className="text-sm font-semibold text-gray-900">
@@ -2446,7 +2446,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                       <p className="text-xs text-gray-600">GetYourGuide</p>
                     </div>
                   </div>
-                  <div role="button" tabIndex={0} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open(AFFILIATE_LINKS.booking.homepage, '_blank')}>
+                  <div role="button" tabIndex={0} data-affiliate-partner="booking" data-affiliate-placement="homepage-travel-modal" data-affiliate-href={AFFILIATE_LINKS.booking.homepage} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open(AFFILIATE_LINKS.booking.homepage, '_blank')}>
                     <Globe className="w-5 h-5 text-slate-700" />
                     <div className="text-left">
                       <p className="text-sm font-semibold text-gray-900">
@@ -2554,4 +2554,3 @@ export default function HomePageClient({ initialProperties = [] }) {
     </div>
   )
 }
-

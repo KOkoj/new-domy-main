@@ -879,6 +879,9 @@ export default function ProcessPage() {
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 sm:items-center sm:justify-center">
                   <Button 
                     size="lg" 
+                    data-affiliate-partner="booking"
+                    data-affiliate-placement="process-travel-tools"
+                    data-affiliate-href={AFFILIATE_LINKS.booking.default}
                     className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg w-full sm:w-auto"
                     onClick={() => window.open(AFFILIATE_LINKS.booking.default, '_blank')}
                   >
@@ -888,6 +891,9 @@ export default function ProcessPage() {
                   </Button>
                   <Button
                     size="lg"
+                    data-affiliate-partner="getyourguide"
+                    data-affiliate-placement="process-travel-tools"
+                    data-affiliate-href={AFFILIATE_LINKS.getYourGuide.default}
                     className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg w-full sm:w-auto"
                     onClick={() => window.open(AFFILIATE_LINKS.getYourGuide.default, '_blank')}
                   >
