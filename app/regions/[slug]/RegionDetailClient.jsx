@@ -84,6 +84,19 @@ function buildRegionalWidgetDataAttrs(widgetConfig, query) {
   return attrs
 }
 
+function getTrackedGygLink(link) {
+  if (!link || link.includes('gyg.me/')) return link || DEFAULT_GYG_LINK
+
+  try {
+    const url = new URL(link)
+    url.searchParams.set('partner_id', 'H4OKCTR')
+    url.searchParams.set('cmp', 'domyvitalii-region')
+    return url.toString()
+  } catch {
+    return DEFAULT_GYG_LINK
+  }
+}
+
 const REGION_DATA = {
   'friuli-venezia-giulia': {
     name: { en: 'Friuli Venezia Giulia', cs: 'Friuli Venezia Giulia', it: 'Friuli Venezia Giulia' },
@@ -1076,14 +1089,14 @@ export default function RegionDetailClient({ initialProperties = [] }) {
   const rawSlug = Array.isArray(params?.slug) ? params.slug[0] : (params?.slug || '')
   const canonicalSlug = BUYER_GUIDANCE_SLUG_ALIASES[rawSlug] || rawSlug
   const bookingLink = REGION_BOOKING_LINKS[canonicalSlug] || REGION_BOOKING_LINKS[rawSlug] || DEFAULT_BOOKING_LINK
-  const gygLink = REGION_GYG_LINKS[canonicalSlug] || REGION_GYG_LINKS[rawSlug] || DEFAULT_GYG_LINK
+  const gygLink = getTrackedGygLink(
+    REGION_GYG_LINKS[canonicalSlug] || REGION_GYG_LINKS[rawSlug] || DEFAULT_GYG_LINK
+  )
   const widgetConfig = REGION_GYG_WIDGET_CONFIGS[canonicalSlug] || REGION_GYG_WIDGET_CONFIGS[rawSlug] || null
   const shouldShowRegionalWidget = Boolean(widgetConfig)
-  const topWidgetQuery = widgetConfig?.primaryQuery || widgetConfig?.query || ''
-  const bottomWidgetQuery = widgetConfig?.secondaryQuery || topWidgetQuery
-  const topWidgetDataAttrs = buildRegionalWidgetDataAttrs(widgetConfig, topWidgetQuery)
-  const bottomWidgetDataAttrs = buildRegionalWidgetDataAttrs(widgetConfig, bottomWidgetQuery)
-  const widgetDestinationLink = widgetConfig?.destinationLink || 'https://www.getyourguide.com/'
+  const widgetQuery = widgetConfig?.primaryQuery || widgetConfig?.query || ''
+  const widgetDataAttrs = buildRegionalWidgetDataAttrs(widgetConfig, widgetQuery)
+  const widgetDestinationLink = getTrackedGygLink(widgetConfig?.destinationLink || gygLink)
   const region = REGION_DATA[canonicalSlug] || REGION_DATA[rawSlug] || createPlaceholderRegion(canonicalSlug || rawSlug)
 
   useEffect(() => {
@@ -1337,35 +1350,6 @@ export default function RegionDetailClient({ initialProperties = [] }) {
             </div>
           </div>
 
-          {shouldShowRegionalWidget ? (
-            <div className="max-w-5xl mx-auto mb-12">
-              <Card className="bg-white/90 backdrop-blur-sm border border-orange-200 shadow-lg rounded-2xl overflow-hidden">
-                <CardContent className="p-8">
-                  <div
-                    data-gyg-href="https://widget.getyourguide.com/default/activities.frame"
-                    data-gyg-locale-code="cs-CZ"
-                    data-gyg-widget="activities"
-                    data-gyg-number-of-items="3"
-                    data-gyg-partner-id="H4OKCTR"
-                    {...topWidgetDataAttrs}
-                  >
-                    <span className="text-xs text-slate-600">
-                      Powered by{' '}
-                      <a
-                        target="_blank"
-                        rel="sponsored noopener noreferrer"
-                        href={widgetDestinationLink}
-                        className="underline underline-offset-2"
-                      >
-                        GetYourGuide
-                      </a>
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          ) : null}
-
           {/* Description */}
           <div className="max-w-5xl mx-auto mb-12">
             <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
@@ -1548,28 +1532,57 @@ export default function RegionDetailClient({ initialProperties = [] }) {
                      language === 'it' ? 'Trova alloggio (Booking.com)' :
                      'Find Accommodation (Booking.com)'}
                   </Button>
-                  <Button 
+                  <Button
+                    asChild
                     variant="outline"
-                    size="lg" 
+                    size="lg"
                     className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white border-orange-500 font-semibold px-8 py-6 text-base transition-all duration-300"
-                    onClick={() => window.open(gygLink, '_blank')}
                   >
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    {language === 'cs' ? 'Výlety a průvodce (GetYourGuide)' :
-                     language === 'it' ? 'Escursioni e guide (GetYourGuide)' :
-                     'Tours & Guides (GetYourGuide)'}
+                    <a href={gygLink} target="_blank" rel="nofollow sponsored noopener noreferrer">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      {language === 'cs' ? 'Výlety a průvodce (GetYourGuide)' :
+                       language === 'it' ? 'Escursioni e guide (GetYourGuide)' :
+                       'Tours & Guides (GetYourGuide)'}
+                    </a>
                   </Button>
                 </div>
                 {shouldShowRegionalWidget ? (
-                  <div className="mt-6 rounded-xl border border-orange-200 bg-orange-50/70 p-3">
+                  <div className="mt-8 hidden rounded-xl border border-orange-200 bg-orange-50/70 p-5 md:block">
+                    <h4 className="mb-4 text-lg font-semibold text-slate-800">
+                      {language === 'cs'
+                        ? 'Doporučené zážitky v regionu'
+                        : language === 'it'
+                          ? 'Esperienze consigliate nella regione'
+                          : 'Recommended experiences in the region'}
+                    </h4>
                     <div
                       data-gyg-href="https://widget.getyourguide.com/default/activities.frame"
                       data-gyg-locale-code="cs-CZ"
                       data-gyg-widget="activities"
                       data-gyg-number-of-items="3"
                       data-gyg-partner-id="H4OKCTR"
-                      {...bottomWidgetDataAttrs}
-                    />
+                      {...widgetDataAttrs}
+                    >
+                      <span className="text-sm text-slate-600">
+                        {language === 'cs'
+                          ? 'Aktivity se nepodařilo načíst. '
+                          : language === 'it'
+                            ? 'Non è stato possibile caricare le attività. '
+                            : 'Activities could not be loaded. '}
+                        <a
+                          href={widgetDestinationLink}
+                          target="_blank"
+                          rel="nofollow sponsored noopener noreferrer"
+                          className="font-semibold text-orange-700 underline underline-offset-2"
+                        >
+                          {language === 'cs'
+                            ? 'Zobrazit nabídku na GetYourGuide'
+                            : language === 'it'
+                              ? 'Vedi le offerte su GetYourGuide'
+                              : 'View activities on GetYourGuide'}
+                        </a>
+                      </span>
+                    </div>
                   </div>
                 ) : null}
               </CardContent>
