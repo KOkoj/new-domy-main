@@ -533,7 +533,7 @@ export default function InspectionsGuidePage() {
                     <Link
                       href={AFFILIATE_LINKS.booking.direct}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="nofollow sponsored noopener noreferrer"
                     >
                       <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-500 hover:to-indigo-500 border border-blue-400/40 shadow-sm">
                         {language === "cs"
@@ -546,7 +546,7 @@ export default function InspectionsGuidePage() {
                     <Link
                       href={AFFILIATE_LINKS.getYourGuide.direct}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="nofollow sponsored noopener noreferrer"
                     >
                       <Button className="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-400 hover:to-orange-400 border border-amber-300/50 shadow-sm">
                         {language === "cs"
