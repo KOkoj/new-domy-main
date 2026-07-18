@@ -1497,7 +1497,13 @@ export default function RegionDetailClient({ initialProperties = [] }) {
                     size="lg"
                     className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white border-orange-500 font-semibold px-8 py-6 text-base transition-all duration-300"
                   >
-                    <a href={gygLink} target="_blank" rel="nofollow sponsored noopener noreferrer">
+                    <a
+                      href={gygLink}
+                      target="_blank"
+                      rel="nofollow sponsored noopener noreferrer"
+                      data-affiliate-placement="region-travel-primary"
+                      data-affiliate-region={canonicalSlug || rawSlug}
+                    >
                       <ExternalLink className="h-4 w-4 mr-2" />
                       {language === 'cs' ? 'Výlety a průvodce (GetYourGuide)' :
                        language === 'it' ? 'Escursioni e guide (GetYourGuide)' :
@@ -1506,8 +1512,8 @@ export default function RegionDetailClient({ initialProperties = [] }) {
                   </Button>
                 </div>
                 {shouldShowRegionalWidget ? (
-                  <div className="mt-8 hidden rounded-xl border border-orange-200 bg-orange-50/70 p-5 md:block">
-                    <h4 className="mb-4 text-lg font-semibold text-slate-800">
+                  <div className="mt-6 rounded-xl border border-orange-200 bg-orange-50/70 p-4">
+                    <h4 className="mb-3 text-base font-semibold text-slate-800">
                       {language === 'cs'
                         ? 'Doporučené zážitky v regionu'
                         : language === 'it'
@@ -1515,10 +1521,11 @@ export default function RegionDetailClient({ initialProperties = [] }) {
                           : 'Recommended experiences in the region'}
                     </h4>
                     <div
+                      className="hidden max-h-[320px] overflow-hidden rounded-lg bg-white md:block [&>span]:hidden [&_iframe]:!h-[300px] [&_iframe]:!min-h-0"
                       data-gyg-href={AFFILIATE_LINKS.getYourGuide.widgetFrame}
                       data-gyg-locale-code="cs-CZ"
                       data-gyg-widget="activities"
-                      data-gyg-number-of-items="3"
+                      data-gyg-number-of-items="2"
                       data-gyg-partner-id={GETYOURGUIDE_PARTNER_ID}
                       {...widgetDataAttrs}
                     >
@@ -1542,6 +1549,17 @@ export default function RegionDetailClient({ initialProperties = [] }) {
                         </a>
                       </span>
                     </div>
+                    <a
+                      href={widgetDestinationLink}
+                      target="_blank"
+                      rel="nofollow sponsored noopener noreferrer"
+                      data-affiliate-placement="region-gyg-widget-fallback"
+                      data-affiliate-region={canonicalSlug || rawSlug}
+                      className="mt-3 inline-flex items-center justify-center rounded-lg bg-orange-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-orange-500"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      GetYourGuide
+                    </a>
                   </div>
                 ) : null}
               </CardContent>
