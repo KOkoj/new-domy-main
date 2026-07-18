@@ -1519,7 +1519,7 @@ export default function RegionDetailClient({ initialProperties = [] }) {
                       data-gyg-locale-code="cs-CZ"
                       data-gyg-widget="activities"
                       data-gyg-number-of-items="3"
-                      data-gyg-partner-id="H4OKCTR"
+                      data-gyg-partner-id={GETYOURGUIDE_PARTNER_ID}
                       {...widgetDataAttrs}
                     >
                       <span className="text-sm text-slate-600">
