@@ -28,6 +28,7 @@ import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
+import { AFFILIATE_LINKS } from '@/lib/affiliateLinks'
 
 const PROCESS_STEPS = [
   {
@@ -879,7 +880,7 @@ export default function ProcessPage() {
                   <Button 
                     size="lg" 
                     className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg w-full sm:w-auto"
-                    onClick={() => window.open('https://www.dpbolvw.net/click-101629596-15735418', '_blank')}
+                    onClick={() => window.open(AFFILIATE_LINKS.booking.default, '_blank')}
                   >
                     {language === 'cs' ? 'Najít ubytování v Itálii (Booking.com)' :
                      language === 'it' ? 'Trova alloggio in Italia (Booking.com)' :
@@ -888,7 +889,7 @@ export default function ProcessPage() {
                   <Button
                     size="lg"
                     className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg w-full sm:w-auto"
-                    onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}
+                    onClick={() => window.open(AFFILIATE_LINKS.getYourGuide.default, '_blank')}
                   >
                     {language === 'cs' ? 'Výlety a průvodce (GetYourGuide)' :
                      language === 'it' ? 'Escursioni e guide (GetYourGuide)' :

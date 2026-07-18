@@ -20,6 +20,7 @@ import Navigation from '../components/Navigation'
 import { supabase } from '../lib/supabase'
 import { t } from '../lib/translations'
 import { readLanguageFromBrowser, readCurrencyFromBrowser, persistLanguage, persistCurrency, DEFAULT_LANGUAGE, DEFAULT_CURRENCY, getInitialLanguage, getInitialCurrency } from '../lib/userPreferences'
+import { AFFILIATE_LINKS } from '../lib/affiliateLinks'
 
 const WEBINAR_REGION_VALUES = [
   'abruzzo', 'basilicata', 'calabria', 'campania', 'emilia-romagna',
@@ -2434,7 +2435,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                     : 'We and our clients rely on trusted partners.'}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div role="button" tabIndex={0} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open('https://gyg.me/O0X6ZC2R', '_blank')}>
+                  <div role="button" tabIndex={0} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open(AFFILIATE_LINKS.getYourGuide.default, '_blank')}>
                     <Plane className="w-5 h-5 text-slate-700" />
                     <div className="text-left">
                       <p className="text-sm font-semibold text-gray-900">
@@ -2445,7 +2446,7 @@ export default function HomePageClient({ initialProperties = [] }) {
                       <p className="text-xs text-gray-600">GetYourGuide</p>
                     </div>
                   </div>
-                  <div role="button" tabIndex={0} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open('https://www.booking.com/?aid=1522416&label=affnetcj-15735418_pub-7711899_site-101629596_pname-Creavita+sro_clkid-_cjevent-07f8c85d05dc11f181b503200a18b8f8&utm_source=affnetcj&utm_medium=bannerindex&utm_campaign=gb&utm_term=index-15735418&chal_t=1770657801471&force_referer=http%3A%2F%2Flocalhost%3A3000%2F&lang=cs&soz=1&lang_changed=1', '_blank')}>
+                  <div role="button" tabIndex={0} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open(AFFILIATE_LINKS.booking.homepage, '_blank')}>
                     <Globe className="w-5 h-5 text-slate-700" />
                     <div className="text-left">
                       <p className="text-sm font-semibold text-gray-900">
@@ -2553,5 +2554,4 @@ export default function HomePageClient({ initialProperties = [] }) {
     </div>
   )
 }
-
 
