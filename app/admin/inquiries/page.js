@@ -18,9 +18,10 @@ import {
   Home,
   Reply,
   CheckCircle,
-  Clock
+  Clock,
+  ExternalLink,
+  X
 } from 'lucide-react'
-import { supabase } from '../../../lib/supabase'
 import { t } from '@/lib/translations'
 
 export default function InquiryManagement() {
@@ -32,6 +33,7 @@ export default function InquiryManagement() {
   const [selectedInquiry, setSelectedInquiry] = useState(null)
   const [responseText, setResponseText] = useState('')
   const [sending, setSending] = useState(false)
+  const [deletingId, setDeletingId] = useState(null)
   const [language, setLanguage] = useState('cs')
 
   useEffect(() => {
@@ -64,23 +66,47 @@ export default function InquiryManagement() {
     try {
       setLoading(true)
       
-      const { data: inquiriesData, error } = await supabase
-        .from('inquiries')
-        .select('*')
-        .order('createdAt', { ascending: false })
-
-      if (error) throw error
-
-      const inquiriesWithStatus = (inquiriesData || []).map(inquiry => ({
-        ...inquiry,
-        status: inquiry.responded ? 'responded' : 'pending'
-      }))
-
-      setInquiries(inquiriesWithStatus)
+      const response = await fetch('/api/admin/inquiries', { cache: 'no-store' })
+      const result = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(result.error || 'Failed to load inquiries')
+      setInquiries(result.inquiries || [])
     } catch (error) {
       console.error('Error loading inquiries:', error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const getListingHref = (inquiry) => inquiry?.listingSlug
+    ? `/properties/${encodeURIComponent(inquiry.listingSlug)}`
+    : null
+
+  const openListing = (inquiry) => {
+    const href = getListingHref(inquiry)
+    if (href) window.location.assign(href)
+  }
+
+  const deleteInquiry = async (inquiry) => {
+    const confirmed = window.confirm(t('admin.inquiries.deleteConfirm', language))
+    if (!confirmed) return
+
+    setDeletingId(inquiry.id)
+    try {
+      const response = await fetch(`/api/admin/inquiries?id=${encodeURIComponent(inquiry.id)}`, {
+        method: 'DELETE'
+      })
+      const result = await response.json().catch(() => ({}))
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Failed to delete inquiry')
+      }
+
+      setInquiries((current) => current.filter((item) => item.id !== inquiry.id))
+      if (selectedInquiry?.id === inquiry.id) setSelectedInquiry(null)
+    } catch (error) {
+      console.error('Error deleting inquiry:', error)
+      alert(`${t('admin.inquiries.deleteFailed', language)}: ${error.message}`)
+    } finally {
+      setDeletingId(null)
     }
   }
 
@@ -251,7 +277,20 @@ export default function InquiryManagement() {
           {filteredInquiries.length > 0 ? (
             <div className="space-y-4">
               {filteredInquiries.map((inquiry) => (
-                <div key={inquiry.id} className="border rounded-lg p-4 hover:bg-gray-50">
+                <div
+                  key={inquiry.id}
+                  className={`border rounded-lg p-4 hover:bg-gray-50 ${getListingHref(inquiry) ? 'cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500' : ''}`}
+                  role={getListingHref(inquiry) ? 'link' : undefined}
+                  tabIndex={getListingHref(inquiry) ? 0 : undefined}
+                  onClick={() => openListing(inquiry)}
+                  onKeyDown={(event) => {
+                    if (event.target !== event.currentTarget) return
+                    if ((event.key === 'Enter' || event.key === ' ') && getListingHref(inquiry)) {
+                      event.preventDefault()
+                      openListing(inquiry)
+                    }
+                  }}
+                >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
@@ -268,6 +307,7 @@ export default function InquiryManagement() {
                         <span className="flex items-center">
                           <Home className="h-3 w-3 mr-1" />
                           {inquiry.listingId ? `${t('admin.dashboard.property', language)}: ${inquiry.listingId}` : t('admin.inquiries.generalInquiry', language)}
+                          {getListingHref(inquiry) && <ExternalLink className="h-3 w-3 ml-1" />}
                         </span>
                         <span className="flex items-center">
                           <Calendar className="h-3 w-3 mr-1" />
@@ -278,12 +318,27 @@ export default function InquiryManagement() {
                     </div>
                     
                     <div className="flex items-center space-x-2 ml-4">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        aria-label={t('admin.inquiries.delete', language)}
+                        title={t('admin.inquiries.delete', language)}
+                        disabled={deletingId === inquiry.id}
+                        onClick={(event) => {
+                          event.stopPropagation()
+                          deleteInquiry(inquiry)
+                        }}
+                        className="text-red-600 hover:bg-red-50 hover:text-red-700"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
                       <Dialog>
                         <DialogTrigger asChild>
                           <Button 
                             variant="outline" 
                             size="sm"
-                            onClick={() => {
+                            onClick={(event) => {
+                              event.stopPropagation()
                               setSelectedInquiry(inquiry)
                               setResponseText(inquiry.status === 'pending' 
                                 ? `Dear ${inquiry.name},\n\nThank you for your interest in our property. I'd be happy to help you with more information.\n\nBest regards,\nProperty Team`
@@ -295,7 +350,7 @@ export default function InquiryManagement() {
                             {inquiry.status === 'pending' ? t('admin.inquiries.respond', language) : t('admin.inquiries.view', language)}
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-2xl">
+                        <DialogContent className="max-w-2xl" onClick={(event) => event.stopPropagation()}>
                           <DialogHeader>
                             <DialogTitle>{t('admin.inquiries.inquiryDetails', language)}</DialogTitle>
                           </DialogHeader>
