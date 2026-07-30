@@ -30,6 +30,8 @@ export default function PropertyCard({
   const localizedTitle = getLocalizedValue(property.titleI18n || property.title, language, 'Untitled Property')
   const localizedTypeLabel = getPropertyTypeLabel(property.type, language)
   const statusLabel = getStatusLabel(property.status, language)
+  const propertySlug = property.slug?.current || property.slug
+  const isLaDanePreview = propertySlug === 'friuli-venezia-giulia-appartamento-zoncolan-la-dane'
 
   const handleFavoriteClick = (e) => {
     e.preventDefault()
@@ -38,10 +40,8 @@ export default function PropertyCard({
   }
 
   // Construct the href with slug safeguard
-  const propertyHref = property.slug?.current
-    ? `/properties/${property.slug.current}`
-    : property.slug
-    ? `/properties/${property.slug}`
+  const propertyHref = propertySlug
+    ? `/properties/${propertySlug}`
     : property.sanityId
     ? `/properties/${property.sanityId}`
     : '#'
@@ -121,6 +121,19 @@ export default function PropertyCard({
             </span>
           </div>
         </div>
+
+        {isLaDanePreview && (
+          <div
+            className="absolute bottom-5 right-3 z-30 max-w-[8.5rem] rotate-[-3deg] rounded-2xl rounded-br-sm border-2 border-white bg-amber-400 px-3 py-2 text-center text-[0.65rem] font-extrabold uppercase leading-tight tracking-wide text-slate-900 shadow-xl motion-safe:animate-pulse sm:bottom-6 sm:right-4 sm:max-w-[10rem] sm:px-4 sm:text-xs"
+            data-testid="la-dane-booking-bubble"
+          >
+            Prenota e personalizza
+            <span
+              aria-hidden="true"
+              className="absolute -bottom-2 right-3 h-4 w-4 rotate-45 border-b-2 border-r-2 border-white bg-amber-400"
+            />
+          </div>
+        )}
       </div>
 
       <CardContent className="p-6 sm:p-8 flex flex-col flex-1">
