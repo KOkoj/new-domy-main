@@ -12,6 +12,12 @@ import NewPropertyRibbon from '@/components/NewPropertyRibbon';
 import NoAgencyBadge from '@/components/NoAgencyBadge';
 import { PAGE_LABELS } from './filterConfig';
 
+const LA_DANE_BOOKING_LABELS = {
+  cs: 'Rezervujte a p\u0159izp\u016fsobte si',
+  en: 'Book and customize',
+  it: 'Prenota e personalizza',
+}
+
 // PropertyCard component matching homepage design
 export default function PropertyCard({
   property,
@@ -32,6 +38,7 @@ export default function PropertyCard({
   const statusLabel = getStatusLabel(property.status, language)
   const propertySlug = property.slug?.current || property.slug
   const isLaDanePreview = propertySlug === 'friuli-venezia-giulia-appartamento-zoncolan-la-dane'
+  const laDaneBookingLabel = LA_DANE_BOOKING_LABELS[language] || LA_DANE_BOOKING_LABELS.en
 
   const handleFavoriteClick = (e) => {
     e.preventDefault()
@@ -124,13 +131,13 @@ export default function PropertyCard({
 
         {isLaDanePreview && (
           <div
-            className="absolute bottom-5 right-3 z-30 max-w-[8.5rem] rotate-[-3deg] rounded-2xl rounded-br-sm border-2 border-white bg-amber-400 px-3 py-2 text-center text-[0.65rem] font-extrabold uppercase leading-tight tracking-wide text-slate-900 shadow-xl motion-safe:animate-pulse sm:bottom-6 sm:right-4 sm:max-w-[10rem] sm:px-4 sm:text-xs"
+            className="pointer-events-none absolute left-4 top-16 z-30 max-w-[9rem] rounded-2xl rounded-tl-sm border-2 border-white bg-amber-400 px-3 py-2 text-center text-[0.65rem] font-extrabold uppercase leading-tight tracking-wide text-slate-900 shadow-xl motion-safe:animate-pulse sm:max-w-[11rem] sm:px-4 sm:text-xs"
             data-testid="la-dane-booking-bubble"
           >
-            Prenota e personalizza
+            {laDaneBookingLabel}
             <span
               aria-hidden="true"
-              className="absolute -bottom-2 right-3 h-4 w-4 rotate-45 border-b-2 border-r-2 border-white bg-amber-400"
+              className="absolute -top-2 left-3 h-4 w-4 rotate-45 border-l-2 border-t-2 border-white bg-amber-400"
             />
           </div>
         )}
