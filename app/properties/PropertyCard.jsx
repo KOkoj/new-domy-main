@@ -13,7 +13,7 @@ import NoAgencyBadge from '@/components/NoAgencyBadge';
 import { PAGE_LABELS } from './filterConfig';
 
 const LA_DANE_BOOKING_LABELS = {
-  cs: 'Rezervujte a p\u0159izp\u016fsobte si',
+  cs: 'Vytvo\u0159 si to podle sebe',
   en: 'Book and customize',
   it: 'Prenota e personalizza',
 }
@@ -129,21 +129,22 @@ export default function PropertyCard({
           </div>
         </div>
 
+      </div>
+
+      <CardContent className="p-6 sm:p-8 flex flex-col flex-1">
         {isLaDanePreview && (
           <div
-            className="pointer-events-none absolute left-4 top-16 z-30 max-w-[9rem] rounded-2xl rounded-tl-sm border-2 border-white bg-amber-400 px-3 py-2 text-center text-[0.65rem] font-extrabold uppercase leading-tight tracking-wide text-slate-900 shadow-xl motion-safe:animate-pulse sm:max-w-[11rem] sm:px-4 sm:text-xs"
+            className="pointer-events-none relative mb-4 w-fit max-w-full self-start rounded-2xl rounded-tl-sm border-2 border-amber-200 bg-amber-400 px-3 py-2 text-center text-[0.65rem] font-extrabold uppercase leading-tight tracking-wide text-slate-900 shadow-md motion-safe:animate-pulse sm:px-4 sm:text-xs"
             data-testid="la-dane-booking-bubble"
           >
             {laDaneBookingLabel}
             <span
               aria-hidden="true"
-              className="absolute -top-2 left-3 h-4 w-4 rotate-45 border-l-2 border-t-2 border-white bg-amber-400"
+              className="absolute -top-2 left-3 h-4 w-4 rotate-45 border-l-2 border-t-2 border-amber-200 bg-amber-400"
             />
           </div>
         )}
-      </div>
 
-      <CardContent className="p-6 sm:p-8 flex flex-col flex-1">
         {/* Content area that grows */}
         <div className="flex-1 space-y-2 sm:space-y-3">
           {/* Title and location */}
