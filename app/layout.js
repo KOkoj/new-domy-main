@@ -8,6 +8,7 @@ import { SITE_NAME, SITE_URL } from '@/lib/siteConfig'
 import { DEFAULT_LANGUAGE } from '@/lib/userPreferences'
 import { Analytics } from '@vercel/analytics/next'
 import AffiliateClickAnalytics from '@/components/AffiliateClickAnalytics'
+import MetaTracking from '@/components/MetaTracking'
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -104,6 +105,7 @@ export default function RootLayout({ children }) {
         <ArticlePaywallGate />
         <ScrollToTop />
         <AffiliateClickAnalytics />
+        <MetaTracking />
         {/* Vercel Analytics */}
         <Analytics />
       </body>
