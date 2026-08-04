@@ -23,6 +23,11 @@ const TESTIMONIALS = [
     tag: 'Itálie',
     quote: <>Děkuji za <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">perfektní servis</span>, pomoc při koupi domu včetně všech nezbytných úředních procedur, osobní asistenci a <span className="font-semibold text-emerald-800 bg-emerald-100 rounded px-0.5">neuvěřitelně vstřícné, milé a přátelské jednání</span>. Zdravím z Itálie.</>,
   },
+  {
+    name: 'Jaroslav Sloupský',
+    tag: 'Itálie',
+    quote: <>Absolvoval jsem koupi s těmito úžasnými lidmi a mohu jenom doporučit. Koupě domu není jenom podpis ani náhodou, starosti v podstatě napořád a pokud nevládnete jazykem dostanete se do těžkých situací co chvíli. My jsme se nakonec stali přáteli dofám napořád. Děkuji moc touto cestou Lucii a Lucovi 😘😘😘</>,
+  },
 ]
 
 const pageLabels = {
