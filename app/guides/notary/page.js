@@ -304,6 +304,26 @@ export default function NotaryGuidePage() {
               </CardContent>
             </Card>
 
+            <Link
+              href="/guides/codice-fiscale-acquisto-casa-italia"
+              className="mb-8 block rounded-xl border border-emerald-200 bg-emerald-50 p-5 transition hover:shadow-md"
+            >
+              <p className="mb-1 font-semibold text-emerald-950">
+                {language === 'cs'
+                  ? 'Před návštěvou notáře: vyřiďte si codice fiscale'
+                  : language === 'it'
+                  ? 'Prima del notaio: richiedi il codice fiscale'
+                  : 'Before the notary: obtain your Italian tax code'}
+              </p>
+              <p className="text-sm leading-6 text-emerald-900">
+                {language === 'cs'
+                  ? 'Zjistěte, proč jej kupující potřebuje, jak vyplnit AA4/8 a jak požádat z České republiky.'
+                  : language === 'it'
+                  ? 'Scopri perché serve all’acquirente, come compilare l’AA4/8 e come richiederlo dall’estero.'
+                  : 'Learn why buyers need it, how to complete form AA4/8, and how to apply from abroad.'}
+              </p>
+            </Link>
+
             <div className="space-y-8">
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader>
