@@ -26,11 +26,15 @@ const ARTICLES = [
     date: '2026-08-05',
     readTime: '10 min',
     category: { en: 'Legal', cs: 'Právo', it: 'Legale' },
-    image: '/articles/codice-fiscale-acquisto-casa-italia.png',
+    image: {
+      cs: '/articles/codice-fiscale-certificato-cs.png',
+      it: '/articles/codice-fiscale-certificato-it.png',
+      en: '/articles/codice-fiscale-certificato-en.png'
+    },
     imageAlt: {
-      en: 'Illustrative Italian health card beside property purchase documents',
-      cs: 'Ilustrační italská zdravotní karta vedle dokumentů ke koupi nemovitosti',
-      it: 'Tessera sanitaria italiana illustrativa accanto ai documenti di acquisto'
+      en: 'Illustrative Italian tax code certificate without real personal data',
+      cs: 'Ilustrační potvrzení o codice fiscale bez skutečných osobních údajů',
+      it: 'Certificato illustrativo del codice fiscale senza dati personali reali'
     },
     link: '/guides/codice-fiscale-acquisto-casa-italia'
   },
@@ -462,7 +466,7 @@ export default function BlogPage() {
                     <div className="grid gap-6 md:grid-cols-[220px_minmax(0,1fr)] md:items-center">
                       <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
                         <img
-                          src={article.image}
+                          src={localize(article.image, language)}
                           alt={localize(article.imageAlt, language) || localize(article.title, language)}
                           className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105 md:h-40"
                           loading="lazy"
