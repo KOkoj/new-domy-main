@@ -6,7 +6,7 @@ const seo = getGuideSeo('codice-fiscale-acquisto-casa-italia')
 
 const faq = [
   ['Je codice fiscale povinné pro koupi nemovitosti v Itálii?', 'Pro dokončení koupě, notářský zápis a související daňové úkony ho zahraniční kupující v praxi potřebuje. Je vhodné vyřídit jej ještě před podpisem závazných dokumentů.'],
-  ['Jak získat codice fiscale z České republiky?', 'Osoba s bydlištěm v České republice může požádat konzulární oddělení Velvyslanectví Itálie v Praze podle jeho aktuálních pokynů, případně požádat přímo Agenzia delle Entrate v Itálii nebo zmocnit jinou osobu.'],
+  ['Jak získat codice fiscale z České republiky?', 'Pro účely koupě nemovitosti jsou aktuálními praktickými možnostmi osobní návštěva kteréhokoli územního pracoviště Agenzia delle Entrate v Itálii nebo pověření třetí osoby, která žádost podá v Itálii s podepsaným zmocněním a kopiemi dokladů žadatele.'],
   ['Stačí codice fiscale vypočítané online?', 'Ne. Online kalkulátor může pouze odhadnout znaky kódu. Pro koupi je potřeba kód skutečně přidělený italskou finanční správou a potvrzení o jeho přidělení.'],
   ['Má codice fiscale omezenou platnost?', 'Ne. Přidělený codice fiscale běžně nemá datum expirace a změna bydliště sama o sobě jej nemění.']
 ]
