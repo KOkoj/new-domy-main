@@ -10,6 +10,21 @@ import ProtectedContentLink from '@/components/ProtectedContentLink'
 
 const GUIDES = [
   {
+    slug: 'codice-fiscale-acquisto-casa-italia',
+    date: '2026-08-05',
+    readTime: '10 min',
+    title: {
+      en: 'Italian tax code for buying property: complete guide for foreign buyers',
+      cs: 'Codice fiscale při koupi nemovitosti v Itálii: kompletní návod pro Čechy',
+      it: 'Codice fiscale per comprare casa in Italia: guida completa per stranieri'
+    },
+    excerpt: {
+      en: 'What the Italian tax code is, why a foreign buyer needs it, and how to request it correctly from abroad or in Italy.',
+      cs: 'Co je italský daňový kód, proč jej zahraniční kupující potřebuje a jak o něj správně požádat z Česka nebo v Itálii.',
+      it: 'Cos’è il codice fiscale, perché serve a chi compra dall’estero e come richiederlo correttamente in Italia o dal proprio Paese.'
+    }
+  },
+  {
     slug: 'abusivita-edilizie-in-italia',
     date: '2026-06-18',
     readTime: '8 min',

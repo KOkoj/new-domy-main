@@ -12,6 +12,29 @@ import ProtectedContentLink from '@/components/ProtectedContentLink'
 
 const ARTICLES = [
   {
+    slug: 'codice-fiscale-acquisto-casa-italia',
+    title: {
+      en: 'Italian tax code for buying property: complete guide for foreign buyers',
+      cs: 'Codice fiscale při koupi nemovitosti v Itálii: kompletní návod pro Čechy',
+      it: 'Codice fiscale per comprare casa in Italia: guida completa per stranieri'
+    },
+    excerpt: {
+      en: 'Why foreign buyers need a codice fiscale, how to obtain it, and which documents and mistakes to know before the deed.',
+      cs: 'Proč kupující potřebuje codice fiscale, jak jej získat a které dokumenty i chyby znát před podpisem.',
+      it: 'Perché serve il codice fiscale, come ottenerlo e quali documenti ed errori conoscere prima del rogito.'
+    },
+    date: '2026-08-05',
+    readTime: '10 min',
+    category: { en: 'Legal', cs: 'Právo', it: 'Legale' },
+    image: '/articles/codice-fiscale-acquisto-casa-italia.png',
+    imageAlt: {
+      en: 'Illustrative Italian health card beside property purchase documents',
+      cs: 'Ilustrační italská zdravotní karta vedle dokumentů ke koupi nemovitosti',
+      it: 'Tessera sanitaria italiana illustrativa accanto ai documenti di acquisto'
+    },
+    link: '/guides/codice-fiscale-acquisto-casa-italia'
+  },
+  {
     slug: 'abusivita-edilizie-in-italia',
     title: {
       en: 'Building irregularities in Italy: what to verify before buying a house',
