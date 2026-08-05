@@ -45,8 +45,23 @@ test('lead migration keeps browser roles out of the table', () => {
   assert.match(migration, /confirm_token UUID NOT NULL.*UNIQUE/)
 })
 
-test('both free PDF landing pages are exempt from the Klub paywall', () => {
-  const gate = read('components/ArticlePaywallGate.jsx')
-  assert.match(gate, /pathname === '\/guides\/inspections\/free-pdf'/)
-  assert.match(gate, /pathname === '\/guides\/mistakes\/free-pdf'/)
+test('articles and guides are public without a login gate', () => {
+  const rootLayout = read('app/layout.js')
+  const guideLayouts = [
+    'app/guides/costs/layout.js',
+    'app/guides/inspections/(article)/layout.js',
+    'app/guides/inspections/free-pdf/layout.js',
+    'app/guides/mistakes/layout.js',
+    'app/guides/notary/layout.js',
+    'app/guides/offerta-compromesso-registrazione/layout.js',
+    'app/guides/real-estate-purchase-system-italy/layout.js',
+    'app/guides/rekonstrukce-domu-v-italii/layout.js'
+  ]
+
+  assert.doesNotMatch(rootLayout, /ArticlePaywallGate/)
+  assert.doesNotMatch(read('components/guides/PaywalledContent.jsx'), /paywalled-content/)
+  for (const layout of guideLayouts) {
+    assert.match(read(layout), /buildArticleJsonLd/)
+    assert.doesNotMatch(read(layout), /buildPaywalledArticleJsonLd/)
+  }
 })

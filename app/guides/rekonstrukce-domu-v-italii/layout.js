@@ -1,6 +1,6 @@
 import JsonLd from '@/components/seo/JsonLd'
 import { getGuideSeo } from '@/lib/seo/contentPages'
-import { buildPaywalledArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
+import { buildArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
 
 const seo = getGuideSeo('rekonstrukce-domu-v-italii')
 
@@ -16,7 +16,7 @@ export default function ReconstructionGuideLayout({ children }) {
           { name: seo.title, path: seo.path }
         ])}
       />
-      <JsonLd data={buildPaywalledArticleJsonLd(seo)} />
+      <JsonLd data={buildArticleJsonLd(seo)} />
       {children}
     </>
   )
