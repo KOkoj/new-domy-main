@@ -1,6 +1,6 @@
 import JsonLd from '@/components/seo/JsonLd'
 import { getGuideSeo } from '@/lib/seo/contentPages'
-import { buildArticleMetadata, buildBreadcrumbJsonLd, buildPaywalledArticleJsonLd } from '@/lib/seo/contentSeo'
+import { buildArticleMetadata, buildBreadcrumbJsonLd, buildArticleJsonLd } from '@/lib/seo/contentSeo'
 
 const seo = getGuideSeo('inspections-free-pdf')
 
@@ -17,7 +17,7 @@ export default function InspectionsFreePdfLayout({ children }) {
           { name: seo.title, path: seo.path }
         ])}
       />
-      <JsonLd data={buildPaywalledArticleJsonLd(seo)} />
+      <JsonLd data={buildArticleJsonLd(seo)} />
       {children}
     </>
   )

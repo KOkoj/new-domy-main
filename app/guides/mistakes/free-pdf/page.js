@@ -16,7 +16,7 @@ export default function MistakesFreePdfPage() {
           className="mb-6 inline-flex items-center gap-2 text-sm text-slate-700 hover:text-slate-900"
         >
           <ArrowLeft className="h-4 w-4" />
-          Zpět na celý článek pro členy Klubu
+          Zpět na celý článek
         </Link>
 
         <Card className="border-slate-200 bg-white/95 shadow-lg">

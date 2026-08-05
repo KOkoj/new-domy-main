@@ -2,7 +2,6 @@
 import './globals.css'
 import ScrollToTop from '@/components/ScrollToTop'
 import NavigationProgress from '@/components/NavigationProgress'
-import ArticlePaywallGate from '@/components/ArticlePaywallGate'
 import { PUBLIC_SITE_STANDBY } from '@/lib/featureFlags'
 import { SITE_NAME, SITE_URL } from '@/lib/siteConfig'
 import { DEFAULT_LANGUAGE } from '@/lib/userPreferences'
@@ -102,7 +101,6 @@ export default function RootLayout({ children }) {
       <body className="antialiased overflow-x-hidden">
         <NavigationProgress />
         {children}
-        <ArticlePaywallGate />
         <ScrollToTop />
         <AffiliateClickAnalytics />
         <MetaTracking />
