@@ -28,9 +28,9 @@ const ARTICLES = [
     category: { en: 'Legal', cs: 'Právo', it: 'Legale' },
     image: '/articles/codice-fiscale-acquisto-casa-italia.png',
     imageAlt: {
-      en: 'Italian property purchase documents with keys and a house model',
-      cs: 'Dokumenty ke koupi italské nemovitosti s klíči a modelem domu',
-      it: 'Documenti per l’acquisto immobiliare con chiavi e modello di casa'
+      en: 'Illustrative Italian health card beside property purchase documents',
+      cs: 'Ilustrační italská zdravotní karta vedle dokumentů ke koupi nemovitosti',
+      it: 'Tessera sanitaria italiana illustrativa accanto ai documenti di acquisto'
     },
     link: '/guides/codice-fiscale-acquisto-casa-italia'
   },
