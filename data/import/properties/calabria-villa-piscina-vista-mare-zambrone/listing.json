@@ -1,0 +1,76 @@
+{
+  "slug": "calabria-villa-piscina-vista-mare-zambrone",
+  "title_it": "Villa con piscina, giardino e vista mare a Zambrone",
+  "title_en": "Villa with Pool, Garden and Sea Views in Zambrone",
+  "title_cs": "Vila s bazénem, zahradou a výhledem na moře v Zambrone",
+  "propertyType": "villa",
+  "region_it": "Calabria",
+  "city_it": "Zambrone",
+  "city_en": "Zambrone",
+  "city_cs": "Zambrone",
+  "address_it": "Via Paolo Borsellino 30, Zambrone (VV), Calabria",
+  "address_en": "Via Paolo Borsellino 30, Zambrone, Calabria",
+  "address_cs": "Via Paolo Borsellino 30, Zambrone, Kalábrie",
+  "price": 240000,
+  "rooms": 3,
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "square_meters": 105,
+  "parking": 1,
+  "lotSize": 0,
+  "lat": 38.6985,
+  "lng": 15.9916,
+  "description_it": "Nella baia di Zambrone, all’interno di un residence curato e abitato anche durante l’anno, questa villa indipendente unisce giardino privato, ampi spazi esterni e piscina condominiale. La veranda e i portici ampliano la zona giorno, mentre la terrazza superiore regala tramonti sul mare e sulle Isole Eolie.\n\nLa casa misura circa 105 m² commerciali e comprende soggiorno arredato, cucina attrezzata, due camere da letto, due bagni e un comodo ripostiglio. La camera matrimoniale dispone di bagno privato. Due zone barbecue e diversi spazi per pranzare all’aperto rendono la proprietà particolarmente adatta alle vacanze e alla locazione stagionale.\n\nL’immobile è in buono stato, pronto da abitare e in classe energetica D. Piscina e parti comuni sono gestite dal residence; costi, regolamento condominiale e posizione esatta devono essere verificati prima dell’acquisto.",
+  "description_en": "In the bay of Zambrone, within a well-maintained residence used throughout the year, this detached villa combines a private garden, generous outdoor areas and a communal pool. A veranda and covered porches extend the living space, while the upper terrace offers sunsets over the sea and the Aeolian Islands.\n\nThe property provides approximately 105 sqm of commercial area with a furnished living room, equipped kitchen, two bedrooms, two bathrooms and a useful storage room. The main bedroom has an en-suite bathroom. Two barbecue areas and several outdoor dining spaces make the villa especially attractive as a holiday home or seasonal rental.\n\nThe home is in good condition, ready to occupy and rated energy class D. The pool and shared areas are managed by the residence; condominium costs, regulations and the precise position should be confirmed before purchase.",
+  "description_cs": "V zátoce Zambrone, v pečlivě udržovaném rezidenčním areálu využívaném i během roku, stojí samostatná vila se soukromou zahradou, velkorysými venkovními prostory a společným bazénem. Veranda a kryté portiky rozšiřují obytnou část, zatímco horní terasa nabízí západy slunce nad mořem a Liparskými ostrovy.\n\nDům má přibližně 105 m² komerční plochy a zahrnuje zařízený obývací pokoj, vybavenou kuchyni, dvě ložnice, dvě koupelny a praktickou komoru. Hlavní ložnice má vlastní koupelnu. Dvě grilovací zóny a několik míst pro venkovní stolování zvyšují atraktivitu pro rekreaci i sezónní pronájem.\n\nNemovitost je v dobrém stavu, připravená k užívání a má energetickou třídu D. Před koupí je nutné ověřit náklady a pravidla rezidence i přesnou polohu.",
+  "features": [
+    {
+      "it": "Piscina condominiale con mosaico",
+      "en": "Communal mosaic pool",
+      "cs": "Společný bazén s mozaikou"
+    },
+    {
+      "it": "Giardino privato e portici",
+      "en": "Private garden and covered porches",
+      "cs": "Soukromá zahrada a kryté portiky"
+    },
+    {
+      "it": "Terrazza con vista mare e Isole Eolie",
+      "en": "Terrace with sea and Aeolian Islands views",
+      "cs": "Terasa s výhledem na moře a Liparské ostrovy"
+    },
+    {
+      "it": "Due camere e due bagni",
+      "en": "Two bedrooms and two bathrooms",
+      "cs": "Dvě ložnice a dvě koupelny"
+    },
+    {
+      "it": "Due zone barbecue",
+      "en": "Two barbecue areas",
+      "cs": "Dvě grilovací zóny"
+    },
+    {
+      "it": "Classe energetica D",
+      "en": "Energy class D",
+      "cs": "Energetická třída D"
+    }
+  ],
+  "seo_title_it": "Villa con piscina e vista mare in vendita a Zambrone",
+  "seo_title_en": "Sea-View Villa with Pool for Sale in Zambrone",
+  "seo_title_cs": "Vila s bazénem a výhledem na moře na prodej v Zambrone",
+  "seo_description_it": "Villa di 105 m² a Zambrone con 2 camere, 2 bagni, giardino, veranda, terrazza vista mare, piscina condominiale e aree barbecue.",
+  "seo_description_en": "105 sqm villa in Zambrone with 2 bedrooms, 2 bathrooms, garden, veranda, sea-view terrace, communal pool and barbecue areas.",
+  "seo_description_cs": "Vila 105 m² v Zambrone: 2 ložnice, 2 koupelny, zahrada, veranda, terasa s výhledem na moře, společný bazén a gril.",
+  "keywords": [
+    "villa Zambrone",
+    "villa Calabria mare",
+    "piscina",
+    "vista mare",
+    "Costa degli Dei",
+    "Isole Eolie"
+  ],
+  "source_url": "https://www.idealista.it/immobile/31842425/",
+  "status": "available",
+  "featured": true,
+  "isNew": true
+}

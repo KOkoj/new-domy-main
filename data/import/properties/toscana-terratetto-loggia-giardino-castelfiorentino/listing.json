@@ -1,0 +1,75 @@
+{
+  "slug": "toscana-terratetto-loggia-giardino-castelfiorentino",
+  "title_it": "Terratetto con grande loggia e giardino a Castelfiorentino",
+  "title_en": "Three-Sided House with Large Loggia and Garden in Castelfiorentino",
+  "title_cs": "Třístranně volný dům s velkou lodžií a zahradou v Castelfiorentinu",
+  "propertyType": "house",
+  "region_it": "Toscana",
+  "city_it": "Castelfiorentino",
+  "city_en": "Castelfiorentino",
+  "city_cs": "Castelfiorentino",
+  "address_it": "Via di Vallese 6, località Dogana, Castelfiorentino (FI), Toscana",
+  "address_en": "Via di Vallese 6, Dogana, Castelfiorentino, Tuscany",
+  "address_cs": "Via di Vallese 6, Dogana, Castelfiorentino, Toskánsko",
+  "price": 339000,
+  "rooms": 7,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "square_meters": 247,
+  "parking": 2,
+  "lat": 43.6168,
+  "lng": 10.9718,
+  "description_it": "Nella tranquilla località Dogana, in posizione panoramica vicino a Castelfiorentino, questo terratetto è libero su tre lati e offre ampi spazi interni ed esterni. Il resede esclusivo prosegue nel terreno di proprietà; la grande loggia coperta crea una vera stanza all’aperto utilizzabile per gran parte dell’anno.\n\nIl piano abitativo principale comprende cucina abitabile, soggiorno separato, tre camere matrimoniali e bagno. Il sottotetto è stato organizzato come studio e spazio hobby. Al piano terra si trovano un grande locale di deposito, lavanderia, secondo bagno e garage.\n\nLa superficie commerciale dichiarata è di 247 m². La varietà degli ambienti rende la casa adatta a una famiglia, al lavoro da casa o a un progetto con spazi accessori; conformità e destinazione dei locali al piano terra e del sottotetto devono essere verificate.",
+  "description_en": "In the peaceful Dogana area, in a panoramic position near Castelfiorentino, this substantial house is free on three sides and provides generous internal and external space. The private courtyard continues into the owned land, while the large covered loggia functions as an outdoor room for much of the year.\n\nThe principal living floor includes an eat-in kitchen, separate living room, three double bedrooms and a bathroom. The attic is arranged as a study and hobby area. On the ground floor are a large storage room, laundry, second bathroom and garage.\n\nThe stated commercial area is 247 sqm. The range of spaces suits family living, home working or a project using the ancillary areas; the legal use and compliance of the ground-floor rooms and attic should be verified.",
+  "description_cs": "V klidné lokalitě Dogana, v panoramatické poloze u Castelfiorentina, stojí prostorný dům volný ze tří stran s velkorysým interiérem i venkovním zázemím. Soukromý dvůr přechází do vlastního pozemku a velká krytá lodžie funguje po většinu roku jako venkovní obytná místnost.\n\nHlavní obytné podlaží zahrnuje obytnou kuchyni, samostatný obývací pokoj, tři dvoulůžkové ložnice a koupelnu. Podkroví je upravené jako pracovna a hobby prostor. V přízemí se nachází velký sklad, prádelna, druhá koupelna a garáž.\n\nUvedená komerční plocha činí 247 m². Rozmanité prostory vyhovují rodině i práci z domova; před koupí je třeba ověřit právní využití a soulad přízemních místností a podkroví.",
+  "features": [
+    {
+      "it": "Grande loggia coperta",
+      "en": "Large covered loggia",
+      "cs": "Velká krytá lodžie"
+    },
+    {
+      "it": "Libero su tre lati",
+      "en": "Free-standing on three sides",
+      "cs": "Volný ze tří stran"
+    },
+    {
+      "it": "Tre camere matrimoniali",
+      "en": "Three double bedrooms",
+      "cs": "Tři dvoulůžkové ložnice"
+    },
+    {
+      "it": "Sottotetto adibito a studio",
+      "en": "Attic arranged as a study",
+      "cs": "Podkroví upravené jako pracovna"
+    },
+    {
+      "it": "Garage, lavanderia e locali accessori",
+      "en": "Garage, laundry and ancillary rooms",
+      "cs": "Garáž, prádelna a vedlejší prostory"
+    },
+    {
+      "it": "Resede e terreno privati",
+      "en": "Private courtyard and land",
+      "cs": "Soukromý dvůr a pozemek"
+    }
+  ],
+  "seo_title_it": "Terratetto con loggia in vendita a Castelfiorentino",
+  "seo_title_en": "House with Large Loggia for Sale in Castelfiorentino",
+  "seo_title_cs": "Dům s velkou lodžií na prodej v Castelfiorentinu",
+  "seo_description_it": "Terratetto di 247 m² a Castelfiorentino con 3 camere, 2 bagni, grande loggia, resede, terreno, sottotetto e garage.",
+  "seo_description_en": "247 sqm house in Castelfiorentino with 3 bedrooms, 2 bathrooms, large loggia, private grounds, attic and garage.",
+  "seo_description_cs": "Dům 247 m² v Castelfiorentinu: 3 ložnice, 2 koupelny, velká lodžie, soukromý pozemek, podkroví a garáž.",
+  "keywords": [
+    "Castelfiorentino",
+    "terratetto Toscana",
+    "grande loggia",
+    "casa con giardino",
+    "Dogana",
+    "garage"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/127409419/",
+  "status": "available",
+  "featured": true,
+  "isNew": true
+}
