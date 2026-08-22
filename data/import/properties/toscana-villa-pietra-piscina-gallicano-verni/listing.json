@@ -1,0 +1,75 @@
+{
+  "slug": "toscana-villa-pietra-piscina-gallicano-verni",
+  "title_it": "Villa in pietra con piscina e un ettaro di terreno a Gallicano",
+  "title_en": "Stone Villa with Pool and One Hectare of Land in Gallicano",
+  "title_cs": "Kamenná vila s bazénem a hektarem pozemku v Gallicanu",
+  "propertyType": "villa",
+  "region_it": "Toscana",
+  "city_it": "Gallicano",
+  "city_en": "Gallicano",
+  "city_cs": "Gallicano",
+  "address_it": "Via Torre 5, Verni, Gallicano (LU), Toscana",
+  "address_en": "Via Torre 5, Verni, Gallicano, Tuscany",
+  "address_cs": "Via Torre 5, Verni, Gallicano, Toskánsko",
+  "price": 295000,
+  "rooms": 6,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "square_meters": 200,
+  "lotSize": 10000,
+  "lat": 44.0472,
+  "lng": 10.422,
+  "description_it": "Nel borgo di Verni, nel comune di Gallicano, questa villa in pietra completamente ristrutturata è immersa nella natura della Garfagnana. Il terreno privato misura circa un ettaro e ospita una piscina panoramica e un antico fienile indipendente con potenziale di recupero.\n\nAl piano terra, grandi porte-finestre collegano il patio alla zona giorno open space con cucina, soggiorno e sala da pranzo; sullo stesso livello si trova un bagno di servizio. Il piano superiore comprende tre camere matrimoniali e il bagno principale. Finiture in pietra e legno mantengono il carattere tradizionale della casa.\n\nL’eccezionale privacy deriva anche dall’accesso: l’ultimo tratto è percorribile esclusivamente a piedi lungo una storica mulattiera. Questa caratteristica deve essere valutata attentamente per l’uso quotidiano, la logistica e l’eventuale locazione turistica.",
+  "description_en": "In the hamlet of Verni, within the municipality of Gallicano, this fully renovated stone villa is surrounded by the natural landscape of the Garfagnana. Its private land extends to approximately one hectare and includes a panoramic swimming pool and an independent historic barn with conversion potential.\n\nOn the ground floor, large glazed doors connect the patio to an open-plan kitchen, living and dining area; a guest bathroom is on the same level. Upstairs are three double bedrooms and the main bathroom. Stone and timber finishes preserve the traditional character of the house.\n\nThe exceptional privacy is partly due to access: the final section can only be covered on foot along a historic mule track. This feature requires careful consideration for daily use, logistics and any holiday-rental plan.",
+  "description_cs": "V osadě Verni u Gallicana stojí kompletně zrekonstruovaná kamenná vila obklopená přírodou oblasti Garfagnana. Soukromý pozemek má přibližně jeden hektar a zahrnuje panoramatický bazén i samostatnou historickou stodolu s potenciálem přestavby.\n\nV přízemí propojují velké prosklené dveře patio s otevřenou kuchyní, obývacím pokojem a jídelnou; na stejném podlaží je koupelna pro hosty. V patře jsou tři dvoulůžkové ložnice a hlavní koupelna. Kámen a dřevo zachovávají tradiční charakter domu.\n\nMimořádné soukromí souvisí také s přístupem: poslední úsek je možné absolvovat pouze pěšky po historické stezce. Tuto vlastnost je třeba pečlivě zvážit pro každodenní provoz, logistiku i případný rekreační pronájem.",
+  "features": [
+    {
+      "it": "Piscina privata panoramica",
+      "en": "Private panoramic pool",
+      "cs": "Soukromý panoramatický bazén"
+    },
+    {
+      "it": "Circa 10.000 m² di terreno",
+      "en": "Approximately 10,000 sqm of land",
+      "cs": "Přibližně 10 000 m² pozemku"
+    },
+    {
+      "it": "Villa in pietra ristrutturata",
+      "en": "Renovated stone villa",
+      "cs": "Zrekonstruovaná kamenná vila"
+    },
+    {
+      "it": "Fienile indipendente da recuperare",
+      "en": "Independent barn with conversion potential",
+      "cs": "Samostatná stodola s potenciálem přestavby"
+    },
+    {
+      "it": "Tre camere matrimoniali",
+      "en": "Three double bedrooms",
+      "cs": "Tři dvoulůžkové ložnice"
+    },
+    {
+      "it": "Accesso finale solo pedonale",
+      "en": "Final access section on foot only",
+      "cs": "Poslední úsek přístupu pouze pěšky"
+    }
+  ],
+  "seo_title_it": "Villa in pietra con piscina in vendita a Gallicano",
+  "seo_title_en": "Stone Villa with Pool for Sale in Gallicano, Tuscany",
+  "seo_title_cs": "Kamenná vila s bazénem na prodej v Gallicanu v Toskánsku",
+  "seo_description_it": "Villa in pietra ristrutturata di 200 m² a Gallicano con 3 camere, piscina, un ettaro di terreno e fienile indipendente.",
+  "seo_description_en": "Renovated 200 sqm stone villa in Gallicano with 3 bedrooms, private pool, one hectare of land and independent barn.",
+  "seo_description_cs": "Zrekonstruovaná kamenná vila 200 m² v Gallicanu: 3 ložnice, soukromý bazén, hektar pozemku a samostatná stodola.",
+  "keywords": [
+    "villa Gallicano",
+    "Garfagnana",
+    "villa in pietra Toscana",
+    "piscina privata",
+    "terreno un ettaro",
+    "casa Verni"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/129926896/",
+  "status": "available",
+  "featured": true,
+  "isNew": true
+}

@@ -1,0 +1,77 @@
+{
+  "slug": "toscana-casa-pietra-panoramica-barga",
+  "title_it": "Casa in pietra ristrutturata con vista sulle Apuane a Barga",
+  "title_en": "Renovated Stone House with Apuan Alps Views near Barga",
+  "title_cs": "Zrekonstruovaný kamenný dům s výhledem na Apuánské Alpy u Bargy",
+  "propertyType": "house",
+  "region_it": "Toscana",
+  "city_it": "Barga",
+  "city_en": "Barga",
+  "city_cs": "Barga",
+  "address_it": "Località Palazzina, Barga (LU), Toscana",
+  "address_en": "Località Palazzina, Barga, Tuscany",
+  "address_cs": "Località Palazzina, Barga, Toskánsko",
+  "price": 350000,
+  "rooms": 4,
+  "bedrooms": 3,
+  "bathrooms": 1,
+  "square_meters": 120,
+  "parking": 3,
+  "lotSize": 10000,
+  "yearBuilt": 1900,
+  "lat": 44.0945,
+  "lng": 10.5199,
+  "description_it": "Sulle colline di Barga, a circa venti minuti dal centro storico, questa casa in pietra dei primi del Novecento è stata ristrutturata conservando cotto, legno e muratura a vista. Oltre un ettaro di terreno prevalentemente pianeggiante, con castagni maturi, circonda la proprietà e apre la vista verso le Alpi Apuane.\n\nI circa 120 m² sono distribuiti su due livelli. Al piano terra si trovano cucina abitabile, soggiorno con camino ad aria e una veranda panoramica utilizzabile tutto l’anno. Il piano superiore comprende una camera matrimoniale e due camere singole, una con balcone.\n\nAll’esterno sono presenti cucina estiva con forno a legna e barbecue, terrazza panoramica, garage, locale tecnico e area pavimentata per più auto. Il riscaldamento utilizza una caldaia a legna; gli ultimi 500 metri di accesso sono su strada bianca pianeggiante e ben mantenuta.",
+  "description_en": "In the hills near Barga, approximately twenty minutes from the historic centre, this early-twentieth-century stone house has been renovated while retaining terracotta, timber and exposed masonry. More than one hectare of mainly level land with mature chestnut trees surrounds the property and opens towards the Apuan Alps.\n\nThe approximately 120 sqm interior is arranged over two floors. The ground floor contains an eat-in kitchen, living room with warm-air fireplace and a panoramic veranda suitable for year-round use. Upstairs are one double and two single bedrooms, one with a balcony.\n\nOutside are a summer kitchen with wood-fired oven and barbecue, panoramic terrace, garage, technical room and paved parking for several cars. Heating is provided by a wood-fired boiler; the final 500 metres of access are over a level, well-maintained unpaved road.",
+  "description_cs": "V kopcích u Bargy, přibližně dvacet minut od historického centra, stojí kamenný dům z počátku 20. století, zrekonstruovaný se zachováním terakoty, dřeva a přiznaného zdiva. Nemovitost obklopuje více než hektar převážně rovinatého pozemku se vzrostlými kaštany a výhledem na Apuánské Alpy.\n\nInteriér o ploše přibližně 120 m² je rozdělen do dvou podlaží. V přízemí je obytná kuchyně, obývací pokoj s teplovzdušným krbem a celoročně využitelná panoramatická veranda. Nahoře je jedna dvoulůžková a dvě jednolůžkové ložnice, jedna s balkonem.\n\nVenku se nachází letní kuchyně s pecí na dřevo a grilem, panoramatická terasa, garáž, technická místnost a dlážděné parkování. Vytápění zajišťuje kotel na dřevo; posledních 500 metrů přístupu vede po rovinaté udržované nezpevněné cestě.",
+  "features": [
+    {
+      "it": "Vista sulle Alpi Apuane",
+      "en": "Views of the Apuan Alps",
+      "cs": "Výhled na Apuánské Alpy"
+    },
+    {
+      "it": "Oltre un ettaro di terreno",
+      "en": "More than one hectare of land",
+      "cs": "Více než hektar pozemku"
+    },
+    {
+      "it": "Casa in pietra ristrutturata",
+      "en": "Renovated stone house",
+      "cs": "Zrekonstruovaný kamenný dům"
+    },
+    {
+      "it": "Veranda panoramica per tutto l’anno",
+      "en": "Year-round panoramic veranda",
+      "cs": "Celoročně využitelná panoramatická veranda"
+    },
+    {
+      "it": "Cucina estiva con forno a legna",
+      "en": "Summer kitchen with wood-fired oven",
+      "cs": "Letní kuchyně s pecí na dřevo"
+    },
+    {
+      "it": "Garage e ampio parcheggio",
+      "en": "Garage and ample parking",
+      "cs": "Garáž a velké parkování"
+    }
+  ],
+  "seo_title_it": "Casa in pietra con vista Apuane in vendita a Barga",
+  "seo_title_en": "Stone House with Apuan Alps Views for Sale near Barga",
+  "seo_title_cs": "Kamenný dům s výhledem na Apuánské Alpy na prodej u Bargy",
+  "seo_description_it": "Casa in pietra ristrutturata di 120 m² a Barga con 3 camere, veranda panoramica, garage e oltre un ettaro di terreno.",
+  "seo_description_en": "Renovated 120 sqm stone house near Barga with 3 bedrooms, panoramic veranda, garage and more than one hectare of land.",
+  "seo_description_cs": "Zrekonstruovaný kamenný dům 120 m² u Bargy: 3 ložnice, panoramatická veranda, garáž a více než hektar pozemku.",
+  "keywords": [
+    "casa Barga",
+    "casa in pietra Toscana",
+    "Alpi Apuane",
+    "Garfagnana",
+    "terreno un ettaro",
+    "casa ristrutturata"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/131030490/",
+  "status": "available",
+  "featured": true,
+  "isNew": true
+}

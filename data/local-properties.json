@@ -1,5 +1,1346 @@
 [
   {
+    "_id": "local-import-toscana-casa-pietra-panoramica-barga-1787403957225-40ase",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Stone House with Apuan Alps Views near Barga",
+      "cs": "Zrekonstruovaný kamenný dům s výhledem na Apuánské Alpy u Bargy",
+      "it": "Casa in pietra ristrutturata con vista sulle Apuane a Barga"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-casa-pietra-panoramica-barga"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 350000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 1,
+      "squareFootage": 120,
+      "parking": 3,
+      "yearBuilt": 1900,
+      "lotSize": 10000
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Barga",
+          "cs": "Barga",
+          "it": "Barga"
+        },
+        "slug": {
+          "current": "barga"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Località Palazzina, Barga, Tuscany",
+        "cs": "Località Palazzina, Barga, Toskánsko",
+        "it": "Località Palazzina, Barga (LU), Toscana"
+      },
+      "coordinates": {
+        "lat": 44.0945,
+        "lng": 10.5199
+      }
+    },
+    "status": "available",
+    "featured": true,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "en": "In the hills near Barga, approximately twenty minutes from the historic centre, this early-twentieth-century stone house has been renovated while retaining terracotta, timber and exposed masonry. More than one hectare of mainly level land with mature chestnut trees surrounds the property and opens towards the Apuan Alps.\n\nThe approximately 120 sqm interior is arranged over two floors. The ground floor contains an eat-in kitchen, living room with warm-air fireplace and a panoramic veranda suitable for year-round use. Upstairs are one double and two single bedrooms, one with a balcony.\n\nOutside are a summer kitchen with wood-fired oven and barbecue, panoramic terrace, garage, technical room and paved parking for several cars. Heating is provided by a wood-fired boiler; the final 500 metres of access are over a level, well-maintained unpaved road.",
+      "cs": "V kopcích u Bargy, přibližně dvacet minut od historického centra, stojí kamenný dům z počátku 20. století, zrekonstruovaný se zachováním terakoty, dřeva a přiznaného zdiva. Nemovitost obklopuje více než hektar převážně rovinatého pozemku se vzrostlými kaštany a výhledem na Apuánské Alpy.\n\nInteriér o ploše přibližně 120 m² je rozdělen do dvou podlaží. V přízemí je obytná kuchyně, obývací pokoj s teplovzdušným krbem a celoročně využitelná panoramatická veranda. Nahoře je jedna dvoulůžková a dvě jednolůžkové ložnice, jedna s balkonem.\n\nVenku se nachází letní kuchyně s pecí na dřevo a grilem, panoramatická terasa, garáž, technická místnost a dlážděné parkování. Vytápění zajišťuje kotel na dřevo; posledních 500 metrů přístupu vede po rovinaté udržované nezpevněné cestě.",
+      "it": "Sulle colline di Barga, a circa venti minuti dal centro storico, questa casa in pietra dei primi del Novecento è stata ristrutturata conservando cotto, legno e muratura a vista. Oltre un ettaro di terreno prevalentemente pianeggiante, con castagni maturi, circonda la proprietà e apre la vista verso le Alpi Apuane.\n\nI circa 120 m² sono distribuiti su due livelli. Al piano terra si trovano cucina abitabile, soggiorno con camino ad aria e una veranda panoramica utilizzabile tutto l’anno. Il piano superiore comprende una camera matrimoniale e due camere singole, una con balcone.\n\nAll’esterno sono presenti cucina estiva con forno a legna e barbecue, terrazza panoramica, garage, locale tecnico e area pavimentata per più auto. Il riscaldamento utilizza una caldaia a legna; gli ultimi 500 metri di accesso sono su strada bianca pianeggiante e ben mantenuta."
+    },
+    "images": [
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/01-01-main.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/02-02-gallery-1.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/03-03-gallery-2.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/04-04-gallery-3.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/05-05-gallery-4.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/06-06-gallery-5.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/07-07-gallery-6.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/08-08-gallery-7.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/09-09-gallery-8.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/10-10-gallery-9.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/11-11-gallery-10.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/12-12-gallery-11.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/13-13-gallery-12.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/14-14-gallery-13.jpg",
+      "/uploads/properties/toscana-casa-pietra-panoramica-barga/15-15-gallery-14.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Vista sulle Alpi Apuane",
+          "en": "Views of the Apuan Alps",
+          "cs": "Výhled na Apuánské Alpy"
+        }
+      },
+      {
+        "name": {
+          "it": "Oltre un ettaro di terreno",
+          "en": "More than one hectare of land",
+          "cs": "Více než hektar pozemku"
+        }
+      },
+      {
+        "name": {
+          "it": "Casa in pietra ristrutturata",
+          "en": "Renovated stone house",
+          "cs": "Zrekonstruovaný kamenný dům"
+        }
+      },
+      {
+        "name": {
+          "it": "Veranda panoramica per tutto l’anno",
+          "en": "Year-round panoramic veranda",
+          "cs": "Celoročně využitelná panoramatická veranda"
+        }
+      },
+      {
+        "name": {
+          "it": "Cucina estiva con forno a legna",
+          "en": "Summer kitchen with wood-fired oven",
+          "cs": "Letní kuchyně s pecí na dřevo"
+        }
+      },
+      {
+        "name": {
+          "it": "Garage e ampio parcheggio",
+          "en": "Garage and ample parking",
+          "cs": "Garáž a velké parkování"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Stone House with Apuan Alps Views for Sale near Barga",
+      "cs": "Kamenný dům s výhledem na Apuánské Alpy na prodej u Bargy",
+      "it": "Casa in pietra con vista Apuane in vendita a Barga"
+    },
+    "seoDescription": {
+      "en": "Renovated 120 sqm stone house near Barga with 3 bedrooms, panoramic veranda, garage and more than one hectare of land.",
+      "cs": "Zrekonstruovaný kamenný dům 120 m² u Bargy: 3 ložnice, panoramatická veranda, garáž a více než hektar pozemku.",
+      "it": "Casa in pietra ristrutturata di 120 m² a Barga con 3 camere, veranda panoramica, garage e oltre un ettaro di terreno."
+    },
+    "keywords": [
+      "casa Barga",
+      "casa in pietra Toscana",
+      "Alpi Apuane",
+      "Garfagnana",
+      "terreno un ettaro",
+      "casa ristrutturata"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/131030490/",
+    "_createdAt": "2026-08-22T13:05:57.224Z",
+    "_updatedAt": "2026-08-22T13:05:57.224Z"
+  },
+  {
+    "_id": "local-import-toscana-terratetto-loggia-giardino-castelfiorentino-1787403956870-wf2dd",
+    "_type": "listing",
+    "title": {
+      "en": "Three-Sided House with Large Loggia and Garden in Castelfiorentino",
+      "cs": "Třístranně volný dům s velkou lodžií a zahradou v Castelfiorentinu",
+      "it": "Terratetto con grande loggia e giardino a Castelfiorentino"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-terratetto-loggia-giardino-castelfiorentino"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 339000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 7,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 247,
+      "parking": 2
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Castelfiorentino",
+          "cs": "Castelfiorentino",
+          "it": "Castelfiorentino"
+        },
+        "slug": {
+          "current": "castelfiorentino"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via di Vallese 6, Dogana, Castelfiorentino, Tuscany",
+        "cs": "Via di Vallese 6, Dogana, Castelfiorentino, Toskánsko",
+        "it": "Via di Vallese 6, località Dogana, Castelfiorentino (FI), Toscana"
+      },
+      "coordinates": {
+        "lat": 43.6168,
+        "lng": 10.9718
+      }
+    },
+    "status": "available",
+    "featured": true,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "en": "In the peaceful Dogana area, in a panoramic position near Castelfiorentino, this substantial house is free on three sides and provides generous internal and external space. The private courtyard continues into the owned land, while the large covered loggia functions as an outdoor room for much of the year.\n\nThe principal living floor includes an eat-in kitchen, separate living room, three double bedrooms and a bathroom. The attic is arranged as a study and hobby area. On the ground floor are a large storage room, laundry, second bathroom and garage.\n\nThe stated commercial area is 247 sqm. The range of spaces suits family living, home working or a project using the ancillary areas; the legal use and compliance of the ground-floor rooms and attic should be verified.",
+      "cs": "V klidné lokalitě Dogana, v panoramatické poloze u Castelfiorentina, stojí prostorný dům volný ze tří stran s velkorysým interiérem i venkovním zázemím. Soukromý dvůr přechází do vlastního pozemku a velká krytá lodžie funguje po většinu roku jako venkovní obytná místnost.\n\nHlavní obytné podlaží zahrnuje obytnou kuchyni, samostatný obývací pokoj, tři dvoulůžkové ložnice a koupelnu. Podkroví je upravené jako pracovna a hobby prostor. V přízemí se nachází velký sklad, prádelna, druhá koupelna a garáž.\n\nUvedená komerční plocha činí 247 m². Rozmanité prostory vyhovují rodině i práci z domova; před koupí je třeba ověřit právní využití a soulad přízemních místností a podkroví.",
+      "it": "Nella tranquilla località Dogana, in posizione panoramica vicino a Castelfiorentino, questo terratetto è libero su tre lati e offre ampi spazi interni ed esterni. Il resede esclusivo prosegue nel terreno di proprietà; la grande loggia coperta crea una vera stanza all’aperto utilizzabile per gran parte dell’anno.\n\nIl piano abitativo principale comprende cucina abitabile, soggiorno separato, tre camere matrimoniali e bagno. Il sottotetto è stato organizzato come studio e spazio hobby. Al piano terra si trovano un grande locale di deposito, lavanderia, secondo bagno e garage.\n\nLa superficie commerciale dichiarata è di 247 m². La varietà degli ambienti rende la casa adatta a una famiglia, al lavoro da casa o a un progetto con spazi accessori; conformità e destinazione dei locali al piano terra e del sottotetto devono essere verificate."
+    },
+    "images": [
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/01-01-main.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/02-02-gallery-1.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/03-03-gallery-2.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/04-04-gallery-3.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/05-05-gallery-4.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/06-06-gallery-5.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/07-07-gallery-6.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/08-08-gallery-7.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/09-09-gallery-8.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/10-10-gallery-9.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/11-11-gallery-10.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/12-12-gallery-11.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/13-13-gallery-12.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/14-14-gallery-13.jpg",
+      "/uploads/properties/toscana-terratetto-loggia-giardino-castelfiorentino/15-15-gallery-14.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Grande loggia coperta",
+          "en": "Large covered loggia",
+          "cs": "Velká krytá lodžie"
+        }
+      },
+      {
+        "name": {
+          "it": "Libero su tre lati",
+          "en": "Free-standing on three sides",
+          "cs": "Volný ze tří stran"
+        }
+      },
+      {
+        "name": {
+          "it": "Tre camere matrimoniali",
+          "en": "Three double bedrooms",
+          "cs": "Tři dvoulůžkové ložnice"
+        }
+      },
+      {
+        "name": {
+          "it": "Sottotetto adibito a studio",
+          "en": "Attic arranged as a study",
+          "cs": "Podkroví upravené jako pracovna"
+        }
+      },
+      {
+        "name": {
+          "it": "Garage, lavanderia e locali accessori",
+          "en": "Garage, laundry and ancillary rooms",
+          "cs": "Garáž, prádelna a vedlejší prostory"
+        }
+      },
+      {
+        "name": {
+          "it": "Resede e terreno privati",
+          "en": "Private courtyard and land",
+          "cs": "Soukromý dvůr a pozemek"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "House with Large Loggia for Sale in Castelfiorentino",
+      "cs": "Dům s velkou lodžií na prodej v Castelfiorentinu",
+      "it": "Terratetto con loggia in vendita a Castelfiorentino"
+    },
+    "seoDescription": {
+      "en": "247 sqm house in Castelfiorentino with 3 bedrooms, 2 bathrooms, large loggia, private grounds, attic and garage.",
+      "cs": "Dům 247 m² v Castelfiorentinu: 3 ložnice, 2 koupelny, velká lodžie, soukromý pozemek, podkroví a garáž.",
+      "it": "Terratetto di 247 m² a Castelfiorentino con 3 camere, 2 bagni, grande loggia, resede, terreno, sottotetto e garage."
+    },
+    "keywords": [
+      "Castelfiorentino",
+      "terratetto Toscana",
+      "grande loggia",
+      "casa con giardino",
+      "Dogana",
+      "garage"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127409419/",
+    "_createdAt": "2026-08-22T13:05:56.870Z",
+    "_updatedAt": "2026-08-22T13:05:56.870Z"
+  },
+  {
+    "_id": "local-import-toscana-casa-pietra-giardino-piscina-san-gimignano-1787403956645-6q7h9",
+    "_type": "listing",
+    "title": {
+      "en": "Stone House with Garden and Pool near San Gimignano",
+      "cs": "Kamenný dům se zahradou a bazénem u San Gimignana",
+      "it": "Terratetto in pietra con giardino e piscina a San Gimignano"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-casa-pietra-giardino-piscina-san-gimignano"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 315000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 145,
+      "parking": 2,
+      "lotSize": 440
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "San Gimignano",
+          "cs": "San Gimignano",
+          "it": "San Gimignano"
+        },
+        "slug": {
+          "current": "san-gimignano"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Località Steccaia, San Gimignano, Tuscany",
+        "cs": "Località Steccaia, San Gimignano, Toskánsko",
+        "it": "Località Steccaia, San Gimignano (SI), Toscana"
+      },
+      "coordinates": {
+        "lat": 43.5376,
+        "lng": 11.0286
+      }
+    },
+    "status": "available",
+    "featured": true,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "en": "In the level countryside of the municipality of San Gimignano, not far from Certaldo, this two-storey house forms part of a traditional stone farmhouse and has an independent entrance. It is in excellent condition and includes approximately 440 sqm of private garden with vehicle and pedestrian access.\n\nThe roughly 145 sqm gross area is arranged over two floors. The ground floor contains a living room with fireplace, dining area, open kitchen and guest bathroom. Upstairs are two generous bedrooms, one with a mezzanine excluded from the stated floor area, and a second windowed bathroom.\n\nThe complex provides a large masonry communal pool and sun terrace. Before purchase, the residence rules, running costs, exclusive appurtenances and precise location—shown only approximately for privacy—should be confirmed.",
+      "cs": "V rovinaté krajině na území San Gimignana, nedaleko Certalda, stojí dvoupodlažní dům v části tradičního kamenného statku se samostatným vstupem. Je ve výborném stavu a má přibližně 440 m² soukromé zahrady s pěším i automobilovým vjezdem.\n\nHrubá plocha přibližně 145 m² je rozdělena do dvou podlaží. V přízemí je obývací pokoj s krbem, jídelní část, otevřená kuchyně a koupelna pro hosty. Nahoře jsou dvě velké ložnice, jedna s mezipatrem nezapočteným do uvedené plochy, a druhá koupelna s oknem.\n\nKomplex nabízí velký zděný společný bazén se sluneční terasou. Před koupí je třeba potvrdit pravidla a náklady areálu, výlučné příslušenství i přesnou polohu, která je z důvodu soukromí uvedena pouze orientačně.",
+      "it": "Nella campagna pianeggiante del comune di San Gimignano, non lontano da Certaldo, questo terratetto occupa una porzione di colonica in pietra con ingresso indipendente. La casa è in ottime condizioni e dispone di circa 440 m² di giardino esclusivo con accessi carrabile e pedonale.\n\nI circa 145 m² lordi sono distribuiti su due livelli. Al piano terra si trovano soggiorno con camino, zona pranzo, cucina a vista e bagno di servizio. Il piano superiore comprende due camere ampie, una delle quali con soppalco non conteggiato nella superficie, e un secondo bagno finestrato.\n\nIl complesso dispone di una grande piscina condominiale in muratura con solarium. Prima dell’acquisto vanno verificati regolamento, quote di gestione, pertinenze esclusive e posizione esatta, indicata in modo approssimativo per ragioni di privacy."
+    },
+    "images": [
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/01-01-main.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/02-02-gallery-1.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/03-03-gallery-2.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/04-04-gallery-3.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/05-05-gallery-4.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/06-06-gallery-5.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/07-07-gallery-6.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/08-08-gallery-7.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/09-09-gallery-8.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/10-10-gallery-9.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/11-11-gallery-10.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/12-12-gallery-11.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/13-13-gallery-12.jpg",
+      "/uploads/properties/toscana-casa-pietra-giardino-piscina-san-gimignano/14-14-gallery-13.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Porzione di colonica in pietra",
+          "en": "Part of a traditional stone farmhouse",
+          "cs": "Část tradičního kamenného statku"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino esclusivo di circa 440 m²",
+          "en": "Approximately 440 sqm private garden",
+          "cs": "Soukromá zahrada přibližně 440 m²"
+        }
+      },
+      {
+        "name": {
+          "it": "Grande piscina condominiale",
+          "en": "Large communal pool",
+          "cs": "Velký společný bazén"
+        }
+      },
+      {
+        "name": {
+          "it": "Ingresso indipendente",
+          "en": "Independent entrance",
+          "cs": "Samostatný vstup"
+        }
+      },
+      {
+        "name": {
+          "it": "Soggiorno con camino",
+          "en": "Living room with fireplace",
+          "cs": "Obývací pokoj s krbem"
+        }
+      },
+      {
+        "name": {
+          "it": "Camera con soppalco",
+          "en": "Bedroom with mezzanine",
+          "cs": "Ložnice s mezipatrem"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Stone House with Pool for Sale near San Gimignano",
+      "cs": "Kamenný dům s bazénem na prodej u San Gimignana",
+      "it": "Casa in pietra con piscina in vendita a San Gimignano"
+    },
+    "seoDescription": {
+      "en": "145 sqm stone house near San Gimignano with 2 bedrooms, 2 bathrooms, 440 sqm private garden and large communal pool.",
+      "cs": "Kamenný dům 145 m² u San Gimignana: 2 ložnice, 2 koupelny, soukromá zahrada 440 m² a velký společný bazén.",
+      "it": "Terratetto in pietra di 145 m² a San Gimignano con 2 camere, 2 bagni, giardino privato di 440 m² e grande piscina condominiale."
+    },
+    "keywords": [
+      "San Gimignano",
+      "casa in pietra Toscana",
+      "piscina",
+      "giardino privato",
+      "Certaldo",
+      "casa colonica"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/130641950/",
+    "_createdAt": "2026-08-22T13:05:56.644Z",
+    "_updatedAt": "2026-08-22T13:05:56.644Z"
+  },
+  {
+    "_id": "local-import-toscana-complesso-rurale-gambassi-terme-1787403956410-cpcjm",
+    "_type": "listing",
+    "title": {
+      "en": "Panoramic Rural Complex with Two Homes in Gambassi Terme",
+      "cs": "Panoramatický venkovský komplex se dvěma byty v Gambassi Terme",
+      "it": "Complesso rurale panoramico con due abitazioni a Gambassi Terme"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-complesso-rurale-gambassi-terme"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 290000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 10,
+      "bedrooms": 9,
+      "bathrooms": 4,
+      "squareFootage": 455,
+      "parking": 4,
+      "lotSize": 5000
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Gambassi Terme",
+          "cs": "Gambassi Terme",
+          "it": "Gambassi Terme"
+        },
+        "slug": {
+          "current": "gambassi-terme"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Countryside, Gambassi Terme, Tuscany",
+        "cs": "Venkovská oblast, Gambassi Terme, Toskánsko",
+        "it": "Zona di campagna, Gambassi Terme (FI), Toscana"
+      },
+      "coordinates": {
+        "lat": 43.5396,
+        "lng": 10.9625
+      }
+    },
+    "status": "available",
+    "featured": true,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "en": "In the rolling countryside of Gambassi Terme, this substantial rural complex offers approximately 455 sqm in the principal building, two homes with independent entrances and extensive areas for redevelopment. The property includes about 5,000 sqm of private grounds, an additional parking plot and a separate unfinished building of roughly 62 sqm.\n\nThe main 178 sqm home is arranged over two levels and has recently been renovated. The second home, approximately 80 sqm on the first floor, requires complete renovation and includes a panoramic terrace of around 43 sqm. A former 197 sqm dairy workshop occupies part of the ground floor.\n\nThe estate may suit a multi-family, hospitality or mixed-use project, but detailed technical and planning checks are essential. Permitted uses, rural-status conversion, redevelopment options and renovation costs must be confirmed before purchase.",
+      "cs": "V kopcovité krajině u Gambassi Terme se nachází rozsáhlý venkovský komplex s přibližně 455 m² v hlavní budově, dvěma byty se samostatnými vstupy a velkými prostory pro další využití. Součástí je asi 5 000 m² soukromého pozemku, další parkovací parcela a samostatná hrubá stavba přibližně 62 m².\n\nHlavní byt o ploše asi 178 m² ve dvou podlažích byl nedávno zrekonstruován. Druhá jednotka kolem 80 m² v prvním patře vyžaduje úplnou rekonstrukci a má panoramatickou terasu asi 43 m². V přízemí je bývalá mlékárenská dílna o ploše přibližně 197 m².\n\nKomplex může vyhovovat vícegeneračnímu, ubytovacímu nebo kombinovanému projektu, vyžaduje však důkladnou technickou a územní prověrku. Před koupí je nutné potvrdit povolené využití, převod z venkovského režimu i náklady rekonstrukce.",
+      "it": "Nella campagna collinare di Gambassi Terme, questo articolato complesso rurale offre circa 455 m² nel fabbricato principale, due unità abitative con ingressi indipendenti e ampi spazi da recuperare. La proprietà comprende circa 5.000 m² di resede, un’ulteriore area destinata a parcheggio e un fabbricato separato al grezzo di circa 62 m².\n\nL’abitazione principale, circa 178 m² su due livelli, è stata ristrutturata recentemente. La seconda unità, circa 80 m² al primo piano, richiede una ristrutturazione completa e dispone di una terrazza panoramica di circa 43 m². Al piano terra si trova inoltre un ex laboratorio-caseificio di circa 197 m².\n\nÈ una proposta adatta a un progetto plurifamiliare, ricettivo o misto, ma richiede una verifica tecnica e urbanistica approfondita: destinazioni d’uso, deruralizzazione, possibilità di conversione e costi dei lavori devono essere confermati prima dell’acquisto."
+    },
+    "images": [
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/01-01-main.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/02-02-gallery-1.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/03-03-gallery-2.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/04-04-gallery-3.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/05-05-gallery-4.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/06-06-gallery-5.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/07-07-gallery-6.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/08-08-gallery-7.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/09-09-gallery-8.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/10-10-gallery-9.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/11-11-gallery-10.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/12-12-gallery-11.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/13-13-gallery-12.jpg",
+      "/uploads/properties/toscana-complesso-rurale-gambassi-terme/14-14-gallery-13.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Due unità abitative indipendenti",
+          "en": "Two independent homes",
+          "cs": "Dvě samostatné bytové jednotky"
+        }
+      },
+      {
+        "name": {
+          "it": "Circa 455 m² nel fabbricato principale",
+          "en": "Approximately 455 sqm in the main building",
+          "cs": "Přibližně 455 m² v hlavní budově"
+        }
+      },
+      {
+        "name": {
+          "it": "Circa 5.000 m² di resede",
+          "en": "Approximately 5,000 sqm of grounds",
+          "cs": "Přibližně 5 000 m² pozemku"
+        }
+      },
+      {
+        "name": {
+          "it": "Terrazza panoramica di circa 43 m²",
+          "en": "Panoramic terrace of about 43 sqm",
+          "cs": "Panoramatická terasa asi 43 m²"
+        }
+      },
+      {
+        "name": {
+          "it": "Ex laboratorio di circa 197 m²",
+          "en": "Former workshop of about 197 sqm",
+          "cs": "Bývalá dílna přibližně 197 m²"
+        }
+      },
+      {
+        "name": {
+          "it": "Fabbricato separato al grezzo",
+          "en": "Separate unfinished building",
+          "cs": "Samostatná hrubá stavba"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Rural Complex for Sale in Gambassi Terme, Tuscany",
+      "cs": "Venkovský komplex na prodej v Gambassi Terme v Toskánsku",
+      "it": "Complesso rurale in vendita a Gambassi Terme"
+    },
+    "seoDescription": {
+      "en": "455 sqm rural complex in Gambassi Terme with 2 homes, panoramic terrace, workshop, separate building and 5,000 sqm of land.",
+      "cs": "Venkovský komplex 455 m² v Gambassi Terme: 2 byty, panoramatická terasa, dílna, samostatná stavba a 5 000 m² pozemku.",
+      "it": "Complesso rurale di 455 m² a Gambassi Terme con 2 abitazioni, terrazza panoramica, laboratorio, fabbricato separato e 5.000 m² di terreno."
+    },
+    "keywords": [
+      "Gambassi Terme",
+      "complesso rurale Toscana",
+      "casa colonica",
+      "due abitazioni",
+      "terreno",
+      "investimento agriturismo"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/131856320/",
+    "_createdAt": "2026-08-22T13:05:56.410Z",
+    "_updatedAt": "2026-08-22T13:05:56.410Z"
+  },
+  {
+    "_id": "local-import-toscana-villa-pietra-piscina-gallicano-verni-1787403956194-gxt1o",
+    "_type": "listing",
+    "title": {
+      "en": "Stone Villa with Pool and One Hectare of Land in Gallicano",
+      "cs": "Kamenná vila s bazénem a hektarem pozemku v Gallicanu",
+      "it": "Villa in pietra con piscina e un ettaro di terreno a Gallicano"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-villa-pietra-piscina-gallicano-verni"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 295000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 6,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 200,
+      "lotSize": 10000
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Gallicano",
+          "cs": "Gallicano",
+          "it": "Gallicano"
+        },
+        "slug": {
+          "current": "gallicano"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Torre 5, Verni, Gallicano, Tuscany",
+        "cs": "Via Torre 5, Verni, Gallicano, Toskánsko",
+        "it": "Via Torre 5, Verni, Gallicano (LU), Toscana"
+      },
+      "coordinates": {
+        "lat": 44.0472,
+        "lng": 10.422
+      }
+    },
+    "status": "available",
+    "featured": true,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "en": "In the hamlet of Verni, within the municipality of Gallicano, this fully renovated stone villa is surrounded by the natural landscape of the Garfagnana. Its private land extends to approximately one hectare and includes a panoramic swimming pool and an independent historic barn with conversion potential.\n\nOn the ground floor, large glazed doors connect the patio to an open-plan kitchen, living and dining area; a guest bathroom is on the same level. Upstairs are three double bedrooms and the main bathroom. Stone and timber finishes preserve the traditional character of the house.\n\nThe exceptional privacy is partly due to access: the final section can only be covered on foot along a historic mule track. This feature requires careful consideration for daily use, logistics and any holiday-rental plan.",
+      "cs": "V osadě Verni u Gallicana stojí kompletně zrekonstruovaná kamenná vila obklopená přírodou oblasti Garfagnana. Soukromý pozemek má přibližně jeden hektar a zahrnuje panoramatický bazén i samostatnou historickou stodolu s potenciálem přestavby.\n\nV přízemí propojují velké prosklené dveře patio s otevřenou kuchyní, obývacím pokojem a jídelnou; na stejném podlaží je koupelna pro hosty. V patře jsou tři dvoulůžkové ložnice a hlavní koupelna. Kámen a dřevo zachovávají tradiční charakter domu.\n\nMimořádné soukromí souvisí také s přístupem: poslední úsek je možné absolvovat pouze pěšky po historické stezce. Tuto vlastnost je třeba pečlivě zvážit pro každodenní provoz, logistiku i případný rekreační pronájem.",
+      "it": "Nel borgo di Verni, nel comune di Gallicano, questa villa in pietra completamente ristrutturata è immersa nella natura della Garfagnana. Il terreno privato misura circa un ettaro e ospita una piscina panoramica e un antico fienile indipendente con potenziale di recupero.\n\nAl piano terra, grandi porte-finestre collegano il patio alla zona giorno open space con cucina, soggiorno e sala da pranzo; sullo stesso livello si trova un bagno di servizio. Il piano superiore comprende tre camere matrimoniali e il bagno principale. Finiture in pietra e legno mantengono il carattere tradizionale della casa.\n\nL’eccezionale privacy deriva anche dall’accesso: l’ultimo tratto è percorribile esclusivamente a piedi lungo una storica mulattiera. Questa caratteristica deve essere valutata attentamente per l’uso quotidiano, la logistica e l’eventuale locazione turistica."
+    },
+    "images": [
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/01-01-main.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/02-02-gallery-1.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/03-03-gallery-2.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/04-04-gallery-3.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/05-05-gallery-4.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/06-06-gallery-5.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/07-07-gallery-6.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/08-08-gallery-7.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/09-09-gallery-8.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/10-10-gallery-9.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/11-11-gallery-10.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/12-12-gallery-11.jpg",
+      "/uploads/properties/toscana-villa-pietra-piscina-gallicano-verni/13-13-gallery-12.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Piscina privata panoramica",
+          "en": "Private panoramic pool",
+          "cs": "Soukromý panoramatický bazén"
+        }
+      },
+      {
+        "name": {
+          "it": "Circa 10.000 m² di terreno",
+          "en": "Approximately 10,000 sqm of land",
+          "cs": "Přibližně 10 000 m² pozemku"
+        }
+      },
+      {
+        "name": {
+          "it": "Villa in pietra ristrutturata",
+          "en": "Renovated stone villa",
+          "cs": "Zrekonstruovaná kamenná vila"
+        }
+      },
+      {
+        "name": {
+          "it": "Fienile indipendente da recuperare",
+          "en": "Independent barn with conversion potential",
+          "cs": "Samostatná stodola s potenciálem přestavby"
+        }
+      },
+      {
+        "name": {
+          "it": "Tre camere matrimoniali",
+          "en": "Three double bedrooms",
+          "cs": "Tři dvoulůžkové ložnice"
+        }
+      },
+      {
+        "name": {
+          "it": "Accesso finale solo pedonale",
+          "en": "Final access section on foot only",
+          "cs": "Poslední úsek přístupu pouze pěšky"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Stone Villa with Pool for Sale in Gallicano, Tuscany",
+      "cs": "Kamenná vila s bazénem na prodej v Gallicanu v Toskánsku",
+      "it": "Villa in pietra con piscina in vendita a Gallicano"
+    },
+    "seoDescription": {
+      "en": "Renovated 200 sqm stone villa in Gallicano with 3 bedrooms, private pool, one hectare of land and independent barn.",
+      "cs": "Zrekonstruovaná kamenná vila 200 m² v Gallicanu: 3 ložnice, soukromý bazén, hektar pozemku a samostatná stodola.",
+      "it": "Villa in pietra ristrutturata di 200 m² a Gallicano con 3 camere, piscina, un ettaro di terreno e fienile indipendente."
+    },
+    "keywords": [
+      "villa Gallicano",
+      "Garfagnana",
+      "villa in pietra Toscana",
+      "piscina privata",
+      "terreno un ettaro",
+      "casa Verni"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/129926896/",
+    "_createdAt": "2026-08-22T13:05:56.193Z",
+    "_updatedAt": "2026-08-22T13:05:56.193Z"
+  },
+  {
+    "_id": "local-import-calabria-villino-terrazza-vista-mare-parghelia-bordila-1787403955985-82tel",
+    "_type": "listing",
+    "title": {
+      "en": "Holiday Home with Large Sea-View Terrace in Parghelia",
+      "cs": "Rekreační dům s velkou terasou a výhledem na moře v Parghelii",
+      "it": "Villino con grande terrazza vista mare a Parghelia"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "calabria-villino-terrazza-vista-mare-parghelia-bordila"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 205000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 110,
+      "parking": 2,
+      "yearBuilt": 1980
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Parghelia",
+          "cs": "Parghelia",
+          "it": "Parghelia"
+        },
+        "slug": {
+          "current": "parghelia"
+        },
+        "region": {
+          "name": {
+            "it": "Calabria",
+            "en": "Calabria",
+            "cs": "Kalábrie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Contrada Bordila, Marina di Bordila, Parghelia, Calabria",
+        "cs": "Contrada Bordila, Marina di Bordila, Parghelia, Kalábrie",
+        "it": "Contrada Bordila, Marina di Bordila, Parghelia (VV), Calabria"
+      },
+      "coordinates": {
+        "lat": 38.683,
+        "lng": 15.9263
+      }
+    },
+    "status": "available",
+    "featured": true,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "en": "In Marina di Bordila, within the municipality of Parghelia and close to Tropea, this holiday home enjoys a spectacular sea view and access to a free public beach. Its defining feature is the approximately 50 sqm panoramic terrace, designed for outdoor dining and relaxation.\n\nThe home provides about 95 sqm of internal accommodation with an open-plan living room and kitchen, two bedrooms and one bathroom. The stated commercial area, including the weighted terrace area, is 110 sqm.\n\nA private garage of approximately 15 sqm and one parking space complete the property. The home is furnished and occupies the second and top floor without a lift. Reported condominium charges of about EUR 15 per month should be confirmed.",
+      "cs": "V Marina di Bordila u Parghelie, nedaleko Tropey, se nachází rekreační dům s mimořádným výhledem na moře a přístupem na volně využitelnou pláž. Hlavním prvkem je panoramatická terasa o ploše přibližně 50 m², vhodná pro venkovní stolování a odpočinek.\n\nVnitřní obytná plocha činí asi 95 m² a zahrnuje otevřený obývací pokoj s kuchyní, dvě ložnice a jednu koupelnu. Uvedená komerční plocha včetně započtené části terasy je 110 m².\n\nK nemovitosti patří soukromá garáž přibližně 15 m² a parkovací místo. Dům se prodává zařízený a leží ve druhém, posledním patře bez výtahu. Uváděný měsíční poplatek asi 15 EUR je třeba potvrdit.",
+      "it": "A Marina di Bordila, nel comune di Parghelia e a breve distanza da Tropea, questo villino gode di una spettacolare vista sul mare e dell’accesso a una spiaggia libera. Il punto centrale della proprietà è la terrazza di circa 50 m², ampia e panoramica, pensata per pranzi e relax all’aperto.\n\nL’abitazione offre circa 95 m² interni ed è composta da soggiorno con cucina open space, due camere da letto e un bagno. La superficie commerciale dichiarata, terrazza compresa secondo i coefficienti dell’annuncio, è di 110 m².\n\nCompletano la proprietà un box di circa 15 m² e un posto auto. Il villino è arredato, si trova al secondo e ultimo piano senza ascensore e richiede la verifica dei costi condominiali, indicati nell’annuncio in circa 15 euro al mese."
+    },
+    "images": [
+      "/uploads/properties/calabria-villino-terrazza-vista-mare-parghelia-bordila/01-01-main.jpg",
+      "/uploads/properties/calabria-villino-terrazza-vista-mare-parghelia-bordila/02-02-gallery-1.jpg",
+      "/uploads/properties/calabria-villino-terrazza-vista-mare-parghelia-bordila/03-03-gallery-2.jpg",
+      "/uploads/properties/calabria-villino-terrazza-vista-mare-parghelia-bordila/04-04-gallery-3.jpg",
+      "/uploads/properties/calabria-villino-terrazza-vista-mare-parghelia-bordila/05-05-gallery-4.jpg",
+      "/uploads/properties/calabria-villino-terrazza-vista-mare-parghelia-bordila/06-06-gallery-5.jpg",
+      "/uploads/properties/calabria-villino-terrazza-vista-mare-parghelia-bordila/07-07-gallery-6.jpg",
+      "/uploads/properties/calabria-villino-terrazza-vista-mare-parghelia-bordila/08-08-gallery-7.jpg",
+      "/uploads/properties/calabria-villino-terrazza-vista-mare-parghelia-bordila/09-09-gallery-8.jpg",
+      "/uploads/properties/calabria-villino-terrazza-vista-mare-parghelia-bordila/10-10-gallery-9.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Terrazza panoramica di circa 50 m²",
+          "en": "Panoramic terrace of about 50 sqm",
+          "cs": "Panoramatická terasa asi 50 m²"
+        }
+      },
+      {
+        "name": {
+          "it": "Vista mare",
+          "en": "Sea view",
+          "cs": "Výhled na moře"
+        }
+      },
+      {
+        "name": {
+          "it": "Accesso a spiaggia libera",
+          "en": "Access to a public beach",
+          "cs": "Přístup na volnou pláž"
+        }
+      },
+      {
+        "name": {
+          "it": "Due camere da letto",
+          "en": "Two bedrooms",
+          "cs": "Dvě ložnice"
+        }
+      },
+      {
+        "name": {
+          "it": "Box di circa 15 m²",
+          "en": "Garage of about 15 sqm",
+          "cs": "Garáž přibližně 15 m²"
+        }
+      },
+      {
+        "name": {
+          "it": "Arredato",
+          "en": "Furnished",
+          "cs": "Zařízený"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Sea-View Home with Large Terrace for Sale in Parghelia",
+      "cs": "Dům s velkou terasou a výhledem na moře na prodej v Parghelii",
+      "it": "Villino con terrazza vista mare in vendita a Parghelia"
+    },
+    "seoDescription": {
+      "en": "Parghelia holiday home with 95 sqm inside, 2 bedrooms, 50 sqm sea-view terrace, garage, parking and beach access.",
+      "cs": "Dům v Parghelii: 95 m² interiéru, 2 ložnice, terasa 50 m² s výhledem na moře, garáž, parkování a přístup na pláž.",
+      "it": "Villino a Parghelia con 95 m² interni, 2 camere, terrazza vista mare di 50 m², box, posto auto e accesso alla spiaggia."
+    },
+    "keywords": [
+      "villino Parghelia",
+      "Marina di Bordila",
+      "terrazza vista mare",
+      "casa vicino Tropea",
+      "box auto",
+      "spiaggia"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/121864762/",
+    "_createdAt": "2026-08-22T13:05:55.983Z",
+    "_updatedAt": "2026-08-22T13:05:55.983Z"
+  },
+  {
+    "_id": "local-import-calabria-villa-ristrutturata-residence-contura-capo-vaticano-1787403955793-5wovc",
+    "_type": "listing",
+    "title": {
+      "en": "Renovated Villa with Garden and Pools in Capo Vaticano",
+      "cs": "Zrekonstruovaná vila se zahradou a bazény v Capo Vaticano",
+      "it": "Villa ristrutturata con giardino e piscine a Capo Vaticano"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "calabria-villa-ristrutturata-residence-contura-capo-vaticano"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 227000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 4,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 107,
+      "parking": 1,
+      "yearBuilt": 1990
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Ricadi",
+          "cs": "Ricadi",
+          "it": "Ricadi"
+        },
+        "slug": {
+          "current": "ricadi"
+        },
+        "region": {
+          "name": {
+            "it": "Calabria",
+            "en": "Calabria",
+            "cs": "Kalábrie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Contrada Contura, Capo Vaticano, Ricadi, Calabria",
+        "cs": "Contrada Contura, Capo Vaticano, Ricadi, Kalábrie",
+        "it": "Contrada Contura SNC, Capo Vaticano, Ricadi (VV), Calabria"
+      },
+      "coordinates": {
+        "lat": 38.6457,
+        "lng": 15.8472
+      }
+    },
+    "status": "available",
+    "featured": true,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "en": "Within Residence Contura in Capo Vaticano, this end villa has been fully renovated approximately two years ago. It includes a private garden and a generous veranda, while the residence provides two pools, a tennis court, barbecue area and well-kept communal grounds.\n\nThe stated commercial area is 107 sqm. The layout comprises a large living room, open kitchen, two bedrooms and one bathroom. The villa is sold furnished and includes air conditioning, insect screens, heat-pump heating and a parking space.\n\nTorre Marino beach is about 1.5 km away, and the beaches of Capo Vaticano are within a few minutes by car. Reported condominium charges are approximately EUR 90 per month; the amount and residence rules should be confirmed.",
+      "cs": "V rezidenci Contura v Capo Vaticano se nachází krajní vila, která prošla přibližně před dvěma lety kompletní rekonstrukcí. Má soukromou zahradu a obytnou verandu; areál nabízí dva bazény, tenisový kurt, grilovací zónu a udržované společné prostory.\n\nUvedená komerční plocha je 107 m². Dispozice zahrnuje velký obývací pokoj, otevřenou kuchyni, dvě ložnice a jednu koupelnu. Vila se prodává zařízená a má klimatizaci, sítě proti hmyzu, vytápění tepelným čerpadlem a parkovací místo.\n\nPláž Torre Marino je vzdálená asi 1,5 km a pláže Capo Vaticano několik minut autem. Uváděné poplatky činí přibližně 90 EUR měsíčně; přesnou částku a pravidla areálu je třeba potvrdit.",
+      "it": "Nel Residence Contura a Capo Vaticano, questa villa indipendente su tre lati è stata completamente ristrutturata circa due anni fa. La casa dispone di giardino privato e veranda abitabile, mentre il residence offre due piscine, campo da tennis, area barbecue e spazi comuni curati.\n\nLa superficie commerciale dichiarata è di 107 m². La disposizione comprende un ampio soggiorno, cucina a vista, due camere da letto e un bagno. La villa viene venduta arredata ed è dotata di climatizzatori, zanzariere, pompa di calore e posto auto.\n\nLa spiaggia di Torre Marino si trova a circa 1,5 km e le spiagge di Capo Vaticano sono raggiungibili in pochi minuti d’auto. Le spese condominiali indicate sono circa 90 euro al mese; importi e regolamento devono essere confermati."
+    },
+    "images": [
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/01-01-main.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/02-02-gallery-1.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/03-03-gallery-2.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/04-04-gallery-3.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/05-05-gallery-4.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/06-06-gallery-5.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/07-07-gallery-6.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/08-08-gallery-7.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/09-09-gallery-8.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/10-10-gallery-9.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/11-11-gallery-10.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/12-12-gallery-11.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/13-13-gallery-12.jpg",
+      "/uploads/properties/calabria-villa-ristrutturata-residence-contura-capo-vaticano/14-14-gallery-13.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Ristrutturata recentemente",
+          "en": "Recently renovated",
+          "cs": "Nedávno zrekonstruovaná"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino privato e veranda",
+          "en": "Private garden and veranda",
+          "cs": "Soukromá zahrada a veranda"
+        }
+      },
+      {
+        "name": {
+          "it": "Due piscine condominiali",
+          "en": "Two communal pools",
+          "cs": "Dva společné bazény"
+        }
+      },
+      {
+        "name": {
+          "it": "Campo da tennis e area barbecue",
+          "en": "Tennis court and barbecue area",
+          "cs": "Tenisový kurt a grilovací zóna"
+        }
+      },
+      {
+        "name": {
+          "it": "Arredata, climatizzata e con zanzariere",
+          "en": "Furnished, air-conditioned and screened",
+          "cs": "Zařízená, klimatizovaná a se sítěmi proti hmyzu"
+        }
+      },
+      {
+        "name": {
+          "it": "Posto auto",
+          "en": "Parking space",
+          "cs": "Parkovací místo"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Renovated Villa with Pools in Capo Vaticano",
+      "cs": "Zrekonstruovaná vila s bazény v Capo Vaticano",
+      "it": "Villa ristrutturata con piscine a Capo Vaticano"
+    },
+    "seoDescription": {
+      "en": "Renovated 107 sqm villa in Capo Vaticano with 2 bedrooms, garden, veranda, parking, two pools, tennis and the sea 1.5 km away.",
+      "cs": "Zrekonstruovaná vila 107 m² v Capo Vaticano: 2 ložnice, zahrada, veranda, parkování, dva bazény, tenis a moře 1,5 km.",
+      "it": "Villa ristrutturata di 107 m² a Capo Vaticano con 2 camere, giardino, veranda, posto auto, due piscine, tennis e mare a 1,5 km."
+    },
+    "keywords": [
+      "villa Capo Vaticano",
+      "Residence Contura",
+      "piscina",
+      "villa ristrutturata",
+      "Costa degli Dei",
+      "investimento turistico"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/129581200/",
+    "_createdAt": "2026-08-22T13:05:55.793Z",
+    "_updatedAt": "2026-08-22T13:05:55.793Z"
+  },
+  {
+    "_id": "local-import-calabria-villa-vista-stromboli-ricadi-ciaramiti-1787403955593-w8sjv",
+    "_type": "listing",
+    "title": {
+      "en": "Detached Villa with Sea and Stromboli Views in Ricadi",
+      "cs": "Samostatná vila s výhledem na moře a Stromboli v Ricadi",
+      "it": "Villa indipendente con vista mare e Stromboli a Ricadi"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "calabria-villa-vista-stromboli-ricadi-ciaramiti"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 222000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "squareFootage": 95,
+      "parking": 1,
+      "yearBuilt": 1990
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Ricadi",
+          "cs": "Ricadi",
+          "it": "Ricadi"
+        },
+        "slug": {
+          "current": "ricadi"
+        },
+        "region": {
+          "name": {
+            "it": "Calabria",
+            "en": "Calabria",
+            "cs": "Kalábrie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Provinciale, Ciaramiti, Ricadi, Calabria",
+        "cs": "Via Provinciale, Ciaramiti, Ricadi, Kalábrie",
+        "it": "Via Provinciale, frazione Ciaramiti, Ricadi (VV), Calabria"
+      },
+      "coordinates": {
+        "lat": 38.6484,
+        "lng": 15.848
+      }
+    },
+    "status": "available",
+    "featured": true,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "en": "In the heart of the Coast of the Gods, in the Ciaramiti hamlet of Ricadi, this detached villa is free-standing on all four sides and approximately 2 km from Formicoli beach. A gate opens onto a tree-lined driveway and garden, creating a private and pleasant setting.\n\nThe accommodation is arranged entirely on the ground floor and measures about 95 sqm. The entrance leads to an eat-in kitchen; the sleeping area contains two bedrooms and a windowed bathroom with shower. A recently renovated terrace provides open views of the sea and Stromboli island.\n\nThe property is furnished and air-conditioned, with no stated condominium fees. It is suitable as a permanent home or holiday residence; utilities, boundaries and legal documentation should be checked during due diligence.",
+      "cs": "V srdci Pobřeží bohů, v osadě Ciaramiti u Ricadi, stojí samostatná vila volná ze všech čtyř stran, přibližně 2 km od pláže Formicoli. Brána vede na stromovou příjezdovou cestu a do zahrady, která vytváří příjemné soukromí.\n\nDům má přibližně 95 m² a celý se nachází v přízemí. Vstup vede do obytné kuchyně; noční část tvoří dvě ložnice a koupelna s oknem a sprchou. Nedávno obnovená terasa nabízí otevřený výhled na moře a ostrov Stromboli.\n\nNemovitost se prodává zařízená, má klimatizaci a podle inzerátu bez poplatků za společné prostory. Je vhodná pro trvalé i rekreační bydlení; při prověrce je třeba ověřit technický stav, hranice a dokumentaci.",
+      "it": "Nel cuore della Costa degli Dei, nella frazione Ciaramiti di Ricadi, questa villa indipendente è libera su quattro lati e dista circa 2 km dalla spiaggia di Formicoli. Un cancello introduce al viale alberato e al giardino, creando un contesto riservato e piacevole.\n\nLa casa si sviluppa interamente al piano terra su circa 95 m². L’ingresso conduce alla cucina abitabile; la zona notte comprende due camere e un bagno finestrato con doccia. Il terrazzo, ristrutturato di recente, offre una vista aperta sul mare e sull’isola di Stromboli.\n\nLa proprietà è arredata, climatizzata e senza spese condominiali dichiarate. È adatta sia come prima casa sia come residenza per le vacanze; stato degli impianti, confini e documentazione devono essere verificati in fase di due diligence."
+    },
+    "images": [
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/01-01-main.jpg",
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/02-02-gallery-1.jpg",
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/03-03-gallery-2.jpg",
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/04-04-gallery-3.jpg",
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/05-05-gallery-4.jpg",
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/06-06-gallery-5.jpg",
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/07-07-gallery-6.jpg",
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/08-08-gallery-7.jpg",
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/09-09-gallery-8.jpg",
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/10-10-gallery-9.jpg",
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/11-11-gallery-10.jpg",
+      "/uploads/properties/calabria-villa-vista-stromboli-ricadi-ciaramiti/12-12-gallery-11.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Vista mare e Stromboli",
+          "en": "Sea and Stromboli views",
+          "cs": "Výhled na moře a Stromboli"
+        }
+      },
+      {
+        "name": {
+          "it": "Villa libera su quattro lati",
+          "en": "Detached on all four sides",
+          "cs": "Samostatně stojící ze všech čtyř stran"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino con viale alberato",
+          "en": "Garden with tree-lined driveway",
+          "cs": "Zahrada se stromovou příjezdovou cestou"
+        }
+      },
+      {
+        "name": {
+          "it": "Terrazzo ristrutturato",
+          "en": "Renovated terrace",
+          "cs": "Zrekonstruovaná terasa"
+        }
+      },
+      {
+        "name": {
+          "it": "A circa 2 km dalla spiaggia",
+          "en": "About 2 km from the beach",
+          "cs": "Přibližně 2 km od pláže"
+        }
+      },
+      {
+        "name": {
+          "it": "Arredata e climatizzata",
+          "en": "Furnished and air-conditioned",
+          "cs": "Zařízená a klimatizovaná"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Villa with Stromboli Views for Sale in Ricadi",
+      "cs": "Vila s výhledem na Stromboli na prodej v Ricadi",
+      "it": "Villa con vista Stromboli in vendita a Ricadi"
+    },
+    "seoDescription": {
+      "en": "Detached 95 sqm villa in Ricadi with 2 bedrooms, terrace overlooking the sea and Stromboli, garden and Formicoli beach about 2 km away.",
+      "cs": "Samostatná vila 95 m² v Ricadi: 2 ložnice, terasa s výhledem na moře a Stromboli, zahrada a pláž Formicoli asi 2 km.",
+      "it": "Villa indipendente di 95 m² a Ricadi con 2 camere, terrazzo vista mare e Stromboli, giardino e spiaggia di Formicoli a circa 2 km."
+    },
+    "keywords": [
+      "villa Ricadi",
+      "vista Stromboli",
+      "Costa degli Dei",
+      "Ciaramiti",
+      "Formicoli",
+      "villa con giardino"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/111400731/",
+    "_createdAt": "2026-08-22T13:05:55.592Z",
+    "_updatedAt": "2026-08-22T13:05:55.592Z"
+  },
+  {
+    "_id": "local-import-calabria-villa-piscina-vista-mare-zambrone-1787403955342-ak0ls",
+    "_type": "listing",
+    "title": {
+      "en": "Villa with Pool, Garden and Sea Views in Zambrone",
+      "cs": "Vila s bazénem, zahradou a výhledem na moře v Zambrone",
+      "it": "Villa con piscina, giardino e vista mare a Zambrone"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "calabria-villa-piscina-vista-mare-zambrone"
+    },
+    "propertyType": "villa",
+    "price": {
+      "amount": 240000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 105,
+      "parking": 1
+    },
+    "location": {
+      "city": {
+        "name": {
+          "en": "Zambrone",
+          "cs": "Zambrone",
+          "it": "Zambrone"
+        },
+        "slug": {
+          "current": "zambrone"
+        },
+        "region": {
+          "name": {
+            "it": "Calabria",
+            "en": "Calabria",
+            "cs": "Kalábrie"
+          },
+          "country": {
+            "en": "Italy",
+            "cs": "Italie",
+            "it": "Italia"
+          }
+        }
+      },
+      "address": {
+        "en": "Via Paolo Borsellino 30, Zambrone, Calabria",
+        "cs": "Via Paolo Borsellino 30, Zambrone, Kalábrie",
+        "it": "Via Paolo Borsellino 30, Zambrone (VV), Calabria"
+      },
+      "coordinates": {
+        "lat": 38.6985,
+        "lng": 15.9916
+      }
+    },
+    "status": "available",
+    "featured": true,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "en": "In the bay of Zambrone, within a well-maintained residence used throughout the year, this detached villa combines a private garden, generous outdoor areas and a communal pool. A veranda and covered porches extend the living space, while the upper terrace offers sunsets over the sea and the Aeolian Islands.\n\nThe property provides approximately 105 sqm of commercial area with a furnished living room, equipped kitchen, two bedrooms, two bathrooms and a useful storage room. The main bedroom has an en-suite bathroom. Two barbecue areas and several outdoor dining spaces make the villa especially attractive as a holiday home or seasonal rental.\n\nThe home is in good condition, ready to occupy and rated energy class D. The pool and shared areas are managed by the residence; condominium costs, regulations and the precise position should be confirmed before purchase.",
+      "cs": "V zátoce Zambrone, v pečlivě udržovaném rezidenčním areálu využívaném i během roku, stojí samostatná vila se soukromou zahradou, velkorysými venkovními prostory a společným bazénem. Veranda a kryté portiky rozšiřují obytnou část, zatímco horní terasa nabízí západy slunce nad mořem a Liparskými ostrovy.\n\nDům má přibližně 105 m² komerční plochy a zahrnuje zařízený obývací pokoj, vybavenou kuchyni, dvě ložnice, dvě koupelny a praktickou komoru. Hlavní ložnice má vlastní koupelnu. Dvě grilovací zóny a několik míst pro venkovní stolování zvyšují atraktivitu pro rekreaci i sezónní pronájem.\n\nNemovitost je v dobrém stavu, připravená k užívání a má energetickou třídu D. Před koupí je nutné ověřit náklady a pravidla rezidence i přesnou polohu.",
+      "it": "Nella baia di Zambrone, all’interno di un residence curato e abitato anche durante l’anno, questa villa indipendente unisce giardino privato, ampi spazi esterni e piscina condominiale. La veranda e i portici ampliano la zona giorno, mentre la terrazza superiore regala tramonti sul mare e sulle Isole Eolie.\n\nLa casa misura circa 105 m² commerciali e comprende soggiorno arredato, cucina attrezzata, due camere da letto, due bagni e un comodo ripostiglio. La camera matrimoniale dispone di bagno privato. Due zone barbecue e diversi spazi per pranzare all’aperto rendono la proprietà particolarmente adatta alle vacanze e alla locazione stagionale.\n\nL’immobile è in buono stato, pronto da abitare e in classe energetica D. Piscina e parti comuni sono gestite dal residence; costi, regolamento condominiale e posizione esatta devono essere verificati prima dell’acquisto."
+    },
+    "images": [
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/01-01-main.jpg",
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/02-02-gallery-1.jpg",
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/03-03-gallery-2.jpg",
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/04-04-gallery-3.jpg",
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/05-05-gallery-4.jpg",
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/06-06-gallery-5.jpg",
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/07-07-gallery-6.jpg",
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/08-08-gallery-7.jpg",
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/09-09-gallery-8.jpg",
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/10-10-gallery-9.jpg",
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/11-11-gallery-10.jpg",
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/12-12-gallery-11.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [
+      {
+        "name": {
+          "it": "Piscina condominiale con mosaico",
+          "en": "Communal mosaic pool",
+          "cs": "Společný bazén s mozaikou"
+        }
+      },
+      {
+        "name": {
+          "it": "Giardino privato e portici",
+          "en": "Private garden and covered porches",
+          "cs": "Soukromá zahrada a kryté portiky"
+        }
+      },
+      {
+        "name": {
+          "it": "Terrazza con vista mare e Isole Eolie",
+          "en": "Terrace with sea and Aeolian Islands views",
+          "cs": "Terasa s výhledem na moře a Liparské ostrovy"
+        }
+      },
+      {
+        "name": {
+          "it": "Due camere e due bagni",
+          "en": "Two bedrooms and two bathrooms",
+          "cs": "Dvě ložnice a dvě koupelny"
+        }
+      },
+      {
+        "name": {
+          "it": "Due zone barbecue",
+          "en": "Two barbecue areas",
+          "cs": "Dvě grilovací zóny"
+        }
+      },
+      {
+        "name": {
+          "it": "Classe energetica D",
+          "en": "Energy class D",
+          "cs": "Energetická třída D"
+        }
+      }
+    ],
+    "seoTitle": {
+      "en": "Sea-View Villa with Pool for Sale in Zambrone",
+      "cs": "Vila s bazénem a výhledem na moře na prodej v Zambrone",
+      "it": "Villa con piscina e vista mare in vendita a Zambrone"
+    },
+    "seoDescription": {
+      "en": "105 sqm villa in Zambrone with 2 bedrooms, 2 bathrooms, garden, veranda, sea-view terrace, communal pool and barbecue areas.",
+      "cs": "Vila 105 m² v Zambrone: 2 ložnice, 2 koupelny, zahrada, veranda, terasa s výhledem na moře, společný bazén a gril.",
+      "it": "Villa di 105 m² a Zambrone con 2 camere, 2 bagni, giardino, veranda, terrazza vista mare, piscina condominiale e aree barbecue."
+    },
+    "keywords": [
+      "villa Zambrone",
+      "villa Calabria mare",
+      "piscina",
+      "vista mare",
+      "Costa degli Dei",
+      "Isole Eolie"
+    ],
+    "sourceUrl": "https://www.idealista.it/immobile/31842425/",
+    "_createdAt": "2026-08-22T13:05:55.342Z",
+    "_updatedAt": "2026-08-22T13:05:55.342Z"
+  },
+  {
     "_id": "local-import-toscana-terratetto-pontassieve-santa-brigida-1783523571749-9ch31",
     "_type": "listing",
     "title": {

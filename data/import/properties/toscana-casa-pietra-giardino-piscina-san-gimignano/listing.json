@@ -1,0 +1,76 @@
+{
+  "slug": "toscana-casa-pietra-giardino-piscina-san-gimignano",
+  "title_it": "Terratetto in pietra con giardino e piscina a San Gimignano",
+  "title_en": "Stone House with Garden and Pool near San Gimignano",
+  "title_cs": "Kamenný dům se zahradou a bazénem u San Gimignana",
+  "propertyType": "house",
+  "region_it": "Toscana",
+  "city_it": "San Gimignano",
+  "city_en": "San Gimignano",
+  "city_cs": "San Gimignano",
+  "address_it": "Località Steccaia, San Gimignano (SI), Toscana",
+  "address_en": "Località Steccaia, San Gimignano, Tuscany",
+  "address_cs": "Località Steccaia, San Gimignano, Toskánsko",
+  "price": 315000,
+  "rooms": 4,
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "square_meters": 145,
+  "parking": 2,
+  "lotSize": 440,
+  "lat": 43.5376,
+  "lng": 11.0286,
+  "description_it": "Nella campagna pianeggiante del comune di San Gimignano, non lontano da Certaldo, questo terratetto occupa una porzione di colonica in pietra con ingresso indipendente. La casa è in ottime condizioni e dispone di circa 440 m² di giardino esclusivo con accessi carrabile e pedonale.\n\nI circa 145 m² lordi sono distribuiti su due livelli. Al piano terra si trovano soggiorno con camino, zona pranzo, cucina a vista e bagno di servizio. Il piano superiore comprende due camere ampie, una delle quali con soppalco non conteggiato nella superficie, e un secondo bagno finestrato.\n\nIl complesso dispone di una grande piscina condominiale in muratura con solarium. Prima dell’acquisto vanno verificati regolamento, quote di gestione, pertinenze esclusive e posizione esatta, indicata in modo approssimativo per ragioni di privacy.",
+  "description_en": "In the level countryside of the municipality of San Gimignano, not far from Certaldo, this two-storey house forms part of a traditional stone farmhouse and has an independent entrance. It is in excellent condition and includes approximately 440 sqm of private garden with vehicle and pedestrian access.\n\nThe roughly 145 sqm gross area is arranged over two floors. The ground floor contains a living room with fireplace, dining area, open kitchen and guest bathroom. Upstairs are two generous bedrooms, one with a mezzanine excluded from the stated floor area, and a second windowed bathroom.\n\nThe complex provides a large masonry communal pool and sun terrace. Before purchase, the residence rules, running costs, exclusive appurtenances and precise location—shown only approximately for privacy—should be confirmed.",
+  "description_cs": "V rovinaté krajině na území San Gimignana, nedaleko Certalda, stojí dvoupodlažní dům v části tradičního kamenného statku se samostatným vstupem. Je ve výborném stavu a má přibližně 440 m² soukromé zahrady s pěším i automobilovým vjezdem.\n\nHrubá plocha přibližně 145 m² je rozdělena do dvou podlaží. V přízemí je obývací pokoj s krbem, jídelní část, otevřená kuchyně a koupelna pro hosty. Nahoře jsou dvě velké ložnice, jedna s mezipatrem nezapočteným do uvedené plochy, a druhá koupelna s oknem.\n\nKomplex nabízí velký zděný společný bazén se sluneční terasou. Před koupí je třeba potvrdit pravidla a náklady areálu, výlučné příslušenství i přesnou polohu, která je z důvodu soukromí uvedena pouze orientačně.",
+  "features": [
+    {
+      "it": "Porzione di colonica in pietra",
+      "en": "Part of a traditional stone farmhouse",
+      "cs": "Část tradičního kamenného statku"
+    },
+    {
+      "it": "Giardino esclusivo di circa 440 m²",
+      "en": "Approximately 440 sqm private garden",
+      "cs": "Soukromá zahrada přibližně 440 m²"
+    },
+    {
+      "it": "Grande piscina condominiale",
+      "en": "Large communal pool",
+      "cs": "Velký společný bazén"
+    },
+    {
+      "it": "Ingresso indipendente",
+      "en": "Independent entrance",
+      "cs": "Samostatný vstup"
+    },
+    {
+      "it": "Soggiorno con camino",
+      "en": "Living room with fireplace",
+      "cs": "Obývací pokoj s krbem"
+    },
+    {
+      "it": "Camera con soppalco",
+      "en": "Bedroom with mezzanine",
+      "cs": "Ložnice s mezipatrem"
+    }
+  ],
+  "seo_title_it": "Casa in pietra con piscina in vendita a San Gimignano",
+  "seo_title_en": "Stone House with Pool for Sale near San Gimignano",
+  "seo_title_cs": "Kamenný dům s bazénem na prodej u San Gimignana",
+  "seo_description_it": "Terratetto in pietra di 145 m² a San Gimignano con 2 camere, 2 bagni, giardino privato di 440 m² e grande piscina condominiale.",
+  "seo_description_en": "145 sqm stone house near San Gimignano with 2 bedrooms, 2 bathrooms, 440 sqm private garden and large communal pool.",
+  "seo_description_cs": "Kamenný dům 145 m² u San Gimignana: 2 ložnice, 2 koupelny, soukromá zahrada 440 m² a velký společný bazén.",
+  "keywords": [
+    "San Gimignano",
+    "casa in pietra Toscana",
+    "piscina",
+    "giardino privato",
+    "Certaldo",
+    "casa colonica"
+  ],
+  "source_url": "https://www.immobiliare.it/annunci/130641950/",
+  "status": "available",
+  "featured": true,
+  "isNew": true
+}
