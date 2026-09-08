@@ -1,5 +1,828 @@
 [
   {
+    "_id": "local-import-toscana-rustico-quiesa-massarosa-132061064",
+    "_type": "listing",
+    "title": {
+      "it": "Rustico ristrutturato con giardino a Quiesa",
+      "en": "Renovated rustic house with garden in Quiesa",
+      "cs": "Zrekonstruovaný rustikální dům se zahradou v Quiese"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-rustico-quiesa-massarosa-132061064"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 270000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "bedrooms": 5,
+      "bathrooms": 2,
+      "squareFootage": 170
+    },
+    "location": {
+      "city": {
+        "name": {
+          "it": "Massarosa",
+          "en": "Massarosa",
+          "cs": "Massarosa"
+        },
+        "slug": {
+          "current": "massarosa"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "it": "Italia",
+            "en": "Italy",
+            "cs": "Itálie"
+          }
+        }
+      },
+      "address": {
+        "it": "Quiesa",
+        "en": "Quiesa",
+        "cs": "Quiesa"
+      },
+      "coordinates": {
+        "lat": 43.8542,
+        "lng": 10.3603
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "it": "A Quiesa, nel comune di Massarosa, terratetto ristrutturato di 170 m² su più livelli. Il piano terra ospita soggiorno, cucina, sala da pranzo e una stanza utilizzabile come camera o studio; ai piani superiori si trovano tre camere, due bagni complessivi e due grandi vani al secondo piano. Giardino e resede sul retro, spazio per parcheggiare davanti. La scheda della fonte riporta cinque camere. Classe energetica G.",
+      "en": "Renovated 170 m² house over several levels in Quiesa, Massarosa. The ground floor has a living room, kitchen, dining room and a bedroom or study. Above are three bedrooms, two bathrooms in total and two large top-floor rooms. There is a rear garden and courtyard, with parking space in front. The source lists five bedrooms overall. Energy class G.",
+      "cs": "Zrekonstruovaný dům o ploše 170 m² v Quiese u Massarosy má několik podlaží. V přízemí je obývací pokoj, kuchyně, jídelna a pokoj vhodný jako ložnice nebo pracovna. Výše jsou tři ložnice, celkem dvě koupelny a dva velké pokoje v posledním patře. Za domem je zahrada a dvůr, před domem prostor k parkování. Zdroj uvádí celkem pět ložnic. Energetická třída G."
+    },
+    "images": [
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/01.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/02.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/03.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/04.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/05.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/06.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/07.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/08.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/09.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/10.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/11.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/12.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/13.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/14.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [],
+    "seoTitle": {
+      "it": "Rustico ristrutturato con giardino a Quiesa",
+      "en": "Renovated rustic house with garden in Quiesa",
+      "cs": "Zrekonstruovaný rustikální dům se zahradou v Quiese"
+    },
+    "seoDescription": {
+      "it": "A Quiesa, nel comune di Massarosa, terratetto ristrutturato di 170 m² su più livelli.",
+      "en": "Renovated 170 m² house over several levels in Quiesa, Massarosa.",
+      "cs": "Zrekonstruovaný dům o ploše 170 m² v Quiese u Massarosy má několik podlaží."
+    },
+    "keywords": [
+      "toscana",
+      "massarosa",
+      "house"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/132061064/",
+    "_createdAt": "2026-09-08T10:00:00.000Z",
+    "_updatedAt": "2026-09-08T10:00:00.000Z"
+  },
+  {
+    "_id": "local-import-toscana-terratetto-solaio-pietrasanta-127378181",
+    "_type": "listing",
+    "title": {
+      "it": "Terratetto vista mare a Solaio, Pietrasanta",
+      "en": "Sea-view village house in Solaio, Pietrasanta",
+      "cs": "Dům s výhledem na moře v Solaiu u Pietrasanty"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-terratetto-solaio-pietrasanta-127378181"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 292000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "bedrooms": 3,
+      "bathrooms": 1,
+      "squareFootage": 80,
+      "rooms": 4
+    },
+    "location": {
+      "city": {
+        "name": {
+          "it": "Pietrasanta",
+          "en": "Pietrasanta",
+          "cs": "Pietrasanta"
+        },
+        "slug": {
+          "current": "pietrasanta"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "it": "Italia",
+            "en": "Italy",
+            "cs": "Itálie"
+          }
+        }
+      },
+      "address": {
+        "it": "via Castello",
+        "en": "via Castello",
+        "cs": "via Castello"
+      },
+      "coordinates": {
+        "lat": 43.9828,
+        "lng": 10.2259
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "it": "Nel borgo di Solaio, a circa cinque minuti in auto da Pietrasanta, terratetto ristrutturato di 80 m² con vista mare. Su tre livelli offre zona giorno e pranzo, tre camere, un bagno e ripostiglio. Terreno di circa 400 m² e annesso utilizzato come lavanderia, deposito e posto auto. La fonte indica la possibilità di realizzare un secondo bagno, da verificare.",
+      "en": "Renovated 80 m² village house with sea views in Solaio, about five minutes by car from Pietrasanta. Three floors contain the living and dining area, three bedrooms, one bathroom and storage. Approximately 400 m² of land and an outbuilding used for laundry, storage and parking. The source mentions a possible second bathroom, subject to verification.",
+      "cs": "Zrekonstruovaný dům o ploše 80 m² s výhledem na moře v Solaiu, asi pět minut autem od Pietrasanty. Ve třech podlažích je obytná a jídelní část, tři ložnice, koupelna a komora. Pozemek má přibližně 400 m², vedlejší stavba slouží jako prádelna, sklad a parkovací prostor. Možnost druhé koupelny uvedenou ve zdroji je třeba ověřit."
+    },
+    "images": [
+      "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/01.jpg",
+      "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/02.jpg",
+      "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/03.jpg",
+      "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/04.jpg",
+      "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/05.jpg",
+      "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/06.jpg",
+      "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/07.jpg",
+      "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/08.jpg",
+      "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/09.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [],
+    "seoTitle": {
+      "it": "Terratetto vista mare a Solaio, Pietrasanta",
+      "en": "Sea-view village house in Solaio, Pietrasanta",
+      "cs": "Dům s výhledem na moře v Solaiu u Pietrasanty"
+    },
+    "seoDescription": {
+      "it": "Nel borgo di Solaio, a circa cinque minuti in auto da Pietrasanta, terratetto ristrutturato di 80 m² con vista mare.",
+      "en": "Renovated 80 m² village house with sea views in Solaio, about five minutes by car from Pietrasanta.",
+      "cs": "Zrekonstruovaný dům o ploše 80 m² s výhledem na moře v Solaiu, asi pět minut autem od Pietrasanty."
+    },
+    "keywords": [
+      "toscana",
+      "pietrasanta",
+      "house"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/127378181/",
+    "_createdAt": "2026-09-08T10:00:00.000Z",
+    "_updatedAt": "2026-09-08T10:00:00.000Z"
+  },
+  {
+    "_id": "local-import-toscana-casa-pieve-compito-capannori-128377910",
+    "_type": "listing",
+    "title": {
+      "it": "Casa in pietra con terreno a Pieve di Compito",
+      "en": "Stone house with land in Pieve di Compito",
+      "cs": "Kamenný dům s pozemkem v Pieve di Compito"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-casa-pieve-compito-capannori-128377910"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 295000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 160
+    },
+    "location": {
+      "city": {
+        "name": {
+          "it": "Capannori",
+          "en": "Capannori",
+          "cs": "Capannori"
+        },
+        "slug": {
+          "current": "capannori"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "it": "Italia",
+            "en": "Italy",
+            "cs": "Itálie"
+          }
+        }
+      },
+      "address": {
+        "it": "Via della Pieve",
+        "en": "Via della Pieve",
+        "cs": "Via della Pieve"
+      },
+      "coordinates": {
+        "lat": 43.7821,
+        "lng": 10.5774
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "it": "A Pieve di Compito, circa 9 km da Lucca, casa libera su tre lati di circa 160 m². Comprende una parte abitabile con cucina con camino, soggiorno, tre camere e due bagni, oltre a una seconda unità al grezzo con ingresso indipendente. Completano la proprietà una capanna di circa 50 m² su due piani, forno esterno, resede coperta di circa 40 m² e terreno di circa 4.500 m². Le eventuali trasformazioni della capanna e la piscina richiedono verifica tecnica e autorizzativa.",
+      "en": "Approximately 160 m² stone house with three free sides in Pieve di Compito, around 9 km from Lucca. The habitable section has a kitchen with fireplace, living room, three bedrooms and two bathrooms; a second unfinished unit has its own entrance. Also included are a two-storey barn of about 50 m², outdoor oven, covered courtyard of about 40 m² and roughly 4,500 m² of land. Barn conversion and a pool require technical and planning checks.",
+      "cs": "Kamenný dům o ploše přibližně 160 m², volný ze tří stran, v Pieve di Compito asi 9 km od Luccy. Obyvatelná část má kuchyni s krbem, obývací pokoj, tři ložnice a dvě koupelny; druhá nedokončená jednotka má vlastní vstup. Součástí je dvoupodlažní stodola asi 50 m², venkovní pec, krytý dvůr asi 40 m² a pozemek přibližně 4 500 m². Přestavba stodoly a bazén vyžadují technické posouzení a povolení."
+    },
+    "images": [
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/01.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/02.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/03.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/04.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/05.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/06.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/07.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/08.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/09.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/10.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/11.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/12.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/13.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/14.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/15.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/16.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/17.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/18.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/19.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/20.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/21.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/22.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/23.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/24.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/25.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/26.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/27.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/28.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/29.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/30.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/31.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/32.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/33.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/34.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/35.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/36.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/37.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/38.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/39.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/40.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/41.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/42.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/43.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/44.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/45.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/46.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/47.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/48.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/49.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/50.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/51.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/52.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/53.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/54.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/55.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/56.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/57.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/58.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/59.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/60.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/61.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/62.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/63.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/64.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/65.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/66.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/67.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/68.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/69.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/70.jpg",
+      "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/71.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [],
+    "seoTitle": {
+      "it": "Casa in pietra con terreno a Pieve di Compito",
+      "en": "Stone house with land in Pieve di Compito",
+      "cs": "Kamenný dům s pozemkem v Pieve di Compito"
+    },
+    "seoDescription": {
+      "it": "A Pieve di Compito, circa 9 km da Lucca, casa libera su tre lati di circa 160 m².",
+      "en": "Approximately 160 m² stone house with three free sides in Pieve di Compito, around 9 km from Lucca.",
+      "cs": "Kamenný dům o ploše přibližně 160 m², volný ze tří stran, v Pieve di Compito asi 9 km od Luccy."
+    },
+    "keywords": [
+      "toscana",
+      "capannori",
+      "house"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/128377910/",
+    "_createdAt": "2026-09-08T10:00:00.000Z",
+    "_updatedAt": "2026-09-08T10:00:00.000Z"
+  },
+  {
+    "_id": "local-import-toscana-casa-sommocolonia-barga-90676764",
+    "_type": "listing",
+    "title": {
+      "it": "Casa panoramica con patio a Sommocolonia, Barga",
+      "en": "Panoramic village house with patio in Sommocolonia, Barga",
+      "cs": "Dům s panoramatickým výhledem a patiem v Sommocolonii"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-casa-sommocolonia-barga-90676764"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 290000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "squareFootage": 190
+    },
+    "location": {
+      "city": {
+        "name": {
+          "it": "Barga",
+          "en": "Barga",
+          "cs": "Barga"
+        },
+        "slug": {
+          "current": "barga"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "it": "Italia",
+            "en": "Italy",
+            "cs": "Itálie"
+          }
+        }
+      },
+      "address": {
+        "it": "Sommocolonia",
+        "en": "Sommocolonia",
+        "cs": "Sommocolonia"
+      },
+      "coordinates": {
+        "lat": 44.09295,
+        "lng": 10.49051
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "it": "Nel borgo di Sommocolonia, vicino a Barga, casa ristrutturata con circa 190 m² abitabili oltre alle cantine. Distribuita su quattro livelli, offre quattro camere, due bagni, cucina, soggiorno con camino e locali accessori. Patio con pergola in legno e forno a legna, con vista sulla valle. La ristrutturazione conserva pavimenti in cotto, travi a vista e scale in pietra.",
+      "en": "Renovated village house in Sommocolonia near Barga, with around 190 m² of living space plus cellars. Four levels provide four bedrooms, two bathrooms, a kitchen, living room with fireplace and ancillary rooms. A patio with a timber pergola and wood-fired oven overlooks the valley. Terracotta floors, exposed beams and stone stairs retain the house’s traditional character.",
+      "cs": "Zrekonstruovaný dům v Sommocolonii u Bargy nabízí asi 190 m² obytné plochy a sklepy. Ve čtyřech úrovních jsou čtyři ložnice, dvě koupelny, kuchyně, obývací pokoj s krbem a vedlejší místnosti. Patio s dřevěnou pergolou a pecí na dřevo má výhled do údolí. Zachovány jsou terakotové podlahy, trámy a kamenné schodiště."
+    },
+    "images": [
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/01.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/02.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/03.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/04.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/05.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/06.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/07.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/08.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/09.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/10.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/11.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/12.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/13.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/14.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/15.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/16.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/17.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/18.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/19.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/20.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/21.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/22.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/23.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/24.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/25.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/26.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/27.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/28.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/29.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/30.jpg",
+      "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/31.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [],
+    "seoTitle": {
+      "it": "Casa panoramica con patio a Sommocolonia, Barga",
+      "en": "Panoramic village house with patio in Sommocolonia, Barga",
+      "cs": "Dům s panoramatickým výhledem a patiem v Sommocolonii"
+    },
+    "seoDescription": {
+      "it": "Nel borgo di Sommocolonia, vicino a Barga, casa ristrutturata con circa 190 m² abitabili oltre alle cantine.",
+      "en": "Renovated village house in Sommocolonia near Barga, with around 190 m² of living space plus cellars.",
+      "cs": "Zrekonstruovaný dům v Sommocolonii u Bargy nabízí asi 190 m² obytné plochy a sklepy."
+    },
+    "keywords": [
+      "toscana",
+      "barga",
+      "house"
+    ],
+    "sourceUrl": "https://www.rightmove.co.uk/properties/90676764",
+    "_createdAt": "2026-09-08T10:00:00.000Z",
+    "_updatedAt": "2026-09-08T10:00:00.000Z"
+  },
+  {
+    "_id": "local-import-toscana-rustico-valpromaro-massarosa-130818992",
+    "_type": "listing",
+    "title": {
+      "it": "Rustico in pietra con giardino a Valpromaro",
+      "en": "Stone village house with garden in Valpromaro",
+      "cs": "Kamenný dům se zahradou ve Valpromaru"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-rustico-valpromaro-massarosa-130818992"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 320000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "bedrooms": 5,
+      "bathrooms": 3,
+      "squareFootage": 298
+    },
+    "location": {
+      "city": {
+        "name": {
+          "it": "Massarosa",
+          "en": "Massarosa",
+          "cs": "Massarosa"
+        },
+        "slug": {
+          "current": "massarosa"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "it": "Italia",
+            "en": "Italy",
+            "cs": "Itálie"
+          }
+        }
+      },
+      "address": {
+        "it": "Via Provinciale",
+        "en": "Via Provinciale",
+        "cs": "Via Provinciale"
+      },
+      "coordinates": {
+        "lat": 43.9016,
+        "lng": 10.3775
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "it": "A Valpromaro, nel comune di Massarosa, rustico in pietra con giardino privato vicino a un torrente. La scheda indica 298 m², mentre il testo descrive circa 270 m². Al piano terra si trovano due locali commerciali con accesso indipendente; sopra, cucina, soggiorno, camere e bagni. Presenti vani seminterrati, resede di circa 110 m² e quattro camini. Il testo descrive quattro camere, mentre la scheda ne indica cinque: consistenza da confermare. L’eventuale conversione dei negozi in abitazione è soggetta a verifica.",
+      "en": "Stone village house in Valpromaro, Massarosa, with a private garden beside a stream. The listing shows 298 m², while its description states about 270 m². Two independently accessed commercial rooms occupy the ground floor, with kitchen, living room, bedrooms and bathrooms above. Basement storage, a courtyard of about 110 m² and four fireplaces are included. The text describes four bedrooms but the specification lists five; the layout needs confirmation. Residential conversion of the shops requires verification.",
+      "cs": "Kamenný dům ve Valpromaru u Massarosy má soukromou zahradu u potoka. Karta uvádí 298 m², popis přibližně 270 m². V přízemí jsou dva obchodní prostory s vlastními vstupy, výše kuchyně, obývací pokoj, ložnice a koupelny. Součástí jsou sklepní prostory, dvůr asi 110 m² a čtyři krby. Popis uvádí čtyři ložnice, karta pět; dispozici je třeba potvrdit. Změna obchodních prostor na bydlení vyžaduje ověření."
+    },
+    "images": [
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/01.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/02.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/03.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/04.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/05.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/06.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/07.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/08.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/09.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/10.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/11.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/12.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/13.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/14.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/15.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/16.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/17.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/18.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/19.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/20.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/21.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/22.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/23.jpg",
+      "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/24.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [],
+    "seoTitle": {
+      "it": "Rustico in pietra con giardino a Valpromaro",
+      "en": "Stone village house with garden in Valpromaro",
+      "cs": "Kamenný dům se zahradou ve Valpromaru"
+    },
+    "seoDescription": {
+      "it": "A Valpromaro, nel comune di Massarosa, rustico in pietra con giardino privato vicino a un torrente.",
+      "en": "Stone village house in Valpromaro, Massarosa, with a private garden beside a stream.",
+      "cs": "Kamenný dům ve Valpromaru u Massarosy má soukromou zahradu u potoka."
+    },
+    "keywords": [
+      "toscana",
+      "massarosa",
+      "house"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/130818992/",
+    "_createdAt": "2026-09-08T10:00:00.000Z",
+    "_updatedAt": "2026-09-08T10:00:00.000Z"
+  },
+  {
+    "_id": "local-import-toscana-capriccio-celle-puccini-pescaglia-5119267",
+    "_type": "listing",
+    "title": {
+      "it": "Il Capriccio: casa a Celle dei Puccini, Pescaglia",
+      "en": "Il Capriccio: village home in Celle dei Puccini, Pescaglia",
+      "cs": "Il Capriccio: dům v Celle dei Puccini u Pescaglie"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-capriccio-celle-puccini-pescaglia-5119267"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 235000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 123,
+      "rooms": 6
+    },
+    "location": {
+      "city": {
+        "name": {
+          "it": "Pescaglia",
+          "en": "Pescaglia",
+          "cs": "Pescaglia"
+        },
+        "slug": {
+          "current": "pescaglia"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "it": "Italia",
+            "en": "Italy",
+            "cs": "Itálie"
+          }
+        }
+      },
+      "address": {
+        "it": "Celle dei Puccini, Strada Provinciale 60",
+        "en": "Celle dei Puccini, Strada Provinciale 60",
+        "cs": "Celle dei Puccini, Strada Provinciale 60"
+      },
+      "coordinates": {
+        "lat": 43.96513,
+        "lng": 10.41166
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "it": "Nel borgo di Celle dei Puccini, porzione di edificio storico ristrutturato denominata Il Capriccio. Il testo descrive un’unità di circa 123 m² con due camere e due bagni, cucina e pranzo, soggiorno con camino, terrazzo, portico, lavanderia e cantina. Vendita arredata. Terreno di circa 1.015 m² condiviso con l’altra unità, dall’altro lato della strada e non adiacente alla casa. La scheda riporta dati diversi per camere, bagni e superficie commerciale: consistenza da verificare con l’agenzia.",
+      "en": "Il Capriccio is a renovated part of a historic building in Celle dei Puccini. The description identifies a unit of about 123 m² with two bedrooms and two bathrooms, kitchen and dining area, living room with fireplace, terrace, porch, laundry and cellar. Sold furnished. About 1,015 m² of land is shared with the other unit and lies across the road, away from the house. The listing’s summary gives different bedroom, bathroom and commercial-area figures; confirm the exact accommodation with the agent.",
+      "cs": "Il Capriccio je zrekonstruovaná část historického domu v Celle dei Puccini. Popis uvádí jednotku přibližně 123 m² se dvěma ložnicemi a dvěma koupelnami, kuchyní a jídelnou, obývacím pokojem s krbem, terasou, krytým vstupem, prádelnou a sklepem. Prodává se zařízená. Pozemek asi 1 015 m² je společný s druhou jednotkou a leží přes ulici, nikoli přímo u domu. Přehled ve zdroji uvádí odlišné počty pokojů, koupelen a obchodní plochu; přesný rozsah je nutné potvrdit s agenturou."
+    },
+    "images": [
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/01.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/02.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/03.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/04.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/05.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/06.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/07.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/08.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/09.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/10.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/11.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/12.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/13.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/14.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/15.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/16.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/17.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/18.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/19.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/20.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/21.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/22.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/23.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/24.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/25.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/26.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/27.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/28.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/29.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/30.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/31.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/32.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/33.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/34.jpg",
+      "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/35.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [],
+    "seoTitle": {
+      "it": "Il Capriccio: casa a Celle dei Puccini, Pescaglia",
+      "en": "Il Capriccio: village home in Celle dei Puccini, Pescaglia",
+      "cs": "Il Capriccio: dům v Celle dei Puccini u Pescaglie"
+    },
+    "seoDescription": {
+      "it": "Nel borgo di Celle dei Puccini, porzione di edificio storico ristrutturato denominata Il Capriccio.",
+      "en": "Il Capriccio is a renovated part of a historic building in Celle dei Puccini.",
+      "cs": "Il Capriccio je zrekonstruovaná část historického domu v Celle dei Puccini."
+    },
+    "keywords": [
+      "toscana",
+      "pescaglia",
+      "house"
+    ],
+    "sourceUrl": "https://www.risorseimmobiliari.it/lucca/vendita-rustico-casale-pescaglia-5119267.html",
+    "_createdAt": "2026-09-08T10:00:00.000Z",
+    "_updatedAt": "2026-09-08T10:00:00.000Z"
+  },
+  {
+    "_id": "local-import-toscana-ex-mulino-valdottavo-129179200",
+    "_type": "listing",
+    "title": {
+      "it": "Ex mulino ristrutturato a Valdottavo",
+      "en": "Renovated former mill in Valdottavo",
+      "cs": "Zrekonstruovaný bývalý mlýn ve Valdottavu"
+    },
+    "slug": {
+      "_type": "slug",
+      "current": "toscana-ex-mulino-valdottavo-129179200"
+    },
+    "propertyType": "house",
+    "price": {
+      "amount": 250000,
+      "currency": "EUR"
+    },
+    "specifications": {
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "squareFootage": 150,
+      "rooms": 4
+    },
+    "location": {
+      "city": {
+        "name": {
+          "it": "Borgo a Mozzano",
+          "en": "Borgo a Mozzano",
+          "cs": "Borgo a Mozzano"
+        },
+        "slug": {
+          "current": "borgo-a-mozzano"
+        },
+        "region": {
+          "name": {
+            "it": "Toscana",
+            "en": "Tuscany",
+            "cs": "Toskánsko"
+          },
+          "country": {
+            "it": "Italia",
+            "en": "Italy",
+            "cs": "Itálie"
+          }
+        }
+      },
+      "address": {
+        "it": "Località Molino di Fondo",
+        "en": "Località Molino di Fondo",
+        "cs": "Località Molino di Fondo"
+      },
+      "coordinates": {
+        "lat": 43.942,
+        "lng": 10.4826
+      }
+    },
+    "status": "available",
+    "featured": false,
+    "isNew": true,
+    "noAgency": false,
+    "description": {
+      "it": "A Valdottavo, nel comune di Borgo a Mozzano, ex mulino ristrutturato di circa 150 m², libero su tre lati. Il soggiorno con pavimento in legno e bagno di servizio si collega tramite scala interna in ferro alla cucina al piano seminterrato, con ripostiglio e lavanderia, e alla zona notte con due camere e bagno finestrato. Pietra e travi a vista si uniscono a finiture moderne. La fonte contiene indicazioni contrastanti sul posto auto: disponibilità da confermare.",
+      "en": "Renovated former mill of about 150 m² in Valdottavo, Borgo a Mozzano, with three free sides. A living room with timber flooring and guest bathroom connects via an iron staircase to the lower-ground kitchen, storage and laundry, and to the sleeping area with two bedrooms and a windowed bathroom. Exposed stone and beams combine with modern finishes. The source contradicts itself about parking, so availability must be confirmed.",
+      "cs": "Zrekonstruovaný bývalý mlýn o ploše asi 150 m² ve Valdottavu u Borgo a Mozzano, volný ze tří stran. Obývací pokoj s dřevěnou podlahou a koupelnou propojuje železné schodiště s kuchyní, komorou a prádelnou v suterénu i s částí se dvěma ložnicemi a koupelnou s oknem. Kamenné stěny a trámy doplňují moderní povrchy. Zdroj si protiřečí ohledně parkování; jeho dostupnost je třeba potvrdit."
+    },
+    "images": [
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/01.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/02.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/03.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/04.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/05.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/06.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/07.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/08.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/09.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/10.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/11.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/12.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/13.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/14.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/15.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/16.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/17.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/18.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/19.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/20.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/21.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/22.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/23.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/24.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/25.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/26.jpg",
+      "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/27.jpg"
+    ],
+    "mainImage": 0,
+    "amenities": [],
+    "seoTitle": {
+      "it": "Ex mulino ristrutturato a Valdottavo",
+      "en": "Renovated former mill in Valdottavo",
+      "cs": "Zrekonstruovaný bývalý mlýn ve Valdottavu"
+    },
+    "seoDescription": {
+      "it": "A Valdottavo, nel comune di Borgo a Mozzano, ex mulino ristrutturato di circa 150 m², libero su tre lati.",
+      "en": "Renovated former mill of about 150 m² in Valdottavo, Borgo a Mozzano, with three free sides.",
+      "cs": "Zrekonstruovaný bývalý mlýn o ploše asi 150 m² ve Valdottavu u Borgo a Mozzano, volný ze tří stran."
+    },
+    "keywords": [
+      "toscana",
+      "borgo a mozzano",
+      "house"
+    ],
+    "sourceUrl": "https://www.immobiliare.it/annunci/129179200/",
+    "_createdAt": "2026-09-08T10:00:00.000Z",
+    "_updatedAt": "2026-09-08T10:00:00.000Z"
+  },
+  {
     "_id": "local-import-toscana-casa-pietra-panoramica-barga-1787403957225-40ase",
     "_type": "listing",
     "title": {

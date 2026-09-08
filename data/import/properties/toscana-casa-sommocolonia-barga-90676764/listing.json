@@ -1,0 +1,118 @@
+{
+  "_id": "local-import-toscana-casa-sommocolonia-barga-90676764",
+  "_type": "listing",
+  "title": {
+    "it": "Casa panoramica con patio a Sommocolonia, Barga",
+    "en": "Panoramic village house with patio in Sommocolonia, Barga",
+    "cs": "Dům s panoramatickým výhledem a patiem v Sommocolonii"
+  },
+  "slug": {
+    "_type": "slug",
+    "current": "toscana-casa-sommocolonia-barga-90676764"
+  },
+  "propertyType": "house",
+  "price": {
+    "amount": 290000,
+    "currency": "EUR"
+  },
+  "specifications": {
+    "bedrooms": 4,
+    "bathrooms": 2,
+    "squareFootage": 190
+  },
+  "location": {
+    "city": {
+      "name": {
+        "it": "Barga",
+        "en": "Barga",
+        "cs": "Barga"
+      },
+      "slug": {
+        "current": "barga"
+      },
+      "region": {
+        "name": {
+          "it": "Toscana",
+          "en": "Tuscany",
+          "cs": "Toskánsko"
+        },
+        "country": {
+          "it": "Italia",
+          "en": "Italy",
+          "cs": "Itálie"
+        }
+      }
+    },
+    "address": {
+      "it": "Sommocolonia",
+      "en": "Sommocolonia",
+      "cs": "Sommocolonia"
+    },
+    "coordinates": {
+      "lat": 44.09295,
+      "lng": 10.49051
+    }
+  },
+  "status": "available",
+  "featured": false,
+  "isNew": true,
+  "noAgency": false,
+  "description": {
+    "it": "Nel borgo di Sommocolonia, vicino a Barga, casa ristrutturata con circa 190 m² abitabili oltre alle cantine. Distribuita su quattro livelli, offre quattro camere, due bagni, cucina, soggiorno con camino e locali accessori. Patio con pergola in legno e forno a legna, con vista sulla valle. La ristrutturazione conserva pavimenti in cotto, travi a vista e scale in pietra.",
+    "en": "Renovated village house in Sommocolonia near Barga, with around 190 m² of living space plus cellars. Four levels provide four bedrooms, two bathrooms, a kitchen, living room with fireplace and ancillary rooms. A patio with a timber pergola and wood-fired oven overlooks the valley. Terracotta floors, exposed beams and stone stairs retain the house’s traditional character.",
+    "cs": "Zrekonstruovaný dům v Sommocolonii u Bargy nabízí asi 190 m² obytné plochy a sklepy. Ve čtyřech úrovních jsou čtyři ložnice, dvě koupelny, kuchyně, obývací pokoj s krbem a vedlejší místnosti. Patio s dřevěnou pergolou a pecí na dřevo má výhled do údolí. Zachovány jsou terakotové podlahy, trámy a kamenné schodiště."
+  },
+  "images": [
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/01.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/02.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/03.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/04.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/05.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/06.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/07.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/08.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/09.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/10.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/11.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/12.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/13.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/14.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/15.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/16.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/17.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/18.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/19.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/20.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/21.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/22.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/23.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/24.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/25.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/26.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/27.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/28.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/29.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/30.jpg",
+    "/uploads/properties/toscana-casa-sommocolonia-barga-90676764/31.jpg"
+  ],
+  "mainImage": 0,
+  "amenities": [],
+  "seoTitle": {
+    "it": "Casa panoramica con patio a Sommocolonia, Barga",
+    "en": "Panoramic village house with patio in Sommocolonia, Barga",
+    "cs": "Dům s panoramatickým výhledem a patiem v Sommocolonii"
+  },
+  "seoDescription": {
+    "it": "Nel borgo di Sommocolonia, vicino a Barga, casa ristrutturata con circa 190 m² abitabili oltre alle cantine.",
+    "en": "Renovated village house in Sommocolonia near Barga, with around 190 m² of living space plus cellars.",
+    "cs": "Zrekonstruovaný dům v Sommocolonii u Bargy nabízí asi 190 m² obytné plochy a sklepy."
+  },
+  "keywords": [
+    "toscana",
+    "barga",
+    "house"
+  ],
+  "sourceUrl": "https://www.rightmove.co.uk/properties/90676764",
+  "_createdAt": "2026-09-08T10:00:00.000Z",
+  "_updatedAt": "2026-09-08T10:00:00.000Z"
+}

@@ -1,0 +1,97 @@
+{
+  "_id": "local-import-toscana-terratetto-solaio-pietrasanta-127378181",
+  "_type": "listing",
+  "title": {
+    "it": "Terratetto vista mare a Solaio, Pietrasanta",
+    "en": "Sea-view village house in Solaio, Pietrasanta",
+    "cs": "Dům s výhledem na moře v Solaiu u Pietrasanty"
+  },
+  "slug": {
+    "_type": "slug",
+    "current": "toscana-terratetto-solaio-pietrasanta-127378181"
+  },
+  "propertyType": "house",
+  "price": {
+    "amount": 292000,
+    "currency": "EUR"
+  },
+  "specifications": {
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "squareFootage": 80,
+    "rooms": 4
+  },
+  "location": {
+    "city": {
+      "name": {
+        "it": "Pietrasanta",
+        "en": "Pietrasanta",
+        "cs": "Pietrasanta"
+      },
+      "slug": {
+        "current": "pietrasanta"
+      },
+      "region": {
+        "name": {
+          "it": "Toscana",
+          "en": "Tuscany",
+          "cs": "Toskánsko"
+        },
+        "country": {
+          "it": "Italia",
+          "en": "Italy",
+          "cs": "Itálie"
+        }
+      }
+    },
+    "address": {
+      "it": "via Castello",
+      "en": "via Castello",
+      "cs": "via Castello"
+    },
+    "coordinates": {
+      "lat": 43.9828,
+      "lng": 10.2259
+    }
+  },
+  "status": "available",
+  "featured": false,
+  "isNew": true,
+  "noAgency": false,
+  "description": {
+    "it": "Nel borgo di Solaio, a circa cinque minuti in auto da Pietrasanta, terratetto ristrutturato di 80 m² con vista mare. Su tre livelli offre zona giorno e pranzo, tre camere, un bagno e ripostiglio. Terreno di circa 400 m² e annesso utilizzato come lavanderia, deposito e posto auto. La fonte indica la possibilità di realizzare un secondo bagno, da verificare.",
+    "en": "Renovated 80 m² village house with sea views in Solaio, about five minutes by car from Pietrasanta. Three floors contain the living and dining area, three bedrooms, one bathroom and storage. Approximately 400 m² of land and an outbuilding used for laundry, storage and parking. The source mentions a possible second bathroom, subject to verification.",
+    "cs": "Zrekonstruovaný dům o ploše 80 m² s výhledem na moře v Solaiu, asi pět minut autem od Pietrasanty. Ve třech podlažích je obytná a jídelní část, tři ložnice, koupelna a komora. Pozemek má přibližně 400 m², vedlejší stavba slouží jako prádelna, sklad a parkovací prostor. Možnost druhé koupelny uvedenou ve zdroji je třeba ověřit."
+  },
+  "images": [
+    "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/01.jpg",
+    "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/02.jpg",
+    "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/03.jpg",
+    "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/04.jpg",
+    "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/05.jpg",
+    "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/06.jpg",
+    "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/07.jpg",
+    "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/08.jpg",
+    "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/09.jpg"
+  ],
+  "mainImage": 0,
+  "amenities": [],
+  "seoTitle": {
+    "it": "Terratetto vista mare a Solaio, Pietrasanta",
+    "en": "Sea-view village house in Solaio, Pietrasanta",
+    "cs": "Dům s výhledem na moře v Solaiu u Pietrasanty"
+  },
+  "seoDescription": {
+    "it": "Nel borgo di Solaio, a circa cinque minuti in auto da Pietrasanta, terratetto ristrutturato di 80 m² con vista mare.",
+    "en": "Renovated 80 m² village house with sea views in Solaio, about five minutes by car from Pietrasanta.",
+    "cs": "Zrekonstruovaný dům o ploše 80 m² s výhledem na moře v Solaiu, asi pět minut autem od Pietrasanty."
+  },
+  "keywords": [
+    "toscana",
+    "pietrasanta",
+    "house"
+  ],
+  "sourceUrl": "https://www.immobiliare.it/annunci/127378181/",
+  "_createdAt": "2026-09-08T10:00:00.000Z",
+  "_updatedAt": "2026-09-08T10:00:00.000Z"
+}

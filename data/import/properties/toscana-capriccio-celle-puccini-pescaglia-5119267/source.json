@@ -1,0 +1,159 @@
+{
+  "har": "6.har",
+  "sourceUrl": "https://www.risorseimmobiliari.it/lucca/vendita-rustico-casale-pescaglia-5119267.html",
+  "capturedAt": "2026-09-07T11:20:14.268Z",
+  "httpStatus": 200,
+  "extracted": {
+    "city": "Pescaglia",
+    "address": "Celle dei Puccini, Strada Provinciale 60",
+    "priceLabel": "235000",
+    "surface": "123",
+    "bedrooms": "2",
+    "bathrooms": "2",
+    "rooms": "6",
+    "latitude": 43.96513,
+    "longitude": 10.41166
+  },
+  "media": [
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_211690.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/01.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_637810.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/02.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_462898.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/03.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_819419.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/04.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_323801.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/05.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_683394.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/06.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_737963.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/07.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_111537.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/08.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_531643.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/09.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_894932.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/10.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_653464.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/11.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_829131.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/12.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_800723.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/13.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_703541.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/14.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_540628.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/15.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_598895.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/16.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_811955.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/17.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_764850.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/18.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_418011.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/19.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_465116.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/20.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_378370.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/21.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_326047.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/22.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_714048.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/23.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_520410.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/24.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_813476.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/25.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_955445.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/26.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_249809.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/27.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_984649.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/28.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_237852.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/29.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_526424.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/30.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_607881.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/31.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_332061.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/32.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_611648.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/33.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_170599.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/34.jpg"
+    },
+    {
+      "sourceUrl": "https://agestanet.risorseimmobiliari.it/public/annunci/08754/2592020/F_590705.jpg",
+      "localPath": "/uploads/properties/toscana-capriccio-celle-puccini-pescaglia-5119267/35.jpg"
+    }
+  ]
+}

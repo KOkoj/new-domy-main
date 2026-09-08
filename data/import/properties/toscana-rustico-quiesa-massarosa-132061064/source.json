@@ -1,0 +1,174 @@
+{
+  "har": "1.har",
+  "sourceUrl": "https://www.immobiliare.it/annunci/132061064/",
+  "capturedAt": "2026-09-07T11:07:24.053Z",
+  "httpStatus": 200,
+  "extracted": {
+    "url": "https://www.immobiliare.it/annunci/132061064/",
+    "title": "Rustico, ottimo stato, 170 m², Bozzano, Quiesa, Massarosa",
+    "typology": "Rustico - Casale",
+    "contract": "sale",
+    "city": "Massarosa",
+    "zone": "",
+    "address": "",
+    "streetNumber": "",
+    "latitude": 43.8542,
+    "longitude": 10.3603,
+    "description": "Nostra Esclusiva Quiesa Terratetto in stile rustico finemente ristrutturato cosi' suddiviso; Piano terra, ingresso, soggiorno, cucina e sala da pranzo, camera o studio.Piano mezzanino, bagno.Piano primo, tre camere, di cui una con bagno.Piano secondo, due grandi vani.Giardino e resede sul retro,parcheggio sul davanti.Classe \"G\" IPE 186,07 kWh/m2a.Rif.5046/R.Richiesta Eu..270.000 Classe Energetica: G EPI: 186,07 kwh/m2 anno",
+    "priceLabel": "270000",
+    "surface": "170 m²",
+    "rooms": "5+",
+    "bedrooms": "5",
+    "bathrooms": "2",
+    "advertiserLogo": null,
+    "mainPhoto": "https://pwm.im-cdn.it/image/1995938830/cover-m-c.jpg",
+    "planPhoto": null,
+    "gallery": [
+      "https://pwm.im-cdn.it/image/1995938830/cover-m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941698/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941702/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941708/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941716/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941722/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941728/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941732/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941740/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941744/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941752/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941756/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1995941764/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1995941770/xxl.jpg"
+    ],
+    "galleryDetails": [
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1995938830/cover-m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Salone",
+        "url": "https://pwm.im-cdn.it/image/1995941698/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1995941702/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Salone",
+        "url": "https://pwm.im-cdn.it/image/1995941708/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1995941716/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1995941722/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1995941728/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1995941732/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1995941740/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1995941744/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1995941752/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1995941756/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Terreno",
+        "url": "https://pwm.im-cdn.it/image/1995941764/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Giardino",
+        "url": "https://pwm.im-cdn.it/image/1995941770/xxl.jpg"
+      }
+    ],
+    "saved": {}
+  },
+  "media": [
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995938830/cover-m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/01.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941698/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/02.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941702/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/03.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941708/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/04.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941716/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/05.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941722/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/06.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941728/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/07.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941732/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/08.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941740/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/09.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941744/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/10.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941752/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/11.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941756/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/12.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941764/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/13.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1995941770/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/14.jpg"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "_id": "local-import-toscana-rustico-valpromaro-massarosa-130818992",
+  "_type": "listing",
+  "title": {
+    "it": "Rustico in pietra con giardino a Valpromaro",
+    "en": "Stone village house with garden in Valpromaro",
+    "cs": "Kamenný dům se zahradou ve Valpromaru"
+  },
+  "slug": {
+    "_type": "slug",
+    "current": "toscana-rustico-valpromaro-massarosa-130818992"
+  },
+  "propertyType": "house",
+  "price": {
+    "amount": 320000,
+    "currency": "EUR"
+  },
+  "specifications": {
+    "bedrooms": 5,
+    "bathrooms": 3,
+    "squareFootage": 298
+  },
+  "location": {
+    "city": {
+      "name": {
+        "it": "Massarosa",
+        "en": "Massarosa",
+        "cs": "Massarosa"
+      },
+      "slug": {
+        "current": "massarosa"
+      },
+      "region": {
+        "name": {
+          "it": "Toscana",
+          "en": "Tuscany",
+          "cs": "Toskánsko"
+        },
+        "country": {
+          "it": "Italia",
+          "en": "Italy",
+          "cs": "Itálie"
+        }
+      }
+    },
+    "address": {
+      "it": "Via Provinciale",
+      "en": "Via Provinciale",
+      "cs": "Via Provinciale"
+    },
+    "coordinates": {
+      "lat": 43.9016,
+      "lng": 10.3775
+    }
+  },
+  "status": "available",
+  "featured": false,
+  "isNew": true,
+  "noAgency": false,
+  "description": {
+    "it": "A Valpromaro, nel comune di Massarosa, rustico in pietra con giardino privato vicino a un torrente. La scheda indica 298 m², mentre il testo descrive circa 270 m². Al piano terra si trovano due locali commerciali con accesso indipendente; sopra, cucina, soggiorno, camere e bagni. Presenti vani seminterrati, resede di circa 110 m² e quattro camini. Il testo descrive quattro camere, mentre la scheda ne indica cinque: consistenza da confermare. L’eventuale conversione dei negozi in abitazione è soggetta a verifica.",
+    "en": "Stone village house in Valpromaro, Massarosa, with a private garden beside a stream. The listing shows 298 m², while its description states about 270 m². Two independently accessed commercial rooms occupy the ground floor, with kitchen, living room, bedrooms and bathrooms above. Basement storage, a courtyard of about 110 m² and four fireplaces are included. The text describes four bedrooms but the specification lists five; the layout needs confirmation. Residential conversion of the shops requires verification.",
+    "cs": "Kamenný dům ve Valpromaru u Massarosy má soukromou zahradu u potoka. Karta uvádí 298 m², popis přibližně 270 m². V přízemí jsou dva obchodní prostory s vlastními vstupy, výše kuchyně, obývací pokoj, ložnice a koupelny. Součástí jsou sklepní prostory, dvůr asi 110 m² a čtyři krby. Popis uvádí čtyři ložnice, karta pět; dispozici je třeba potvrdit. Změna obchodních prostor na bydlení vyžaduje ověření."
+  },
+  "images": [
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/01.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/02.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/03.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/04.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/05.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/06.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/07.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/08.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/09.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/10.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/11.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/12.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/13.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/14.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/15.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/16.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/17.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/18.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/19.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/20.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/21.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/22.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/23.jpg",
+    "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/24.jpg"
+  ],
+  "mainImage": 0,
+  "amenities": [],
+  "seoTitle": {
+    "it": "Rustico in pietra con giardino a Valpromaro",
+    "en": "Stone village house with garden in Valpromaro",
+    "cs": "Kamenný dům se zahradou ve Valpromaru"
+  },
+  "seoDescription": {
+    "it": "A Valpromaro, nel comune di Massarosa, rustico in pietra con giardino privato vicino a un torrente.",
+    "en": "Stone village house in Valpromaro, Massarosa, with a private garden beside a stream.",
+    "cs": "Kamenný dům ve Valpromaru u Massarosy má soukromou zahradu u potoka."
+  },
+  "keywords": [
+    "toscana",
+    "massarosa",
+    "house"
+  ],
+  "sourceUrl": "https://www.immobiliare.it/annunci/130818992/",
+  "_createdAt": "2026-09-08T10:00:00.000Z",
+  "_updatedAt": "2026-09-08T10:00:00.000Z"
+}

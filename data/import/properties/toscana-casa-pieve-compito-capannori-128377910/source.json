@@ -1,0 +1,744 @@
+{
+  "har": "3.har",
+  "sourceUrl": "https://www.immobiliare.it/annunci/128377910/",
+  "capturedAt": "2026-09-07T11:09:03.213Z",
+  "httpStatus": 200,
+  "extracted": {
+    "url": "https://www.immobiliare.it/annunci/128377910/",
+    "title": "Terratetto unifamiliare via della Pieve, Pieve di Compito - Sant'Andrea di Compito, Capannori",
+    "typology": "Casa indipendente",
+    "contract": "sale",
+    "city": "Capannori",
+    "zone": "",
+    "address": "Via della Pieve",
+    "streetNumber": "",
+    "latitude": 43.7821,
+    "longitude": 10.5774,
+    "description": "Lucca, località Pieve di Compito - Comune di Capannori Codice immobile: CSI369 - Info WhatsApp al nr. 3382028622 Nella verde campagna del Compitese, a 9 km da Lucca, proponiamo in vendita interessante Casa semi indipendente, libera su tre lati, dotata di capanna su due piani, resede e terreno di proprietà. L'immobile, posto in posizione rialzata, misura complessivamente circa 160 mq disposti su tre piani. Allo stato attuale risultano due unità abitative con due accessi indipendenti ideali per due nuclei familiari ma è anche possibile utilizzare l'immobile come unica abitazione. La Casa è in tipico stile rustico toscano arricchita dalla bella facciata in pietra a vista direttamente sulla resede di proprietà dove insiste una bella capanna di circa 50 mq su due piani dotata di bel forno esterno e di una resede di circa 40 mq coperta da una tettoia. al momento la capanna è utilizzata come rimessa e lavanderia ma ha la potenzialità per essere trasformata in una graziosa dependance. L'abitazione si compone al piano terra da ingresso, soggiorno, cucina abitabile con camino a legna e vano scale con ripostiglio sottoscala. Salendo la caratteristica scala in pietra di Matraia ai accede al piano primo dove troviamo due camere grandi con travi e mezzane di cotto a vista, disimpegno e bagno finestrato con doccia. Proseguendo sopra troviamo il disimpegno, un'altra camera matrimoniale, una stanza antibagno e un secondo bagno con doccia. Di fianco, l'altra unità è al grezzo ed è composta al piano terra da un'ampia stanza e vano scale. Al piano sopra da un'altra stanza. Nel caso di necessità, questi vani sono collegabili facilmente all'unità principale. La proprietà è arricchita da circa 4.500 mq di terreno dove è possibile realizzare una piscina. La localizzazione dell'immobile sulla mappa è approssimativa, informazioni più dettagliate in agenzia - codice immobile: CSI369. Real Estate Lucca srls - servizi immobiliari, Via dei Salicchi 711, loc. San Marco, Lucca, Tel. 0583 551235 / Sito: realestatelucca.it / E-mail: giacomo@realestatelucca.it",
+    "priceLabel": "295000",
+    "surface": "160 m²",
+    "rooms": "5+",
+    "bedrooms": "3",
+    "bathrooms": "2",
+    "advertiserLogo": "https://pic.im-cdn.it/imagenoresize/1277353209.jpg",
+    "mainPhoto": "https://pwm.im-cdn.it/image/1931467052/cover-m-c.jpg",
+    "planPhoto": "https://pic.im-cdn.it/plan/125764214/m.jpg",
+    "gallery": [
+      "https://pwm.im-cdn.it/image/1931467052/cover-m-c.jpg",
+      "https://pwm.im-cdn.it/image/1931467196/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1907344654/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1907344658/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1907344664/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1907344670/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1907344678/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1907344690/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1907344696/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1907344702/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1907344712/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344720/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344730/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344736/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344752/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344762/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344766/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344774/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344782/xxs-c.jpg",
+      "https://pwm.im-cdn.it/image/1907344792/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344796/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344800/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344814/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344824/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344830/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344840/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344846/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344850/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344862/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344874/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344886/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344890/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344894/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344904/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344912/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344920/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344930/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344936/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344942/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344952/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344958/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344970/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344976/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344988/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907345002/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907345010/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907345026/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907345034/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907345050/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1931467250/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907360344/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907361162/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907361276/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907361336/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907361406/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907361482/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907361566/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1931467102/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344650/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907344642/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907362640/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907362794/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907362856/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907362910/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907363182/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907363286/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907363392/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907363570/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907363610/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907363646/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1907363670/xxl.jpg"
+    ],
+    "galleryDetails": [
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1931467052/cover-m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1931467196/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Ingresso",
+        "url": "https://pwm.im-cdn.it/image/1907344654/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Soggiorno",
+        "url": "https://pwm.im-cdn.it/image/1907344658/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Soggiorno",
+        "url": "https://pwm.im-cdn.it/image/1907344664/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Soggiorno",
+        "url": "https://pwm.im-cdn.it/image/1907344670/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Soggiorno",
+        "url": "https://pwm.im-cdn.it/image/1907344678/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Soggiorno",
+        "url": "https://pwm.im-cdn.it/image/1907344690/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Disimpegno",
+        "url": "https://pwm.im-cdn.it/image/1907344696/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1907344702/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1907344712/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1907344720/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1907344730/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1907344736/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907344752/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Scala",
+        "url": "https://pwm.im-cdn.it/image/1907344762/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Ingresso",
+        "url": "https://pwm.im-cdn.it/image/1907344766/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Scala",
+        "url": "https://pwm.im-cdn.it/image/1907344774/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344782/xxs-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344792/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344796/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344800/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344814/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Vista",
+        "url": "https://pwm.im-cdn.it/image/1907344824/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Vista",
+        "url": "https://pwm.im-cdn.it/image/1907344830/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Vista",
+        "url": "https://pwm.im-cdn.it/image/1907344840/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Disimpegno",
+        "url": "https://pwm.im-cdn.it/image/1907344846/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1907344850/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1907344862/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1907344874/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1907344886/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344890/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344894/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344904/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Scala",
+        "url": "https://pwm.im-cdn.it/image/1907344912/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Disimpegno",
+        "url": "https://pwm.im-cdn.it/image/1907344920/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Disimpegno",
+        "url": "https://pwm.im-cdn.it/image/1907344930/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344936/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344942/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344952/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1907344958/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Studio",
+        "url": "https://pwm.im-cdn.it/image/1907344970/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Studio",
+        "url": "https://pwm.im-cdn.it/image/1907344976/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Studio",
+        "url": "https://pwm.im-cdn.it/image/1907344988/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1907345002/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1907345010/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1907345026/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1907345034/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1907345050/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1931467250/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907360344/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907361162/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907361276/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907361336/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907361406/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907361482/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907361566/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1931467102/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907344650/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907344642/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907362640/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Dettagli",
+        "url": "https://pwm.im-cdn.it/image/1907362794/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Posto macchina",
+        "url": "https://pwm.im-cdn.it/image/1907362856/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Posto macchina",
+        "url": "https://pwm.im-cdn.it/image/1907362910/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Terreno",
+        "url": "https://pwm.im-cdn.it/image/1907363182/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Terreno",
+        "url": "https://pwm.im-cdn.it/image/1907363286/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Terreno",
+        "url": "https://pwm.im-cdn.it/image/1907363392/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Terreno",
+        "url": "https://pwm.im-cdn.it/image/1907363570/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Terreno",
+        "url": "https://pwm.im-cdn.it/image/1907363610/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Terreno",
+        "url": "https://pwm.im-cdn.it/image/1907363646/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Terreno",
+        "url": "https://pwm.im-cdn.it/image/1907363670/xxl.jpg"
+      }
+    ],
+    "saved": {}
+  },
+  "media": [
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1931467052/cover-m-c.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/01.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1931467196/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/02.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344654/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/03.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344658/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/04.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344664/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/05.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344670/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/06.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344678/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/07.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344690/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/08.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344696/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/09.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344702/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/10.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344712/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/11.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344720/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/12.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344730/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/13.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344736/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/14.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344752/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/15.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344762/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/16.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344766/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/17.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344774/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/18.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344782/xxs-c.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/19.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344792/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/20.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344796/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/21.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344800/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/22.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344814/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/23.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344824/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/24.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344830/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/25.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344840/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/26.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344846/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/27.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344850/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/28.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344862/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/29.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344874/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/30.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344886/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/31.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344890/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/32.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344894/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/33.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344904/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/34.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344912/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/35.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344920/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/36.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344930/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/37.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344936/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/38.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344942/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/39.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344952/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/40.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344958/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/41.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344970/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/42.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344976/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/43.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344988/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/44.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907345002/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/45.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907345010/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/46.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907345026/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/47.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907345034/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/48.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907345050/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/49.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1931467250/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/50.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907360344/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/51.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907361162/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/52.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907361276/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/53.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907361336/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/54.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907361406/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/55.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907361482/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/56.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907361566/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/57.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1931467102/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/58.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344650/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/59.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907344642/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/60.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907362640/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/61.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907362794/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/62.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907362856/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/63.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907362910/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/64.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907363182/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/65.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907363286/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/66.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907363392/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/67.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907363570/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/68.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907363610/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/69.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907363646/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/70.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1907363670/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/71.jpg"
+    }
+  ]
+}

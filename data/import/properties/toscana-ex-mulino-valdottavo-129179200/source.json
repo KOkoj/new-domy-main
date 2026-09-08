@@ -1,0 +1,304 @@
+{
+  "har": "7.har",
+  "sourceUrl": "https://www.immobiliare.it/annunci/129179200/",
+  "capturedAt": "2026-09-07T11:24:15.598Z",
+  "httpStatus": 200,
+  "extracted": {
+    "url": "https://www.immobiliare.it/annunci/129179200/",
+    "title": "Terratetto unifamiliare Località Molino di Fondo, Valdottavo, Borgo a Mozzano",
+    "typology": "Casa indipendente",
+    "contract": "sale",
+    "city": "Borgo a Mozzano",
+    "zone": "",
+    "address": "Località Molino di Fondo",
+    "streetNumber": "",
+    "latitude": 43.942,
+    "longitude": 10.4826,
+    "description": "Nel comune di Borgo a Mozzano, nella località di Valdottavo, proponiamo in vendita un elegante ex mulino completamente ristrutturato di circa 150 mq, libero su tre lati e caratterizzato da ambienti luminosi, accoglienti e rifiniture moderne di ottimo livello. L’immobile conserva ancora oggi alcuni dettagli originali che ne esaltano il fascino e il carattere, come pareti in pietra e travi a vista, perfettamente armonizzati con elementi dal gusto contemporaneo. La casa si sviluppa su più livelli collegati da una particolare scala interna in ferro che dona personalità e modernità agli ambienti. Al piano terra troviamo un ampio soggiorno con pavimentazione in legno, ambiente ideale per momenti di relax e convivialità, oltre ad un bagno di servizio rifinito con gusto. Il piano seminterrato ospita la cucina con angolo cottura, ben organizzata e funzionale, ed un comodo ripostiglio/lavanderia utilizzabile anche come locale tecnico. La zona notte, situata al piano superiore, è composta da: una spaziosa camera matrimoniale, una cameretta, un bagno finestrato. L’abitazione gode di ottima luminosità grazie alle numerose finestre presenti in tutti gli ambienti, che rendono gli spazi piacevoli e ben arieggiati durante tutta la giornata. Completa la proprietà un posto auto privato. L'immobile non dispone di posto auto. Soluzione ideale per chi desidera una casa già ristrutturata, pronta da abitare, che unisce il fascino rustico delle caratteristiche originali allo stile moderno e ricercato, situata in una zona tranquilla ma comoda ai principali servizi. Richiesta: 250.000 €.",
+    "priceLabel": "250000",
+    "surface": "150 m²",
+    "rooms": "4",
+    "bedrooms": "2",
+    "bathrooms": "2",
+    "advertiserLogo": "https://pic.im-cdn.it/imagenoresize/1502331901.jpg",
+    "mainPhoto": "https://pwm.im-cdn.it/image/1926759882/cover-m-c.jpg",
+    "planPhoto": "https://pic.im-cdn.it/plan/127552812/m.jpg",
+    "gallery": [
+      "https://pwm.im-cdn.it/image/1926759882/cover-m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926760124/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926760056/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926760066/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926759926/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926759932/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926760076/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926759972/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926759966/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926759920/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926759906/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926759898/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926759960/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1926759912/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926759940/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926759950/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926759944/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926759986/xxs-c.jpg",
+      "https://pwm.im-cdn.it/image/1926759978/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926759996/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926760012/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926760004/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926760020/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926760030/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926760040/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926760050/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1926760098/xxl.jpg"
+    ],
+    "galleryDetails": [
+      {
+        "type": null,
+        "caption": "Interno palazzo",
+        "url": "https://pwm.im-cdn.it/image/1926759882/cover-m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1926760124/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Stanza non arredata",
+        "url": "https://pwm.im-cdn.it/image/1926760056/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Ufficio",
+        "url": "https://pwm.im-cdn.it/image/1926760066/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Stanza non arredata",
+        "url": "https://pwm.im-cdn.it/image/1926759926/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Interno palazzo",
+        "url": "https://pwm.im-cdn.it/image/1926759932/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1926760076/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Studio",
+        "url": "https://pwm.im-cdn.it/image/1926759972/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1926759966/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Interno palazzo",
+        "url": "https://pwm.im-cdn.it/image/1926759920/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Interno palazzo",
+        "url": "https://pwm.im-cdn.it/image/1926759906/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1926759898/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Scala",
+        "url": "https://pwm.im-cdn.it/image/1926759960/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Interno non residenziale",
+        "url": "https://pwm.im-cdn.it/image/1926759912/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Interno palazzo",
+        "url": "https://pwm.im-cdn.it/image/1926759940/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Ufficio",
+        "url": "https://pwm.im-cdn.it/image/1926759950/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Stanza non arredata",
+        "url": "https://pwm.im-cdn.it/image/1926759944/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1926759986/xxs-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1926759978/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Ufficio",
+        "url": "https://pwm.im-cdn.it/image/1926759996/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1926760012/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Stanza non arredata",
+        "url": "https://pwm.im-cdn.it/image/1926760004/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1926760020/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1926760030/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1926760040/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1926760050/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Ingresso",
+        "url": "https://pwm.im-cdn.it/image/1926760098/xxl.jpg"
+      }
+    ],
+    "saved": {}
+  },
+  "media": [
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759882/cover-m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/01.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926760124/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/02.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926760056/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/03.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926760066/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/04.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759926/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/05.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759932/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/06.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926760076/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/07.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759972/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/08.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759966/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/09.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759920/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/10.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759906/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/11.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759898/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/12.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759960/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/13.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759912/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/14.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759940/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/15.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759950/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/16.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759944/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/17.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759986/xxs-c.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/18.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759978/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/19.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926759996/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/20.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926760012/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/21.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926760004/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/22.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926760020/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/23.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926760030/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/24.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926760040/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/25.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926760050/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/26.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1926760098/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/27.jpg"
+    }
+  ]
+}
