@@ -1,0 +1,158 @@
+{
+  "_id": "local-import-toscana-casa-pieve-compito-capannori-128377910",
+  "_type": "listing",
+  "title": {
+    "it": "Casa in pietra con terreno a Pieve di Compito",
+    "en": "Stone house with land in Pieve di Compito",
+    "cs": "Kamenný dům s pozemkem v Pieve di Compito"
+  },
+  "slug": {
+    "_type": "slug",
+    "current": "toscana-casa-pieve-compito-capannori-128377910"
+  },
+  "propertyType": "house",
+  "price": {
+    "amount": 295000,
+    "currency": "EUR"
+  },
+  "specifications": {
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "squareFootage": 160
+  },
+  "location": {
+    "city": {
+      "name": {
+        "it": "Capannori",
+        "en": "Capannori",
+        "cs": "Capannori"
+      },
+      "slug": {
+        "current": "capannori"
+      },
+      "region": {
+        "name": {
+          "it": "Toscana",
+          "en": "Tuscany",
+          "cs": "Toskánsko"
+        },
+        "country": {
+          "it": "Italia",
+          "en": "Italy",
+          "cs": "Itálie"
+        }
+      }
+    },
+    "address": {
+      "it": "Via della Pieve",
+      "en": "Via della Pieve",
+      "cs": "Via della Pieve"
+    },
+    "coordinates": {
+      "lat": 43.7821,
+      "lng": 10.5774
+    }
+  },
+  "status": "available",
+  "featured": false,
+  "isNew": true,
+  "noAgency": false,
+  "description": {
+    "it": "A Pieve di Compito, circa 9 km da Lucca, casa libera su tre lati di circa 160 m². Comprende una parte abitabile con cucina con camino, soggiorno, tre camere e due bagni, oltre a una seconda unità al grezzo con ingresso indipendente. Completano la proprietà una capanna di circa 50 m² su due piani, forno esterno, resede coperta di circa 40 m² e terreno di circa 4.500 m². Le eventuali trasformazioni della capanna e la piscina richiedono verifica tecnica e autorizzativa.",
+    "en": "Approximately 160 m² stone house with three free sides in Pieve di Compito, around 9 km from Lucca. The habitable section has a kitchen with fireplace, living room, three bedrooms and two bathrooms; a second unfinished unit has its own entrance. Also included are a two-storey barn of about 50 m², outdoor oven, covered courtyard of about 40 m² and roughly 4,500 m² of land. Barn conversion and a pool require technical and planning checks.",
+    "cs": "Kamenný dům o ploše přibližně 160 m², volný ze tří stran, v Pieve di Compito asi 9 km od Luccy. Obyvatelná část má kuchyni s krbem, obývací pokoj, tři ložnice a dvě koupelny; druhá nedokončená jednotka má vlastní vstup. Součástí je dvoupodlažní stodola asi 50 m², venkovní pec, krytý dvůr asi 40 m² a pozemek přibližně 4 500 m². Přestavba stodoly a bazén vyžadují technické posouzení a povolení."
+  },
+  "images": [
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/01.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/02.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/03.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/04.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/05.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/06.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/07.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/08.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/09.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/10.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/11.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/12.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/13.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/14.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/15.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/16.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/17.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/18.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/19.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/20.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/21.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/22.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/23.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/24.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/25.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/26.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/27.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/28.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/29.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/30.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/31.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/32.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/33.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/34.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/35.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/36.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/37.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/38.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/39.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/40.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/41.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/42.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/43.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/44.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/45.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/46.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/47.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/48.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/49.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/50.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/51.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/52.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/53.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/54.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/55.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/56.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/57.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/58.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/59.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/60.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/61.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/62.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/63.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/64.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/65.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/66.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/67.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/68.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/69.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/70.jpg",
+    "/uploads/properties/toscana-casa-pieve-compito-capannori-128377910/71.jpg"
+  ],
+  "mainImage": 0,
+  "amenities": [],
+  "seoTitle": {
+    "it": "Casa in pietra con terreno a Pieve di Compito",
+    "en": "Stone house with land in Pieve di Compito",
+    "cs": "Kamenný dům s pozemkem v Pieve di Compito"
+  },
+  "seoDescription": {
+    "it": "A Pieve di Compito, circa 9 km da Lucca, casa libera su tre lati di circa 160 m².",
+    "en": "Approximately 160 m² stone house with three free sides in Pieve di Compito, around 9 km from Lucca.",
+    "cs": "Kamenný dům o ploše přibližně 160 m², volný ze tří stran, v Pieve di Compito asi 9 km od Luccy."
+  },
+  "keywords": [
+    "toscana",
+    "capannori",
+    "house"
+  ],
+  "sourceUrl": "https://www.immobiliare.it/annunci/128377910/",
+  "_createdAt": "2026-09-08T10:00:00.000Z",
+  "_updatedAt": "2026-09-08T10:00:00.000Z"
+}

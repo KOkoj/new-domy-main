@@ -1,0 +1,101 @@
+{
+  "_id": "local-import-toscana-rustico-quiesa-massarosa-132061064",
+  "_type": "listing",
+  "title": {
+    "it": "Rustico ristrutturato con giardino a Quiesa",
+    "en": "Renovated rustic house with garden in Quiesa",
+    "cs": "Zrekonstruovaný rustikální dům se zahradou v Quiese"
+  },
+  "slug": {
+    "_type": "slug",
+    "current": "toscana-rustico-quiesa-massarosa-132061064"
+  },
+  "propertyType": "house",
+  "price": {
+    "amount": 270000,
+    "currency": "EUR"
+  },
+  "specifications": {
+    "bedrooms": 5,
+    "bathrooms": 2,
+    "squareFootage": 170
+  },
+  "location": {
+    "city": {
+      "name": {
+        "it": "Massarosa",
+        "en": "Massarosa",
+        "cs": "Massarosa"
+      },
+      "slug": {
+        "current": "massarosa"
+      },
+      "region": {
+        "name": {
+          "it": "Toscana",
+          "en": "Tuscany",
+          "cs": "Toskánsko"
+        },
+        "country": {
+          "it": "Italia",
+          "en": "Italy",
+          "cs": "Itálie"
+        }
+      }
+    },
+    "address": {
+      "it": "Quiesa",
+      "en": "Quiesa",
+      "cs": "Quiesa"
+    },
+    "coordinates": {
+      "lat": 43.8542,
+      "lng": 10.3603
+    }
+  },
+  "status": "available",
+  "featured": false,
+  "isNew": true,
+  "noAgency": false,
+  "description": {
+    "it": "A Quiesa, nel comune di Massarosa, terratetto ristrutturato di 170 m² su più livelli. Il piano terra ospita soggiorno, cucina, sala da pranzo e una stanza utilizzabile come camera o studio; ai piani superiori si trovano tre camere, due bagni complessivi e due grandi vani al secondo piano. Giardino e resede sul retro, spazio per parcheggiare davanti. La scheda della fonte riporta cinque camere. Classe energetica G.",
+    "en": "Renovated 170 m² house over several levels in Quiesa, Massarosa. The ground floor has a living room, kitchen, dining room and a bedroom or study. Above are three bedrooms, two bathrooms in total and two large top-floor rooms. There is a rear garden and courtyard, with parking space in front. The source lists five bedrooms overall. Energy class G.",
+    "cs": "Zrekonstruovaný dům o ploše 170 m² v Quiese u Massarosy má několik podlaží. V přízemí je obývací pokoj, kuchyně, jídelna a pokoj vhodný jako ložnice nebo pracovna. Výše jsou tři ložnice, celkem dvě koupelny a dva velké pokoje v posledním patře. Za domem je zahrada a dvůr, před domem prostor k parkování. Zdroj uvádí celkem pět ložnic. Energetická třída G."
+  },
+  "images": [
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/01.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/02.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/03.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/04.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/05.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/06.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/07.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/08.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/09.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/10.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/11.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/12.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/13.jpg",
+    "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/14.jpg"
+  ],
+  "mainImage": 0,
+  "amenities": [],
+  "seoTitle": {
+    "it": "Rustico ristrutturato con giardino a Quiesa",
+    "en": "Renovated rustic house with garden in Quiesa",
+    "cs": "Zrekonstruovaný rustikální dům se zahradou v Quiese"
+  },
+  "seoDescription": {
+    "it": "A Quiesa, nel comune di Massarosa, terratetto ristrutturato di 170 m² su più livelli.",
+    "en": "Renovated 170 m² house over several levels in Quiesa, Massarosa.",
+    "cs": "Zrekonstruovaný dům o ploše 170 m² v Quiese u Massarosy má několik podlaží."
+  },
+  "keywords": [
+    "toscana",
+    "massarosa",
+    "house"
+  ],
+  "sourceUrl": "https://www.immobiliare.it/annunci/132061064/",
+  "_createdAt": "2026-09-08T10:00:00.000Z",
+  "_updatedAt": "2026-09-08T10:00:00.000Z"
+}

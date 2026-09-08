@@ -1,0 +1,124 @@
+{
+  "har": "2.har",
+  "sourceUrl": "https://www.immobiliare.it/annunci/127378181/",
+  "capturedAt": "2026-09-07T11:07:51.625Z",
+  "httpStatus": 200,
+  "extracted": {
+    "url": "https://www.immobiliare.it/annunci/127378181/",
+    "title": "Terratetto plurifamiliare via Castello 7, Pietrasanta",
+    "typology": "Casa indipendente",
+    "contract": "sale",
+    "city": "Pietrasanta",
+    "zone": "",
+    "address": "via Castello",
+    "streetNumber": "7",
+    "latitude": 43.9828,
+    "longitude": 10.2259,
+    "description": "Località: · Solaio, 5 minuti di macchina dal centro storico storico di Pietrasanta. · Zona verde e tranquilla, piccolo borgo. · Ha vista mare. Tipo di immobile: · Terratetto (casa indipendente su più livelli). · Completamente ristrutturato e subito abitabile. Distribuzione interna (3 piani): · Piano terra: soggiorno + zona pranzo · Primo piano: camera matrimoniale + bagno con doccia · Secondo piano: o camera matrimoniale o camera singola o ripostiglio o possibilità di fare un bagno al piano. Spazi esterni: · Terreno di circa 400 m² · Annesso davanti alla casa usato come: o lavanderia o rimessa attrezzi o posto auto Ideale per: · chi cerca tranquillità e natura.",
+    "priceLabel": "292000",
+    "surface": "80 m²",
+    "rooms": "4",
+    "bedrooms": "3",
+    "bathrooms": "1",
+    "advertiserLogo": "https://pic.im-cdn.it/imagenoresize/1562252619.jpg",
+    "mainPhoto": "https://pwm.im-cdn.it/image/1883060791/cover-m-c.jpg",
+    "planPhoto": "https://pic.im-cdn.it/plan/123833294/m.jpg",
+    "gallery": [
+      "https://pwm.im-cdn.it/image/1883060791/cover-m-c.jpg",
+      "https://pwm.im-cdn.it/image/1883060799/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1883060805/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1883060809/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1883060817/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1883060819/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1883060825/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1883060829/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1883060835/m-c.jpg"
+    ],
+    "galleryDetails": [
+      {
+        "type": null,
+        "caption": "Salone",
+        "url": "https://pwm.im-cdn.it/image/1883060791/cover-m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Terreno",
+        "url": "https://pwm.im-cdn.it/image/1883060799/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Vista",
+        "url": "https://pwm.im-cdn.it/image/1883060805/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cucina",
+        "url": "https://pwm.im-cdn.it/image/1883060809/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1883060817/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1883060819/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1883060825/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1883060829/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1883060835/m-c.jpg"
+      }
+    ],
+    "saved": {}
+  },
+  "media": [
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1883060791/cover-m-c.jpg",
+      "localPath": "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/01.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1883060799/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/02.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1883060805/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/03.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1883060809/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/04.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1883060817/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/05.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1883060819/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/06.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1883060825/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/07.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1883060829/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/08.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1883060835/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/09.jpg"
+    }
+  ]
+}

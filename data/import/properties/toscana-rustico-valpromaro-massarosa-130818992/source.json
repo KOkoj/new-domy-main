@@ -1,0 +1,274 @@
+{
+  "har": "5.har",
+  "sourceUrl": "https://www.immobiliare.it/annunci/130818992/",
+  "capturedAt": "2026-09-07T11:15:38.954Z",
+  "httpStatus": 200,
+  "extracted": {
+    "url": "https://www.immobiliare.it/annunci/130818992/",
+    "title": "Rustico via Provinciale 91, Pieve a Elici, Montigiano, Gualdo, Massarosa",
+    "typology": "Rustico - Casale",
+    "contract": "sale",
+    "city": "Massarosa",
+    "zone": "",
+    "address": "Via Provinciale",
+    "streetNumber": "91",
+    "latitude": 43.9016,
+    "longitude": 10.3775,
+    "description": "valpromaro ( massarosa ) vendesi bellissimo rustico di paese di 270 mq. tutto in pietra con un bel giardino privato confinante con un torrente dall'acqua pulitissima e freschissima. valpromaro piccolo borgo immerso nel verde ricadente meta' nel comune di massarosa e meta' nel comune di lucca, molto apprezzato dagli stranieri e non solo, l'immobile tra l'altro e' molto vicino alla via francigena , con posto di ristoro, itinerario culturale del cosiglio d'europa. il casolare tipico dei fabbricati a schiera delle corti lucchesi posto nel comune di massarosa, e' stato costruito in pietra e mattoni con solai in travi e travicelli di legno ed e' cosi' composto : ( piano terra) , ingresso, che disimpegna due vani per negozio, uno con servizio igienico, ed hanno anche accesso indipendente. ( per questi locali,vi e' la possibilita' di cambio di destinazione di uso in civile abitazione).il piano primo e' composto da disimpegno, cucina, sala, camera matrimoniale e bagno, al piano secondo troviamo disimpegno, 3 camere matrimoniali e bagno. infine, vano seminterrato in parte fuoriterra, composto da 2 vani ad uso ripostiglio e vano scale per l'accesso ai piani superiori . resede eslcusiva di circa 110 mq. rich. euro 320.000. rif. antonella. adatto anche per due nuclei familiari. nell'immobile ci sono 4 camini funzionanti.",
+    "priceLabel": "320000",
+    "surface": "298 m²",
+    "rooms": "5+",
+    "bedrooms": "5",
+    "bathrooms": "3",
+    "advertiserLogo": "https://pic.im-cdn.it/imagenoresize/1790565145.jpg",
+    "mainPhoto": "https://pwm.im-cdn.it/image/1966685982/cover-m-c.jpg",
+    "planPhoto": "https://pic.im-cdn.it/plan/130888126/m.jpg",
+    "gallery": [
+      "https://pwm.im-cdn.it/image/1966685982/cover-m-c.jpg",
+      "https://pwm.im-cdn.it/image/1966686020/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1966685910/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1966686004/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1966685966/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1966686086/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1966685830/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1966685844/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1966685856/m-c.jpg",
+      "https://pwm.im-cdn.it/image/1966685866/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966685878/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966685888/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966685898/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966685920/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966685936/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966685950/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966685958/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966685994/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966686034/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966686042/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966686056/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966686066/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966686076/xxl.jpg",
+      "https://pwm.im-cdn.it/image/1966686096/xxl.jpg"
+    ],
+    "galleryDetails": [
+      {
+        "type": null,
+        "caption": "Facciata",
+        "url": "https://pwm.im-cdn.it/image/1966685982/cover-m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Facciata",
+        "url": "https://pwm.im-cdn.it/image/1966686020/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Giardino",
+        "url": "https://pwm.im-cdn.it/image/1966685910/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Giardino",
+        "url": "https://pwm.im-cdn.it/image/1966686004/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Giardino",
+        "url": "https://pwm.im-cdn.it/image/1966685966/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Giardino",
+        "url": "https://pwm.im-cdn.it/image/1966686086/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Salone",
+        "url": "https://pwm.im-cdn.it/image/1966685830/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1966685844/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Salone",
+        "url": "https://pwm.im-cdn.it/image/1966685856/m-c.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Giardino",
+        "url": "https://pwm.im-cdn.it/image/1966685866/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Salone",
+        "url": "https://pwm.im-cdn.it/image/1966685878/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1966685888/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Salone",
+        "url": "https://pwm.im-cdn.it/image/1966685898/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1966685920/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Bagno",
+        "url": "https://pwm.im-cdn.it/image/1966685936/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Giardino",
+        "url": "https://pwm.im-cdn.it/image/1966685950/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Salone",
+        "url": "https://pwm.im-cdn.it/image/1966685958/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1966685994/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Piscina",
+        "url": "https://pwm.im-cdn.it/image/1966686034/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Cantina",
+        "url": "https://pwm.im-cdn.it/image/1966686042/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Giardino",
+        "url": "https://pwm.im-cdn.it/image/1966686056/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Corridoio",
+        "url": "https://pwm.im-cdn.it/image/1966686066/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Camera da letto",
+        "url": "https://pwm.im-cdn.it/image/1966686076/xxl.jpg"
+      },
+      {
+        "type": null,
+        "caption": "Planimetria",
+        "url": "https://pwm.im-cdn.it/image/1966686096/xxl.jpg"
+      }
+    ],
+    "saved": {}
+  },
+  "media": [
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685982/cover-m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/01.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966686020/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/02.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685910/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/03.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966686004/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/04.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685966/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/05.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966686086/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/06.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685830/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/07.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685844/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/08.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685856/m-c.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/09.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685866/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/10.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685878/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/11.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685888/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/12.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685898/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/13.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685920/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/14.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685936/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/15.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685950/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/16.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685958/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/17.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966685994/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/18.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966686034/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/19.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966686042/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/20.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966686056/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/21.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966686066/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/22.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966686076/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/23.jpg"
+    },
+    {
+      "sourceUrl": "https://pwm.im-cdn.it/image/1966686096/xxl.jpg",
+      "localPath": "/uploads/properties/toscana-rustico-valpromaro-massarosa-130818992/24.jpg"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "_id": "local-import-toscana-ex-mulino-valdottavo-129179200",
+  "_type": "listing",
+  "title": {
+    "it": "Ex mulino ristrutturato a Valdottavo",
+    "en": "Renovated former mill in Valdottavo",
+    "cs": "Zrekonstruovaný bývalý mlýn ve Valdottavu"
+  },
+  "slug": {
+    "_type": "slug",
+    "current": "toscana-ex-mulino-valdottavo-129179200"
+  },
+  "propertyType": "house",
+  "price": {
+    "amount": 250000,
+    "currency": "EUR"
+  },
+  "specifications": {
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "squareFootage": 150,
+    "rooms": 4
+  },
+  "location": {
+    "city": {
+      "name": {
+        "it": "Borgo a Mozzano",
+        "en": "Borgo a Mozzano",
+        "cs": "Borgo a Mozzano"
+      },
+      "slug": {
+        "current": "borgo-a-mozzano"
+      },
+      "region": {
+        "name": {
+          "it": "Toscana",
+          "en": "Tuscany",
+          "cs": "Toskánsko"
+        },
+        "country": {
+          "it": "Italia",
+          "en": "Italy",
+          "cs": "Itálie"
+        }
+      }
+    },
+    "address": {
+      "it": "Località Molino di Fondo",
+      "en": "Località Molino di Fondo",
+      "cs": "Località Molino di Fondo"
+    },
+    "coordinates": {
+      "lat": 43.942,
+      "lng": 10.4826
+    }
+  },
+  "status": "available",
+  "featured": false,
+  "isNew": true,
+  "noAgency": false,
+  "description": {
+    "it": "A Valdottavo, nel comune di Borgo a Mozzano, ex mulino ristrutturato di circa 150 m², libero su tre lati. Il soggiorno con pavimento in legno e bagno di servizio si collega tramite scala interna in ferro alla cucina al piano seminterrato, con ripostiglio e lavanderia, e alla zona notte con due camere e bagno finestrato. Pietra e travi a vista si uniscono a finiture moderne. La fonte contiene indicazioni contrastanti sul posto auto: disponibilità da confermare.",
+    "en": "Renovated former mill of about 150 m² in Valdottavo, Borgo a Mozzano, with three free sides. A living room with timber flooring and guest bathroom connects via an iron staircase to the lower-ground kitchen, storage and laundry, and to the sleeping area with two bedrooms and a windowed bathroom. Exposed stone and beams combine with modern finishes. The source contradicts itself about parking, so availability must be confirmed.",
+    "cs": "Zrekonstruovaný bývalý mlýn o ploše asi 150 m² ve Valdottavu u Borgo a Mozzano, volný ze tří stran. Obývací pokoj s dřevěnou podlahou a koupelnou propojuje železné schodiště s kuchyní, komorou a prádelnou v suterénu i s částí se dvěma ložnicemi a koupelnou s oknem. Kamenné stěny a trámy doplňují moderní povrchy. Zdroj si protiřečí ohledně parkování; jeho dostupnost je třeba potvrdit."
+  },
+  "images": [
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/01.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/02.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/03.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/04.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/05.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/06.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/07.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/08.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/09.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/10.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/11.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/12.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/13.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/14.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/15.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/16.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/17.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/18.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/19.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/20.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/21.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/22.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/23.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/24.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/25.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/26.jpg",
+    "/uploads/properties/toscana-ex-mulino-valdottavo-129179200/27.jpg"
+  ],
+  "mainImage": 0,
+  "amenities": [],
+  "seoTitle": {
+    "it": "Ex mulino ristrutturato a Valdottavo",
+    "en": "Renovated former mill in Valdottavo",
+    "cs": "Zrekonstruovaný bývalý mlýn ve Valdottavu"
+  },
+  "seoDescription": {
+    "it": "A Valdottavo, nel comune di Borgo a Mozzano, ex mulino ristrutturato di circa 150 m², libero su tre lati.",
+    "en": "Renovated former mill of about 150 m² in Valdottavo, Borgo a Mozzano, with three free sides.",
+    "cs": "Zrekonstruovaný bývalý mlýn o ploše asi 150 m² ve Valdottavu u Borgo a Mozzano, volný ze tří stran."
+  },
+  "keywords": [
+    "toscana",
+    "borgo a mozzano",
+    "house"
+  ],
+  "sourceUrl": "https://www.immobiliare.it/annunci/129179200/",
+  "_createdAt": "2026-09-08T10:00:00.000Z",
+  "_updatedAt": "2026-09-08T10:00:00.000Z"
+}
