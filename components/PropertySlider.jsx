@@ -8,7 +8,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import PropertyImage from '@/components/PropertyImage'
 import { getPropertyImage } from '@/lib/getPropertyImage'
-import { getLocalizedValue } from '@/lib/propertyDisplay'
+import { getLocalizedValue, getPropertyRegionTranslations } from '@/lib/propertyDisplay'
 import NewPropertyRibbon from '@/components/NewPropertyRibbon'
 import NoAgencyBadge from '@/components/NoAgencyBadge'
 
@@ -61,14 +61,6 @@ function getPropertyHref(property) {
 }
 
 function transformProperty(prop, index) {
-  const regionName =
-    prop.location?.city?.region?.name?.en ||
-    prop.location?.city?.region?.name?.it ||
-    prop.location?.city?.region?.name?.cs ||
-    prop.location?.city?.name?.it ||
-    prop.location?.city?.name ||
-    'Italy'
-
   const titleI18n = {
     en: prop.title?.en || prop.title?.it || prop.title?.cs || (typeof prop.title === 'string' ? prop.title : 'Property'),
     it: prop.title?.it || prop.title?.en || prop.title?.cs || (typeof prop.title === 'string' ? prop.title : 'Property'),
@@ -78,7 +70,7 @@ function transformProperty(prop, index) {
   return {
     id: prop._id || `prop-${index}`,
     titleI18n,
-    region: regionName,
+    regionI18n: getPropertyRegionTranslations(prop),
     price: prop.price?.amount || 0,
     currency: prop.price?.currency || 'EUR',
     bedrooms: prop.specifications?.bedrooms || 0,
@@ -190,7 +182,7 @@ function SlideCard({ property, language, labels }) {
         </h3>
         <div className="flex items-center gap-1 text-xs text-gray-500">
           <MapPin className="h-3 w-3 flex-shrink-0" />
-          <span className="truncate">{property.region}</span>
+          <span className="truncate">{getLocalizedValue(property.regionI18n, language)}</span>
         </div>
         <div className="flex items-center gap-3 text-xs text-gray-500 mt-auto pt-1 border-t border-gray-50">
           {property.bedrooms > 0 && (

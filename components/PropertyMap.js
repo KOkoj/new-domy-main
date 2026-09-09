@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { X, BedDouble, Square as SquareIcon, ChevronRight } from 'lucide-react';
+import { getLocalizedValue } from '@/lib/propertyDisplay';
 import { formatPriceCompact } from '@/lib/currency';
 
 const CSS_FILES = [
@@ -104,7 +105,7 @@ function MapPropertyCard({ property, currency = 'EUR', language = 'cs', onClose,
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={property.image}
-            alt={property.title || ''}
+            alt={getLocalizedValue(property.titleI18n || property.title, language, '')}
             className="h-full w-full object-cover"
             loading="lazy"
           />
@@ -112,7 +113,7 @@ function MapPropertyCard({ property, currency = 'EUR', language = 'cs', onClose,
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close"
+          aria-label={language === 'cs' ? 'Zavřít' : language === 'it' ? 'Chiudi' : 'Close'}
           className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-md transition-colors hover:bg-white"
         >
           <X className="h-4 w-4" />
@@ -125,9 +126,9 @@ function MapPropertyCard({ property, currency = 'EUR', language = 'cs', onClose,
       </div>
       <div className="p-3">
         <h4 className="mb-1 line-clamp-2 text-sm font-semibold leading-snug text-gray-900">
-          {property.title}
+          {getLocalizedValue(property.titleI18n || property.title, language)}
         </h4>
-        <p className="mb-2 text-xs text-gray-500">{property.region}</p>
+        <p className="mb-2 text-xs text-gray-500">{getLocalizedValue(property.regionI18n || property.region, language)}</p>
         <div className="mb-3 flex items-center gap-4 text-xs text-gray-600">
           {property.bedrooms > 0 && (
             <span className="flex items-center gap-1">

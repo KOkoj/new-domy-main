@@ -160,7 +160,7 @@ export default function PropertyCard({
               <div className="p-1 bg-slate-100 rounded-lg mr-2 group-hover:bg-slate-200 transition-colors duration-300">
                 <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-slate-600 group-hover:text-slate-700 transition-colors duration-300" />
               </div>
-              <span className="font-medium" data-testid="property-region">{property.region}</span>
+              <span className="font-medium" data-testid="property-region">{getLocalizedValue(property.regionI18n || property.region, language)}</span>
             </div>
           </div>
 

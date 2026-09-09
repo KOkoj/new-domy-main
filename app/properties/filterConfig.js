@@ -27,6 +27,66 @@ export const REGION_LABEL_BY_SLUG = {
   veneto: 'Veneto'
 };
 
+const REGION_TRANSLATIONS = {
+  "calabria": [
+    "Calabria",
+    "Kalábrie"
+  ],
+  "campania": [
+    "Campania",
+    "Kampánie"
+  ],
+  "friuli-venezia-giulia": [
+    "Friuli-Venezia Giulia",
+    "Furlansko-Julské Benátsko"
+  ],
+  "liguria": [
+    "Liguria",
+    "Ligurie"
+  ],
+  "lombardy": [
+    "Lombardia",
+    "Lombardie"
+  ],
+  "piemonte": [
+    "Piemonte",
+    "Piemont"
+  ],
+  "sardegna": [
+    "Sardegna",
+    "Sardinie"
+  ],
+  "sicilia": [
+    "Sicilia",
+    "Sicílie"
+  ],
+  "toscana": [
+    "Toscana",
+    "Toskánsko"
+  ],
+  "trentino-alto-adige": [
+    "Trentino-Alto Adige",
+    "Tridentsko-Horní Adiže"
+  ],
+  "umbria": [
+    "Umbria",
+    "Umbrie"
+  ],
+  "valle-d-aosta": [
+    "Valle d'Aosta",
+    "Údolí Aosty"
+  ],
+  "veneto": [
+    "Veneto",
+    "Benátsko"
+  ]
+}
+export const REGION_LABELS = Object.fromEntries(
+  Object.entries(REGION_LABEL_BY_SLUG).map(([slug, en]) => [slug, {
+    en, it: REGION_TRANSLATIONS[slug]?.[0] || en, cs: REGION_TRANSLATIONS[slug]?.[1] || en,
+  }])
+)
+
 const REGION_SLUG_ALIASES = {
   lombardia: 'lombardy',
   piedmont: 'piemonte',
