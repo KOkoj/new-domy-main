@@ -27,7 +27,7 @@ import Navigation from '@/components/Navigation';
 import { resolvePropertyType, getLocalizedValue } from '@/lib/propertyDisplay';
 import { t } from '@/lib/translations';
 import {
-  REGION_LABEL_BY_SLUG,
+  REGION_LABELS,
   toRegionSlug,
   propertyTypes,
   ROOM_LAYOUT_OPTIONS,
@@ -93,7 +93,10 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   const [currency, setCurrency] = useState('EUR');
 
   // Properties state
-  const properties = initialProperties;
+  const properties = useMemo(() => initialProperties.map(property => ({
+    ...property,
+    region: getLocalizedValue(property.regionI18n || property.region, language, ''),
+  })), [initialProperties, language]);
   const [userFavorites, setUserFavorites] = useState(new Set());
   
   // Pagination state
@@ -338,6 +341,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
           localizedTitle,
           property.description || '',
           property.region || '',
+          propertyTypes.find(type => type.id === property.type)?.name?.[language] || '',
+          ...amenities.filter(amenity => property.amenities?.includes(amenity.id)).map(amenity => amenity.name[language]),
           ...(property.amenities || [])
         ]
           .join(' ')
@@ -471,28 +476,18 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
 
   // Static whisper suggestions pool
   const staticSuggestions = useMemo(() => [
-    // Regions
-    { label: language === 'cs' ? 'Toskánsko' : 'Toscana', value: 'toscana', category: language === 'cs' ? 'Region' : 'Regione' },
-    { label: 'Puglia', value: 'puglia', category: language === 'cs' ? 'Region' : 'Regione' },
-    { label: language === 'cs' ? 'Sicílie' : 'Sicilia', value: 'sicilia', category: language === 'cs' ? 'Region' : 'Regione' },
-    { label: 'Umbria', value: 'umbria', category: language === 'cs' ? 'Region' : 'Regione' },
-    { label: 'Liguria', value: 'liguria', category: language === 'cs' ? 'Region' : 'Regione' },
-    { label: language === 'cs' ? 'Sardinie' : 'Sardegna', value: 'sardegna', category: language === 'cs' ? 'Region' : 'Regione' },
-    { label: 'Abruzzo', value: 'abruzzo', category: language === 'cs' ? 'Region' : 'Regione' },
-    { label: 'Campania', value: 'campania', category: language === 'cs' ? 'Region' : 'Regione' },
-    { label: 'Calabria', value: 'calabria', category: language === 'cs' ? 'Region' : 'Regione' },
-    { label: 'Marche', value: 'marche', category: language === 'cs' ? 'Region' : 'Regione' },
-    // Types
-    { label: language === 'cs' ? 'Vila' : 'Villa', value: 'villa', category: language === 'cs' ? 'Typ' : 'Tipo' },
-    { label: language === 'cs' ? 'Rustiko' : 'Rustico', value: 'rustico', category: language === 'cs' ? 'Typ' : 'Tipo' },
-    { label: language === 'cs' ? 'Byt' : 'Appartamento', value: language === 'cs' ? 'byt' : 'appartamento', category: language === 'cs' ? 'Typ' : 'Tipo' },
-    { label: language === 'cs' ? 'Dům' : 'Casa', value: language === 'cs' ? 'dum' : 'casa', category: language === 'cs' ? 'Typ' : 'Tipo' },
-    // Amenities
-    { label: language === 'cs' ? 'Bazén' : 'Piscina', value: language === 'cs' ? 'bazén' : 'piscina', category: language === 'cs' ? 'Vybavení' : 'Servizi' },
-    { label: language === 'cs' ? 'Zahrada' : 'Giardino', value: language === 'cs' ? 'zahrada' : 'giardino', category: language === 'cs' ? 'Vybavení' : 'Servizi' },
-    { label: language === 'cs' ? 'Výhled na moře' : 'Vista mare', value: language === 'cs' ? 'moře' : 'mare', category: language === 'cs' ? 'Vybavení' : 'Servizi' },
-    { label: language === 'cs' ? 'Terasa' : 'Terrazza', value: language === 'cs' ? 'terasa' : 'terrazza', category: language === 'cs' ? 'Vybavení' : 'Servizi' },
-  ], [language]);
+    ...Object.entries(REGION_LABELS).map(([slug, names]) => ({
+      label: names[language] || names.en, value: slug, category: pageLabels.region,
+    })),
+    ...propertyTypes.map(({ id, name }) => ({
+      label: name[language] || name.en, value: id,
+      category: language === 'cs' ? 'Typ' : language === 'it' ? 'Tipo' : 'Type',
+    })),
+    ...amenities.map(({ id, name }) => ({
+      label: name[language] || name.en, value: id,
+      category: language === 'cs' ? 'Vybavení' : language === 'it' ? 'Servizi' : 'Amenities',
+    })),
+  ], [language, pageLabels.region]);
 
   // Dynamic suggestions from loaded properties
   const dynamicSuggestions = useMemo(() => {
@@ -503,8 +498,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
           ? (p.titleI18n[language] || p.titleI18n.en || '')
           : (p.title || '');
         return [
-          title && { label: title, value: title.toLowerCase(), category: language === 'cs' ? 'Nemovitost' : 'Immobile' },
-          p.region && { label: p.region, value: p.region.toLowerCase(), category: language === 'cs' ? 'Region' : 'Regione' },
+          title && { label: title, value: title.toLowerCase(), category: language === 'cs' ? 'Nemovitost' : language === 'it' ? 'Immobile' : 'Property' },
+          p.region && { label: p.region, value: p.region.toLowerCase(), category: pageLabels.region },
         ].filter(Boolean);
       })
       .filter(s => {
@@ -555,7 +550,11 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 text-center">
             {pageLabels.title}
           </h1>
-          {intro}
+          {intro && (
+            <p className="text-sm sm:text-base text-gray-600 text-center mb-4 max-w-2xl mx-auto leading-relaxed px-2">
+              {getLocalizedValue(intro, language)}
+            </p>
+          )}
           <p className="text-sm text-gray-400 text-center mb-5">
             {language === 'cs' ? 'Vyhledejte podle lokality, typu nebo vybavení' :
              language === 'it' ? 'Cerca per posizione, tipo o servizi' :
@@ -723,8 +722,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                       className="w-full p-3 pr-10 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm hover:border-gray-400 transition-colors duration-200 font-medium text-gray-700 appearance-none bg-no-repeat bg-right-2 bg-[length:16px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQgNkw4IDEwTDEyIDYiIHN0cm9rZT0iIzY0NzQ4QiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K')]"
                     >
                       <option value="">{pageLabels.allRegions}</option>
-                      {Object.entries(REGION_LABEL_BY_SLUG).map(([regionSlug, regionLabel]) => (
-                        <option key={regionSlug} value={regionSlug}>{regionLabel}</option>
+                      {Object.entries(REGION_LABELS).map(([regionSlug, regionLabel]) => (
+                        <option key={regionSlug} value={regionSlug}>{regionLabel[language] || regionLabel.en}</option>
                       ))}
                     </select>
                   </div>
@@ -911,8 +910,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                         className="w-full rounded-lg border border-gray-300 bg-white p-2 text-sm font-medium text-gray-700 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500"
                       >
                         <option value="">{pageLabels.allRegions}</option>
-                        {Object.entries(REGION_LABEL_BY_SLUG).map(([regionSlug, regionLabel]) => (
-                          <option key={regionSlug} value={regionSlug}>{regionLabel}</option>
+                        {Object.entries(REGION_LABELS).map(([regionSlug, regionLabel]) => (
+                          <option key={regionSlug} value={regionSlug}>{regionLabel[language] || regionLabel.en}</option>
                         ))}
                       </select>
                     </div>
