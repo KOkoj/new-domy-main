@@ -59,6 +59,11 @@
         { source: `/properties/${key}`, destination: `/properties/${alias.primarySlug}`, statusCode: 301 },
         { source: `/properties/${key}/`, destination: `/properties/${alias.primarySlug}`, statusCode: 301 },
       ])),
+      // Legacy pages must redirect before rendering or slash normalization.
+      { source: '/nas-proces', destination: '/process', statusCode: 301 },
+      { source: '/nas-proces/', destination: '/process', statusCode: 301 },
+      { source: '/regiony', destination: '/regions', statusCode: 301 },
+      { source: '/regiony/', destination: '/regions', statusCode: 301 },
       // Preserve Next's existing no-trailing-slash 308 for all other URLs.
       { source: '/:path+/', destination: '/:path+', permanent: true },
       {
