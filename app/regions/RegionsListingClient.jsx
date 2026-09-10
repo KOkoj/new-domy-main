@@ -373,7 +373,7 @@ function RegionCard({ region, language = 'en' }) {
   )
 }
 
-export default function RegionsListingClient({ initialRegions, initialProperties = [] }) {
+export default function RegionsListingClient({ initialRegions, initialProperties = [], sliderProperties }) {
   const [language, setLanguage] = useState('cs')
   const [regionsData, setRegionsData] = useState(initialRegions)
   const mobileFeaturedRegions = regionsData.slice(0, 5)
@@ -677,7 +677,7 @@ export default function RegionsListingClient({ initialRegions, initialProperties
         </div>
       </div>
 
-      <PropertySlider language={language} initialProperties={initialProperties} />
+      <PropertySlider language={language} initialProperties={initialProperties} preparedProperties={sliderProperties} />
       <Footer language={language} />
     </div>
   )

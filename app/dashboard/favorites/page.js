@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import PropertyImage from '@/components/PropertyImage'
 import { getPropertyImage } from '@/lib/getPropertyImage'
+import { resolvePropertyId } from '@/lib/propertyAliases'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -125,7 +126,7 @@ export default function FavoritesManagement() {
       // 3. Enrich favorites with property data
       const enrichedFavorites = (userFavorites || []).map(fav => {
         // Handle listing_id (snake_case from DB)
-        const listingId = fav.listing_id || fav.listingId
+        const listingId = resolvePropertyId(fav.listing_id || fav.listingId)
         
         const property = allProperties.find(p => p._id === listingId) || {
           _id: listingId,

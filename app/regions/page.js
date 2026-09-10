@@ -1,5 +1,6 @@
 import RegionsListingClient from './RegionsListingClient'
 import { getAllProperties } from '@/lib/propertyApi'
+import { preparePropertySliderPreview } from '@/lib/propertySliderData'
 
 export const revalidate = 3600
 
@@ -449,7 +450,7 @@ export default async function RegionsPage() {
   return (
     <RegionsListingClient
       initialRegions={NORMALIZED_SAMPLE_REGIONS}
-      initialProperties={initialProperties}
+      sliderProperties={preparePropertySliderPreview(initialProperties)}
     />
   )
 }

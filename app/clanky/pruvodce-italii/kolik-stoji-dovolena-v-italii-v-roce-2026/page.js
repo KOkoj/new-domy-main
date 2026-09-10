@@ -737,7 +737,7 @@ export default function HolidayCostsItaly2026Page() {
                 <h2 className="font-semibold text-amber-950 mb-8">{t.bridgeTitle}</h2>
                 <p className="text-amber-950 leading-relaxed mb-5">{t.bridgeText}</p>
                 <Button asChild className="bg-slate-800 hover:bg-slate-700 text-white">
-                  <Link href="/regiony">{t.bridgeButton}</Link>
+                  <Link href="/regions">{t.bridgeButton}</Link>
                 </Button>
               </CardContent>
             </Card>

@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+import { REGION_DATA_OVERRIDES } from '../regionContent'
 import { getAllProperties } from '@/lib/propertyApi'
 import { getListingRegionSlug } from '@/lib/propertyListing'
 import RegionDetailClient from './RegionDetailClient'
@@ -33,6 +35,7 @@ async function getRegionProperties(slug) {
 
 export default async function RegionDetailPage({ params }) {
   const { slug = '' } = await params
+  if (!Object.hasOwn(REGION_DATA_OVERRIDES, REGION_ALIASES[slug] || slug)) notFound()
   const initialProperties = await getRegionProperties(slug)
 
   return <RegionDetailClient initialProperties={initialProperties} />

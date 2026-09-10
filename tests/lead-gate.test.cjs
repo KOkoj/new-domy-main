@@ -34,6 +34,7 @@ test('premium upload sources remain available outside public', () => {
 test('target guide flows do not reference public PDF URLs', () => {
   assert.doesNotMatch(read('app/guides/inspections/free-pdf/page.js'), /\/pdfs\//)
   assert.doesNotMatch(read('app/guides/mistakes/page.js'), /\/pdfs\//)
+  assert.doesNotMatch(read('app/guides/mistakes/MistakesGuideClient.jsx'), /\/pdfs\//)
   assert.doesNotMatch(read('app/guides/mistakes/free-pdf/page.js'), /\/pdfs\//)
 })
 
@@ -47,11 +48,11 @@ test('lead migration keeps browser roles out of the table', () => {
 
 test('articles and guides are public without a login gate', () => {
   const rootLayout = read('app/layout.js')
-  const guideLayouts = [
+  const guideSchemaSources = [
     'app/guides/costs/layout.js',
     'app/guides/inspections/(article)/layout.js',
     'app/guides/inspections/free-pdf/layout.js',
-    'app/guides/mistakes/layout.js',
+    'app/guides/mistakes/page.js',
     'app/guides/notary/layout.js',
     'app/guides/offerta-compromesso-registrazione/layout.js',
     'app/guides/real-estate-purchase-system-italy/layout.js',
@@ -60,7 +61,8 @@ test('articles and guides are public without a login gate', () => {
 
   assert.doesNotMatch(rootLayout, /ArticlePaywallGate/)
   assert.doesNotMatch(read('components/guides/PaywalledContent.jsx'), /paywalled-content/)
-  for (const layout of guideLayouts) {
+  assert.doesNotMatch(read('app/guides/mistakes/layout.js'), /buildArticleJsonLd/)
+  for (const layout of guideSchemaSources) {
     assert.match(read(layout), /buildArticleJsonLd/)
     assert.doesNotMatch(read(layout), /buildPaywalledArticleJsonLd/)
   }

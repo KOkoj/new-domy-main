@@ -1,6 +1,7 @@
 import { getAllProperties } from '@/lib/propertyApi'
 import { transformPropertyListings } from '@/lib/propertyListing'
 import PropertiesClient from './PropertiesClient'
+import PropertiesIndexSchema from './PropertiesIndexSchema'
 
 export const revalidate = 3600
 
@@ -24,6 +25,9 @@ export default async function PropertiesPage() {
   const initialProperties = await getInitialProperties()
 
   return (
-    <PropertiesClient initialProperties={initialProperties} intro={propertiesIntro} />
+    <>
+      <PropertiesIndexSchema />
+      <PropertiesClient initialProperties={initialProperties} intro={propertiesIntro} />
+    </>
   )
 }

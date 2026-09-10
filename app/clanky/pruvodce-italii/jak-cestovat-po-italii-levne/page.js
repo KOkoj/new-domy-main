@@ -591,7 +591,7 @@ export default function CheapTravelItalyArticlePage() {
                   ))}
                 </div>
                 <Button asChild className="bg-slate-800 hover:bg-slate-700 text-white">
-                  <Link href="/regiony">{t.bridge.button}</Link>
+                  <Link href="/regions">{t.bridge.button}</Link>
                 </Button>
               </CardContent>
             </Card>

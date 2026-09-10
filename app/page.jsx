@@ -2,6 +2,7 @@ import { getAllProperties } from '@/lib/propertyApi'
 import { absoluteUrl, SITE_NAME, SITE_URL } from '@/lib/siteConfig'
 import JsonLd from '@/components/seo/JsonLd'
 import HomePageClient from './HomePageClient'
+import { preparePropertySliderPreview } from '@/lib/propertySliderData'
 
 export const revalidate = 3600
 
@@ -77,7 +78,7 @@ export default async function HomePage() {
     <>
       <JsonLd data={buildFaqJsonLd()} />
       <JsonLd data={buildWebsiteWithSearchJsonLd()} />
-      <HomePageClient initialProperties={properties} />
+      <HomePageClient sliderProperties={preparePropertySliderPreview(properties)} />
     </>
   )
 }

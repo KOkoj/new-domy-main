@@ -1,0 +1,61 @@
+import { absoluteUrl } from '@/lib/siteConfig'
+import { getAllProperties } from '@/lib/propertyApi'
+import JsonLd from '@/components/seo/JsonLd'
+import { buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
+
+const DESCRIPTION_CS =
+  'Aktuální nabídka domů, bytů a vil na prodej v Itálii pro české kupující. Prověřené nemovitosti s právní a technickou kontrolou.'
+
+function getLocalized(value, language = 'cs', fallback = '') {
+  if (!value) return fallback
+  if (typeof value === 'string') return value
+  if (typeof value === 'object') {
+    return value[language] || value.cs || value.en || value.it || Object.values(value)[0] || fallback
+  }
+  return fallback
+}
+
+async function fetchPropertiesSafely() {
+  try {
+    return await getAllProperties(new URLSearchParams())
+  } catch (error) {
+    console.error('Properties listing layout: failed to load properties', error)
+    return []
+  }
+}
+
+export default async function PropertiesIndexSchema() {
+  const properties = await fetchPropertiesSafely()
+  const url = absoluteUrl('/properties')
+
+  const itemList = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': url,
+    name: 'Nemovitosti v Itálii na prodej',
+    description: DESCRIPTION_CS,
+    numberOfItems: properties.length,
+    itemListElement: properties.slice(0, 50).map((property, index) => {
+      const slug = property?.slug?.current
+      const title = getLocalized(property?.title, 'cs', 'Nemovitost v Itálii')
+      return {
+        '@type': 'ListItem',
+        position: index + 1,
+        url: slug ? absoluteUrl(`/properties/${slug}`) : undefined,
+        name: title
+      }
+    })
+  }
+
+  const breadcrumb = buildBreadcrumbJsonLd([
+    { name: 'Domů', path: '/' },
+    { name: 'Nemovitosti', path: '/properties' }
+  ])
+
+  return (
+    <>
+      <JsonLd data={itemList} />
+      <JsonLd data={breadcrumb} />
+    </>
+  )
+}
