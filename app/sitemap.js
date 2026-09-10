@@ -3,6 +3,7 @@ import { absoluteUrl } from '@/lib/siteConfig'
 import { REGION_DATA_OVERRIDES } from '@/app/regions/regionContent'
 import { getAllProperties } from '@/lib/propertyApi'
 import { GUIDE_PAGE_SEO, TRAVEL_ARTICLE_SEO } from '@/lib/seo/contentPages'
+import { getStandaloneSitemapPaths } from '@/lib/seo/standalonePages'
 
 const STATIC_ROUTES = [
   '/',
@@ -30,11 +31,11 @@ export default async function sitemap() {
     .map((property) => property?.slug?.current)
     .filter(Boolean)
     .map((slug) => `/properties/${slug}`)
-  const regionRoutes = Object.keys(REGION_DATA_OVERRIDES).map((slug) => `/regions/${slug}`)
+  const regionRoutes = Object.keys(REGION_DATA_OVERRIDES).filter((slug) => slug !== 'lombardy').map((slug) => `/regions/${slug}`)
   const guideRoutes = Object.values(GUIDE_PAGE_SEO).map((entry) => entry.path)
   const travelRoutes = Object.values(TRAVEL_ARTICLE_SEO).map((entry) => entry.path)
   const allRoutes = Array.from(
-    new Set([...STATIC_ROUTES, ...guideRoutes, ...travelRoutes, ...regionRoutes, ...propertyRoutes])
+    new Set([...STATIC_ROUTES, ...getStandaloneSitemapPaths(), ...guideRoutes, ...travelRoutes, ...regionRoutes, ...propertyRoutes])
   )
 
   return allRoutes.map((path) => ({

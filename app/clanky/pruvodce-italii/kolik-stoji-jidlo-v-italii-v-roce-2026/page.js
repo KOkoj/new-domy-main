@@ -817,7 +817,7 @@ export default function FoodCostsItaly2026Page() {
                 <h2 className="font-semibold text-amber-950 mb-8">{t.bridge.title}</h2>
                 <p className="text-amber-950 leading-relaxed mb-5">{t.bridge.text}</p>
                 <Button asChild className="bg-slate-800 hover:bg-slate-700 text-white">
-                  <Link href="/regiony">{t.bridge.button}</Link>
+                  <Link href="/regions">{t.bridge.button}</Link>
                 </Button>
               </CardContent>
             </Card>

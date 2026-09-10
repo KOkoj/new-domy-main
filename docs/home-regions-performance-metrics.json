@@ -1,0 +1,154 @@
+{
+  "measuredAt": "2026-09-09",
+  "environment": "Local Next.js 16.2.10 production build, HTTP uncompressed; DOM elements before hydration",
+  "pages": [
+    {
+      "path": "/",
+      "metrics": {
+        "htmlBytes": {
+          "before": 2346122,
+          "after": 161051,
+          "reductionPercent": 93.14
+        },
+        "domNodes": {
+          "before": 8224,
+          "after": 1141,
+          "reductionPercent": 86.13
+        },
+        "images": {
+          "before": 244,
+          "after": 25,
+          "reductionPercent": 89.75
+        },
+        "jsBytes": {
+          "before": 1369574,
+          "after": 1369643,
+          "reductionPercent": -0.01
+        },
+        "jsFiles": {
+          "before": 25,
+          "after": 25,
+          "reductionPercent": 0
+        },
+        "rscBytes": {
+          "before": 1492586,
+          "after": 19622,
+          "reductionPercent": 98.69
+        },
+        "preloads": {
+          "before": 3,
+          "after": 3,
+          "reductionPercent": 0
+        }
+      },
+      "serializedProperties": {
+        "before": 231,
+        "after": 12
+      },
+      "initialPropertyCards": {
+        "before": 231,
+        "after": 12
+      }
+    },
+    {
+      "path": "/regions",
+      "metrics": {
+        "htmlBytes": {
+          "before": 2451179,
+          "after": 266108,
+          "reductionPercent": 89.14
+        },
+        "domNodes": {
+          "before": 8635,
+          "after": 1552,
+          "reductionPercent": 82.03
+        },
+        "images": {
+          "before": 254,
+          "after": 35,
+          "reductionPercent": 86.22
+        },
+        "jsBytes": {
+          "before": 1382684,
+          "after": 1382752,
+          "reductionPercent": 0
+        },
+        "jsFiles": {
+          "before": 25,
+          "after": 25,
+          "reductionPercent": 0
+        },
+        "rscBytes": {
+          "before": 1505197,
+          "after": 32233,
+          "reductionPercent": 97.86
+        },
+        "preloads": {
+          "before": 8,
+          "after": 8,
+          "reductionPercent": 0
+        }
+      },
+      "serializedProperties": {
+        "before": 231,
+        "after": 12
+      },
+      "initialPropertyCards": {
+        "before": 231,
+        "after": 12
+      }
+    },
+    {
+      "path": "/properties",
+      "metrics": {
+        "htmlBytes": {
+          "before": 649624,
+          "after": 649624,
+          "reductionPercent": 0
+        },
+        "domNodes": {
+          "before": 869,
+          "after": 869,
+          "reductionPercent": 0
+        },
+        "images": {
+          "before": 14,
+          "after": 14,
+          "reductionPercent": 0
+        },
+        "jsBytes": {
+          "before": 1298631,
+          "after": 1298631,
+          "reductionPercent": 0
+        },
+        "jsFiles": {
+          "before": 23,
+          "after": 23,
+          "reductionPercent": 0
+        },
+        "rscBytes": {
+          "before": 511566,
+          "after": 511566,
+          "reductionPercent": 0
+        },
+        "preloads": {
+          "before": 3,
+          "after": 3,
+          "reductionPercent": 0
+        }
+      },
+      "serializedProperties": {
+        "before": 231,
+        "after": 231
+      },
+      "initialPropertyCards": {
+        "before": 12,
+        "after": 12
+      }
+    }
+  ],
+  "previewPropertyJsonBytes": {
+    "before": 1399285,
+    "after": 7434
+  }
+}

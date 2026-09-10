@@ -29,7 +29,7 @@ const WEBINAR_REGION_VALUES = [
   'trentino-alto-adige', 'umbria', 'valle-daosta', 'veneto'
 ]
 
-export default function HomePageClient({ initialProperties = [] }) {
+export default function HomePageClient({ initialProperties = [], sliderProperties }) {
   const SHOW_HOME_ARCHIVED_SECTIONS = false
   const properties = initialProperties
   
@@ -2520,7 +2520,7 @@ export default function HomePageClient({ initialProperties = [] }) {
         </div>
       </div>
 
-      <PropertySlider language={language} initialProperties={initialProperties} />
+      <PropertySlider language={language} initialProperties={initialProperties} preparedProperties={sliderProperties} />
       {/* Footer */}
       <Footer language={language} />
       

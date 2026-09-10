@@ -1,13 +1,7 @@
 import Link from 'next/link'
+import { getStandalonePageMetadata } from '@/lib/seo/standalonePages'
 
-export const metadata = {
-  title: 'Stand-by | Domy v Itálii',
-  description: 'Web je dočasně nedostupný, zatímco dokončujeme finální úpravy.',
-  robots: {
-    index: false,
-    follow: false
-  }
-}
+export const metadata = getStandalonePageMetadata('/maintenance')
 
 export default function MaintenancePage() {
   return (

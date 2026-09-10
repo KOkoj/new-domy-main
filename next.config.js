@@ -1,5 +1,7 @@
 ﻿const nextConfig = {
   // Removed 'output: standalone' for Vercel deployment
+  // Handle verified aliases before slash normalization to avoid a 308 -> 301.
+  skipTrailingSlashRedirect: true,
   // Vercel handles builds automatically
 
   // A stray lockfile in the user's home directory otherwise makes Next
@@ -53,6 +55,22 @@
   },
   async redirects() {
     return [
+      ...require('./data/property-aliases.json').flatMap(alias => [alias.secondarySlug, alias.secondaryId].flatMap(key => [
+        { source: `/properties/${key}`, destination: `/properties/${alias.primarySlug}`, statusCode: 301 },
+        { source: `/properties/${key}/`, destination: `/properties/${alias.primarySlug}`, statusCode: 301 },
+      ])),
+      // Legacy pages must redirect before rendering or slash normalization.
+      { source: '/nas-proces', destination: '/process', statusCode: 301 },
+      { source: '/nas-proces/', destination: '/process', statusCode: 301 },
+      { source: '/regiony', destination: '/regions', statusCode: 301 },
+      { source: '/regiony/', destination: '/regions', statusCode: 301 },
+      // Preserve Next's existing no-trailing-slash 308 for all other URLs.
+      { source: '/:path+/', destination: '/:path+', permanent: true },
+      {
+        source: '/regions/lombardy',
+        destination: '/regions/lombardia',
+        statusCode: 301,
+      },
       {
         source: '/index.php',
         destination: '/',
@@ -72,5 +90,4 @@
   }
 };
 module.exports = nextConfig;
-
 

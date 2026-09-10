@@ -1,4 +1,5 @@
 export const metadata = {
+  alternates: { canonical: '/regions' },
   title: 'Buy Property in Italy by Region: Prices, Cities, Strategy | Domy v Itálii',
   description:
     'Compare Italian regions before buying: realistic price bands, top cities, legal checks, taxes, and buyer strategy for Tuscany, Lombardy, Veneto, Sicily, and more.',

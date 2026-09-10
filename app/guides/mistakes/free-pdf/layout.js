@@ -1,12 +1,6 @@
-export const metadata = {
-  title: 'PDF zdarma: Nejčastější chyby při koupi v Itálii | Domy v Itálii',
-  description:
-    'Stáhněte si zdarma praktický přehled nejčastějších chyb při koupi nemovitosti v Itálii.',
-  robots: {
-    index: true,
-    follow: true
-  }
-}
+import { getStandalonePageMetadata } from '@/lib/seo/standalonePages'
+
+export const metadata = getStandalonePageMetadata('/guides/mistakes/free-pdf')
 
 export default function MistakesFreePdfLayout({ children }) {
   return children

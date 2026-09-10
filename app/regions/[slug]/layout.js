@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation'
 import { REGION_DATA_OVERRIDES } from '../regionContent'
 import { absoluteUrl, SITE_NAME, SITE_URL } from '@/lib/siteConfig'
 import JsonLd from '@/components/seo/JsonLd'
@@ -33,6 +34,8 @@ function shortenForMeta(text = '', max = 160) {
 // known statically from REGION_DATA_OVERRIDES + the alias map, so Next.js
 // can generate fully static HTML for each one and Googlebot gets real
 // content on the first byte.
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   const canonicalSlugs = Object.keys(REGION_DATA_OVERRIDES)
   const aliasSlugs = Object.keys(BUYER_GUIDANCE_SLUG_ALIASES)
@@ -45,6 +48,7 @@ export async function generateMetadata({ params }) {
   const resolved = typeof params?.then === 'function' ? await params : params
   const rawSlug = Array.isArray(resolved?.slug) ? resolved.slug[0] : resolved?.slug
   const canonicalSlug = BUYER_GUIDANCE_SLUG_ALIASES[rawSlug] || rawSlug
+  if (!Object.hasOwn(REGION_DATA_OVERRIDES, canonicalSlug)) notFound()
   const region = REGION_DATA_OVERRIDES[canonicalSlug]
   const nameCs = region?.name?.cs || region?.name?.en || formatSlugName(canonicalSlug || rawSlug)
   const nameEn = region?.name?.en || formatSlugName(canonicalSlug || rawSlug)
@@ -99,6 +103,7 @@ export default async function RegionDetailLayout({ children, params }) {
   const resolved = typeof params?.then === 'function' ? await params : params
   const rawSlug = Array.isArray(resolved?.slug) ? resolved.slug[0] : resolved?.slug
   const canonicalSlug = BUYER_GUIDANCE_SLUG_ALIASES[rawSlug] || rawSlug
+  if (!Object.hasOwn(REGION_DATA_OVERRIDES, canonicalSlug)) notFound()
   const region = REGION_DATA_OVERRIDES[canonicalSlug]
   const nameCs = region?.name?.cs || region?.name?.en || formatSlugName(canonicalSlug || rawSlug)
   const description = shortenForMeta(region?.description?.cs || region?.description?.en, 320)

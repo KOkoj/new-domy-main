@@ -1,14 +1,11 @@
 # Broken Internal Links Audit
 
-Base URL: http://localhost:3000
-Total URLs crawled: 250
+Base URL: http://localhost:3100
+Total URLs crawled: 298
 
 ## Broken Links (regular)
 
-| Broken URL | Status | Found on page(s) |
-|---|---|---|
-| http://localhost:3000/pdfs/art%20compromessoi.pdf (decoded: http://localhost:3000/pdfs/art compromessoi.pdf) | 404 | http://localhost:3000/guides/offerta-compromesso-registrazione |
-| http://localhost:3000/pdfs/errori-comuni.pdf (decoded: http://localhost:3000/pdfs/errori-comuni.pdf) | 404 | http://localhost:3000/guides/rekonstrukce-domu-v-italii |
+_(none found)_
 
 ## Broken Links With Czech Diacritics (likely encoding bugs)
 

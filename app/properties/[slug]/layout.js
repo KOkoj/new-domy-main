@@ -1,8 +1,7 @@
 import { getPropertyBySlug, getAllProperties } from '@/lib/propertyApi'
-import { absoluteUrl } from '@/lib/siteConfig'
 import JsonLd from '@/components/seo/JsonLd'
 import { buildPropertyJsonLd } from '@/lib/seo/contentSeo'
-import { getLocalizedValue } from '@/lib/propertyDisplay'
+import { buildPropertyMetadata } from '@/lib/seo/propertySeo'
 
 // Re-fetch fresh listings every hour. Properties newly added after a deploy
 // are still rendered on demand and then cached.
@@ -22,25 +21,6 @@ export async function generateStaticParams() {
 }
 
 
-function buildDescription(property) {
-  const localized =
-    getLocalizedValue(property?.seoDescription, 'en') ||
-    getLocalizedValue(property?.description, 'en')
-
-  if (localized) {
-    return localized.replace(/\s+/g, ' ').trim().slice(0, 160)
-  }
-
-  const city = getLocalizedValue(property?.location?.city?.name, 'en', 'Italy')
-  return `Property for sale in ${city}, Italy. Review photos, pricing, property type, and practical buying context.`
-}
-
-function getImage(property) {
-  const images = Array.isArray(property?.images) ? property.images : []
-  const mainImageIndex = Number.isInteger(property?.mainImage) ? property.mainImage : 0
-  return images[mainImageIndex] || images[0] || null
-}
-
 export async function generateMetadata({ params }) {
   const resolved = typeof params?.then === 'function' ? await params : params
   const rawSlug = Array.isArray(resolved?.slug) ? resolved.slug[0] : resolved?.slug
@@ -48,7 +28,11 @@ export async function generateMetadata({ params }) {
 
   if (!property) {
     return {
-      title: 'Property not found | Domy v Itálii',
+      description: null,
+      alternates: null,
+      openGraph: null,
+      twitter: null,
+      title: 'Nemovitost nenalezena | Domy v Itálii',
       robots: {
         index: false,
         follow: false
@@ -56,37 +40,8 @@ export async function generateMetadata({ params }) {
     }
   }
 
-  const title =
-    getLocalizedValue(property?.seoTitle, 'en') ||
-    getLocalizedValue(property?.title, 'en', 'Property in Italy')
-  const city = getLocalizedValue(property?.location?.city?.name, 'en', 'Italy')
-  const image = getImage(property)
   const canonicalPath = `/properties/${property?.slug?.current || rawSlug}`
-  const description = buildDescription(property)
-
-  return {
-    title: `${title} | Domy v Itálii`,
-    description,
-    alternates: {
-      canonical: canonicalPath
-    },
-    openGraph: {
-      title: `${title} | Domy v Itálii`,
-      description,
-      url: absoluteUrl(canonicalPath),
-      type: 'article',
-      images: image ? [{ url: image, alt: title }] : undefined
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${title} | Domy v Itálii`,
-      description,
-      images: image ? [image] : undefined
-    },
-    other: {
-      'geo.placename': city
-    }
-  }
+  return buildPropertyMetadata(property, canonicalPath)
 }
 
 export default async function PropertyDetailLayout({ children, params }) {
