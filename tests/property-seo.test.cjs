@@ -35,8 +35,12 @@ test('existing Czech titles stay unique and consistent across property metadata 
     assert.equal(metadata.openGraph.locale, 'cs_CZ')
     assert.equal(metadata.openGraph.title, metadata.twitter.title)
     assert.equal(schema.breadcrumb.itemListElement[1].name, 'Nemovitosti')
-    assert.equal(schema.offers.priceCurrency, 'EUR')
-    if (p.status === 'sold') assert.equal(schema.offers.availability, 'https://schema.org/SoldOut')
+    if (p.price?.onRequest || p.price?.priceOnRequest || p.price?.amount == null) {
+      assert.ok(!('offers' in schema), `${p.slug.current} must not publish a zero or invented SEO price`)
+    } else {
+      assert.equal(schema.offers.priceCurrency, 'EUR')
+      if (p.status === 'sold') assert.equal(schema.offers.availability, 'https://schema.org/SoldOut')
+    }
   }
   assert.equal(JSON.stringify(inventory), before)
 })

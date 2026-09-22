@@ -740,6 +740,7 @@ async function transformFolderToProperty({
   const yearBuilt = toNumber(pick(listing, ['yearBuilt', 'year_built'], 0), 0)
   const lotSize = toNumber(pick(listing, ['lotSize', 'lot_size', 'giardino_mq'], 0), 0)
   const price = toNumber(pick(listing, ['price', 'price_eur'], 0), 0)
+  const priceOnRequest = Boolean(listing.price_on_request || listing.priceOnRequest)
   const coordinates = findCoordinates(listing)
   const badges = Array.isArray(listing.badges)
     ? listing.badges.map((item) => normalizeWhitespace(item)).filter(Boolean)
@@ -762,8 +763,9 @@ async function transformFolderToProperty({
     },
     propertyType: resolvePropertyType(pick(listing, ['propertyType', 'property_type', 'propertyType_it'], 'apartment')),
     price: {
-      amount: price,
-      currency: 'EUR'
+      amount: priceOnRequest ? null : price,
+      currency: 'EUR',
+      ...(priceOnRequest ? { onRequest: true } : {})
     },
     specifications: {
       rooms: totalRooms > 0 ? totalRooms : bedrooms,
