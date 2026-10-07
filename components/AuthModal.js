@@ -11,6 +11,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react'
 import Image from 'next/image'
 import { t } from '@/lib/translations'
+import { resolveAuthClientMessage } from '@/lib/authMessages'
 
 export default function AuthModal({
   isOpen,
@@ -56,7 +57,7 @@ export default function AuthModal({
     if (!response.ok) {
       return {
         ok: false,
-        error: payload?.error || tr('serverLoginFailed')
+        error: resolveAuthClientMessage(payload, tr, 'serverLoginFailed')
       }
     }
 
@@ -77,7 +78,7 @@ export default function AuthModal({
     if (!response.ok) {
       return {
         ok: false,
-        error: payload?.error || tr('serverSignupFailed')
+        error: resolveAuthClientMessage(payload, tr, 'serverSignupFailed')
       }
     }
 
@@ -102,7 +103,7 @@ export default function AuthModal({
     try {
       const result = await loginViaServer(loginForm.email, loginForm.password)
       if (!result.ok) {
-        setError(tr('serverLoginFailed'))
+        setError(result.error || tr('serverLoginFailed'))
         return
       }
 
@@ -156,7 +157,7 @@ export default function AuthModal({
       )
 
       if (!result.ok) {
-        setError(tr('serverSignupFailed'))
+        setError(result.error || tr('serverSignupFailed'))
         return
       }
 
@@ -206,7 +207,7 @@ export default function AuthModal({
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) {
-        setError(payload?.error || tr('magicLinkFailed'))
+        setError(resolveAuthClientMessage(payload, tr, 'magicLinkFailed'))
         return
       }
       setSuccess(tr('magicLinkSent'))

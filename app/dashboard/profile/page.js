@@ -176,10 +176,15 @@ export default function ProfileManagement() {
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) {
-        const invalid = response.status === 401
-        throw new Error(invalid
-          ? t('club.profile.currentPasswordInvalid', language)
-          : (payload?.error || t('club.profile.passwordError', language)))
+        const fallbackKey = response.status === 401 ? 'currentPasswordInvalid' : 'unexpectedError'
+        const translated = payload?.errorKey
+          ? t(`auth.${payload.errorKey}`, language)
+          : t(`auth.${fallbackKey}`, language)
+        throw new Error(
+          translated && translated !== `auth.${payload?.errorKey || fallbackKey}`
+            ? translated
+            : t('club.profile.passwordError', language)
+        )
       }
 
       setMessage({ type: 'success', text: t('club.profile.passwordSuccess', language) })

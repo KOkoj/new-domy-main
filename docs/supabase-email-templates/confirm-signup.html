@@ -1,0 +1,15 @@
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #0f172a; line-height: 1.6;">
+  <p style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #64748b; margin-bottom: 8px;">Domy v Itálii</p>
+  <h1 style="font-size: 28px; line-height: 1.2; margin: 0 0 16px;">Potvrďte svůj účet</h1>
+  <p>Dobrý den, vítejte v klubu Domy v Itálii.</p>
+  <p>Pro dokončení registrace potvrďte e-mailovou adresu {{ .Email }}. Po potvrzení se můžete přihlásit a používat nástěnku.</p>
+  <p style="margin: 24px 0;">
+    <a href="{{ .ConfirmationURL }}" style="background: #0f172a; color: #ffffff; padding: 10px 18px; text-decoration: none; border-radius: 6px; display: inline-block;">Potvrdit účet</a>
+  </p>
+  <p>Pokud jste si účet nezakládali, tento e-mail ignorujte.</p>
+  <p style="margin-top: 24px; font-size: 13px; color: #475569;">
+    Confirm your Domy v Itálii account for {{ .Email }} by opening the button above. If you did not create this account, you can ignore this email.
+  </p>
+  <p style="margin-top: 24px;">Domy v Itálii</p>
+  <p style="font-size: 12px; color: #64748b;">{{ .SiteURL }}</p>
+</div>

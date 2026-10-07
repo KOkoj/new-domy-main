@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Mail, Lock, User, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import { t } from '@/lib/translations'
+import { resolveAuthClientMessage } from '@/lib/authMessages'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '@/lib/userPreferences'
 
 export default function LoginPage() {
@@ -53,7 +54,7 @@ export default function LoginPage() {
     if (!response.ok) {
       return {
         ok: false,
-        error: payload?.error || tr('serverLoginFailed')
+        error: resolveAuthClientMessage(payload, tr, 'serverLoginFailed')
       }
     }
 
@@ -71,7 +72,7 @@ export default function LoginPage() {
     if (!response.ok) {
       return {
         ok: false,
-        error: payload?.error || tr('serverSignupFailed')
+        error: resolveAuthClientMessage(payload, tr, 'serverSignupFailed')
       }
     }
 
@@ -140,7 +141,7 @@ export default function LoginPage() {
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) {
-        setError(payload?.error || tr('magicLinkFailed'))
+        setError(resolveAuthClientMessage(payload, tr, 'magicLinkFailed'))
         return
       }
       setSuccess(tr('magicLinkSent'))
@@ -166,7 +167,7 @@ export default function LoginPage() {
     try {
       const result = await loginViaServer(loginForm.email, loginForm.password)
       if (!result.ok) {
-        setError(tr('serverLoginFailed'))
+        setError(result.error || tr('serverLoginFailed'))
         return
       }
 
@@ -218,7 +219,7 @@ export default function LoginPage() {
       )
 
       if (!result.ok) {
-        setError(tr('serverSignupFailed'))
+        setError(result.error || tr('serverSignupFailed'))
         return
       }
 

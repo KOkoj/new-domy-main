@@ -93,7 +93,7 @@ export default function InspectionsFreePdfLandingPage() {
             <p className="text-gray-500 leading-relaxed text-sm sm:text-base" style={{color:'#4a4a4a', lineHeight:'1.75'}}>{copy.intro}</p>
 
             <PaywalledContent className="space-y-5 sm:space-y-6">
-            <EmailGateModal source="pdf_inspections" assetKey="inspections" />
+            <EmailGateModal source="pdf_inspections" assetKey="inspections" language={language} />
 
             <div className="pt-1">
               <p className="text-sm text-slate-600 mb-3">{copy.softTitle}</p>
