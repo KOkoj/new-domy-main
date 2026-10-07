@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Mail, Lock, User, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import { t } from '@/lib/translations'
+import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '@/lib/userPreferences'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -20,7 +21,7 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [activeTab, setActiveTab] = useState('login')
-  const [language, setLanguage] = useState('cs')
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
   const router = useRouter()
   const searchParams = useSearchParams()
   const tabParam = searchParams.get('tab')
@@ -63,7 +64,7 @@ export default function LoginPage() {
     const response = await fetch('/api/auth/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password })
+      body: JSON.stringify({ name, email, password, language })
     })
 
     const payload = await response.json().catch(() => ({}))
@@ -81,8 +82,7 @@ export default function LoginPage() {
   }
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) setLanguage(savedLanguage)
+    setLanguage(readLanguageFromBrowser())
 
     const handleLanguageChange = (event) => setLanguage(event.detail)
     window.addEventListener('languageChange', handleLanguageChange)
@@ -122,6 +122,34 @@ export default function LoginPage() {
     }
     checkUser()
   }, [router, redirectPath])
+
+  const handleMagicLink = async () => {
+    setIsLoading(true)
+    setError('')
+    setSuccess('')
+    if (!loginForm.email) {
+      setError(tr('fillAllFields'))
+      setIsLoading(false)
+      return
+    }
+    try {
+      const response = await fetch('/api/auth/magic-link', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: loginForm.email })
+      })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) {
+        setError(payload?.error || tr('magicLinkFailed'))
+        return
+      }
+      setSuccess(tr('magicLinkSent'))
+    } catch {
+      setError(tr('connectionError'))
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -293,6 +321,11 @@ export default function LoginPage() {
                         {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                       </button>
                     </div>
+                    <div className="text-right">
+                      <Link href="/forgot-password" className="text-sm text-amber-400 underline">
+                        {tr('forgotPassword')}
+                      </Link>
+                    </div>
                   </div>
 
                   {error && (
@@ -318,6 +351,26 @@ export default function LoginPage() {
                   </Button>
 
                   <FormPrivacyNotice language={language} purpose="account" className="bg-slate-900/60 border-amber-400/20" />
+
+                  <div className="relative py-1">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t border-amber-400/20" />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                      <span className="bg-slate-800 px-2 text-gray-400">{tr('or')}</span>
+                    </div>
+                  </div>
+
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full border-amber-400/20 text-amber-400 hover:bg-amber-400/10"
+                    disabled={isLoading}
+                    onClick={handleMagicLink}
+                  >
+                    <Mail className="w-4 h-4 mr-2" />
+                    {tr('sendMagicLink')}
+                  </Button>
                 </form>
               </TabsContent>
 

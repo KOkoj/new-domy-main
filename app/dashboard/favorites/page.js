@@ -31,6 +31,8 @@ import { supabase } from '../../../lib/supabase'
 import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 import { t } from '../../../lib/translations'
+import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
+import { localizedField, mapApiPropertyForDashboard } from '../../../lib/dashboardListings'
 import Link from 'next/link'
 
 export default function FavoritesManagement() {
@@ -43,15 +45,14 @@ export default function FavoritesManagement() {
   const [viewMode, setViewMode] = useState('grid')
   const [selectedProperties, setSelectedProperties] = useState(new Set())
   const [user, setUser] = useState(null)
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
   const [currency, setCurrency] = useState('EUR')
 
   useEffect(() => {
     loadFavorites()
     
     // Load saved preferences
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) setLanguage(savedLanguage)
+    setLanguage(readLanguageFromBrowser())
     
     const savedCurrency = localStorage.getItem('preferred-currency')
     if (savedCurrency) setCurrency(savedCurrency)
@@ -96,27 +97,24 @@ export default function FavoritesManagement() {
           const sanityProperties = await response.json()
           if (Array.isArray(sanityProperties)) {
              // Transform Sanity data to match our property card format
-             allProperties = sanityProperties.map((prop, index) => ({
-              _id: prop._id || `sanity-${index}`,
-              title: { en: prop.title?.en || prop.title?.it || prop.title || 'Untitled Property' },
-              propertyType: prop.propertyType ? prop.propertyType.toLowerCase() : 'property',
-              price: { amount: prop.price?.amount || 0, currency: 'EUR' },
-              specifications: {
-                bedrooms: prop.specifications?.bedrooms || 0,
-                bathrooms: prop.specifications?.bathrooms || 0,
-                squareFootage: prop.specifications?.squareFootage || 0
-              },
-              location: { 
-                city: { 
-                  name: { 
-                    en: prop.location?.city?.name?.en || prop.location?.city?.name || 'Italy' 
-                  } 
-                } 
-              },
-              image: getPropertyImage(prop),
-              slug: { current: prop.slug?.current || prop.slug || '' },
-              featured: prop.featured || false
-            }))
+             allProperties = sanityProperties.map((prop, index) => {
+              const mapped = mapApiPropertyForDashboard(prop, index)
+              return {
+                _id: mapped._id,
+                titleI18n: mapped.titleI18n,
+                propertyType: mapped.type,
+                price: { amount: mapped.price, currency: mapped.currency },
+                specifications: {
+                  bedrooms: mapped.bedrooms,
+                  bathrooms: mapped.bathrooms,
+                  squareFootage: mapped.area
+                },
+                locationI18n: mapped.regionI18n,
+                image: mapped.image,
+                slug: { current: mapped.slug },
+                featured: mapped.featured
+              }
+            })
           }
         }
       } catch (err) {
@@ -128,9 +126,9 @@ export default function FavoritesManagement() {
         // Handle listing_id (snake_case from DB)
         const listingId = resolvePropertyId(fav.listing_id || fav.listingId)
         
-        const property = allProperties.find(p => p._id === listingId) || {
+        const property = allProperties.find(p => p._id === listingId || p.slug?.current === listingId) || {
           _id: listingId,
-          title: { en: 'Property Not Found' },
+          titleI18n: { cs: 'Nemovitost nenalezena', en: 'Property not found', it: 'Immobile non trovato' },
           price: { amount: 0, currency: 'EUR' },
           propertyType: 'unknown',
           specifications: { bedrooms: 0, bathrooms: 0, squareFootage: 0 },
@@ -160,10 +158,16 @@ export default function FavoritesManagement() {
 
     // Search filter
     if (searchTerm) {
-      filtered = filtered.filter(fav => 
-        fav.property.title.en.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        fav.property.location?.city?.name?.en?.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      const needle = searchTerm.toLowerCase()
+      filtered = filtered.filter((fav) => {
+        const title = localizedField(fav.property.titleI18n || fav.property.title, language, '')
+        const location = localizedField(
+          fav.property.locationI18n || fav.property.location?.city?.name,
+          language,
+          ''
+        )
+        return title.toLowerCase().includes(needle) || location.toLowerCase().includes(needle)
+      })
     }
 
     // Type filter
@@ -225,7 +229,7 @@ export default function FavoritesManagement() {
       const url = `${window.location.origin}/properties/${property.slug?.current || property._id}`
       if (navigator.share) {
         try {
-          await navigator.share({ title: property.title?.en || 'Property', url })
+          await navigator.share({ title: localizedField(property.titleI18n || property.title, language, 'Property'), url })
         } catch (err) {
           if (err.name !== 'AbortError') {
             await navigator.clipboard.writeText(url)
@@ -242,7 +246,7 @@ export default function FavoritesManagement() {
           <div className={`relative ${isGrid ? 'w-full h-48' : 'w-full sm:w-48 h-48 sm:h-32 flex-shrink-0'}`}>
             <PropertyImage
               src={property.image}
-              alt={property.title.en}
+              alt={localizedField(property.titleI18n || property.title, language, 'Property')}
               fill
               sizes={isGrid ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : "192px"}
               className="object-cover rounded-t-lg"
@@ -265,10 +269,10 @@ export default function FavoritesManagement() {
           <div className={`p-4 ${isGrid ? '' : 'flex-1'}`}>
             <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
-                <h3 className="font-semibold text-lg line-clamp-1">{property.title.en}</h3>
+                <h3 className="font-semibold text-lg line-clamp-1">{localizedField(property.titleI18n || property.title, language, '')}</h3>
                 <div className="flex items-center text-gray-600 text-sm mt-1">
                   <MapPin className="h-3 w-3 mr-1" />
-                  {property.location?.city?.name?.en}
+                  {localizedField(property.locationI18n || property.location?.city?.name, language, '')}
                 </div>
               </div>
               <div className="text-right">

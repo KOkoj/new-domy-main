@@ -3,16 +3,15 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import emailService from '@/lib/emailService'
 import { getSupabaseAdminClient } from '@/lib/supabaseAdmin'
+import { getPublicAbsoluteUrl, getPublicSiteUrl } from '@/lib/siteUrl'
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@/lib/userPreferences'
+import { splitFullName } from '@/lib/profileName'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 function resolveBaseUrl(request) {
-  return (
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    request.headers.get('origin') ||
-    new URL(request.url).origin
-  )
+  return getPublicSiteUrl(request)
 }
 
 async function createAuthClient() {
@@ -51,10 +50,12 @@ async function createAuthClient() {
 
 export async function POST(request) {
   try {
-    const { name, email, password } = await request.json()
+    const { name, email, password, language } = await request.json()
     const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : ''
+    const trimmedName = typeof name === 'string' ? name.trim() : ''
+    const emailLanguage = SUPPORTED_LANGUAGES.includes(language) ? language : DEFAULT_LANGUAGE
 
-    if (!name || !normalizedEmail || !password) {
+    if (!trimmedName || !normalizedEmail || !password) {
       return NextResponse.json(
         { error: 'Name, email and password are required' },
         { status: 400 }
@@ -71,7 +72,7 @@ export async function POST(request) {
     }
 
     const baseUrl = resolveBaseUrl(request)
-    const emailRedirectTo = `${baseUrl}/auth/callback?next=%2Fdashboard`
+    const emailRedirectTo = `${baseUrl}/auth/callback?next=${encodeURIComponent('/dashboard')}`
 
     const { data, error } = await supabase.auth.signUp({
       email: normalizedEmail,
@@ -79,7 +80,8 @@ export async function POST(request) {
       options: {
         emailRedirectTo,
         data: {
-          name
+          name: trimmedName,
+          full_name: trimmedName
         }
       }
     })
@@ -97,9 +99,22 @@ export async function POST(request) {
     const isLikelyNewUser =
       !Array.isArray(data?.user?.identities) || data.user.identities.length > 0
 
-    if (isLikelyNewUser && data?.user?.email) {
+    if (isLikelyNewUser && data?.user?.id) {
       try {
         const admin = getSupabaseAdminClient()
+        const { firstName, lastName } = splitFullName(trimmedName)
+        const { error: profileError } = await admin
+          .from('profiles')
+          .upsert({
+            id: data.user.id,
+            first_name: firstName || trimmedName,
+            last_name: lastName || null,
+            role: String(normalizedEmail) === 'luca.croce@domyvitalii.cz' ? 'admin' : 'user'
+          }, { onConflict: 'id' })
+        if (profileError) {
+          console.error('[SIGNUP] Profile name save failed:', profileError.message)
+        }
+
         const { error: leadLinkError } = await admin
           .from('leads')
           .update({ user_id: data.user.id })
@@ -113,17 +128,21 @@ export async function POST(request) {
         console.error('[SIGNUP] Lead linking failed:', leadLinkError?.message || leadLinkError)
       }
 
-      try {
-        const displayName =
-          (typeof data.user.user_metadata?.name === 'string' && data.user.user_metadata.name.trim()) ||
-          name
+      if (data.user.email) {
+        try {
+          const displayName =
+            (typeof data.user.user_metadata?.name === 'string' && data.user.user_metadata.name.trim()) ||
+            trimmedName
 
-        await emailService.sendWelcomeEmail({
-          userEmail: data.user.email,
-          userName: displayName || 'there'
-        })
-      } catch (emailError) {
-        console.error('[SIGNUP] Welcome email failed:', emailError?.message || emailError)
+          await emailService.sendWelcomeEmail({
+            userEmail: data.user.email,
+            userName: displayName,
+            language: emailLanguage,
+            dashboardUrl: getPublicAbsoluteUrl('/dashboard', request)
+          })
+        } catch (emailError) {
+          console.error('[SIGNUP] Welcome email failed:', emailError?.message || emailError)
+        }
       }
     }
 

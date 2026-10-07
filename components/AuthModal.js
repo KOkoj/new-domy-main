@@ -19,7 +19,7 @@ export default function AuthModal({
   title = '',
   message = '',
   defaultTab = 'login',
-  language = 'en'
+  language = 'cs'
 }) {
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
@@ -70,7 +70,7 @@ export default function AuthModal({
     const response = await fetch('/api/auth/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password })
+      body: JSON.stringify({ name, email, password, language })
     })
 
     const payload = await response.json().catch(() => ({}))
@@ -190,6 +190,7 @@ export default function AuthModal({
   const handleMagicLink = async () => {
     setIsLoading(true)
     setError('')
+    setSuccess('')
 
     if (!loginForm.email) {
       setError(tr('fillAllFields'))
@@ -197,8 +198,23 @@ export default function AuthModal({
       return
     }
 
-    setError(tr('magicLinkUnavailable'))
-    setIsLoading(false)
+    try {
+      const response = await fetch('/api/auth/magic-link', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: loginForm.email })
+      })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) {
+        setError(payload?.error || tr('magicLinkFailed'))
+        return
+      }
+      setSuccess(tr('magicLinkSent'))
+    } catch {
+      setError(tr('connectionError'))
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const resetForm = () => {
@@ -214,7 +230,8 @@ export default function AuthModal({
     onClose()
   }
 
-  const displayTitle = title || tr('login')
+  const displayTitle = activeTab === 'signup' ? tr('signup') : tr('login')
+  const contextMessage = message || (title && title !== displayTitle ? title : '')
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose} data-testid="auth-modal">
@@ -235,9 +252,9 @@ export default function AuthModal({
             <DialogTitle className="text-base font-bold">
               {displayTitle}
             </DialogTitle>
-            {message && (
+            {contextMessage && (
               <p className="text-xs text-slate-600 leading-snug">
-                {message}
+                {contextMessage}
               </p>
             )}
           </div>
@@ -290,6 +307,11 @@ export default function AuthModal({
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
+                </div>
+                <div className="text-right">
+                  <Link href="/forgot-password" className="text-xs underline text-slate-600 hover:text-slate-900">
+                    {tr('forgotPassword')}
+                  </Link>
                 </div>
               </div>
 

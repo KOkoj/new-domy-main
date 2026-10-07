@@ -65,7 +65,10 @@ export async function GET() {
         authenticated: true,
         user: {
           id: data.user.id,
-          email: data.user.email
+          email: data.user.email,
+          user_metadata: {
+            name: data.user.user_metadata?.name || data.user.user_metadata?.full_name || null
+          }
         }
       })
     )

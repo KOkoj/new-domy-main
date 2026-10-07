@@ -4,15 +4,15 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import NotificationPreferences from '@/components/NotificationPreferences';
 import { Bell, Mail, Settings } from 'lucide-react';
-import { t } from '../../../lib/translations';
+import { t } from '../../../lib/translations'
+import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences';
 
 export default function NotificationsPage() {
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE);
 
   useEffect(() => {
     // Load language preference
-    const savedLanguage = localStorage.getItem('preferred-language');
-    if (savedLanguage) setLanguage(savedLanguage);
+    setLanguage(readLanguageFromBrowser());
     
     // Listen for language changes
     const handleLanguageChange = (e) => {

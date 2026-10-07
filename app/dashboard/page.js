@@ -1,58 +1,25 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { 
   Heart, 
   Search, 
   MessageSquare, 
-  TrendingUp,
   Activity,
   Calendar,
-  MapPin,
-  DollarSign,
-  Bed,
-  Bath,
-  ChevronRight,
-  Star,
   Settings,
   FileText,
   Video,
   MessageCircle,
-  Award,
-  Sparkles,
-  Clock,
-  ArrowRight
+  Clock
 } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
 import { getDashboardUser } from '../../lib/dashboardAuth'
 import { t } from '../../lib/translations'
+import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../lib/userPreferences'
 import Link from 'next/link'
-
-// Sample property data for recommendations
-const SAMPLE_RECOMMENDATIONS = [
-  {
-    _id: '1',
-    title: { en: 'Luxury Villa with Lake Como Views', cs: 'Luxusní vila s výhledem na jezero Como', it: 'Villa di lusso con vista sul Lago di Como' },
-    price: { amount: 2500000, currency: 'EUR' },
-    location: { city: { name: { en: 'Como', cs: 'Como', it: 'Como' } } },
-    specifications: { bedrooms: 4, bathrooms: 3, squareFootage: 350 },
-    image: 'https://images.unsplash.com/photo-1734173071981-b16ee4f9867f',
-    matchScore: 95
-  },
-  {
-    _id: '2',
-    title: { en: 'Tuscan Farmhouse with Vineyards', cs: 'Toskánský statek s vinicemi', it: 'Casale toscano con vigneti' },
-    price: { amount: 1200000, currency: 'EUR' },
-    location: { city: { name: { en: 'Tuscany', cs: 'Toskánsko', it: 'Toscana' } } },
-    specifications: { bedrooms: 3, bathrooms: 2, squareFootage: 280 },
-    image: 'https://images.unsplash.com/12/gladiator.jpg',
-    matchScore: 88
-  }
-]
 
 export default function DashboardOverview() {
   const [stats, setStats] = useState({
@@ -67,16 +34,12 @@ export default function DashboardOverview() {
   })
   const [user, setUser] = useState(null)
   const [upcomingWebinars, setUpcomingWebinars] = useState([])
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
 
   useEffect(() => {
     loadDashboardData()
     
-    // Load language preference
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
-    }
+    setLanguage(readLanguageFromBrowser())
 
     // Listen for language changes
     const handleLanguageChange = (e) => {
@@ -174,7 +137,7 @@ export default function DashboardOverview() {
       const recentActivity = [
         ...(recentFavorites || []).map(fav => ({
           type: 'favorite',
-          action: 'Added property to favorites',
+          action: t('club.activityFavorite', language),
           propertyId: fav.listing_id || fav.listingId,
           date: fav.created_at || fav.createdAt,
           icon: Heart,
@@ -183,7 +146,7 @@ export default function DashboardOverview() {
         })),
         ...(recentInquiries || []).map(inq => ({
           type: 'inquiry',
-          action: 'Sent property inquiry',
+          action: t('club.activityInquiry', language),
           propertyId: inq.listingId || inq.listing_id,
           date: inq.createdAt || inq.created_at,
           icon: MessageSquare,
@@ -192,7 +155,7 @@ export default function DashboardOverview() {
         })),
         ...(docLogs || []).map(log => ({
           type: 'document',
-          action: `Accessed document: ${log.premium_documents?.name || 'Document'}`,
+          action: `${t('club.activityDocument', language)}: ${log.premium_documents?.name || t('club.documents', language)}`,
           date: log.accessed_at,
           icon: FileText,
           iconColor: 'text-blue-600',
@@ -200,7 +163,7 @@ export default function DashboardOverview() {
         })),
         ...(webinarLogs || []).map(log => ({
           type: 'webinar',
-          action: `Registered for webinar: ${log.webinars?.title || 'Webinar'}`,
+          action: `${t('club.activityWebinar', language)}: ${log.webinars?.title || t('club.webinarCalendar', language)}`,
           date: log.registered_at,
           icon: Video,
           iconColor: 'text-purple-600',
@@ -222,15 +185,6 @@ export default function DashboardOverview() {
       console.error('Error loading dashboard data:', error)
       setStats(prev => ({ ...prev, loading: false }))
     }
-  }
-
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat(language === 'cs' ? 'cs-CZ' : (language === 'it' ? 'it-IT' : 'en-US'), {
-      style: 'currency',
-      currency: price.currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price.amount)
   }
 
   const formatDate = (dateString) => {
@@ -261,7 +215,7 @@ export default function DashboardOverview() {
       {/* Header */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
-          {t('club.welcomeBack', language)}, {user?.user_metadata?.name || 'User'}!
+          {t('club.welcomeBack', language)}, {user?.user_metadata?.name || user?.email || ''}!
         </h1>
         <p className="text-gray-600 mt-1">{t('club.dashboardSubtitle', language)}</p>
       </div>
@@ -338,7 +292,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         
         {/* Recent Activity */}
         <Card className="h-full">
@@ -377,55 +331,6 @@ export default function DashboardOverview() {
             )}
           </CardContent>
         </Card>
-
-        {/* Recommendations - Hidden for now
-        <Card className="h-full">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="flex items-center space-x-2">
-              <TrendingUp className="h-5 w-5" />
-              <span>{t('club.recommended', language)}</span>
-            </CardTitle>
-            <Link href="/dashboard/recommendations">
-              <Button variant="outline" size="sm">{t('club.viewAll', language)}</Button>
-            </Link>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {SAMPLE_RECOMMENDATIONS.map((property) => (
-                <div key={property._id} className="flex items-center space-x-4 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                  <Image
-                    src={property.image}
-                    alt={property.title[language] || property.title.en}
-                    width={64}
-                    height={64}
-                    className="w-16 h-16 object-cover rounded-lg"
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-2 mb-1">
-                      <h4 className="font-medium text-gray-900 text-sm">{property.title[language] || property.title.en}</h4>
-                      <Badge variant="secondary" className="text-xs">
-                        <Star className="h-3 w-3 mr-1" />
-                        {property.matchScore}% match
-                      </Badge>
-                    </div>
-                    <div className="flex items-center space-x-3 text-xs text-gray-600">
-                      <span className="flex items-center">
-                        <MapPin className="h-3 w-3 mr-1" />
-                        {property.location?.city?.name[language] || property.location?.city?.name.en}
-                      </span>
-                      <span className="flex items-center font-medium text-blue-600">
-                        <DollarSign className="h-3 w-3 mr-1" />
-                        {formatPrice(property.price)}
-                      </span>
-                    </div>
-                  </div>
-                  <ChevronRight className="h-4 w-4 text-gray-400" />
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-        */}
       </div>
 
       {/* Webinars & Quick Actions */}

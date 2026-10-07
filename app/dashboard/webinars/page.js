@@ -18,6 +18,7 @@ import {
 import { supabase } from '../../../lib/supabase'
 import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
+import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
 
 const UPCOMING_WEBINARS = [
   {
@@ -149,15 +150,12 @@ export default function WebinarsPage() {
   const [loading, setLoading] = useState(true)
   const [upcomingWebinars, setUpcomingWebinars] = useState([])
   const [pastWebinars, setPastWebinars] = useState([])
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
 
   useEffect(() => {
     loadWebinarData()
     
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
-    }
+    setLanguage(readLanguageFromBrowser())
     
     // Listen for language changes
     const handleLanguageChange = (e) => {

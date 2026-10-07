@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { supabase } from '../../../lib/supabase'
 import { t } from '../../../lib/translations'
+import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
 import {
   FileText,
   BookOpen,
@@ -36,7 +37,7 @@ const inputClass = "bg-white border-gray-200 text-gray-900"
 export default function ContentPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedVideoCategory, setSelectedVideoCategory] = useState('All')
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
 
   const [content, setContent] = useState({ videos: [], guides: [], articles: [] })
   const [loading, setLoading] = useState(true)
@@ -49,10 +50,7 @@ export default function ContentPage() {
     loadContent()
     
     // Load language preference
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
-    }
+    setLanguage(readLanguageFromBrowser())
     
     // Listen for language changes
     const handleLanguageChange = (e) => {

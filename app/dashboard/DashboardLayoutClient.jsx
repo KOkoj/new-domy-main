@@ -28,6 +28,7 @@ import {
 } from 'lucide-react'
 import Navigation from '../../components/Navigation'
 import { t } from '../../lib/translations'
+import { DEFAULT_LANGUAGE, persistLanguage, readLanguageFromBrowser } from '../../lib/userPreferences'
 
 const getDashboardMenuItems = (language) => [
   {
@@ -54,14 +55,12 @@ const getDashboardMenuItems = (language) => [
     icon: MessageSquare,
     description: language === 'cs' ? 'Dotazy na nemovitostí' : (language === 'it' ? 'Richieste proprietà' : 'Property inquiries')
   },
-  /*
   {
     title: language === 'cs' ? 'Doporučení' : (language === 'it' ? 'Raccomandazioni' : 'Recommendations'),
     href: '/dashboard/recommendations',
     icon: TrendingUp,
-    description: language === 'cs' ? 'Navržené nemovitostí' : (language === 'it' ? 'Proprietà suggerite' : 'Suggested properties')
+    description: language === 'cs' ? 'Navržené nemovitosti' : (language === 'it' ? 'Proprietà suggerite' : 'Suggested properties')
   },
-  */
   {
     title: language === 'cs' ? 'Uložená hledání' : (language === 'it' ? 'Ricerche salvate' : 'Saved Searches'),
     href: '/dashboard/searches',
@@ -111,26 +110,30 @@ export default function DashboardLayout({ children }) {
   const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [userProfile, setUserProfile] = useState(null)
-  const [language, setLanguage] = useState(() => {
-    if (typeof window === 'undefined') return 'en'
-    const savedLanguage = localStorage.getItem('preferred-language')
-    return savedLanguage || 'en'
-  })
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
   const router = useRouter()
 
   useEffect(() => {
     checkUserAccess()
   }, [])
 
+  useEffect(() => {
+    const savedLanguage = readLanguageFromBrowser()
+    setLanguage(savedLanguage)
+    document.documentElement.lang = savedLanguage
+    const handleLanguageEvent = (event) => {
+      if (event.detail) setLanguage(event.detail)
+    }
+    window.addEventListener('languageChange', handleLanguageEvent)
+    return () => window.removeEventListener('languageChange', handleLanguageEvent)
+  }, [])
+
   const handleLanguageChange = (newLanguage) => {
     setLanguage(newLanguage)
+    persistLanguage(newLanguage)
+    document.documentElement.lang = newLanguage
+    window.dispatchEvent(new CustomEvent('languageChange', { detail: newLanguage }))
   }
-
-  useEffect(() => {
-    localStorage.setItem('preferred-language', language)
-    document.documentElement.lang = language
-    window.dispatchEvent(new CustomEvent('languageChange', { detail: language }))
-  }, [language])
 
   const checkUserAccess = async () => {
     try {
@@ -184,7 +187,7 @@ export default function DashboardLayout({ children }) {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
+          <p className="text-gray-600">{language === 'cs' ? 'Načítání nástěnky...' : language === 'it' ? 'Caricamento dashboard...' : 'Loading dashboard...'}</p>
         </div>
       </div>
     )
@@ -198,9 +201,9 @@ export default function DashboardLayout({ children }) {
           <Card className="max-w-md mx-auto">
             <CardContent className="p-8 text-center">
               <User className="h-12 w-12 text-blue-500 mx-auto mb-4" />
-              <h1 className="text-2xl font-bold mb-2">Login Required</h1>
+              <h1 className="text-2xl font-bold mb-2">{t('auth.loginRequired', language)}</h1>
               <p className="text-gray-600 mb-4">
-                Please login to access your dashboard.
+                {language === 'cs' ? 'Pro přístup na nástěnku se přihlaste.' : language === 'it' ? 'Accedi per aprire la dashboard.' : 'Please login to access your dashboard.'}
               </p>
               <Link href="/">
                 <Button>Go to Homepage</Button>
@@ -235,7 +238,7 @@ export default function DashboardLayout({ children }) {
                 <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                   <User className="h-4 w-4 text-white" />
                 </div>
-                <span className="font-bold text-gray-900">My Dashboard</span>
+                <span className="font-bold text-gray-900">{language === 'cs' ? 'Moje nástěnka' : language === 'it' ? 'La mia dashboard' : 'My Dashboard'}</span>
               </Link>
               <button 
                 className="lg:hidden flex items-center justify-center min-w-[44px] min-h-[44px] rounded-md hover:bg-gray-100" 
@@ -308,7 +311,7 @@ export default function DashboardLayout({ children }) {
               <button onClick={() => setSidebarOpen(true)} className="mr-1 flex-shrink-0 flex items-center justify-center min-w-[44px] min-h-[44px] rounded-md hover:bg-gray-100">
                 <Menu className="h-6 w-6 text-gray-600" />
               </button>
-              <h1 className="font-semibold text-gray-900 truncate text-sm sm:text-base">Dashboard</h1>
+              <h1 className="font-semibold text-gray-900 truncate text-sm sm:text-base">{language === 'cs' ? 'Nástěnka' : language === 'it' ? 'Dashboard' : 'Dashboard'}</h1>
             </div>
             
             <h1 className="hidden lg:block text-gray-900 font-semibold">
