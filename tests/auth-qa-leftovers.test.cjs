@@ -152,6 +152,14 @@ test('property lot size formatting is locale-aware', () => {
   )
 })
 
+test('desktop user dropdown logout follows the mobile CS/EN/IT labels', () => {
+  const source = read('components/Navigation.js')
+  assert.match(source, /logout: language === 'cs' \? 'Odhlásit' : language === 'it' \? 'Esci' : 'Log out'/)
+  assert.match(source, /<span>\{navLabels\.logout\}<\/span>/)
+  assert.doesNotMatch(source, /<span>Logout<\/span>/)
+  assert.match(source, /userFallback: language === 'cs' \? 'Uživatel'/)
+})
+
 test('site-page h1 on photo overlays can stay white', () => {
   const css = read('app/globals.css')
   assert.match(css, /\.site-page h1 \{[\s\S]*color: #111827/)
