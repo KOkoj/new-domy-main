@@ -24,6 +24,7 @@ import {
 import { supabase } from '../../../lib/supabase'
 import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
+import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
 
 export default function ProfileManagement() {
   const [user, setUser] = useState(null)
@@ -54,16 +55,13 @@ export default function ProfileManagement() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState({ type: '', text: '' })
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
 
   useEffect(() => {
     loadProfile()
     
     // Load language preference
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
-    }
+    setLanguage(readLanguageFromBrowser())
     
     // Listen for language changes
     const handleLanguageChange = (e) => {
@@ -89,7 +87,7 @@ export default function ProfileManagement() {
         .from('profiles')
         .select('*')
         .eq('id', user.id)
-        .single()
+        .maybeSingle()
 
       if (profileData) {
         setProfile({
@@ -149,6 +147,12 @@ export default function ProfileManagement() {
     setSaving(true)
     setMessage({ type: '', text: '' })
 
+    if (!passwordForm.currentPassword) {
+      setMessage({ type: 'error', text: t('club.profile.currentPasswordRequired', language) })
+      setSaving(false)
+      return
+    }
+
     if (passwordForm.newPassword !== passwordForm.confirmPassword) {
       setMessage({ type: 'error', text: t('club.profile.passwordMismatch', language) })
       setSaving(false)
@@ -162,17 +166,27 @@ export default function ProfileManagement() {
     }
 
     try {
-      const { error } = await supabase.auth.updateUser({
-        password: passwordForm.newPassword
+      const response = await fetch('/api/auth/change-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          currentPassword: passwordForm.currentPassword,
+          newPassword: passwordForm.newPassword
+        })
       })
-
-      if (error) throw error
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) {
+        const invalid = response.status === 401
+        throw new Error(invalid
+          ? t('club.profile.currentPasswordInvalid', language)
+          : (payload?.error || t('club.profile.passwordError', language)))
+      }
 
       setMessage({ type: 'success', text: t('club.profile.passwordSuccess', language) })
       setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' })
     } catch (error) {
       console.error('Error changing password:', error)
-      setMessage({ type: 'error', text: t('club.profile.passwordError', language) })
+      setMessage({ type: 'error', text: error.message || t('club.profile.passwordError', language) })
     } finally {
       setSaving(false)
     }
@@ -505,7 +519,7 @@ export default function ProfileManagement() {
               
               <Button 
                 onClick={handlePasswordChange} 
-                disabled={saving || !passwordForm.newPassword || !passwordForm.confirmPassword}
+                disabled={saving || !passwordForm.currentPassword || !passwordForm.newPassword || !passwordForm.confirmPassword}
               >
                 <Lock className="h-4 w-4 mr-2" />
                 {saving ? t('club.profile.updating', language) : t('club.profile.updatePassword', language)}

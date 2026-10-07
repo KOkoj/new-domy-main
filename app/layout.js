@@ -3,8 +3,9 @@ import './globals.css'
 import ScrollToTop from '@/components/ScrollToTop'
 import NavigationProgress from '@/components/NavigationProgress'
 import { PUBLIC_SITE_STANDBY } from '@/lib/featureFlags'
+import { cookies } from 'next/headers'
 import { SITE_NAME, SITE_URL } from '@/lib/siteConfig'
-import { DEFAULT_LANGUAGE } from '@/lib/userPreferences'
+import { readLanguageFromCookies } from '@/lib/userPreferences'
 import { Analytics } from '@vercel/analytics/next'
 import AffiliateClickAnalytics from '@/components/AffiliateClickAnalytics'
 import MetaTracking from '@/components/MetaTracking'
@@ -58,7 +59,8 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const language = readLanguageFromCookies(await cookies())
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -75,7 +77,7 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang={DEFAULT_LANGUAGE} className={`${manrope.variable} ${sora.variable} font-sans overflow-x-hidden`}>
+    <html lang={language} className={`${manrope.variable} ${sora.variable} font-sans overflow-x-hidden`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <script

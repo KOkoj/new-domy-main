@@ -106,7 +106,7 @@ export default function Navigation({ appearAfterHero = false }) {
           .from('profiles')
           .select('role')
           .eq('id', user.id)
-          .single()
+          .maybeSingle()
         
         setIsAdmin(profile?.role === 'admin')
       } else {
@@ -125,7 +125,7 @@ export default function Navigation({ appearAfterHero = false }) {
           .from('profiles')
           .select('role')
           .eq('id', session.user.id)
-          .single()
+          .maybeSingle()
         
         setIsAdmin(profile?.role === 'admin')
       } else {
@@ -137,11 +137,17 @@ export default function Navigation({ appearAfterHero = false }) {
   }, [])
 
   const handleLogout = async () => {
-    if (!supabase) return
-    const { error } = await supabase.auth.signOut()
-    if (!error) {
-      setUser(null)
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' })
+    } catch {
+      // Continue with client sign-out even if the cookie route fails.
     }
+    if (supabase) {
+      await supabase.auth.signOut()
+    }
+    setUser(null)
+    setIsMenuOpen(false)
+    window.location.assign('/')
   }
 
   const handleAuthSuccess = (user) => {
@@ -373,6 +379,15 @@ export default function Navigation({ appearAfterHero = false }) {
                 data-testid="mobile-login-link"
               >
                 {authButtonLabel}
+              </button>
+            )}
+            {user && (
+              <button
+                onClick={handleLogout}
+                className="px-3 py-2.5 rounded-lg text-base leading-none cursor-pointer text-copper-300 hover:text-copper-200 hover:bg-white/5 transition-colors text-left font-medium"
+                data-testid="mobile-logout-link"
+              >
+                {language === 'cs' ? 'Odhlásit' : language === 'it' ? 'Esci' : 'Log out'}
               </button>
             )}
           </div>

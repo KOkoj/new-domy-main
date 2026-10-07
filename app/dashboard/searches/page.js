@@ -24,6 +24,7 @@ import {
 import { supabase } from '../../../lib/supabase'
 import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
+import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
 import Link from 'next/link'
 
 export default function SavedSearchesManagement() {
@@ -32,14 +33,13 @@ export default function SavedSearchesManagement() {
   const [editingSearch, setEditingSearch] = useState(null)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [user, setUser] = useState(null)
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
 
   useEffect(() => {
     loadSavedSearches()
     
     // Load language preference
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) setLanguage(savedLanguage)
+    setLanguage(readLanguageFromBrowser())
     
     // Listen for language changes
     const handleLanguageChange = (e) => {

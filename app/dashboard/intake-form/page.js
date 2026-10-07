@@ -24,6 +24,7 @@ import {
 import { supabase } from '../../../lib/supabase'
 import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
+import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
 import { getProfileDisplayName, splitFullName } from '../../../lib/profileName'
 
 const PROPERTY_TYPES = ['Villa', 'House', 'Apartment', 'Farmhouse', 'Castle', 'Commercial', 'Land']
@@ -167,7 +168,7 @@ export default function IntakeForm() {
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState({ type: '', text: '' })
   const [showExtendedForm, setShowExtendedForm] = useState(false)
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
   const extendedFormRef = useRef(null)
   const intakeOptions = t('forms.intake.options', language)
   const intakeText = (key) => t(`forms.intake.${key}`, language)
@@ -230,10 +231,7 @@ export default function IntakeForm() {
   useEffect(() => {
     loadFormData()
     
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
-    }
+    setLanguage(readLanguageFromBrowser())
     
     // Listen for language changes
     const handleLanguageChange = (e) => {
@@ -259,7 +257,7 @@ export default function IntakeForm() {
         .from('client_intake_forms')
         .select('*')
         .eq('user_id', user.id)
-        .single()
+        .maybeSingle()
 
       if (intakeForm) {
         // Map database fields back to form state
@@ -309,7 +307,7 @@ export default function IntakeForm() {
         .from('profiles')
         .select('*')
         .eq('id', user.id)
-        .single()
+        .maybeSingle()
 
       if (profile) {
         // Check if there are legacy preferences saved in the profile

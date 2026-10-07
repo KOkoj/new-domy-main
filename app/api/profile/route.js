@@ -68,6 +68,41 @@ function buildProfileFromUser(user) {
   }
 }
 
+function profileNameNeedsBackfill(profile, user) {
+  const firstName = String(profile?.first_name || '').trim()
+  const lastName = String(profile?.last_name || '').trim()
+  const emailLocal = String(user?.email || '').split('@')[0]
+  if (!firstName) return true
+  if (firstName === 'User' && !lastName) return true
+  if (firstName === emailLocal && !lastName) return true
+  return false
+}
+
+async function reconcileProfileName(supabase, user, existingProfile) {
+  const fromMetadata = buildProfileFromUser(user)
+  const emailLocal = String(user?.email || '').split('@')[0]
+  const metadataHasRealName =
+    fromMetadata.first_name &&
+    fromMetadata.first_name !== 'User' &&
+    fromMetadata.first_name !== emailLocal
+
+  if (profileNameNeedsBackfill(existingProfile, user) && metadataHasRealName) {
+    const { data: updatedProfile } = await supabase
+      .from('profiles')
+      .update({
+        first_name: fromMetadata.first_name,
+        last_name: fromMetadata.last_name
+      })
+      .eq('id', user.id)
+      .select()
+      .maybeSingle()
+
+    return { profile: updatedProfile || existingProfile, updated: true }
+  }
+
+  return { profile: existingProfile, updated: false }
+}
+
 // Legacy consumers (e.g. DashboardLayoutClient.jsx) read `profile.name` as a
 // display string. Keep returning that shape, derived from the canonical
 // first_name/last_name columns, without writing back to the legacy `name`
@@ -105,11 +140,12 @@ export async function POST() {
       .maybeSingle()
 
     if (existingProfile) {
+      const reconciled = await reconcileProfileName(supabase, user, existingProfile)
       return applyCookies(
         NextResponse.json({
           success: true,
-          message: 'Profile already exists',
-          profile: withDisplayName(existingProfile, user)
+          message: reconciled.updated ? 'Profile name updated' : 'Profile already exists',
+          profile: withDisplayName(reconciled.profile, user)
         })
       )
     }
@@ -119,7 +155,7 @@ export async function POST() {
       .from('profiles')
       .insert([profileData])
       .select()
-      .single()
+      .maybeSingle()
 
     if (createError) {
       return applyCookies(
@@ -188,10 +224,12 @@ export async function GET() {
       return POST()
     }
 
+    const reconciled = await reconcileProfileName(supabase, user, profile)
+
     return applyCookies(
       NextResponse.json({
         success: true,
-        profile: withDisplayName(profile, user)
+        profile: withDisplayName(reconciled.profile, user)
       })
     )
   } catch (error) {

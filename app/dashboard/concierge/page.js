@@ -24,6 +24,9 @@ import {
 import { supabase } from '../../../lib/supabase'
 import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
+import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164 } from '../../../lib/contactDetails'
+import Link from 'next/link'
 
 const TICKET_CATEGORIES = [
   'General Inquiry',
@@ -56,7 +59,7 @@ export default function ConciergePage() {
   const [submitting, setSubmitting] = useState(false)
   const [message, setMessage] = useState({ type: '', text: '' })
   const [tickets, setTickets] = useState([])
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
   const categoryLabels = t('club.conciergePage.categories', language)
   const priorityLabels = t('club.conciergePage.priorities', language)
   const statusLabels = t('club.conciergePage.statuses', language)
@@ -73,10 +76,7 @@ export default function ConciergePage() {
     loadConciergeData()
     
     // Load saved language preference
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
-    }
+    setLanguage(readLanguageFromBrowser())
 
     // Listen for language changes
     const handleLanguageChange = (e) => {
@@ -262,7 +262,9 @@ export default function ConciergePage() {
             </div>
             <h3 className="font-semibold text-gray-900 mb-1">{t('club.conciergePage.callUs', language)}</h3>
             <p className="text-sm text-gray-500 mb-3">{t('club.conciergePage.callHours', language)}</p>
-            <p className="text-copper-600 font-medium">{t('club.conciergePage.phone', language)}</p>
+            <p className="text-copper-600 font-medium">
+              <a href={`tel:${CONTACT_PHONE_E164}`}>{CONTACT_PHONE_DISPLAY}</a>
+            </p>
           </CardContent>
         </Card>
 
@@ -273,7 +275,9 @@ export default function ConciergePage() {
             </div>
             <h3 className="font-semibold text-gray-900 mb-1">{t('club.conciergePage.emailUs', language)}</h3>
             <p className="text-sm text-gray-500 mb-3">{t('club.conciergePage.emailResponse', language)}</p>
-            <p className="text-blue-600 font-medium">{t('club.conciergePage.email', language)}</p>
+            <p className="text-blue-600 font-medium">
+              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            </p>
           </CardContent>
         </Card>
 
@@ -284,8 +288,8 @@ export default function ConciergePage() {
             </div>
             <h3 className="font-semibold text-gray-900 mb-1">{t('club.conciergePage.bookCall', language)}</h3>
             <p className="text-sm text-gray-500 mb-3">{t('club.conciergePage.bookDescription', language)}</p>
-            <Button size="sm" className="bg-green-600 hover:bg-green-700">
-              {t('club.conciergePage.scheduleNow', language)}
+            <Button asChild size="sm" className="bg-green-600 hover:bg-green-700">
+              <Link href="/contact">{t('club.conciergePage.scheduleNow', language)}</Link>
             </Button>
           </CardContent>
         </Card>

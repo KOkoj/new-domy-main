@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
 import { t } from '../../../lib/translations'
+import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
 
 const STORAGE_BUCKET = 'documents'
 
@@ -34,15 +35,12 @@ export default function DocumentsPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All Documents')
   const [categories, setCategories] = useState(['All Documents'])
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
 
   useEffect(() => {
     loadDocuments()
     
-    const savedLanguage = localStorage.getItem('preferred-language')
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
-    }
+    setLanguage(readLanguageFromBrowser())
     
     // Listen for language changes
     const handleLanguageChange = (e) => {
