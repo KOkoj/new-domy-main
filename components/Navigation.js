@@ -204,7 +204,7 @@ export default function Navigation({ appearAfterHero = false }) {
                 width={120}
                 height={120}
                 priority={!appearAfterHero}
-                className="w-auto cursor-pointer z-30 relative sm:absolute top-0 left-0 h-14 sm:h-20 md:h-24 drop-shadow-[0_2px_6px_rgba(0,0,0,0.22)]"
+                className={`w-auto cursor-pointer z-30 relative sm:absolute top-0 left-0 h-14 sm:h-20 md:h-24 drop-shadow-[0_2px_6px_rgba(0,0,0,0.22)] ${isMenuOpen ? 'sm:opacity-0' : ''}`}
                 data-testid="nav-brand-logo"
               />
               <div className="hidden sm:block h-12 w-24"></div>

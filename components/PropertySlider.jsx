@@ -296,18 +296,23 @@ export default function PropertySlider({ language = 'en', initialProperties = []
   return (
     <section className={home ? '' : 'bg-gray-50 border-t border-gray-100 py-16'}>
       <div className={home ? 'w-full' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'}>
-        <div data-reveal={home ? 'rise' : undefined} className={`mb-8 flex items-end justify-between ${home ? 'gap-5' : ''}`}>
-          <div>
+        <div
+          data-reveal={home ? 'rise' : undefined}
+          className={home
+            ? 'mb-8 flex flex-col items-start gap-5 max-sm:flex-row max-sm:items-end max-sm:justify-between min-[1400px]:flex-row min-[1400px]:items-end min-[1400px]:justify-between'
+            : 'mb-8 flex items-end justify-between'}
+        >
+          <div className={home ? 'min-w-0' : undefined}>
             <h2 className={home ? 'text-pretty text-[2.05rem] font-bold leading-[1.15] text-gray-900' : 'text-2xl font-bold text-slate-800 tracking-tight'}>
               {labels.heading}
             </h2>
             {home ? null : <div className="w-12 h-1 bg-amber-400 rounded-full mt-2" />}
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-3">
             <Link
               href="/properties"
               className={home
-                ? 'hidden sm:inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]'
+                ? 'hidden whitespace-nowrap sm:inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]'
                 : 'hidden sm:inline-flex items-center text-sm font-medium text-blue-700 hover:text-blue-800 transition-colors duration-150 mr-2'}
             >
               {labels.viewAll}
@@ -361,7 +366,7 @@ export default function PropertySlider({ language = 'en', initialProperties = []
           <Link
             href="/properties"
             className={home
-              ? 'inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]'
+              ? 'inline-flex w-fit items-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]'
               : 'text-sm font-medium text-blue-700 hover:text-blue-800 transition-colors'}
           >
             {labels.viewAll}{home ? '' : ' →'}
