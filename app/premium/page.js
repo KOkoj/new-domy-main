@@ -218,8 +218,8 @@ export default function PremiumLandingPage() {
 
   if (!PREMIUM_PDFS_ENABLED) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
-        <div className="container mx-auto px-6 py-16 md:py-24" style={{maxWidth:"1200px"}}>
+      <div className="site-page min-h-screen bg-[#f7f4ed]">
+        <div className="container mx-auto px-6 py-16 md:py-24">
           <div className="max-w-3xl mx-auto">
             <Card className="bg-white/95 border-gray-200 shadow-xl">
               <CardHeader>
@@ -329,7 +329,7 @@ export default function PremiumLandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <nav
         className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg border-b border-white/20"
         style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}
@@ -338,7 +338,7 @@ export default function PremiumLandingPage() {
           <div className="flex items-center justify-between">
             <Link href="/" className="relative">
               <img
-                src="/logo domy.svg"
+                src="/domy logo V3.svg"
                 alt="Domy v Itálii"
                 className="h-12 w-auto"
                 style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))' }}

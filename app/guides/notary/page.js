@@ -252,11 +252,11 @@ export default function NotaryGuidePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
       <div className="pb-16 pt-28 md:pb-24">
-        <div className="container mx-auto mb-6 px-6" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto mb-6 px-6">
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Link href="/" className="hover:text-slate-700">{copy.home}</Link>
             <span>/</span>
@@ -266,7 +266,7 @@ export default function NotaryGuidePage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6">
           <div className="mx-auto max-w-4xl" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="mb-8">
               <Button

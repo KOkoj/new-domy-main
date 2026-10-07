@@ -10,16 +10,12 @@ import {
   MapPin,
   Map as MapIcon,
   List as ListIcon,
-  ChevronRight,
-  ChevronDown,
   SlidersHorizontal,
   Mail,
   MessageCircle,
   Sparkles,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
 import { supabase } from '../../lib/supabase';
 import Footer from '../../components/Footer';
 import RegionBanner from '../../components/RegionBanner';
@@ -43,6 +39,14 @@ const getPropertyTimestamp = (property) => {
   const value = property?.createdAt || property?.updatedAt || property?._createdAt || property?._updatedAt;
   const timestamp = Date.parse(value || '');
   return Number.isFinite(timestamp) ? timestamp : 0;
+};
+
+const isInsideMapBounds = (property, bounds) => {
+  const lat = property?.location?.[0];
+  const lng = property?.location?.[1];
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return false;
+  if (Math.abs(lat) > 90 || Math.abs(lng) > 180) return false;
+  return lat >= bounds.south && lat <= bounds.north && lng >= bounds.west && lng <= bounds.east;
 };
 
 // Dynamically import map components to avoid SSR issues
@@ -73,6 +77,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   const [sortBy, setSortBy] = useState('newest');
   const [selectedPropertyId, setSelectedPropertyId] = useState(null);
   const [hoveredPropertyId, setHoveredPropertyId] = useState(null);
+  const [mapBounds, setMapBounds] = useState(null);
   // Card that briefly flashes after being selected on the map
   const [flashedPropertyId, setFlashedPropertyId] = useState(null);
   // Whether the current hover originated from a map pin (rings the list card)
@@ -80,7 +85,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   // 'list' = classic sidebar + grid, 'split' = list left / map right (Airbnb-style);
   // on mobile, 'split' renders as a full-screen map instead
   const [viewMode, setViewMode] = useState('list');
-  const [showFilterBar, setShowFilterBar] = useState(false);
+  const [amenitiesOpen, setAmenitiesOpen] = useState(false);
   const [isMobileViewport, setIsMobileViewport] = useState(() =>
     typeof window !== 'undefined' ? window.matchMedia('(max-width: 1023px)').matches : false
   );
@@ -102,7 +107,6 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   // Pagination state
   const [displayedCount, setDisplayedCount] = useState(12); // Show 12 properties initially
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [showBackToTop, setShowBackToTop] = useState(false);
   const ITEMS_PER_PAGE = 9; // Load 9 more each time
   
   // Mobile filter state
@@ -210,16 +214,6 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
 
     window.addEventListener('languageChange', handleLanguageChange)
     return () => window.removeEventListener('languageChange', handleLanguageChange)
-  }, []);
-
-  // Scroll detection for "Back to Top" button
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 800);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Reset displayed count when filters change
@@ -406,6 +400,58 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     return sortedProperties.slice(0, displayedCount);
   }, [sortedProperties, displayedCount]);
 
+  const syncListToMap = viewMode === 'split' && !isMobileViewport;
+  const listProperties = useMemo(() => {
+    if (syncListToMap && mapBounds) {
+      return sortedProperties.filter((property) => isInsideMapBounds(property, mapBounds));
+    }
+    return displayedProperties;
+  }, [syncListToMap, mapBounds, sortedProperties, displayedProperties]);
+
+  const visibleMapKey = syncListToMap && mapBounds
+    ? listProperties.map((property) => property.id).join('|')
+    : '';
+
+  const handleMapBounds = useCallback((next) => {
+    setMapBounds((prev) => {
+      if (
+        prev &&
+        prev.south === next.south &&
+        prev.north === next.north &&
+        prev.west === next.west &&
+        prev.east === next.east
+      ) {
+        return prev;
+      }
+      return next;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (viewMode !== 'split') setMapBounds(null);
+  }, [viewMode]);
+
+  // A new map viewport is a new list. Scroll only the side column.
+  useEffect(() => {
+    if (!visibleMapKey) return;
+    document.querySelectorAll('[data-property-list]').forEach((list) => {
+      if (list.getClientRects().length === 0) return;
+      const card = selectedPropertyId
+        ? list.querySelector(
+            `[data-testid="property-card"][data-property-id="${CSS.escape(String(selectedPropertyId))}"]`
+          )
+        : null;
+      if (!card) {
+        list.scrollTop = 0;
+        return;
+      }
+      const listRect = list.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      const nextTop = list.scrollTop + (cardRect.top - listRect.top) - (list.clientHeight - cardRect.height) / 2;
+      list.scrollTop = Math.max(0, nextTop);
+    });
+  }, [visibleMapKey, selectedPropertyId]);
+
   // Check if there are more properties to load
   const hasMoreProperties = sortedProperties.length > displayedCount;
 
@@ -418,7 +464,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
 
     // The card may be beyond the current pagination window; extend it first
     // and let this effect re-run once the card is in the DOM.
-    if (index >= displayedCount) {
+    if (!syncListToMap && index >= displayedCount) {
       setDisplayedCount(index + 1);
       return;
     }
@@ -426,14 +472,18 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     const element = document.querySelector(
       `[data-testid="property-card"][data-property-id="${CSS.escape(String(selectedPropertyId))}"]`
     );
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const list = element?.closest('[data-property-list]');
+    if (element && list && viewMode === 'split' && !isMobileViewport) {
+      const listRect = list.getBoundingClientRect();
+      const cardRect = element.getBoundingClientRect();
+      const nextTop = list.scrollTop + (cardRect.top - listRect.top) - (list.clientHeight - cardRect.height) / 2;
+      list.scrollTo({ top: Math.max(0, nextTop), behavior: 'smooth' });
     }
 
     setFlashedPropertyId(selectedPropertyId);
     const timeout = setTimeout(() => setFlashedPropertyId(null), 2500);
     return () => clearTimeout(timeout);
-  }, [selectedPropertyId, sortedProperties, displayedCount]);
+  }, [selectedPropertyId, sortedProperties, displayedCount, viewMode, isMobileViewport, syncListToMap]);
 
   // Number of active filters (shown on the split-view filter bar toggle)
   const activeFilterCount = useMemo(() => {
@@ -466,12 +516,6 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       ? prev.amenities.filter(id => id !== amenityId)
       : [...prev.amenities, amenityId]
     }));
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
   };
 
   // Static whisper suggestions pool
@@ -540,456 +584,272 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#faf8f5] overflow-x-hidden">
+    <div className="site-page min-h-screen bg-[#f7f4ed] overflow-x-hidden">
       {/* Navigation */}
       <Navigation />
 
-      {/* Prominent search bar — full width, above everything */}
-      <div className="bg-white border-b border-gray-200 pt-28 sm:pt-24 pb-6 sm:pb-8">
-        <div className="container mx-auto px-4 sm:px-6" style={{ maxWidth: '1100px' }}>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 text-center">
-            {pageLabels.title}
-          </h1>
-          {intro && (
-            <p className="text-sm sm:text-base text-gray-600 text-center mb-4 max-w-2xl mx-auto leading-relaxed px-2">
-              {getLocalizedValue(intro, language)}
+      <div className="pb-8 pt-40">
+        <div className="container mx-auto">
+          <div className="mb-6 text-center">
+            <h1 className="text-pretty">{pageLabels.title}</h1>
+            <p className="mt-3 text-sm font-medium text-gray-600">
+              {sortedProperties.length} {pageLabels.propertiesCount}
             </p>
-          )}
-          <p className="text-sm text-gray-400 text-center mb-5">
-            {language === 'cs' ? 'Vyhledejte podle lokality, typu nebo vybavení' :
-             language === 'it' ? 'Cerca per posizione, tipo o servizi' :
-             'Search by location, type or amenities'}
-          </p>
-          <div ref={searchRef} className="relative">
-            <div
-              className="flex items-center gap-2 bg-white rounded-2xl p-2 transition-all duration-200"
-              style={{
-                border: '2px solid #e5e7eb',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-              }}
-            >
-              <Search className="ml-2 h-5 w-5 flex-shrink-0 text-gray-400" />
-              <input
-                ref={inputRef}
-                type="text"
-                value={filters.search}
-                onChange={e => {
-                  setFilters(prev => ({ ...prev, search: e.target.value }));
-                  setShowSuggestions(true);
-                  setHighlightedIndex(-1);
-                }}
-                onFocus={() => setShowSuggestions(true)}
-                onKeyDown={e => {
-                  if (e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    setHighlightedIndex(i => Math.min(i + 1, filteredSuggestions.length - 1));
-                  } else if (e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    setHighlightedIndex(i => Math.max(i - 1, 0));
-                  } else if (e.key === 'Enter' && highlightedIndex >= 0) {
-                    applySuggestion(filteredSuggestions[highlightedIndex]);
-                  } else if (e.key === 'Escape') {
-                    setShowSuggestions(false);
-                  }
-                }}
-                placeholder={language === 'cs' ? 'Toskánsko, vila, bazén, Puglia…' : language === 'it' ? 'Toscana, villa, piscina, Puglia…' : 'Tuscany, villa, pool, Puglia…'}
-                className="flex-1 py-2.5 text-base bg-transparent border-none outline-none focus:outline-none focus:ring-0 text-gray-800 placeholder-gray-400 min-w-0"
-                style={{ outline: 'none', boxShadow: 'none' }}
-              />
-              {filters.search && (
-                <button
-                  onClick={() => { setFilters(prev => ({ ...prev, search: '' })); inputRef.current?.focus(); }}
-                  className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors flex-shrink-0"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              )}
+          </div>
+          {intro ? <p className="sr-only">{getLocalizedValue(intro, language)}</p> : null}
+
+          <div
+            className="mb-6 rounded-2xl bg-white p-2 shadow-[0_10px_32px_rgba(14,21,46,0.06)] sm:p-3"
+            data-testid="horizontal-filter-bar"
+          >
+            <div className="flex items-center gap-2">
+              <div ref={searchRef} className="relative min-w-0 flex-1">
+                <div className="flex h-11 items-center gap-2 rounded-xl bg-white px-3 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]">
+                  <Search className="h-4 w-4 flex-shrink-0 text-gray-400" />
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={filters.search}
+                    onChange={e => {
+                      setFilters(prev => ({ ...prev, search: e.target.value }));
+                      setShowSuggestions(true);
+                      setHighlightedIndex(-1);
+                    }}
+                    onFocus={() => setShowSuggestions(true)}
+                    onKeyDown={e => {
+                      if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        setHighlightedIndex(i => Math.min(i + 1, filteredSuggestions.length - 1));
+                      } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        setHighlightedIndex(i => Math.max(i - 1, 0));
+                      } else if (e.key === 'Enter' && highlightedIndex >= 0) {
+                        applySuggestion(filteredSuggestions[highlightedIndex]);
+                      } else if (e.key === 'Escape') {
+                        setShowSuggestions(false);
+                      }
+                    }}
+                    placeholder={language === 'cs' ? 'Toskánsko, vila, bazén, Puglia…' : language === 'it' ? 'Toscana, villa, piscina, Puglia…' : 'Tuscany, villa, pool, Puglia…'}
+                    className="min-w-0 flex-1 bg-transparent text-sm text-[#0e152e] outline-none placeholder:text-gray-400"
+                    style={{ outline: 'none', boxShadow: 'none' }}
+                  />
+                  {filters.search && (
+                    <button
+                      type="button"
+                      onClick={() => { setFilters(prev => ({ ...prev, search: '' })); inputRef.current?.focus(); }}
+                      className="flex-shrink-0 text-gray-400 hover:text-gray-700"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
+                {showSuggestions && filteredSuggestions.length > 0 && (
+                  <div className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-2xl bg-white shadow-xl">
+                    {filteredSuggestions.map((s, i) => (
+                      <button
+                        key={`${s.category}-${s.value}`}
+                        className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors duration-100 hover:bg-white"
+                        style={{ backgroundColor: i === highlightedIndex ? 'rgba(199,137,91,0.08)' : '' }}
+                        onMouseDown={e => { e.preventDefault(); applySuggestion(s); }}
+                        onMouseEnter={() => setHighlightedIndex(i)}
+                      >
+                        <Search className="h-3.5 w-3.5 flex-shrink-0 text-gray-300" />
+                        <span className="flex-1 text-sm font-medium text-gray-800">{s.label}</span>
+                        <span className="flex-shrink-0 rounded-full bg-white px-2 py-0.5 text-xs text-gray-500 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]">{s.category}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <button
-                className="flex-shrink-0 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-all duration-200"
-                style={{
-                  background: 'linear-gradient(to right, rgba(199,137,91,1), rgb(153,105,69))',
-                  boxShadow: '0 2px 8px rgba(153,105,69,0.3)',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.1)'; }}
-                onMouseLeave={e => { e.currentTarget.style.filter = ''; }}
-                onClick={() => setShowSuggestions(false)}
+                type="button"
+                onClick={() => setShowMobileFilters(open => !open)}
+                className="inline-flex h-11 items-center gap-2 rounded-xl bg-[#1b2642] px-4 text-sm font-semibold text-white lg:hidden"
+                data-testid="filter-bar-toggle"
               >
-                {language === 'cs' ? 'Hledat' : language === 'it' ? 'Cerca' : 'Search'}
+                <SlidersHorizontal className="h-4 w-4" />
+                {pageLabels.filtersLabel}
+                {activeFilterCount > 0 && (
+                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1 text-xs font-bold text-[#1b2642]">
+                    {activeFilterCount}
+                  </span>
+                )}
               </button>
+
+              <div
+                className="ml-auto hidden rounded-xl bg-white p-1 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:inline-flex"
+                role="group"
+                data-testid="view-mode-toggle"
+              >
+                <button
+                  type="button"
+                  onClick={() => setViewMode('list')}
+                  aria-pressed={viewMode === 'list'}
+                  className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold ${viewMode === 'list' ? 'bg-[#1b2642] text-white' : 'text-gray-600 hover:text-[#0e152e]'}`}
+                  data-testid="view-mode-list"
+                >
+                  <ListIcon className="h-4 w-4" />
+                  {pageLabels.viewList}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode('split')}
+                  aria-pressed={viewMode === 'split'}
+                  className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold ${viewMode === 'split' ? 'bg-[#1b2642] text-white' : 'text-gray-600 hover:text-[#0e152e]'}`}
+                  data-testid="view-mode-map"
+                >
+                  <MapIcon className="h-4 w-4" />
+                  {pageLabels.viewMap}
+                </button>
+              </div>
             </div>
 
-            {/* Whisper suggestions dropdown */}
-            {showSuggestions && filteredSuggestions.length > 0 && (
-              <div className="absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl border border-gray-200 shadow-xl z-50 overflow-hidden">
-                {filteredSuggestions.map((s, i) => (
-                  <button
-                    key={`${s.category}-${s.value}`}
-                    className="w-full flex items-center gap-3 px-4 py-3 text-left transition-colors duration-100 hover:bg-amber-50"
-                    style={{ backgroundColor: i === highlightedIndex ? 'rgba(199,137,91,0.08)' : '' }}
-                    onMouseDown={e => { e.preventDefault(); applySuggestion(s); }}
-                    onMouseEnter={() => setHighlightedIndex(i)}
-                  >
-                    <Search className="h-3.5 w-3.5 text-gray-300 flex-shrink-0" />
-                    <span className="flex-1 text-sm text-gray-800 font-medium">{s.label}</span>
-                    <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full flex-shrink-0">{s.category}</span>
-                  </button>
+            <div className={`${showMobileFilters ? 'mt-2 flex' : 'hidden'} flex-wrap items-center gap-2 lg:mt-2 lg:flex`}>
+              <select
+                value={filters.propertyType}
+                onChange={(e) => setFilters(prev => ({ ...prev, propertyType: e.target.value }))}
+                aria-label={pageLabels.propertyType}
+                className="h-11 min-w-[12.5rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+              >
+                <option value="">{pageLabels.propertyType}</option>
+                {propertyTypes.map(type => (
+                  <option key={type.id} value={type.id}>{type.name[language] || type.name.en}</option>
                 ))}
+              </select>
+
+              <select
+                value={filters.region}
+                onChange={(e) => setFilters(prev => ({ ...prev, region: toRegionSlug(e.target.value) }))}
+                aria-label={pageLabels.region}
+                className="h-11 min-w-[13rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+              >
+                <option value="">{pageLabels.allRegions}</option>
+                {Object.entries(REGION_LABELS).map(([regionSlug, regionLabel]) => (
+                  <option key={regionSlug} value={regionSlug}>{regionLabel[language] || regionLabel.en}</option>
+                ))}
+              </select>
+
+              <select
+                value={filters.rooms}
+                onChange={(e) => setFilters(prev => ({ ...prev, rooms: e.target.value }))}
+                aria-label={pageLabels.layout}
+                className="h-11 min-w-[8.5rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+              >
+                <option value="">{pageLabels.layout}</option>
+                {ROOM_LAYOUT_OPTIONS.map((layoutOption) => (
+                  <option key={layoutOption.id} value={layoutOption.id}>{layoutOption.label}</option>
+                ))}
+              </select>
+
+              <input
+                type="number"
+                inputMode="numeric"
+                placeholder={pageLabels.from}
+                aria-label={pageLabels.from}
+                value={filters.priceFrom}
+                onChange={(e) => setFilters(prev => ({ ...prev, priceFrom: e.target.value }))}
+                className="h-11 w-28 rounded-xl bg-white px-3 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]"
+              />
+              <input
+                type="number"
+                inputMode="numeric"
+                placeholder={pageLabels.to}
+                aria-label={pageLabels.to}
+                value={filters.priceTo}
+                onChange={(e) => setFilters(prev => ({ ...prev, priceTo: e.target.value }))}
+                className="h-11 w-28 rounded-xl bg-white px-3 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]"
+              />
+
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                aria-label={pageLabels.sortNewest}
+                className="h-11 min-w-[10.5rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+              >
+                <option value="newest">{pageLabels.sortNewest}</option>
+                <option value="cheapest">{pageLabels.sortCheapest}</option>
+                <option value="expensive">{pageLabels.sortExpensive}</option>
+              </select>
+
+              <button
+                type="button"
+                onClick={() => setAmenitiesOpen(open => !open)}
+                className={`h-11 rounded-xl px-3 text-sm font-semibold ${amenitiesOpen || filters.amenities.length ? 'bg-[#1b2642] text-white' : 'bg-white text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]'}`}
+              >
+                {pageLabels.amenities}{filters.amenities.length > 0 ? ` (${filters.amenities.length})` : ''}
+              </button>
+
+              {(activeFilterCount > 0 || filters.search) && (
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="h-11 px-2 text-sm font-semibold text-[#8e5636]"
+                >
+                  {pageLabels.clearFilters}
+                </button>
+              )}
+            </div>
+
+            {amenitiesOpen && (
+              <div className="mt-2 flex flex-wrap gap-2 border-t border-gray-100 px-1 pt-2">
+                {amenities.map(amenity => {
+                  const active = filters.amenities.includes(amenity.id)
+                  return (
+                    <button
+                      key={amenity.id}
+                      type="button"
+                      onClick={() => toggleAmenity(amenity.id)}
+                      className={`rounded-full px-3 py-1.5 text-sm font-medium ${active ? 'bg-[#1b2642] text-white' : 'bg-white text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]'}`}
+                    >
+                      {amenity.name[language] || amenity.name.en}
+                    </button>
+                  )
+                })}
               </div>
             )}
           </div>
-        </div>
-      </div>
 
-      <div className="pt-4 sm:pt-6 pb-6 sm:pb-8">
-        <div className="container mx-auto px-6" style={{ maxWidth: '1600px' }}>
-          {/* Region Banner */}
           {showRegionBanner && filters.region && (
             <div className="mb-8">
-              <RegionBanner 
+              <RegionBanner
                 regionSlug={filters.region}
                 language={language}
                 onClose={() => {
                   setShowRegionBanner(false);
-                  // Scroll to top when closing the banner
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
               />
             </div>
           )}
-          
-          <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
-            {viewMode === 'list' && (
-            <>
-            {/* Mobile Filter Toggle Button */}
-            <div className="lg:hidden">
-              <Button
-                onClick={() => setShowMobileFilters(!showMobileFilters)}
-                className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-3 rounded-xl shadow-lg"
-              >
-                <SlidersHorizontal className="h-5 w-5 mr-2" />
-                {showMobileFilters ? pageLabels.hideFilters : pageLabels.showFilters}
-              </Button>
-            </div>
-
-            {/* Left Sidebar - Filters (Hidden on mobile, shown when toggled) */}
-            <div className={`${showMobileFilters ? 'block' : 'hidden'} lg:block w-full lg:w-80 flex-shrink-0`}>
-              <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg lg:sticky lg:top-24">
-                {/* Header */}
-                <div className="p-6 border-b border-gray-200 bg-gradient-to-br from-gray-50 to-white rounded-t-2xl">
-                  <h1 className="font-bold text-gray-900 tracking-tight mb-2">
-                    {pageLabels.title}
-                  </h1>
-                  <span className="text-sm bg-slate-100 px-3 py-1.5 rounded-lg font-semibold text-slate-800">
-                    {sortedProperties.length} {pageLabels.propertiesCount}
-                  </span>
-                </div>
-
-                {/* Filters */}
-                <div className="flex-1">
-                  {/* Property Type */}
-                  <div className="p-6 border-b border-gray-100">
-                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">{pageLabels.propertyType}</h3>
-                    <div className="grid grid-cols-2 gap-3">
-                      {propertyTypes.map(type => {
-                        const Icon = type.icon;
-                        return (
-                          <button
-                            key={type.id}
-                            onClick={() => setFilters(prev => ({ 
-                              ...prev, 
-                              propertyType: prev.propertyType === type.id ? '' : type.id 
-                            }))}
-                            className={`cursor-pointer leading-none p-3 rounded-lg border transition-all duration-300 flex flex-col items-center space-y-2 shadow-sm hover:shadow-md ${
-                              filters.propertyType === type.id 
-                                ? 'bg-gradient-to-br from-slate-700 to-slate-800 border-slate-700 text-white shadow-lg' 
-                                : 'bg-white border-gray-200 hover:bg-gray-50 text-gray-700'
-                            }`}
-                          >
-                            <Icon className="h-5 w-5" />
-                            <span className="text-xs font-semibold">{type.name[language] || type.name.en}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Region */}
-                  <div className="p-6 border-b border-gray-100">
-                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">{pageLabels.region}</h3>
-                    <select
-                      value={filters.region}
-                      onChange={(e) => setFilters(prev => ({ ...prev, region: toRegionSlug(e.target.value) }))}
-                      className="w-full p-3 pr-10 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm hover:border-gray-400 transition-colors duration-200 font-medium text-gray-700 appearance-none bg-no-repeat bg-right-2 bg-[length:16px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQgNkw4IDEwTDEyIDYiIHN0cm9rZT0iIzY0NzQ4QiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K')]"
-                    >
-                      <option value="">{pageLabels.allRegions}</option>
-                      {Object.entries(REGION_LABELS).map(([regionSlug, regionLabel]) => (
-                        <option key={regionSlug} value={regionSlug}>{regionLabel[language] || regionLabel.en}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Rooms */}
-                  <div className="p-6 border-b border-gray-100">
-                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">{pageLabels.layout}</h3>
-                    <div className="grid grid-cols-3 gap-2">
-                      {ROOM_LAYOUT_OPTIONS.map((layoutOption) => (
-                        <button
-                          key={layoutOption.id}
-                          onClick={() => setFilters(prev => ({
-                            ...prev,
-                            rooms: prev.rooms === layoutOption.id ? '' : layoutOption.id
-                          }))}
-                          className={`cursor-pointer leading-none px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 shadow-sm ${
-                            filters.rooms === layoutOption.id
-                              ? 'bg-gradient-to-br from-slate-700 to-slate-800 text-white border border-slate-700 shadow-lg'
-                              : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:shadow-md'
-                          }`}
-                        >
-                          {layoutOption.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Price Range */}
-                  <div className="p-6 border-b border-gray-100">
-                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">{pageLabels.priceRange}</h3>
-                    <div className="space-y-3">
-                      <Input
-                        type="number"
-                        placeholder={pageLabels.from}
-                        value={filters.priceFrom}
-                        onChange={(e) => setFilters(prev => ({ ...prev, priceFrom: e.target.value }))}
-                        className="border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm"
-                      />
-                      <Input
-                        type="number"
-                        placeholder={pageLabels.to}
-                        value={filters.priceTo}
-                        onChange={(e) => setFilters(prev => ({ ...prev, priceTo: e.target.value }))}
-                        className="border-gray-300 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Amenities */}
-                  <div className="p-6">
-                    <h3 className="font-bold mb-4 text-gray-900 text-sm uppercase tracking-wide">{pageLabels.amenities}</h3>
-                    <div className="space-y-3">
-                      {amenities.map(amenity => (
-                        <label key={amenity.id} className="flex items-center space-x-3 cursor-pointer group">
-                          <Checkbox
-                            checked={filters.amenities.includes(amenity.id)}
-                            onCheckedChange={() => toggleAmenity(amenity.id)}
-                            className="data-[state=checked]:bg-slate-700 data-[state=checked]:border-slate-700"
-                          />
-                          <span className="text-sm text-gray-700 group-hover:text-slate-800 font-medium transition-colors duration-200">{amenity.name[language] || amenity.name.en}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Clear Filters */}
-                <div className="p-6 border-t border-gray-200 bg-gradient-to-br from-gray-50 to-white rounded-b-2xl">
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-slate-600 text-slate-700 hover:bg-slate-700 hover:text-white font-semibold transition-all duration-300 shadow-sm hover:shadow-md"
-                    onClick={clearFilters}
-                  >
-                    <X className="h-4 w-4 mr-2" />
-                    {pageLabels.clearFilters}
-                  </Button>
-                </div>
-              </div>
-            </div>
-            </>
-            )}
-
-            {/* Main Content Area */}
-            <div className="flex-1 min-w-0">
-              {/* Top Controls Bar */}
-              <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg p-4 sm:p-6 mb-4 sm:mb-6">
-                <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-                  <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                    {/* Sort Dropdown */}
-                    <select
-                      value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value)}
-                      className="text-sm border border-gray-300 rounded-lg px-2 sm:px-3 py-2 pr-8 sm:pr-10 bg-white hover:border-gray-400 focus:ring-2 focus:ring-slate-500 focus:border-slate-500 shadow-sm transition-colors duration-200 font-medium text-gray-700 appearance-none bg-no-repeat bg-right-2 bg-[length:16px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQgNkw4IDEwTDEyIDYiIHN0cm9rZT0iIzY0NzQ4QiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K')] flex-1 sm:flex-none"
-                    >
-                      <option value="newest">{pageLabels.sortNewest}</option>
-                      <option value="cheapest">{pageLabels.sortCheapest}</option>
-                      <option value="expensive">{pageLabels.sortExpensive}</option>
-                    </select>
-
-                    {/* Filters toggle (split view uses the horizontal bar) */}
-                    {viewMode === 'split' && (
-                      <Button
-                        onClick={() => setShowFilterBar(!showFilterBar)}
-                        variant="outline"
-                        className="border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-gray-900 font-semibold text-xs sm:text-sm px-3 sm:px-4 py-2 shadow-sm whitespace-nowrap"
-                        data-testid="filter-bar-toggle"
-                      >
-                        <SlidersHorizontal className="h-4 w-4 sm:mr-2" />
-                        <span className="hidden sm:inline">{pageLabels.filtersLabel}</span>
-                        {activeFilterCount > 0 && (
-                          <span className="ml-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-slate-800 px-1.5 text-[11px] font-bold text-white">
-                            {activeFilterCount}
-                          </span>
-                        )}
-                        <ChevronDown className={`ml-1 h-3.5 w-3.5 transition-transform duration-200 ${showFilterBar ? 'rotate-180' : ''}`} />
-                      </Button>
-                    )}
-                  </div>
-
-                  {/* View mode segmented control */}
-                  <div
-                    className="inline-flex self-start sm:self-auto rounded-xl border border-gray-300 bg-gray-50 p-1 shadow-sm"
-                    role="group"
-                    data-testid="view-mode-toggle"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setViewMode('list')}
-                      aria-pressed={viewMode === 'list'}
-                      className={`flex items-center gap-1.5 rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 ${
-                        viewMode === 'list'
-                          ? 'bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow'
-                          : 'text-gray-600 hover:text-gray-900'
-                      }`}
-                      data-testid="view-mode-list"
-                    >
-                      <ListIcon className="h-4 w-4" />
-                      {pageLabels.viewList}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setViewMode('split')}
-                      aria-pressed={viewMode === 'split'}
-                      className={`flex items-center gap-1.5 rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 ${
-                        viewMode === 'split'
-                          ? 'bg-gradient-to-r from-slate-700 to-slate-800 text-white shadow'
-                          : 'text-gray-600 hover:text-gray-900'
-                      }`}
-                      data-testid="view-mode-map"
-                    >
-                      <MapIcon className="h-4 w-4" />
-                      {pageLabels.viewMap}
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Horizontal collapsible filter bar (split view only) */}
-              {viewMode === 'split' && showFilterBar && (
-                <div
-                  className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl shadow-lg p-4 sm:p-5 mb-4 sm:mb-6"
-                  data-testid="horizontal-filter-bar"
-                >
-                  <div className="flex flex-wrap items-end gap-3 sm:gap-4">
-                    <div className="min-w-[150px] flex-1 sm:flex-none">
-                      <label className="mb-1 block text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.propertyType}</label>
-                      <select
-                        value={filters.propertyType}
-                        onChange={(e) => setFilters(prev => ({ ...prev, propertyType: e.target.value }))}
-                        className="w-full rounded-lg border border-gray-300 bg-white p-2 text-sm font-medium text-gray-700 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500"
-                      >
-                        <option value="">—</option>
-                        {propertyTypes.map(type => (
-                          <option key={type.id} value={type.id}>{type.name[language] || type.name.en}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className="min-w-[160px] flex-1 sm:flex-none">
-                      <label className="mb-1 block text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.region}</label>
-                      <select
-                        value={filters.region}
-                        onChange={(e) => setFilters(prev => ({ ...prev, region: toRegionSlug(e.target.value) }))}
-                        className="w-full rounded-lg border border-gray-300 bg-white p-2 text-sm font-medium text-gray-700 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500"
-                      >
-                        <option value="">{pageLabels.allRegions}</option>
-                        {Object.entries(REGION_LABELS).map(([regionSlug, regionLabel]) => (
-                          <option key={regionSlug} value={regionSlug}>{regionLabel[language] || regionLabel.en}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className="min-w-[110px]">
-                      <label className="mb-1 block text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.layout}</label>
-                      <select
-                        value={filters.rooms}
-                        onChange={(e) => setFilters(prev => ({ ...prev, rooms: e.target.value }))}
-                        className="w-full rounded-lg border border-gray-300 bg-white p-2 text-sm font-medium text-gray-700 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500"
-                      >
-                        <option value="">—</option>
-                        {ROOM_LAYOUT_OPTIONS.map((layoutOption) => (
-                          <option key={layoutOption.id} value={layoutOption.id}>{layoutOption.label}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className="w-[110px]">
-                      <label className="mb-1 block text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.from} (€)</label>
-                      <Input
-                        type="number"
-                        placeholder={pageLabels.from}
-                        value={filters.priceFrom}
-                        onChange={(e) => setFilters(prev => ({ ...prev, priceFrom: e.target.value }))}
-                        className="border-gray-300 shadow-sm focus:border-slate-500 focus:ring-2 focus:ring-slate-500"
-                      />
-                    </div>
-                    <div className="w-[110px]">
-                      <label className="mb-1 block text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.to} (€)</label>
-                      <Input
-                        type="number"
-                        placeholder={pageLabels.to}
-                        value={filters.priceTo}
-                        onChange={(e) => setFilters(prev => ({ ...prev, priceTo: e.target.value }))}
-                        className="border-gray-300 shadow-sm focus:border-slate-500 focus:ring-2 focus:ring-slate-500"
-                      />
-                    </div>
-
-                    <Button
-                      variant="ghost"
-                      onClick={clearFilters}
-                      className="ml-auto px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-                    >
-                      <X className="mr-1.5 h-4 w-4" />
-                      {pageLabels.clearFilters}
-                    </Button>
-                  </div>
-
-                  <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-gray-100 pt-3">
-                    <span className="text-xs font-bold uppercase tracking-wide text-gray-500">{pageLabels.amenities}</span>
-                    {amenities.map(amenity => (
-                      <label key={amenity.id} className="flex cursor-pointer items-center gap-1.5">
-                        <Checkbox
-                          checked={filters.amenities.includes(amenity.id)}
-                          onCheckedChange={() => toggleAmenity(amenity.id)}
-                          className="data-[state=checked]:bg-slate-700 data-[state=checked]:border-slate-700"
-                        />
-                        <span className="text-sm font-medium text-gray-700">{amenity.name[language] || amenity.name.en}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               {/* Content: plain grid in list mode; in split mode the container is
                   viewport-height with an independently scrolling list column
                   (position:sticky is broken here by the root overflow-x-hidden) */}
               <div className={viewMode === 'split' ? 'flex items-stretch gap-4 lg:gap-6 lg:h-[calc(100vh-9rem)]' : ''}>
-                <div className={viewMode === 'split' ? 'w-full lg:w-1/2 min-w-0 lg:h-full lg:overflow-y-auto lg:pr-1 lg:pb-2' : ''}>
+                <div
+                  className={viewMode === 'split' ? 'w-full lg:w-1/2 min-w-0 lg:h-full lg:overflow-y-auto lg:pr-1 lg:pb-2' : ''}
+                  data-property-list=""
+                >
               {/* Properties Grid */}
-              {displayedProperties.length > 0 && (
+              {syncListToMap && mapBounds && listProperties.length > 0 && (
+                <p className="mb-4 text-sm text-gray-600" data-testid="map-view-count">
+                  {listProperties.length} {pageLabels.propertiesCount} {pageLabels.inMapView}
+                </p>
+              )}
+
+              {syncListToMap && mapBounds && listProperties.length === 0 && sortedProperties.length > 0 && (
+                <p className="rounded-2xl bg-white px-6 py-10 text-center text-gray-600 shadow-sm" data-testid="map-view-empty">
+                  {pageLabels.mapViewEmpty}
+                </p>
+              )}
+
+              {listProperties.length > 0 && (
                 <div className={`grid gap-6 ${
                   viewMode === 'split'
                     ? 'grid-cols-1 xl:grid-cols-2'
                     : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
                 }`}>
-                  {displayedProperties.map(property => (
+                  {listProperties.map(property => (
                     <PropertyCard 
                       key={property.id} 
                       property={property} 
@@ -1100,9 +960,9 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 </div>
               )}
 
-              {/* Load More / Back to Top */}
+              {/* Load more. The map column already shows every property in view. */}
               <div className="mt-12 text-center space-y-6">
-                {hasMoreProperties && (
+                {!syncListToMap && hasMoreProperties && (
                   <Button 
                     onClick={handleLoadMore}
                     disabled={isLoadingMore}
@@ -1119,25 +979,11 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                   </Button>
                 )}
                 
-                {!hasMoreProperties && displayedProperties.length > 0 && (
+                {!syncListToMap && !hasMoreProperties && displayedProperties.length > 0 && (
                   <p className="text-gray-500 font-medium">
                     {pageLabels.allShown} ({displayedProperties.length})
                   </p>
                 )}
-
-                {/* Back to Top Button - Only shows when scrolled down */}
-                <div 
-                  className={`fixed bottom-8 right-8 transition-all duration-300 transform ${
-                    showBackToTop ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
-                  }`}
-                >
-                  <Button
-                    onClick={scrollToTop}
-                    className="bg-slate-800 hover:bg-slate-700 text-white rounded-full p-4 shadow-xl hover:shadow-2xl transition-all duration-300"
-                  >
-                    <ChevronRight className="h-6 w-6 transform -rotate-90" />
-                  </Button>
-                </div>
               </div>
                 </div>
 
@@ -1151,6 +997,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                         hoveredId={hoveredPropertyId}
                         onSelect={setSelectedPropertyId}
                         onHover={(id) => { setHoveredPropertyId(id); setHoverFromMap(Boolean(id)); }}
+                        onBoundsChange={handleMapBounds}
                         currency={currency}
                         language={language}
                       />
@@ -1158,8 +1005,6 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                   </div>
                 )}
               </div>
-            </div>
-          </div>
         </div>
       </div>
 

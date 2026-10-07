@@ -67,7 +67,7 @@ export default function InspectionsFreePdfLandingPage() {
   }, [language]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50 px-6 py-16 md:py-24">
+    <div className="site-page min-h-screen bg-[#f7f4ed] px-6 py-16 md:py-24">
       <div className="max-w-2xl mx-auto">
         <div className="mb-5 sm:mb-6">
           <Link

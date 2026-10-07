@@ -32,9 +32,9 @@ export default function RegionBlogPage() {
 
   if (!blogData) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="site-page min-h-screen bg-[#f7f4ed]">
         <Navigation />
-        <div className="container mx-auto px-6 py-20 text-center" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6 py-20 text-center">
           <h1 className="font-bold text-gray-900">
             Blog post not found
           </h1>
@@ -47,12 +47,12 @@ export default function RegionBlogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
       
       {/* Article Header */}
       <div className="bg-white border-b">
-        <div className="container mx-auto px-6 py-16 md:py-24" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6 py-16 md:py-24">
           <div className="max-w-4xl mx-auto">
             {/* Breadcrumb + Back to Articles */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
@@ -132,7 +132,7 @@ export default function RegionBlogPage() {
       </div>
 
       {/* Featured Image */}
-      <div className="container mx-auto px-6 py-8" style={{ maxWidth: '1200px' }}>
+      <div className="container mx-auto px-6 py-8">
         <div className="max-w-4xl mx-auto">
           <Image
             src={blogData.image}
@@ -147,7 +147,7 @@ export default function RegionBlogPage() {
       </div>
 
       {/* Article Content */}
-      <div className="container mx-auto px-6 pb-16 md:pb-24" style={{ maxWidth: '1200px' }}>
+      <div className="container mx-auto px-6 pb-16 md:pb-24">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
             <div 
@@ -162,7 +162,7 @@ export default function RegionBlogPage() {
 
       {/* Related Regions */}
       <div className="bg-white border-t">
-        <div className="container mx-auto px-6 py-16 md:py-24" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6 py-16 md:py-24">
           <div className="max-w-4xl mx-auto">
             <h3 className="font-bold text-gray-900 mb-8">Explore More Regions</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -185,7 +185,7 @@ export default function RegionBlogPage() {
 
       {/* Call to Action */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-800">
-        <div className="container mx-auto px-6 py-16 md:py-24" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6 py-16 md:py-24">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               {language === 'cs' ? 'Připraveni najít svůj domov v Itálii?' : 

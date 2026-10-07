@@ -168,20 +168,16 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
-      <main className="pt-28 md:pt-32 pb-12">
-        {/* Hero Section */}
-        <section className="container mx-auto px-6 py-16 md:py-24 mb-4" style={{ maxWidth: '1200px' }}>
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-6">
-              <Mail className="h-4 w-4 text-slate-500" />
-              <span className="text-sm text-slate-600 font-medium">
-                {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
-              </span>
-            </div>
-            <h1 className="font-extrabold mb-6 text-slate-800">
+      <main className="pb-12 pt-32">
+        <section className="container mx-auto mb-8 px-6">
+          <div className="max-w-3xl">
+            <p className="mb-3 text-sm font-semibold tracking-wide text-[#c78b5a]">
+              {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
+            </p>
+            <h1 className="mb-4 text-pretty">
               {language === 'cs' ? 'Kontaktujte nás' :
                language === 'it' ? 'Contattaci' :
                'Contact Us'}
@@ -195,7 +191,7 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Content */}
-        <section className="container mx-auto px-6 pb-16 md:pb-24" style={{ maxWidth: '1200px' }}>
+        <section className="container mx-auto px-6 pb-16 md:pb-24">
           {/* Contact Information and Form Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             {/* Contact Information Sidebar */}

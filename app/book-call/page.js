@@ -139,13 +139,16 @@ export default function BookCallPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
-      <main className="pt-28 md:pt-32 pb-12">
-        <section className="container mx-auto px-6 py-8" style={{ maxWidth: '1200px' }}>
-          <div className="max-w-3xl mx-auto text-center mb-8" style={{ maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
-            <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+      <main className="pb-12 pt-32">
+        <section className="container mx-auto px-6 py-4">
+          <div className="mb-8 max-w-3xl">
+            <p className="mb-3 text-sm font-semibold tracking-wide text-[#c78b5a]">
+              {language === 'cs' ? 'Konzultace' : language === 'it' ? 'Consulenza' : 'Consultation'}
+            </p>
+            <h1 className="mb-4 text-pretty">
               {language === 'cs'
                 ? 'Naplánujte si hovor'
                 : language === 'it'

@@ -83,7 +83,7 @@ export default function PremiumSuccessPage() {
 
   if (!PREMIUM_PDFS_ENABLED) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
+      <div className="site-page min-h-screen bg-[#f7f4ed]">
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-xl mx-auto">
             <Card className="bg-white/95 border-gray-200 shadow-xl">
@@ -166,7 +166,7 @@ export default function PremiumSuccessPage() {
   }, [sessionId, t.missingSession, t.verifyFailed, t.downloadError])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-xl mx-auto">
           <Card className="bg-white/95 border-gray-200 shadow-xl">

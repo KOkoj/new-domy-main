@@ -231,10 +231,10 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <Image
-            src="/logo domy.svg"
+            src="/domy logo V3.svg"
             alt="Domy v Itálii"
             width={64}
-            height={61}
+            height={64}
             priority
             className="h-16 w-auto mx-auto mb-4"
           />

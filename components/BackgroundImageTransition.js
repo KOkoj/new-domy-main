@@ -50,7 +50,9 @@ const BackgroundImageTransition = ({
             className="absolute inset-0 w-full h-full"
             style={{
               opacity: index === currentImageIndex && !isTransitioning ? 1 : 0,
-              transition: `opacity ${fadeDuration}ms ease-in-out`
+              transition: `opacity ${fadeDuration}ms ease-in-out`,
+              transform: image.transform,
+              transformOrigin: 'center center',
             }}
           >
             {/*
@@ -77,6 +79,7 @@ const BackgroundImageTransition = ({
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
+                  objectPosition: image.objectPosition || 'center center',
                 }}
               />
             </picture>

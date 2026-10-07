@@ -520,11 +520,11 @@ export default function RealEstatePurchaseSystemItalyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
       <main className="pt-28 pb-16 md:pb-24">
-        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto space-y-6" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <Button asChild variant="outline" className="inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-700">
               <Link href="/blog">

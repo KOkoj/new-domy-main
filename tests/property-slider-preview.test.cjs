@@ -11,8 +11,8 @@ function load(file, context, names) {
   vm.runInNewContext(source + '\nmodule.exports = {' + names.join(',') + '}', sandbox)
   return sandbox.module.exports
 }
-const display = load('lib/propertyDisplay.js', {}, ['getPropertyRegionTranslations'])
-const images = load('lib/getPropertyImage.js', { urlForImage: () => null }, ['getPropertyImage'])
+const display = load('lib/propertyDisplay.js', {}, ['getPropertyRegionTranslations', 'resolvePropertyType'])
+const images = load('lib/getPropertyImage.js', { urlForImage: () => null }, ['getPropertyImage', 'getPropertyImageList'])
 const { prepareProperties, preparePropertySliderPreview } = load('lib/propertySliderData.js', { ...display, ...images }, ['prepareProperties', 'preparePropertySliderPreview'])
 
 test('preview preserves pinned/new/date ordering and the first twelve full carousel cards', () => {
@@ -25,7 +25,9 @@ test('preview preserves pinned/new/date ordering and the first twelve full carou
     const { createdAt, updatedAt, pinnedRank, ...expected } = full[i]
     assert.deepEqual(JSON.parse(JSON.stringify(card)), JSON.parse(JSON.stringify(expected)))
     assert.ok(card.image && card.slug && card.titleI18n.cs && card.regionI18n.cs)
-    for (const key of ['description', 'images', 'location', 'amenities', 'sourceUrl', 'createdAt', 'updatedAt', 'pinnedRank']) assert.ok(!(key in card), key)
+    assert.ok(Array.isArray(card.images) && card.images.length <= 8)
+    assert.ok(card.images.every((url) => typeof url === 'string'))
+    for (const key of ['description', 'location', 'amenities', 'sourceUrl', 'createdAt', 'updatedAt', 'pinnedRank']) assert.ok(!(key in card), key)
   })
   assert.equal(JSON.stringify(inventory), before)
   assert.ok(Buffer.byteLength(JSON.stringify(preview)) < Buffer.byteLength(before) / 20)

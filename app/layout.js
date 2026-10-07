@@ -1,4 +1,4 @@
-﻿import { Manrope, Sora } from 'next/font/google'
+import { Manrope, Sora } from 'next/font/google'
 import './globals.css'
 import ScrollToTop from '@/components/ScrollToTop'
 import NavigationProgress from '@/components/NavigationProgress'
@@ -78,14 +78,10 @@ export default function RootLayout({ children }) {
     <html lang={DEFAULT_LANGUAGE} className={`${manrope.variable} ${sora.variable} font-sans overflow-x-hidden`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        {/* LCP hero background — preload the best format the browser supports.
-            AVIF-capable browsers (Chrome, Edge, Firefox, Safari 16+) fetch the
-            14 KiB AVIF; others fall back to the 44 KiB WebP via the <picture>
-            element in BackgroundImageTransition. */}
         <link
           rel="preload"
           as="image"
-          href="/hero-background.avif"
+          href="/hero-mlha.avif"
           type="image/avif"
           fetchPriority="high"
         />

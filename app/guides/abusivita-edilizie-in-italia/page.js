@@ -373,11 +373,11 @@ export default function BuildingIrregularitiesGuidePage() {
   const t = CONTENT[language] || CONTENT.it
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
       <main className="pt-28 pb-16 md:pb-24">
-        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6">
           <figure className="mx-auto mb-8 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
             <img
               src="/articles/abusi-edilizi-italia-header.jpeg"

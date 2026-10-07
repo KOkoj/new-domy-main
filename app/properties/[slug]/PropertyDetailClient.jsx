@@ -6,7 +6,7 @@ import Image from 'next/image'
 import PropertyImage from '@/components/PropertyImage'
 import { PROPERTY_IMAGE_FALLBACK } from '@/lib/getPropertyImage'
 import { useParams } from 'next/navigation'
-import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, User, X, ChevronLeft, ChevronRight, ZoomIn, Menu, Play } from 'lucide-react'
+import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, X, ChevronLeft, ChevronRight, ZoomIn, Play } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -20,6 +20,7 @@ import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import AuthModal from '../../../components/AuthModal'
 import Footer from '@/components/Footer'
+import Navigation from '@/components/Navigation'
 import NewPropertyRibbon, { getNewPropertyLabel } from '@/components/NewPropertyRibbon'
 import NoAgencyBadge, { getNoAgencyLabel } from '@/components/NoAgencyBadge'
 import { buildGalleryMedia, transformPropertyForClient } from '@/lib/propertyTransform'
@@ -561,7 +562,6 @@ export default function PropertyDetailClient({ initialProperty = null }) {
   const [user, setUser] = useState(null)
   const [language, setLanguage] = useState('cs')
   const [currency, setCurrency] = useState('EUR')
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     if (!initialProperty && slugParam) {
@@ -751,7 +751,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
 
   if (loading) {
     return (
-    <div className="min-h-screen bg-[#f7f6f3] flex items-center justify-center">
+    <div className="site-page min-h-screen bg-[#f7f4ed] flex items-center justify-center">
       <div className="text-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">
@@ -764,7 +764,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
 
   if (!property) {
     return (
-    <div className="min-h-screen bg-[#f7f6f3] flex items-center justify-center">
+    <div className="site-page min-h-screen bg-[#f7f4ed] flex items-center justify-center">
       <div className="text-center">
         <h1 className="text-2xl font-bold mb-4">
             {language === 'cs' ? 'Nemovitost nenalezena' : language === 'it' ? 'Proprietà non trovata' : 'Property Not Found'}
@@ -806,232 +806,17 @@ export default function PropertyDetailClient({ initialProperty = null }) {
     : ''
 
   return (
-    <div className="min-h-screen bg-[#f7f6f3]">
-      {/* Modern Navigation - Fixed with smaller inline logo like About/Process pages */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md shadow-lg overflow-visible border-b border-white/20" style={{ backgroundColor: 'rgba(14, 21, 46, 0.9)' }}>
-        <div className="container mx-auto px-4 sm:px-6 pt-4 pb-3 overflow-visible" style={{ maxWidth: '1200px' }}>
-          <div className="flex items-center justify-between">
-            {/* Logo + desktop nav links */}
-            <div className="flex items-center space-x-8">
-              <Link href="/" className="relative overflow-visible">
-                <Image
-                  src="/logo domy.svg"
-                  alt="Domy v Itálii"
-                  width={48}
-                  height={46}
-                  priority
-                  className="h-12 w-auto cursor-pointer"
-                  style={{ filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))' }}
-                />
-              </Link>
-              <div className="hidden md:flex space-x-6">
-                <Link href="/" className="text-gray-200 hover:text-white transition-colors text-sm">
-                  {language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home'}
-                </Link>
-                <Link href="/properties" className="text-white transition-colors border-b-2 border-white pb-1 text-sm">
-                  {language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties'}
-                </Link>
-                <Link href="/regions" className="text-gray-200 hover:text-white transition-colors text-sm">
-                  {language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions'}
-                </Link>
-                <Link href="/about" className="text-gray-200 hover:text-white transition-colors text-sm">
-                  {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About'}
-                </Link>
-                <Link href="/process" className="text-gray-200 hover:text-white transition-colors text-sm">
-                  {language === 'cs' ? 'Proces' : language === 'it' ? 'Processo' : 'Process'}
-                </Link>
-                <Link href="/contact" className="text-gray-200 hover:text-white transition-colors text-sm">
-                  {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
-                </Link>
-              </div>
-            </div>
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
+      <Navigation />
 
-            {/* Desktop right-side controls */}
-            <div className="flex items-center gap-2">
-              {/* Language Selector — desktop only */}
-              <div className="hidden sm:flex items-center bg-white/10 rounded-full px-1 py-1 border border-white/15 gap-0.5">
-                {['en', 'cs', 'it'].map((lang) => (
-                  <button
-                    key={lang}
-                    onClick={() => {
-                      setLanguage(lang)
-                      document.documentElement.lang = lang
-                      localStorage.setItem('preferred-language', lang)
-                      window.dispatchEvent(new CustomEvent('languageChange', { detail: lang }))
-                    }}
-                    className={`cursor-pointer px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                      language === lang
-                        ? 'bg-white/20 text-white shadow-sm'
-                        : 'text-white/50 hover:text-white/80 hover:bg-white/5'
-                    }`}
-                  >
-                    {lang.toUpperCase()}
-                  </button>
-                ))}
-              </div>
-
-              {/* Currency Selector — desktop only */}
-              <div className="hidden sm:flex items-center bg-white/10 rounded-full px-1 py-1 border border-white/15 gap-0.5">
-                {['EUR', 'CZK'].map((cur) => (
-                  <button
-                    key={cur}
-                    onClick={() => handleCurrencyChange(cur)}
-                    className={`cursor-pointer px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                      currency === cur
-                        ? 'bg-white/20 text-white shadow-sm'
-                        : 'text-white/50 hover:text-white/80 hover:bg-white/5'
-                    }`}
-                  >
-                    {cur}
-                  </button>
-                ))}
-              </div>
-
-              {/* Login / user — desktop only */}
-              {user ? (
-                <div className="hidden sm:flex items-center gap-2">
-                  <span className="text-xs text-gray-300 hidden md:inline truncate max-w-[100px]">
-                    {user.user_metadata?.name || user.email}
-                  </span>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={async () => {
-                      if (!supabase) return
-                      await supabase.auth.signOut()
-                      setUser(null)
-                    }}
-                    className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50 rounded-full text-xs px-3 py-1.5"
-                  >
-                    {language === 'cs' ? 'Odhlásit' : language === 'it' ? 'Esci' : 'Logout'}
-                  </Button>
-                </div>
-              ) : (
-                <div className="hidden sm:block bg-white/10 backdrop-blur-md rounded-full px-4 py-1.5 border border-white/20">
-                  <button
-                    onClick={() => setIsAuthModalOpen(true)}
-                    className="text-xs font-medium text-white/90 hover:text-white transition-colors cursor-pointer"
-                  >
-                    {language === 'cs' ? 'Přihlásit' : language === 'it' ? 'Accedi' : 'Login'}
-                  </button>
-                </div>
-              )}
-
-              {/* Hamburger — mobile only */}
-              <button
-                className="md:hidden p-2 rounded-lg cursor-pointer text-gray-200 hover:text-white hover:bg-white/10 transition-colors"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Toggle menu"
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile drawer */}
-          <div className={`md:hidden overflow-hidden transition-all duration-200 ease-out ${isMenuOpen ? 'max-h-[80dvh] opacity-100' : 'max-h-0 opacity-0'}`}>
-            <div className="flex flex-col space-y-1 pt-4 pb-6 mt-3 border-t border-white/10 overflow-y-auto">
-              {[
-                { href: '/', label: language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home' },
-                { href: '/properties', label: language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties' },
-                { href: '/regions', label: language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions' },
-                { href: '/about', label: language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About' },
-                { href: '/process', label: language === 'cs' ? 'Proces' : language === 'it' ? 'Processo' : 'Process' },
-                { href: '/contact', label: language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact' },
-              ].map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="px-3 py-2.5 rounded-lg text-base text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
-                >
-                  {label}
-                </Link>
-              ))}
-
-              {/* Language + Currency in mobile menu */}
-              <div className="flex flex-wrap gap-3 pt-3 mt-2 border-t border-white/10 px-1">
-                <div className="flex items-center gap-1 bg-white/10 rounded-full px-1 py-1 border border-white/15">
-                  {['en', 'cs', 'it'].map((lang) => (
-                    <button
-                      key={lang}
-                      onClick={() => {
-                        setLanguage(lang)
-                        document.documentElement.lang = lang
-                        localStorage.setItem('preferred-language', lang)
-                        window.dispatchEvent(new CustomEvent('languageChange', { detail: lang }))
-                      }}
-                      className={`cursor-pointer px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
-                        language === lang
-                          ? 'bg-white/20 text-white'
-                          : 'text-white/50 hover:text-white/80'
-                      }`}
-                    >
-                      {lang.toUpperCase()}
-                    </button>
-                  ))}
-                </div>
-                <div className="flex items-center gap-1 bg-white/10 rounded-full px-1 py-1 border border-white/15">
-                  {['EUR', 'CZK'].map((cur) => (
-                    <button
-                      key={cur}
-                      onClick={() => handleCurrencyChange(cur)}
-                      className={`cursor-pointer px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
-                        currency === cur
-                          ? 'bg-white/20 text-white'
-                          : 'text-white/50 hover:text-white/80'
-                      }`}
-                    >
-                      {cur}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Login in mobile menu */}
-              {user ? (
-                <button
-                  onClick={async () => {
-                    if (!supabase) return
-                    await supabase.auth.signOut()
-                    setUser(null)
-                    setIsMenuOpen(false)
-                  }}
-                  className="px-3 py-2.5 rounded-lg text-base text-red-400 hover:text-red-300 hover:bg-white/5 transition-colors text-left"
-                >
-                  {language === 'cs' ? 'Odhlásit' : language === 'it' ? 'Esci' : 'Logout'}
-                </button>
-              ) : (
-                <button
-                  onClick={() => { setIsMenuOpen(false); setIsAuthModalOpen(true) }}
-                  className="px-3 py-2.5 rounded-lg text-base text-amber-300 hover:text-amber-200 hover:bg-white/5 transition-colors font-medium text-left cursor-pointer"
-                >
-                  {language === 'cs' ? 'Přihlásit / Registrovat' : language === 'it' ? 'Accedi / Registrati' : 'Login / Register'}
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Spacing for fixed navbar */}
-      <div className="h-20"></div>
-      
-      {/* Breadcrumb */}
-      <div className="bg-white border-b">
-        <div className="container mx-auto px-6 py-4" style={{ maxWidth: '1200px' }}>
-          <div className="flex items-center space-x-4">
-            <Link href="/properties">
-              <Button variant="outline" size="sm">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                {language === 'cs' ? 'Zpět na nemovitosti' : language === 'it' ? 'Torna alle proprietà' : 'Back to Properties'}
-              </Button>
-            </Link>
-          </div>
-        </div>
+      <div className="container mx-auto px-6 pb-2 pt-32 sm:pt-36">
+        <Link href="/properties" className="inline-flex items-center gap-2 text-base font-semibold text-[#0e152e] hover:text-[#c78b5a]">
+          <ArrowLeft className="h-4 w-4" />
+          {language === 'cs' ? 'Zpět na nemovitosti' : language === 'it' ? 'Torna alle proprietà' : 'Back to Properties'}
+        </Link>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 py-8 md:py-16 lg:py-24" style={{ maxWidth: '1200px' }}>
+      <div className="container mx-auto px-4 sm:px-6 py-8 md:py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
@@ -1089,8 +874,22 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                   </div>
                 </div>
                 <div className="sm:text-right shrink-0">
-                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">
+                  <div className="mb-2 text-2xl font-bold text-[#8e5636] sm:text-3xl">
                     {formatPrice(property.price)}
+                  </div>
+                  <div className="mb-3 inline-flex rounded-full bg-white p-1 shadow-[0_8px_24px_rgba(14,21,46,0.06)]">
+                    {['EUR', 'CZK'].map((cur) => (
+                      <button
+                        key={cur}
+                        type="button"
+                        onClick={() => handleCurrencyChange(cur)}
+                        className={`rounded-full px-3 py-1.5 text-sm font-semibold ${
+                          currency === cur ? 'bg-[#1b2642] text-white' : 'text-[#0e152e]'
+                        }`}
+                      >
+                        {cur}
+                      </button>
+                    ))}
                   </div>
                   <div className="flex items-center sm:justify-end gap-2 flex-wrap">
                     <Button variant="outline" size="sm" onClick={handleShare}>
