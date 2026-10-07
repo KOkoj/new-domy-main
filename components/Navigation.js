@@ -181,7 +181,9 @@ export default function Navigation({ appearAfterHero = false }) {
     reference: language === 'cs' ? 'Reference' : language === 'it' ? 'Referenze' : 'References',
     contact: language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact',
     dashboard: language === 'cs' ? 'Nástěnka' : language === 'it' ? 'Cruscotto' : 'Dashboard',
-    admin: language === 'cs' ? 'Admin' : language === 'it' ? 'Amministrazione' : 'Admin'
+    admin: language === 'cs' ? 'Admin' : language === 'it' ? 'Amministrazione' : 'Admin',
+    logout: language === 'cs' ? 'Odhlásit' : language === 'it' ? 'Esci' : 'Log out',
+    userFallback: language === 'cs' ? 'Uživatel' : language === 'it' ? 'Utente' : 'User'
   }
 
   const navHidden = appearAfterHero && !isPastHero
@@ -248,7 +250,7 @@ export default function Navigation({ appearAfterHero = false }) {
                 <DropdownMenuContent align="end" className="w-56 bg-[#0e152e] border-white/20 text-gray-200">
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                      <p className="text-base font-medium leading-none text-white">{user.user_metadata?.name || 'User'}</p>
+                      <p className="text-base font-medium leading-none text-white">{user.user_metadata?.name || navLabels.userFallback}</p>
                       <p className="text-xs leading-none text-gray-400">{user.email}</p>
                     </div>
                   </DropdownMenuLabel>
@@ -270,7 +272,7 @@ export default function Navigation({ appearAfterHero = false }) {
                   <DropdownMenuSeparator className="bg-white/10" />
                   <DropdownMenuItem onClick={handleLogout} className="focus:bg-white/10 focus:text-white cursor-pointer text-red-400 focus:text-red-400">
                     <LogOut className="mr-2 h-4 w-4" />
-                    <span>Logout</span>
+                    <span>{navLabels.logout}</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -387,7 +389,7 @@ export default function Navigation({ appearAfterHero = false }) {
                 className="px-3 py-2.5 rounded-lg text-base leading-none cursor-pointer text-copper-300 hover:text-copper-200 hover:bg-white/5 transition-colors text-left font-medium"
                 data-testid="mobile-logout-link"
               >
-                {language === 'cs' ? 'Odhlásit' : language === 'it' ? 'Esci' : 'Log out'}
+                {navLabels.logout}
               </button>
             )}
           </div>

@@ -1023,7 +1023,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                       <span className="text-sm text-gray-600">
                         {language === 'cs' ? 'Velikost pozemku:' : language === 'it' ? 'Dimensione lotto:' : 'Lot Size:'}
                       </span>
-                      <span className="ml-2 font-medium">{Number(specifications.lotSize).toLocaleString()} m²</span>
+                      <span className="ml-2 font-medium">{Number(specifications.lotSize).toLocaleString(language === 'cs' ? 'cs-CZ' : language === 'it' ? 'it-IT' : 'en-US')} m²</span>
                     </div>
                   )}
                   <div>

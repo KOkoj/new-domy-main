@@ -881,6 +881,10 @@ html {
   text-wrap: pretty;
 }
 
+.site-page h1.text-white {
+  color: #ffffff;
+}
+
 .site-page h1.bg-clip-text,
 .site-page .bg-clip-text {
   background-image: none;

@@ -6,6 +6,7 @@ import { getSupabaseAdminClient } from '@/lib/supabaseAdmin'
 import { getPublicAbsoluteUrl, getPublicSiteUrl } from '@/lib/siteUrl'
 import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@/lib/userPreferences'
 import { splitFullName } from '@/lib/profileName'
+import { authErrorPayload, mapSupabaseAuthError } from '@/lib/authMessages'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -57,7 +58,7 @@ export async function POST(request) {
 
     if (!trimmedName || !normalizedEmail || !password) {
       return NextResponse.json(
-        { error: 'Name, email and password are required' },
+        authErrorPayload('nameEmailPasswordRequired'),
         { status: 400 }
       )
     }
@@ -66,7 +67,7 @@ export async function POST(request) {
 
     if (!supabase) {
       return NextResponse.json(
-        { error: 'Auth is not configured on server' },
+        authErrorPayload('authNotConfigured'),
         { status: 503 }
       )
     }
@@ -89,7 +90,10 @@ export async function POST(request) {
     if (error) {
       const status = error.status || 400
       return applyCookies(
-        NextResponse.json({ error: error.message }, { status })
+        NextResponse.json(
+          authErrorPayload(mapSupabaseAuthError(error, 'serverSignupFailed')),
+          { status }
+        )
       )
     }
 
@@ -159,9 +163,8 @@ export async function POST(request) {
       })
     )
   } catch (error) {
-    const message = error?.message || 'Unexpected server signup error'
     return NextResponse.json(
-      { error: message },
+      authErrorPayload(mapSupabaseAuthError(error, 'unexpectedError')),
       { status: 502 }
     )
   }

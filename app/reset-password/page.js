@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Lock, AlertCircle, CheckCircle, Eye, EyeOff } from 'lucide-react'
 import { t } from '@/lib/translations'
+import { resolveAuthClientMessage } from '@/lib/authMessages'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '@/lib/userPreferences'
 
 export default function ResetPasswordPage() {
@@ -63,7 +64,7 @@ export default function ResetPasswordPage() {
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) {
-        setError(payload?.error || tr('resetUpdateFailed'))
+        setError(resolveAuthClientMessage(payload, tr, 'resetUpdateFailed'))
         return
       }
       setSuccess(tr('resetSuccess'))

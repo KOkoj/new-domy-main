@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { authErrorPayload, mapSupabaseAuthError } from '@/lib/authMessages'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -46,7 +47,7 @@ export async function POST(request) {
 
     if (!normalizedEmail || !password) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
+        authErrorPayload('emailPasswordRequired'),
         { status: 400 }
       )
     }
@@ -55,7 +56,7 @@ export async function POST(request) {
 
     if (!supabase) {
       return NextResponse.json(
-        { error: 'Auth is not configured on server' },
+        authErrorPayload('authNotConfigured'),
         { status: 503 }
       )
     }
@@ -67,12 +68,11 @@ export async function POST(request) {
 
     if (error) {
       const status = error.status || 401
-      const message =
-        error.message === 'Email not confirmed'
-          ? 'Email not confirmed. Check your inbox and confirm the account before logging in.'
-          : error.message
       return applyCookies(
-        NextResponse.json({ error: message }, { status })
+        NextResponse.json(
+          authErrorPayload(mapSupabaseAuthError(error, 'invalidCredentials')),
+          { status }
+        )
       )
     }
 
@@ -88,9 +88,8 @@ export async function POST(request) {
       })
     )
   } catch (error) {
-    const message = error?.message || 'Unexpected server login error'
     return NextResponse.json(
-      { error: message },
+      authErrorPayload(mapSupabaseAuthError(error, 'unexpectedError')),
       { status: 502 }
     )
   }

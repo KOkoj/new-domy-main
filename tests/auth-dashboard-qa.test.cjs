@@ -106,7 +106,7 @@ test('welcome email uses a fixed Domy v Itálii template and canonical URLs', ()
     language: 'cs',
     dashboardUrl: 'https://www.domyvitalii.cz/dashboard'
   })
-  assert.equal(copy.subject, 'Vítejte v Domy v Itálii')
+  assert.equal(copy.subject, 'Vítejte v klubu Domy v Itálii')
   assert.match(copy.intro, /TEST jarvis/)
   assert.doesNotMatch(copy.subject, /TEST jarvis/)
   assert.equal(copy.dashboardUrl, 'https://www.domyvitalii.cz/dashboard')

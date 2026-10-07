@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Mail, AlertCircle, CheckCircle } from 'lucide-react'
 import { t } from '@/lib/translations'
+import { resolveAuthClientMessage } from '@/lib/authMessages'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '@/lib/userPreferences'
 
 export default function ForgotPasswordPage() {
@@ -49,7 +50,7 @@ export default function ForgotPasswordPage() {
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) {
-        setError(payload?.error || tr('resetRequestFailed'))
+        setError(resolveAuthClientMessage(payload, tr, 'resetRequestFailed'))
         return
       }
       setSuccess(tr('resetEmailSent'))

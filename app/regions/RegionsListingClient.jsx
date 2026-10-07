@@ -82,7 +82,7 @@ function RegionCard({ region, language = 'en' }) {
 
 export default function RegionsListingClient({ initialRegions, initialProperties = [], sliderProperties }) {
   const [language, setLanguage] = useState('cs')
-  const [regionsData, setRegionsData] = useState(initialRegions)
+  const regionsData = initialRegions
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language')
@@ -98,62 +98,6 @@ export default function RegionsListingClient({ initialRegions, initialProperties
 
     window.addEventListener('languageChange', handleLanguageChange)
     return () => window.removeEventListener('languageChange', handleLanguageChange)
-  }, [])
-
-  useEffect(() => {
-    let active = true
-
-    const normalizeRegion = (region, index) => ({
-      _id: region._id || `region-${index + 1}`,
-      name: {
-        en: region.name?.en || '',
-        cs: region.name?.cs || '',
-        it: region.name?.it || ''
-      },
-      slug: {
-        _type: 'slug',
-        current: region.slug?.current || `region-${index + 1}`
-      },
-      country: region.country || 'Italy',
-      description: {
-        en: region.description?.en || '',
-        cs: region.description?.cs || '',
-        it: region.description?.it || ''
-      },
-      image: region.image || '/Toscana.png',
-      propertyCount: Number(region.propertyCount || 0),
-      averagePrice: Number(region.averagePrice || 0),
-      priceRange: {
-        min: Number(region.priceRange?.min || 0),
-        max: Number(region.priceRange?.max || 0)
-      },
-      topCities: Array.isArray(region.topCities) ? region.topCities : [],
-      highlights: Array.isArray(region.highlights) ? region.highlights : [],
-      popularity: Number(region.popularity || 0),
-      priceNotes: region.priceNotes || null,
-      warning: region.warning || null
-    })
-
-    const loadRegions = async () => {
-      try {
-        const response = await fetch('/api/content?type=regions', { cache: 'no-store' })
-        const result = await response.json()
-
-        if (!active) return
-
-        if (response.ok && Array.isArray(result.regions) && result.regions.length > 0) {
-          setRegionsData(result.regions.map(normalizeRegion))
-        }
-      } catch (error) {
-        console.error('Failed to load regions content:', error)
-      }
-    }
-
-    loadRegions()
-
-    return () => {
-      active = false
-    }
   }, [])
 
   const copy = {
