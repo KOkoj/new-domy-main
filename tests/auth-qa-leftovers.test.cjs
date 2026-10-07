@@ -152,6 +152,13 @@ test('property lot size formatting is locale-aware', () => {
   )
 })
 
+test('site-page h1 on photo overlays can stay white', () => {
+  const css = read('app/globals.css')
+  assert.match(css, /\.site-page h1 \{[\s\S]*color: #111827/)
+  assert.match(css, /\.site-page h1\.text-white \{\s*color: #ffffff;/)
+  assert.match(read('components/RegionBanner.js'), /<h1 className="font-bold text-white mb-2 tracking-tight">/)
+})
+
 test('Supabase auth email templates and SMTP notes are in the repo', () => {
   const readme = read('docs/supabase-email-templates/README.md')
   assert.match(readme, /smtp\.resend\.com/)
