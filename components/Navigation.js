@@ -311,7 +311,7 @@ export default function Navigation({ appearAfterHero = false }) {
         
         {/* Mobile menu */}
         <div 
-          className={`min-[1400px]:hidden overflow-hidden transition-all duration-200 ease-out ${
+          className={`relative z-40 min-[1400px]:hidden overflow-hidden transition-all duration-200 ease-out ${
             isMenuOpen ? 'max-h-[calc(100dvh-4rem)] opacity-100' : 'max-h-0 opacity-0'
           }`}
           data-testid="mobile-menu"

@@ -779,7 +779,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
                 width={124}
                 height={96}
                 priority
-                className="absolute top-0 left-0 z-30 h-20 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.22)] sm:h-24"
+                className={`absolute top-0 left-0 z-30 h-20 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.22)] sm:h-24 ${isHeroMenuOpen ? 'opacity-0' : ''}`}
                 data-testid="hero-logo"
               />
               <span className="block h-12 w-[6.5rem] sm:w-[7.75rem]" />
@@ -834,7 +834,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
           </header>
 
           {isHeroMenuOpen && (
-            <div className="container relative z-10 mx-auto px-4 pt-3 min-[1400px]:hidden">
+            <div className="container relative z-40 mx-auto px-4 pt-3 min-[1400px]:hidden">
               <div className="flex flex-col rounded-xl border border-white/20 bg-[rgba(14,21,46,0.88)] p-2">
                 {[
                   { href: '/', label: language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home' },
