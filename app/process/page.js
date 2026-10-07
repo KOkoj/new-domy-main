@@ -473,7 +473,7 @@ export default function ProcessPage() {
       {/* Modern Navigation */}
       <Navigation />
 
-      <div className="pt-32 pb-12">
+      <div className="pt-40 sm:pt-44 pb-12">
         <div className="container mx-auto mb-16 px-6">
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-semibold tracking-wide text-[#c78b5a]">

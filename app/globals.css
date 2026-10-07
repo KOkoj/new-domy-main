@@ -912,9 +912,9 @@ html {
   }
 }
 
-/* Inner caps were narrower than the homepage column. Fill that column instead. */
-.site-page :is(.max-w-2xl, .max-w-3xl, .max-w-4xl, .max-w-5xl, .max-w-6xl, .max-w-7xl),
-.site-page [style*="max-width"] {
+/* Inner caps were narrower than the homepage column. Fill that column instead.
+   Only Tailwind max-width utilities — not inline styles (Leaflet popups, dialogs). */
+.site-page :is(.max-w-2xl, .max-w-3xl, .max-w-4xl, .max-w-5xl, .max-w-6xl, .max-w-7xl) {
   max-width: none !important;
 }
 

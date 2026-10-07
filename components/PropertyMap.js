@@ -573,7 +573,18 @@ const PropertyMap = ({
       }
       closeCard();
     }
-  }, [properties, ready, closeCard, currency, language]);
+  }, [properties, ready, closeCard]);
+
+  useEffect(() => {
+    const L = leafletRef.current;
+    if (!ready || !L) return;
+    markersByIdRef.current.forEach((entry, id) => {
+      const isHighlighted =
+        id === highlightRef.current.selectedId ||
+        id === highlightRef.current.hoveredId;
+      entry.marker.setIcon(createPinIcon(L, entry.property, isHighlighted, currency, language));
+    });
+  }, [currency, language, ready]);
 
   // --- Highlight sync (selected / hovered pin) ---
   useEffect(() => {

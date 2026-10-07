@@ -142,7 +142,7 @@ export default function BookCallPage() {
     <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
-      <main className="pb-12 pt-32">
+      <main className="pb-12 pt-40 sm:pt-44">
         <section className="container mx-auto px-6 py-4">
           <div className="mb-8 max-w-3xl">
             <p className="mb-3 text-sm font-semibold tracking-wide text-[#c78b5a]">

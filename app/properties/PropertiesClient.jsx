@@ -86,9 +86,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   // on mobile, 'split' renders as a full-screen map instead
   const [viewMode, setViewMode] = useState('list');
   const [amenitiesOpen, setAmenitiesOpen] = useState(false);
-  const [isMobileViewport, setIsMobileViewport] = useState(() =>
-    typeof window !== 'undefined' ? window.matchMedia('(max-width: 1023px)').matches : false
-  );
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const mobileMapActive = viewMode === 'split' && isMobileViewport;
   
   // Navigation state (user only used for Favorites functionality)
@@ -825,7 +823,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
               {/* Content: plain grid in list mode; in split mode the container is
                   viewport-height with an independently scrolling list column
                   (position:sticky is broken here by the root overflow-x-hidden) */}
-              <div className={viewMode === 'split' ? 'flex items-stretch gap-4 lg:gap-6 lg:h-[calc(100vh-9rem)]' : ''}>
+              <div className={viewMode === 'split' ? 'flex items-stretch gap-4 lg:gap-6 lg:h-[calc(100dvh-20rem)] lg:min-h-[28rem]' : ''}>
                 <div
                   className={viewMode === 'split' ? 'w-full lg:w-1/2 min-w-0 lg:h-full lg:overflow-y-auto lg:pr-1 lg:pb-2' : ''}
                   data-property-list=""

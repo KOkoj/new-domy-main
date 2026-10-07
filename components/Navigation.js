@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -179,14 +178,17 @@ export default function Navigation({ appearAfterHero = false }) {
     admin: language === 'cs' ? 'Admin' : language === 'it' ? 'Amministrazione' : 'Admin'
   }
 
+  const navHidden = appearAfterHero && !isPastHero
+
   return (
     <>
     <nav 
       ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 overflow-visible shadow-lg transition-transform duration-700 ease-in-out ${
-        appearAfterHero && !isPastHero ? '-translate-y-[calc(100%+6rem)] pointer-events-none shadow-none' : 'translate-y-0'
+        navHidden ? '-translate-y-[calc(100%+6rem)] pointer-events-none shadow-none' : 'translate-y-0'
       }`}
-      aria-hidden={appearAfterHero && !isPastHero ? true : undefined}
+      aria-hidden={navHidden ? true : undefined}
+      inert={navHidden ? '' : undefined}
       style={{ 
         backgroundColor: 'rgb(26, 39, 68)',
       }} 
@@ -201,7 +203,7 @@ export default function Navigation({ appearAfterHero = false }) {
                 alt="Domy v Itálii"
                 width={120}
                 height={120}
-                priority
+                priority={!appearAfterHero}
                 className="w-auto cursor-pointer z-30 relative sm:absolute top-0 left-0 h-14 sm:h-20 md:h-24 drop-shadow-[0_2px_6px_rgba(0,0,0,0.22)]"
                 data-testid="nav-brand-logo"
               />

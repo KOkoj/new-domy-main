@@ -62,16 +62,26 @@ const BackgroundImageTransition = ({
             */}
             <picture style={{ display: 'contents' }}>
               {image.avifSrc && (
-                <source type="image/avif" srcSet={image.avifSrc} />
+                <source
+                  type="image/avif"
+                  srcSet={image.avifSrcSet || image.avifSrc}
+                  sizes={image.sizes}
+                />
               )}
               {image.webpSrc && (
-                <source type="image/webp" srcSet={image.webpSrc} />
+                <source
+                  type="image/webp"
+                  srcSet={image.webpSrcSet || image.webpSrc}
+                  sizes={image.sizes}
+                />
               )}
               <img
                 src={image.src}
                 alt={image.alt || `Background image ${index + 1}`}
+                srcSet={image.srcSet}
+                sizes={image.sizes}
                 fetchPriority={isFirst ? 'high' : undefined}
-                decoding={isFirst ? 'sync' : 'async'}
+                decoding="async"
                 loading={isFirst ? 'eager' : 'lazy'}
                 style={{
                   position: 'absolute',

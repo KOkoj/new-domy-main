@@ -809,7 +809,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
     <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
-      <div className="container mx-auto px-6 pb-2 pt-32 sm:pt-36">
+      <div className="container mx-auto px-6 pb-2 pt-40 sm:pt-44">
         <Link href="/properties" className="inline-flex items-center gap-2 text-base font-semibold text-[#0e152e] hover:text-[#c78b5a]">
           <ArrowLeft className="h-4 w-4" />
           {language === 'cs' ? 'Zpět na nemovitosti' : language === 'it' ? 'Torna alle proprietà' : 'Back to Properties'}

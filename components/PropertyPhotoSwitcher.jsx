@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import PropertyImage from '@/components/PropertyImage';
@@ -30,6 +30,10 @@ export default function PropertyPhotoSwitcher({
 }) {
   const list = photos.filter(Boolean)
   const [index, setIndex] = useState(0)
+  const photoKey = list.join('|')
+  useEffect(() => {
+    setIndex(0)
+  }, [photoKey])
   const safeIndex = list.length ? index % list.length : 0
   const multiple = list.length > 1
   const labels = LABELS[language] || LABELS.en

@@ -1,6 +1,6 @@
 export default function PageIntro({ eyebrow, title, children }) {
   return (
-    <header className="mx-auto w-full max-w-[1800px] px-5 pb-2 pt-32 sm:px-8 sm:pt-36 xl:px-[10rem]">
+    <header className="mx-auto w-full max-w-[1800px] px-5 pb-2 pt-40 sm:px-8 sm:pt-44 xl:px-[10rem]">
       {eyebrow ? (
         <p className="mb-3 text-sm font-semibold tracking-wide text-[#c78b5a]">{eyebrow}</p>
       ) : null}

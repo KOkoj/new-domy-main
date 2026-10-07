@@ -43,9 +43,12 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
   
   const heroBackgroundImages = [
     {
-      src: '/hero-mlha.webp',
+      src: '/hero-mlha-1920.webp',
       avifSrc: '/hero-mlha.avif',
+      avifSrcSet: '/hero-mlha-1280.avif 1280w, /hero-mlha-1920.avif 1920w, /hero-mlha-2560.avif 2560w, /hero-mlha.avif 3840w',
       webpSrc: '/hero-mlha.webp',
+      webpSrcSet: '/hero-mlha-1280.webp 1280w, /hero-mlha-1920.webp 1920w, /hero-mlha-2560.webp 2560w, /hero-mlha.webp 3840w',
+      sizes: '150vw',
       alt: 'Mlha a dům v toskánské krajině',
       transform: 'translate(-22%, 8%) scale(1.5) scaleX(-1)',
     },
@@ -95,29 +98,20 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
 
   // Initialize Lenis smooth scroll
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      autoRaf: true,
       touchMultiplier: 2,
-      infinite: false,
     })
 
-    // Make Lenis available globally for scroll indicator
     window.lenis = lenis
 
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-
-    // Cleanup
     return () => {
       lenis.destroy()
       delete window.lenis
@@ -139,11 +133,12 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
       const y = Math.max(0, Math.min(scrollY, hero.offsetHeight))
       bg.style.transform = `translate3d(0, ${y}px, 0)`
     }
+    const onLenis = (instance) => apply(instance.scroll)
     const onScroll = () => {
+      if (window.lenis) return
       cancelAnimationFrame(frame)
       frame = requestAnimationFrame(() => apply(window.scrollY))
     }
-    const onLenis = (instance) => apply(instance.scroll)
 
     apply(window.scrollY || 0)
     window.addEventListener('scroll', onScroll, { passive: true })

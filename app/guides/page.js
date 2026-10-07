@@ -187,7 +187,7 @@ export default function GuidesHubPage() {
     <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
-      <main className="pb-14 pt-32">
+      <main className="pb-14 pt-40 sm:pt-44">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
             <div className="mb-10">
