@@ -254,7 +254,7 @@ export default function GdprPage() {
   const content = CONTENT[language] || CONTENT.en
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
       <main className="pt-28 md:pt-32 pb-16">

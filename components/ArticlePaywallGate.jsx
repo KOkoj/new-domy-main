@@ -267,11 +267,11 @@ export default function ArticlePaywallGate() {
                     <div className="flex items-center gap-2">
                       <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 border border-amber-200 px-3 py-1">
                         <Crown className="h-3.5 w-3.5 text-amber-600" />
-                        <span className="text-[11px] uppercase tracking-wider text-amber-700 font-semibold">
+                        <span className="text-xs uppercase tracking-wider text-amber-700 font-semibold">
                           {copy.badge}
                         </span>
                       </div>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
                         <Lock className="h-3 w-3" />
                         {copy.free}
                       </span>

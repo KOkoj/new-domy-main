@@ -1,4 +1,4 @@
-﻿/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
   content: [
@@ -111,8 +111,13 @@ module.exports = {
         '1400': '1400px',
       },
       fontSize: {
-        'hero': ['clamp(3rem, 6vw, 4.5rem)', { lineHeight: '1.05', fontWeight: '800' }],
-        '17': ['1.0625rem', { lineHeight: '1.75' }],
+        // Floor is 16px. xs and sm share it: captions, badges, meta.
+        // Body and navigation use text-base at 18px.
+        'xs': ['1rem', { lineHeight: '1.5' }],
+        'sm': ['1rem', { lineHeight: '1.5' }],
+        'base': ['1.125rem', { lineHeight: '1.7' }],
+        'hero': ['clamp(2.7rem, 4.6vw, 3.85rem)', { lineHeight: '1.12', fontWeight: '700' }],
+        '17': ['1.125rem', { lineHeight: '1.7' }],
       },
       spacing: {
         '18': '4.5rem',

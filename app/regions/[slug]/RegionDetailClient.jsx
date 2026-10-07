@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
-import { MapPin, Euro, Home, Sun, Mountain, Waves, ChevronRight, CheckCircle, MessageSquare, ExternalLink } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import Script from 'next/script'
 import Image from 'next/image'
@@ -1223,390 +1220,298 @@ export default function RegionDetailClient({ initialProperties = [] }) {
         : `Have you decided to travel to ${regionName}?`
   const travelInsuranceText =
     language === 'cs'
-      ? 'Pojistete svou cestu s nasimi overenymi partnery.'
+      ? 'Pojistěte svou cestu s našimi ověřenými partnery.'
       : language === 'it'
         ? 'Assicura il tuo viaggio con i nostri partner fidati.'
         : 'Protect your trip with our trusted partners.'
 
+  const homeLabel = language === 'cs' ? 'Domů' : 'Home'
+  const regionsLabel = language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions'
+  const highlights = region.highlights?.[language] || region.highlights?.en || []
+
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen overflow-x-hidden bg-[#f7f4ed]">
       <Navigation />
 
-      <div className="pt-32 pb-12">
-        {/* Hero with Region Image */}
-        <div className="relative mb-8">
-          <div className="relative h-64 md:h-96 overflow-hidden">
+      <div className="pb-16 pt-40">
+        <div className="container mx-auto">
+          <nav aria-label={language === 'cs' ? 'Drobečková navigace' : language === 'it' ? 'Percorso di navigazione' : 'Breadcrumb'} className="mb-8">
+            <ol className="flex flex-wrap items-center gap-2 text-sm text-gray-600">
+              <li>
+                <Link href="/" className="hover:text-[#1b2642]">{homeLabel}</Link>
+              </li>
+              <li aria-hidden="true" className="text-gray-400">/</li>
+              <li>
+                <Link href="/regions" className="hover:text-[#1b2642]">{regionsLabel}</Link>
+              </li>
+              <li aria-hidden="true" className="text-gray-400">/</li>
+              <li className="font-medium text-[#1b2642]" aria-current="page">{regionName}</li>
+            </ol>
+          </nav>
+
+          <figure className="relative mb-8 aspect-[16/7] overflow-hidden rounded-2xl">
             <Image
               src={region.image}
               alt={region.name[language]}
               fill
-              sizes="100vw"
+              sizes="(min-width: 1280px) 1100px, 100vw"
               priority
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 p-8">
-            <div className="container mx-auto">
-              <div className="max-w-4xl">
-                <Badge className="bg-white/20 backdrop-blur-md text-white border-white/30 mb-4">
-                  <MapPin className="h-3.5 w-3.5 mr-1" />
-                  {language === 'cs' ? 'Region Itálie' : language === 'it' ? 'Regione d\'Italia' : 'Italian Region'}
-                </Badge>
-                <h1 className="font-bold text-white mb-3 drop-shadow-lg">
-                  {region.name[language]}
-                </h1>
-                <p className="text-lg md:text-xl text-white/90 drop-shadow-md max-w-2xl">
-                  {region.tagline[language]}
-                </p>
+          </figure>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-[#c78b5a]">
+            {language === 'cs' ? 'Region' : language === 'it' ? 'Regione' : 'Region'}
+          </p>
+          <h1 className="text-pretty">{region.name[language]}</h1>
+          <p className="mt-3 max-w-[40rem] text-pretty text-base leading-snug text-gray-700">
+            {region.tagline[language]}
+          </p>
+
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="rounded-2xl bg-white px-5 py-5 shadow-[0_10px_32px_rgba(14,21,46,0.06)]">
+              <p className="text-sm font-semibold text-copper-700">
+                {language === 'cs' ? 'Cenové rozpětí' : language === 'it' ? 'Fascia di prezzo' : 'Price range'}
+              </p>
+              <p className="mt-2 text-pretty text-lg font-semibold leading-snug text-[#1b2642]">{primaryPriceLine}</p>
+              {priceBulletLines.length > 0 && (
+                <ul className="mt-3 space-y-1 text-sm leading-snug text-gray-600">
+                  {priceBulletLines.map((note, index) => (
+                    <li key={index}>{note}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div className="rounded-2xl bg-white px-5 py-5 shadow-[0_10px_32px_rgba(14,21,46,0.06)]">
+              <p className="text-sm font-semibold text-copper-700">
+                {language === 'cs' ? 'Nejvhodnější pro' : language === 'it' ? 'Ideale per' : 'Best for'}
+              </p>
+              <div className="mt-2 space-y-1">
+                {bestForItems.map((item, index) => (
+                  <p key={index} className="text-pretty text-base leading-snug text-gray-800">{item}</p>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
-          {/* Quick Stats */}
-          <div className="max-w-5xl mx-auto mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl">
-                <CardContent className="p-8 text-center">
-                  <Euro className="h-8 w-8 text-slate-600 mx-auto mb-3" />
-                  <p className="text-sm text-gray-500 mb-1">
-                    {language === 'cs' ? 'Cenové rozpětí' : language === 'it' ? 'Fascia di prezzo' : 'Price Range'}
-                  </p>
-                  <p className="text-xl font-bold text-slate-800">{primaryPriceLine}</p>
-                  {priceBulletLines.length > 0 && (
-                    <ul className="mt-3 space-y-1 text-left text-xs text-gray-600 list-disc pl-4">
-                      {priceBulletLines.map((note, index) => (
-                        <li key={index}>{note}</li>
-                      ))}
-                    </ul>
-                  )}
-                </CardContent>
-              </Card>
-              <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl">
-                <CardContent className="p-8 text-center">
-                  <Home className="h-8 w-8 text-slate-600 mx-auto mb-3" />
-                  <p className="text-sm text-gray-500 mb-1">
-                    {language === 'cs' ? 'Nejvhodnější pro' : language === 'it' ? 'Ideale per' : 'Best For'}
-                  </p>
-                  <div className="space-y-1">
-                    {bestForItems.map((item, index) => (
-                      <p key={index} className="text-sm font-medium text-slate-800">{item}</p>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg rounded-2xl">
-                <CardContent className="p-8 text-center">
-                  <MapPin className="h-8 w-8 text-slate-600 mx-auto mb-3" />
-                  <p className="text-sm text-gray-500 mb-1">
-                    {language === 'cs' ? 'Hlavní města' : language === 'it' ? 'Città principali' : 'Top Cities'}
-                  </p>
-                  <p className="text-lg font-semibold text-slate-800">{topCitiesQuick.join(', ')}</p>
-                </CardContent>
-              </Card>
+            <div className="rounded-2xl bg-white px-5 py-5 shadow-[0_10px_32px_rgba(14,21,46,0.06)]">
+              <p className="text-sm font-semibold text-copper-700">
+                {language === 'cs' ? 'Hlavní města' : language === 'it' ? 'Città principali' : 'Main cities'}
+              </p>
+              <p className="mt-2 text-pretty text-base leading-snug text-gray-800">{topCitiesQuick.join(' · ')}</p>
             </div>
           </div>
 
-          {/* Description */}
-          <div className="max-w-5xl mx-auto mb-12">
-            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
-              <CardContent className="p-8 md:p-12">
-                <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
-                  {normalizedDescription}
+          <p className="mt-16 max-w-[46rem] whitespace-pre-line text-pretty text-base leading-relaxed text-gray-700">
+            {normalizedDescription}
+          </p>
+
+          <section className="mt-16">
+            <h2 className="text-pretty text-[2.05rem] font-bold leading-[1.15] text-gray-900">
+              {language === 'cs' ? 'Proč zvolit tento region' : language === 'it' ? 'Perché scegliere questa regione' : 'Why choose this region'}
+            </h2>
+            <ul className="mt-8 grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2">
+              {highlights.map((highlight) => (
+                <li key={highlight} className="flex items-start gap-3 text-pretty text-base leading-snug text-gray-800">
+                  <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#c48759]" />
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="mt-16">
+            <h2 className="text-pretty text-[2.05rem] font-bold leading-[1.15] text-gray-900">{buyersTitle}</h2>
+            <p className="mt-4 max-w-[46rem] text-pretty text-base leading-snug text-gray-700">{buyersIntro}</p>
+            <ul className="mt-6 max-w-[46rem] space-y-3">
+              {buyersItems.map((item) => (
+                <li key={item} className="flex items-start gap-3 text-pretty text-base leading-snug text-gray-800">
+                  <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#c48759]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 max-w-[46rem] text-pretty text-base leading-snug text-gray-700">{buyersOutro}</p>
+            <Link href="/process" className="mt-6 inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white">
+              {processCtaLabel}
+              <ChevronRight className="h-4 w-4" />
+            </Link>
+          </section>
+
+          <section className="mt-16">
+            <h2 className="text-pretty text-[2.05rem] font-bold leading-[1.15] text-gray-900">{curiosityTitle}</h2>
+            <ul className="mt-6 max-w-[46rem] space-y-3">
+              {curiosityItems.map((item) => (
+                <li key={item} className="flex items-start gap-3 text-pretty text-base leading-snug text-gray-800">
+                  <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#c48759]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="mt-16 rounded-2xl bg-white px-6 py-8 shadow-[0_10px_32px_rgba(14,21,46,0.06)] sm:px-10">
+            <h2 className="text-pretty text-[1.7rem] font-bold leading-snug text-gray-900">{travelInsuranceTitle}</h2>
+            <p className="mt-3 max-w-[40rem] text-pretty text-base leading-snug text-gray-700">{travelInsuranceText}</p>
+            <a
+              href={AFFILIATE_LINKS.insurance.property.click}
+              target="_top"
+              rel="nofollow sponsored noopener noreferrer"
+              className="mt-6 inline-block max-w-full overflow-hidden rounded-xl"
+            >
+              <img
+                src={AFFILIATE_LINKS.insurance.property.image}
+                width="468"
+                height="60"
+                alt={language === 'cs' ? 'Cestovní pojištění AXA se slevou 50 %' : 'AXA travel insurance'}
+                className="block h-auto max-w-full"
+              />
+            </a>
+          </section>
+
+          <section className="mt-16">
+            <h2 className="text-pretty text-[2.05rem] font-bold leading-[1.15] text-gray-900">
+              {language === 'cs' ? 'Hlavní města a lokality' : language === 'it' ? 'Città e località principali' : 'Main cities and places'}
+            </h2>
+            <div className="mt-6 max-w-[46rem] space-y-3">
+              {topCitiesDetailed.map((line) => (
+                <p key={line} className="text-pretty text-base leading-snug text-gray-800">{line}</p>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-col gap-4 rounded-2xl bg-white px-6 py-6 shadow-[0_10px_32px_rgba(14,21,46,0.06)] sm:flex-row sm:items-center sm:justify-between sm:px-8">
+              <div>
+                <p className="text-pretty text-lg font-semibold text-gray-900">
+                  {language === 'cs'
+                    ? 'Potřebujete auto na cestu po regionu?'
+                    : language === 'it'
+                      ? 'Vi serve un’auto per visitare la regione?'
+                      : 'Need a car to get around the region?'}
                 </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Highlights */}
-          <div className="max-w-5xl mx-auto mb-12">
-            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
-              <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
-                <CardTitle className="text-2xl font-bold text-slate-800">
-                  {language === 'cs' ? 'Proč zvolit tento region' : language === 'it' ? 'Perché scegliere questa regione' : 'Why Choose This Region'}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {region.highlights[language].map((highlight, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700 text-base">{highlight}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="max-w-5xl mx-auto mb-12">
-            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
-              <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
-                <CardTitle className="text-2xl font-bold text-slate-800">
-                  {buyersTitle}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-8">
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  {buyersIntro}
+                <p className="mt-2 max-w-[36rem] text-pretty text-base leading-snug text-gray-700">
+                  {language === 'cs'
+                    ? 'Porovnejte půjčovny a naplánujte přesuny mezi městy, vesnicemi a pobřežím.'
+                    : language === 'it'
+                      ? 'Confrontate le offerte e organizzate gli spostamenti tra città, borghi e costa.'
+                      : 'Compare rental offers and plan the trips between towns, villages, and the coast.'}
                 </p>
-                <ul className="space-y-2 text-gray-700 mb-6">
-                  {buyersItems.map((item, index) => (
-                    <li key={index}>- {item}</li>
-                  ))}
-                </ul>
-                <p className="text-gray-700 mb-6">
-                  {buyersOutro}
-                </p>
-                <Link href="/process">
-                  <Button className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold">
-                    {processCtaLabel}
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+              <a
+                href={REGION_CAR_RENTAL_LINK}
+                target="_blank"
+                rel="nofollow sponsored noopener noreferrer"
+                className="inline-flex w-fit shrink-0 items-center rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white"
+              >
+                {language === 'cs' ? 'Najít půjčení auta' : language === 'it' ? 'Trova un’auto a noleggio' : 'Find a rental car'}
+              </a>
+            </div>
+          </section>
 
-          <div className="max-w-5xl mx-auto mb-12">
-            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
-              <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
-                <CardTitle className="text-2xl font-bold text-slate-800">
-                  {curiosityTitle}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-8">
-                <ul className="space-y-3 text-gray-700">
-                  {curiosityItems.map((item, index) => (
-                    <li key={index}>- {item}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="max-w-5xl mx-auto mb-12">
-            <Card className="bg-white/90 backdrop-blur-sm border border-amber-200 shadow-xl rounded-2xl overflow-hidden">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-slate-800 mb-3">
-                  {travelInsuranceTitle}
+          <section className="mt-16 rounded-2xl bg-white px-6 py-8 shadow-[0_10px_32px_rgba(14,21,46,0.06)] sm:px-10">
+            <h2 className="text-pretty text-[1.7rem] font-bold leading-snug text-gray-900">
+              {language === 'cs' ? 'Chcete region poznat osobně?' :
+               language === 'it' ? 'Volete conoscere la regione di persona?' :
+               'Want to see the region in person?'}
+            </h2>
+            <p className="mt-3 max-w-[40rem] text-pretty text-base leading-snug text-gray-700">
+              {language === 'cs' ? 'Mnoho klientů si region nejdřív projde osobně: okolí, lokality i atmosféru.' :
+               language === 'it' ? 'Molti clienti visitano prima la regione di persona: dintorni, località e atmosfera.' :
+               'Many clients walk the region first: the surroundings, the places, and the atmosphere.'}
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
+                className="inline-flex w-fit items-center rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white"
+                onClick={() => window.open(bookingLink, '_blank', 'noopener,noreferrer')}
+              >
+                {language === 'cs' ? 'Najít ubytování' : language === 'it' ? 'Trova alloggio' : 'Find a place to stay'}
+              </button>
+              <a
+                href={gygLink}
+                target="_blank"
+                rel="nofollow sponsored noopener noreferrer"
+                data-affiliate-placement="region-travel-primary"
+                data-affiliate-region={canonicalSlug || rawSlug}
+                className="inline-flex w-fit items-center rounded-full bg-[#f7f4ed] px-5 py-2.5 text-base font-semibold text-[#1b2642]"
+              >
+                {language === 'cs' ? 'Výlety a průvodci' : language === 'it' ? 'Escursioni e guide' : 'Tours and guides'}
+              </a>
+            </div>
+            {shouldShowRegionalWidget ? (
+              <div className="mt-8">
+                <h3 className="text-pretty text-lg font-semibold text-gray-900">
+                  {language === 'cs'
+                    ? 'Doporučené zážitky v regionu'
+                    : language === 'it'
+                      ? 'Esperienze consigliate nella regione'
+                      : 'Recommended experiences in the region'}
                 </h3>
-                <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                  {travelInsuranceText}
-                </p>
-                <a
-                  href={AFFILIATE_LINKS.insurance.property.click}
-                  target="_top"
-                  rel="nofollow sponsored noopener noreferrer"
-                  className="inline-block max-w-full overflow-hidden rounded-xl border border-amber-200 bg-white shadow-sm"
+                <div
+                  className="mt-4 hidden max-h-[320px] overflow-hidden rounded-2xl bg-[#f7f4ed] md:block [&>span]:hidden [&_iframe]:!h-[300px] [&_iframe]:!min-h-0"
+                  data-gyg-href={AFFILIATE_LINKS.getYourGuide.widgetFrame}
+                  data-gyg-locale-code="cs-CZ"
+                  data-gyg-widget="activities"
+                  data-gyg-number-of-items="2"
+                  data-gyg-partner-id={GETYOURGUIDE_PARTNER_ID}
+                  {...widgetDataAttrs}
                 >
-                  <img
-                    src={AFFILIATE_LINKS.insurance.property.image}
-                    width="468"
-                    height="60"
-                    alt="cestovni pojisteni AXA se slevou 50 %"
-                    className="block h-auto max-w-full"
-                  />
-                </a>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Top Cities */}
-          <div className="max-w-5xl mx-auto mb-12">
-            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
-              <CardHeader className="bg-gradient-to-br from-slate-50 to-white border-b border-gray-100">
-                <CardTitle className="text-2xl font-bold text-slate-800">
-                  {language === 'cs' ? 'Hlavní města a lokality' : language === 'it' ? 'Città e località principali' : 'Top Cities & Locations'}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-8">
-                <div className="space-y-3 text-gray-700">
-                  {topCitiesDetailed.map((line, index) => (
-                    <p key={index}>{line}</p>
-                  ))}
-                </div>
-                <div className="mt-8 pt-6 border-t border-gray-100">
-                  <div className="rounded-2xl border border-blue-100 bg-blue-50/70 p-5">
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                      <div>
-                        <p className="text-lg font-semibold text-slate-900">
-                          {language === 'cs'
-                            ? 'Potřebujete auto pro cestu po regionu?'
-                            : language === 'it'
-                              ? 'Ti serve un’auto per visitare la regione?'
-                              : 'Need a car to explore the region?'}
-                        </p>
-                        <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                          {language === 'cs'
-                            ? 'Porovnejte nabídky autopůjčoven a naplánujte si pohodlné přesuny mezi městy, vesnicemi a pobřežím.'
-                            : language === 'it'
-                              ? 'Confronta le offerte di autonoleggio e organizza facilmente gli spostamenti tra città, borghi e costa.'
-                              : 'Compare car rental offers and plan easy transfers between cities, villages, and the coast.'}
-                        </p>
-                      </div>
-                      <a
-                        href={REGION_CAR_RENTAL_LINK}
-                        target="_blank"
-                        rel="nofollow sponsored noopener noreferrer"
-                        className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-700 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-800"
-                      >
-                        {language === 'cs'
-                          ? 'Najít půjčení auta'
-                          : language === 'it'
-                            ? 'Trova un’auto a noleggio'
-                            : 'Find a rental car'}
-                        <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Booking.com + GetYourGuide Section */}
-          <div className="max-w-5xl mx-auto mb-12">
-            <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
-              <CardContent className="p-8 md:p-12">
-                <h3 className="text-2xl font-bold mb-4 text-slate-800">
-                  {language === 'cs' ? 'Chcete region poznat osobně?' :
-                   language === 'it' ? 'Volete conoscere la regione di persona?' :
-                   'Want to Experience the Region Personally?'}
-                </h3>
-                <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                  {language === 'cs' ? 'Mnoho klientů si před koupí vybírá region tak, že ho nejprve navštíví osobně – projde okolí, porovná lokality a atmosféru.' :
-                   language === 'it' ? 'Molti clienti prima dell\'acquisto scelgono la regione visitandola di persona – esplorano i dintorni, confrontano località e atmosfera.' :
-                   'Many clients choose their region by visiting it personally first – exploring the surroundings, comparing locations and atmosphere.'}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg"
-                    onClick={() => window.open(bookingLink, '_blank')}
-                  >
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    {language === 'cs' ? 'Najít ubytování (Booking.com)' :
-                     language === 'it' ? 'Trova alloggio (Booking.com)' :
-                     'Find Accommodation (Booking.com)'}
-                  </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-white border-orange-500 font-semibold px-8 py-6 text-base transition-all duration-300"
-                  >
-                    <a
-                      href={gygLink}
-                      target="_blank"
-                      rel="nofollow sponsored noopener noreferrer"
-                      data-affiliate-placement="region-travel-primary"
-                      data-affiliate-region={canonicalSlug || rawSlug}
-                    >
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      {language === 'cs' ? 'Výlety a průvodce (GetYourGuide)' :
-                       language === 'it' ? 'Escursioni e guide (GetYourGuide)' :
-                       'Tours & Guides (GetYourGuide)'}
-                    </a>
-                  </Button>
-                </div>
-                {shouldShowRegionalWidget ? (
-                  <div className="mt-6 rounded-xl border border-orange-200 bg-orange-50/70 p-4">
-                    <h4 className="mb-3 text-base font-semibold text-slate-800">
-                      {language === 'cs'
-                        ? 'Doporučené zážitky v regionu'
-                        : language === 'it'
-                          ? 'Esperienze consigliate nella regione'
-                          : 'Recommended experiences in the region'}
-                    </h4>
-                    <div
-                      className="hidden max-h-[320px] overflow-hidden rounded-lg bg-white md:block [&>span]:hidden [&_iframe]:!h-[300px] [&_iframe]:!min-h-0"
-                      data-gyg-href={AFFILIATE_LINKS.getYourGuide.widgetFrame}
-                      data-gyg-locale-code="cs-CZ"
-                      data-gyg-widget="activities"
-                      data-gyg-number-of-items="2"
-                      data-gyg-partner-id={GETYOURGUIDE_PARTNER_ID}
-                      {...widgetDataAttrs}
-                    >
-                      <span className="text-sm text-slate-600">
-                        {language === 'cs'
-                          ? 'Aktivity se nepodařilo načíst. '
-                          : language === 'it'
-                            ? 'Non è stato possibile caricare le attività. '
-                            : 'Activities could not be loaded. '}
-                        <a
-                          href={widgetDestinationLink}
-                          target="_blank"
-                          rel="nofollow sponsored noopener noreferrer"
-                          className="font-semibold text-orange-700 underline underline-offset-2"
-                        >
-                          {language === 'cs'
-                            ? 'Zobrazit nabídku na GetYourGuide'
-                            : language === 'it'
-                              ? 'Vedi le offerte su GetYourGuide'
-                              : 'View activities on GetYourGuide'}
-                        </a>
-                      </span>
-                    </div>
+                  <span className="text-sm text-gray-600">
+                    {language === 'cs'
+                      ? 'Aktivity se nepodařilo načíst. '
+                      : language === 'it'
+                        ? 'Non è stato possibile caricare le attività. '
+                        : 'Activities could not be loaded. '}
                     <a
                       href={widgetDestinationLink}
                       target="_blank"
                       rel="nofollow sponsored noopener noreferrer"
-                      data-affiliate-placement="region-gyg-widget-fallback"
-                      data-affiliate-region={canonicalSlug || rawSlug}
-                      className="mt-3 inline-flex items-center justify-center rounded-lg bg-orange-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-orange-500"
+                      className="font-semibold text-[#8e5636] underline underline-offset-2"
                     >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      GetYourGuide
+                      {language === 'cs'
+                        ? 'Zobrazit nabídku na GetYourGuide'
+                        : language === 'it'
+                          ? 'Vedi le offerte su GetYourGuide'
+                          : 'View activities on GetYourGuide'}
                     </a>
-                  </div>
-                ) : null}
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* CTA */}
-          <div className="max-w-4xl mx-auto text-center">
-            <Card className="bg-gradient-to-br from-slate-700 to-slate-800 text-white shadow-2xl rounded-2xl overflow-hidden">
-              <CardContent className="p-12">
-                <h2 className="font-bold mb-8">
-                  {finalCtaTitle}
-                </h2>
-                <p className="text-slate-200 text-lg mb-8 leading-relaxed">
-                  {finalCtaDescription}
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/contact">
-                    <Button size="lg" title={consultationLabel} className="w-full sm:w-auto bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg">
-                      {contactFormLabel}
-                    </Button>
-                  </Link>
-                  <Link href={`/properties?region=${canonicalSlug || rawSlug}`}>
-                    <Button
-                      size="lg"
-                      className="w-full sm:w-auto bg-white hover:bg-gray-100 text-slate-800 font-semibold px-8 py-6 text-base transition-all duration-300 shadow-lg"
-                    >
-                      <Home className="h-5 w-5 mr-2" />
-                      {finalPropertiesLabel}
-                    </Button>
-                  </Link>
+                  </span>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+                <a
+                  href={widgetDestinationLink}
+                  target="_blank"
+                  rel="nofollow sponsored noopener noreferrer"
+                  data-affiliate-placement="region-gyg-widget-fallback"
+                  data-affiliate-region={canonicalSlug || rawSlug}
+                  className="mt-4 inline-flex items-center rounded-full bg-[#f7f4ed] px-5 py-2.5 text-base font-semibold text-[#1b2642]"
+                >
+                  GetYourGuide
+                </a>
+              </div>
+            ) : null}
+          </section>
 
-          <div className="max-w-4xl mx-auto mt-10">
+          <section className="mt-16 rounded-2xl bg-white px-6 py-8 shadow-[0_10px_32px_rgba(14,21,46,0.06)] sm:px-10">
+            <h2 className="text-pretty text-[1.7rem] font-bold leading-snug text-gray-900">{finalCtaTitle}</h2>
+            <p className="mt-3 max-w-[40rem] text-pretty text-base leading-snug text-gray-700">{finalCtaDescription}</p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link href="/contact" title={consultationLabel} className="inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white">
+                {contactFormLabel}
+                <ChevronRight className="h-4 w-4" />
+              </Link>
+              <Link href={`/properties?region=${canonicalSlug || rawSlug}`} className="inline-flex w-fit items-center rounded-full bg-[#f7f4ed] px-5 py-2.5 text-base font-semibold text-[#1b2642]">
+                {finalPropertiesLabel}
+              </Link>
+            </div>
+          </section>
+
+          <div className="mt-12">
             <LeadMagnetBanner assetKey="mistakes" language={language} />
           </div>
 
-          <div className="max-w-4xl mx-auto mt-10">
+          <div className="mt-10">
             <InformationalDisclaimer language={language} />
+          </div>
+
+          <div className="mt-20">
+            <PropertySlider language={language} initialProperties={initialProperties} variant="home" />
           </div>
         </div>
       </div>
-
-      <PropertySlider language={language} initialProperties={initialProperties} />
       <Footer language={language} />
       {shouldShowRegionalWidget ? (
         <Script

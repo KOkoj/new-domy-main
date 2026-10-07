@@ -225,10 +225,10 @@ export default function AuthModal({
         <DialogHeader data-testid="auth-modal-header">
           <div className="text-center space-y-1" data-testid="auth-modal-title">
             <Image
-              src="/logo domy.svg"
+              src="/domy logo V3.svg"
               alt="Domy v Itálii"
               width={40}
-              height={38}
+              height={40}
               className="h-10 w-auto mx-auto"
               data-testid="auth-modal-logo"
             />
@@ -423,7 +423,7 @@ export default function AuthModal({
           </TabsContent>
         </Tabs>
 
-        <div className="text-center text-[11px] text-gray-600 leading-snug mt-2">
+        <div className="text-center text-sm text-gray-600 leading-snug mt-2">
           {tr('termsText')}{' '}
           <Link href="/terms" className="underline">
             {tr('termsLink')}

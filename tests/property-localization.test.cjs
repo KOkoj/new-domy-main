@@ -42,7 +42,9 @@ const config = fs.readFileSync(path.join(root, 'app/properties/filterConfig.js')
 const listing = fs.readFileSync(path.join(root, 'lib/propertyListing.js'), 'utf8')
   .replace(/^import .*$/gm, '').replaceAll('export ', '')
 const api = vm.runInNewContext(display + '\n' + config + '\n' + listing + '\n;({transformPropertyListing, REGION_LABELS, toRegionSlug})', {
-  Home: null, Building: null, Castle: null, Building2: null, getPropertyImage: () => '/placeholder-property.jpg',
+  Home: null, Building: null, Castle: null, Building2: null,
+  getPropertyImage: () => '/placeholder-property.jpg',
+  getPropertyImageList: () => ['/placeholder-property.jpg'],
 })
 test('listing transformation retains translations and stable region filters', () => {
   const property = { title: { cs: 'Byt', it: 'Appartamento', en: 'Apartment' }, location: { city: { region: { name: { cs: 'Tosk\u00e1nsko', it: 'Toscana', en: 'Tuscany' } } } } }

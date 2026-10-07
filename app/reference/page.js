@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Quote, ArrowRight, Star } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import PageIntro from '@/components/PageIntro'
 
 const TESTIMONIALS = [
   {
@@ -101,42 +101,20 @@ export default function ReferencePage() {
   const t = (key) => pageLabels[key]?.[language] ?? pageLabels[key]?.cs ?? ''
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
-      {/* Hero */}
-      <section className="relative pt-28 pb-24 md:pt-36 md:pb-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1920&q=80"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/80 to-slate-900/70" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10" style={{ maxWidth: '1200px' }}>
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 mb-6">
-              <Quote className="h-4 w-4 text-copper-300" />
-              <span className="text-sm text-white/80 font-medium">{t('badge')}</span>
-            </div>
-            <h1 className="font-extrabold text-white">{t('title')}</h1>
-            <p className="mt-4 text-lg md:text-2xl text-copper-100 max-w-3xl leading-[1.75] font-semibold">
-              {t('subtitle')}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageIntro eyebrow={t('badge')} title={t('title')}>
+        <p>{t('subtitle')}</p>
+      </PageIntro>
 
       {/* Testimonial list */}
-      <div className="container mx-auto px-6 py-16 md:py-24" style={{ maxWidth: '800px' }}>
+      <div className="container mx-auto px-6 py-16 md:py-24">
         <div className="space-y-6">
           {TESTIMONIALS.map((item, i) => (
             <article
               key={i}
-              className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 p-8 md:p-10"
+              className="rounded-[1.75rem] bg-white p-8 shadow-[0_18px_50px_rgba(14,21,46,0.07)] md:p-10"
             >
               <blockquote className="text-lg md:text-xl text-slate-600 leading-[1.85] italic mb-6">
                 &ldquo;{item.quote[language] ?? item.quote.cs}&rdquo;
@@ -153,25 +131,20 @@ export default function ReferencePage() {
 
         {/* CTA block */}
         <div className="mt-20">
-          <div className="relative rounded-3xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-800 to-slate-900" />
-            <div className="relative p-10 md:p-16 text-center">
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
+          <div className="rounded-[1.75rem] bg-gradient-to-br from-[#243056] to-[#0e152e] p-10 text-center md:p-16">
+              <h2 className="mb-4 text-pretty text-[2.05rem] font-bold leading-[1.15] text-white">
                 {t('ctaHeading')}
               </h2>
-              <p className="text-gray-300 mb-10 text-lg leading-[1.75] max-w-xl mx-auto">
+              <p className="mx-auto mb-8 max-w-xl text-lg leading-snug text-white/80">
                 {t('ctaSubtext')}
               </p>
-              <Link href="/book-call">
-                <Button
-                  size="lg"
-                  className="bg-white hover:bg-gray-100 text-slate-900 font-semibold px-8 py-6 text-base transition-all duration-200 shadow-lg rounded-xl"
-                >
-                  {t('ctaButton')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+              <Link
+                href="/book-call"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]"
+              >
+                {t('ctaButton')}
+                <ArrowRight className="h-4 w-4" />
               </Link>
-            </div>
           </div>
         </div>
       </div>

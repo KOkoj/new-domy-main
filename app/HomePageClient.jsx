@@ -1,13 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Image from 'next/image'
 import Lenis from 'lenis'
-import { Search, MapPin, ChevronRight, Mail, MessageCircle, Check, Plane, Globe, Lock, Banknote, AlertTriangle, HelpCircle } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { GlareCard } from '@/components/ui/premium-card'
+import { MapPin, ChevronRight, Check, Globe, Lock, Banknote, AlertTriangle, HelpCircle, Search, User, Menu, X } from 'lucide-react'
 import BackgroundImageTransition from '@/components/BackgroundImageTransition'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
 
@@ -17,10 +15,10 @@ import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import Navigation from '../components/Navigation'
+import { LanguageMenu, SiteNavMenu } from '../components/SiteNavControls'
 import { supabase } from '../lib/supabase'
 import { t } from '../lib/translations'
 import { readLanguageFromBrowser, readCurrencyFromBrowser, persistLanguage, persistCurrency, DEFAULT_LANGUAGE, DEFAULT_CURRENCY, getInitialLanguage, getInitialCurrency } from '../lib/userPreferences'
-import { AFFILIATE_LINKS } from '../lib/affiliateLinks'
 
 const WEBINAR_REGION_VALUES = [
   'abruzzo', 'basilicata', 'calabria', 'campania', 'emilia-romagna',
@@ -29,25 +27,36 @@ const WEBINAR_REGION_VALUES = [
   'trentino-alto-adige', 'umbria', 'valle-daosta', 'veneto'
 ]
 
-export default function HomePageClient({ initialProperties = [], sliderProperties }) {
+const EMPTY_PROPERTIES = []
+
+function propertyListsMatch(current, next) {
+  if (current.length !== next.length) return false
+  for (let index = 0; index < current.length; index += 1) {
+    if (current[index] !== next[index]) return false
+  }
+  return true
+}
+
+export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, sliderProperties }) {
   const SHOW_HOME_ARCHIVED_SECTIONS = false
   const properties = initialProperties
   
-  // Background images for hero section.
-  // Pre-optimised at 960 px wide with a 1.5 px blur (invisible under the
-  // gradient overlay): AVIF ≈ 15 KiB, WebP ≈ 44 KiB.
   const heroBackgroundImages = [
     {
-      src: "/hero-background.webp",
-      avifSrc: "/hero-background.avif",
-      webpSrc: "/hero-background.webp",
-      alt: "Italský venkov — hero pozadí"
-    }
+      src: '/hero-mlha-1920.webp',
+      avifSrc: '/hero-mlha.avif',
+      avifSrcSet: '/hero-mlha-1280.avif 1280w, /hero-mlha-1920.avif 1920w, /hero-mlha-2560.avif 2560w, /hero-mlha.avif 3840w',
+      webpSrc: '/hero-mlha.webp',
+      webpSrcSet: '/hero-mlha-1280.webp 1280w, /hero-mlha-1920.webp 1920w, /hero-mlha-2560.webp 2560w, /hero-mlha.webp 3840w',
+      sizes: '150vw',
+      alt: 'Mlha a dům v toskánské krajině',
+      transform: 'translate(-22%, 8%) scale(1.5) scaleX(-1)',
+    },
   ]
   const [favorites, setFavorites] = useState(new Set())
   const [filters, setFilters] = useState({})
   const [user, setUser] = useState(null)
-  const [searchQuery, setSearchQuery] = useState('')
+  const [isHeroMenuOpen, setIsHeroMenuOpen] = useState(false)
   const [language, setLanguage] = useState(getInitialLanguage)
   const [currency, setCurrency] = useState(getInitialCurrency)
 
@@ -89,33 +98,80 @@ export default function HomePageClient({ initialProperties = [], sliderPropertie
 
   // Initialize Lenis smooth scroll
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      autoRaf: true,
       touchMultiplier: 2,
-      infinite: false,
     })
 
-    // Make Lenis available globally for scroll indicator
     window.lenis = lenis
 
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-
-    // Cleanup
     return () => {
       lenis.destroy()
       delete window.lenis
     }
+  }, [])
+
+  // Keep the hero photo locked to the viewport while the copy scrolls away.
+  // position:fixed is trapped by overflow-x:hidden on html, body, and this page.
+  const heroRef = useRef(null)
+  const heroBgRef = useRef(null)
+  useEffect(() => {
+    const bg = heroBgRef.current
+    const hero = heroRef.current
+    if (!bg || !hero) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    let frame = 0
+    const apply = (scrollY) => {
+      const y = Math.max(0, Math.min(scrollY, hero.offsetHeight))
+      bg.style.transform = `translate3d(0, ${y}px, 0)`
+    }
+    const onLenis = (instance) => apply(instance.scroll)
+    const onScroll = () => {
+      if (window.lenis) return
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => apply(window.scrollY))
+    }
+
+    apply(window.scrollY || 0)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.lenis?.on('scroll', onLenis)
+
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', onScroll)
+      window.lenis?.off('scroll', onLenis)
+      bg.style.transform = ''
+    }
+  }, [])
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const root = document.querySelector('[data-testid="homepage-container"]')
+    if (!root) return
+    const nodes = root.querySelectorAll('[data-reveal]')
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-in')
+        observer.unobserve(entry.target)
+        const release = (event) => {
+          if (event.target !== entry.target) return
+          entry.target.removeAttribute('data-reveal')
+          entry.target.classList.remove('is-in')
+        }
+        entry.target.addEventListener('animationend', release, { once: true })
+      })
+    }, { threshold: 0.18, rootMargin: '0px 0px -4% 0px' })
+    nodes.forEach((node) => observer.observe(node))
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -544,43 +600,41 @@ export default function HomePageClient({ initialProperties = [], sliderPropertie
     setSelectedPropertyType(randomPropertyType)
   }, [])
 
-  // Filter properties based on selected region and property type
-  // TEMPORARY: Hardcoded to always show 7 properties for full rows during development
+  // Derived lists for the archived homepage blocks. Keep the previous array
+  // when the filter result is unchanged so a new `properties` reference cannot
+  // schedule another render from this effect.
   useEffect(() => {
-    if (selectedRegion) {
-      const regionProps = properties.filter(property => {
-        const regionName = property.location?.city?.region?.name
-        // Handle both localized object and string name
-        const nameToCheck = typeof regionName === 'object' ? regionName?.en : regionName
-        return nameToCheck === selectedRegion.name
-      })
-      // Ensure we always have at least 3 properties by filling with other properties
-      const minProperties = 3
-      if (regionProps.length < minProperties) {
-        const additionalProps = properties.filter(p => !regionProps.includes(p))
-        const filledProps = [...regionProps, ...additionalProps].slice(0, minProperties)
-        setRegionProperties(filledProps)
-      } else {
-        setRegionProperties(regionProps)
-      }
-    }
+    if (!selectedRegion) return
+
+    const regionProps = properties.filter(property => {
+      const regionName = property.location?.city?.region?.name
+      const nameToCheck = typeof regionName === 'object' ? regionName?.en : regionName
+      return nameToCheck === selectedRegion.name
+    })
+    const minProperties = 3
+    const nextProperties = regionProps.length < minProperties
+      ? [...regionProps, ...properties.filter(property => !regionProps.includes(property))].slice(0, minProperties)
+      : regionProps
+
+    setRegionProperties(current => (
+      propertyListsMatch(current, nextProperties) ? current : nextProperties
+    ))
   }, [selectedRegion, properties])
 
   useEffect(() => {
-    if (selectedPropertyType) {
-      const typeProps = properties.filter(property => 
-        property.propertyType.toLowerCase() === selectedPropertyType.name.toLowerCase()
-      )
-      // Ensure we always have at least 3 properties by filling with other properties
-      const minProperties = 3
-      if (typeProps.length < minProperties) {
-        const additionalProps = properties.filter(p => !typeProps.includes(p))
-        const filledProps = [...typeProps, ...additionalProps].slice(0, minProperties)
-        setPropertyTypeProperties(filledProps)
-      } else {
-        setPropertyTypeProperties(typeProps)
-      }
-    }
+    if (!selectedPropertyType) return
+
+    const typeProps = properties.filter(property =>
+      property.propertyType?.toLowerCase() === selectedPropertyType.name.toLowerCase()
+    )
+    const minProperties = 3
+    const nextProperties = typeProps.length < minProperties
+      ? [...typeProps, ...properties.filter(property => !typeProps.includes(property))].slice(0, minProperties)
+      : typeProps
+
+    setPropertyTypeProperties(current => (
+      propertyListsMatch(current, nextProperties) ? current : nextProperties
+    ))
   }, [selectedPropertyType, properties])
 
   const loadFavorites = async () => {
@@ -636,6 +690,7 @@ export default function HomePageClient({ initialProperties = [], sliderPropertie
     setLanguage(newLanguage)
     document.documentElement.lang = newLanguage
     persistLanguage(newLanguage)
+    window.dispatchEvent(new CustomEvent('languageChange', { detail: newLanguage }))
   }
 
   const handleCurrencyChange = (newCurrency) => {
@@ -685,288 +740,314 @@ export default function HomePageClient({ initialProperties = [], sliderPropertie
 
   return (
     <div className="min-h-screen bg-[#f7f4ed] home-page-custom-border overflow-x-hidden" data-testid="homepage-container">
-      {/* Navigation */}
-      <Navigation />
+      {/* Navigation — the bar appears once the hero has scrolled away */}
+      <Navigation appearAfterHero />
 
       {/* Hero Section */}
       <section
-        className="relative w-full overflow-hidden flex items-center justify-center"
-        style={{ height: '100vh', minHeight: '100vh' }}
+        ref={heroRef}
+        className="relative w-full overflow-hidden"
+        style={{ minHeight: '100vh' }}
         data-testid="hero-section"
       >
-        {/* Full-bleed background photo */}
-        <BackgroundImageTransition
-          images={heroBackgroundImages}
-          transitionDuration={6000}
-          fadeDuration={1500}
-          className="z-0"
-        />
-
-        {/* Gradient overlay — light at top so photo has presence, strong where text sits */}
-        <div
-          className="absolute inset-0 z-10"
-          style={{
-            background: 'linear-gradient(170deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.62) 45%, rgba(0,0,0,0.80) 100%)',
-          }}
-        />
-
-        {/* Hero content — centered horizontally and vertically */}
-        <div className="relative z-20 text-center text-white px-4 sm:px-6 max-w-4xl mx-auto w-full">
-          <h1
-            className="font-extrabold text-white mb-3"
-            style={{
-              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-              fontWeight: 800,
-              lineHeight: 1.1,
-              textShadow: '0 2px 10px rgba(0,0,0,0.6)',
-              textWrap: 'balance',
-            }}
-            data-testid="hero-title"
-          >
-            {language === 'cs' ? 'Pomáháme Čechům koupit dům v Itálii.' :
-             language === 'it' ? 'Aiutiamo i cechi a comprare casa in Italia.' :
-             'We help Czechs buy a home in Italy.'}
-          </h1>
-
-          <p
-            className="mb-9"
-            style={{
-              fontSize: 'clamp(1.375rem, 2.5vw, 1.875rem)',
-              fontWeight: 600,
-              color: 'rgba(255,255,255,0.90)',
-              textShadow: '0 1px 6px rgba(0,0,0,0.5)',
-              lineHeight: 1.35,
-            }}
-          >
-            {language === 'cs' ? 'Bez stresu. S jasným postupem.' :
-             language === 'it' ? 'Senza stress. Con un percorso chiaro.' :
-             'Stress-free. With a clear process.'}
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
-              className="w-full sm:w-auto font-semibold transition-all duration-200"
-              style={{
-                background: 'linear-gradient(to right, rgba(199,137,91,1), rgb(153,105,69))',
-                color: 'white',
-                padding: '14px 32px',
-                borderRadius: '8px',
-                border: 'none',
-                fontSize: '1rem',
-                cursor: 'pointer',
-                boxShadow: '0 4px 14px rgba(0,0,0,0.35)',
-                transition: 'filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
-              }}
-              onClick={() => { window.location.href = '/contact'; }}
-              onMouseEnter={e => {
-                e.currentTarget.style.filter = 'brightness(1.12)';
-                e.currentTarget.style.transform = 'translateY(-1px)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.4)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.filter = '';
-                e.currentTarget.style.transform = '';
-                e.currentTarget.style.boxShadow = '0 4px 14px rgba(0,0,0,0.35)';
-              }}
-            >
-              {language === 'cs' ? 'Konzultace zdarma' :
-               language === 'it' ? 'Consulenza gratuita' :
-               'Free Consultation'}
-            </button>
-            <button
-              className="w-full sm:w-auto font-semibold backdrop-blur-sm"
-              style={{
-                border: '2px solid rgba(255,255,255,0.80)',
-                color: 'white',
-                backgroundColor: 'rgba(255,255,255,0.18)',
-                padding: '14px 32px',
-                borderRadius: '8px',
-                fontSize: '1rem',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.30)';
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,1)';
-                e.currentTarget.style.transform = 'translateY(-1px)';
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.18)';
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.80)';
-                e.currentTarget.style.transform = '';
-                e.currentTarget.style.boxShadow = '';
-              }}
-              onClick={() => { window.location.href = '/process'; }}
-            >
-              {language === 'cs' ? 'O našem procesu' :
-               language === 'it' ? 'Sul nostro processo' :
-               'About Our Process'}
-            </button>
-          </div>
+        {/* Photo stays locked to the viewport; the section clips it as it scrolls away. */}
+        <div ref={heroBgRef} className="pointer-events-none absolute inset-x-0 top-0 h-screen" data-testid="hero-background">
+          <BackgroundImageTransition
+            images={heroBackgroundImages}
+            transitionDuration={6000}
+            fadeDuration={1500}
+            className="z-0"
+          />
 
           <div
-            className="mt-5 mx-auto inline-block backdrop-blur-sm"
+            className="absolute inset-0 z-10"
             style={{
-              borderTop: '1px solid rgba(255,255,255,0.22)',
-              borderBottom: '1px solid rgba(255,255,255,0.22)',
-              backgroundColor: 'rgba(0,0,0,0.35)',
-              padding: '8px 20px',
+              background: [
+                'radial-gradient(ellipse 78% 58% at 50% 54%, rgba(14,21,46,0.58) 0%, rgba(14,21,46,0.12) 72%)',
+                'linear-gradient(180deg, rgba(14,21,46,0.84) 0%, rgba(14,21,46,0.58) 18%, rgba(14,21,46,0.46) 38%, rgba(14,21,46,0.52) 62%, rgba(14,21,46,0.68) 100%)',
+              ].join(', '),
             }}
-          >
-            <p
-              style={{
-                fontSize: 'clamp(0.875rem, 1.3vw, 1rem)',
-                fontWeight: 400,
-                color: 'rgba(255,255,255,0.95)',
-                letterSpacing: '0.02em',
-                margin: 0,
-              }}
-            >
-              {language === 'cs' ? 'Právní, technická i praktická podpora během celého procesu.' :
-               language === 'it' ? 'Supporto legale, tecnico e pratico durante tutto il processo.' :
-               'Legal, technical, and practical support throughout the entire process.'}
-            </p>
-          </div>
-
-          {/* Search shortcut */}
-          <Link
-            href="/properties"
-            className="mt-8 flex items-center gap-2 mx-auto w-fit text-white/80 hover:text-white transition-colors duration-200 group"
-          >
-            <Search className="h-4 w-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-            <span style={{ fontSize: '0.9375rem', fontWeight: 500, letterSpacing: '0.01em' }}>
-              {language === 'cs' ? 'Prohledat vybrané nemovitosti' :
-               language === 'it' ? 'Sfoglia gli immobili disponibili' :
-               'Browse available properties'}
-            </span>
-            <ChevronRight className="h-4 w-4 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200" />
-          </Link>
+          />
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 hidden sm:block">
-          <div
-            className="flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer"
-            onClick={() => {
-              const next = document.querySelector('[data-testid="how-it-works-section"]');
-              if (next) window.lenis?.scrollTo(next, { offset: -80 });
-            }}
-          >
-            <span className="text-sm font-medium tracking-widest uppercase">
-              {language === 'cs' ? 'Přejděte dolů' :
-               language === 'it' ? 'Scorri' :
-               'Scroll'}
-            </span>
-            <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-white/50 rounded-full mt-2 slow-bounce"></div>
+        <div className="relative z-20 flex min-h-screen flex-col text-white">
+          <header className="hero-enter relative z-30 mx-auto flex w-full max-w-[1800px] items-center gap-3 overflow-visible px-5 pt-5 sm:px-8 sm:pt-6 xl:px-12">
+            <Link href="/" className="relative z-10 shrink-0" data-testid="hero-logo-link">
+              <Image
+                src="/solo logo.svg"
+                alt="Domy v Itálii"
+                width={124}
+                height={96}
+                priority
+                className={`absolute top-0 left-0 z-30 h-20 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.22)] sm:h-24 ${isHeroMenuOpen ? 'opacity-0' : ''}`}
+                data-testid="hero-logo"
+              />
+              <span className="block h-12 w-[6.5rem] sm:w-[7.75rem]" />
+            </Link>
+
+            <SiteNavMenu
+              language={language}
+              isActive={(href) => href === '/'}
+              tone="hero"
+              testIdPrefix="hero-nav-"
+              className="absolute left-1/2 top-5 z-20 hidden h-12 -translate-x-[calc(50%+4.5rem)] items-center sm:top-6 min-[1400px]:flex"
+            />
+
+            <div className="relative z-10 ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
+              <LanguageMenu
+                language={language}
+                onChange={handleLanguageChange}
+                testIdPrefix="hero-language-"
+              />
+
+              {user ? (
+                <Link
+                  href="/dashboard"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/25 px-4 py-2 text-base font-medium text-white backdrop-blur-sm"
+                >
+                  {language === 'cs' ? 'Nástěnka' : language === 'it' ? 'Cruscotto' : 'Dashboard'}
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => { setAuthModalTab('login'); setIsAuthModalOpen(true) }}
+                  className="inline-flex items-center gap-2 rounded-full border-0 bg-[#1b2642] px-6 py-3 text-base font-medium leading-none text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)] transition-colors duration-200 hover:bg-[#243056]"
+                  data-testid="hero-login-button"
+                >
+                  <User className="h-4 w-4" />
+                  <span className="hidden sm:inline">
+                    {language === 'cs' ? 'Přihlásit / Registrovat' : language === 'it' ? 'Accedi / Registrati' : 'Login / Register'}
+                  </span>
+                </button>
+              )}
+
+              <button
+                type="button"
+                className="rounded-lg p-2 text-white transition-colors hover:bg-white/10 min-[1400px]:hidden"
+                onClick={() => setIsHeroMenuOpen((open) => !open)}
+                aria-label={language === 'cs' ? 'Menu' : language === 'it' ? 'Menu' : 'Menu'}
+                data-testid="hero-menu-button"
+              >
+                {isHeroMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
+          </header>
+
+          {isHeroMenuOpen && (
+            <div className="container relative z-40 mx-auto px-4 pt-3 min-[1400px]:hidden">
+              <div className="flex flex-col rounded-xl border border-white/20 bg-[rgba(14,21,46,0.88)] p-2">
+                {[
+                  { href: '/', label: language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home' },
+                  { href: '/properties', label: language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties' },
+                  { href: '/regions', label: language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions' },
+                  { href: '/process', label: language === 'cs' ? 'Náš proces' : language === 'it' ? 'Il nostro processo' : 'Our Process' },
+                  { href: '/blog', label: language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles' },
+                  { href: '/faq', label: 'FAQ' },
+                  { href: '/about', label: language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About' },
+                  { href: '/reference', label: language === 'cs' ? 'Reference' : language === 'it' ? 'Referenze' : 'References' },
+                  { href: '/contact', label: language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact' },
+                ].map(({ href, label }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => setIsHeroMenuOpen(false)}
+                    className={`rounded-lg px-3 py-2.5 text-base transition-colors ${
+                      href === '/'
+                        ? 'bg-white/10 text-white shadow-[inset_3px_0_0_0_#c48759]'
+                        : 'text-white/90 hover:bg-white/10 hover:text-white'
+                    }`}
+                    aria-current={href === '/' ? 'page' : undefined}
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="container relative z-10 mx-auto flex w-full flex-1 flex-col items-center justify-center px-4 pb-16 text-center" data-testid="hero-copy">
+            <h1
+              className="hero-enter max-w-4xl font-bold text-white text-hero"
+              style={{
+                textShadow: '0 2px 16px rgba(0,0,0,0.35)',
+                textWrap: 'balance',
+                '--d': '140ms',
+              }}
+              data-testid="hero-title"
+            >
+              {language === 'cs' ? 'Pomáháme Čechům koupit dům v Itálii.' :
+               language === 'it' ? 'Aiutiamo i cechi a comprare casa in Italia.' :
+               'We help Czechs buy a home in Italy.'}
+            </h1>
+
+            <p className="hero-enter mt-5 text-xl font-normal leading-snug text-white/90 sm:text-2xl" style={{ '--d': '300ms' }}>
+              {language === 'cs' ? <>Právní, technická i praktická podpora<br />během celého procesu.</> :
+               language === 'it' ? <>Supporto legale, tecnico e pratico<br />durante tutto il processo.</> :
+               <>Legal, technical, and practical support<br />throughout the entire process.</>}
+            </p>
+
+            <div className="hero-enter-line mt-6 flex items-center justify-center" style={{ '--d': '460ms' }} aria-hidden="true" data-testid="hero-tricolor">
+              <span className="h-[3px] w-14 rounded-l-full bg-[#009246] sm:w-16" />
+              <span className="h-[3px] w-14 bg-white sm:w-16" />
+              <span className="h-[3px] w-14 rounded-r-full bg-[#CE2B37] sm:w-16" />
+            </div>
+
+            <div className="hero-enter mt-6 grid w-full max-w-md grid-cols-2 gap-5 sm:inline-grid sm:w-auto sm:max-w-none" style={{ '--d': '560ms' }}>
+              <Link
+                href="/properties"
+                className="col-span-2 inline-flex items-center justify-center gap-2 rounded-[99px] border-0 bg-white/10 px-6 py-3 text-lg font-semibold text-white shadow-[inset_0_0_0_1px_#fff] transition-colors duration-200 hover:bg-white/20"
+                data-testid="hero-properties-link"
+              >
+                <Search className="h-5 w-5" />
+                <span>
+                  {language === 'cs' ? 'Prohledat vybrané nemovitosti' :
+                   language === 'it' ? 'Sfoglia gli immobili disponibili' :
+                   'Browse available properties'}
+                </span>
+              </Link>
+              <Link
+                href="/contact"
+                data-testid="hero-consultation-link"
+                className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-[#c7895b] to-[#996945] px-6 py-3 text-lg font-semibold text-white shadow-[0_8px_18px_rgba(0,0,0,0.18)] transition duration-200 hover:-translate-y-1 hover:from-[#e8bc8a] hover:to-[#c48759] hover:shadow-[0_16px_30px_rgba(0,0,0,0.35)]"
+              >
+                {language === 'cs' ? 'Konzultace zdarma' : language === 'it' ? 'Consulenza gratuita' : 'Free consultation'}
+              </Link>
+              <Link
+                href="/process"
+                data-testid="hero-process-link"
+                className="inline-flex items-center justify-center rounded-lg border-0 bg-white px-6 py-3 text-lg font-semibold text-[#0e152e] shadow-[0_8px_18px_rgba(0,0,0,0.18)] transition duration-200 hover:-translate-y-1 hover:bg-[#1b2642] hover:text-white hover:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.7),0_16px_30px_rgba(0,0,0,0.35)]"
+              >
+                {language === 'cs' ? 'Náš proces' : language === 'it' ? 'Il nostro processo' : 'Our process'}
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
+      <div className="bg-[#f7f4ed] py-12 sm:py-16">
+        <div className="mx-auto flex w-full max-w-[1800px] flex-col gap-24 px-5 sm:gap-36 sm:px-8 xl:px-[10rem]">
       {/* How It Works Section */}
-      <section className="bg-white border-b border-gray-100" data-testid="how-it-works-section">
-        <div className="container mx-auto px-6 py-10 sm:py-14" style={{ maxWidth: '1200px' }}>
-
-          {/* Header row */}
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-8">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: '#c78b5a' }}>
-                {language === 'cs' ? 'Jak to funguje' : language === 'it' ? 'Come funziona' : 'How it works'}
-              </p>
-              <h2 className="font-bold text-gray-900 text-2xl sm:text-2xl">
+      <section data-testid="how-it-works-section">
+          <div className="grid items-stretch gap-3 lg:grid-cols-[42rem_minmax(0,1fr)]">
+            <div className="flex flex-col justify-center lg:py-4 lg:pr-8">
+              <h2 data-reveal="rise" className="text-pretty text-[2.05rem] font-bold leading-[1.15] text-gray-900">
                 {language === 'cs' ? 'Čtyři kroky od prvního hovoru k předání klíčů.' :
                  language === 'it' ? 'Quattro passi dalla prima chiamata alla consegna delle chiavi.' :
                  'Four steps from the first call to handing over the keys.'}
               </h2>
-            </div>
-            <Link href="/process" className="inline-flex items-center gap-1.5 text-sm font-semibold whitespace-nowrap flex-shrink-0" style={{ color: '#c78b5a' }}>
-              {language === 'cs' ? 'Celý proces' : language === 'it' ? 'Processo completo' : 'Full process'}
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          {/* Steps — horizontal on desktop, 2-col grid on mobile */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 rounded-xl overflow-hidden border border-gray-100">
-            {[
-              {
-                n: '01', href: '/process#step-1',
-                label: language === 'cs' ? 'Zadání & nabídka' : language === 'it' ? 'Esigenze & proposta' : 'Brief & Proposal',
-                sub: language === 'cs' ? 'Vy řeknete, co hledáte. My připravíme řešení.' : language === 'it' ? 'Ci dite cosa cercate. Noi prepariamo la soluzione.' : 'You tell us what you need. We prepare the solution.',
-              },
-              {
-                n: '02', href: '/process#step-2',
-                label: language === 'cs' ? 'Výběr nemovitostí' : language === 'it' ? "Scelta dell'immobile" : 'Property Selection',
-                sub: language === 'cs' ? 'Představíme nabídku a řídíme komunikaci s italskými stranami.' : language === 'it' ? "Introduciamo l'offerta e gestiamo la comunicazione." : 'We present options and handle Italian-side communication.',
-              },
-              {
-                n: '03', href: '/process#step-3',
-                label: language === 'cs' ? 'Podpis & převod' : language === 'it' ? 'Firma & trasferimento' : 'Signing & Transfer',
-                sub: language === 'cs' ? 'My hlídáme formality. Vy podepisujete bez stresu.' : language === 'it' ? 'Controlliamo le formalità. Firmate senza stress.' : 'We handle the formalities. You sign without stress.',
-              },
-              {
-                n: '04', href: '/process#step-4',
-                label: language === 'cs' ? 'Péče po koupí' : language === 'it' ? "Assistenza post-acquisto" : 'Post-Purchase Support',
-                sub: language === 'cs' ? 'Jsme s vámi i po koupí.' : language === 'it' ? "Siamo con voi anche dopo l'acquisto." : 'We stay with you after the purchase.',
-              },
-            ].map(({ n, href, label, sub }) => (
-              <Link key={n} href={href} className="group bg-white hover:bg-gray-50 transition-colors duration-150 p-5 sm:p-6 flex flex-col gap-3">
-                <span className="font-black text-gray-300 group-hover:text-gray-400 transition-colors leading-none" style={{ fontSize: '2.5rem' }}>{n}</span>
-                <div>
-                  <p className="font-bold text-gray-900 text-base sm:text-base leading-snug mb-1">{label}</p>
-                  <p className="text-gray-400 text-sm sm:text-sm leading-relaxed">{sub}</p>
-                </div>
-                <ChevronRight className="h-4 w-4 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition-all mt-auto" />
+              <Link href="/process" data-reveal="rise" style={{ '--d': '80ms' }} className="mt-5 inline-flex w-fit items-center gap-1.5 self-start rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]">
+                {language === 'cs' ? 'Celý proces' : language === 'it' ? 'Processo completo' : 'Full process'}
+                <ChevronRight className="h-4 w-4" />
               </Link>
-            ))}
-          </div>
 
-        </div>
+              <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-8">
+                {[
+                  {
+                    n: '01', href: '/process#step-1',
+                    label: language === 'cs' ? 'Zadání & nabídka' : language === 'it' ? 'Esigenze & proposta' : 'Brief & Proposal',
+                    sub: language === 'cs' ? 'Sepíšeme, co hledáte, a řekneme, jestli to v Itálii dává smysl.' : language === 'it' ? 'Mettiamo per iscritto cosa cercate e vi diciamo se ha senso in Italia.' : 'We write down what you want and tell you whether it makes sense in Italy.',
+                  },
+                  {
+                    n: '02', href: '/process#step-2',
+                    label: language === 'cs' ? 'Výběr nemovitostí' : language === 'it' ? "Scelta dell'immobile" : 'Property Selection',
+                    sub: language === 'cs' ? 'Nabídky prověříme a komunikaci s italskou stranou vedeme my.' : language === 'it' ? 'Verifichiamo le offerte e seguiamo noi i contatti con la parte italiana.' : 'We check the listings and handle all contact with the Italian side.',
+                  },
+                  {
+                    n: '03', href: '/process#step-3',
+                    label: language === 'cs' ? 'Podpis & převod' : language === 'it' ? 'Firma & trasferimento' : 'Signing & Transfer',
+                    sub: language === 'cs' ? 'Smlouvu, daně i formality zkontrolujeme dřív, než podepíšete.' : language === 'it' ? 'Controlliamo contratto, tasse e formalità prima della firma.' : 'We review the contract, taxes, and formalities before you sign.',
+                  },
+                  {
+                    n: '04', href: '/process#step-4',
+                    label: language === 'cs' ? 'Péče po koupí' : language === 'it' ? 'Assistenza post-acquisto' : 'Post-Purchase Support',
+                    sub: language === 'cs' ? 'Po předání klíčů pomůžeme s účty, správou i prvním provozem.' : language === 'it' ? 'Dopo le chiavi vi aiutiamo con utenze, gestione e i primi mesi.' : 'After the keys, we help with utilities, management, and the first months.',
+                  },
+                ].map(({ n, href, label, sub }, index) => (
+                  <Link key={n} href={href} data-reveal="step" style={{ '--d': `${140 + index * 90}ms` }} className="group flex flex-col gap-2 bg-transparent">
+                    <span className="text-3xl font-black leading-none text-copper-700">{n}</span>
+                    <p className="text-pretty text-base font-bold leading-snug text-gray-900">{label}</p>
+                    <p className="text-pretty text-base leading-snug text-gray-700">{sub}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <figure data-reveal="photo" style={{ '--d': '180ms' }} className="relative h-72 overflow-hidden rounded-2xl sm:h-80 lg:h-full lg:min-h-[440px]" data-testid="process-photo">
+                <Image
+                  src="/Toscana.png"
+                  alt={language === 'cs' ? 'Kamenný dům mezi cypřiši v toskánské krajině' : language === 'it' ? 'Casa in pietra tra i cipressi nella campagna toscana' : 'A stone house among cypresses in the Tuscan countryside'}
+                  fill
+                  sizes="(min-width: 1024px) 560px, 100vw"
+                  className="object-cover object-[center_58%]"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{ background: 'linear-gradient(to top, rgba(14,21,46,0.72) 0%, rgba(14,21,46,0.28) 34%, rgba(14,21,46,0) 58%)' }}
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-copper-200">
+                    {language === 'cs' ? 'Toskánsko' : language === 'it' ? 'Toscana' : 'Tuscany'}
+                  </p>
+                  <Link
+                    href="/properties?region=toscana"
+                    className="mt-2 inline-flex items-center gap-1.5 text-base font-semibold text-white underline decoration-white/50 underline-offset-4 transition-colors hover:text-copper-200 hover:decoration-copper-200"
+                  >
+                    {language === 'cs' ? 'Zobrazit nemovitosti v Toskánsku' : language === 'it' ? 'Vedi gli immobili in Toscana' : 'View properties in Tuscany'}
+                    <ChevronRight className="h-4 w-4" />
+                  </Link>
+                </figcaption>
+              </figure>
+          </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-[#faf8f5] border-b border-gray-100 py-10 sm:py-14" data-testid="testimonials-section">
-        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-8">
+      <section data-testid="testimonials-section">
+        <div className="rounded-[1.75rem] bg-gradient-to-br from-[#243056] to-[#0e152e] p-10 sm:p-16">
+          <div data-reveal="rise" className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: '#c78b5a' }}>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: '#c78b5a' }}>
                 {language === 'cs' ? 'Reference' : language === 'it' ? 'Referenze' : 'References'}
               </p>
-              <h2 className="font-bold text-gray-900 text-2xl sm:text-2xl">
+              <h2 className="text-pretty text-[2.05rem] font-bold leading-[1.15] text-white">
                 {language === 'cs' ? 'Co říkají naši klienti.' :
                  language === 'it' ? 'Cosa dicono i nostri clienti.' :
                  'What our clients say.'}
               </h2>
             </div>
-            <Link href="/reference" className="inline-flex items-center gap-1.5 text-sm font-semibold whitespace-nowrap flex-shrink-0" style={{ color: '#c78b5a' }}>
+            <Link href="/reference" className="home-pill inline-flex w-fit shrink-0 items-center gap-1.5 self-start rounded-full bg-white px-5 py-2.5 text-base font-semibold text-[#0e152e] sm:self-end">
               {language === 'cs' ? 'Všechny reference' : language === 'it' ? 'Tutte le referenze' : 'All references'}
               <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-10">
             {[
               {
-                name: 'Adéla Babišová', tag: 'Umbria',
+                name: 'Adéla Babišová',
+                place: language === 'cs' ? 'Umbrie' : 'Umbria',
                 quote: language === 'it' ? 'La mia decisione migliore è stata unire le forze con Domy v Itálii e affidarmi a un partner competente ed esperto, che ha scoperto degli errori nel contratto di compravendita preparato dall’agenzia immobiliare italiana. Un servizio davvero da dieci e lode.' : language === 'en' ? 'My best decision was joining forces with Domy v Itálii and relying on an experienced partner who understood the process and uncovered errors in the purchase contract prepared by the Italian estate agency. Truly first-class service.' : 'Moje nejlepší rozhodnutí bylo spojit síly s Domy v Itálii a nechat si krýt záda od parťáka, který tomu rozumí, má zkušenosti a odhalil chyby v kupní smlouvě, které chystala italská realitka. Servis vážně na jedničku s hvězdičkou.',
               },
               {
-                name: 'Lenka Kluková', tag: 'Slovensko',
+                name: 'Lenka Kluková',
+                place: language === 'cs' ? 'Slovensko' : language === 'it' ? 'Slovacchia' : 'Slovakia',
                 quote: language === 'it' ? 'Domy v Itálii è stata la scelta giusta: un approccio disponibile e rapido, la volontà di consigliare, una comunicazione tempestiva con le agenzie immobiliari e la verifica delle informazioni essenziali sugli immobili. Da parte nostra, soddisfazione assoluta.' : language === 'en' ? 'Domy v Itálii was the right choice: a helpful and fast approach, a willingness to advise us, prompt communication with estate agencies, and verification of essential property information. We are completely satisfied.' : 'Domy v Itálii byla ta správná volba — vstřícný a rychlý přístup, ochota poradit, promptná komunikace s realitními agenturami a prověření zásadních informací o nemovitostech. Za nás absolutní spokojenost.',
               },
               {
-                name: 'Marcela Dejlová', tag: 'Itálie',
+                name: 'Marcela Dejlová',
+                place: language === 'cs' ? 'Itálie' : language === 'it' ? 'Italia' : 'Italy',
                 quote: language === 'it' ? 'Grazie per il servizio perfetto, per l’aiuto nell’acquisto della casa, comprese tutte le necessarie procedure amministrative, per l’assistenza personale e per l’atteggiamento incredibilmente disponibile, gentile e amichevole. Un saluto dall’Italia.' : language === 'en' ? 'Thank you for the perfect service, the help with buying my house—including all the necessary administrative procedures—the personal assistance, and the incredibly helpful, kind, and friendly approach. Greetings from Italy.' : 'Děkuji za perfektní servis, pomoc při koupi domu včetně všech nezbytných úředních procedur, osobní asistenci a neuvěřitelně vstřícné, milé a přátelské jednání. Zdravím z Itálie.',
               },
-            ].map(({ name, tag, quote }) => (
-              <div key={name} className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 flex flex-col gap-4">
-                <p className="text-gray-600 text-sm leading-relaxed italic flex-1">&ldquo;{quote}&rdquo;</p>
-                <div className="flex items-center gap-2 mt-auto pt-2 border-t border-gray-50">
-                  <div className="h-7 w-7 rounded-full bg-copper-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs font-bold text-copper-700">{name.charAt(0)}</span>
+            ].map(({ name, place, quote }, index) => (
+              <div key={name} data-reveal="quote" style={{ '--d': `${index * 110}ms` }} className="flex flex-col gap-5">
+                <p className="text-pretty line-clamp-4 text-lg leading-snug text-white/90">&ldquo;{quote}&rdquo;</p>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white/15">
+                    <span className="text-sm font-semibold text-white">{name.charAt(0)}</span>
                   </div>
-                  <span className="font-semibold text-gray-900 text-sm">{name}</span>
+                  <div className="leading-tight">
+                    <p className="text-base font-semibold text-white">{name}</p>
+                    <p className="text-sm font-medium text-copper-200">{place}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -975,698 +1056,176 @@ export default function HomePageClient({ initialProperties = [], sliderPropertie
       </section>
 
       {/* What you need to know Section */}
-      <section className="py-10 sm:py-14" data-testid="main-content-container" style={{ background: '#f7f4ed' }}>
-        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+      <section data-testid="main-content-container" className="-mx-5 bg-white px-5 py-16 sm:-mx-8 sm:px-8 sm:py-24 xl:-mx-[10rem] xl:px-[10rem]">
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-x-16">
 
-          {/* Asymmetric two-column layout */}
-          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
-
-            {/* Left: editorial block */}
-            <div className="lg:w-2/5 lg:sticky lg:top-24 lg:self-start">
-              <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: '#c78b5a' }}>
+            <div data-reveal="fade" className="lg:sticky lg:top-28 lg:w-[36rem] lg:max-w-[36rem] lg:self-start">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: '#c78b5a' }}>
                 {language === 'cs' ? 'Než začnete' : language === 'it' ? 'Prima di iniziare' : 'Before you start'}
               </p>
-              <h2 className="font-bold text-gray-900 mb-3 text-2xl sm:text-2xl leading-snug" data-testid="section-description">
+              <h2 className="text-pretty text-[2.05rem] font-bold leading-[1.15] text-gray-900" data-testid="section-description">
                 {language === 'cs' ? 'Koupě domů v Itálii není jen o ceně.' :
                  language === 'it' ? "L'acquisto di una casa in Italia non riguarda solo il prezzo." :
                  "Buying a home in Italy isn't just about price."}
               </h2>
-              <p className="text-gray-500 text-base leading-relaxed mb-5">
+              <p className="text-pretty mt-3 text-base leading-snug text-gray-700">
                 {language === 'cs' ? 'Rozhodnutí bez správných informací může stát čas, peníze i klid. Proto je důležité rozumět systému ještě před prvním krokem.' :
                  language === 'it' ? 'Una decisione senza le giuste informazioni può costare tempo, denaro e serenità. Per questo è importante capire il sistema prima del primo passo.' :
                  "Decisions without the right information can cost time, money, and peace of mind. That's why it's important to understand the system before the first step."}
               </p>
-              <Link href="/guides" className="inline-flex items-center gap-1.5 font-semibold text-base" style={{ color: '#c78b5a' }}>
+              <Link href="/guides" className="mt-6 inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]">
                 {language === 'cs' ? 'Prozkoumat průvodce' : language === 'it' ? 'Esplora le guide' : 'Explore the guides'}
                 <ChevronRight className="h-4 w-4" />
               </Link>
             </div>
 
-            {/* Right: compact vertical list */}
-            <div className="lg:w-3/5 divide-y divide-gray-200" data-testid="why-italy-different-grid">
+            <div className="flex flex-col gap-7 lg:min-w-0 lg:flex-1" data-testid="why-italy-different-grid">
 
               {[
-                { icon: <Globe className="h-4 w-4 text-white" />, bg: 'linear-gradient(135deg,#3b82f6,#1d4ed8)', href: '/guides/real-estate-purchase-system-italy', protected: true,
-                  label: language === 'cs' ? 'Italský systém je jiný' : language === 'it' ? 'Il sistema italiano funziona diversamente' : 'The Italian system is different' },
-                { icon: <Banknote className="h-4 w-4 text-white" />, bg: 'linear-gradient(135deg,#c78b5a,#99694b)', href: '/guides/costs', protected: true,
-                  label: language === 'cs' ? 'Cena není všechno' : language === 'it' ? 'Il prezzo non è tutto' : 'Price is not everything' },
-                { icon: <AlertTriangle className="h-4 w-4 text-white" />, bg: 'linear-gradient(135deg,#f59e0b,#b45309)', href: '/guides/mistakes', protected: true,
-                  label: language === 'cs' ? 'Nejčastější chyby Čechů' : language === 'it' ? 'Errori più comuni dei cechi' : 'Most common mistakes by Czechs' },
-                { icon: <MapPin className="h-4 w-4 text-white" />, bg: 'linear-gradient(135deg,#10b981,#065f46)', href: '/regions', protected: false,
-                  label: language === 'cs' ? 'Region rozhoduje' : language === 'it' ? 'La regione fa la differenza' : 'Region matters' },
-                { icon: <HelpCircle className="h-4 w-4 text-white" />, bg: 'linear-gradient(135deg,#6366f1,#4338ca)', href: '/faq', protected: false,
-                  label: language === 'cs' ? 'Časté otázky' : language === 'it' ? 'Domande frequenti' : 'Frequently asked questions' },
-              ].map(({ icon, bg, href, protected: isProtected, label }) => {
+                { icon: <Globe className="h-4 w-4 text-white" />, href: '/guides/real-estate-purchase-system-italy', protected: true,
+                  label: language === 'cs' ? 'Italský systém je jiný' : language === 'it' ? 'Il sistema italiano funziona diversamente' : 'The Italian system is different',
+                  detail: language === 'cs' ? 'Jak probíhá rezervace, smlouva a převod a v čem se to liší od koupě v Česku.' : language === 'it' ? 'Come funzionano prenotazione, contratto e trasferimento, e in cosa differiscono da casa vostra.' : 'How a reservation, contract, and transfer work, and how that differs from buying at home.' },
+                { icon: <Banknote className="h-4 w-4 text-white" />, href: '/guides/costs', protected: true,
+                  label: language === 'cs' ? 'Cena není všechno' : language === 'it' ? 'Il prezzo non è tutto' : 'Price is not everything',
+                  detail: language === 'cs' ? 'Daně, notář a poplatky, které v inzerátu neuvidíte.' : language === 'it' ? 'Tasse, notaio e costi che nell’annuncio non compaiono.' : 'Taxes, the notary, and fees that never appear in the listing.' },
+                { icon: <AlertTriangle className="h-4 w-4 text-white" />, href: '/guides/mistakes', protected: true,
+                  label: language === 'cs' ? 'Nejčastější chyby Čechů' : language === 'it' ? 'Errori più comuni dei cechi' : 'Most common mistakes by Czechs',
+                  detail: language === 'cs' ? 'Na co si dát pozor dřív, než pošlete zálohu.' : language === 'it' ? 'Cosa controllare prima di versare un acconto.' : 'What to check before you send a deposit.' },
+                { icon: <MapPin className="h-4 w-4 text-white" />, href: '/regions', protected: false,
+                  label: language === 'cs' ? 'Region rozhoduje' : language === 'it' ? 'La regione fa la differenza' : 'Region matters',
+                  detail: language === 'cs' ? 'Čím se liší Toskánsko, pobřeží a hory v ceně i v běžném provozu.' : language === 'it' ? 'Come cambiano Toscana, costa e montagna nel prezzo e nella vita di tutti i giorni.' : 'How Tuscany, the coast, and the mountains differ in price and day-to-day life.' },
+                { icon: <HelpCircle className="h-4 w-4 text-white" />, href: '/faq', protected: false,
+                  label: language === 'cs' ? 'Časté otázky' : language === 'it' ? 'Domande frequenti' : 'Frequently asked questions',
+                  detail: language === 'cs' ? 'Krátké odpovědi na to, co se nás klienti ptají nejdřív.' : language === 'it' ? 'Risposte brevi alle domande che i clienti ci fanno per prime.' : 'Short answers to the questions clients ask us first.' },
+              ].map(({ icon, href, protected: isProtected, label, detail }, index) => {
                 const inner = (
-                  <div key={href} className="py-4 flex items-center gap-4 group cursor-pointer">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: bg }}>{icon}</div>
-                    <span className="flex-1 font-semibold text-gray-800 text-base sm:text-base group-hover:text-gray-900 transition-colors">{label}</span>
-                    <ChevronRight className="h-4 w-4 flex-shrink-0 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition-all" />
+                  <div key={href} className="group flex cursor-pointer items-start gap-4">
+                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[#1b2642]">{icon}</div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-pretty text-base font-semibold leading-snug text-gray-900 group-hover:text-[#1b2642]">{label}</p>
+                      <p className="text-pretty mt-1 text-base leading-snug text-gray-700">{detail}</p>
+                    </div>
+                    <ChevronRight className="h-4 w-4 flex-shrink-0 text-gray-400 group-hover:text-copper-700 group-hover:translate-x-0.5 transition-all" />
                   </div>
                 )
                 return isProtected
-                  ? <ProtectedContentLink key={href} href={href} language={language}>{inner}</ProtectedContentLink>
-                  : <Link key={href} href={href}>{inner}</Link>
+                  ? <ProtectedContentLink key={href} href={href} language={language} data-reveal="row" style={{ '--d': `${index * 80}ms` }}>{inner}</ProtectedContentLink>
+                  : <Link key={href} href={href} data-reveal="row" style={{ '--d': `${index * 80}ms` }}>{inner}</Link>
               })}
 
             </div>
           </div>
-        </div>
       </section>
-
-      {/* Premium Club Section */}{/* Premium Club Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-16 sm:py-24 overflow-hidden">
-        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
-          {/* Main Premium Club Content */}
-          <div className="text-center mb-6 sm:mb-16 animate-on-scroll">
-            <h2 className="font-bold mb-8" style={{ color: '#c48759', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)' }}>
-              {language === 'cs' ? 'Jste si jisti koupí domů v Itálii?' :
-               language === 'it' ? 'Sei sicuro di comprare casa in Italia?' :
-               'Are you sure about buying a home in Italy?'}
-            </h2>
-            <p className="text-base sm:text-xl text-gray-200 max-w-3xl mx-auto mb-6 sm:mb-8 px-2">
-              {language === 'cs' ? 'Pak potřebujete víc než obecné informace' :
-               language === 'it' ? 'Allora ti serve di più che delle info generiche' :
-               'Then you need more than generic information'}
-            </p>
-            <Button 
-              size="lg"
-              className="font-semibold py-2.5 sm:py-4 px-5 sm:px-8 text-sm sm:text-lg rounded-xl shadow-xl hover:shadow-2xl transition-all duration-200 text-white inline-flex items-center justify-center text-center leading-tight"
-              style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
-              onClick={() => setIsKlubModalOpen(true)}
-            >
-              {language === 'cs' ? 'Připojit se zdarma' :
-               language === 'it' ? 'Unisciti gratuitamente' :
-               'Join for Free'}
-            </Button>
+      <section data-testid="regions-section">
+        <div>
+          <div data-reveal="rise">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: '#c78b5a' }}>
+            {language === 'cs' ? 'Regiony' : language === 'it' ? 'Regioni' : 'Regions'}
+          </p>
+          <h2 className="text-pretty text-[2.05rem] font-bold leading-[1.15] text-gray-900">
+            {language === 'cs' ? 'Prozkoumejte nejžádanější regiony Itálie.' :
+             language === 'it' ? 'Esplora le regioni più ricercate d\'Italia.' :
+             'Explore Italy\'s most wanted regions.'}
+          </h2>
+          <p className="text-pretty mt-3 max-w-3xl text-base leading-snug text-gray-700">
+            {language === 'cs' ? 'Ne celá Itálie je stejná. Vyberte si region, který vyhovuje vašemu rozpočtu, životnímu stylu a investičním cílům.' :
+             language === 'it' ? 'Non tutta l\'Italia è uguale. Scegli una regione adatta al budget, allo stile di vita e agli obiettivi.' :
+             'Not all of Italy is the same. Choose a region that fits your budget, lifestyle, and investment goals.'}
+          </p>
+          <Link href="/regions" className="mt-6 inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]">
+            {language === 'cs' ? 'Prozkoumat regiony' : language === 'it' ? 'Visita le regioni' : 'Explore the regions'}
+            <ChevronRight className="h-4 w-4" />
+          </Link>
           </div>
 
-          {/* Premium Card and Blogs Side by Side */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-8 mb-8 sm:mb-16">
-            {/* Premium Card - Takes 1 column on large screens */}
-            <div className="lg:col-span-1">
-              <GlareCard 
-                className="flex flex-col items-center justify-center p-4 sm:p-8 bg-gradient-to-br from-slate-900 to-slate-800 h-full"
-                onClick={() => {
-                  window.location.href = '/dashboard';
-                }}
-              >
-                <div className="text-center space-y-4 sm:space-y-6">
-                  <div className="flex items-center justify-center mx-auto">
-                    <Image src="/logo domy.svg" alt="Logo Domy v Itálii" width={64} height={61} className="h-14 w-14 sm:h-16 sm:w-16" />
-                  </div>
-                  
-                  <div>
-                    <h4 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2" style={{ color: '#c48759' }}>
-                      Klub pro klienty
-                    </h4>
-                    <p className="text-gray-300 text-sm sm:text-base">
-                      {language === 'cs' ? 'Exkluzivní členství' :
-                       language === 'it' ? 'Membri esclusivi' :
-                       'Exclusive Membership'}
-                    </p>
-                  </div>
-
-                  <div className="space-y-2 sm:space-y-3">
-                    <div className="flex items-center space-x-2.5 sm:space-x-3">
-                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" />
-                      <span className="text-sm sm:text-base" style={{ color: '#c48759' }}>
-                        {language === 'cs' ? 'Personalizované vyhledávání' :
-                         language === 'it' ? 'Ricerca personalizzata' :
-                         'Personalized search'}
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-2.5 sm:space-x-3">
-                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" />
-                      <span className="text-sm sm:text-base" style={{ color: '#c48759' }}>
-                        {language === 'cs' ? 'Privátní dashboard' :
-                         language === 'it' ? 'Dashboard privata' :
-                         'Private dashboard'}
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-2.5 sm:space-x-3">
-                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" />
-                      <span className="text-sm sm:text-base" style={{ color: '#c48759' }}>
-                        {language === 'cs' ? 'Prioritní komunikace' :
-                         language === 'it' ? 'Comunicazione prioritaria' :
-                         'Priority communication'}
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-2.5 sm:space-x-3">
-                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-slate-600" />
-                      <span className="text-sm sm:text-base" style={{ color: '#c48759' }}>
-                        {language === 'cs' ? 'Prémiový obsah' :
-                         language === 'it' ? 'Contenuti premium' :
-                         'Premium content'}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="pt-2 sm:pt-4">
-                    <div className="text-2xl sm:text-3xl font-bold mb-1" style={{ color: '#c48759' }}>
-                      {language === 'cs' ? 'ZDARMA' :
-                       language === 'it' ? 'GRATIS' :
-                       'FREE'}
-                    </div>
-                    <p className="text-gray-300 text-xs">
-                      {language === 'cs' ? 'Bez skrytých poplatků' :
-                       language === 'it' ? 'Nessuna commissione nascosta' :
-                       'No hidden fees'}
-                    </p>
-                  </div>
-                </div>
-              </GlareCard>
-            </div>
-
-            {/* Premium Blogs - Takes 2 columns on large screens */}
-            <div className="lg:col-span-2">
-              <div className="text-center mb-4 sm:mb-8">
-                <h3 className="text-xl sm:text-3xl font-bold text-white mb-2.5 sm:mb-4">
-                  {language === 'cs' ? 'Exkluzivní obsah' :
-                   language === 'it' ? 'Contenuti esclusivi' :
-                   'Exclusive Contents'}
-                </h3>
-                <p className="text-xs sm:text-lg text-gray-200">
-                  {user 
-                    ? (language === 'cs' ? 'Vaše prémiové články a průvodci' :
-                       language === 'it' ? 'I tuoi articoli e guide premium' :
-                       'Your premium articles and guides')
-                    : (language === 'cs' ? 'Zaregistrujte se zdarma a získejte přístup k prémiovým článkům' :
-                       language === 'it' ? 'Registrati gratis per accedere ai contenuti premium' :
-                       'Register for free to unlock premium articles and guides')
-                  }
-                </p>
-              </div>
-
-              <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-6 overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 snap-x snap-mandatory">
-                {[
-                  {
-                    title: {
-                      en: 'How to Buy a House in Italy: Complete Guide',
-                      cs: 'Jak koupit dům v Itálii: Kompletní průvodce',
-                      it: 'Come acquistare una casa in Italia: guida completa'
-                    },
-                    excerpt: {
-                      en: 'Everything you need to know about documents, taxes, and procedures for buying property in Italy.',
-                      cs: 'Vše, co potřebujete vědět o dokumentech, daních a postupech při koupi nemovitostí v Itálii.',
-                      it: 'Tutto quello che devi sapere sui documenti, tasse e procedure per acquistare immobili in Italia.'
-                    },
-                    category: { en: 'Legal', cs: 'Právo', it: 'Legale' },
-                    readTime: { en: '15 min read', cs: '15 min čtení', it: '15 min di lettura' },
-                    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop',
-                    link: '/guides/costs'
-                  },
-                  {
-                    title: {
-                      en: 'Most Common Czech Mistakes When Buying in Italy',
-                      cs: 'Nejčastější chyby Čechů při koupi domů v Itálii',
-                      it: 'Errori più comuni dei cechi nell\'acquisto in Italia'
-                    },
-                    excerpt: {
-                      en: 'What to watch out for to avoid losing time and money. Problems arise from unfamiliarity, not carelessness.',
-                      cs: 'Na co si dát pozor, abyste neztratili čas a peníze. Problémy vznikají z neznalosti, ne z nepozornosti.',
-                      it: 'A cosa fare attenzione per non perdere tempo e denaro. I problemi nascono dalla scarsa conoscenza, non dalla disattenzione.'
-                    },
-                    category: { en: 'Guide', cs: 'Průvodce', it: 'Guida' },
-                    readTime: { en: '12 min read', cs: '12 min čtení', it: '12 min di lettura' },
-                    image: '/articles/common-mistakes-laptop-stress.jpg',
-                    link: '/guides/mistakes'
-                  },
-                  {
-                    title: {
-                      en: 'Investing in Italian Real Estate: Opportunities and Risks',
-                      cs: 'Investice do italských nemovitostí: Příležitosti a rizika',
-                      it: 'Investire in immobili italiani: opportunità e rischi'
-                    },
-                    excerpt: {
-                      en: 'In-depth analysis of the Italian real estate market and investment strategies.',
-                      cs: 'Podrobná analýza italského realitního trhu a investičních strategií.',
-                      it: 'Analisi approfondita del mercato immobiliare italiano e strategie di investimento.'
-                    },
-                    category: { en: 'Investment', cs: 'Investice', it: 'Investimento' },
-                    readTime: { en: '18 min read', cs: '18 min čtení', it: '18 min di lettura' },
-                    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&auto=format&fit=crop',
-                    link: '/blog'
-                  }
-                ].map((article, index) => (
-                  <div 
-                    key={index} 
-                    className={`${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''} cursor-pointer min-w-48 sm:min-w-0 snap-start`}
-                    onClick={() => {
-                      if (user) {
-                        window.location.href = article.link
-                      } else {
-                        setIsKlubModalOpen(true)
-                      }
-                    }}
-                  >
-                    <div className="bg-slate-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-700 h-full relative group">
-                      <div className="aspect-square sm:aspect-video relative overflow-hidden">
-                        <Image
-                          src={article.image}
-                          alt={article.title[language]}
-                          fill
-                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                          className="object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
-                          <span className="bg-gradient-to-r from-slate-700 to-slate-800 text-white text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
-                            {article.category[language]}
-                          </span>
-                        </div>
-                        {/* Lock badge on image */}
-                        {!user && (
-                          <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
-                            <span className="flex items-center gap-1 bg-black/50 backdrop-blur-sm text-white text-xs font-medium px-2 py-1 rounded-full border border-white/10">
-                              <Lock className="h-3 w-3" />
-                              Klub pro klienty
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      <div className="p-2.5 sm:p-6 relative">
-                        <h3 className="text-sm sm:text-xl font-bold text-white mb-1.5 sm:mb-3 line-clamp-2">
-                          {article.title[language]}
-                        </h3>
-                        <p className="text-xs sm:text-base line-clamp-2 text-gray-300">
-                          {article.excerpt[language]}
-                        </p>
-                        
-                        {/* Blur overlay + register CTA for non-logged-in users */}
-                        {!user && (
-                          <div className="mt-2">
-                            {/* Fading blur over text */}
-                            <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-slate-800 via-slate-800/95 to-transparent pointer-events-none" />
-                            {/* Register prompt */}
-                            <div className="relative z-10 pt-6 flex items-center justify-center">
-                              <span className="flex max-w-full items-center justify-center gap-2 px-2 text-center text-xs sm:text-sm font-semibold leading-tight" style={{ color: '#c48759' }}>
-                                <Lock className="h-3.5 w-3.5" />
-                                {language === 'cs' ? 'Zaregistrujte se pro čtení' :
-                                 language === 'it' ? 'Registrati per leggere' :
-                                 'Register to read'}
-                              </span>
-                            </div>
-                          </div>
-                        )}
-                        
-                        {/* Normal footer for logged-in users */}
-                        {user && (
-                          <div className="flex items-center justify-between mt-3">
-                            <span className="text-xs text-gray-400">
-                              {article.readTime[language]}
-                            </span>
-                            <span className="text-xs font-semibold text-copper-400">
-                              {language === 'cs' ? 'Číst článek' : language === 'it' ? 'Leggi' : 'Read'}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                href: '/properties?region=sardegna', src: '/Sardegna.jpg', price: '€3,500-8,000/m2', yield: '5-8%',
+                name: { cs: 'Sardinie', it: 'Sardegna', en: 'Sardinia' },
+                blurb: {
+                  cs: 'Křišťálové vody, panenské pláže, luxusní resorty',
+                  it: 'Acque cristalline, spiagge incontaminate, resort di lusso',
+                  en: 'Crystal waters, pristine beaches, luxury resorts',
+                },
+              },
+              {
+                href: '/properties?region=toscana', src: '/Toscana.png', price: '€2,500-6,000/m2', yield: '4-7%',
+                name: { cs: 'Toskánsko', it: 'Toscana', en: 'Tuscany' },
+                blurb: {
+                  cs: 'Kamenné statky, vinice, stabilní poptávka po pronájmu',
+                  it: 'Case coloniche in pietra, viste sui vigneti, domanda di affitto stabile',
+                  en: 'Stone farmhouses, vineyard views, stable rental demand',
+                },
+              },
+              {
+                href: '/properties?region=emilia-romagna', src: '/Emilia-Romagna.jpg', price: '€2,000-5,000/m2', yield: '4-7%',
+                name: { cs: 'Emilia-Romagna', it: 'Emilia-Romagna', en: 'Emilia-Romagna' },
+                blurb: {
+                  cs: 'Kulinářské hlavní město, historická města, zvlněné kopce',
+                  it: 'Capitale culinaria, città storiche, dolci colline',
+                  en: 'Culinary capital, historic cities, rolling hills',
+                },
+              },
+              {
+                href: '/properties?region=sicilia', src: '/Sicilia.jpg', price: '€1,500-4,000/m2', yield: '6-10%',
+                name: { cs: 'Sicílie', it: 'Sicilia', en: 'Sicily' },
+                blurb: {
+                  cs: 'Historické paláce, barokní města, rostoucí trh',
+                  it: 'Palazzi storici, città barocche, mercato emergente',
+                  en: 'Historic palazzi, Baroque towns, emerging market',
+                },
+              },
+              {
+                href: '/properties?region=trentino-alto-adige', src: '/Trentino-Alto Adige.jpg', price: '€4,500-12,000/m2', yield: '3-6%',
+                name: { cs: 'Trentino-Alto Adige', it: 'Trentino-Alto Adige', en: 'Trentino-Alto Adige' },
+                blurb: {
+                  cs: 'Dolomity, alpská jezera, jedinečná dvojí kultura',
+                  it: 'Dolomiti, laghi alpini, cultura duale unica',
+                  en: 'Dolomites, alpine lakes, unique dual culture',
+                },
+              },
+              {
+                href: '/properties?region=lazio', src: '/Lazio.webp', price: '€3,000-12,000/m2', yield: '4-6%',
+                name: { cs: 'Lazio (Řím)', it: 'Lazio (Roma)', en: 'Lazio (Rome)' },
+                blurb: {
+                  cs: 'Historické centrum, moderní čtvrti, silný trh s pronájmem',
+                  it: 'Centro storico, quartieri moderni, forte mercato degli affitti',
+                  en: 'Historic center, modern districts, strong rental market',
+                },
+              },
+            ].map((region, index) => (
+              <Link key={region.href} href={region.href} data-reveal="card" style={{ '--d': `${index * 70}ms` }} className="group block overflow-hidden rounded-2xl bg-white shadow-[0_10px_32px_rgba(14,21,46,0.06)]">
+                <span className="relative block aspect-[3/2] overflow-hidden">
+                <Image
+                  src={region.src}
+                  alt={region.name[language] || region.name.en}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                />
+                </span>
+                <span className="block p-5">
+                  <span className="text-sm font-semibold text-copper-700">
+                    {region.price}
+                    {' · '}
+                    {region.yield}
+                    {' '}
+                    {language === 'cs' ? 'výnos' : language === 'it' ? 'rendita' : 'yield'}
+                  </span>
+                  <span className="mt-1 block text-pretty text-xl font-semibold leading-snug text-gray-900">
+                    {region.name[language] || region.name.en}
+                  </span>
+                  <span className="mt-1 block text-pretty text-base leading-snug text-gray-700">
+                    {region.blurb[language] || region.blurb.en}
+                  </span>
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Regions Section */}
-      <section className="py-16 sm:py-24 bg-[#f7f4ed] overflow-hidden">
-        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
-          <div className="text-center mb-8 sm:mb-16 animate-on-scroll">
-            <h2 className="font-bold text-gray-900 mb-8">
-              {language === 'cs' ? 'Prozkoumejte nejžádanější regiony Itálie' :
-               language === 'it' ? 'Esplora le Regioni Più Ricercate d\'Italia' : 
-               'Explore Italy\'s Most Wanted Regions'}
-            </h2>
-            <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-              {language === 'cs' ? 'Ne celá Itálie je stejná. Vyberte si region, který vyhovuje vašemu rozpočtu, životnímu stylu a investičním cílům. Prohlédněte si nemovitosti v oblastech, které milujete.' :
-               language === 'it' ? 'Non tutta l\'Italia è uguale. Scegli una regione che si adatti al tuo budget, stile di vita e obiettivi di investimento. Esplora le proprietà nelle aree che ami.' : 
-               'Not all of Italy is the same. Choose a region that fits your budget, lifestyle, and investment goals. Explore properties in the areas you love.'}
-            </p>
-            <p className="text-sm sm:text-base text-gray-500 mt-2">
-              {language === 'cs' ? 'Průměrná data aktualizována 2025' :
-               language === 'it' ? 'Dati medi aggiornati 2025' :
-               'Average data updated 2025'}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-12">
-            {/* Sardegna */}
-            <div className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
-              <div className="aspect-video relative overflow-hidden">
-                <Image
-                  src="/Sardegna.jpg"
-                  alt="Sardegna"
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
-                    {language === 'cs' ? 'Sardinie' :
-                     language === 'it' ? 'Sardegna' :
-                     'Sardinia'}
-                  </h3>
-                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
-                    {language === 'cs' ? 'Křišťálové vody, panenské pláže, luxusní resorty' :
-                     language === 'it' ? 'Acque cristalline, spiagge incontaminate, resort di lusso' :
-                     'Crystal waters, pristine beaches, luxury resorts'}
-                  </p>
-                </div>
-              </div>
-              <div className="p-4 sm:p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €3,500-8,000/m2
-                  </span>
-                  <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? '5-8% výnos' :
-                     language === 'it' ? '5-8% rendita' :
-                     '5-8% yield'}
-                  </span>
-                  <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? 'Rezident EU' :
-                     language === 'it' ? 'residenti UE' :
-                     'EU resident'}
-                  </span>
-                </div>
-                <Link 
-                  href="/properties?region=sardegna"
-                  onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    document.documentElement.scrollTop = 0;
-                    document.body.scrollTop = 0;
-                  }}
-                >
-                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
-                    {language === 'cs' ? 'Zobrazit nabídky ze Sardinie' :
-                     language === 'it' ? 'Visualizza offerte per la Sardegna' :
-                     'View offers from Sardinia'}
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Tuscany */}
-            <div className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
-              <div className="aspect-video relative overflow-hidden">
-                <Image
-                  src="/Toscana.png"
-                  alt="Tuscany"
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
-                    {language === 'cs' ? 'Toskánsko' :
-                     language === 'it' ? 'Toscana' :
-                     'Tuscany'}
-                  </h3>
-                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
-                    {language === 'cs' ? 'Kamenné statky, vinice, stabilní poptávka po pronájmu' :
-                     language === 'it' ? 'Case coloniche in pietra, viste sui vigneti, domanda di affitto stabile' :
-                     'Stone farmhouses, vineyard views, stable rental demand'}
-                  </p>
-                </div>
-              </div>
-              <div className="p-4 sm:p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €2,500-6,000/m2
-                  </span>
-                  <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? '4-7% výnos' :
-                     language === 'it' ? '4-7% rendita' :
-                     '4-7% yield'}
-                  </span>
-                  <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? 'Rezident EU' :
-                     language === 'it' ? 'residenti UE' :
-                     'EU resident'}
-                  </span>
-                </div>
-                <Link 
-                  href="/properties?region=toscana"
-                  onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    document.documentElement.scrollTop = 0;
-                    document.body.scrollTop = 0;
-                  }}
-                >
-                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
-                    {language === 'cs' ? 'Zobrazit nabídky z Toskánska' :
-                     language === 'it' ? 'Visualizza offerte per la Toscana' :
-                     'View offers from Tuscany'}
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Emilia-Romagna */}
-            <div className="bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
-              <div className="aspect-video relative overflow-hidden">
-                <Image
-                  src="/Emilia-Romagna.jpg"
-                  alt="Emilia-Romagna"
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
-                    {language === 'cs' ? 'Emilia-Romagna' :
-                     language === 'it' ? 'Emilia-Romagna' :
-                     'Emilia-Romagna'}
-                  </h3>
-                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
-                    {language === 'cs' ? 'Kulinářské hlavní město, historická města, zvlněné kopce' :
-                     language === 'it' ? 'Capitale culinaria, città storiche, dolci colline' :
-                     'Culinary capital, historic cities, rolling hills'}
-                  </p>
-                </div>
-              </div>
-              <div className="p-4 sm:p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €2,000-5,000/m2
-                  </span>
-                  <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? '4-7% výnos' :
-                     language === 'it' ? '4-7% rendita' :
-                     '4-7% yield'}
-                  </span>
-                  <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? 'Rezident EU' :
-                     language === 'it' ? 'residenti UE' :
-                     'EU resident'}
-                  </span>
-                </div>
-                <Link 
-                  href="/properties?region=emilia-romagna"
-                  onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    document.documentElement.scrollTop = 0;
-                    document.body.scrollTop = 0;
-                  }}
-                >
-                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
-                    {language === 'cs' ? 'Zobrazit nabídky z Emilia-Romagna' :
-                     language === 'it' ? 'Visualizza offerte per l\'Emilia-Romagna' :
-                     'View offers from Emilia-Romagna'}
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Sicily */}
-            <div className="hidden sm:block bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
-              <div className="aspect-video relative overflow-hidden">
-                <Image
-                  src="/Sicilia.jpg"
-                  alt="Sicily"
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
-                    {language === 'cs' ? 'Sicílie' :
-                     language === 'it' ? 'Sicilia' :
-                     'Sicily'}
-                  </h3>
-                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
-                    {language === 'cs' ? 'Historické paláce, barokní města, rostoucí trh' :
-                     language === 'it' ? 'Palazzi storici, città barocche, mercato emergente' :
-                     'Historic palazzi, Baroque towns, emerging market'}
-                  </p>
-                </div>
-              </div>
-              <div className="p-4 sm:p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €1,500-4,000/m2
-                  </span>
-                  <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? '6-10% výnos' :
-                     language === 'it' ? '6-10% rendita' :
-                     '6-10% yield'}
-                  </span>
-                  <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? 'Rezident EU' :
-                     language === 'it' ? 'residenti UE' :
-                     'EU resident'}
-                  </span>
-                </div>
-                <Link 
-                  href="/properties?region=sicilia"
-                  onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    document.documentElement.scrollTop = 0;
-                    document.body.scrollTop = 0;
-                  }}
-                >
-                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
-                    {language === 'cs' ? 'Zobrazit nabídky ze Sicílie' :
-                     language === 'it' ? 'Visualizza offerte per la Sicilia' :
-                     'View offers from Sicily'}
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Trentino-Alto Adige */}
-            <div className="hidden sm:block bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
-              <div className="aspect-video relative overflow-hidden">
-                <Image
-                  src="/Trentino-Alto Adige.jpg"
-                  alt="Trentino-Alto Adige"
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
-                    {language === 'cs' ? 'Trentino-Alto Adige' :
-                     language === 'it' ? 'Trentino-Alto Adige' :
-                     'Trentino-Alto Adige'}
-                  </h3>
-                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
-                    {language === 'cs' ? 'Dolomity, alpská jezera, jedinečná dvojí kultura' :
-                     language === 'it' ? 'Dolomiti, laghi alpini, cultura duale unica' :
-                     'Dolomites, alpine lakes, unique dual culture'}
-                  </p>
-                </div>
-              </div>
-              <div className="p-4 sm:p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €4,500-12,000/m2
-                  </span>
-                  <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? '3-6% výnos' :
-                     language === 'it' ? '3-6% rendita' :
-                     '3-6% yield'}
-                  </span>
-                  <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? 'Rezident EU' :
-                     language === 'it' ? 'residenti UE' :
-                     'EU resident'}
-                  </span>
-                </div>
-                <Link 
-                  href="/properties?region=trentino-alto-adige"
-                  onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    document.documentElement.scrollTop = 0;
-                    document.body.scrollTop = 0;
-                  }}
-                >
-                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
-                    {language === 'cs' ? 'Zobrazit nabídky z Trentino-Alto Adige' :
-                     language === 'it' ? 'Visualizza offerte per il Trentino-Alto Adige' :
-                     'View offers from Trentino-Alto Adige'}
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Lazio (Rome) */}
-            <div className="hidden sm:block bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-200">
-              <div className="aspect-video relative overflow-hidden">
-                <Image
-                  src="/Lazio.webp"
-                  alt="Lazio (Rome)"
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
-                    {language === 'cs' ? 'Lazio (Řím)' :
-                     language === 'it' ? 'Lazio (Roma)' :
-                     'Lazio (Rome)'}
-                  </h3>
-                  <p className="text-white/90 text-xs sm:text-base line-clamp-2">
-                    {language === 'cs' ? 'Historické centrum, moderní čtvrti, silný trh s pronájmem' :
-                     language === 'it' ? 'Centro storico, quartieri moderni, forte mercato degli affitti' :
-                     'Historic center, modern districts, strong rental market'}
-                  </p>
-                </div>
-              </div>
-              <div className="p-4 sm:p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="bg-slate-100 text-slate-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    €3,000-12,000/m2
-                  </span>
-                  <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? '4-6% výnos' :
-                     language === 'it' ? '4-6% rendita' :
-                     '4-6% yield'}
-                  </span>
-                  <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">
-                    {language === 'cs' ? 'Rezident EU' :
-                     language === 'it' ? 'residenti UE' :
-                     'EU resident'}
-                  </span>
-                </div>
-                <Link 
-                  href="/properties?region=lazio"
-                  onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    document.documentElement.scrollTop = 0;
-                    document.body.scrollTop = 0;
-                  }}
-                >
-                  <button className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-semibold py-2.5 px-4 rounded-lg text-sm sm:text-base transition-all duration-300">
-                    {language === 'cs' ? 'Zobrazit nabídky z Lazia' :
-                     language === 'it' ? 'Visualizza offerte per il Lazio' :
-                     'View offers from Lazio'}
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="text-center mb-8 sm:mb-0">
-            <Link
-              href="/regions"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-3 text-sm sm:text-base font-semibold text-white shadow-lg transition-all duration-300 hover:from-slate-600 hover:to-slate-700"
-            >
-              {language === 'cs' ? 'Prozkoumat regiony' :
-               language === 'it' ? 'Visita le regioni' :
-               'Explore the regions'}
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {SHOW_HOME_ARCHIVED_SECTIONS && (
       <>
@@ -1679,7 +1238,7 @@ export default function HomePageClient({ initialProperties = [], sliderPropertie
                language === 'it' ? 'Dalla Ricerca alle Chiavi in Mano' :
                'From Search to Keys in Hand'}
             </h2>
-            <p className="text-gray-500" style={{ fontSize: '1.0625rem', lineHeight: '1.75' }}>
+            <p className="text-base text-gray-500">
               {language === 'cs' ? 'Skutečné výsledky od kupujících jako jste vy.' :
                language === 'it' ? 'Risultati reali da acquirenti come te.' :
                'Real results from buyers like you.'}
@@ -1906,7 +1465,7 @@ export default function HomePageClient({ initialProperties = [], sliderPropertie
                language === 'it' ? 'Acquistare in Italia: Il Processo, le Insidie e i Numeri' :
                'Buying in Italy: The Process, the Pitfalls, and the Numbers'}
             </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto" style={{fontSize:"1.0625rem",lineHeight:"1.75"}}>
+            <p className="text-base text-gray-500 max-w-2xl mx-auto">
               {language === 'cs' ? 'Kupování v Itálii: proces, úskalí a čísla — živě, každý týden.' :
                language === 'it' ? 'Acquistare in Italia: il processo, le insidie e i numeri — dal vivo, ogni settimana.' :
                'Buying in Italy: the process, the pitfalls, and the numbers—live, every week.'}
@@ -2075,7 +1634,7 @@ export default function HomePageClient({ initialProperties = [], sliderPropertie
                language === 'it' ? 'Domande Frequenti' :
                'Frequently Asked Questions'}
             </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto" style={{fontSize:"1.0625rem",lineHeight:"1.75"}}>
+            <p className="text-base text-gray-500 max-w-2xl mx-auto">
               {language === 'cs' ? 'Odpovědi, které potřebujete před rozhodnutím.' :
                language === 'it' ? 'Le risposte di cui hai bisogno prima di decidere.' :
                'The answers you need before you decide.'}
@@ -2262,265 +1821,261 @@ export default function HomePageClient({ initialProperties = [], sliderPropertie
       </>
       )}
 
-      {/* Contact / Book a Call Section */}
-      <section className="py-16 sm:py-24 bg-[#f7f6f3]">
-        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
-          <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="font-bold text-gray-900 mb-8">
-              {language === 'cs' ? 'Začněte svou cestu' :
-               language === 'it' ? 'Inizia il Tuo Viaggio' :
-               'Start Your Journey'}
-            </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto" style={{fontSize:"1.0625rem",lineHeight:"1.75"}}>
-              {language === 'cs' ? 'Vyberte si, jak chcete pokračovat. Jsme tu, abychom vás provedli každým krokem procesu.' :
-               language === 'it' ? 'Scegli come vuoi procedere. Siamo qui per guidarti in ogni fase del processo.' :
-               'Choose how you want to proceed. We\'re here to guide you through every step of the process.'}
-            </p>
+
+      <PropertySlider variant="home" language={language} initialProperties={initialProperties} preparedProperties={sliderProperties} />
+
+      <section data-testid="start-journey-section">
+        <div>
+          <div data-reveal="rise">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: '#c78b5a' }}>
+            {language === 'cs' ? 'Další krok' : language === 'it' ? 'Prossimo passo' : 'Next step'}
+          </p>
+          <h2 className="text-pretty text-[2.05rem] font-bold leading-[1.15] text-gray-900">
+            {language === 'cs' ? 'Začněte svou cestu.' :
+             language === 'it' ? 'Inizia il tuo viaggio.' :
+             'Start your journey.'}
+          </h2>
+          <p className="text-pretty mt-3 max-w-3xl text-base leading-snug text-gray-700">
+            {language === 'cs' ? 'Vyberte si, jak chcete pokračovat. Jsme tu, abychom vás provedli každým krokem procesu.' :
+             language === 'it' ? 'Scegli come vuoi procedere. Siamo qui per guidarti in ogni fase del processo.' :
+             'Choose how you want to proceed. We\'re here to guide you through every step of the process.'}
+          </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 max-w-5xl mx-auto mb-10 sm:mb-16">
-            {/* Book a Free Consultation */}
-            <div className="order-1 bg-white rounded-2xl p-6 sm:p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-slate-700 to-slate-800 rounded-full mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <div className="mt-10 flex flex-col gap-4">
+            <div data-reveal="card" className="flex flex-col gap-8 rounded-[1.75rem] bg-white p-8 shadow-[0_18px_50px_rgba(14,21,46,0.07)] sm:p-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+              <div className="max-w-2xl">
+                <h3 className="text-pretty text-2xl font-bold leading-snug text-gray-900">
                   {language === 'cs' ? 'Rezervujte si bezplatnou konzultaci' :
-                   language === 'it' ? 'Prenota una Consulenza Gratuita' :
-                   'Book a Free Consultation'}
+                   language === 'it' ? 'Prenota una consulenza gratuita' :
+                   'Book a free consultation'}
                 </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {language === 'cs' 
-                    ? 'Promluvte si s jedním z našich expertů na 15-20 minut. Prodiskutujte své potřeby, rozpočet a získejte osobní rady ohledně regionů a typů nemovitostí.'
-                    : language === 'it' 
-                    ? 'Parla con uno dei nostri esperti per 15-20 minuti. Discuti le tue esigenze, il budget e ottieni consigli personalizzati su regioni e tipi di proprietà.'
-                    : 'Speak with one of our experts for 15-20 minutes. Discuss your needs, budget, and get personalized advice on regions and property types.'}
+                <p className="text-pretty mt-3 text-base leading-relaxed text-gray-700">
+                  {language === 'cs'
+                    ? 'Promluvte si s jedním z našich expertů na 15–20 minut. Prodiskutujte své potřeby, rozpočet a získejte osobní rady ohledně regionů a typů nemovitostí.'
+                    : language === 'it'
+                    ? 'Parla con uno dei nostri esperti per 15–20 minuti. Discuti esigenze, budget e ricevi consigli su regioni e tipi di proprietà.'
+                    : 'Speak with one of our experts for 15–20 minutes. Discuss your needs, budget, and get advice on regions and property types.'}
                 </p>
-                <ul className="text-left space-y-3 mb-8">
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-slate-800 flex-shrink-0 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-700">
-                      {language === 'cs' ? 'Žádné náklady, žádný závazek' :
-                       language === 'it' ? 'Nessun costo, nessun impegno' :
-                       'No cost, no commitment'}
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-slate-800 flex-shrink-0 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-700">
-                      {language === 'cs' ? 'Experti, kteří mluví česky, anglicky a italsky' :
-                       language === 'it' ? 'Esperti che parlano ceco, inglese e italiano' :
-                       'Experts who speak Czech, English, and Italian'}
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-slate-800 flex-shrink-0 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-700">
-                      {language === 'cs' ? 'Osobní rady na základě vašeho profilu' :
-                       language === 'it' ? 'Consigli personalizzati in base al tuo profilo' :
-                       'Personalized advice based on your profile'}
-                    </span>
-                  </li>
+                <ul className="mt-5 flex flex-col gap-2">
+                  {[
+                    language === 'cs' ? 'Žádné náklady, žádný závazek' : language === 'it' ? 'Nessun costo, nessun impegno' : 'No cost, no commitment',
+                    language === 'cs' ? 'Experti, kteří mluví česky, anglicky a italsky' : language === 'it' ? 'Esperti che parlano ceco, inglese e italiano' : 'Experts who speak Czech, English, and Italian',
+                    language === 'cs' ? 'Osobní rady na základě vašeho profilu' : language === 'it' ? 'Consigli personalizzati in base al tuo profilo' : 'Personalized advice based on your profile',
+                  ].map((item) => (
+                    <li key={item} className="flex items-baseline gap-2 text-pretty text-sm font-medium leading-snug tracking-wide text-gray-800">
+                      <span className="font-semibold text-copper-700" aria-hidden="true">+</span>
+                      {item}
+                    </li>
+                  ))}
                 </ul>
-                <Link
-                  href="/book-call"
-                  className="block w-full text-white font-semibold py-3 sm:py-4 px-8 rounded-lg text-base sm:text-lg transition-all duration-200 hover:shadow-lg shadow-lg text-center leading-tight"
-                  style={{ background: 'linear-gradient(to right, rgba(199, 137, 91), rgb(153, 105, 69))' }}
-                >
-                  {language === 'cs' ? 'Rezervovat hovor' :
-                   language === 'it' ? 'Prenota una Chiamata' :
-                   'Book a Call'}
+              </div>
+              <div className="shrink-0">
+                <Link href="/book-call" className="inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]">
+                  {language === 'cs' ? 'Rezervovat hovor' : language === 'it' ? 'Prenota una chiamata' : 'Book a call'}
+                  <ChevronRight className="h-4 w-4" />
                 </Link>
-                <p className="text-xs text-gray-500 mt-4">
-                  {language === 'cs' ? 'Dostupné pondělí-pátek, 9:00-18:00 CET' :
-                   language === 'it' ? 'Disponibile dal lunedì al venerdì, 9:00-18:00 CET' :
-                   'Available Monday-Friday, 9:00-18:00 CET'}
+                <p className="mt-3 text-sm text-gray-500">
+                  {language === 'cs' ? 'Pondělí–pátek, 9:00–18:00' :
+                   language === 'it' ? 'Lunedì–venerdì, 9:00–18:00' :
+                   'Monday–Friday, 9:00–18:00'}
                 </p>
               </div>
             </div>
 
-            {/* Start the Personal Property Finder */}
-            <div className="order-2 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-600 rounded-2xl p-5 sm:p-8 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white/10 backdrop-blur-md rounded-full mb-3 sm:mb-6 border border-white/20">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
+            <div data-reveal="card" style={{ '--d': '120ms' }} className="flex flex-col gap-8 rounded-[1.75rem] bg-gradient-to-br from-[#243056] to-[#0e152e] p-8 sm:p-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+              <div className="max-w-2xl">
+                <h3 className="text-pretty text-2xl font-bold leading-snug text-white">
                   {language === 'cs' ? 'Spustit osobní vyhledávač nemovitostí' :
-                   language === 'it' ? 'Avvia il Personal Property Finder' :
-                   'Start the Personal Property Finder'}
+                   language === 'it' ? 'Avvia il personal property finder' :
+                   'Start the personal property finder'}
                 </h3>
-                <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 leading-relaxed">
-                  {language === 'cs' 
-                    ? 'Vyplňte náš 60sekundový formulář a získejte kurátorované nabídky nemovitostí přímo do vaší schránky, přizpůsobené vašemu rozpočtu, regionu a účelu.'
-                    : language === 'it' 
-                    ? 'Completa il nostro modulo di 60 secondi e ricevi annunci immobiliari curati direttamente nella tua casella di posta, adattati al tuo budget, regione e scopo.'
-                    : 'Complete our 60-second form and get curated property listings delivered straight to your inbox, tailored to your budget, region, and purpose.'}
+                <p className="text-pretty mt-3 text-base leading-relaxed text-white/80">
+                  {language === 'cs'
+                    ? 'Vyplňte náš 60sekundový formulář a získejte kurátorované nabídky přímo do schránky, přizpůsobené rozpočtu, regionu a účelu.'
+                    : language === 'it'
+                    ? 'Completa il modulo di 60 secondi e ricevi annunci curati nella posta, adattati a budget, regione e scopo.'
+                    : 'Complete our 60-second form and get curated listings in your inbox, tailored to your budget, region, and purpose.'}
                 </p>
-                <ul className="text-left space-y-2 sm:space-y-3 mb-5 sm:mb-8">
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-slate-600 flex-shrink-0 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200">
-                      {language === 'cs' ? 'Ručně vybrané nabídky jen pro vás' :
-                       language === 'it' ? 'Annunci selezionati manualmente per te' :
-                       'Hand-picked listings just for you'}
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-slate-600 flex-shrink-0 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200">
-                      {language === 'cs' ? 'Vyberte si frekvenci doručování' :
-                       language === 'it' ? 'Scegli la tua frequenza di invio' :
-                       'Choose your delivery frequency'}
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-slate-600 flex-shrink-0 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-gray-200">
-                      {language === 'cs' ? 'Bezplatný přístup do Klubu pro klienty' :
-                       language === 'it' ? 'Accesso gratuito al Klub pro klienty' :
-                       'Free Klub pro klienty access included'}
-                    </span>
-                  </li>
+                <ul className="mt-5 flex flex-col gap-2">
+                  {[
+                    language === 'cs' ? 'Ručně vybrané nabídky jen pro vás' : language === 'it' ? 'Annunci selezionati manualmente per te' : 'Hand-picked listings just for you',
+                    language === 'cs' ? 'Vyberte si frekvenci doručování' : language === 'it' ? 'Scegli la frequenza di invio' : 'Choose your delivery frequency',
+                    language === 'cs' ? 'Bezplatný přístup do Klubu pro klienty' : language === 'it' ? 'Accesso gratuito al Klub pro klienty' : 'Free client-club access included',
+                  ].map((item) => (
+                    <li key={item} className="flex items-baseline gap-2 text-pretty text-sm font-medium leading-snug tracking-wide text-white/90">
+                      <span className="font-semibold text-copper-200" aria-hidden="true">+</span>
+                      {item}
+                    </li>
+                  ))}
                 </ul>
+              </div>
+              <div className="shrink-0">
                 <button
-                  className="w-full min-h-[44px] inline-flex items-center justify-center text-center leading-none cursor-pointer bg-transparent hover:bg-white/10 text-white border border-white/45 font-semibold py-3 sm:py-4 px-8 rounded-lg text-base sm:text-lg transition-all duration-300 shadow-sm"
+                  type="button"
                   onClick={handleStartFinder}
+                  className="home-pill inline-flex w-fit items-center gap-1.5 rounded-full bg-white px-5 py-2.5 text-base font-semibold text-[#0e152e]"
                 >
-                  {language === 'cs' ? 'Spustit vyhledávač' :
-                   language === 'it' ? 'Avvia il Finder' :
-                   'Start the Finder'}
+                  {language === 'cs' ? 'Spustit vyhledávač' : language === 'it' ? 'Avvia il finder' : 'Start the finder'}
+                  <ChevronRight className="h-4 w-4" />
                 </button>
-                <p className="text-xs text-gray-300 mt-4">
-                  {language === 'cs' ? 'Není vyžadována kreditní karta' :
-                   language === 'it' ? 'Nessuna carta di credito richiesta' :
-                   'No credit card required'}
+                <p className="mt-3 text-sm text-white/60">
+                  {language === 'cs' ? 'Není vyžadována kreditní karta.' :
+                   language === 'it' ? 'Nessuna carta di credito richiesta.' :
+                   'No credit card required.'}
                 </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-300 pt-12">
-            <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl border border-gray-200 shadow-md p-6">
-                <h4 className="text-xl font-bold text-slate-800 mb-2">
-                  {language === 'cs'
-                    ? 'Poznejte ji dřív, než ji budete žít'
-                    : language === 'it'
-                    ? 'Scoprila prima di viverla'
-                    : 'Discover it before living it'}
-                </h4>
-                <p className="text-sm text-gray-500 mb-5">
-                  {language === 'cs'
-                    ? 'My i naši klienti se spoléháme na prověřené partnery.'
-                    : language === 'it'
-                    ? 'Noi e i nostri clienti ci affidiamo a partner sicuri.'
-                    : 'We and our clients rely on trusted partners.'}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div role="button" tabIndex={0} data-affiliate-partner="getyourguide" data-affiliate-placement="homepage-travel-modal" data-affiliate-href={AFFILIATE_LINKS.getYourGuide.default} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open(AFFILIATE_LINKS.getYourGuide.default, '_blank')}>
-                    <Plane className="w-5 h-5 text-slate-700" />
-                    <div className="text-left">
-                      <p className="text-sm font-semibold text-gray-900">
-                        {language === 'cs' ? 'Turistický partner' :
-                         language === 'it' ? 'Partner turistico' :
-                         'Travel partner'}
-                      </p>
-                      <p className="text-xs text-gray-600">GetYourGuide</p>
-                    </div>
-                  </div>
-                  <div role="button" tabIndex={0} data-affiliate-partner="booking" data-affiliate-placement="homepage-travel-modal" data-affiliate-href={AFFILIATE_LINKS.booking.homepage} className="flex items-center gap-3 rounded-lg px-4 py-3 border border-gray-200 cursor-pointer hover:bg-slate-50 transition-colors" onClick={() => window.open(AFFILIATE_LINKS.booking.homepage, '_blank')}>
-                    <Globe className="w-5 h-5 text-slate-700" />
-                    <div className="text-left">
-                      <p className="text-sm font-semibold text-gray-900">
-                        {language === 'cs' ? 'Objevte Itálii' :
-                         language === 'it' ? 'Scopri l\'Italia' :
-                         'Discover Italy'}
-                      </p>
-                      <p className="text-xs text-gray-600">Booking.com</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-xl border border-gray-200 shadow-md p-6">
-                <h4 className="text-xl font-bold text-slate-800 mb-2">
-                  {language === 'cs'
-                    ? 'Začněte svou cestu'
-                    : language === 'it'
-                    ? 'Comincia il tuo viaggio'
-                    : 'Start your journey'}
-                </h4>
-                <p className="text-sm text-gray-500 mb-5">
-                  {language === 'cs'
-                    ? 'Napište nám nebo nám pošlete zprávu na WhatsApp.'
-                    : language === 'it'
-                    ? 'Scrivici o mandaci un messaggio su WhatsApp.'
-                    : 'Email us or send us a message on WhatsApp.'}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <a
-                    href="https://wa.me/420731450001"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-green-700 hover:bg-green-800 text-white px-4 py-3 text-sm font-medium transition-colors"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    WhatsApp
-                  </a>
-                  <a
-                    href="mailto:info@domyvitalii.cz"
-                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-700 hover:bg-slate-800 text-white px-4 py-3 text-sm font-medium transition-colors"
-                  >
-                    <Mail className="w-4 h-4" />
-                    {language === 'cs' ? 'Napište nám' : language === 'it' ? 'Scrivici' : 'Email us'}
-                  </a>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-6 pb-16 md:pb-24" style={{maxWidth:"1200px"}}>
-        <div className="max-w-5xl mx-auto flex justify-center">
+      <section data-testid="premium-club-section">
+        <div className="rounded-[1.75rem] bg-gradient-to-br from-[#243056] to-[#0e152e] p-10 sm:p-16">
+          <div data-reveal="rise">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: '#c78b5a' }}>
+            {language === 'cs' ? 'Klub pro klienty' : language === 'it' ? 'Club clienti' : 'Client club'}
+          </p>
+          <h2 className="text-pretty text-[2.05rem] font-bold leading-[1.15] text-white">
+            {language === 'cs' ? 'Jste si jisti koupí domů v Itálii?' :
+             language === 'it' ? 'Sei sicuro di comprare casa in Italia?' :
+             'Are you sure about buying a home in Italy?'}
+          </h2>
+          <p className="text-pretty mt-3 max-w-3xl text-base leading-snug text-white/80">
+            {language === 'cs' ? 'Pak potřebujete víc než obecné informace.' :
+             language === 'it' ? 'Allora ti serve di più che delle info generiche.' :
+             'Then you need more than generic information.'}
+          </p>
           <button
-            className="flex items-center gap-2 rounded-lg px-4 py-2 shadow-lg border border-slate-200 transition-shadow duration-200 hover:shadow-xl group cursor-pointer w-auto bg-white"
-            onClick={() => { window.location.href = '/gdpr' }}
+            type="button"
+            onClick={() => setIsKlubModalOpen(true)}
+            className="mt-6 inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]"
           >
-            <Lock className="h-4 w-4 text-slate-700 transition-colors flex-shrink-0" />
-            <div className="flex flex-col min-w-0 text-center">
-              <span className="text-xs font-semibold text-slate-800 leading-tight">
-                {language === 'cs' ? 'Osobní údaje' :
-                 language === 'it' ? 'Dati personali' :
-                 'Personal data'}
-              </span>
-              <span className="text-xs text-slate-600 leading-tight">
-                GDPR
-              </span>
-            </div>
+            {language === 'cs' ? 'Připojit se zdarma' :
+             language === 'it' ? 'Unisciti gratuitamente' :
+             'Join for free'}
+            <ChevronRight className="h-4 w-4" />
           </button>
+
+          <ul className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-3">
+              {[
+                language === 'cs' ? 'Personalizované vyhledávání' : language === 'it' ? 'Ricerca personalizzata' : 'Personalized search',
+                language === 'cs' ? 'Privátní dashboard' : language === 'it' ? 'Dashboard privata' : 'Private dashboard',
+                language === 'cs' ? 'Prioritní komunikace' : language === 'it' ? 'Comunicazione prioritaria' : 'Priority communication',
+                language === 'cs' ? 'Prémiový obsah' : language === 'it' ? 'Contenuti premium' : 'Premium content',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-2.5 text-pretty text-base font-semibold leading-snug text-white">
+                  <Check className="h-4 w-4 flex-shrink-0 text-copper-200" />
+                  {item}
+                </li>
+              ))}
+              <li className="text-pretty text-base leading-snug text-white/80">
+                <span className="font-semibold text-copper-200">
+                  {language === 'cs' ? 'Zdarma.' : language === 'it' ? 'Gratis.' : 'Free.'}
+                </span>
+                {' '}
+                {language === 'cs' ? 'Bez skrytých poplatků.' :
+                 language === 'it' ? 'Nessuna commissione nascosta.' :
+                 'No hidden fees.'}
+              </li>
+            </ul>
+          </div>
+
+            <div data-reveal="rise" style={{ '--d': '80ms' }} className="mt-10">
+              <h3 className="text-pretty text-base font-bold leading-snug text-white">
+                {language === 'cs' ? 'Exkluzivní obsah' :
+                 language === 'it' ? 'Contenuti esclusivi' :
+                 'Exclusive contents'}
+              </h3>
+              <p className="text-pretty mt-1 max-w-2xl text-base leading-snug text-white/75">
+                  {user
+                    ? (language === 'cs' ? 'Vaše prémiové články a průvodci.' :
+                       language === 'it' ? 'I tuoi articoli e guide premium.' :
+                       'Your premium articles and guides.')
+                    : (language === 'cs' ? 'Zaregistrujte se zdarma a získejte přístup k prémiovým článkům.' :
+                       language === 'it' ? 'Registrati gratis per accedere ai contenuti premium.' :
+                       'Register for free to unlock premium articles and guides.')}
+                </p>
+              </div>
+              <div className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6">
+              {[
+                {
+                  title: {
+                    en: 'How to Buy a House in Italy: Complete Guide',
+                    cs: 'Jak koupit dům v Itálii: Kompletní průvodce',
+                    it: 'Come acquistare una casa in Italia: guida completa',
+                  },
+                  excerpt: {
+                    en: 'Everything you need to know about documents, taxes, and procedures for buying property in Italy.',
+                    cs: 'Vše, co potřebujete vědět o dokumentech, daních a postupech při koupi nemovitostí v Itálii.',
+                    it: 'Tutto quello che devi sapere sui documenti, tasse e procedure per acquistare immobili in Italia.',
+                  },
+                  image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop',
+                  link: '/guides/costs',
+                },
+                {
+                  title: {
+                    en: 'Most Common Czech Mistakes When Buying in Italy',
+                    cs: 'Nejčastější chyby Čechů při koupi domů v Itálii',
+                    it: 'Errori più comuni dei cechi nell\'acquisto in Italia',
+                  },
+                  excerpt: {
+                    en: 'What to watch out for to avoid losing time and money. Problems arise from unfamiliarity, not carelessness.',
+                    cs: 'Na co si dát pozor, abyste neztratili čas a peníze. Problémy vznikají z neznalosti, ne z nepozornosti.',
+                    it: 'A cosa fare attenzione per non perdere tempo e denaro. I problemi nascono dalla scarsa conoscenza, non dalla disattenzione.',
+                  },
+                  image: '/articles/common-mistakes-laptop-stress.jpg',
+                  link: '/guides/mistakes',
+                },
+                {
+                  title: {
+                    en: 'Investing in Italian Real Estate: Opportunities and Risks',
+                    cs: 'Investice do italských nemovitostí: Příležitosti a rizika',
+                    it: 'Investire in immobili italiani: opportunità e rischi',
+                  },
+                  excerpt: {
+                    en: 'In-depth analysis of the Italian real estate market and investment strategies.',
+                    cs: 'Podrobná analýza italského realitního trhu a investičních strategií.',
+                    it: 'Analisi approfondita del mercato immobiliare italiano e strategie di investimento.',
+                  },
+                  image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&auto=format&fit=crop',
+                  link: '/blog',
+                },
+              ].map((article, index) => (
+                <button
+                  key={article.link}
+                  type="button"
+                  data-reveal="card"
+                  style={{ '--d': `${index * 90}ms` }}
+                  onClick={() => {
+                    if (user) window.location.href = article.link
+                    else setIsKlubModalOpen(true)
+                  }}
+                  className="group flex flex-col bg-transparent text-left"
+                >
+                  <span className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl">
+                    <Image src={article.image} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
+                  </span>
+                  <span className="mt-4 text-pretty text-lg font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-copper-200">{article.title[language]}</span>
+                  <span className="text-pretty mt-1 text-base leading-snug text-white/75 line-clamp-2">{article.excerpt[language]}</span>
+                  {!user && (
+                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-copper-200">
+                      <Lock className="h-3.5 w-3.5" />
+                      {language === 'cs' ? 'Zaregistrujte se pro čtení' :
+                       language === 'it' ? 'Registrati per leggere' :
+                       'Register to read'}
+                    </span>
+                  )}
+                </button>
+              ))}
+              </div>
+        </div>
+      </section>
+
+
         </div>
       </div>
 
-      <PropertySlider language={language} initialProperties={initialProperties} preparedProperties={sliderProperties} />
       {/* Footer */}
       <Footer language={language} />
       

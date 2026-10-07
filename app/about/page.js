@@ -1,13 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { CheckCircle, Users, Globe, Award, Heart, Mail, ArrowRight, Sparkles } from 'lucide-react'
+import { CheckCircle, Users, Globe, Award, Heart, Mail, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
+import PageIntro from '@/components/PageIntro'
 
 const SERVICES = [
   {
@@ -159,60 +160,39 @@ export default function AboutPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
-      <section className="relative pt-28 pb-24 md:pt-36 md:pb-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=1920&q=80"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/80 to-slate-900/70" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
+      <PageIntro
+        eyebrow={language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About us'}
+        title="Domy v Itálii"
+      >
+        <p>
+          {language === 'cs'
+            ? 'Pomáháme Čechům splnit sen o vlastním domě v Itálii. V klidu, bez zbytečného stresu a s jasným postupem. Jsme s vámi od prvního výběru až po předání klíčů.'
+            : language === 'it'
+            ? 'Aiutiamo i cechi a realizzare il sogno di avere una casa in Italia. Con calma, senza stress inutile e con un percorso chiaro. Siamo al vostro fianco dalla prima selezione fino alla consegna delle chiavi.'
+            : 'We help Czech buyers achieve the dream of owning a home in Italy. Calmly, without unnecessary stress, and with a clear process. We stay with you from the first selection all the way to the handover of the keys.'}
+        </p>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href="/process"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]"
+          >
+            {language === 'cs' ? 'Zobrazit proces' : language === 'it' ? 'Vai al processo' : 'See the process'}
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+          <a
+            href="mailto:info@domyvitalii.cz"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-base font-semibold text-[#0e152e] shadow-[0_10px_32px_rgba(14,21,46,0.06)] hover:bg-[#f6f1ea]"
+          >
+            <Mail className="h-4 w-4" />
+            info@domyvitalii.cz
+          </a>
         </div>
+      </PageIntro>
 
-        <div className="container mx-auto px-6 relative z-10" style={{ maxWidth: '1200px' }}>
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 mb-6">
-              <Sparkles className="h-4 w-4 text-copper-300" />
-              <span className="text-sm text-white/80 font-medium">
-                {language === 'cs' ? 'O nás' : language === 'it' ? 'Chi siamo' : 'About Us'}
-              </span>
-            </div>
-            <h1 className="font-extrabold text-white">
-              Domy v Itálii
-            </h1>
-            <p className="mt-4 text-lg md:text-2xl text-copper-100 max-w-3xl leading-[1.75] font-semibold">
-              {language === 'cs'
-                ? 'Pomáháme Čechům splnit sen o vlastním domě v Itálii. V klidu, bez zbytečného stresu a s jasným postupem. Jsme s vámi od prvního výběru až po předání klíčů.'
-                : language === 'it'
-                ? 'Aiutiamo i cechi a realizzare il sogno di avere una casa in Italia. Con calma, senza stress inutile e con un percorso chiaro. Siamo al vostro fianco dalla prima selezione fino alla consegna delle chiavi.'
-                : 'We help Czech buyers achieve the dream of owning a home in Italy. Calmly, without unnecessary stress, and with a clear process. We stay with you from the first selection all the way to the handover of the keys.'}
-            </p>
-            <div className="mt-4 flex flex-col sm:flex-row gap-3">
-              <Link href="/process">
-                <Button size="lg" className="bg-white text-slate-900 hover:bg-gray-100 font-semibold px-8 py-6 text-base transition-all duration-200 shadow-lg rounded-xl">
-                  {language === 'cs' ? 'Zobrazit proces' : language === 'it' ? 'Vai al processo' : 'See the process'}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 font-medium px-8 py-6 text-base transition-all duration-200 rounded-xl bg-transparent"
-                onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}
-              >
-                <Mail className="h-4 w-4 mr-2" />
-                info@domyvitalii.cz
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="container mx-auto px-6 py-16 md:py-24" style={{maxWidth:"1200px"}}>
+      <div className="container mx-auto px-6 py-16 md:py-24">
         <div className="max-w-6xl mx-auto mb-24">
           <div className="text-center mb-16">
             <h2 className="font-bold mb-8 text-slate-800">

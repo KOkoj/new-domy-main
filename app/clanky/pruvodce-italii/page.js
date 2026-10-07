@@ -227,11 +227,11 @@ export default function PruvodceItaliiPage() {
   const visibleArticles = useMemo(() => ARTICLES, [])
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
       <main className="pt-28 md:pt-32 pb-16 md:pb-24">
-        <div className="container mx-auto px-6 py-16 md:py-24 mb-4" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6 py-16 md:py-24 mb-4">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-6">
               <BookOpen className="h-4 w-4 text-slate-500" />
@@ -242,7 +242,7 @@ export default function PruvodceItaliiPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)] gap-8 lg:gap-12">
             <aside className="lg:sticky lg:top-28 h-fit">
               <div className="relative overflow-hidden rounded-2xl border border-amber-200/60 bg-gradient-to-br from-amber-50 via-white to-slate-50 p-5 shadow-md">
@@ -353,7 +353,7 @@ export default function PruvodceItaliiPage() {
         </div>
       </main>
 
-      <div className="container mx-auto px-6 pb-10" style={{ maxWidth: '1200px' }}>
+      <div className="container mx-auto px-6 pb-10">
         <div className="max-w-5xl mx-auto">
           <InformationalDisclaimer language={language} className="mt-14" />
         </div>

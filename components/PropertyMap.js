@@ -1,11 +1,14 @@
-﻿'use client';
+'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
-import { X, BedDouble, Square as SquareIcon, ChevronRight } from 'lucide-react';
-import { getLocalizedValue } from '@/lib/propertyDisplay';
-import { formatPriceCompact } from '@/lib/currency';
+import { X, MapPin, Bed, Ruler, Home, Building2, Castle, DoorOpen } from 'lucide-react';
+import { getLocalizedValue, getPropertyTypeLabel, getStatusLabel } from '@/lib/propertyDisplay';
+import { getNewPropertyLabel } from '@/components/NewPropertyRibbon';
+import { getNoAgencyLabel } from '@/components/NoAgencyBadge';
+import { formatPriceCompact, CURRENCY_RATES } from '@/lib/currency';
+import PropertyPhotoSwitcher from '@/components/PropertyPhotoSwitcher';
 
 const CSS_FILES = [
   { id: 'leaflet-css', href: '/leaflet/leaflet.css' },
@@ -15,8 +18,9 @@ const CSS_FILES = [
 
 const DEFAULT_CENTER = [42.8333, 12.8333];
 const DEFAULT_ZOOM = 6;
-const PIN_COLOR = '#3E6343';
-const PIN_HIGHLIGHT_COLOR = '#ef4444';
+const PIN_COLOR = '#1b2642';
+const PIN_HIGHLIGHT_COLOR = '#c48759';
+const PIN_HIGHLIGHT_TEXT = '#1b2642';
 
 function injectCss() {
   CSS_FILES.forEach(({ id, href }) => {
@@ -42,28 +46,35 @@ function hasValidLocation(property) {
   );
 }
 
-function formatPinPrice(price) {
-  const amount = Number(price) || 0;
+function formatPinPrice(price, currency = 'EUR', language = 'cs') {
+  let amount = Number(price) || 0;
+  if (currency === 'CZK') amount *= CURRENCY_RATES.CZK;
   if (amount >= 1000000) {
-    const millions = amount / 1000000;
-    return `€${millions.toFixed(millions % 1 === 0 ? 0 : 1)}M`;
+    const millions = Math.round((amount / 1000000) * 10) / 10;
+    const text = String(millions).replace('.', ',');
+    if (language === 'en') return `${text}m`;
+    if (language === 'it') return `${text} mln`;
+    return `${text} mil.`;
   }
-  return `€${Math.round(amount / 1000)}k`;
+  const thousands = Math.round(amount / 1000);
+  if (language === 'en') return `${thousands}k`;
+  if (language === 'it') return `${thousands} mila`;
+  return `${thousands} tis.`;
 }
 
-function createPinIcon(L, property, highlighted) {
+function createPinIcon(L, property, highlighted, currency = 'EUR', language = 'cs') {
   const width = highlighted ? 56 : 46;
   const height = highlighted ? 72 : 60;
   const fill = highlighted ? PIN_HIGHLIGHT_COLOR : PIN_COLOR;
+  const textFill = highlighted ? PIN_HIGHLIGHT_TEXT : '#ffffff';
 
   return L.divIcon({
     className: 'property-pin',
     html: `
-      <svg width="${width}" height="${height}" viewBox="0 0 46 60" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+      <svg width="${width}" height="${height}" viewBox="0 0 46 60" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 2px 4px rgba(14,21,46,0.28));">
         <path d="M23 60C23 60 46 37.5 46 23C46 10.2975 35.7025 0 23 0C10.2975 0 0 10.2975 0 23C0 37.5 23 60 23 60Z" fill="${fill}" stroke="#ffffff" stroke-width="3" />
-        <circle cx="23" cy="23" r="12" fill="rgba(255,255,255,0.15)" />
-        <text x="23" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff" style="paint-order: stroke; stroke: rgba(0,0,0,0.25); stroke-width: 1px;">
-          ${formatPinPrice(property.price)}
+        <text x="23" y="27" text-anchor="middle" font-size="11" font-weight="700" fill="${textFill}">
+          ${formatPinPrice(property.price, currency, language)}
         </text>
       </svg>
     `,
@@ -85,8 +96,8 @@ function createClusterIcon(L, cluster) {
         border: 3px solid #ffffff;
         border-radius: 9999px;
         display: flex; align-items: center; justify-content: center;
-        color: #ffffff; font-weight: 700; font-size: 13px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+        color: #ffffff; font-weight: 700; font-size: 14px;
+        box-shadow: 0 2px 8px rgba(14,21,46,0.28);
       ">${count}</div>
     `,
     iconSize: [size, size],
@@ -95,64 +106,112 @@ function createClusterIcon(L, cluster) {
 }
 
 function MapPropertyCard({ property, currency = 'EUR', language = 'cs', onClose, onNavigate, className = 'w-[280px]' }) {
-  const detailLabel =
-    language === 'cs' ? 'Zobrazit detail' : language === 'it' ? 'Vedi dettagli' : 'View details';
+  const roomsLabel = language === 'cs' ? 'místnosti' : language === 'it' ? 'locali' : 'rooms'
+  const bedroomsLabel = language === 'cs' ? 'ložnice' : language === 'it' ? 'camere' : 'bedrooms'
+  const localizedTitle = getLocalizedValue(property.titleI18n || property.title, language, '')
+  const localizedTypeLabel = getPropertyTypeLabel(property.type, language)
+  const statusLabel = getStatusLabel(property.status, language)
+  const propertySlug = property.slug?.current || property.slug
+  const isLaDanePreview = propertySlug === 'friuli-venezia-giulia-appartamento-zoncolan-la-dane'
+  const laDaneBookingLabel = language === 'cs'
+    ? 'Vytvoř si to podle sebe'
+    : language === 'it'
+    ? 'Prenota e personalizza'
+    : 'Book and customize'
+  const typeIcons = {
+    apartment: Building2,
+    house: Home,
+    villa: Castle,
+    rustico: Home,
+  }
+  const TypeIcon = typeIcons[property.type] || Home
+  const photos = Array.isArray(property.images) && property.images.length > 0
+    ? property.images
+    : [property.image].filter(Boolean)
 
   return (
-    <div className={`${className} overflow-hidden rounded-2xl bg-white`} data-testid="map-property-card">
-      <div className="relative h-[150px] w-full bg-slate-100">
-        {property.image && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={property.image}
-            alt={getLocalizedValue(property.titleI18n || property.title, language, '')}
-            className="h-full w-full object-cover"
-            loading="lazy"
-          />
-        )}
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label={language === 'cs' ? 'Zavřít' : language === 'it' ? 'Chiudi' : 'Close'}
-          className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-md transition-colors hover:bg-white"
-        >
-          <X className="h-4 w-4" />
-        </button>
-        <div className="absolute bottom-2 left-2 rounded-lg bg-white/10 px-3 py-1.5 backdrop-blur-md border border-white/20 shadow">
-          <span className="text-lg font-bold text-white" data-testid="map-card-price">
-            {formatPriceCompact(property.price, currency)}
-          </span>
-        </div>
-      </div>
-      <div className="p-3">
-        <h4 className="mb-1 line-clamp-2 text-sm font-semibold leading-snug text-gray-900">
-          {getLocalizedValue(property.titleI18n || property.title, language)}
-        </h4>
-        <p className="mb-2 text-xs text-gray-500">{getLocalizedValue(property.regionI18n || property.region, language)}</p>
-        <div className="mb-3 flex items-center gap-4 text-xs text-gray-600">
-          {property.bedrooms > 0 && (
-            <span className="flex items-center gap-1">
-              <BedDouble className="h-3.5 w-3.5" />
-              {property.bedrooms}
-            </span>
+    <div className={`${className} group relative overflow-hidden rounded-2xl bg-white`} data-testid="map-property-card">
+      <PropertyPhotoSwitcher
+        key={property.id}
+        photos={photos}
+        alt={localizedTitle}
+        onActivate={onNavigate}
+        language={language}
+        reveal="always"
+        imageTestId="map-card-image"
+      >
+          {(statusLabel || property.isNew || property.noAgency || isLaDanePreview) && (
+            <div className="pointer-events-none absolute left-2.5 top-2.5 z-10 flex max-w-[calc(100%-2.75rem)] flex-wrap gap-1.5">
+              {statusLabel && (
+                <span className="rounded-full bg-[#1b2642] px-2.5 py-1 text-xs font-medium text-white">
+                  {statusLabel}
+                </span>
+              )}
+              {property.isNew && (
+                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-[#0e152e]">
+                  {getNewPropertyLabel(language)}
+                </span>
+              )}
+              {property.noAgency && (
+                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-[#0e152e]">
+                  {getNoAgencyLabel(language)}
+                </span>
+              )}
+              {isLaDanePreview && (
+                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-[#0e152e]">
+                  {laDaneBookingLabel}
+                </span>
+              )}
+            </div>
           )}
-          {property.area > 0 && (
-            <span className="flex items-center gap-1">
-              <SquareIcon className="h-3.5 w-3.5" />
-              {property.area} m²
-            </span>
-          )}
+      </PropertyPhotoSwitcher>
+      <button
+        type="button"
+        onClick={onNavigate}
+        className="block w-full text-left"
+        data-testid="map-card-detail-link"
+      >
+        <div className="p-4">
+          <h4 className="line-clamp-2 text-wrap text-lg font-semibold leading-snug text-gray-900 transition-colors duration-200 group-hover:text-[#8e5636]">
+            {localizedTitle}
+          </h4>
+          <p className="mt-1.5 text-lg font-semibold text-[#8e5636]" data-testid="map-card-price">
+            {formatPriceCompact(property.price, currency, language)}
+          </p>
+          <div className="mt-2.5 border-t border-gray-200 pt-2.5">
+            <p className="flex flex-wrap gap-x-3 gap-y-1.5 text-sm leading-snug text-gray-500">
+              <span className="inline-flex items-center gap-1.5">
+                <TypeIcon className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                {localizedTypeLabel}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                {getLocalizedValue(property.regionI18n || property.region, language)}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <DoorOpen className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                {property.rooms} {roomsLabel}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Bed className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                {property.bedrooms} {bedroomsLabel}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Ruler className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                {property.area} m²
+              </span>
+            </p>
+          </div>
         </div>
-        <button
-          type="button"
-          onClick={onNavigate}
-          className="flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-slate-700 to-slate-800 py-2 text-xs font-semibold text-white transition-all hover:from-slate-600 hover:to-slate-700"
-          data-testid="map-card-detail-link"
-        >
-          {detailLabel}
-          <ChevronRight className="ml-1 h-3.5 w-3.5" />
-        </button>
-      </div>
+      </button>
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label={language === 'cs' ? 'Zavřít' : language === 'it' ? 'Chiudi' : 'Close'}
+        className="absolute right-2.5 top-2.5 z-30 flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#0e152e] shadow-[0_4px_14px_rgba(14,21,46,0.12)] transition-colors hover:bg-[#f7f4ed]"
+      >
+        <X className="h-4 w-4" />
+      </button>
     </div>
   );
 }
@@ -213,6 +272,7 @@ function MapBottomSheet({ children, onClose }) {
  * - selectedId / hoveredId: ids controlled by the parent
  * - onSelect(id): marker clicked
  * - onHover(id|null): marker hover state
+ * - onBoundsChange({ south, north, west, east }): current viewport, after pan or zoom
  * - cardVariant: 'popup' anchors a Leaflet popup at the pin (desktop),
  *   'sheet' shows a swipe-dismissable bottom card (mobile)
  */
@@ -222,6 +282,7 @@ const PropertyMap = ({
   hoveredId = null,
   onSelect = () => {},
   onHover = () => {},
+  onBoundsChange = null,
   cardVariant = 'popup',
   currency = 'EUR',
   language = 'cs',
@@ -238,26 +299,40 @@ const PropertyMap = ({
   const popupContainerRef = useRef(null);
   const boundsSignatureRef = useRef('');
   const highlightRef = useRef({ selectedId: null, hoveredId: null });
+  const activeMarkerIdRef = useRef(null);
 
   // Keep latest callbacks/props in refs so marker handlers never go stale and
   // markers don't need rebuilding when callbacks change identity.
-  const callbacksRef = useRef({ onSelect, onHover, cardVariant });
-  callbacksRef.current = { onSelect, onHover, cardVariant };
+  const callbacksRef = useRef({ onSelect, onHover, onBoundsChange, cardVariant });
+  callbacksRef.current = { onSelect, onHover, onBoundsChange, cardVariant };
 
   const [ready, setReady] = useState(false);
   const [activeProperty, setActiveProperty] = useState(null);
 
   const closeCard = useCallback(() => {
+    activeMarkerIdRef.current = null;
     if (mapRef.current && popupRef.current) {
       mapRef.current.closePopup(popupRef.current);
     }
     setActiveProperty(null);
   }, []);
 
+  // The card renders into the popup after it opens, so Leaflet has to
+  // measure again and pan the taller card fully into the map.
+  useEffect(() => {
+    if (!activeProperty || cardVariant !== 'popup') return undefined;
+    const frame = requestAnimationFrame(() => {
+      popupRef.current?.update();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [activeProperty, cardVariant]);
+
   // --- Map initialization (once) ---
   useEffect(() => {
     let destroyed = false;
     let resizeObserver = null;
+    let stopMarkerFocusScroll = null;
+    let detachReveal = null;
 
     const init = async () => {
       const L = (await import('leaflet')).default || (await import('leaflet'));
@@ -296,8 +371,97 @@ const PropertyMap = ({
 
       popupContainerRef.current = document.createElement('div');
 
+      // Focusing a marker makes the browser scroll the page to a bogus
+      // position because the pin sits in a transformed Leaflet pane.
+      stopMarkerFocusScroll = (event) => {
+        if (event.target?.closest?.('.leaflet-marker-icon')) {
+          event.preventDefault();
+        }
+      };
+      containerRef.current.addEventListener('mousedown', stopMarkerFocusScroll, true);
+
+      // First grab, click, or scroll-zoom brings the whole map into the window.
+      // Deferred so it runs after Leaflet restores the scroll it saves on focus.
+      let revealLocked = false;
+      let revealTimer = 0;
+      const scrollMapIntoView = () => {
+        const mapEl = containerRef.current?.closest('.rounded-2xl') || containerRef.current;
+        if (!mapEl || mapEl.closest('[data-testid="mobile-map-overlay"]')) return false;
+        const nav = document.querySelector('[data-testid="navigation-component"]');
+        const navBottom = nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0;
+        const gap = 16;
+        const topLimit = navBottom + gap;
+        const bottomLimit = window.innerHeight - gap;
+        const rect = mapEl.getBoundingClientRect();
+        if (rect.height < 80) return false;
+        if (rect.top >= topLimit - 2 && rect.bottom <= bottomLimit + 2) return false;
+
+        let delta = rect.top - topLimit;
+        if (rect.bottom - delta > bottomLimit && rect.height <= bottomLimit - topLimit) {
+          delta += rect.bottom - delta - bottomLimit;
+        }
+        const nextTop = Math.max(0, window.scrollY + delta);
+        if (Math.abs(nextTop - window.scrollY) < 2) return false;
+        window.scrollTo({ top: nextTop, behavior: 'smooth' });
+        return true;
+      };
+      const revealMap = () => {
+        if (revealLocked) return;
+        revealLocked = true;
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const moved = scrollMapIntoView();
+            if (!moved) {
+              revealLocked = false;
+              return;
+            }
+            window.clearTimeout(revealTimer);
+            revealTimer = window.setTimeout(() => {
+              revealLocked = false;
+            }, 900);
+          });
+        });
+      };
+      const revealNode = containerRef.current;
+      revealNode.addEventListener('pointerdown', revealMap);
+      revealNode.addEventListener('wheel', revealMap, { passive: true });
+      detachReveal = () => {
+        revealNode.removeEventListener('pointerdown', revealMap);
+        revealNode.removeEventListener('wheel', revealMap);
+        window.clearTimeout(revealTimer);
+      };
+
+      const placeOpenCard = () => {
+        const popup = popupRef.current;
+        const id = activeMarkerIdRef.current;
+        const group = clusterGroupRef.current;
+        const entry = id ? markersByIdRef.current.get(id) : null;
+        if (!popup || !popup.isOpen() || !entry || !group) return;
+        const visible = group.getVisibleParent(entry.marker) || entry.marker;
+        if (visible?.getLatLng) {
+          popup.setLatLng(visible.getLatLng());
+        }
+        popup.update();
+      };
+      const reportBounds = () => {
+        const bounds = map.getBounds();
+        if (!bounds?.isValid?.()) return;
+        const next = {
+          south: bounds.getSouth(),
+          north: bounds.getNorth(),
+          west: bounds.getWest(),
+          east: bounds.getEast(),
+        };
+        if (!Object.values(next).every(Number.isFinite)) return;
+        callbacksRef.current.onBoundsChange?.(next);
+      };
+      map.on('zoomend', placeOpenCard);
+      map.on('moveend', reportBounds);
+      map.on('dragend', reportBounds);
+
       map.on('popupclose', (event) => {
         if (popupRef.current && event.popup === popupRef.current) {
+          activeMarkerIdRef.current = null;
           setActiveProperty(null);
         }
       });
@@ -323,6 +487,10 @@ const PropertyMap = ({
     return () => {
       destroyed = true;
       if (resizeObserver) resizeObserver.disconnect();
+      if (detachReveal) detachReveal();
+      if (containerRef.current && stopMarkerFocusScroll) {
+        containerRef.current.removeEventListener('mousedown', stopMarkerFocusScroll, true);
+      }
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;
@@ -356,22 +524,27 @@ const PropertyMap = ({
         property.id === highlightRef.current.hoveredId;
 
       const marker = L.marker(property.location, {
-        icon: createPinIcon(L, property, isHighlighted),
+        icon: createPinIcon(L, property, isHighlighted, currency, language),
+        keyboard: false,
         zIndexOffset: isHighlighted ? 1000 : 0,
       });
 
       marker.on('click', () => {
         callbacksRef.current.onSelect(property.id);
+        activeMarkerIdRef.current = property.id;
         setActiveProperty(property);
         if (callbacksRef.current.cardVariant === 'popup' && popupContainerRef.current) {
+          const mapHeight = map.getSize().y;
           popupRef.current = L.popup({
             closeButton: false,
             className: 'property-map-popup',
             offset: [0, -58],
             maxWidth: 300,
             minWidth: 280,
+            maxHeight: Math.max(220, mapHeight - 36),
             autoPan: true,
-            autoPanPadding: [24, 24],
+            keepInView: true,
+            autoPanPadding: [16, 16],
           })
             .setLatLng(property.location)
             .setContent(popupContainerRef.current)
@@ -402,6 +575,17 @@ const PropertyMap = ({
     }
   }, [properties, ready, closeCard]);
 
+  useEffect(() => {
+    const L = leafletRef.current;
+    if (!ready || !L) return;
+    markersByIdRef.current.forEach((entry, id) => {
+      const isHighlighted =
+        id === highlightRef.current.selectedId ||
+        id === highlightRef.current.hoveredId;
+      entry.marker.setIcon(createPinIcon(L, entry.property, isHighlighted, currency, language));
+    });
+  }, [currency, language, ready]);
+
   // --- Highlight sync (selected / hovered pin) ---
   useEffect(() => {
     const L = leafletRef.current;
@@ -419,10 +603,10 @@ const PropertyMap = ({
       const entry = markersByIdRef.current.get(id);
       if (!entry) return;
       const isHighlighted = id === next.selectedId || id === next.hoveredId;
-      entry.marker.setIcon(createPinIcon(L, entry.property, isHighlighted));
+      entry.marker.setIcon(createPinIcon(L, entry.property, isHighlighted, currency, language));
       entry.marker.setZIndexOffset(isHighlighted ? 1000 : 0);
     });
-  }, [selectedId, hoveredId, ready]);
+  }, [selectedId, hoveredId, ready, currency, language]);
 
   const handleNavigate = useCallback(() => {
     if (!activeProperty) return;

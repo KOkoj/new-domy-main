@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -20,8 +19,9 @@ import PremiumPdfComingSoonTrigger from '@/components/PremiumPdfComingSoonTrigge
 import { PREMIUM_PDFS_ENABLED } from '@/lib/featureFlags'
 import { supabase } from '@/lib/supabase'
 import { readLanguageFromBrowser, persistLanguage, DEFAULT_LANGUAGE, getInitialLanguage } from '@/lib/userPreferences'
+import { LanguageMenu, SiteNavMenu } from '@/components/SiteNavControls'
 
-export default function Navigation() {
+export default function Navigation({ appearAfterHero = false }) {
   const pathname = usePathname()
   const [user, setUser] = useState(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -30,7 +30,7 @@ export default function Navigation() {
   const [language, setLanguage] = useState(getInitialLanguage)
   const [isPopupBarVisible, setIsPopupBarVisible] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isPastHero, setIsPastHero] = useState(!appearAfterHero)
   const navRef = useRef(null)
 
   const isActive = (path) => {
@@ -49,13 +49,43 @@ export default function Navigation() {
       setIsPopupBarVisible(false)
     }
 
-    // Scroll detection for nav background
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+    const handleLanguageChange = (event) => {
+      if (!event.detail) return
+      setLanguage(event.detail)
     }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('languageChange', handleLanguageChange)
+    return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
+
+  useEffect(() => {
+    if (!appearAfterHero) return
+
+    const update = () => {
+      const hero = document.querySelector('[data-testid="hero-section"]')
+      const heroBottom = hero ? hero.getBoundingClientRect().bottom : window.innerHeight
+      setIsPastHero(heroBottom <= 80)
+    }
+
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    let frame = 0
+    let attempts = 0
+    const attachLenis = () => {
+      if (window.lenis?.on) {
+        window.lenis.on('scroll', update)
+        return
+      }
+      if (attempts > 120) return
+      attempts += 1
+      frame = requestAnimationFrame(attachLenis)
+    }
+    attachLenis()
+    return () => {
+      window.removeEventListener('scroll', update)
+      cancelAnimationFrame(frame)
+      window.lenis?.off?.('scroll', update)
+    }
+  }, [appearAfterHero])
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -123,9 +153,14 @@ export default function Navigation() {
     setLanguage(newLanguage)
     document.documentElement.lang = newLanguage
     persistLanguage(newLanguage)
-
     window.dispatchEvent(new CustomEvent('languageChange', { detail: newLanguage }))
   }
+
+  const authButtonLabel = language === 'cs'
+    ? 'Přihlásit / Registrovat'
+    : language === 'it'
+      ? 'Accedi / Registrati'
+      : 'Login / Register'
 
   const handleClosePopup = () => {
     setIsPopupBarVisible(false)
@@ -143,84 +178,53 @@ export default function Navigation() {
     admin: language === 'cs' ? 'Admin' : language === 'it' ? 'Amministrazione' : 'Admin'
   }
 
+  const navHidden = appearAfterHero && !isPastHero
+
   return (
     <>
     <nav 
       ref={navRef}
-      className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-all duration-300 ease-out ${
-        isScrolled 
-          ? 'shadow-lg backdrop-blur-xl' 
-          : ''
+      className={`fixed top-0 left-0 right-0 z-50 overflow-visible shadow-lg transition-transform duration-700 ease-in-out ${
+        navHidden ? '-translate-y-[calc(100%+6rem)] pointer-events-none shadow-none' : 'translate-y-0'
       }`}
+      aria-hidden={navHidden ? true : undefined}
+      inert={navHidden ? '' : undefined}
       style={{ 
-        backgroundColor: isScrolled ? 'rgba(14, 21, 46, 0.97)' : 'rgba(14, 21, 46, 0.85)',
-        backdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'blur(8px)',
+        backgroundColor: 'rgb(26, 39, 68)',
       }} 
       data-testid="navigation-component"
     >
-      <div className={`container mx-auto px-4 overflow-visible transition-all duration-300 ${isScrolled ? 'pt-2 pb-1.5' : 'pt-3 pb-2 sm:pt-4 sm:pb-2'}`} data-testid="nav-container">
-        <div className="flex items-center justify-between" data-testid="nav-content">
-          <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-8" data-testid="nav-brand-links">
+      <div className="mx-auto w-full max-w-[1800px] overflow-visible px-5 pt-4 pb-3 sm:px-8 sm:pt-5 sm:pb-3 xl:px-12" data-testid="nav-container">
+        <div className="relative flex items-center gap-4" data-testid="nav-content">
+          <div className="flex shrink-0 items-center" data-testid="nav-brand-links">
             <Link href="/" data-testid="nav-brand-link" className="relative overflow-visible">
               <Image
-                src="/logo domy.svg"
+                src="/domy logo V3.svg"
                 alt="Domy v Itálii"
                 width={120}
-                height={115}
-                priority
-                className={`w-auto cursor-pointer z-30 transition-all duration-300 ease-out relative sm:absolute top-0 left-0 drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)] ${isScrolled ? 'h-12 sm:h-16 md:h-24' : 'h-14 sm:h-20 md:h-32'}`}
+                height={120}
+                priority={!appearAfterHero}
+                className={`w-auto cursor-pointer z-30 relative sm:absolute top-0 left-0 h-14 sm:h-20 md:h-24 drop-shadow-[0_2px_6px_rgba(0,0,0,0.22)] ${isMenuOpen ? 'sm:opacity-0' : ''}`}
                 data-testid="nav-brand-logo"
               />
               <div className="hidden sm:block h-12 w-24"></div>
             </Link>
-            <div className="hidden lg:flex items-center space-x-0.5 xl:space-x-1" data-testid="nav-desktop-links">
-              {[
-                { href: '/', label: navLabels.home, testId: 'nav-home-link' },
-                { href: '/process', label: language === 'cs' ? 'Náš proces' : language === 'it' ? 'Il nostro processo' : 'Our Process', testId: 'nav-process-link' },
-                { href: '/properties', label: navLabels.properties, testId: 'nav-properties-link' },
-                { href: '/regions', label: navLabels.regions, testId: 'nav-regions-link' },
-                { href: '/blog', label: language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles', testId: 'nav-blog-link' },
-                { href: '/about', label: navLabels.about, testId: 'nav-about-link' },
-                { href: '/reference', label: navLabels.reference, testId: 'nav-reference-link' },
-                { href: '/contact', label: navLabels.contact, testId: 'nav-contact-link' },
-              ].map(({ href, label, testId }) => (
-                <Link 
-                  key={href}
-                  href={href} 
-                  className={`relative px-2 xl:px-3 py-2 text-sm font-medium leading-none rounded-lg transition-all duration-200 whitespace-nowrap ${
-                    isActive(href) 
-                      ? 'text-white bg-white/10' 
-                      : 'text-gray-300 hover:text-white hover:bg-white/5'
-                  }`}
-                  data-testid={testId}
-                >
-                  {label}
-                  {isActive(href) && (
-                    <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-copper-400 rounded-full" />
-                  )}
-                </Link>
-              ))}
-            </div>
           </div>
+            <SiteNavMenu
+              language={language}
+              isActive={isActive}
+              tone="bar"
+              testIdPrefix="nav-"
+              className="absolute left-1/2 top-0 hidden h-12 -translate-x-[calc(50%+4.5rem)] items-center min-[1400px]:flex"
+            />
           
-          <div className="flex items-center gap-1 sm:gap-2 lg:gap-3" data-testid="nav-user-controls">
-            {/* Language Selector */}
-            <div className="hidden sm:flex items-center bg-white/10 backdrop-blur-md rounded-full px-1 py-1 shadow-sm border border-white/15 gap-0.5">
-              {['en', 'cs', 'it'].map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => handleLanguageChange(lang)}
-                  className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                    language === lang 
-                      ? 'bg-white/20 text-white shadow-sm' 
-                      : 'text-white/50 hover:text-white/80 hover:bg-white/5'
-                  }`}
-                  data-testid={`language-option-${lang}`}
-                >
-                  {lang.toUpperCase()}
-                </button>
-              ))}
-            </div>
+          <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3" data-testid="nav-user-controls">
+            <LanguageMenu
+              language={language}
+              onChange={handleLanguageChange}
+              testIdPrefix="language-option-"
+              className="hidden sm:block"
+            />
 
             {/* User Authentication */}
             {user ? (
@@ -230,7 +234,7 @@ export default function Navigation() {
                     <span className="h-7 w-7 sm:h-8 sm:w-8 border border-white/20 rounded-full bg-white/10 text-white text-sm inline-flex items-center justify-center">
                       {(user.user_metadata?.name || user.email || 'U').charAt(0).toUpperCase()}
                     </span>
-                    <span className="text-sm font-medium hidden lg:inline-block max-w-[100px] truncate">
+                    <span className="text-base font-medium hidden min-[1400px]:inline-block max-w-[100px] truncate">
                       {user.user_metadata?.name || user.email}
                     </span>
                   </Button>
@@ -238,7 +242,7 @@ export default function Navigation() {
                 <DropdownMenuContent align="end" className="w-56 bg-[#0e152e] border-white/20 text-gray-200">
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium leading-none text-white">{user.user_metadata?.name || 'User'}</p>
+                      <p className="text-base font-medium leading-none text-white">{user.user_metadata?.name || 'User'}</p>
                       <p className="text-xs leading-none text-gray-400">{user.email}</p>
                     </div>
                   </DropdownMenuLabel>
@@ -265,30 +269,21 @@ export default function Navigation() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <div className="hidden sm:flex items-center gap-2">
-                <button
-                  onClick={() => { setAuthModalDefaultTab('login'); setIsAuthModalOpen(true) }}
-                  className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md rounded-full px-3 py-1.5 lg:px-4 lg:py-2 text-xs lg:text-sm font-medium leading-none cursor-pointer text-white/90 hover:text-white hover:bg-white/20 border border-white/15 transition-all duration-200"
-                  data-testid="login-button"
-                >
-                  <User className="h-3.5 w-3.5" />
-                  <span>{language === 'cs' ? 'Přihlásit' : (language === 'it' ? 'Accedi' : 'Login')}</span>
-                </button>
-                <button
-                  onClick={() => { setAuthModalDefaultTab('signup'); setIsAuthModalOpen(true) }}
-                  className="flex items-center gap-1.5 bg-copper-500/80 backdrop-blur-md rounded-full px-3 py-1.5 lg:px-4 lg:py-2 text-xs lg:text-sm font-medium leading-none cursor-pointer text-white hover:bg-copper-400 border border-copper-400/50 transition-all duration-200"
-                  data-testid="register-button"
-                >
-                  <span>{language === 'cs' ? 'Registrovat' : (language === 'it' ? 'Registrati' : 'Register')}</span>
-                </button>
-              </div>
+              <button
+                onClick={() => { setAuthModalDefaultTab('login'); setIsAuthModalOpen(true) }}
+                className="hidden sm:flex items-center gap-2 cursor-pointer rounded-full border-0 bg-[#1b2642] px-6 py-3 text-base font-medium leading-none text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)] transition-colors duration-200 hover:bg-[#243056]"
+                data-testid="login-button"
+              >
+                <User className="h-4 w-4" />
+                <span>{authButtonLabel}</span>
+              </button>
             )}
             
             {/* Mobile dashboard shortcut — visible when logged in, below lg */}
             {user && (
               <Link
                 href="/dashboard"
-                className="lg:hidden flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-1.5 text-xs font-medium text-white/90 hover:text-white hover:bg-white/20 border border-white/15 transition-all duration-200"
+                className="min-[1400px]:hidden flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/20 border border-white/15 transition-all duration-200"
                 data-testid="mobile-dashboard-button"
               >
                 <LayoutDashboard className="h-3.5 w-3.5" />
@@ -296,27 +291,16 @@ export default function Navigation() {
               </Link>
             )}
 
-            {/* Mobile language selector */}
-            <div className="sm:hidden flex items-center bg-white/10 backdrop-blur-md rounded-full px-1 py-1 shadow-sm border border-white/15 gap-0.5">
-              {['en', 'cs', 'it'].map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => handleLanguageChange(lang)}
-                  className={`px-2 py-1 rounded-full text-[11px] font-medium leading-none transition-all duration-200 ${
-                    language === lang
-                      ? 'bg-white/20 text-white shadow-sm'
-                      : 'text-white/50 hover:text-white/80 hover:bg-white/5'
-                  }`}
-                  data-testid={`mobile-language-option-${lang}`}
-                >
-                  {lang.toUpperCase()}
-                </button>
-              ))}
-            </div>
+            <LanguageMenu
+              language={language}
+              onChange={handleLanguageChange}
+              testIdPrefix="mobile-language-option-"
+              className="sm:hidden"
+            />
 
             {/* Mobile menu button */}
             <button
-              className="lg:hidden p-2 rounded-lg cursor-pointer text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200"
+              className="min-[1400px]:hidden p-2 rounded-lg cursor-pointer text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               data-testid="mobile-menu-button"
             >
@@ -327,7 +311,7 @@ export default function Navigation() {
         
         {/* Mobile menu */}
         <div 
-          className={`lg:hidden overflow-hidden transition-all duration-200 ease-out ${
+          className={`relative z-40 min-[1400px]:hidden overflow-hidden transition-all duration-200 ease-out ${
             isMenuOpen ? 'max-h-[calc(100dvh-4rem)] opacity-100' : 'max-h-0 opacity-0'
           }`}
           data-testid="mobile-menu"
@@ -335,9 +319,9 @@ export default function Navigation() {
           <div className="flex flex-col space-y-1 pt-4 pb-6 mt-3 border-t border-white/10 overflow-y-auto max-h-[calc(100dvh-6rem)]" data-testid="mobile-menu-links">
             {[
               { href: '/', label: navLabels.home, testId: 'mobile-home-link' },
-              { href: '/process', label: language === 'cs' ? 'Náš proces' : language === 'it' ? 'Il nostro processo' : 'Our Process', testId: 'mobile-process-link' },
               { href: '/properties', label: navLabels.properties, testId: 'mobile-properties-link' },
               { href: '/regions', label: navLabels.regions, testId: 'mobile-regions-link' },
+              { href: '/process', label: language === 'cs' ? 'Náš proces' : language === 'it' ? 'Il nostro processo' : 'Our Process', testId: 'mobile-process-link' },
               { href: '/blog', label: language === 'cs' ? 'Články' : language === 'it' ? 'Articoli' : 'Articles', testId: 'mobile-blog-link' },
               { href: '/faq', label: 'FAQ', testId: 'mobile-faq-link' },
               { href: '/about', label: navLabels.about, testId: 'mobile-about-link' },
@@ -347,11 +331,12 @@ export default function Navigation() {
               <Link 
                 key={href}
                 href={href}
-                className={`px-3 py-2.5 rounded-lg text-base transition-all duration-200 ${
-                  isActive(href) 
-                    ? 'text-white bg-white/10 font-medium' 
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                className={`rounded-lg px-3 py-2.5 text-base transition-colors duration-200 ${
+                  isActive(href)
+                    ? 'bg-white/10 font-medium text-white shadow-[inset_3px_0_0_0_#c48759]'
+                    : 'text-gray-300 hover:bg-white/5 hover:text-white'
                 }`}
+                aria-current={isActive(href) ? 'page' : undefined}
                 onClick={() => setIsMenuOpen(false)}
                 data-testid={testId}
               >
@@ -387,7 +372,7 @@ export default function Navigation() {
                 className="px-3 py-2.5 rounded-lg text-base leading-none cursor-pointer text-copper-300 hover:text-copper-200 hover:bg-white/5 transition-colors text-left font-medium"
                 data-testid="mobile-login-link"
               >
-                {language === 'cs' ? 'Přihlásit / Registrovat' : (language === 'it' ? 'Accedi / Registrati' : 'Login / Register')}
+                {authButtonLabel}
               </button>
             )}
           </div>

@@ -1,4 +1,4 @@
-﻿const nextConfig = {
+const nextConfig = {
   // Removed 'output: standalone' for Vercel deployment
   // Handle verified aliases before slash normalization to avoid a 308 -> 301.
   skipTrailingSlashRedirect: true,
@@ -24,6 +24,7 @@
 
   images: {
     unoptimized: false,
+    qualities: [75, 85],
     remotePatterns: [
       { protocol: 'https', hostname: 'cdn.sanity.io',       pathname: '**' },
       { protocol: 'https', hostname: 'images.unsplash.com', pathname: '**' },

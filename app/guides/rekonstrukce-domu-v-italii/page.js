@@ -439,11 +439,11 @@ export default function RenovationGuideItalyPage() {
   const t = CONTENT[language] || CONTENT.cs
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
       <div className="pt-28 pb-16 md:pb-24">
-        <div className="container mx-auto px-6 mb-6" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6 mb-6">
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <Link href="/" className="hover:text-slate-700">{t.breadcrumb.home}</Link>
             <span>/</span>
@@ -453,7 +453,7 @@ export default function RenovationGuideItalyPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto" style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
             <div className="mb-8">
               <Button asChild variant="outline" className="mb-5 inline-flex items-center border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-700">

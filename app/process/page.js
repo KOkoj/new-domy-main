@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState, useEffect } from 'react'
 import { 
@@ -469,16 +469,17 @@ export default function ProcessPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       {/* Modern Navigation */}
       <Navigation />
 
-      <div className="pt-32 pb-12">
-        {/* Hero Section */}
-        <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm mb-12">
-          <div className="container mx-auto px-6 py-16 md:py-24" style={{maxWidth:"1200px"}}>
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="font-extrabold mb-8 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent px-2">
+      <div className="pt-40 sm:pt-44 pb-12">
+        <div className="container mx-auto mb-16 px-6">
+          <div className="max-w-3xl">
+            <p className="mb-3 text-sm font-semibold tracking-wide text-[#c78b5a]">
+              {language === 'cs' ? 'Náš proces' : language === 'it' ? 'Il nostro processo' : 'Our process'}
+            </p>
+            <h1 className="mb-6 text-pretty">
                 {language === 'cs' ? 'Jak koupit dům v Itálii - Náš proces.' :
                  language === 'it' ? 'Come acquistare una casa in Italia - Il nostro processo.' :
                  'How to Buy a House in Italy - Our Process.'}
@@ -539,7 +540,6 @@ export default function ProcessPage() {
               </div>
             </div>
           </div>
-        </div>
 
         <div className="container mx-auto px-6">
           {/* What You'll Learn Section */}
@@ -909,7 +909,7 @@ export default function ProcessPage() {
       </div>
 
       {/* Footer */}
-      <div className="container mx-auto px-6 pb-16 md:pb-24" style={{maxWidth:"1200px"}}>
+      <div className="container mx-auto px-6 pb-16 md:pb-24">
         <div className="max-w-5xl mx-auto">
           <InformationalDisclaimer language={language} />
         </div>

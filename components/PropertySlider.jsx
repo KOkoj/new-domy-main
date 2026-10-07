@@ -3,14 +3,16 @@
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import useEmblaCarousel from 'embla-carousel-react'
-import { ChevronLeft, ChevronRight, MapPin, Bed, Bath, Square } from 'lucide-react'
+import { ChevronLeft, ChevronRight, MapPin, Bed, Bath, Square, Home, Building2, Castle, DoorOpen, Ruler } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import PropertyImage from '@/components/PropertyImage'
-import { getLocalizedValue } from '@/lib/propertyDisplay'
+import PropertyPhotoSwitcher from '@/components/PropertyPhotoSwitcher'
+import { formatPriceCompact } from '@/lib/currency'
+import { getLocalizedValue, getPropertyTypeLabel, getStatusLabel } from '@/lib/propertyDisplay'
 import { prepareProperties } from '@/lib/propertySliderData'
-import NewPropertyRibbon from '@/components/NewPropertyRibbon'
-import NoAgencyBadge from '@/components/NoAgencyBadge'
+import NewPropertyRibbon, { getNewPropertyLabel } from '@/components/NewPropertyRibbon'
+import NoAgencyBadge, { getNoAgencyLabel } from '@/components/NoAgencyBadge'
 
 const LABELS = {
   cs: {
@@ -60,6 +62,94 @@ function getPropertyHref(property) {
   return '/properties'
 }
 
+function HomeCard({ property, language, currency }) {
+  const title = getLocalizedValue(property.titleI18n, language, 'Property')
+  const href = getPropertyHref(property)
+  const photos = Array.isArray(property.images) && property.images.length > 0
+    ? property.images
+    : [property.image].filter(Boolean)
+  const statusLabel = getStatusLabel(property.status, language)
+  const typeIcons = { apartment: Building2, house: Home, villa: Castle, rustico: Home }
+  const TypeIcon = typeIcons[property.type] || Home
+  const roomsLabel = language === 'cs' ? 'místnosti' : language === 'it' ? 'locali' : 'rooms'
+  const bedroomsLabel = language === 'cs' ? 'ložnice' : language === 'it' ? 'camere' : 'bedrooms'
+  const region = getLocalizedValue(property.regionI18n, language)
+
+  return (
+    <article
+      className="property-card group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl bg-white shadow-[0_10px_32px_rgba(14,21,46,0.06)] transition duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(14,21,46,0.16)]"
+      data-testid="property-card"
+      onPointerDown={(event) => {
+        if (event.target.closest('button')) event.stopPropagation()
+      }}
+    >
+      <PropertyPhotoSwitcher photos={photos} alt={title} href={href} language={language}>
+        {(statusLabel || property.isNew || property.noAgency) && (
+          <div className="pointer-events-none absolute left-3 top-3 z-10 flex max-w-[calc(100%-1.5rem)] flex-wrap gap-1.5">
+            {statusLabel && (
+              <span className="rounded-full bg-[#1b2642] px-2.5 py-1 text-xs font-medium text-white">
+                {statusLabel}
+              </span>
+            )}
+            {property.isNew && (
+              <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-[#0e152e]">
+                {getNewPropertyLabel(language)}
+              </span>
+            )}
+            {property.noAgency && (
+              <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-[#0e152e]">
+                {getNoAgencyLabel(language)}
+              </span>
+            )}
+          </div>
+        )}
+      </PropertyPhotoSwitcher>
+      <Link href={href} className="flex flex-1 flex-col">
+        <div className="flex flex-1 flex-col p-5">
+          <h3 className="line-clamp-2 text-wrap text-lg font-semibold leading-snug text-gray-900 transition-colors duration-200 group-hover:text-[#8e5636]">
+            {title}
+          </h3>
+          <p className="mt-2 text-lg font-semibold text-[#8e5636]">
+            {formatPriceCompact(property.price, currency, language)}
+          </p>
+          <div className="mt-3 border-t border-gray-200 pt-3">
+            <p className="flex flex-wrap gap-x-3 gap-y-1.5 text-sm leading-snug text-gray-500">
+              <span className="inline-flex items-center gap-1.5">
+                <TypeIcon className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                {getPropertyTypeLabel(property.type, language)}
+              </span>
+              {region && (
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                  {region}
+                </span>
+              )}
+              {property.rooms > 0 && (
+                <span className="inline-flex items-center gap-1.5">
+                  <DoorOpen className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                  {property.rooms} {roomsLabel}
+                </span>
+              )}
+              {property.bedrooms > 0 && (
+                <span className="inline-flex items-center gap-1.5">
+                  <Bed className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                  {property.bedrooms} {bedroomsLabel}
+                </span>
+              )}
+              {property.area > 0 && (
+                <span className="inline-flex items-center gap-1.5">
+                  <Ruler className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                  {property.area} m²
+                </span>
+              )}
+            </p>
+          </div>
+        </div>
+      </Link>
+    </article>
+  )
+}
+
 function SlideCard({ property, language, labels }) {
   const title = getLocalizedValue(property.titleI18n, language, 'Property')
   const href = getPropertyHref(property)
@@ -95,7 +185,7 @@ function SlideCard({ property, language, labels }) {
         {property.isNew && <NewPropertyRibbon language={language} />}
         {property.noAgency && (
           <div className="absolute right-3 top-3 z-20 pointer-events-none">
-            <NoAgencyBadge language={language} className="px-2.5 py-1 text-[10px] tracking-[0.1em]" />
+            <NoAgencyBadge language={language} className="px-2.5 py-1 tracking-[0.1em]" />
           </div>
         )}
 
@@ -129,7 +219,7 @@ function SlideCard({ property, language, labels }) {
       </div>
 
       <CardContent className="p-4 flex flex-col gap-2 flex-1">
-        <h3 className="font-semibold text-slate-800 text-sm leading-snug line-clamp-2 group-hover:text-blue-700 transition-colors duration-200">
+        <h3 className="line-clamp-2 text-base font-semibold leading-snug text-slate-800 transition-colors duration-200 group-hover:text-blue-700">
           {title}
         </h3>
         <div className="flex items-center gap-1 text-xs text-gray-500">
@@ -162,14 +252,22 @@ function SlideCard({ property, language, labels }) {
   )
 }
 
-export default function PropertySlider({ language = 'en', initialProperties = [], preparedProperties }) {
+export default function PropertySlider({ language = 'en', initialProperties = [], preparedProperties, variant = 'default' }) {
   const labels = LABELS[language] || LABELS.en
+  const home = variant === 'home'
   const properties = preparedProperties ?? prepareProperties(initialProperties)
+  const [currency, setCurrency] = useState('EUR')
+
+  useEffect(() => {
+    const savedCurrency = localStorage.getItem('preferred-currency')
+    if (savedCurrency === 'EUR' || savedCurrency === 'CZK') setCurrency(savedCurrency)
+  }, [])
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start',
     loop: false,
-    dragFree: true,
+    dragFree: !home,
+    containScroll: 'trimSnaps',
     slidesToScroll: 1,
   })
 
@@ -196,19 +294,26 @@ export default function PropertySlider({ language = 'en', initialProperties = []
   if (properties.length === 0) return null
 
   return (
-    <section className="bg-gray-50 border-t border-gray-100 py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between mb-8">
-          <div>
-            <h2 className="text-2xl font-bold text-slate-800 tracking-tight">
+    <section className={home ? '' : 'bg-gray-50 border-t border-gray-100 py-16'}>
+      <div className={home ? 'w-full' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'}>
+        <div
+          data-reveal={home ? 'rise' : undefined}
+          className={home
+            ? 'mb-8 flex flex-col items-start gap-5 max-sm:flex-row max-sm:items-end max-sm:justify-between min-[1400px]:flex-row min-[1400px]:items-end min-[1400px]:justify-between'
+            : 'mb-8 flex items-end justify-between'}
+        >
+          <div className={home ? 'min-w-0' : undefined}>
+            <h2 className={home ? 'text-pretty text-[2.05rem] font-bold leading-[1.15] text-gray-900' : 'text-2xl font-bold text-slate-800 tracking-tight'}>
               {labels.heading}
             </h2>
-            <div className="w-12 h-1 bg-amber-400 rounded-full mt-2" />
+            {home ? null : <div className="w-12 h-1 bg-amber-400 rounded-full mt-2" />}
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-3">
             <Link
               href="/properties"
-              className="hidden sm:inline-flex items-center text-sm font-medium text-blue-700 hover:text-blue-800 transition-colors duration-150 mr-2"
+              className={home
+                ? 'hidden whitespace-nowrap sm:inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]'
+                : 'hidden sm:inline-flex items-center text-sm font-medium text-blue-700 hover:text-blue-800 transition-colors duration-150 mr-2'}
             >
               {labels.viewAll}
             </Link>
@@ -216,33 +321,42 @@ export default function PropertySlider({ language = 'en', initialProperties = []
               onClick={() => emblaApi?.scrollPrev()}
               disabled={!canPrev}
               aria-label="Previous"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className={home
+                ? 'flex h-10 w-10 items-center justify-center rounded-full bg-[#1b2642] text-white hover:bg-[#243056] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-[#1b2642]'
+                : 'flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed'}
             >
-              <ChevronLeft className="h-4 w-4 text-slate-700" />
+              <ChevronLeft className={`h-4 w-4 ${home ? 'text-white' : 'text-slate-700'}`} />
             </button>
             <button
               onClick={() => emblaApi?.scrollNext()}
               disabled={!canNext}
               aria-label="Next"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className={home
+                ? 'flex h-10 w-10 items-center justify-center rounded-full bg-[#1b2642] text-white hover:bg-[#243056] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-[#1b2642]'
+                : 'flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed'}
             >
-              <ChevronRight className="h-4 w-4 text-slate-700" />
+              <ChevronRight className={`h-4 w-4 ${home ? 'text-white' : 'text-slate-700'}`} />
             </button>
           </div>
         </div>
 
         <div
           ref={emblaRef}
-          style={{ overflow: 'clip', overflowClipMargin: '40px' }}
-          className="-m-[40px] p-[40px]"
+          data-reveal={home ? 'fade' : undefined}
+          style={home ? { '--d': '90ms' } : { overflow: 'clip', overflowClipMargin: '40px' }}
+          className={home ? '-my-4 overflow-hidden py-4' : '-m-[40px] p-[40px]'}
         >
           <div className="flex gap-5">
             {properties.map((property) => (
               <div
                 key={property.id}
-                className="flex-[0_0_280px] sm:flex-[0_0_300px] lg:flex-[0_0_320px] min-w-0"
+                className={home
+                  ? 'min-w-0 flex-[0_0_100%] sm:flex-[0_0_calc((100%-1.25rem)/2)] lg:flex-[0_0_calc((100%-2.5rem)/3)]'
+                  : 'min-w-0 flex-[0_0_280px] sm:flex-[0_0_300px] lg:flex-[0_0_320px]'}
               >
-                <SlideCard property={property} language={language} labels={labels} />
+                {home
+                  ? <HomeCard property={property} language={language} currency={currency} />
+                  : <SlideCard property={property} language={language} labels={labels} />}
               </div>
             ))}
           </div>
@@ -251,9 +365,11 @@ export default function PropertySlider({ language = 'en', initialProperties = []
         <div className="mt-6 flex justify-center sm:hidden">
           <Link
             href="/properties"
-            className="text-sm font-medium text-blue-700 hover:text-blue-800 transition-colors"
+            className={home
+              ? 'inline-flex w-fit items-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]'
+              : 'text-sm font-medium text-blue-700 hover:text-blue-800 transition-colors'}
           >
-            {labels.viewAll} →
+            {labels.viewAll}{home ? '' : ' →'}
           </Link>
         </div>
       </div>

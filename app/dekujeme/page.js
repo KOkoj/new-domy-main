@@ -28,7 +28,7 @@ function ThankYouContent() {
   const valid = VALID_ASSETS.has(asset) && Boolean(token)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       {downloadUrl ? <iframe src={downloadUrl} title="Stažení PDF" className="hidden" /> : null}
       <main className="container mx-auto px-4 py-16 md:py-24">
         <Card className="mx-auto max-w-xl border-slate-200 bg-white/95 shadow-xl">

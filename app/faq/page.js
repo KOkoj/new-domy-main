@@ -135,18 +135,14 @@ export default function FAQPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
-      <div className="pt-28 md:pt-32 pb-12">
-        {/* Hero Section */}
-        <div className="container mx-auto px-6 py-16 md:py-24 mb-8" style={{ maxWidth: '1200px' }}>
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-6">
-              <HelpCircle className="h-4 w-4 text-slate-500" />
-              <span className="text-sm text-slate-600 font-medium">FAQ</span>
-            </div>
-            <h1 className="font-extrabold mb-6 text-slate-800">
+      <div className="pb-12 pt-40 sm:pt-44">
+        <div className="container mx-auto mb-10 px-6">
+          <div className="max-w-3xl">
+            <p className="mb-3 text-sm font-semibold tracking-wide text-[#c78b5a]">FAQ</p>
+            <h1 className="mb-4 text-pretty">
               {language === 'cs' ? 'Časté dotazy ke koupi domů v Itálii' :
                language === 'it' ? 'Domande frequenti sull\'acquisto di una casa in Italia' :
                'FAQ - Buying a House in Italy'}
@@ -159,7 +155,7 @@ export default function FAQPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-6" style={{ maxWidth: '1200px' }}>
+        <div className="container mx-auto px-6">
           {/* FAQ Accordion */}
           <div className="max-w-3xl mx-auto mb-20">
             <div className="space-y-3">

@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function MistakesFreePdfPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f4ed] via-amber-50/20 to-slate-50">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
       <main className="mx-auto max-w-2xl px-6 pb-20 pt-32">
         <Link

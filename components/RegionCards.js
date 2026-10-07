@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState } from 'react'
 import { MapPin, TrendingUp, Home, ChevronRight, Star } from 'lucide-react'
@@ -520,7 +520,7 @@ export default function RegionCards({ language = 'en', showAll = false }) {
            language === 'it' ? 'Regioni Italiane' : 
            'Italian Regions'}
         </h2>
-        <p className="text-gray-500 max-w-2xl mx-auto" style={{ fontSize: '1.0625rem', lineHeight: '1.75' }}>
+        <p className="text-base text-gray-500 max-w-2xl mx-auto">
           {language === 'cs' ? 'Objevte rozmanitost italských regionů - od alpských vrcholů po středomořské pobřeží. Každý region nabízí jedinečnou kulturu, krajinu a příležitosti k investicím.' :
            language === 'it' ? 'Scopri la diversità delle regioni italiane - dalle vette alpine alle coste mediterranee. Ogni regione offre cultura, paesaggio e opportunità di investimento uniche.' :
            'Discover the diversity of Italian regions - from Alpine peaks to Mediterranean coasts. Each region offers unique culture, landscape, and investment opportunities.'}

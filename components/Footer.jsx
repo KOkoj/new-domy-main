@@ -87,12 +87,12 @@ export default function Footer({ language = 'en' }) {
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10" data-testid="footer-content">
           <div className="col-span-2 sm:col-span-2 md:col-span-1" data-testid="footer-brand-section">
             <img
-              src="/logo domy.svg"
+              src="/domy logo V3.svg"
               alt={footerLabels.brand}
               className="h-16 sm:h-20 w-auto mb-4"
               data-testid="footer-brand-logo"
             />
-            <p className="text-gray-400 text-sm sm:text-base mb-4 leading-relaxed" data-testid="footer-brand-description">
+            <p className="text-base text-gray-400 mb-4 leading-relaxed" data-testid="footer-brand-description">
               {footerLabels.brandDescription}
             </p>
             <div className="space-y-2 text-gray-400 text-sm md:max-w-sm">
@@ -110,7 +110,7 @@ export default function Footer({ language = 'en' }) {
           </div>
 
           <div data-testid="footer-contact-section">
-            <h5 className="font-semibold mb-4 sm:mb-5 text-sm sm:text-base uppercase tracking-wider text-gray-300">
+            <h5 className="font-semibold mb-4 sm:mb-5 text-base uppercase tracking-wider text-gray-300">
               {language === 'cs' ? 'Kontakt' : language === 'it' ? 'Contatto' : 'Contact'}
             </h5>
             <ul className="space-y-4 text-gray-400 text-sm">
@@ -139,7 +139,7 @@ export default function Footer({ language = 'en' }) {
           </div>
 
           <div data-testid="footer-links-section">
-            <h5 className="font-semibold mb-4 sm:mb-5 text-sm sm:text-base uppercase tracking-wider text-gray-300">
+            <h5 className="font-semibold mb-4 sm:mb-5 text-base uppercase tracking-wider text-gray-300">
               {language === 'cs' ? 'Nabídka' : language === 'it' ? 'Offerta' : 'Explore'}
             </h5>
             <ul className="space-y-2.5 text-gray-400 text-sm">
@@ -160,7 +160,7 @@ export default function Footer({ language = 'en' }) {
           </div>
 
           <div data-testid="footer-support-section">
-            <h5 className="font-semibold mb-4 sm:mb-5 text-sm sm:text-base uppercase tracking-wider text-gray-300" data-testid="footer-support-title">
+            <h5 className="font-semibold mb-4 sm:mb-5 text-base uppercase tracking-wider text-gray-300" data-testid="footer-support-title">
               {footerLabels.support}
             </h5>
             <ul className="space-y-2.5 text-gray-400 text-sm" data-testid="footer-support-links">

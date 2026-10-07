@@ -1,7 +1,7 @@
-﻿'use client'
+'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { BookOpen, Clock, ChevronRight } from 'lucide-react'
+import { Clock, ChevronRight } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
@@ -184,18 +184,15 @@ export default function GuidesHubPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#faf8f5]">
+    <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
-      <main className="pt-28 pb-14">
-        <div className="container mx-auto px-6" style={{maxWidth:"1200px"}}>
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-5">
-                <BookOpen className="h-4 w-4 text-slate-600" />
-                <span className="text-sm text-slate-700 font-medium">{copy.badge}</span>
-              </div>
-              <h1 className="font-bold text-slate-900 mb-8">{copy.title}</h1>
+      <main className="pb-14 pt-40 sm:pt-44">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl">
+            <div className="mb-10">
+              <p className="mb-3 text-sm font-semibold tracking-wide text-[#c78b5a]">{copy.badge}</p>
+              <h1 className="mb-4 text-pretty">{copy.title}</h1>
               <p className="text-slate-600 text-lg">{copy.subtitle}</p>
             </div>
 
@@ -205,10 +202,10 @@ export default function GuidesHubPage() {
                   key={guide.slug}
                   href={`/guides/${guide.slug}`}
                   language={language}
-                  className="block bg-white border border-slate-200 rounded-xl p-5 hover:shadow-md transition-shadow"
+                  className="block rounded-2xl bg-white p-5 shadow-[0_10px_32px_rgba(14,21,46,0.06)] transition-shadow hover:shadow-[0_16px_40px_rgba(14,21,46,0.1)]"
                 >
                   <div className="flex items-center justify-between gap-4 mb-2">
-                    <h2 className="font-semibold text-slate-900">{localize(guide.title, language)}</h2>
+                    <h2 className="text-xl font-semibold leading-snug text-slate-900">{localize(guide.title, language)}</h2>
                     <ChevronRight className="h-5 w-5 text-slate-400 flex-shrink-0" />
                   </div>
                   <p className="text-slate-600 mb-3">{localize(guide.excerpt, language)}</p>
@@ -226,7 +223,7 @@ export default function GuidesHubPage() {
         </div>
       </main>
 
-      <div className="container mx-auto px-6 pb-10" style={{ maxWidth: '1200px' }}>
+      <div className="container mx-auto px-6 pb-10">
         <div className="max-w-5xl mx-auto">
           <InformationalDisclaimer language={language} />
         </div>
