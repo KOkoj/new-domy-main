@@ -32,7 +32,7 @@ const LABELS = {
     beds: 'camere',
     baths: 'bagni',
     sqm: 'm²',
-    sold: 'Venduto',
+    sold: 'Venduta',
     reserved: 'Riservato',
   },
   en: {
