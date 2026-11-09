@@ -232,7 +232,7 @@ export default function RegionsListingClient({ initialRegions, initialProperties
               <p className="mt-2 max-w-[40rem] text-base leading-relaxed text-gray-700">
                 {language === 'cs' ? 'Sledujte naše tipy na cestování, zajímavá místa a praktické rady k poznávání regionů.' : language === 'it' ? 'Seguici per idee di viaggio, luoghi da scoprire e consigli pratici sulle regioni.' : 'Follow us for travel ideas, places to discover, and practical tips on the regions.'}
               </p>
-              <SocialLinks className="mt-4" testIdPrefix="regions-social" />
+              <SocialLinks className="mt-4" tone="region" testIdPrefix="regions-social" />
             </div>
           </section>
 

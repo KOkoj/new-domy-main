@@ -866,7 +866,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
                   <p className="mb-3 text-sm font-semibold text-white/80">
                     {language === 'cs' ? 'Sledujte nás' : language === 'it' ? 'Seguici' : 'Follow us'}
                   </p>
-                  <SocialLinks tone="dark" testIdPrefix="hero-menu-social" />
+                  <SocialLinks tone="hero" testIdPrefix="hero-menu-social" />
                 </div>
               </div>
             </div>
@@ -931,7 +931,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
               <span className="text-sm font-medium">
                 {language === 'cs' ? 'Sledujte Domy v Itálii' : language === 'it' ? 'Segui Domy v Itálii' : 'Follow Domy v Itálii'}
               </span>
-              <SocialLinks tone="dark" testIdPrefix="home-hero-social" />
+              <SocialLinks tone="hero" testIdPrefix="home-hero-social" />
             </div>
           </div>
         </div>

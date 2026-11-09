@@ -1493,7 +1493,7 @@ export default function RegionDetailClient({ initialProperties = [] }) {
             <p className="mt-2 max-w-[40rem] text-base leading-relaxed text-gray-700">
               {language === 'cs' ? 'Sledujte nás pro místa, cestovatelské tipy a praktické rady k poznávání italských regionů.' : language === 'it' ? 'Seguici per scoprire luoghi, idee di viaggio e consigli pratici sulle regioni italiane.' : 'Follow us for places to discover, travel ideas, and practical tips on Italian regions.'}
             </p>
-            <SocialLinks className="mt-4" testIdPrefix="region-detail-social" />
+            <SocialLinks className="mt-4" tone="region" testIdPrefix="region-detail-social" />
           </section>
 
           <section className="mt-16 rounded-2xl bg-white px-6 py-8 shadow-[0_10px_32px_rgba(14,21,46,0.06)] sm:px-10">
