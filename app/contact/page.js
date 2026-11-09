@@ -11,6 +11,7 @@ import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
+import SocialLinks from '@/components/SocialLinks'
 import { t } from '@/lib/translations'
 
 const CONTACT_INFO = [
@@ -232,6 +233,12 @@ export default function ContactPage() {
                       </div>
                     </div>
                   ))}
+                  <div className="border-t border-gray-100 pt-5">
+                    <p className="mb-3 text-sm font-semibold text-slate-800">
+                      {language === 'cs' ? 'Sledujte nás' : language === 'it' ? 'Seguici' : 'Follow us'}
+                    </p>
+                    <SocialLinks testIdPrefix="contact-social" />
+                  </div>
                   <p className="mt-3 text-xs text-slate-300 leading-relaxed">
                     {language === 'cs'
                       ? 'První kontakt slouží k základnímu zorientování a nenahrazuje formální posouzení konkrétního případu.'

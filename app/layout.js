@@ -9,6 +9,7 @@ import { readLanguageFromCookies } from '@/lib/userPreferences'
 import { Analytics } from '@vercel/analytics/next'
 import AffiliateClickAnalytics from '@/components/AffiliateClickAnalytics'
 import MetaTracking from '@/components/MetaTracking'
+import { SOCIAL_PROFILES } from '@/lib/socialProfiles'
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -66,7 +67,8 @@ export default async function RootLayout({ children }) {
     '@type': 'Organization',
     name: SITE_NAME,
     url: SITE_URL,
-    email: 'info@domyvitalii.cz'
+    email: 'info@domyvitalii.cz',
+    sameAs: SOCIAL_PROFILES.map(({ url }) => url)
   }
 
   const websiteSchema = {

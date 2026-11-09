@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Phone, Mail, MapPin, ArrowUpRight } from 'lucide-react'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
+import SocialLinks from '@/components/SocialLinks'
 
 export default function Footer({ language = 'en' }) {
   const footerLabels = {
@@ -95,6 +96,12 @@ export default function Footer({ language = 'en' }) {
             <p className="text-base text-gray-400 mb-4 leading-relaxed" data-testid="footer-brand-description">
               {footerLabels.brandDescription}
             </p>
+            <div className="mb-6">
+              <p className="mb-3 text-sm font-semibold text-gray-200">
+                {language === 'cs' ? 'Sledujte nás' : language === 'it' ? 'Seguici' : 'Follow us'}
+              </p>
+              <SocialLinks tone="dark" testIdPrefix="footer-social" />
+            </div>
             <div className="space-y-2 text-gray-400 text-sm md:max-w-sm">
               <p className="font-semibold text-gray-200 tracking-wide">Creavita s.r.o.</p>
               <div className="flex items-start gap-2.5">

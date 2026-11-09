@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
+import SocialLinks from '@/components/SocialLinks'
 import { formatPriceCompact } from '@/lib/currency'
 import { AFFILIATE_LINKS } from '@/lib/affiliateLinks'
 
@@ -223,6 +224,15 @@ export default function RegionsListingClient({ initialRegions, initialProperties
               >
                 {copy.tours}
               </button>
+            </div>
+            <div className="mt-8 border-t border-[#1b2642]/10 pt-6">
+              <h3 className="text-lg font-semibold text-gray-900">
+                {language === 'cs' ? 'Objevujte Itálii i s námi' : language === 'it' ? 'Scopri l’Italia anche con noi' : 'Explore Italy with us'}
+              </h3>
+              <p className="mt-2 max-w-[40rem] text-base leading-relaxed text-gray-700">
+                {language === 'cs' ? 'Sledujte naše tipy na cestování, zajímavá místa a praktické rady k poznávání regionů.' : language === 'it' ? 'Seguici per idee di viaggio, luoghi da scoprire e consigli pratici sulle regioni.' : 'Follow us for travel ideas, places to discover, and practical tips on the regions.'}
+              </p>
+              <SocialLinks className="mt-4" testIdPrefix="regions-social" />
             </div>
           </section>
 

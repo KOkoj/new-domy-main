@@ -12,6 +12,7 @@ import ProtectedContentLink from '@/components/ProtectedContentLink'
 const AuthModal = dynamic(() => import('@/components/AuthModal'), { ssr: false })
 const KlubInfoModal = dynamic(() => import('@/components/KlubInfoModal'), { ssr: false })
 import Footer from '@/components/Footer'
+import SocialLinks from '@/components/SocialLinks'
 import PropertySlider from '@/components/PropertySlider'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import Navigation from '../components/Navigation'
@@ -746,7 +747,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative w-full overflow-hidden"
+        className="relative w-full overflow-hidden bg-[#0e152e]"
         style={{ minHeight: '100vh' }}
         data-testid="hero-section"
       >
@@ -835,7 +836,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
 
           {isHeroMenuOpen && (
             <div className="container relative z-40 mx-auto px-4 pt-3 min-[1400px]:hidden">
-              <div className="flex flex-col rounded-xl border border-white/20 bg-[rgba(14,21,46,0.88)] p-2">
+              <div className="flex max-h-[calc(100dvh-7rem)] flex-col overflow-y-auto rounded-xl border border-white/20 bg-[rgba(14,21,46,0.88)] p-2">
                 {[
                   { href: '/', label: language === 'cs' ? 'Domů' : language === 'it' ? 'Casa' : 'Home' },
                   { href: '/properties', label: language === 'cs' ? 'Nemovitosti' : language === 'it' ? 'Proprietà' : 'Properties' },
@@ -861,6 +862,12 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
                     {label}
                   </Link>
                 ))}
+                <div className="mt-2 border-t border-white/15 px-3 pt-4">
+                  <p className="mb-3 text-sm font-semibold text-white/80">
+                    {language === 'cs' ? 'Sledujte nás' : language === 'it' ? 'Seguici' : 'Follow us'}
+                  </p>
+                  <SocialLinks tone="dark" testIdPrefix="hero-menu-social" />
+                </div>
               </div>
             </div>
           )}
@@ -919,6 +926,12 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
               >
                 {language === 'cs' ? 'Náš proces' : language === 'it' ? 'Il nostro processo' : 'Our process'}
               </Link>
+            </div>
+            <div className="hero-enter mt-5 flex flex-col items-center gap-2 text-white/90 sm:flex-row" style={{ '--d': '660ms' }}>
+              <span className="text-sm font-medium">
+                {language === 'cs' ? 'Sledujte Domy v Itálii' : language === 'it' ? 'Segui Domy v Itálii' : 'Follow Domy v Itálii'}
+              </span>
+              <SocialLinks tone="dark" testIdPrefix="home-hero-social" />
             </div>
           </div>
         </div>
