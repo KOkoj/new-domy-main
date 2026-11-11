@@ -245,7 +245,7 @@ export default function Navigation({ appearAfterHero = false, showConcierge = fa
                     <span className="h-7 w-7 sm:h-8 sm:w-8 border border-white/20 rounded-full bg-white/10 text-white text-sm inline-flex items-center justify-center">
                       {(user.user_metadata?.name || user.email || 'U').charAt(0).toUpperCase()}
                     </span>
-                    <span className={`text-base font-medium ${showConcierge ? 'hidden' : 'hidden min-[1400px]:inline-block'} max-w-[100px] truncate`}>
+                    <span className={`text-base font-medium ${showConcierge ? 'sr-only' : 'hidden min-[1400px]:inline-block'} max-w-[100px] truncate`}>
                       {user.user_metadata?.name || user.email}
                     </span>
                   </Button>

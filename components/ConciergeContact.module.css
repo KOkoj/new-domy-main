@@ -64,7 +64,7 @@
 .mobileContact span { display: none; font-size: 14px; line-height: 20px; font-weight: 700; white-space: nowrap; }
 @media (min-width: 640px) { .mobileContact span { display: inline; } }
 @media (min-width: 1024px) { .compact { display: flex; } .mobileContact { display: none; } }
-@media (min-width: 1280px) {
+@media (min-width: 1400px) {
   .floating { position: absolute; right: max(32px, 3.9vw); bottom: 49px; gap: 35px; margin: 0; }
 }
 

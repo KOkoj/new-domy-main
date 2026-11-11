@@ -753,7 +753,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
         data-testid="hero-section"
       >
         {/* Photo stays locked to the viewport; the section clips it as it scrolls away. */}
-        <div ref={heroBgRef} className="pointer-events-none absolute inset-x-0 top-0 h-full xl:h-screen" data-testid="hero-background">
+        <div ref={heroBgRef} className="pointer-events-none absolute inset-x-0 top-0 h-full min-[1400px]:h-screen" data-testid="hero-background">
           <BackgroundImageTransition
             images={heroBackgroundImages}
             transitionDuration={6000}
@@ -867,7 +867,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
             </div>
           )}
 
-          <div className="container relative z-10 mx-auto flex w-full flex-1 flex-col items-center justify-center px-4 pb-8 pt-8 text-center xl:pb-16 xl:pt-0" data-testid="hero-copy">
+          <div className="container relative z-10 mx-auto flex w-full flex-1 flex-col items-center justify-center px-4 pb-8 pt-8 text-center min-[1400px]:pb-16 min-[1400px]:pt-0" data-testid="hero-copy">
             <h1
               className="hero-enter max-w-4xl font-bold text-white text-hero"
               style={{
