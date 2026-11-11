@@ -931,12 +931,6 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
                 {language === 'cs' ? 'Náš proces' : language === 'it' ? 'Il nostro processo' : 'Our process'}
               </Link>
             </div>
-            <div className="hero-enter mt-5 flex flex-col items-center gap-2 text-white/90 sm:flex-row" style={{ '--d': '660ms' }}>
-              <span className="text-sm font-medium">
-                {language === 'cs' ? 'Sledujte Domy v Itálii' : language === 'it' ? 'Segui Domy v Itálii' : 'Follow Domy v Itálii'}
-              </span>
-              <SocialLinks tone="hero" testIdPrefix="home-hero-social" />
-            </div>
           </div>
           <ConciergeContact language={language} />
         </div>
