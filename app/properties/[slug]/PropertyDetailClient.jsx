@@ -24,19 +24,8 @@ import Navigation from '@/components/Navigation'
 import NewPropertyRibbon, { getNewPropertyLabel } from '@/components/NewPropertyRibbon'
 import NoAgencyBadge, { getNoAgencyLabel } from '@/components/NoAgencyBadge'
 import { buildGalleryMedia, transformPropertyForClient } from '@/lib/propertyTransform'
+import { getStatusLabel } from '@/lib/propertyDisplay'
 import { t } from '@/lib/translations'
-
-function getPropertyStatusLabel(status, language) {
-  if (status === 'sold') {
-    return language === 'cs' ? 'Prodano' : language === 'it' ? 'Venduto' : 'Sold'
-  }
-
-  if (status === 'reserved') {
-    return language === 'cs' ? 'Rezervovano' : language === 'it' ? 'Riservato' : 'Reserved'
-  }
-
-  return null
-}
 
 const PROPERTY_TYPE_LABELS = {
   apartment: { cs: 'Byt', it: 'Appartamento', en: 'Apartment' },
@@ -66,7 +55,7 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
   const [mounted, setMounted] = useState(false)
   const [failedIndices, setFailedIndices] = useState(() => new Set())
   const videoRef = useRef(null)
-  const statusLabel = getPropertyStatusLabel(status, language)
+  const statusLabel = getStatusLabel(status, language)
 
   const imageCount = media.filter((item) => item.type === 'image').length
   const hasVideo = media.some((item) => item.type === 'video')
@@ -849,7 +838,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                         : property.status === 'reserved'
                         ? (language === 'cs' ? 'Rezervováno' : language === 'it' ? 'Riservato' : 'Reserved')
                         : property.status === 'sold'
-                        ? (language === 'cs' ? 'Prodáno' : language === 'it' ? 'Venduto' : 'Sold')
+                        ? getStatusLabel(property.status, language)
                         : getLocalizedText(property.status, '')
                       }
                     </Badge>

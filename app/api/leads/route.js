@@ -10,6 +10,7 @@ import {
 } from '@/lib/leadAssets'
 import { logLeadEmail } from '@/lib/leadService'
 import { getSupabaseAdminClient } from '@/lib/supabaseAdmin'
+import { trackServerEvent } from '@/lib/trackServerEvent'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -68,6 +69,7 @@ export async function POST(request) {
         .single()
       if (error) throw error
 
+      await trackServerEvent(request, 'lead_submit', { type: source || 'lead' })
       return NextResponse.json({
         success: true,
         confirmed: true,
@@ -144,6 +146,7 @@ export async function POST(request) {
       )
     }
 
+    await trackServerEvent(request, 'lead_submit', { type: source || 'lead' })
     return NextResponse.json({ success: true, confirmed: false })
   } catch (error) {
     console.error('[LEADS] Submission failed:', error.message)

@@ -7,6 +7,7 @@ import { cookies } from 'next/headers'
 import { SITE_NAME, SITE_URL } from '@/lib/siteConfig'
 import { readLanguageFromCookies } from '@/lib/userPreferences'
 import { Analytics } from '@vercel/analytics/next'
+import ConversionTracking from '@/components/ConversionTracking'
 import AffiliateClickAnalytics from '@/components/AffiliateClickAnalytics'
 import MetaTracking from '@/components/MetaTracking'
 import { SOCIAL_PROFILES } from '@/lib/socialProfiles'
@@ -17,7 +18,7 @@ const manrope = Manrope({
   variable: '--font-manrope',
   fallback: ['system-ui', 'arial'],
   preload: true,
-  weight: ['400', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
 })
 
 const sora = Sora({
@@ -95,6 +96,7 @@ export default async function RootLayout({ children }) {
         <NavigationProgress />
         {children}
         <ScrollToTop />
+        <ConversionTracking />
         <AffiliateClickAnalytics />
         <MetaTracking />
         {/* Vercel Analytics */}

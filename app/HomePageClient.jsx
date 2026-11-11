@@ -7,6 +7,8 @@ import Image from 'next/image'
 import Lenis from 'lenis'
 import { MapPin, ChevronRight, Check, Globe, Lock, Banknote, AlertTriangle, HelpCircle, Search, User, Menu, X } from 'lucide-react'
 import BackgroundImageTransition from '@/components/BackgroundImageTransition'
+import ConciergeContact from '@/components/ConciergeContact'
+import LucieBenesovaCard from '@/components/stories/LucieBenesovaCard'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
 
 const AuthModal = dynamic(() => import('@/components/AuthModal'), { ssr: false })
@@ -14,6 +16,7 @@ const KlubInfoModal = dynamic(() => import('@/components/KlubInfoModal'), { ssr:
 import Footer from '@/components/Footer'
 import SocialLinks from '@/components/SocialLinks'
 import PropertySlider from '@/components/PropertySlider'
+import { trackClientEvent } from '@/lib/trackClientEvent'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import Navigation from '../components/Navigation'
 import { LanguageMenu, SiteNavMenu } from '../components/SiteNavControls'
@@ -736,6 +739,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
   }
 
   const handleBookCall = () => {
+    trackClientEvent('consult_cta_click', { location: 'home' })
     window.location.href = '/book-call'
   }
 
@@ -752,7 +756,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
         data-testid="hero-section"
       >
         {/* Photo stays locked to the viewport; the section clips it as it scrolls away. */}
-        <div ref={heroBgRef} className="pointer-events-none absolute inset-x-0 top-0 h-screen" data-testid="hero-background">
+        <div ref={heroBgRef} className="pointer-events-none absolute inset-x-0 top-0 h-full min-[1400px]:h-screen" data-testid="hero-background">
           <BackgroundImageTransition
             images={heroBackgroundImages}
             transitionDuration={6000}
@@ -872,7 +876,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
             </div>
           )}
 
-          <div className="container relative z-10 mx-auto flex w-full flex-1 flex-col items-center justify-center px-4 pb-16 text-center" data-testid="hero-copy">
+          <div className="container relative z-10 mx-auto flex w-full flex-1 flex-col items-center justify-center px-4 pb-24 pt-20 text-center sm:pb-16 sm:pt-16 min-[1400px]:pt-0" data-testid="hero-copy">
             <h1
               className="hero-enter max-w-4xl font-bold text-white text-hero"
               style={{
@@ -934,6 +938,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
               <SocialLinks tone="hero" testIdPrefix="home-hero-social" />
             </div>
           </div>
+          <ConciergeContact language={language} />
         </div>
       </section>
 
@@ -941,7 +946,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
         <div className="mx-auto flex w-full max-w-[1800px] flex-col gap-24 px-5 sm:gap-36 sm:px-8 xl:px-[10rem]">
       {/* How It Works Section */}
       <section data-testid="how-it-works-section">
-          <div className="grid items-stretch gap-3 lg:grid-cols-[42rem_minmax(0,1fr)]">
+          <div className="mx-auto grid w-full max-w-[1217px] items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,408px)] lg:gap-16 xl:gap-28">
             <div className="flex flex-col justify-center lg:py-4 lg:pr-8">
               <h2 data-reveal="rise" className="text-pretty text-[2.05rem] font-bold leading-[1.15] text-gray-900">
                 {language === 'cs' ? 'Čtyři kroky od prvního hovoru k předání klíčů.' :
@@ -985,31 +990,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
               </div>
             </div>
 
-            <figure data-reveal="photo" style={{ '--d': '180ms' }} className="relative h-72 overflow-hidden rounded-2xl sm:h-80 lg:h-full lg:min-h-[440px]" data-testid="process-photo">
-                <Image
-                  src="/Toscana.png"
-                  alt={language === 'cs' ? 'Kamenný dům mezi cypřiši v toskánské krajině' : language === 'it' ? 'Casa in pietra tra i cipressi nella campagna toscana' : 'A stone house among cypresses in the Tuscan countryside'}
-                  fill
-                  sizes="(min-width: 1024px) 560px, 100vw"
-                  className="object-cover object-[center_58%]"
-                />
-                <div
-                  className="pointer-events-none absolute inset-0"
-                  style={{ background: 'linear-gradient(to top, rgba(14,21,46,0.72) 0%, rgba(14,21,46,0.28) 34%, rgba(14,21,46,0) 58%)' }}
-                />
-                <figcaption className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-copper-200">
-                    {language === 'cs' ? 'Toskánsko' : language === 'it' ? 'Toscana' : 'Tuscany'}
-                  </p>
-                  <Link
-                    href="/properties?region=toscana"
-                    className="mt-2 inline-flex items-center gap-1.5 text-base font-semibold text-white underline decoration-white/50 underline-offset-4 transition-colors hover:text-copper-200 hover:decoration-copper-200"
-                  >
-                    {language === 'cs' ? 'Zobrazit nemovitosti v Toskánsku' : language === 'it' ? 'Vedi gli immobili in Toscana' : 'View properties in Tuscany'}
-                    <ChevronRight className="h-4 w-4" />
-                  </Link>
-                </figcaption>
-              </figure>
+            <LucieBenesovaCard language={language} />
           </div>
       </section>
 

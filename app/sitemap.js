@@ -9,6 +9,7 @@ const STATIC_ROUTES = [
   '/',
   '/about',
   '/blog',
+  '/blog/pribeh-lucie-benesove-1',
   '/clanky/pruvodce-italii',
   '/contact',
   '/faq',
