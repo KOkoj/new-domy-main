@@ -88,11 +88,35 @@ export const REGION_LABELS = Object.fromEntries(
 )
 
 const REGION_SLUG_ALIASES = {
+  // Italian, English and Czech names all resolve to the canonical slugs used
+  // by the filters and region routes. Values not listed here remain valid
+  // normalized slugs, so this also works with future regions.
+  apulia: 'puglia',
+  apulie: 'puglia',
+  benatsko: 'veneto',
+  calabria: 'calabria',
+  kalabrie: 'calabria',
+  campania: 'campania',
+  kampanie: 'campania',
+  'emilie-romagna': 'emilia-romagna',
+  'friuli-venezia-giulia': 'friuli-venezia-giulia',
+  'furlansko-julske-benatsko': 'friuli-venezia-giulia',
+  ligurie: 'liguria',
   lombardia: 'lombardy',
+  lombardie: 'lombardy',
+  marky: 'marche',
+  piemont: 'piemonte',
   piedmont: 'piemonte',
+  sardegna: 'sardegna',
+  sardinie: 'sardegna',
   sicily: 'sicilia',
+  sicilie: 'sicilia',
   sardinia: 'sardegna',
+  toskansko: 'toscana',
   tuscany: 'toscana',
+  'tridentsko-horni-adize': 'trentino-alto-adige',
+  umbrie: 'umbria',
+  'udoli-aosty': 'valle-d-aosta',
   'aosta-valley': 'valle-d-aosta',
   'valle-daosta': 'valle-d-aosta'
 };
