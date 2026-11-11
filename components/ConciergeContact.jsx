@@ -18,18 +18,21 @@ const LABELS = {
     hoursLabel: 'Volat můžete:', hours: 'Po–Pá: 9–16 a 18–20 hod.',
     close: 'Zavřít kontakt', open: 'Otevřít kontakt na Lucii Kučerovou',
     contact: 'Kontakt na Lucii Kučerovou', call: 'Zavolat Lucii Kučerové',
+    role: 'konzultant',
   },
   it: {
     greeting: 'Buongiorno 👋', invitation: 'Avete bisogno di un consiglio?',
     hoursLabel: 'Potete chiamare:', hours: 'Lun–Ven: 9–16 e 18–20',
     close: 'Chiudi il contatto', open: 'Apri il contatto di Lucie Kučerová',
     contact: 'Contatto di Lucie Kučerová', call: 'Chiama Lucie Kučerová',
+    role: 'consulente',
   },
   en: {
     greeting: 'Hello 👋', invitation: 'Need some advice?',
     hoursLabel: 'You can call:', hours: 'Mon–Fri: 9–16 and 18–20',
     close: 'Close contact', open: 'Open contact for Lucie Kučerová',
     contact: 'Contact Lucie Kučerová', call: 'Call Lucie Kučerová',
+    role: 'consultant',
   },
 }
 
@@ -113,7 +116,7 @@ export default function ConciergeContact({ language = 'cs' }) {
             <Portrait />
             <div className={styles.identity}>
               <p className={styles.name}>Lucie Kučerová</p>
-              <p className={styles.role}>concierge agent</p>
+              <p className={styles.role}>{labels.role}</p>
             </div>
           </div>
           <div className={styles.welcome}>

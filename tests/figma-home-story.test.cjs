@@ -11,6 +11,8 @@ test('homepage contact is scoped to the homepage and remains dismissible and cal
   assert.match(read('app/HomePageClient.jsx'), /<ConciergeContact language=\{language\} \/>/)
   const contact = read('components/ConciergeContact.jsx')
   assert.match(contact, /tel:\+420731450001/)
+  assert.match(contact, /role: 'konzultant'/)
+  assert.ok(!contact.includes('concierge agent'))
   assert.match(contact, /Po–Pá: 9–16 a 18–20 hod\./)
   assert.match(contact, /aria-expanded=\{open\}/)
   assert.match(contact, /event.key === 'Escape'/)
