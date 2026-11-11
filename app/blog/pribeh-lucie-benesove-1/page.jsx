@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
@@ -6,6 +7,7 @@ import PageIntro from '@/components/PageIntro'
 import JsonLd from '@/components/seo/JsonLd'
 import { buildArticleJsonLd, buildArticleMetadata, buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
 import story from '@/data/lucie-benesova-story.json'
+import ArticleProperties from '@/components/articles/ArticleProperties'
 
 const seo = {
   title: story.title,
@@ -61,6 +63,9 @@ export default function LucieBenesovaStoryPage() {
             </nav>
           </div>
         </article>
+        <Suspense fallback={null}>
+          <ArticleProperties />
+        </Suspense>
       </main>
       <Footer language="cs" />
     </div>
