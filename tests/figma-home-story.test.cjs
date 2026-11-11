@@ -29,6 +29,17 @@ test('homepage uses the supplied new photo and links to the public first story i
   assert.match(read('components/stories/LucieBenesovaCard.module.css'), /\.description \{ color: #fff/)
   assert.ok(read('app/blog/page.js').includes(story.path))
   assert.ok(read('app/sitemap.js').includes(story.path))
+  assert.ok(component.includes(`before: 'Jak jsme pomohli '`))
+  assert.ok(component.includes(`name: 'Lucii Benešové'`))
+  assert.ok(component.includes(`after: ' splnit její italský sen'`))
+  assert.equal('Jak jsme pomohli Lucii Benešové splnit její italský sen', story.title)
+  assert.ok(component.includes(story.subtitle), 'card perex must be the article subtitle')
+  assert.match(component, /button: 'Přečíst příběh'/)
+  assert.ok(!component.includes('Přečíst celý příběh'))
+  assert.ok(!component.includes('ke kousku Itálie'))
+  const css = read('components/stories/LucieBenesovaCard.module.css')
+  assert.match(css, /overflow-wrap: break-word/)
+  assert.match(css, /box-sizing: border-box/)
 })
 
 test('story preserves all 73 public source blocks and does not publish the administrative note', () => {

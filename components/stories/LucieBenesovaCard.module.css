@@ -1,12 +1,12 @@
-.story { position: relative; width: 100%; max-width: 408px; min-height: 542px; overflow: hidden; border-radius: 18px; background: #a8734c; font-family: var(--font-manrope), sans-serif; justify-self: center; }
+.story { position: relative; box-sizing: border-box; width: 100%; max-width: 408px; min-height: 542px; overflow: hidden; border-radius: 18px; background: #a8734c; font-family: var(--font-manrope), sans-serif; justify-self: center; }
 .photo { object-fit: cover; object-position: center; }
 .shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg,rgba(0,0,0,.24),rgba(0,0,0,.24)), linear-gradient(180deg,rgba(27,38,66,0) 39.047%,rgba(27,38,66,.94) 63.244%); }
 .badge { position: absolute; top: 22px; left: 33px; padding: 6px 12px; border-radius: 999px; background: #a8734c; color: #fff; font-size: 15px; line-height: 19px; font-weight: 500; }
 .content { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 326px 33px 34px; }
-.headline { color: #fff; font-size: 22px; line-height: 26px; font-weight: 600; text-wrap: pretty; }
+.headline { color: #fff; font-size: 22px; line-height: 26px; font-weight: 600; text-wrap: pretty; overflow-wrap: break-word; max-width: 100%; }
 .headline strong { font-weight: 800; }
-.description { color: #fff; font-size: 18px; line-height: 25px; font-weight: 400; }
+.description { color: #fff; font-size: 18px; line-height: 25px; font-weight: 400; text-wrap: pretty; overflow-wrap: break-word; max-width: 100%; }
 .link { display: inline-flex; justify-content: center; align-items: center; max-width: 100%; min-height: 49px; margin-top: 11px; padding: 12px 23px; border-radius: 999px; background: #fff; color: #1b2642; font-size: 18px; line-height: 25px; font-weight: 600; }
 .link:hover { background: #f3ece4; }
 .link:focus-visible { outline: 2px solid #c48759; outline-offset: 4px; }
-@media (max-width: 420px) { .content { padding-left: 24px; padding-right: 24px; } .badge { left: 24px; } }
+@media (max-width: 420px) { .content { padding-top: 300px; padding-left: 24px; padding-right: 24px; } .badge { left: 24px; } }
