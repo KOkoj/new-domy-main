@@ -2,22 +2,27 @@
 
 import { useState, useEffect } from 'react'
 import { ArrowUp } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 export default function ScrollToTop() {
+  const isHomepage = usePathname() === '/'
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
+    if (isHomepage) return
     const toggleVisibility = () => {
       setIsVisible(window.scrollY > 400)
     }
 
     window.addEventListener('scroll', toggleVisibility, { passive: true })
     return () => window.removeEventListener('scroll', toggleVisibility)
-  }, [])
+  }, [isHomepage])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  if (isHomepage) return null
 
   return (
     <button

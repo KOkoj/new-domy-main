@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { rememberConciergeDismissal } from '@/lib/conciergeSession'
 import { scheduleConciergeOpening } from '@/lib/conciergeEntrance'
@@ -10,7 +10,6 @@ import styles from './ConciergeContact.module.css'
 const ASSETS = '/images/home-concierge'
 const PHONE = '+420 731 450 001'
 const PHONE_HREF = 'tel:+420731450001'
-const useClientLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
 
 const LABELS = {
   cs: {
@@ -57,7 +56,6 @@ export default function ConciergeContact({ language = 'cs' }) {
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const cancelEntranceRef = useRef(() => {})
-  const floatingRef = useRef(null)
   const launcherRef = useRef(null)
   const panelId = useId()
   const labels = LABELS[language] || LABELS.cs
@@ -68,22 +66,6 @@ export default function ConciergeContact({ language = 'cs' }) {
     cancelEntranceRef.current = cancel
     return cancel
   }, [])
-
-  // Stack back-to-top above the entire widget, even when copy wraps or fonts resize it.
-  useClientLayoutEffect(() => {
-    if (!mounted || !floatingRef.current) return
-    const element = floatingRef.current
-    const updateHeight = () => document.body.style.setProperty('--concierge-stack-height', `${Math.ceil(element.getBoundingClientRect().height)}px`)
-    updateHeight()
-    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(updateHeight)
-    observer?.observe(element)
-    window.addEventListener('resize', updateHeight)
-    return () => {
-      observer?.disconnect()
-      window.removeEventListener('resize', updateHeight)
-      document.body.style.removeProperty('--concierge-stack-height')
-    }
-  }, [mounted, open])
 
   const dismiss = () => {
     cancelEntranceRef.current()
@@ -105,7 +87,6 @@ export default function ConciergeContact({ language = 'cs' }) {
   if (!mounted) return null
   return createPortal(
     <aside
-      ref={floatingRef}
       className={styles.floating}
       aria-label={labels.contact}
       data-testid="hero-concierge-contact"

@@ -19,12 +19,9 @@
   position: relative;
   display: flex;
   pointer-events: auto;
-  max-height: calc(100dvh - 180px);
   min-width: 0;
   max-width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: visible;
   transform-origin: bottom right;
   animation: conciergePop 620ms cubic-bezier(.16, 1.25, .35, 1) both;
   flex-direction: column;
@@ -52,9 +49,9 @@
 .callingHours { width: 100%; text-align: center; display: flex; flex-direction: column; gap: 4px; }
 .callingHours p { font-size: 12px; line-height: 16px; font-weight: 700; color: #1b2642; }
 .callingHours .hoursLabel { color: #636363; }
-.dismiss { position: absolute; right: 0; top: 0; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; }
-.dismiss img { width: 6px; height: 6px; }
-.dismiss:hover { background: #f7f4ed; }
+.dismiss { position: absolute; right: 6px; top: 6px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #f7f4ed; box-shadow: inset 0 0 0 1px #eaeae6; }
+.dismiss img { display: block; width: 18px; height: 18px; }
+.dismiss:hover { background: #eaeae6; }
 .launcher { pointer-events: auto; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; flex-shrink: 0; }
 .launcherIcon { transition: transform 420ms cubic-bezier(.2,.8,.2,1); }
 .launcherOpen { transform: rotate(0deg); }
@@ -92,25 +89,17 @@
     right: max(12px, env(safe-area-inset-right));
     bottom: max(12px, env(safe-area-inset-bottom));
   }
-  .panel { max-height: calc(100dvh - 168px); gap: 10px; padding: 14px; }
+  .panel { gap: 10px; padding: 14px; }
   .profile { flex-direction: row; gap: 10px; }
   .identity { width: auto; flex: 1; text-align: left; }
   .welcome { display: none; }
   .call { padding-top: 0; gap: 11px; }
   .callingHours { text-align: center; }
 }
-/* Measured widget height keeps back-to-top above BOTH the panel and launcher.
-   Do not animate bottom/right: that would sweep it through the opening card. */
-:global(body):has(.floating) :global([data-testid="scroll-to-top"]) {
-  right: max(24px, env(safe-area-inset-right));
-  bottom: calc(var(--concierge-stack-height, 371px) + max(24px, env(safe-area-inset-bottom)) + 12px);
-  transition-property: opacity, transform, box-shadow, background-color;
-}
-@media (max-width: 640px) {
-  :global(body):has(.floating) :global([data-testid="scroll-to-top"]) {
-    right: max(12px, env(safe-area-inset-right));
-    bottom: calc(var(--concierge-stack-height, 240px) + max(12px, env(safe-area-inset-bottom)) + 12px);
-  }
+/* Natural-height card: no scroll container at ordinary desktop/mobile heights.
+   Only short landscape/zoomed windows need a constrained, accessible fallback. */
+@media (max-height: 480px) {
+  .panel { max-height: calc(100dvh - 112px); overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; }
 }
 @media (prefers-reduced-motion: reduce) {
   .panel { animation: none; }

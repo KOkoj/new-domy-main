@@ -119,7 +119,7 @@ test('card clips no horizontal scrolling, keeps legible hours and offers desktop
   assert.match(css, /box-sizing: border-box/)
   assert.match(css, /overflow-x: hidden/)
   assert.ok(!css.includes('.dismiss::before'), 'the negative-inset hit target caused the 1px overflow')
-  assert.match(css, /\.dismiss \{[^}]*width: 44px; height: 44px/)
+  assert.match(css, /\.dismiss \{[^}]*width: 40px; height: 40px/)
   assert.match(css, /\.callingHours p \{ font-size: 12px; line-height: 16px/)
   assert.ok(!css.includes('.hoursLabel { display: none'))
   assert.match(css, /@media \(min-width: 768px\) and \(pointer: fine\)/)
@@ -128,15 +128,41 @@ test('card clips no horizontal scrolling, keeps legible hours and offers desktop
   assert.match(css, /\.launcherIcon \{ transition: transform 420ms/)
 })
 
-test('back-to-top is stacked above the measured full widget and article hero shares the text column', () => {
+test('homepage removes back-to-top entirely, other pages retain the original control', () => {
   const component = read('components/ConciergeContact.jsx')
   const css = read('components/ConciergeContact.module.css')
-  assert.match(component, /new ResizeObserver\(updateHeight\)/)
-  assert.match(component, /useClientLayoutEffect/)
-  assert.match(component, /--concierge-stack-height/)
-  assert.match(css, /bottom: calc\(var\(--concierge-stack-height/)
-  assert.match(css, /transition-property: opacity, transform, box-shadow, background-color/)
+  const backToTop = read('components/ScrollToTop.jsx')
+  assert.match(backToTop, /usePathname\(\) === '\/'/)
+  assert.match(backToTop, /if \(isHomepage\) return null/)
+  assert.match(backToTop, /if \(isHomepage\) return\s+const toggleVisibility/)
+  assert.match(backToTop, /fixed bottom-6 right-6 z-40/)
+  assert.ok(!component.includes('ResizeObserver'))
+  assert.ok(!component.includes('concierge-stack-height'))
+  assert.ok(!css.includes('scroll-to-top'))
   assert.match(read('app/blog/pribeh-lucie-benesove-1/page.jsx'), /<figure className="article-body mb-12"/)
+})
+
+test('card close has a visible 40px circle and 18px icon while launcher retains its rotating plus', () => {
+  const css = read('components/ConciergeContact.module.css')
+  assert.match(css, /\.dismiss \{[^}]*width: 40px; height: 40px; border-radius: 50%; background:/)
+  assert.match(css, /\.dismiss img \{ display: block; width: 18px; height: 18px/)
+  assert.match(css, /\.launcherClosed \{ transform: rotate\(45deg\)/)
+  assert.match(css, /\.launcherIcon \{ transition: transform 420ms/)
+})
+
+test('target viewports skip the short-height scrolling fallback and card widths fit', () => {
+  const css = read('components/ConciergeContact.module.css')
+  const panel = css.match(/\.panel \{([^}]+)\}/)[1]
+  assert.match(panel, /overflow: visible/)
+  assert.ok(!panel.includes('max-height:'))
+  assert.match(css, /@media \(max-height: 480px\) \{\s*\.panel \{[^}]*overflow-x: hidden; overflow-y: auto/)
+  // All requested heights are outside the only scroll-enabled media query.
+  for (const [width, height] of [[1440,900],[1280,800],[390,844]]) {
+    assert.ok(height > 480)
+    const cardWidth = width <= 640 ? 260 : 284
+    const inset = width <= 640 ? 12 : 24
+    assert.ok(cardWidth + 2 * inset <= width)
+  }
 })
 
 function entranceHarness({ mobile = false, now = 100, readyAt = 100, dismissed = false, loading = false } = {}) {
