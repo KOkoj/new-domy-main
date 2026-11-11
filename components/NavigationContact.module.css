@@ -1,0 +1,14 @@
+/* Only the homepage opts into the concierge header. Other routes retain their navigation. */
+.withConcierge [data-testid="nav-desktop-links"] { gap: clamp(0px, .25vw, 8px); }
+.withConcierge [data-testid="nav-desktop-links"] > a,
+.withConcierge [data-testid="nav-desktop-links"] > div > button {
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: clamp(14px, 1.02vw, 18px);
+}
+.withConcierge [data-testid="nav-desktop-links"] > div > button > svg { width: 18px; height: 18px; }
+
+/* The avatar dropdown already contains Dashboard; avoid a duplicate mobile shortcut crowding out the contact. */
+@media (max-width: 1399px) {
+  .withConcierge [data-testid="mobile-dashboard-button"] { display: none; }
+}

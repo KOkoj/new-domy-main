@@ -12,6 +12,20 @@ import ProtectedContentLink from '@/components/ProtectedContentLink'
 
 const ARTICLES = [
   {
+    "slug": "pribeh-lucie-benesove-1",
+    "title": "Jak jsme pomohli Lucii Benešové splnit její italský sen",
+    "excerpt": "1. díl: Když vysněný dům skrývá víc, než se na první pohled zdá",
+    "readTime": "7 min",
+    "category": {
+      "cs": "Příběhy klientů · 1. díl",
+      "en": "Client stories · Part 1",
+      "it": "Storie dei clienti · Parte 1"
+    },
+    "image": "/articles/lucie-benesova/hero.webp",
+    "imageAlt": "Lucie Benešová s týmem Domy v Itálii v kanceláři",
+    "link": "/blog/pribeh-lucie-benesove-1"
+  },
+  {
     slug: 'codice-fiscale-acquisto-casa-italia',
     title: {
       en: 'Italian tax code for buying property: complete guide for foreign buyers',

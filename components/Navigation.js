@@ -20,8 +20,10 @@ import { PREMIUM_PDFS_ENABLED } from '@/lib/featureFlags'
 import { supabase } from '@/lib/supabase'
 import { readLanguageFromBrowser, persistLanguage, DEFAULT_LANGUAGE, getInitialLanguage } from '@/lib/userPreferences'
 import { LanguageMenu, SiteNavMenu } from '@/components/SiteNavControls'
+import { CompactConciergeContact } from '@/components/ConciergeContact'
+import contactStyles from './NavigationContact.module.css'
 
-export default function Navigation({ appearAfterHero = false }) {
+export default function Navigation({ appearAfterHero = false, showConcierge = false }) {
   const pathname = usePathname()
   const [user, setUser] = useState(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -192,7 +194,7 @@ export default function Navigation({ appearAfterHero = false }) {
     <>
     <nav 
       ref={navRef}
-      className={`fixed top-0 left-0 right-0 z-50 overflow-visible shadow-lg transition-transform duration-700 ease-in-out ${
+      className={`${showConcierge ? contactStyles.withConcierge : ''} fixed top-0 left-0 right-0 z-50 overflow-visible shadow-lg transition-transform duration-700 ease-in-out ${
         navHidden ? '-translate-y-[calc(100%+6rem)] pointer-events-none shadow-none' : 'translate-y-0'
       }`}
       aria-hidden={navHidden ? true : undefined}
@@ -203,7 +205,7 @@ export default function Navigation({ appearAfterHero = false }) {
       data-testid="navigation-component"
     >
       <div className="mx-auto w-full max-w-[1800px] overflow-visible px-5 pt-4 pb-3 sm:px-8 sm:pt-5 sm:pb-3 xl:px-12" data-testid="nav-container">
-        <div className="relative flex items-center gap-4" data-testid="nav-content">
+        <div className={`relative flex items-center ${showConcierge ? 'gap-2' : 'gap-4'}`} data-testid="nav-content">
           <div className="flex shrink-0 items-center" data-testid="nav-brand-links">
             <Link href="/" data-testid="nav-brand-link" className="relative overflow-visible">
               <Image
@@ -223,10 +225,11 @@ export default function Navigation({ appearAfterHero = false }) {
               isActive={isActive}
               tone="bar"
               testIdPrefix="nav-"
-              className="absolute left-1/2 top-0 hidden h-12 -translate-x-[calc(50%+4.5rem)] items-center min-[1400px]:flex"
+              className={showConcierge ? "ml-auto hidden h-12 items-center min-[1400px]:flex" : "absolute left-1/2 top-0 hidden h-12 -translate-x-[calc(50%+4.5rem)] items-center min-[1400px]:flex"}
             />
           
-          <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3" data-testid="nav-user-controls">
+          {showConcierge && <CompactConciergeContact language={language} />}
+          <div className={`${showConcierge ? 'ml-auto min-[1400px]:ml-0' : 'ml-auto'} flex shrink-0 items-center gap-2 sm:gap-3`} data-testid="nav-user-controls">
             <LanguageMenu
               language={language}
               onChange={handleLanguageChange}
@@ -242,7 +245,7 @@ export default function Navigation({ appearAfterHero = false }) {
                     <span className="h-7 w-7 sm:h-8 sm:w-8 border border-white/20 rounded-full bg-white/10 text-white text-sm inline-flex items-center justify-center">
                       {(user.user_metadata?.name || user.email || 'U').charAt(0).toUpperCase()}
                     </span>
-                    <span className="text-base font-medium hidden min-[1400px]:inline-block max-w-[100px] truncate">
+                    <span className={`text-base font-medium ${showConcierge ? 'hidden' : 'hidden min-[1400px]:inline-block'} max-w-[100px] truncate`}>
                       {user.user_metadata?.name || user.email}
                     </span>
                   </Button>
@@ -279,11 +282,12 @@ export default function Navigation({ appearAfterHero = false }) {
             ) : (
               <button
                 onClick={() => { setAuthModalDefaultTab('login'); setIsAuthModalOpen(true) }}
-                className="hidden sm:flex items-center gap-2 cursor-pointer rounded-full border-0 bg-[#1b2642] px-6 py-3 text-base font-medium leading-none text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)] transition-colors duration-200 hover:bg-[#243056]"
+                aria-label={authButtonLabel}
+                className={`${showConcierge ? 'hidden sm:inline-flex h-11 w-11 justify-center p-0' : 'hidden sm:flex px-6 py-3'} items-center gap-2 cursor-pointer rounded-full border-0 bg-[#1b2642] text-base font-medium leading-none text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)] transition-colors duration-200 hover:bg-[#243056]`}
                 data-testid="login-button"
               >
                 <User className="h-4 w-4" />
-                <span>{authButtonLabel}</span>
+                <span className={showConcierge ? 'sr-only' : undefined}>{authButtonLabel}</span>
               </button>
             )}
             
