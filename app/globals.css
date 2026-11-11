@@ -922,6 +922,22 @@ html {
   max-width: none !important;
 }
 
+/* Editorial text is a readable column, not the full-width public-page canvas.
+   The explicit hook wins over the legacy max-w-* expansion above. */
+.site-page .article-body {
+  width: 100%;
+  min-width: 0;
+  max-width: min(72ch, 720px) !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.site-page .article-intro {
+  width: calc(100% - 40px);
+  max-width: 720px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* =============================================
    Article Paywall Gate
    When <ArticlePaywallGate /> is active for a logged-out visitor on a
