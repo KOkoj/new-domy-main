@@ -9,6 +9,7 @@ import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
 import PageIntro from '@/components/PageIntro'
+import SocialLinks from '@/components/SocialLinks'
 
 const SERVICES = [
   {
@@ -340,6 +341,18 @@ export default function AboutPage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className="mx-auto mt-8 max-w-5xl rounded-2xl border border-[#c7895b]/20 bg-white px-6 py-6 shadow-sm sm:flex sm:items-center sm:justify-between sm:gap-6">
+            <div>
+              <h3 className="text-lg font-semibold text-slate-800">
+                {language === 'cs' ? 'Poznejte nás i na sociálních sítích' : language === 'it' ? 'Seguici anche sui social' : 'Meet us on social media'}
+              </h3>
+              <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                {language === 'cs' ? 'Sdílíme zkušenosti, praktické rady a pohled do Itálie.' : language === 'it' ? 'Condividiamo esperienze, consigli pratici e scorci d’Italia.' : 'We share experiences, practical tips, and glimpses of Italy.'}
+              </p>
+            </div>
+            <SocialLinks className="mt-4 shrink-0 sm:mt-0" testIdPrefix="about-social" />
           </div>
 
         </div>

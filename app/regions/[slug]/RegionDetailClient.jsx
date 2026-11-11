@@ -9,6 +9,7 @@ import Image from 'next/image'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
+import SocialLinks from '@/components/SocialLinks'
 import { REGION_DATA_OVERRIDES } from '../regionContent'
 import { REGION_CURIOSITIES } from '../regionCuriosities'
 import InformationalDisclaimer from '@/components/legal/InformationalDisclaimer'
@@ -1483,6 +1484,16 @@ export default function RegionDetailClient({ initialProperties = [] }) {
                 </a>
               </div>
             ) : null}
+          </section>
+
+          <section className="mt-6 rounded-2xl border border-[#c7895b]/25 bg-[#fff9f3] px-6 py-7 sm:px-10">
+            <h2 className="text-pretty text-xl font-semibold text-gray-900">
+              {language === 'cs' ? 'Další inspirace z Itálie' : language === 'it' ? 'Altre idee dall’Italia' : 'More inspiration from Italy'}
+            </h2>
+            <p className="mt-2 max-w-[40rem] text-base leading-relaxed text-gray-700">
+              {language === 'cs' ? 'Sledujte nás pro místa, cestovatelské tipy a praktické rady k poznávání italských regionů.' : language === 'it' ? 'Seguici per scoprire luoghi, idee di viaggio e consigli pratici sulle regioni italiane.' : 'Follow us for places to discover, travel ideas, and practical tips on Italian regions.'}
+            </p>
+            <SocialLinks className="mt-4" tone="region" testIdPrefix="region-detail-social" />
           </section>
 
           <section className="mt-16 rounded-2xl bg-white px-6 py-8 shadow-[0_10px_32px_rgba(14,21,46,0.06)] sm:px-10">

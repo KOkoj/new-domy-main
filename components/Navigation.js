@@ -20,6 +20,7 @@ import { PREMIUM_PDFS_ENABLED } from '@/lib/featureFlags'
 import { supabase } from '@/lib/supabase'
 import { readLanguageFromBrowser, persistLanguage, DEFAULT_LANGUAGE, getInitialLanguage } from '@/lib/userPreferences'
 import { LanguageMenu, SiteNavMenu } from '@/components/SiteNavControls'
+import SocialLinks from '@/components/SocialLinks'
 
 export default function Navigation({ appearAfterHero = false }) {
   const pathname = usePathname()
@@ -392,6 +393,12 @@ export default function Navigation({ appearAfterHero = false }) {
                 {navLabels.logout}
               </button>
             )}
+            <div className="mt-2 border-t border-white/10 px-3 pt-4">
+              <p className="mb-3 text-sm font-semibold text-gray-300">
+                {language === 'cs' ? 'Sledujte nás' : language === 'it' ? 'Seguici' : 'Follow us'}
+              </p>
+              <SocialLinks tone="dark" testIdPrefix="mobile-menu-social" />
+            </div>
           </div>
         </div>
       </div>
