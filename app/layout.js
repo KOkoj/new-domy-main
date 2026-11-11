@@ -7,6 +7,7 @@ import { cookies } from 'next/headers'
 import { SITE_NAME, SITE_URL } from '@/lib/siteConfig'
 import { readLanguageFromCookies } from '@/lib/userPreferences'
 import { Analytics } from '@vercel/analytics/next'
+import ConversionTracking from '@/components/ConversionTracking'
 import AffiliateClickAnalytics from '@/components/AffiliateClickAnalytics'
 import MetaTracking from '@/components/MetaTracking'
 
@@ -93,6 +94,7 @@ export default async function RootLayout({ children }) {
         <NavigationProgress />
         {children}
         <ScrollToTop />
+        <ConversionTracking />
         <AffiliateClickAnalytics />
         <MetaTracking />
         {/* Vercel Analytics */}

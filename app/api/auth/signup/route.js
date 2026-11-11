@@ -7,6 +7,7 @@ import { getPublicAbsoluteUrl, getPublicSiteUrl } from '@/lib/siteUrl'
 import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@/lib/userPreferences'
 import { splitFullName } from '@/lib/profileName'
 import { authErrorPayload, mapSupabaseAuthError } from '@/lib/authMessages'
+import { trackServerEvent } from '@/lib/trackServerEvent'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -148,6 +149,10 @@ export async function POST(request) {
           console.error('[SIGNUP] Welcome email failed:', emailError?.message || emailError)
         }
       }
+    }
+
+    if (isLikelyNewUser && data?.user?.id) {
+      await trackServerEvent(request, 'signup', { location: 'signup' })
     }
 
     return applyCookies(

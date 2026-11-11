@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { rememberConciergeDismissal } from '@/lib/conciergeSession'
 import { scheduleConciergeOpening } from '@/lib/conciergeEntrance'
+import { trackClientEvent } from '@/lib/trackClientEvent'
 import Image from 'next/image'
 import styles from './ConciergeContact.module.css'
 
@@ -62,7 +63,14 @@ export default function ConciergeContact({ language = 'cs' }) {
 
   useEffect(() => {
     setMounted(true)
-    const cancel = scheduleConciergeOpening({ window, document, onOpen: () => setOpen(true) })
+    const cancel = scheduleConciergeOpening({
+      window,
+      document,
+      onOpen: () => {
+        setOpen(true)
+        trackClientEvent('concierge_open', { location: 'home' })
+      }
+    })
     cancelEntranceRef.current = cancel
     return cancel
   }, [])
@@ -72,6 +80,7 @@ export default function ConciergeContact({ language = 'cs' }) {
     setOpen(false)
     rememberConciergeDismissal(() => window.sessionStorage, true)
     launcherRef.current?.focus()
+    trackClientEvent('concierge_dismiss', { location: 'home' })
   }
   const toggle = () => {
     if (open) {
@@ -81,6 +90,7 @@ export default function ConciergeContact({ language = 'cs' }) {
     cancelEntranceRef.current()
     rememberConciergeDismissal(() => window.sessionStorage, false)
     setOpen(true)
+    trackClientEvent('concierge_open', { location: 'home' })
   }
 
   // The portal escapes the hero's clipping/stacking context, so fixed means viewport-fixed.
