@@ -151,7 +151,7 @@ export default function RegionBlogPage() {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
             <div 
-              className="prose prose-lg max-w-none"
+              className="article-body prose prose-lg max-w-none"
               style={{ maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}
               dangerouslySetInnerHTML={{ __html: blogData.content[language] }}
             />

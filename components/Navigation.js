@@ -214,10 +214,12 @@ export default function Navigation({ appearAfterHero = false, showConcierge = fa
                 width={120}
                 height={120}
                 priority={!appearAfterHero}
-                className={`w-auto cursor-pointer z-30 relative sm:absolute top-0 left-0 h-14 sm:h-20 md:h-24 drop-shadow-[0_2px_6px_rgba(0,0,0,0.22)] ${isMenuOpen ? 'sm:opacity-0' : ''}`}
+                className={showConcierge
+                  ? 'relative block h-14 w-14 shrink-0 sm:h-16 sm:w-16'
+                  : `w-auto cursor-pointer z-30 relative sm:absolute top-0 left-0 h-14 sm:h-20 md:h-24 drop-shadow-[0_2px_6px_rgba(0,0,0,0.22)] ${isMenuOpen ? 'sm:opacity-0' : ''}`}
                 data-testid="nav-brand-logo"
               />
-              <div className="hidden sm:block h-12 w-24"></div>
+              {!showConcierge && <div className="hidden sm:block h-12 w-24"></div>}
             </Link>
           </div>
             <SiteNavMenu
@@ -225,11 +227,12 @@ export default function Navigation({ appearAfterHero = false, showConcierge = fa
               isActive={isActive}
               tone="bar"
               testIdPrefix="nav-"
-              className={showConcierge ? "ml-auto hidden h-12 items-center min-[1400px]:flex" : "absolute left-1/2 top-0 hidden h-12 -translate-x-[calc(50%+4.5rem)] items-center min-[1400px]:flex"}
+              className={showConcierge ? "hidden h-12 items-center min-[1280px]:flex" : "absolute left-1/2 top-0 hidden h-12 -translate-x-[calc(50%+4.5rem)] items-center min-[1400px]:flex"}
             />
           
+          <div className={showConcierge ? contactStyles.rightGroup : 'contents'} data-testid="nav-right-group">
           {showConcierge && <CompactConciergeContact language={language} />}
-          <div className={`${showConcierge ? 'ml-auto min-[1400px]:ml-0' : 'ml-auto'} flex shrink-0 items-center gap-2 sm:gap-3`} data-testid="nav-user-controls">
+          <div className={`${showConcierge ? '' : 'ml-auto'} flex shrink-0 items-center gap-2 sm:gap-3`} data-testid="nav-user-controls">
             <LanguageMenu
               language={language}
               onChange={handleLanguageChange}
@@ -283,7 +286,7 @@ export default function Navigation({ appearAfterHero = false, showConcierge = fa
               <button
                 onClick={() => { setAuthModalDefaultTab('login'); setIsAuthModalOpen(true) }}
                 aria-label={authButtonLabel}
-                className={`${showConcierge ? 'hidden sm:inline-flex h-11 w-11 justify-center p-0' : 'hidden sm:flex px-6 py-3'} items-center gap-2 cursor-pointer rounded-full border-0 bg-[#1b2642] text-base font-medium leading-none text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)] transition-colors duration-200 hover:bg-[#243056]`}
+                className={`${showConcierge ? 'hidden sm:inline-flex h-10 w-10 justify-center p-0' : 'hidden sm:flex px-6 py-3'} items-center gap-2 cursor-pointer rounded-full border-0 bg-[#1b2642] text-base font-medium leading-none text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)] transition-colors duration-200 hover:bg-[#243056]`}
                 data-testid="login-button"
               >
                 <User className="h-4 w-4" />
@@ -291,11 +294,11 @@ export default function Navigation({ appearAfterHero = false, showConcierge = fa
               </button>
             )}
             
-            {/* Mobile dashboard shortcut — visible when logged in, below lg */}
-            {user && (
+            {/* The homepage avatar/menu already links to the dashboard; avoid duplicate mobile controls. */}
+            {user && !showConcierge && (
               <Link
                 href="/dashboard"
-                className="min-[1400px]:hidden flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/20 border border-white/15 transition-all duration-200"
+                className={`${showConcierge ? 'min-[1280px]:hidden' : 'min-[1400px]:hidden'} flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/20 border border-white/15 transition-all duration-200`}
                 data-testid="mobile-dashboard-button"
               >
                 <LayoutDashboard className="h-3.5 w-3.5" />
@@ -312,18 +315,19 @@ export default function Navigation({ appearAfterHero = false, showConcierge = fa
 
             {/* Mobile menu button */}
             <button
-              className="min-[1400px]:hidden p-2 rounded-lg cursor-pointer text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200"
+              className={`${showConcierge ? 'min-[1280px]:hidden' : 'min-[1400px]:hidden'} p-2 rounded-lg cursor-pointer text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               data-testid="mobile-menu-button"
             >
               {isMenuOpen ? <X className="h-6 w-6 text-gray-200" /> : <Menu className="h-6 w-6 text-gray-200" />}
             </button>
           </div>
+          </div>
         </div>
         
         {/* Mobile menu */}
         <div 
-          className={`relative z-40 min-[1400px]:hidden overflow-hidden transition-all duration-200 ease-out ${
+          className={`relative z-40 ${showConcierge ? 'min-[1280px]:hidden' : 'min-[1400px]:hidden'} overflow-hidden transition-all duration-200 ease-out ${
             isMenuOpen ? 'max-h-[calc(100dvh-4rem)] opacity-100' : 'max-h-0 opacity-0'
           }`}
           data-testid="mobile-menu"

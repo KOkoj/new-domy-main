@@ -1,6 +1,8 @@
 'use client'
 
-import { useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { isConciergeDismissed, rememberConciergeDismissal } from '@/lib/conciergeSession'
 import Image from 'next/image'
 import styles from './ConciergeContact.module.css'
 
@@ -79,16 +81,41 @@ export function CompactConciergeContact({ language = 'cs' }) {
 }
 
 export default function ConciergeContact({ language = 'cs' }) {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const entranceTimerRef = useRef(null)
   const launcherRef = useRef(null)
   const panelId = useId()
   const labels = LABELS[language] || LABELS.cs
+
+  useEffect(() => {
+    setMounted(true)
+    if (isConciergeDismissed(() => window.sessionStorage)) return
+    // Keep the mobile hero CTAs clear on first paint; the launcher is available immediately.
+    const delay = window.matchMedia('(max-width: 640px)').matches ? 2400 : 1000
+    entranceTimerRef.current = window.setTimeout(() => setOpen(true), delay)
+    return () => window.clearTimeout(entranceTimerRef.current)
+  }, [])
+
   const dismiss = () => {
+    window.clearTimeout(entranceTimerRef.current)
     setOpen(false)
+    rememberConciergeDismissal(() => window.sessionStorage, true)
     launcherRef.current?.focus()
   }
+  const toggle = () => {
+    if (open) {
+      dismiss()
+      return
+    }
+    window.clearTimeout(entranceTimerRef.current)
+    rememberConciergeDismissal(() => window.sessionStorage, false)
+    setOpen(true)
+  }
 
-  return (
+  // The portal escapes the hero's clipping/stacking context, so fixed means viewport-fixed.
+  if (!mounted) return null
+  return createPortal(
     <aside
       className={styles.floating}
       aria-label={labels.contact}
@@ -129,18 +156,19 @@ export default function ConciergeContact({ language = 'cs' }) {
         ref={launcherRef}
         type="button"
         className={styles.launcher}
-        onClick={() => setOpen((value) => !value)}
+        onClick={toggle}
         aria-label={open ? labels.close : labels.open}
         aria-expanded={open}
         aria-controls={open ? panelId : undefined}
         data-testid="concierge-toggle"
       >
-        {open ? (
-          <img src={`${ASSETS}/launcher.svg`} alt="" />
-        ) : (
-          <Image src={`${ASSETS}/lucie-portrait.png`} alt="" width={52} height={52} className={styles.launcherPortrait} />
-        )}
+        <img
+          src={`${ASSETS}/launcher.svg`}
+          alt=""
+          className={`${styles.launcherIcon} ${open ? styles.launcherOpen : styles.launcherClosed}`}
+        />
       </button>
-    </aside>
+    </aside>,
+    document.body
   )
 }

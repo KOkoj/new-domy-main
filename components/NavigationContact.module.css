@@ -1,14 +1,37 @@
-/* Only the homepage opts into the concierge header. Other routes retain their navigation. */
-.withConcierge [data-testid="nav-desktop-links"] { gap: clamp(0px, .25vw, 8px); }
+/* Only the scrolled homepage navigation opts into this balanced three-part header. */
+.withConcierge [data-testid="nav-container"] { padding-top: 8px; padding-bottom: 8px; }
+.withConcierge [data-testid="nav-content"] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+.withConcierge [data-testid="nav-brand-links"] { grid-column: 1; }
+.withConcierge [data-testid="nav-desktop-links"] {
+  grid-column: 2;
+  justify-self: center;
+  gap: clamp(0px, .3vw, 6px);
+}
+.rightGroup {
+  grid-column: 3;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
 .withConcierge [data-testid="nav-desktop-links"] > a,
 .withConcierge [data-testid="nav-desktop-links"] > div > button {
-  padding-left: 6px;
-  padding-right: 6px;
-  font-size: clamp(14px, 1.02vw, 18px);
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: clamp(14px, 1.1vw, 16px);
 }
-.withConcierge [data-testid="nav-desktop-links"] > div > button > svg { width: 18px; height: 18px; }
-
-/* The avatar dropdown already contains Dashboard; avoid a duplicate mobile shortcut crowding out the contact. */
-@media (max-width: 1399px) {
-  .withConcierge [data-testid="mobile-dashboard-button"] { display: none; }
+.withConcierge [data-testid="nav-desktop-links"] > div > button > svg { width: 16px; height: 16px; }
+.withConcierge :is([data-testid="language-option-button"], [data-testid="mobile-language-option-button"]) {
+  min-height: 40px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+@media (max-width: 639px) {
+  .withConcierge [data-testid="nav-content"], .rightGroup { gap: 8px; }
 }

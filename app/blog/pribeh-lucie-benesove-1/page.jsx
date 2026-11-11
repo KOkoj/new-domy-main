@@ -33,11 +33,11 @@ export default function LucieBenesovaStoryPage() {
         { name: story.title, path: story.path },
       ])} />
       <main>
-        <PageIntro eyebrow="Příběhy klientů · 1. díl" title={story.title}>
+        <PageIntro className="article-intro" eyebrow="Příběhy klientů · 1. díl" title={story.title}>
           <p>{story.subtitle}</p>
         </PageIntro>
         <article className="mx-auto max-w-[1800px] px-5 pb-20 pt-8 sm:px-8 sm:pb-28 xl:px-[10rem]" aria-label={story.title}>
-          <figure className="mx-auto mb-12 max-w-4xl">
+          <figure className="mx-auto mb-12 max-w-[896px]">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] sm:aspect-[16/10]">
               <Image
                 src={story.image}
@@ -49,7 +49,7 @@ export default function LucieBenesovaStoryPage() {
               />
             </div>
           </figure>
-          <div className="mx-auto max-w-3xl space-y-5" data-testid="benesova-story-body">
+          <div className="article-body space-y-5" data-testid="benesova-story-body">
             {story.blocks.map((block) => block.style === 'Heading1' ? (
               <h2 key={block.id} className="!mt-12 mb-5 text-pretty text-[1.65rem] font-bold leading-tight text-[#1b2642] sm:text-[2rem]">{block.text}</h2>
             ) : (
