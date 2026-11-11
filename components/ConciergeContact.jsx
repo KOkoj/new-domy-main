@@ -1,14 +1,16 @@
 'use client'
 
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { isConciergeDismissed, rememberConciergeDismissal } from '@/lib/conciergeSession'
+import { rememberConciergeDismissal } from '@/lib/conciergeSession'
+import { scheduleConciergeOpening } from '@/lib/conciergeEntrance'
 import Image from 'next/image'
 import styles from './ConciergeContact.module.css'
 
 const ASSETS = '/images/home-concierge'
 const PHONE = '+420 731 450 001'
 const PHONE_HREF = 'tel:+420731450001'
+const useClientLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
 
 const LABELS = {
   cs: {
@@ -31,19 +33,19 @@ const LABELS = {
   },
 }
 
-function Portrait({ compact = false }) {
-  const size = compact ? 44 : 52
+function Portrait() {
+  const size = 52
   return (
-    <div className={compact ? styles.compactPortrait : styles.portrait}>
+    <div className={styles.portrait}>
       <Image
-        src={`${ASSETS}/${compact ? 'lucie-nav-portrait.png' : 'lucie-portrait.png'}`}
+        src={`${ASSETS}/lucie-portrait.png`}
         alt="Lucie Kučerová"
         width={size}
         height={size}
         className={styles.portraitImage}
       />
       <img
-        src={`${ASSETS}/${compact ? 'status-nav.svg' : 'status-floating.svg'}`}
+        src={`${ASSETS}/status-floating.svg`}
         alt=""
         className={styles.status}
       />
@@ -51,54 +53,40 @@ function Portrait({ compact = false }) {
   )
 }
 
-export function CompactConciergeContact({ language = 'cs' }) {
-  const labels = LABELS[language] || LABELS.cs
-  return (
-    <div className={styles.navigationContact} data-testid="nav-concierge-contact">
-      <div className={styles.compact}>
-        <div className={styles.compactProfile}>
-          <Portrait compact />
-          <div className={styles.compactIdentity}>
-            <p className={styles.compactName}>Lucie Kučerová</p>
-            <p className={styles.compactRole}>concierge agent</p>
-          </div>
-        </div>
-        <div className={styles.compactCall}>
-          <a href={PHONE_HREF} className={styles.compactPhone} aria-label={`${labels.call}: ${PHONE}`}>
-            <img src={`${ASSETS}/phone.svg`} alt="" />
-            <span>{PHONE}</span>
-          </a>
-          <p className={styles.compactHours}>{labels.hours}</p>
-        </div>
-      </div>
-      <a href={PHONE_HREF} className={styles.mobileContact} aria-label={`${labels.call}: ${PHONE}. ${labels.hours}`}>
-        <Image src={`${ASSETS}/lucie-nav-portrait.png`} alt="" width={32} height={32} />
-        <img src={`${ASSETS}/phone.svg`} alt="" />
-        <span>{PHONE}</span>
-      </a>
-    </div>
-  )
-}
-
 export default function ConciergeContact({ language = 'cs' }) {
   const [open, setOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const entranceTimerRef = useRef(null)
+  const cancelEntranceRef = useRef(() => {})
+  const floatingRef = useRef(null)
   const launcherRef = useRef(null)
   const panelId = useId()
   const labels = LABELS[language] || LABELS.cs
 
   useEffect(() => {
     setMounted(true)
-    if (isConciergeDismissed(() => window.sessionStorage)) return
-    // Keep the mobile hero CTAs clear on first paint; the launcher is available immediately.
-    const delay = window.matchMedia('(max-width: 640px)').matches ? 2400 : 1000
-    entranceTimerRef.current = window.setTimeout(() => setOpen(true), delay)
-    return () => window.clearTimeout(entranceTimerRef.current)
+    const cancel = scheduleConciergeOpening({ window, document, onOpen: () => setOpen(true) })
+    cancelEntranceRef.current = cancel
+    return cancel
   }, [])
 
+  // Stack back-to-top above the entire widget, even when copy wraps or fonts resize it.
+  useClientLayoutEffect(() => {
+    if (!mounted || !floatingRef.current) return
+    const element = floatingRef.current
+    const updateHeight = () => document.body.style.setProperty('--concierge-stack-height', `${Math.ceil(element.getBoundingClientRect().height)}px`)
+    updateHeight()
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(updateHeight)
+    observer?.observe(element)
+    window.addEventListener('resize', updateHeight)
+    return () => {
+      observer?.disconnect()
+      window.removeEventListener('resize', updateHeight)
+      document.body.style.removeProperty('--concierge-stack-height')
+    }
+  }, [mounted, open])
+
   const dismiss = () => {
-    window.clearTimeout(entranceTimerRef.current)
+    cancelEntranceRef.current()
     setOpen(false)
     rememberConciergeDismissal(() => window.sessionStorage, true)
     launcherRef.current?.focus()
@@ -108,7 +96,7 @@ export default function ConciergeContact({ language = 'cs' }) {
       dismiss()
       return
     }
-    window.clearTimeout(entranceTimerRef.current)
+    cancelEntranceRef.current()
     rememberConciergeDismissal(() => window.sessionStorage, false)
     setOpen(true)
   }
@@ -117,6 +105,7 @@ export default function ConciergeContact({ language = 'cs' }) {
   if (!mounted) return null
   return createPortal(
     <aside
+      ref={floatingRef}
       className={styles.floating}
       aria-label={labels.contact}
       data-testid="hero-concierge-contact"
@@ -141,7 +130,7 @@ export default function ConciergeContact({ language = 'cs' }) {
             <p>{labels.invitation}</p>
           </div>
           <div className={styles.call}>
-            <a href={PHONE_HREF} className={styles.phone} aria-label={`${labels.call}: ${PHONE}`}>{PHONE}</a>
+            <a href={PHONE_HREF} className={styles.phone} draggable={false} data-testid="concierge-phone" aria-label={`${labels.call}: ${PHONE}`}>{PHONE}</a>
             <div className={styles.callingHours}>
               <p className={styles.hoursLabel}>{labels.hoursLabel}</p>
               <p>{labels.hours}</p>

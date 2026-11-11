@@ -37,14 +37,14 @@ export default function LucieBenesovaStoryPage() {
           <p>{story.subtitle}</p>
         </PageIntro>
         <article className="mx-auto max-w-[1800px] px-5 pb-20 pt-8 sm:px-8 sm:pb-28 xl:px-[10rem]" aria-label={story.title}>
-          <figure className="mx-auto mb-12 max-w-[896px]">
+          <figure className="article-body mb-12">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] sm:aspect-[16/10]">
               <Image
                 src={story.image}
                 alt="Lucie Benešová s Lucií a Lucou v kanceláři Domy v Itálii"
                 fill
                 priority
-                sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc(100vw - 64px), 896px"
+                sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 784px) calc(100vw - 64px), 720px"
                 className="object-cover object-[center_58%]"
               />
             </div>

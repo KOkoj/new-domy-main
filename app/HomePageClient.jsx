@@ -743,7 +743,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
   return (
     <div className="min-h-screen bg-[#f7f4ed] home-page-custom-border overflow-x-hidden" data-testid="homepage-container">
       {/* Navigation — the bar appears once the hero has scrolled away */}
-      <Navigation appearAfterHero showConcierge />
+      <Navigation appearAfterHero />
 
       {/* Hero Section */}
       <section

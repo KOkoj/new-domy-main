@@ -7,7 +7,7 @@ const read = file => fs.readFileSync(path.join(root, file), 'utf8')
 const story = JSON.parse(read('data/lucie-benesova-story.json'))
 
 test('homepage contact is scoped to the homepage and remains dismissible and callable', () => {
-  assert.match(read('app/HomePageClient.jsx'), /<Navigation appearAfterHero showConcierge \/>/)
+  assert.match(read('app/HomePageClient.jsx'), /<Navigation appearAfterHero \/>/)
   assert.match(read('app/HomePageClient.jsx'), /<ConciergeContact language=\{language\} \/>/)
   const contact = read('components/ConciergeContact.jsx')
   assert.match(contact, /tel:\+420731450001/)
@@ -15,7 +15,7 @@ test('homepage contact is scoped to the homepage and remains dismissible and cal
   assert.match(contact, /aria-expanded=\{open\}/)
   assert.match(contact, /event.key === 'Escape'/)
   assert.match(contact, /launcherRef.current\?\.focus\(\)/)
-  assert.match(read('components/Navigation.js'), /showConcierge = false/)
+  assert.ok(!read('components/Navigation.js').includes('Concierge'))
 })
 
 test('homepage uses the supplied new photo and links to the public first story installment', () => {
@@ -83,8 +83,8 @@ test('contact is viewport-fixed via a body portal, enters after a delay, and rot
   assert.match(component, /document.body/)
   assert.match(component, /if \(!mounted\) return null/)
   assert.match(component, /const \[open, setOpen\] = useState\(false\)/)
-  assert.match(component, /\? 2400 : 1000/)
-  assert.match(component, /window.clearTimeout\(entranceTimerRef.current\)/)
+  assert.match(component, /scheduleConciergeOpening/)
+  assert.match(component, /cancelEntranceRef.current\(\)/)
   assert.ok(!component.includes('launcherPortrait'))
   assert.match(css, /\.floating \{\s*position: fixed/)
   assert.match(css, /\.launcherClosed \{ transform: rotate\(45deg\)/)
@@ -105,15 +105,119 @@ test('editorial width is an explicit readable column, unaffected by the public c
   }
 })
 
-test('sticky nav has balanced grid grouping, compact call pill, and responsive identity', () => {
+test('sticky nav returns to the original clean layout without a concierge block', () => {
   const nav = read('components/Navigation.js')
-  const css = read('components/NavigationContact.module.css')
-  const contact = read('components/ConciergeContact.module.css')
-  assert.match(nav, /data-testid="nav-right-group"/)
-  assert.match(css, /grid-template-columns: auto minmax\(0, 1fr\) auto/)
-  assert.match(css, /justify-self: center/)
-  assert.match(nav, /relative block h-14 w-14 shrink-0 sm:h-16 sm:w-16/)
-  assert.match(nav, /min-\[1280px\]:flex/)
-  assert.match(contact, /@media \(min-width: 1440px\) \{\s*\.compactIdentity \{ display: flex/)
-  assert.match(contact, /\.compactPhone \{[^}]*min-height: 32px[^}]*background: #1b2642/)
+  assert.ok(!nav.includes('Concierge'))
+  assert.ok(!nav.includes('showConcierge'))
+  assert.ok(!fs.existsSync(path.join(root, 'components/NavigationContact.module.css')))
+  assert.match(nav, /min-\[1400px\]:flex/)
+  assert.match(nav, /sm:absolute top-0 left-0 h-14 sm:h-20 md:h-24/)
+})
+
+test('card clips no horizontal scrolling, keeps legible hours and offers desktop text/mobile call styling', () => {
+  const css = read('components/ConciergeContact.module.css')
+  assert.match(css, /box-sizing: border-box/)
+  assert.match(css, /overflow-x: hidden/)
+  assert.ok(!css.includes('.dismiss::before'), 'the negative-inset hit target caused the 1px overflow')
+  assert.match(css, /\.dismiss \{[^}]*width: 44px; height: 44px/)
+  assert.match(css, /\.callingHours p \{ font-size: 12px; line-height: 16px/)
+  assert.ok(!css.includes('.hoursLabel { display: none'))
+  assert.match(css, /@media \(min-width: 768px\) and \(pointer: fine\)/)
+  assert.match(css, /user-select: text/)
+  assert.match(css, /\.phone \{[^}]*background: #1b2642/)
+  assert.match(css, /\.launcherIcon \{ transition: transform 420ms/)
+})
+
+test('back-to-top is stacked above the measured full widget and article hero shares the text column', () => {
+  const component = read('components/ConciergeContact.jsx')
+  const css = read('components/ConciergeContact.module.css')
+  assert.match(component, /new ResizeObserver\(updateHeight\)/)
+  assert.match(component, /useClientLayoutEffect/)
+  assert.match(component, /--concierge-stack-height/)
+  assert.match(css, /bottom: calc\(var\(--concierge-stack-height/)
+  assert.match(css, /transition-property: opacity, transform, box-shadow, background-color/)
+  assert.match(read('app/blog/pribeh-lucie-benesove-1/page.jsx'), /<figure className="article-body mb-12"/)
+})
+
+function entranceHarness({ mobile = false, now = 100, readyAt = 100, dismissed = false, loading = false } = {}) {
+  const vm = require('node:vm')
+  const session = read('lib/conciergeSession.js').replace(/export (const|function) /g, '$1 ')
+  const source = read('lib/conciergeEntrance.js').replace(/^import .*\n/, '').replace('export function', 'function')
+  const context = { module: { exports: {} } }
+  vm.runInNewContext(session + '\n' + source + '\nmodule.exports = { scheduleConciergeOpening }', context)
+  let clock = now, opens = 0, bottom = 900, nextId = 0, domInteractive = readyAt
+  const timers = new Map(), events = new Map(), docEvents = new Map()
+  const doc = {
+    readyState: loading ? 'loading' : 'complete',
+    querySelector: () => ({ getBoundingClientRect: () => ({ bottom }) }),
+    addEventListener: (key, handler) => docEvents.set(key, handler),
+    removeEventListener: key => docEvents.delete(key),
+  }
+  const win = {
+    sessionStorage: { getItem: () => dismissed ? '1' : null },
+    matchMedia: () => ({ matches: mobile }),
+    performance: { now: () => clock, getEntriesByType: () => [{ domInteractive }] },
+    setTimeout: (callback, delay) => { const id = ++nextId; timers.set(id, { at: clock + delay, callback }); return id },
+    clearTimeout: id => timers.delete(id),
+    addEventListener: (key, handler) => events.set(key, handler),
+    removeEventListener: key => events.delete(key),
+  }
+  const cancel = context.module.exports.scheduleConciergeOpening({ window: win, document: doc, onOpen: () => opens++ })
+  return {
+    cancel, opens: () => opens,
+    scrollTo: value => { bottom = value; events.get('scroll')?.() },
+    ready: () => { doc.readyState = 'complete'; domInteractive = clock; docEvents.get('DOMContentLoaded')?.() },
+    advance: ms => {
+      const target = clock + ms
+      while (true) {
+        const next = [...timers].filter(([,t]) => t.at <= target).sort((a,b) => a[1].at - b[1].at)[0]
+        if (!next) break
+        clock = next[1].at; timers.delete(next[0]); next[1].callback()
+      }
+      clock = target
+    },
+  }
+}
+
+test('fresh desktop opens once at one second from DOM readiness', () => {
+  const h = entranceHarness()
+  h.advance(999); assert.equal(h.opens(), 0)
+  h.advance(1); assert.equal(h.opens(), 1)
+  h.advance(5000); assert.equal(h.opens(), 1)
+})
+test('late desktop hydration does not add a second delay', () => {
+  const h = entranceHarness({ now: 1800, readyAt: 100 })
+  h.advance(0); assert.equal(h.opens(), 1)
+})
+test('desktop that is still parsing waits for DOM readiness', () => {
+  const h = entranceHarness({ loading: true })
+  h.advance(5000); assert.equal(h.opens(), 0)
+  h.ready(); h.advance(999); assert.equal(h.opens(), 0)
+  h.advance(1); assert.equal(h.opens(), 1)
+})
+test('mobile stays closed in the hero and opens only after post-hero scrolling settles', () => {
+  const h = entranceHarness({ mobile: true })
+  h.advance(5000); assert.equal(h.opens(), 0)
+  h.scrollTo(0); h.advance(700); assert.equal(h.opens(), 0)
+  h.scrollTo(-50); h.advance(849); assert.equal(h.opens(), 0)
+  h.advance(1); assert.equal(h.opens(), 1)
+  h.scrollTo(-200); h.advance(3000); assert.equal(h.opens(), 1)
+})
+test('mobile returning to the hero cancels its pending auto-open', () => {
+  const h = entranceHarness({ mobile: true })
+  h.scrollTo(0); h.advance(500); h.scrollTo(900); h.advance(5000)
+  assert.equal(h.opens(), 0)
+})
+test('manual interaction or unmount cancels desktop and mobile automatic opening', () => {
+  for (const mobile of [false, true]) {
+    const h = entranceHarness({ mobile })
+    h.scrollTo(0); h.cancel(); h.advance(5000); h.scrollTo(-200); h.advance(5000)
+    assert.equal(h.opens(), 0)
+  }
+})
+test('dismissed sessions never auto-open on either viewport', () => {
+  for (const mobile of [false, true]) {
+    const h = entranceHarness({ mobile, dismissed: true })
+    h.scrollTo(0); h.advance(5000); assert.equal(h.opens(), 0)
+  }
 })
