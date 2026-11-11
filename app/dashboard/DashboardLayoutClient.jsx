@@ -92,7 +92,7 @@ const getDashboardMenuItems = (language) => [
     description: language === 'cs' ? 'Soubory a smlouvy' : (language === 'it' ? 'File e contratti' : 'Files & contracts')
   },
   {
-    title: language === 'cs' ? 'Concierge' : (language === 'it' ? 'Concierge' : 'Concierge'),
+    title: language === 'cs' ? 'Konzultant' : (language === 'it' ? 'Concierge' : 'Concierge'),
     href: '/dashboard/concierge',
     icon: MessageCircle,
     description: language === 'cs' ? 'Prémiová podpora' : (language === 'it' ? 'Supporto premium' : 'Premium support')

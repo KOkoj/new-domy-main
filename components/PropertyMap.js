@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
+import { trackClientEvent } from '@/lib/trackClientEvent';
 import { X, MapPin, Bed, Ruler, Home, Building2, Castle, DoorOpen } from 'lucide-react';
 import { getLocalizedValue, getPropertyTypeLabel, getStatusLabel } from '@/lib/propertyDisplay';
 import { getNewPropertyLabel } from '@/components/NewPropertyRibbon';
@@ -612,6 +613,7 @@ const PropertyMap = ({
     if (!activeProperty) return;
     const slugOrId = activeProperty.slug || activeProperty.sanityId;
     if (slugOrId) {
+      trackClientEvent('property_card_click', { location: 'listing' });
       router.push(`/properties/${slugOrId}`);
     }
   }, [activeProperty, router]);

@@ -60,6 +60,9 @@ const nextConfig = {
         { source: `/properties/${key}`, destination: `/properties/${alias.primarySlug}`, statusCode: 301 },
         { source: `/properties/${key}/`, destination: `/properties/${alias.primarySlug}`, statusCode: 301 },
       ])),
+      // Czech entry point used by the article property cards; keep the existing canonical listing.
+      { source: '/nemovitosti', destination: '/properties', statusCode: 301 },
+      { source: '/nemovitosti/', destination: '/properties', statusCode: 301 },
       // Legacy pages must redirect before rendering or slash normalization.
       { source: '/nas-proces', destination: '/process', statusCode: 301 },
       { source: '/nas-proces/', destination: '/process', statusCode: 301 },

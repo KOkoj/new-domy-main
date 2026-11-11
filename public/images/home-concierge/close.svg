@@ -1,0 +1,11 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Close icon" clip-path="url(#clip0_0_4)">
+<path id="Close stroke" d="M0 6L6 0" stroke="#7F807F" stroke-width="1.5" stroke-linecap="round"/>
+<path id="Close stroke_2" d="M0 0L6 6" stroke="#7F807F" stroke-width="1.5" stroke-linecap="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="6" height="6" fill="white"/>
+</clipPath>
+</defs>
+</svg>

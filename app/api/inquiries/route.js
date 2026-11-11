@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createRouteSupabaseClient, getAuthenticatedUser } from '@/lib/serverAuth'
+import { trackServerEvent } from '@/lib/trackServerEvent'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -132,6 +133,8 @@ export async function POST(request) {
   if (error) {
     return applyCookies(NextResponse.json({ error: error.message }, { status: 500 }))
   }
+
+  await trackServerEvent(request, 'inquiry_submit', { type: type || 'property' })
 
   // Save the lead before attempting delivery, but only report full success
   // when both required transactional emails are accepted by the provider.
