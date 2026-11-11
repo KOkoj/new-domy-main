@@ -15,6 +15,7 @@ const AuthModal = dynamic(() => import('@/components/AuthModal'), { ssr: false }
 const KlubInfoModal = dynamic(() => import('@/components/KlubInfoModal'), { ssr: false })
 import Footer from '@/components/Footer'
 import PropertySlider from '@/components/PropertySlider'
+import { trackClientEvent } from '@/lib/trackClientEvent'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import Navigation from '../components/Navigation'
 import { LanguageMenu, SiteNavMenu } from '../components/SiteNavControls'
@@ -737,6 +738,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
   }
 
   const handleBookCall = () => {
+    trackClientEvent('consult_cta_click', { location: 'home' })
     window.location.href = '/book-call'
   }
 
