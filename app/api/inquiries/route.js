@@ -136,8 +136,8 @@ export async function POST(request) {
 
   await trackServerEvent(request, 'inquiry_submit', { type: type || 'property' })
 
-  // Save the lead before attempting delivery, but only report full success
-  // when both required transactional emails are accepted by the provider.
+  // Save the lead before attempting delivery. Delivery failures are logged
+  // below and reported in `failedDeliveries`, but do not fail the request.
   let supabaseAdmin = null
   let adminNotificationResult = null
   let confirmationResult = null
@@ -234,29 +234,26 @@ export async function POST(request) {
     !wasEmailDelivered(confirmationResult) ? 'sender_confirmation' : null
   ].filter(Boolean)
 
+  // The inquiry is stored, so the visitor must see a success state. A failed
+  // notification is an operational problem for us (visible in the function
+  // logs and in email_logs), never an error for the sender.
   if (failedDeliveries.length > 0) {
-    return applyCookies(
-      NextResponse.json(
-        {
-          success: false,
-          inquirySaved: true,
-          inquiryId: data?.id,
-          error: 'Inquiry saved, but required email delivery failed',
-          failedDeliveries
-        },
-        { status: 502 }
-      )
+    console.error(
+      `[INQUIRIES] Inquiry ${data?.id || '(unknown id)'} saved, but email delivery failed: ${failedDeliveries.join(', ')}`
     )
   }
 
   return applyCookies(
     NextResponse.json({
       success: true,
+      inquirySaved: true,
+      inquiryId: data?.id,
       data,
       emailDelivery: {
-        adminNotification: adminNotificationResult.provider,
-        senderConfirmation: confirmationResult.provider
-      }
+        adminNotification: adminNotificationResult?.provider || null,
+        senderConfirmation: confirmationResult?.provider || null
+      },
+      failedDeliveries
     })
   )
 }

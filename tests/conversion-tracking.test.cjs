@@ -82,7 +82,11 @@ test('blocked storage during capture is safe and does not throw', () => {
 })
 
 test('click resolver maps public conversion links and ignores listing index, dashboard and favorites context is handled by location', () => {
-  same(tracking.resolveClickEvent({ href: 'tel:+420731450001', pathname: '/', inConcierge: true }), { name: 'concierge_phone_click', location: 'concierge' })
+  same(tracking.resolveClickEvent({ href: 'tel:+420731450001', pathname: '/', inConcierge: true }), { name: 'phone_click', location: 'concierge' })
+  same(tracking.resolveClickEvent({ href: 'tel:+420731450001', pathname: '/properties/foo', dataLocation: 'sticky_bar' }), { name: 'phone_click', location: 'sticky_bar' })
+  same(tracking.resolveClickEvent({ href: 'https://wa.me/420731450001?text=Dobr%C3%BD%20den', pathname: '/properties', dataLocation: 'sticky_bar' }), { name: 'whatsapp_click', location: 'sticky_bar' })
+  same(tracking.resolveClickEvent({ href: 'mailto:info@domyvitalii.cz', pathname: '/about' }), { name: 'email_click', location: 'about' })
+  same(tracking.resolveClickEvent({ href: 'mailto:info@domyvitalii.cz?subject=Dotaz', pathname: '/', inFooter: true }), { name: 'email_click', location: 'footer' })
   same(tracking.resolveClickEvent({ href: 'tel:+420720363136', pathname: '/', inFooter: true }), { name: 'phone_click', location: 'footer' })
   same(tracking.resolveClickEvent({ href: 'https://wa.me/420731450001', pathname: '/contact' }), { name: 'whatsapp_click', location: 'contact' })
   same(tracking.resolveClickEvent({ href: '/book-call', pathname: '/' }), { name: 'consult_cta_click', location: 'home' })
@@ -105,8 +109,11 @@ test('layout, concierge, APIs and CTAs wire track() without changing existing be
 
   const concierge = read('components/ConciergeContact.jsx')
   assert.match(concierge, /trackClientEvent\('concierge_open'/)
+  assert.match(concierge, /trackClientEvent\('concierge_auto_open'/)
+  assert.match(concierge, /buildWhatsappUrl\(labels\.whatsappText\)/)
+  assert.doesNotMatch(read('lib/conciergeEntrance.js'), /addEventListener\('scroll'/)
   assert.match(concierge, /trackClientEvent\('concierge_dismiss'/)
-  assert.match(concierge, /tel:\+420731450001/)
+  assert.match(concierge, /tel:\$\{CONTACT_PHONE_E164\}/)
   assert.match(concierge, /event.key === 'Escape'/)
 
   const listener = read('components/ConversionTracking.jsx')

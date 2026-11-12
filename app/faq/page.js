@@ -299,6 +299,7 @@ export default function FAQPage() {
                   <Button 
                     size="lg" 
                     className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 hover:border-white/30 font-medium px-8 py-5 text-base transition-all duration-300 rounded-xl bg-transparent border"
+                    data-track-href="mailto:info@domyvitalii.cz"
                     onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}
                   >
                     <Mail className="h-5 w-5 mr-2" />

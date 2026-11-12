@@ -420,6 +420,7 @@ export default function AboutPage() {
                 <Button
                   size="lg"
                   className="text-slate-900 font-semibold px-8 py-6 text-base transition-all duration-200 shadow-lg rounded-xl bg-white hover:bg-gray-100"
+                  data-track-href="mailto:info@domyvitalii.cz"
                   onClick={() => window.location.href = 'mailto:info@domyvitalii.cz'}
                 >
                   <Mail className="h-4 w-4 mr-2" />

@@ -22,6 +22,8 @@ import RegionBanner from '../../components/RegionBanner';
 import Navigation from '@/components/Navigation';
 import { resolvePropertyType, getLocalizedValue } from '@/lib/propertyDisplay';
 import { t } from '@/lib/translations';
+import MobileContactBar from '@/components/MobileContactBar';
+import { SITE_ORIGIN } from '@/lib/contactDetails';
 import {
   REGION_LABELS,
   toRegionSlug,
@@ -1023,7 +1025,13 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       )}
 
       {/* Floating view toggle pill (mobile only, Airbnb-style) */}
-      <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 lg:hidden">
+      <div
+        className={`fixed left-1/2 z-50 -translate-x-1/2 lg:hidden ${
+          mobileMapActive
+            ? 'bottom-6'
+            : 'bottom-[calc(var(--contact-bar-height)+env(safe-area-inset-bottom,0px)+0.75rem)]'
+        }`}
+      >
         <button
           type="button"
           onClick={() => setViewMode(viewMode === 'split' ? 'list' : 'split')}
@@ -1046,6 +1054,14 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
 
       {/* Footer */}
       <Footer language={language} />
+
+      {/* Mobile contact bar; steps aside while the full-screen map is open */}
+      <MobileContactBar
+        language={language}
+        hidden={mobileMapActive}
+        whatsappText={t('forms.contactBar.whatsappListing', language).replace('{url}', `${SITE_ORIGIN}/properties`)}
+        inquiryHref="/contact#contact-form"
+      />
 
       {/* Auth Modal (for Favorites) */}
       <AuthModal 

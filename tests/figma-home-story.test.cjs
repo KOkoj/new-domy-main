@@ -10,8 +10,8 @@ test('homepage contact is scoped to the homepage and remains dismissible and cal
   assert.match(read('app/HomePageClient.jsx'), /<Navigation appearAfterHero \/>/)
   assert.match(read('app/HomePageClient.jsx'), /<ConciergeContact language=\{language\} \/>/)
   const contact = read('components/ConciergeContact.jsx')
-  assert.match(contact, /tel:\+420731450001/)
-  assert.match(contact, /role: 'konzultant'/)
+  assert.match(contact, /tel:\$\{CONTACT_PHONE_E164\}/)
+  assert.match(contact, /role: 'konzultantka'/)
   assert.ok(!contact.includes('concierge agent'))
   assert.match(contact, /Po–Pá: 9–16 a 18–20 hod\./)
   assert.match(contact, /aria-expanded=\{open\}/)
@@ -138,7 +138,8 @@ test('card clips no horizontal scrolling, keeps legible hours and offers desktop
   assert.ok(!css.includes('.hoursLabel { display: none'))
   assert.match(css, /@media \(min-width: 768px\) and \(pointer: fine\)/)
   assert.match(css, /user-select: text/)
-  assert.match(css, /\.phone \{[^}]*background: #1b2642/)
+  assert.match(css, /\.whatsapp \{[^}]*background: #0e7a5f/)
+  assert.match(css, /\.whatsapp, \.phone, \.message \{[^}]*min-height: 44px/)
   assert.match(css, /\.launcherIcon \{ transition: transform 420ms/)
 })
 
@@ -235,18 +236,12 @@ test('desktop that is still parsing waits for DOM readiness', () => {
   h.ready(); h.advance(999); assert.equal(h.opens(), 0)
   h.advance(1); assert.equal(h.opens(), 1)
 })
-test('mobile stays closed in the hero and opens only after post-hero scrolling settles', () => {
+test('mobile never opens automatically, in the hero or after scrolling past it', () => {
   const h = entranceHarness({ mobile: true })
   h.advance(5000); assert.equal(h.opens(), 0)
   h.scrollTo(0); h.advance(700); assert.equal(h.opens(), 0)
-  h.scrollTo(-50); h.advance(849); assert.equal(h.opens(), 0)
-  h.advance(1); assert.equal(h.opens(), 1)
-  h.scrollTo(-200); h.advance(3000); assert.equal(h.opens(), 1)
-})
-test('mobile returning to the hero cancels its pending auto-open', () => {
-  const h = entranceHarness({ mobile: true })
-  h.scrollTo(0); h.advance(500); h.scrollTo(900); h.advance(5000)
-  assert.equal(h.opens(), 0)
+  h.scrollTo(-50); h.advance(5000); assert.equal(h.opens(), 0)
+  h.scrollTo(-200); h.advance(5000); assert.equal(h.opens(), 0)
 })
 test('manual interaction or unmount cancels desktop and mobile automatic opening', () => {
   for (const mobile of [false, true]) {

@@ -26,6 +26,22 @@ import NoAgencyBadge, { getNoAgencyLabel } from '@/components/NoAgencyBadge'
 import { buildGalleryMedia, transformPropertyForClient } from '@/lib/propertyTransform'
 import { getStatusLabel } from '@/lib/propertyDisplay'
 import { t } from '@/lib/translations'
+import MobileContactBar from '@/components/MobileContactBar'
+import { SITE_ORIGIN } from '@/lib/contactDetails'
+import { trackClientEvent } from '@/lib/trackClientEvent'
+
+const INQUIRY_FORM_ID = 'inquiry-form'
+
+// Shared by the sticky bar and the "I'm interested" button: bring the inquiry
+// form into view and put the cursor in its first field.
+function scrollToInquiryForm(event) {
+  const form = document.getElementById(INQUIRY_FORM_ID)
+  if (!form) return
+  event?.preventDefault?.()
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+  form.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })
+  form.querySelector('input, textarea')?.focus({ preventScroll: true })
+}
 
 const PROPERTY_TYPE_LABELS = {
   apartment: { cs: 'Byt', it: 'Appartamento', en: 'Apartment' },
@@ -424,10 +440,12 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     message: t('forms.propertyInquiry.defaultMessage', language)
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   useEffect(() => {
     const translatedDefaults = ['cs', 'en', 'it'].map((lang) =>
@@ -444,6 +462,7 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitError('')
 
     try {
       const response = await fetch('/api/inquiries', {
@@ -452,19 +471,22 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
         body: JSON.stringify({
           listingId: propertyId,
           propertyTitle,
-          ...formData
+          ...formData,
+          phone: formData.phone.trim()
         })
       })
       const result = await response.json().catch(() => null)
 
-      if (response.ok && result?.success) {
+      // A stored inquiry is a success for the visitor even if the API reports
+      // a problem with the notification e-mails.
+      if ((response.ok && result?.success) || result?.inquirySaved === true) {
         setSubmitted(true)
       } else {
         throw new Error(result?.error || 'Failed to submit inquiry')
       }
     } catch (error) {
       console.error('Error submitting inquiry:', error)
-      alert(tr('error'))
+      setSubmitError(tr('error'))
     } finally {
       setIsSubmitting(false)
     }
@@ -472,7 +494,7 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
 
   if (submitted) {
     return (
-      <Card>
+      <Card id={INQUIRY_FORM_ID} className="scroll-mt-24" role="status">
         <CardContent className="p-6 text-center">
           <div className="text-slate-800 mb-2">
             <svg className="w-12 h-12 mx-auto" fill="currentColor" viewBox="0 0 20 20">
@@ -487,15 +509,18 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
   }
 
   return (
-    <Card>
+    <Card id={INQUIRY_FORM_ID} className="scroll-mt-24">
       <CardHeader>
         <CardTitle>{tr('title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="text-sm font-medium mb-1 block">{tr('name')}</label>
+            <label htmlFor="inquiry-name" className="text-sm font-medium mb-1 block">{tr('name')}</label>
             <Input
+              id="inquiry-name"
+              name="name"
+              autoComplete="name"
               required
               value={formData.name}
               onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -503,9 +528,13 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-1 block">{tr('email')}</label>
+            <label htmlFor="inquiry-email" className="text-sm font-medium mb-1 block">{tr('email')}</label>
             <Input
+              id="inquiry-email"
+              name="email"
               type="email"
+              inputMode="email"
+              autoComplete="email"
               required
               value={formData.email}
               onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
@@ -513,8 +542,25 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-1 block">{tr('message')}</label>
+            <label htmlFor="inquiry-phone" className="text-sm font-medium mb-1 block">
+              {tr('phone')} <span className="font-normal text-gray-500">({tr('optional')})</span>
+            </label>
+            <Input
+              id="inquiry-phone"
+              name="phone"
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              value={formData.phone}
+              onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+              placeholder={tr('phonePlaceholder')}
+            />
+          </div>
+          <div>
+            <label htmlFor="inquiry-message" className="text-sm font-medium mb-1 block">{tr('message')}</label>
             <Textarea
+              id="inquiry-message"
+              name="message"
               required
               value={formData.message}
               onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
@@ -522,9 +568,21 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
               rows={4}
             />
           </div>
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
+          {submitError && (
+            <p
+              role="alert"
+              data-testid="inquiry-error"
+              className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800"
+            >
+              {submitError}
+            </p>
+          )}
+          <Button type="submit" className="w-full min-h-11" disabled={isSubmitting}>
             {isSubmitting ? tr('sending') : tr('send')}
           </Button>
+          <p className="text-center text-sm text-gray-600" data-testid="inquiry-reassurance">
+            {tr('reassurance')}
+          </p>
           <FormPrivacyNotice language={language} purpose="property" />
         </form>
       </CardContent>
@@ -880,6 +938,23 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                       </button>
                     ))}
                   </div>
+                  <div className="mb-3">
+                    <Button
+                      asChild
+                      className="min-h-11 w-full bg-[#1b2642] px-6 text-base font-semibold text-white hover:bg-[#243056] sm:w-auto"
+                    >
+                      <a
+                        href={`#${INQUIRY_FORM_ID}`}
+                        data-testid="interested-button"
+                        onClick={(event) => {
+                          trackClientEvent('inquiry_cta_click', { location: 'price' })
+                          scrollToInquiryForm(event)
+                        }}
+                      >
+                        {t('forms.propertyInquiry.interested', language)}
+                      </a>
+                    </Button>
+                  </div>
                   <div className="flex items-center sm:justify-end gap-2 flex-wrap">
                     <Button variant="outline" size="sm" onClick={handleShare}>
                       <Share2 className="h-4 w-4 mr-1" />
@@ -1093,6 +1168,15 @@ export default function PropertyDetailClient({ initialProperty = null }) {
       </div>
 
       <Footer language={language} />
+
+      <MobileContactBar
+        language={language}
+        whatsappText={t('forms.contactBar.whatsappProperty', language)
+          .replace('{title}', getLocalizedText(property.title))
+          .replace('{url}', `${SITE_ORIGIN}/properties/${slugParam}`)}
+        inquiryHref={`#${INQUIRY_FORM_ID}`}
+        onInquiryClick={scrollToInquiryForm}
+      />
 
       <AuthModal
         isOpen={isAuthModalOpen}
