@@ -114,6 +114,10 @@ export async function POST(request) {
       lead = data
     }
 
+    // The lead is stored at this point. Measure it now so a failing
+    // confirmation email does not hide the submission from analytics.
+    await trackServerEvent(request, 'lead_submit', { type: source || 'lead' })
+
     const confirmUrl = buildLeadUrl(
       `/api/leads/confirm?token=${encodeURIComponent(lead.confirm_token)}`
     )
@@ -146,7 +150,6 @@ export async function POST(request) {
       )
     }
 
-    await trackServerEvent(request, 'lead_submit', { type: source || 'lead' })
     return NextResponse.json({ success: true, confirmed: false })
   } catch (error) {
     console.error('[LEADS] Submission failed:', error.message)

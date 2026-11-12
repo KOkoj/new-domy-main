@@ -958,3 +958,25 @@ body[data-paywall='active'] {
   /* Disable touch panning on mobile so the visitor can't scroll past the gate. */
   touch-action: none;
 }
+
+/* =============================================
+   MOBILE CONTACT BAR (components/MobileContactBar.jsx)
+
+   The bar is fixed to the bottom edge on phones/tablets. While it is mounted
+   it sets `data-contact-bar` on <body>; the padding below keeps the footer and
+   the last content block scrollable above it, including the iOS home
+   indicator area.
+   ============================================= */
+:root {
+  --contact-bar-height: 3.75rem;
+}
+
+@media (max-width: 1023.98px) {
+  body[data-contact-bar='true'] {
+    padding-bottom: calc(var(--contact-bar-height) + env(safe-area-inset-bottom, 0px));
+  }
+
+  body[data-contact-bar='true'] [data-testid='scroll-to-top'] {
+    bottom: calc(var(--contact-bar-height) + env(safe-area-inset-bottom, 0px) + 0.75rem);
+  }
+}

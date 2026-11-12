@@ -323,13 +323,14 @@ export default function ContactPage() {
                   )}
 
                   {/* Contact Form */}
-                  <form id="contact-form" onSubmit={handleSubmit} className="space-y-6">
+                  <form id="contact-form" onSubmit={handleSubmit} className="space-y-6 scroll-mt-28">
                     {/* Name and Email Row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="block text-sm font-semibold text-slate-800">{tr('name')} *</label>
                         <Input
                           name="name"
+                          autoComplete="name"
                           value={formData.name}
                           onChange={handleInputChange}
                           required
@@ -342,6 +343,8 @@ export default function ContactPage() {
                         <Input
                           type="email"
                           name="email"
+                          inputMode="email"
+                          autoComplete="email"
                           value={formData.email}
                           onChange={handleInputChange}
                           required
@@ -358,6 +361,8 @@ export default function ContactPage() {
                         <Input
                           type="tel"
                           name="phone"
+                          inputMode="tel"
+                          autoComplete="tel"
                           value={formData.phone}
                           onChange={handleInputChange}
                           placeholder={tr('phonePlaceholder')}
@@ -371,7 +376,7 @@ export default function ContactPage() {
                           value={formData.inquiryType}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
+                          className="w-full p-3 text-base border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-slate-500"
                         >
                           <option value="">
                             {tr('selectType')}
