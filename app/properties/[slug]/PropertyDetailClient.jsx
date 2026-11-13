@@ -21,8 +21,8 @@ import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import AuthModal from '../../../components/AuthModal'
 import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
-import NewPropertyRibbon, { getNewPropertyLabel } from '@/components/NewPropertyRibbon'
-import NoAgencyBadge, { getNoAgencyLabel } from '@/components/NoAgencyBadge'
+import { getNewPropertyLabel } from '@/components/NewPropertyRibbon'
+import { getNoAgencyLabel } from '@/components/NoAgencyBadge'
 import { buildGalleryMedia, transformPropertyForClient } from '@/lib/propertyTransform'
 import { getStatusLabel } from '@/lib/propertyDisplay'
 import { t } from '@/lib/translations'
@@ -192,23 +192,54 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
     )
   }
 
+  const chipClass =
+    'inline-flex max-w-full items-center rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase leading-tight tracking-[0.06em] text-white shadow-md sm:px-2.5 sm:py-1 sm:text-xs'
+
   const badgeOverlay = (
-    <>
-      {isNew && <NewPropertyRibbon language={language} />}
-      {noAgency && (
-        <div className="absolute right-4 top-4 z-20 pointer-events-none">
-          <NoAgencyBadge language={language} />
-        </div>
-      )}
+    <div className="pointer-events-none absolute left-2 top-2 z-20 flex max-w-[calc(100%-0.75rem)] flex-col items-start gap-1 sm:left-3 sm:top-3 sm:gap-1.5">
       {statusLabel && (
-        <div className="absolute left-4 top-4 z-10">
-          <span className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg ${status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'}`}>
-            {statusLabel}
-          </span>
-        </div>
+        <span className={`${chipClass} ${status === 'sold' ? 'bg-red-600/95' : 'bg-amber-600/95'}`}>
+          {statusLabel}
+        </span>
       )}
-    </>
+      {noAgency && (
+        <span className={`${chipClass} bg-emerald-700/95 ring-1 ring-white/30`}>
+          {getNoAgencyLabel(language)}
+        </span>
+      )}
+      {isNew && (
+        <span className={`${chipClass} bg-slate-800 text-yellow-200 ring-1 ring-yellow-300/85`}>
+          {getNewPropertyLabel(language)}
+        </span>
+      )}
+    </div>
   )
+
+  const allPhotosButton = media.length > 1 ? (
+    <button
+      type="button"
+      onClick={(event) => {
+        event.stopPropagation()
+        openLightbox(0)
+      }}
+      className="absolute bottom-2 right-2 z-20 flex max-w-[calc(100%-1rem)] items-center gap-1 rounded-md border border-gray-200 bg-white/95 px-2 py-1 text-[11px] font-medium text-gray-800 shadow-md hover:bg-white hover:shadow-lg sm:bottom-3 sm:right-3 sm:gap-1.5 sm:rounded-lg sm:px-3 sm:py-1.5 sm:text-sm"
+    >
+      <ZoomIn className="h-3 w-3 shrink-0 sm:h-4 sm:w-4" />
+      <span className="truncate">
+        {language === 'cs'
+          ? hasVideo
+            ? `Všechny fotky a video (${imageCount + 1})`
+            : `Všechny fotky (${imageCount})`
+          : language === 'it'
+          ? hasVideo
+            ? `Tutte le foto e il video (${imageCount + 1})`
+            : `Tutte le foto (${imageCount})`
+          : hasVideo
+          ? `All photos and video (${imageCount + 1})`
+          : `All ${imageCount} photos`}
+      </span>
+    </button>
+  ) : null
 
   const heroIndex = 0
   const videoIndex = media.findIndex((item) => item.type === 'video')
@@ -259,7 +290,8 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
                 />
               )}
               {badgeOverlay}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+              {allPhotosButton}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
             </div>
 
             <div className="grid grid-cols-1 grid-rows-2 sm:grid-cols-2 sm:grid-rows-2 gap-2 h-full">
@@ -299,25 +331,6 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
           </div>
         )}
 
-        {media.length > 1 && (
-          <button
-            onClick={() => openLightbox(0)}
-            className="absolute bottom-4 right-4 z-10 flex items-center gap-2 rounded-lg bg-white/95 border border-gray-200 px-4 py-2 text-sm font-medium text-gray-800 shadow-md hover:bg-white hover:shadow-lg transition-all duration-200"
-          >
-            <ZoomIn className="h-4 w-4" />
-            {language === 'cs'
-              ? hasVideo
-                ? `Všechny fotky a video (${imageCount + 1})`
-                : `Všechny fotky (${imageCount})`
-              : language === 'it'
-              ? hasVideo
-                ? `Tutte le foto e il video (${imageCount + 1})`
-                : `Tutte le foto (${imageCount})`
-              : hasVideo
-              ? `All photos and video (${imageCount + 1})`
-              : `All ${imageCount} photos`}
-          </button>
-        )}
       </div>
 
       {lightboxOpen && mounted && createPortal(
