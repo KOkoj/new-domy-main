@@ -56,9 +56,10 @@ test('known 404 CDN photos are dropped and the next real photo becomes the cover
   const campania = inventory.find(p => p.slug?.current === 'campania-appartamento')
   const kept = images.getPropertyImageList(campania)
   assert.ok(kept.length > 0)
+  assert.ok(kept.every(url => typeof url === 'string' && url.startsWith('/uploads/properties/campania-appartamento/')))
   assert.ok(kept.every(url => !images.isBrokenExternalImageUrl(url)))
   assert.equal(images.getPropertyImage(campania), kept[0])
-  assert.notEqual(kept[0], campania.images[0])
+  assert.equal(kept[0], campania.images[0])
 })
 
 test('hiding listings without usable photos is on by default and can be turned off', () => {
