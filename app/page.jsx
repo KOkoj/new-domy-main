@@ -1,4 +1,4 @@
-import { getAllProperties } from '@/lib/propertyApi'
+import { getListableProperties } from '@/lib/propertyApi'
 import { absoluteUrl, SITE_NAME, SITE_URL } from '@/lib/siteConfig'
 import JsonLd from '@/components/seo/JsonLd'
 import HomePageClient from './HomePageClient'
@@ -8,7 +8,7 @@ export const revalidate = 3600
 
 async function fetchPropertiesSafely() {
   try {
-    return await getAllProperties(new URLSearchParams())
+    return await getListableProperties(new URLSearchParams())
   } catch (error) {
     console.error('Homepage server fetch failed:', error)
     return []

@@ -1,5 +1,5 @@
 import RegionsListingClient from './RegionsListingClient'
-import { getAllProperties } from '@/lib/propertyApi'
+import { getListableProperties } from '@/lib/propertyApi'
 import { preparePropertySliderPreview } from '@/lib/propertySliderData'
 
 export const revalidate = 3600
@@ -442,7 +442,7 @@ export default async function RegionsPage() {
   let initialProperties = []
 
   try {
-    initialProperties = await getAllProperties(new URLSearchParams())
+    initialProperties = await getListableProperties(new URLSearchParams())
   } catch (error) {
     console.error('Regions property fetch failed:', error)
   }

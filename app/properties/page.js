@@ -1,4 +1,4 @@
-import { getAllProperties } from '@/lib/propertyApi'
+import { getListableProperties } from '@/lib/propertyApi'
 import { transformPropertyListings } from '@/lib/propertyListing'
 import PropertiesClient from './PropertiesClient'
 import PropertiesIndexSchema from './PropertiesIndexSchema'
@@ -7,7 +7,7 @@ export const revalidate = 3600
 
 async function getInitialProperties() {
   try {
-    const properties = await getAllProperties(new URLSearchParams())
+    const properties = await getListableProperties(new URLSearchParams())
     return transformPropertyListings(properties)
   } catch (error) {
     console.error('Properties server fetch failed:', error)

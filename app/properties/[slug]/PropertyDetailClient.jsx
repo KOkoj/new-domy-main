@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import PropertyImage from '@/components/PropertyImage'
-import { PROPERTY_IMAGE_FALLBACK } from '@/lib/getPropertyImage'
 import { useParams } from 'next/navigation'
 import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, X, ChevronLeft, ChevronRight, ZoomIn, Play } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -65,11 +64,15 @@ function isLocalAsset(url) {
 }
 
 function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgency }) {
-  const media = useMemo(() => buildGalleryMedia(images, videoUrl), [images, videoUrl])
+  const allMedia = useMemo(() => buildGalleryMedia(images, videoUrl), [images, videoUrl])
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [mounted, setMounted] = useState(false)
-  const [failedIndices, setFailedIndices] = useState(() => new Set())
+  const [failedSrcs, setFailedSrcs] = useState(() => new Set())
+  const media = useMemo(
+    () => allMedia.filter((item) => item.type !== 'image' || !failedSrcs.has(item.src)),
+    [allMedia, failedSrcs]
+  )
   const videoRef = useRef(null)
   const statusLabel = getStatusLabel(status, language)
 
@@ -80,8 +83,14 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
   useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
-    setFailedIndices((prev) => (prev.size === 0 ? prev : new Set()))
+    setFailedSrcs((prev) => (prev.size === 0 ? prev : new Set()))
   }, [images, videoUrl])
+
+  useEffect(() => {
+    if (lightboxIndex >= media.length) {
+      setLightboxIndex(Math.max(0, media.length - 1))
+    }
+  }, [media.length, lightboxIndex])
 
   useEffect(() => {
     if (!lightboxOpen && videoRef.current) {
@@ -89,21 +98,21 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
     }
   }, [lightboxOpen, lightboxIndex])
 
-  const markFailed = useCallback((idx) => {
-    setFailedIndices((prev) => {
-      if (prev.has(idx)) return prev
+  const markFailed = useCallback((src) => {
+    if (!src) return
+    setFailedSrcs((prev) => {
+      if (prev.has(src)) return prev
       const next = new Set(prev)
-      next.add(idx)
+      next.add(src)
       return next
     })
   }, [])
 
   const srcAt = useCallback((idx) => {
     const item = media[idx]
-    if (!item || item.type !== 'image') return PROPERTY_IMAGE_FALLBACK
-    if (failedIndices.has(idx)) return PROPERTY_IMAGE_FALLBACK
+    if (!item || item.type !== 'image') return null
     return item.src
-  }, [failedIndices, media])
+  }, [media])
 
   const openLightbox = (index) => {
     setLightboxIndex(index)
@@ -175,7 +184,7 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
           fill
           sizes={options.sizes || '33vw'}
           priority={options.priority}
-          onUpstreamError={() => markFailed(index)}
+          onUpstreamError={() => markFailed(srcAt(index))}
           className={options.imageClassName || 'object-cover transition-transform duration-500 group-hover:scale-[1.05]'}
         />
         {options.overlay}
@@ -391,7 +400,7 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
                 sizes="90vw"
                 className="object-contain"
                 priority={isLocalAsset(media[lightboxIndex]?.src)}
-                onUpstreamError={() => markFailed(lightboxIndex)}
+                onUpstreamError={() => markFailed(srcAt(lightboxIndex))}
               />
             )}
           </div>

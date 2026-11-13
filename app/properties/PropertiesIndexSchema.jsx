@@ -1,5 +1,5 @@
 import { absoluteUrl } from '@/lib/siteConfig'
-import { getAllProperties } from '@/lib/propertyApi'
+import { getListableProperties } from '@/lib/propertyApi'
 import JsonLd from '@/components/seo/JsonLd'
 import { buildBreadcrumbJsonLd } from '@/lib/seo/contentSeo'
 
@@ -17,7 +17,7 @@ function getLocalized(value, language = 'cs', fallback = '') {
 
 async function fetchPropertiesSafely() {
   try {
-    return await getAllProperties(new URLSearchParams())
+    return await getListableProperties(new URLSearchParams())
   } catch (error) {
     console.error('Properties listing layout: failed to load properties', error)
     return []
