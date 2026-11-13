@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getAllProperties } from '@/lib/propertyApi'
+import { getListableProperties } from '@/lib/propertyApi'
 
 // The route reads URL search params at runtime, so it has to remain dynamic.
 // We still set strong CDN cache headers so identical query strings are served
@@ -11,7 +11,7 @@ export const runtime = 'nodejs'
 export async function GET(request) {
   try {
     const url = new URL(request.url)
-    const properties = await getAllProperties(url.searchParams)
+    const properties = await getListableProperties(url.searchParams)
     return NextResponse.json(properties, {
       headers: {
         'Cache-Control': 'no-store',

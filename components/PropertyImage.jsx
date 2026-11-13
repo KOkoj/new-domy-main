@@ -2,12 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { PROPERTY_IMAGE_FALLBACK } from '@/lib/getPropertyImage'
 
 /**
  * Wrapper around next/image for property photos.
- *
- * Two important deviations from a plain <Image>:
  *
  * 1. `unoptimized` is forced on. Property images come from a high-volume mix
  *    of Idealista/im-cdn.it CDN URLs and self-hosted /uploads paths. Routing
@@ -18,37 +15,48 @@ import { PROPERTY_IMAGE_FALLBACK } from '@/lib/getPropertyImage'
  *    optimizer keeps the gallery loading reliably; we trade off responsive
  *    srcset for a working hero, which is the right trade for this site.
  *
- * 2. On load failure we swap to a generic fallback URL and notify the parent
- *    via `onUpstreamError`, so a containing gallery can mark the slot as bad
- *    and keep every renderer of that slot (hero, thumbnails, lightbox) in
- *    sync — the previous bug where the hero showed the fallback while the
- *    lightbox still tried the dead URL is impossible once the parent owns
- *    that state.
+ * 2. On load failure we do not swap in a stock photo. The slot becomes a
+ *    clean empty tile and the parent is notified via `onUpstreamError`, so a
+ *    gallery can drop the dead URL and show the next real photo — or an
+ *    empty state when none remain.
  */
 export default function PropertyImage({
   src,
-  fallbackSrc = PROPERTY_IMAGE_FALLBACK,
+  fallbackSrc = null,
   alt = '',
   onUpstreamError,
   unoptimized = true,
+  className,
   ...props
 }) {
-  const initialSrc = src || fallbackSrc
-  const [currentSrc, setCurrentSrc] = useState(initialSrc)
+  const [failed, setFailed] = useState(false)
 
   useEffect(() => {
-    setCurrentSrc(src || fallbackSrc)
+    setFailed(false)
   }, [src, fallbackSrc])
+
+  const currentSrc = (!failed && src) || fallbackSrc || null
+
+  if (!currentSrc) {
+    return (
+      <div
+        className={className}
+        data-testid="property-image-empty"
+        aria-hidden="true"
+        style={props.fill ? { position: 'absolute', inset: 0 } : undefined}
+      />
+    )
+  }
 
   return (
     <Image
       {...props}
+      className={className}
       src={currentSrc}
       alt={alt}
       unoptimized={unoptimized}
       onError={() => {
-        if (currentSrc === fallbackSrc) return
-        setCurrentSrc(fallbackSrc)
+        setFailed(true)
         if (typeof onUpstreamError === 'function') {
           onUpstreamError()
         }

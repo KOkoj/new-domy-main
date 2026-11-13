@@ -46,14 +46,14 @@ test('article cards do not invent fill-ins for empty, sold-only, or small invent
 
 test('server loader calls the same inventory API as homepage and safely omits failed data', async () => {
   let called = false
-  const { getArticleProperties } = build({ getAllProperties: async params => {
+  const { getArticleProperties } = build({ getListableProperties: async params => {
     called = true
     assert.equal(params.toString(), '')
     return inventory
   } })
   assert.equal((await getArticleProperties()).length, 3)
   assert.equal(called, true)
-  const failing = build({ getAllProperties: async () => { throw new Error('Inventory offline') }, console: { error() {} } })
+  const failing = build({ getListableProperties: async () => { throw new Error('Inventory offline') }, console: { error() {} } })
   assert.equal((await failing.getArticleProperties()).length, 0)
 })
 

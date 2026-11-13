@@ -28,12 +28,14 @@ export default function PropertyPhotoSwitcher({
   children,
   imageTestId = 'property-image',
 }) {
-  const list = photos.filter(Boolean)
+  const [rejected, setRejected] = useState(() => new Set())
   const [index, setIndex] = useState(0)
-  const photoKey = list.join('|')
+  const photoKey = (Array.isArray(photos) ? photos : []).join('|')
   useEffect(() => {
+    setRejected((prev) => (prev.size === 0 ? prev : new Set()))
     setIndex(0)
   }, [photoKey])
+  const list = (Array.isArray(photos) ? photos : []).filter((src) => src && !rejected.has(src))
   const safeIndex = list.length ? index % list.length : 0
   const multiple = list.length > 1
   const labels = LABELS[language] || LABELS.en
@@ -63,8 +65,18 @@ export default function PropertyPhotoSwitcher({
         alt={alt}
         fill
         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-        className="object-cover"
+        className="object-cover bg-neutral-200"
         data-testid={imageTestId}
+        onUpstreamError={() => {
+          const bad = list[safeIndex]
+          if (!bad) return
+          setRejected((prev) => {
+            if (prev.has(bad)) return prev
+            const next = new Set(prev)
+            next.add(bad)
+            return next
+          })
+        }}
       />
       <div
         className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-2/5"

@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { REGION_DATA_OVERRIDES } from '../regionContent'
-import { getAllProperties } from '@/lib/propertyApi'
+import { getListableProperties } from '@/lib/propertyApi'
 import { getListingRegionSlug } from '@/lib/propertyListing'
 import RegionDetailClient from './RegionDetailClient'
 
@@ -20,7 +20,7 @@ const REGION_ALIASES = {
 
 async function getRegionProperties(slug) {
   try {
-    const properties = await getAllProperties(new URLSearchParams())
+    const properties = await getListableProperties(new URLSearchParams())
     const canonicalSlug = REGION_ALIASES[slug] || slug
     const matchingProperties = properties.filter(
       (property) => getListingRegionSlug(property) === canonicalSlug
