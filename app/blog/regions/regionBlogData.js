@@ -13,7 +13,7 @@ export const REGION_BLOG_DATA = {
     author: 'Maria Rossi',
     publishedAt: '2024-01-15',
     readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&h=600&fit=crop',
+    image: '/house_tuscany_vineyards.jpg',
     content: {
       en: `
         <h2>The Heart of Italian Renaissance</h2>
