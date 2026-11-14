@@ -20,8 +20,6 @@ const CSS_FILES = [
 const DEFAULT_CENTER = [42.8333, 12.8333];
 const DEFAULT_ZOOM = 6;
 const PIN_COLOR = '#1b2642';
-const PIN_HIGHLIGHT_COLOR = '#c48759';
-const PIN_HIGHLIGHT_TEXT = '#1b2642';
 
 function injectCss() {
   CSS_FILES.forEach(({ id, href }) => {
@@ -63,25 +61,35 @@ function formatPinPrice(price, currency = 'EUR', language = 'cs') {
   return `${thousands} tis.`;
 }
 
-function createPinIcon(L, property, highlighted, currency = 'EUR', language = 'cs') {
-  const width = highlighted ? 56 : 46;
-  const height = highlighted ? 72 : 60;
-  const fill = highlighted ? PIN_HIGHLIGHT_COLOR : PIN_COLOR;
-  const textFill = highlighted ? PIN_HIGHLIGHT_TEXT : '#ffffff';
+// Both states share one DOM shape. The highlight is only a class on the marker
+// element (see .property-pin in globals.css), so hovering or selecting a pin
+// never replaces the node a tap is in the middle of landing on.
+const PIN_WIDTH = 46;
+const PIN_HEIGHT = 60;
+const PIN_HIGHLIGHT_CLASS = 'is-highlighted';
 
+function createPinIcon(L, property, highlighted, currency = 'EUR', language = 'cs') {
   return L.divIcon({
-    className: 'property-pin',
+    className: highlighted ? `property-pin ${PIN_HIGHLIGHT_CLASS}` : 'property-pin',
     html: `
-      <svg width="${width}" height="${height}" viewBox="0 0 46 60" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 2px 4px rgba(14,21,46,0.28));">
-        <path d="M23 60C23 60 46 37.5 46 23C46 10.2975 35.7025 0 23 0C10.2975 0 0 10.2975 0 23C0 37.5 23 60 23 60Z" fill="${fill}" stroke="#ffffff" stroke-width="3" />
-        <text x="23" y="27" text-anchor="middle" font-size="11" font-weight="700" fill="${textFill}">
+      <svg width="${PIN_WIDTH}" height="${PIN_HEIGHT}" viewBox="0 0 46 60" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23 60C23 60 46 37.5 46 23C46 10.2975 35.7025 0 23 0C10.2975 0 0 10.2975 0 23C0 37.5 23 60 23 60Z" stroke="#ffffff" stroke-width="3" />
+        <text x="23" y="27" text-anchor="middle" font-size="11" font-weight="700">
           ${formatPinPrice(property.price, currency, language)}
         </text>
       </svg>
     `,
-    iconSize: [width, height],
-    iconAnchor: [Math.round(width / 2), height],
+    iconSize: [PIN_WIDTH, PIN_HEIGHT],
+    iconAnchor: [Math.round(PIN_WIDTH / 2), PIN_HEIGHT],
   });
+}
+
+// Markers hidden inside a cluster have no element yet, so the icon option is
+// kept in step for whenever Leaflet draws them.
+function setPinHighlight(L, entry, highlighted, currency, language) {
+  entry.marker.options.icon = createPinIcon(L, entry.property, highlighted, currency, language);
+  entry.marker.getElement()?.classList.toggle(PIN_HIGHLIGHT_CLASS, highlighted);
+  entry.marker.setZIndexOffset(highlighted ? 1000 : 0);
 }
 
 function createClusterIcon(L, cluster) {
@@ -604,8 +612,7 @@ const PropertyMap = ({
       const entry = markersByIdRef.current.get(id);
       if (!entry) return;
       const isHighlighted = id === next.selectedId || id === next.hoveredId;
-      entry.marker.setIcon(createPinIcon(L, entry.property, isHighlighted, currency, language));
-      entry.marker.setZIndexOffset(isHighlighted ? 1000 : 0);
+      setPinHighlight(L, entry, isHighlighted, currency, language);
     });
   }, [selectedId, hoveredId, ready, currency, language]);
 
