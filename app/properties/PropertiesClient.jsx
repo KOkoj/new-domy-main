@@ -599,13 +599,13 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
           {intro ? <p className="sr-only">{getLocalizedValue(intro, language)}</p> : null}
 
           <div
-            className="mb-6 rounded-2xl bg-white p-2 shadow-[0_10px_32px_rgba(14,21,46,0.06)] sm:p-3"
+            className="mb-6"
             data-testid="horizontal-filter-bar"
           >
             <div className="flex items-center gap-2">
               <div ref={searchRef} className="relative min-w-0 flex-1">
-                <div className="flex h-11 items-center gap-2 rounded-xl bg-white px-3 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]">
-                  <Search className="h-4 w-4 flex-shrink-0 text-gray-400" />
+                <div className="flex h-12 items-center gap-2.5 rounded-xl bg-white px-4 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)]">
+                  <Search className="h-5 w-5 flex-shrink-0 text-gray-400" />
                   <input
                     ref={inputRef}
                     type="text"
@@ -630,16 +630,16 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                       }
                     }}
                     placeholder={language === 'cs' ? 'Toskánsko, vila, bazén, Puglia…' : language === 'it' ? 'Toscana, villa, piscina, Puglia…' : 'Tuscany, villa, pool, Puglia…'}
-                    className="min-w-0 flex-1 bg-transparent text-sm text-[#0e152e] outline-none placeholder:text-gray-400"
+                    className="min-w-0 flex-1 bg-transparent text-base text-[#0e152e] outline-none placeholder:text-gray-400"
                     style={{ outline: 'none', boxShadow: 'none' }}
                   />
                   {filters.search && (
                     <button
                       type="button"
                       onClick={() => { setFilters(prev => ({ ...prev, search: '' })); inputRef.current?.focus(); }}
-                      className="flex-shrink-0 text-gray-400 hover:text-gray-700"
+                      className="-mr-2 flex h-10 w-10 flex-shrink-0 items-center justify-center text-gray-400 hover:text-gray-700"
                     >
-                      <X className="h-4 w-4" />
+                      <X className="h-5 w-5" />
                     </button>
                   )}
                 </div>
@@ -654,7 +654,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                         onMouseEnter={() => setHighlightedIndex(i)}
                       >
                         <Search className="h-3.5 w-3.5 flex-shrink-0 text-gray-300" />
-                        <span className="flex-1 text-sm font-medium text-gray-800">{s.label}</span>
+                        <span className="flex-1 text-base font-medium text-gray-800">{s.label}</span>
                         <span className="flex-shrink-0 rounded-full bg-white px-2 py-0.5 text-xs text-gray-500 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]">{s.category}</span>
                       </button>
                     ))}
@@ -665,7 +665,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
               <button
                 type="button"
                 onClick={() => setShowMobileFilters(open => !open)}
-                className="inline-flex h-11 items-center gap-2 rounded-xl bg-[#1b2642] px-4 text-sm font-semibold text-white lg:hidden"
+                className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#1b2642] px-4 text-base font-semibold text-white lg:hidden"
                 data-testid="filter-bar-toggle"
               >
                 <SlidersHorizontal className="h-4 w-4" />
@@ -678,7 +678,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
               </button>
 
               <div
-                className="ml-auto hidden rounded-xl bg-white p-1 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:inline-flex"
+                className="ml-auto hidden h-12 rounded-xl bg-white p-1 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)] lg:inline-flex"
                 role="group"
                 data-testid="view-mode-toggle"
               >
@@ -686,7 +686,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                   type="button"
                   onClick={() => setViewMode('list')}
                   aria-pressed={viewMode === 'list'}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold ${viewMode === 'list' ? 'bg-[#1b2642] text-white' : 'text-gray-600 hover:text-[#0e152e]'}`}
+                  className={`flex items-center gap-2 rounded-lg px-4 text-base font-semibold ${viewMode === 'list' ? 'bg-[#1b2642] text-white' : 'text-gray-600 hover:text-[#0e152e]'}`}
                   data-testid="view-mode-list"
                 >
                   <ListIcon className="h-4 w-4" />
@@ -696,7 +696,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                   type="button"
                   onClick={() => setViewMode('split')}
                   aria-pressed={viewMode === 'split'}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold ${viewMode === 'split' ? 'bg-[#1b2642] text-white' : 'text-gray-600 hover:text-[#0e152e]'}`}
+                  className={`flex items-center gap-2 rounded-lg px-4 text-base font-semibold ${viewMode === 'split' ? 'bg-[#1b2642] text-white' : 'text-gray-600 hover:text-[#0e152e]'}`}
                   data-testid="view-mode-map"
                 >
                   <MapIcon className="h-4 w-4" />
@@ -705,12 +705,17 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
               </div>
             </div>
 
-            <div className={`${showMobileFilters ? 'mt-2 flex' : 'hidden'} flex-wrap items-center gap-2 lg:mt-2 lg:flex`}>
+            {/* One strip split by hairlines instead of a box per control: rows on
+                mobile, a single line on desktop. */}
+            <div
+              className={`${showMobileFilters ? 'flex' : 'hidden'} mt-2 flex-col divide-y divide-[rgba(14,21,46,0.12)] overflow-hidden rounded-xl bg-white shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)] lg:flex lg:flex-row lg:divide-x lg:divide-y-0`}
+              data-testid="filter-strip"
+            >
               <select
                 value={filters.propertyType}
                 onChange={(e) => setFilters(prev => ({ ...prev, propertyType: e.target.value }))}
                 aria-label={pageLabels.propertyType}
-                className="h-11 min-w-[12.5rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:text-[15px] xl:text-base lg:flex-[1.5]"
               >
                 <option value="">{pageLabels.propertyType}</option>
                 {propertyTypes.map(type => (
@@ -722,7 +727,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 value={filters.region}
                 onChange={(e) => setFilters(prev => ({ ...prev, region: toRegionSlug(e.target.value) }))}
                 aria-label={pageLabels.region}
-                className="h-11 min-w-[13rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:text-[15px] xl:text-base lg:flex-[1.7]"
               >
                 <option value="">{pageLabels.allRegions}</option>
                 {Object.entries(REGION_LABELS).map(([regionSlug, regionLabel]) => (
@@ -734,7 +739,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 value={filters.rooms}
                 onChange={(e) => setFilters(prev => ({ ...prev, rooms: e.target.value }))}
                 aria-label={pageLabels.layout}
-                className="h-11 min-w-[8.5rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:text-[15px] xl:text-base lg:flex-1"
               >
                 <option value="">{pageLabels.layout}</option>
                 {ROOM_LAYOUT_OPTIONS.map((layoutOption) => (
@@ -742,6 +747,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 ))}
               </select>
 
+              <div className="flex divide-x divide-[rgba(14,21,46,0.12)] lg:w-44 lg:flex-none">
               <input
                 type="number"
                 inputMode="numeric"
@@ -749,7 +755,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 aria-label={pageLabels.from}
                 value={filters.priceFrom}
                 onChange={(e) => setFilters(prev => ({ ...prev, priceFrom: e.target.value }))}
-                className="h-11 w-28 rounded-xl bg-white px-3 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent px-4 text-base font-medium text-[#0e152e] placeholder:font-normal placeholder:text-gray-400 lg:text-[15px] xl:text-base"
               />
               <input
                 type="number"
@@ -758,14 +764,15 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 aria-label={pageLabels.to}
                 value={filters.priceTo}
                 onChange={(e) => setFilters(prev => ({ ...prev, priceTo: e.target.value }))}
-                className="h-11 w-28 rounded-xl bg-white px-3 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent px-4 text-base font-medium text-[#0e152e] placeholder:font-normal placeholder:text-gray-400 lg:text-[15px] xl:text-base"
               />
+              </div>
 
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
                 aria-label={pageLabels.sortNewest}
-                className="h-11 min-w-[10.5rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:text-[15px] xl:text-base lg:flex-[1.1]"
               >
                 <option value="newest">{pageLabels.sortNewest}</option>
                 <option value="cheapest">{pageLabels.sortCheapest}</option>
@@ -775,7 +782,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
               <button
                 type="button"
                 onClick={() => setAmenitiesOpen(open => !open)}
-                className={`h-11 rounded-xl px-3 text-sm font-semibold ${amenitiesOpen || filters.amenities.length ? 'bg-[#1b2642] text-white' : 'bg-white text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]'}`}
+                aria-expanded={amenitiesOpen}
+                className={`h-12 whitespace-nowrap px-4 text-left text-base font-semibold lg:flex-none lg:text-[15px] xl:text-base ${amenitiesOpen || filters.amenities.length ? 'bg-[#1b2642] text-white' : 'text-[#0e152e] hover:bg-[#f7f4ed]'}`}
               >
                 {pageLabels.amenities}{filters.amenities.length > 0 ? ` (${filters.amenities.length})` : ''}
               </button>
@@ -784,7 +792,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 <button
                   type="button"
                   onClick={clearFilters}
-                  className="h-11 px-2 text-sm font-semibold text-[#8e5636]"
+                  className="h-12 whitespace-nowrap px-4 text-left text-base font-semibold text-[#8e5636] hover:bg-[#f7f4ed] lg:flex-none lg:text-[15px] xl:text-base"
                 >
                   {pageLabels.clearFilters}
                 </button>
@@ -792,7 +800,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
             </div>
 
             {amenitiesOpen && (
-              <div className="mt-2 flex flex-wrap gap-2 border-t border-gray-100 px-1 pt-2">
+              <div className="mt-3 flex flex-wrap gap-2">
                 {amenities.map(amenity => {
                   const active = filters.amenities.includes(amenity.id)
                   return (
@@ -800,7 +808,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                       key={amenity.id}
                       type="button"
                       onClick={() => toggleAmenity(amenity.id)}
-                      className={`rounded-full px-3 py-1.5 text-sm font-medium ${active ? 'bg-[#1b2642] text-white' : 'bg-white text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]'}`}
+                      aria-pressed={active}
+                      className={`rounded-full px-4 py-2 text-base font-medium ${active ? 'bg-[#1b2642] text-white' : 'bg-white text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)]'}`}
                     >
                       {amenity.name[language] || amenity.name.en}
                     </button>
