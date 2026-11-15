@@ -12,6 +12,7 @@ import PropertySlider from '@/components/PropertySlider'
 import { supabase } from '@/lib/supabase'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import { t } from '@/lib/translations'
+import { readAttributionForSubmit, trackLead } from '@/lib/adsTracking'
 
 const TIMEZONE_OPTIONS = [
   'Europe/Prague',
@@ -112,13 +113,16 @@ export default function BookCallPage() {
           propertyTitle: 'Call booking',
           preferredDate: formData.preferredDate,
           preferredTime: formData.preferredTime,
-          timezone: formData.timezone
+          timezone: formData.timezone,
+          attribution: readAttributionForSubmit()
         })
       })
 
       if (!response.ok) {
         throw new Error('Failed to submit booking')
       }
+      const result = await response.json().catch(() => null)
+      trackLead({ type: 'call_booking', email: formData.email, inquiryId: result?.inquiryId })
 
       setSubmitStatus('success')
       setFormData((prev) => ({

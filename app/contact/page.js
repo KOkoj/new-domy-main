@@ -13,6 +13,7 @@ import PropertySlider from '@/components/PropertySlider'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import SocialLinks from '@/components/SocialLinks'
 import { t } from '@/lib/translations'
+import { readAttributionForSubmit, trackLead } from '@/lib/adsTracking'
 
 const CONTACT_INFO = [
   {
@@ -135,7 +136,8 @@ export default function ContactPage() {
         body: JSON.stringify({
           ...formData,
           type: 'general',
-          propertyTitle: 'General Contact Inquiry'
+          propertyTitle: 'General Contact Inquiry',
+          attribution: readAttributionForSubmit()
         })
       })
       const result = await response.json().catch(() => null)
@@ -144,6 +146,7 @@ export default function ContactPage() {
         throw new Error(result?.error || 'Failed to send message')
       }
 
+      trackLead({ type: 'general', email: formData.email, inquiryId: result?.inquiryId })
       setSubmitStatus('success')
       setFormData({
         name: '',

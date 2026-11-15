@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createRouteSupabaseClient, getAuthenticatedUser } from '@/lib/serverAuth'
 import { trackServerEvent } from '@/lib/trackServerEvent'
+import { ATTRIBUTION_COLUMN_NAMES, attributionColumns } from '@/lib/attribution'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -76,7 +77,8 @@ export async function POST(request) {
     inquiryType,
     preferredDate,
     preferredTime,
-    timezone
+    timezone,
+    attribution
   } = body
 
   if (!String(name || '').trim() || !isValidEmail(email) || !String(message || '').trim()) {
@@ -102,9 +104,29 @@ export async function POST(request) {
     type,
     inquiryType: inquiryType || null,
     propertyTitle: propertyTitle || null,
+    // UTM + gclid first/last touch (db/add-inquiry-attribution-columns.sql).
+    ...attributionColumns(attribution)
   }
 
   let { data, error } = await supabase.from('inquiries').insert([insertPayload]).select().single()
+
+  const isMissingColumnError = (err, names) =>
+    err?.code === '42703' ||
+    err?.code === 'PGRST204' ||
+    new RegExp(`(${names.join('|')})`, 'i').test(err?.message || '')
+
+  if (error && ATTRIBUTION_COLUMN_NAMES.some((column) => column in insertPayload) &&
+      isMissingColumnError(error, ATTRIBUTION_COLUMN_NAMES)) {
+    // Attribution migration not run yet: never lose the lead over it.
+    console.warn(
+      '[INQUIRIES] attribution columns missing (run db/add-inquiry-attribution-columns.sql). Retrying without them:',
+      error.message
+    )
+    ATTRIBUTION_COLUMN_NAMES.forEach((column) => delete insertPayload[column])
+    const retry = await supabase.from('inquiries').insert([insertPayload]).select().single()
+    data = retry.data
+    error = retry.error
+  }
 
   if (error) {
     const isMissingMetadataColumn =

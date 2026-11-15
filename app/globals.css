@@ -1009,3 +1009,45 @@ body[data-paywall='active'] {
     bottom: calc(var(--contact-bar-height) + env(safe-area-inset-bottom, 0px) + 0.75rem);
   }
 }
+
+/* Small corner consent prompt (components/AdsTracking.jsx). Deliberately not a
+   full-width bar: bottom-left card, sits above the mobile contact bar. */
+.dvi-consent {
+  position: fixed;
+  left: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 45;
+  width: min(300px, calc(100vw - 88px));
+  padding: 10px 12px;
+  border: 1px solid #e4dfd3;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 6px 24px rgba(14, 21, 46, 0.12);
+  color: #334155;
+  font-size: 12px;
+  line-height: 1.45;
+}
+body[data-contact-bar='true'] .dvi-consent {
+  bottom: calc(var(--contact-bar-height) + 10px + env(safe-area-inset-bottom, 0px));
+}
+@media (min-width: 1024px) {
+  body[data-contact-bar='true'] .dvi-consent {
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+  .dvi-consent { left: 16px; bottom: 16px; }
+}
+.dvi-consent__text { margin: 0; }
+.dvi-consent__more { text-decoration: underline; color: inherit; white-space: nowrap; }
+.dvi-consent__actions { display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px; }
+.dvi-consent__btn {
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid #d6d0c2;
+  border-radius: 999px;
+  background: transparent;
+  color: #0e152e;
+  font-weight: 600;
+  font-size: 12px;
+}
+.dvi-consent__btn--primary { background: #0e152e; border-color: #0e152e; color: #fff; }
+@media print { .dvi-consent { display: none; } }

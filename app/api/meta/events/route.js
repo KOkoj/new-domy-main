@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server'
 import { META_ALLOWED_EVENTS, sendMetaEvent } from '@/lib/metaConversions'
+import { readConsentFromCookieHeader } from '@/lib/consent'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 export async function POST(request) {
   try {
-    const consent = request.cookies.get('domy_meta_consent')?.value
+    const consent = readConsentFromCookieHeader(request.headers.get('cookie'))
     if (consent !== 'granted') {
       return NextResponse.json({ sent: false, reason: 'consent_required' }, { status: 202 })
     }
