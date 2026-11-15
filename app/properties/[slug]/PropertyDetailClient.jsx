@@ -913,11 +913,11 @@ export default function PropertyDetailClient({ initialProperty = null }) {
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-4">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 mb-3">
-                    <Link href="/properties" className="mr-1 inline-flex items-center gap-1.5 py-1 text-sm font-semibold text-[#0e152e] hover:text-[#c78b5a]">
+                    <Link href="/properties" className="inline-flex items-center gap-1.5 py-1 text-sm font-semibold text-[#0e152e] hover:text-[#c78b5a]">
                       <ArrowLeft className="h-4 w-4" />
                       {language === 'cs' ? 'Zpět na nemovitosti' : language === 'it' ? 'Torna alle proprietà' : 'Back to Properties'}
                     </Link>
-                    <span aria-hidden="true" className="mr-1 h-4 w-px bg-[#0e152e]/15" />
+                    <span aria-hidden="true" className="hidden h-4 w-px bg-[#0e152e]/15 sm:mx-1 sm:block" />
                     <Badge variant="secondary" className="capitalize">
                       {getPropertyTypeLabel(property.propertyType, language)}
                     </Badge>
@@ -1075,7 +1075,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                 <CardContent>
                   <ul className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2 md:grid-cols-3">
                     {property.amenities.map((amenity, index) => (
-                      <li key={index} className="flex items-baseline gap-2.5 text-[15px] leading-snug text-[#0e152e]/85">
+                      <li key={index} className="flex items-baseline gap-2.5 text-base leading-snug text-[#0e152e]/85">
                         <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 -translate-y-0.5 rounded-full bg-[#c78b5a]" />
                         <span>{getLocalizedText(amenity.name)}</span>
                       </li>
