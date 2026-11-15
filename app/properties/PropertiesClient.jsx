@@ -32,7 +32,10 @@ import {
   PAGE_LABELS,
   matchesRoomLayout,
   amenities,
+  detectAmenityIds,
+  normalizeSearchText,
 } from './filterConfig';
+import { isListingQueryActive, moveNewListingsLast } from './listingQuery';
 import PropertyCard from './PropertyCard';
 
 const AuthModal = dynamic(() => import('../../components/AuthModal'), { ssr: false });
@@ -50,6 +53,13 @@ const isInsideMapBounds = (property, bounds) => {
   if (Math.abs(lat) > 90 || Math.abs(lng) > 180) return false;
   return lat >= bounds.south && lat <= bounds.north && lng >= bounds.west && lng <= bounds.east;
 };
+
+const SORT_OPTIONS = ['newest', 'cheapest', 'expensive'];
+
+// The query string this page last wrote itself. Coming back to it (browser
+// back from a detail page) restores the filters without replaying the region
+// banner that greets a visitor arriving from a region link.
+let ownListingQuery = null;
 
 // Dynamically import map components to avoid SSR issues
 const MapComponent = dynamic(() => import('../../components/PropertyMap'), {
@@ -75,6 +85,14 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     amenities: []
   });
   
+  // Price bounds as used for filtering. They trail the inputs by a moment so
+  // typing "150000" does not flash an empty list at "1", "15", "150"...
+  const [appliedPrice, setAppliedPrice] = useState({ from: '', to: '' });
+  // False until the filters have been read from the URL, so the first render
+  // cannot overwrite the query string it is about to read.
+  const [urlReady, setUrlReady] = useState(false);
+  const filtersTouchedRef = useRef(false);
+
   const [showRegionBanner, setShowRegionBanner] = useState(false);
   const [sortBy, setSortBy] = useState('newest');
   const [selectedPropertyId, setSelectedPropertyId] = useState(null);
@@ -88,6 +106,22 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   // on mobile, 'split' renders as a full-screen map instead
   const [viewMode, setViewMode] = useState('list');
   const [amenitiesOpen, setAmenitiesOpen] = useState(false);
+  const filterPanelRef = useRef(null);
+  const [pillOverFilters, setPillOverFilters] = useState(false);
+
+  // The floating list/map pill sits in the bottom fifth of the screen. While
+  // the open filter rows or amenity chips are in that band it steps aside, so
+  // it never covers a control.
+  useEffect(() => {
+    const panel = filterPanelRef.current;
+    if (!panel || typeof IntersectionObserver === 'undefined') return undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => setPillOverFilters(entry.isIntersecting),
+      { rootMargin: '-80% 0px 0px 0px' }
+    );
+    observer.observe(panel);
+    return () => observer.disconnect();
+  }, []);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const mobileMapActive = viewMode === 'split' && isMobileViewport;
   
@@ -98,10 +132,27 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   const [currency, setCurrency] = useState('EUR');
 
   // Properties state
-  const properties = useMemo(() => initialProperties.map(property => ({
-    ...property,
-    region: getLocalizedValue(property.regionI18n || property.region, language, ''),
-  })), [initialProperties, language]);
+  const properties = useMemo(() => initialProperties.map(property => {
+    const amenityIds = property.amenityIds || detectAmenityIds(property.amenities);
+    const allLanguages = (value) => (value && typeof value === 'object' ? Object.values(value) : [value]);
+    return {
+      ...property,
+      region: getLocalizedValue(property.regionI18n || property.region, language, ''),
+      amenityIds,
+      // Everything the search box looks through, in all three languages and
+      // without diacritics.
+      searchText: normalizeSearchText([
+        ...allLanguages(property.titleI18n || property.title),
+        ...allLanguages(property.regionI18n || property.region),
+        property.regionSlug,
+        ...allLanguages(REGION_LABELS[toRegionSlug(property.regionSlug)]),
+        property.city,
+        property.description,
+        ...allLanguages(propertyTypes.find(type => type.id === property.type)?.name),
+        ...amenities.filter(amenity => amenityIds.includes(amenity.id)).flatMap(amenity => allLanguages(amenity.name)),
+      ].filter(value => typeof value === 'string').join(' ')),
+    };
+  }), [initialProperties, language]);
   const [userFavorites, setUserFavorites] = useState(new Set());
   
   // Pagination state
@@ -216,19 +267,59 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, []);
 
-  // Reset displayed count when filters change
+  useEffect(() => {
+    const delay = filters.priceFrom || filters.priceTo ? 350 : 0;
+    const timeout = setTimeout(() => {
+      setAppliedPrice((prev) => (
+        prev.from === filters.priceFrom && prev.to === filters.priceTo
+          ? prev
+          : { from: filters.priceFrom, to: filters.priceTo }
+      ));
+    }, delay);
+    return () => clearTimeout(timeout);
+  }, [filters.priceFrom, filters.priceTo]);
+
+  // Reset displayed count when filters change. The page stays where it is, so
+  // the cards under the filters are seen changing; it only moves when the
+  // filters themselves have scrolled out of view (and never on first load or
+  // when the filters come back from the URL).
   useEffect(() => {
     setDisplayedCount(12);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [filters, sortBy]);
+    if (!filtersTouchedRef.current) return;
+    const bar = filterPanelRef.current?.closest('[data-testid="horizontal-filter-bar"]');
+    if (!bar) return;
+    const rect = bar.getBoundingClientRect();
+    if (rect.bottom < 0) {
+      window.scrollTo({ top: Math.max(0, window.scrollY + rect.top - 120), behavior: 'smooth' });
+    }
+  }, [filters, appliedPrice, sortBy]);
 
-  // Check URL parameters from homepage quick filters/search
+  // Any real interaction with the page counts as "the visitor is filtering";
+  // before that, filter changes come from the URL and must not move the page.
+  useEffect(() => {
+    const markTouched = () => { filtersTouchedRef.current = true; };
+    window.addEventListener('pointerdown', markTouched, true);
+    window.addEventListener('keydown', markTouched, true);
+    return () => {
+      window.removeEventListener('pointerdown', markTouched, true);
+      window.removeEventListener('keydown', markTouched, true);
+    };
+  }, []);
+
+  // Read the filters from the URL: homepage quick filters/search, a shared or
+  // reloaded link, or coming back from a property detail.
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
+    const restored = ownListingQuery !== null && window.location.search === ownListingQuery;
     const regionParam = urlParams.get('region');
     const searchParam = urlParams.get('search');
-    const amenityParam = (urlParams.get('amenity') || '').toLowerCase();
+    const amenityParams = (urlParams.get('amenity') || '').toLowerCase().split(',').filter(Boolean);
     const viewParam = (urlParams.get('view') || '').toLowerCase();
+    const typeParam = (urlParams.get('type') || '').toLowerCase();
+    const roomsParam = urlParams.get('rooms') || '';
+    const priceFromParam = urlParams.get('priceFrom') || '';
+    const priceToParam = urlParams.get('priceTo') || '';
+    const sortParam = (urlParams.get('sort') || '').toLowerCase();
 
     if (viewParam === 'split' || viewParam === 'map') {
       setViewMode('split');
@@ -240,21 +331,41 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       nextFilters.search = searchParam.trim();
     }
 
-    if (amenityParam && validAmenityIds.has(amenityParam)) {
-      nextFilters.amenities = [amenityParam];
+    const urlAmenities = [...new Set(amenityParams.filter((id) => validAmenityIds.has(id)))];
+    if (urlAmenities.length > 0) {
+      nextFilters.amenities = urlAmenities;
+    }
+
+    if (propertyTypes.some((type) => type.id === typeParam)) {
+      nextFilters.propertyType = typeParam;
+    }
+
+    if (ROOM_LAYOUT_OPTIONS.some((option) => option.id === roomsParam)) {
+      nextFilters.rooms = roomsParam;
+    }
+
+    if (/^\d+$/.test(priceFromParam)) nextFilters.priceFrom = priceFromParam;
+    if (/^\d+$/.test(priceToParam)) nextFilters.priceTo = priceToParam;
+    if (nextFilters.priceFrom || nextFilters.priceTo) {
+      setAppliedPrice({ from: nextFilters.priceFrom || '', to: nextFilters.priceTo || '' });
+    }
+
+    if (SORT_OPTIONS.includes(sortParam)) {
+      setSortBy(sortParam);
     }
 
     if (regionParam) {
       const normalizedRegion = toRegionSlug(regionParam);
       if (normalizedRegion) {
         nextFilters.region = normalizedRegion;
-        setShowRegionBanner(true);
+        if (!restored) setShowRegionBanner(true);
       }
     }
 
     if (Object.keys(nextFilters).length > 0) {
       setFilters((prev) => ({ ...prev, ...nextFilters }));
     }
+    setUrlReady(true);
   }, []);
 
   // Track the lg breakpoint so only one map instance mounts at a time
@@ -277,16 +388,35 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     };
   }, [mobileMapActive]);
 
-  // Persist view mode in the URL (?view=split) without triggering navigation
+  // Keep filters, sorting and view mode in the URL without triggering
+  // navigation, so reload, sharing and browser back keep the same list.
   useEffect(() => {
+    if (!urlReady) return;
     const url = new URL(window.location.href);
-    if (viewMode === 'split') {
-      url.searchParams.set('view', 'split');
-    } else {
-      url.searchParams.delete('view');
+    const setParam = (key, value) => {
+      if (value) {
+        url.searchParams.set(key, value);
+      } else {
+        url.searchParams.delete(key);
+      }
+    };
+    setParam('search', filters.search.trim());
+    setParam('type', filters.propertyType);
+    setParam('region', filters.region);
+    setParam('rooms', filters.rooms);
+    setParam('priceFrom', filters.priceFrom);
+    setParam('priceTo', filters.priceTo);
+    setParam('amenity', filters.amenities.join(','));
+    setParam('sort', sortBy === 'newest' ? '' : sortBy);
+    setParam('view', viewMode === 'split' ? 'split' : '');
+    ownListingQuery = url.search;
+    if (url.search === window.location.search) return;
+    try {
+      window.history.replaceState(window.history.state, '', url);
+    } catch (error) {
+      // Safari caps replaceState calls; the next change writes the URL again.
     }
-    window.history.replaceState(window.history.state, '', url);
-  }, [viewMode]);
+  }, [urlReady, filters, sortBy, viewMode]);
 
   // Scroll to top when region banner appears
   useEffect(() => {
@@ -325,26 +455,15 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
 
   // Filter properties
   const filteredProperties = useMemo(() => {
+    const searchTerms = normalizeSearchText(filters.search).split(/[\s,;]+/).filter(Boolean);
+    const activeRegionSlug = toRegionSlug(filters.region);
+    const priceFrom = parseInt(appliedPrice.from, 10);
+    const priceTo = parseInt(appliedPrice.to, 10);
     return properties.filter(property => {
-      const activeRegionSlug = toRegionSlug(filters.region);
-      const localizedTitle = getLocalizedValue(property.titleI18n || property.title, language, '');
 
-      if (filters.search) {
-        const searchQuery = filters.search.toLowerCase();
-        const searchableContent = [
-          localizedTitle,
-          property.description || '',
-          property.region || '',
-          propertyTypes.find(type => type.id === property.type)?.name?.[language] || '',
-          ...amenities.filter(amenity => property.amenities?.includes(amenity.id)).map(amenity => amenity.name[language]),
-          ...(property.amenities || [])
-        ]
-          .join(' ')
-          .toLowerCase();
-
-        if (!searchableContent.includes(searchQuery)) {
-          return false;
-        }
+      // Every word typed has to be found ("Toskánsko vila bazén").
+      if (searchTerms.length > 0 && !searchTerms.every(term => property.searchText.includes(term))) {
+        return false;
       }
       if (filters.propertyType && resolvePropertyType(property.type, property.type) !== filters.propertyType) {
         return false;
@@ -355,21 +474,21 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       if (filters.rooms && !matchesRoomLayout(property.rooms, filters.rooms)) {
         return false;
       }
-      if (filters.priceFrom && property.price < parseInt(filters.priceFrom)) {
+      if (Number.isFinite(priceFrom) && property.price < priceFrom) {
         return false;
       }
-      if (filters.priceTo && property.price > parseInt(filters.priceTo)) {
+      if (Number.isFinite(priceTo) && property.price > priceTo) {
         return false;
       }
       if (filters.amenities.length > 0) {
-        const hasAllAmenities = filters.amenities.every(amenity => 
-          property.amenities.includes(amenity)
+        const hasAllAmenities = filters.amenities.every(amenity =>
+          property.amenityIds.includes(amenity)
         );
         if (!hasAllAmenities) return false;
       }
       return true;
     });
-  }, [filters, properties, language]);
+  }, [filters, appliedPrice, properties]);
 
   // Sort properties
   const sortedProperties = useMemo(() => {
@@ -386,14 +505,22 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     };
     switch (sortBy) {
       case 'cheapest':
-        return sorted.sort(sortPinnedFirst((a, b) => a.price - b.price));
+        sorted.sort(sortPinnedFirst((a, b) => a.price - b.price));
+        break;
       case 'expensive':
-        return sorted.sort(sortPinnedFirst((a, b) => b.price - a.price));
+        sorted.sort(sortPinnedFirst((a, b) => b.price - a.price));
+        break;
       case 'newest':
       default:
-        return sorted.sort(sortPinnedFirst((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a)));
+        sorted.sort(sortPinnedFirst((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a)));
     }
-  }, [filteredProperties, sortBy]);
+    // When a filter, search or non-default sort is on, "Novinka" cards
+    // must not sit above the matching results — they go underneath.
+    if (isListingQueryActive({ ...filters, sortBy })) {
+      return moveNewListingsLast(sorted);
+    }
+    return sorted;
+  }, [filteredProperties, sortBy, filters]);
 
   // Get displayed properties (for pagination)
   const displayedProperties = useMemo(() => {
@@ -599,13 +726,13 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
           {intro ? <p className="sr-only">{getLocalizedValue(intro, language)}</p> : null}
 
           <div
-            className="mb-6 rounded-2xl bg-white p-2 shadow-[0_10px_32px_rgba(14,21,46,0.06)] sm:p-3"
+            className="mb-6"
             data-testid="horizontal-filter-bar"
           >
             <div className="flex items-center gap-2">
               <div ref={searchRef} className="relative min-w-0 flex-1">
-                <div className="flex h-11 items-center gap-2 rounded-xl bg-white px-3 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]">
-                  <Search className="h-4 w-4 flex-shrink-0 text-gray-400" />
+                <div className="flex h-12 items-center gap-2.5 rounded-xl bg-white px-4 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)]">
+                  <Search className="h-5 w-5 flex-shrink-0 text-gray-400" />
                   <input
                     ref={inputRef}
                     type="text"
@@ -630,16 +757,16 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                       }
                     }}
                     placeholder={language === 'cs' ? 'Toskánsko, vila, bazén, Puglia…' : language === 'it' ? 'Toscana, villa, piscina, Puglia…' : 'Tuscany, villa, pool, Puglia…'}
-                    className="min-w-0 flex-1 bg-transparent text-sm text-[#0e152e] outline-none placeholder:text-gray-400"
+                    className="min-w-0 flex-1 bg-transparent text-base text-[#0e152e] outline-none placeholder:text-gray-400"
                     style={{ outline: 'none', boxShadow: 'none' }}
                   />
                   {filters.search && (
                     <button
                       type="button"
                       onClick={() => { setFilters(prev => ({ ...prev, search: '' })); inputRef.current?.focus(); }}
-                      className="flex-shrink-0 text-gray-400 hover:text-gray-700"
+                      className="-mr-2 flex h-10 w-10 flex-shrink-0 items-center justify-center text-gray-400 hover:text-gray-700"
                     >
-                      <X className="h-4 w-4" />
+                      <X className="h-5 w-5" />
                     </button>
                   )}
                 </div>
@@ -654,7 +781,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                         onMouseEnter={() => setHighlightedIndex(i)}
                       >
                         <Search className="h-3.5 w-3.5 flex-shrink-0 text-gray-300" />
-                        <span className="flex-1 text-sm font-medium text-gray-800">{s.label}</span>
+                        <span className="flex-1 text-base font-medium text-gray-800">{s.label}</span>
                         <span className="flex-shrink-0 rounded-full bg-white px-2 py-0.5 text-xs text-gray-500 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]">{s.category}</span>
                       </button>
                     ))}
@@ -665,7 +792,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
               <button
                 type="button"
                 onClick={() => setShowMobileFilters(open => !open)}
-                className="inline-flex h-11 items-center gap-2 rounded-xl bg-[#1b2642] px-4 text-sm font-semibold text-white lg:hidden"
+                className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#1b2642] px-4 text-base font-semibold text-white lg:hidden"
                 data-testid="filter-bar-toggle"
               >
                 <SlidersHorizontal className="h-4 w-4" />
@@ -677,8 +804,29 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 )}
               </button>
 
+              {(activeFilterCount > 0 || filters.search) && (
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="hidden h-12 flex-none whitespace-nowrap rounded-xl px-3 text-base font-semibold text-[#8e5636] hover:bg-white lg:block"
+                >
+                  {pageLabels.clearFilters}
+                </button>
+              )}
+
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                aria-label={pageLabels.sortNewest}
+                className="hidden h-12 flex-none rounded-xl bg-white pl-4 text-base font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)] lg:block"
+              >
+                <option value="newest">{pageLabels.sortNewest}</option>
+                <option value="cheapest">{pageLabels.sortCheapest}</option>
+                <option value="expensive">{pageLabels.sortExpensive}</option>
+              </select>
+
               <div
-                className="ml-auto hidden rounded-xl bg-white p-1 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:inline-flex"
+                className="hidden h-12 flex-none rounded-xl bg-white p-1 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)] lg:inline-flex"
                 role="group"
                 data-testid="view-mode-toggle"
               >
@@ -686,7 +834,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                   type="button"
                   onClick={() => setViewMode('list')}
                   aria-pressed={viewMode === 'list'}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold ${viewMode === 'list' ? 'bg-[#1b2642] text-white' : 'text-gray-600 hover:text-[#0e152e]'}`}
+                  className={`flex items-center gap-2 rounded-lg px-4 text-base font-semibold ${viewMode === 'list' ? 'bg-[#1b2642] text-white' : 'text-gray-600 hover:text-[#0e152e]'}`}
                   data-testid="view-mode-list"
                 >
                   <ListIcon className="h-4 w-4" />
@@ -696,7 +844,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                   type="button"
                   onClick={() => setViewMode('split')}
                   aria-pressed={viewMode === 'split'}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold ${viewMode === 'split' ? 'bg-[#1b2642] text-white' : 'text-gray-600 hover:text-[#0e152e]'}`}
+                  className={`flex items-center gap-2 rounded-lg px-4 text-base font-semibold ${viewMode === 'split' ? 'bg-[#1b2642] text-white' : 'text-gray-600 hover:text-[#0e152e]'}`}
                   data-testid="view-mode-map"
                 >
                   <MapIcon className="h-4 w-4" />
@@ -705,12 +853,18 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
               </div>
             </div>
 
-            <div className={`${showMobileFilters ? 'mt-2 flex' : 'hidden'} flex-wrap items-center gap-2 lg:mt-2 lg:flex`}>
+            <div ref={filterPanelRef}>
+            {/* One strip split by hairlines instead of a box per control: rows on
+                mobile, a single line on desktop. */}
+            <div
+              className={`${showMobileFilters ? 'flex' : 'hidden'} mt-2 flex-col divide-y divide-[rgba(14,21,46,0.12)] overflow-hidden rounded-xl bg-white shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)] lg:flex lg:flex-row lg:divide-x lg:divide-y-0`}
+              data-testid="filter-strip"
+            >
               <select
                 value={filters.propertyType}
                 onChange={(e) => setFilters(prev => ({ ...prev, propertyType: e.target.value }))}
                 aria-label={pageLabels.propertyType}
-                className="h-11 min-w-[12.5rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:w-auto lg:flex-auto"
               >
                 <option value="">{pageLabels.propertyType}</option>
                 {propertyTypes.map(type => (
@@ -722,7 +876,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 value={filters.region}
                 onChange={(e) => setFilters(prev => ({ ...prev, region: toRegionSlug(e.target.value) }))}
                 aria-label={pageLabels.region}
-                className="h-11 min-w-[13rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:w-auto lg:flex-auto"
               >
                 <option value="">{pageLabels.allRegions}</option>
                 {Object.entries(REGION_LABELS).map(([regionSlug, regionLabel]) => (
@@ -734,7 +888,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 value={filters.rooms}
                 onChange={(e) => setFilters(prev => ({ ...prev, rooms: e.target.value }))}
                 aria-label={pageLabels.layout}
-                className="h-11 min-w-[8.5rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:w-auto lg:flex-auto"
               >
                 <option value="">{pageLabels.layout}</option>
                 {ROOM_LAYOUT_OPTIONS.map((layoutOption) => (
@@ -742,6 +896,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 ))}
               </select>
 
+              <div className="flex divide-x divide-[rgba(14,21,46,0.12)] lg:w-44 lg:flex-none">
               <input
                 type="number"
                 inputMode="numeric"
@@ -749,7 +904,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 aria-label={pageLabels.from}
                 value={filters.priceFrom}
                 onChange={(e) => setFilters(prev => ({ ...prev, priceFrom: e.target.value }))}
-                className="h-11 w-28 rounded-xl bg-white px-3 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent px-4 text-base font-medium text-[#0e152e] placeholder:font-normal placeholder:text-gray-400"
               />
               <input
                 type="number"
@@ -758,14 +913,15 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 aria-label={pageLabels.to}
                 value={filters.priceTo}
                 onChange={(e) => setFilters(prev => ({ ...prev, priceTo: e.target.value }))}
-                className="h-11 w-28 rounded-xl bg-white px-3 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent px-4 text-base font-medium text-[#0e152e] placeholder:font-normal placeholder:text-gray-400"
               />
+              </div>
 
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
                 aria-label={pageLabels.sortNewest}
-                className="h-11 min-w-[10.5rem] flex-1 rounded-xl bg-white px-3 pr-8 text-sm font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)] lg:flex-none"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:hidden"
               >
                 <option value="newest">{pageLabels.sortNewest}</option>
                 <option value="cheapest">{pageLabels.sortCheapest}</option>
@@ -775,7 +931,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
               <button
                 type="button"
                 onClick={() => setAmenitiesOpen(open => !open)}
-                className={`h-11 rounded-xl px-3 text-sm font-semibold ${amenitiesOpen || filters.amenities.length ? 'bg-[#1b2642] text-white' : 'bg-white text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]'}`}
+                aria-expanded={amenitiesOpen}
+                className={`h-12 whitespace-nowrap px-4 text-left text-base font-semibold lg:flex-none ${amenitiesOpen || filters.amenities.length ? 'bg-[#1b2642] text-white' : 'text-[#0e152e] hover:bg-[#f7f4ed]'}`}
               >
                 {pageLabels.amenities}{filters.amenities.length > 0 ? ` (${filters.amenities.length})` : ''}
               </button>
@@ -784,7 +941,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 <button
                   type="button"
                   onClick={clearFilters}
-                  className="h-11 px-2 text-sm font-semibold text-[#8e5636]"
+                  className="h-12 whitespace-nowrap px-4 text-left text-base font-semibold text-[#8e5636] hover:bg-[#f7f4ed] lg:hidden"
                 >
                   {pageLabels.clearFilters}
                 </button>
@@ -792,7 +949,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
             </div>
 
             {amenitiesOpen && (
-              <div className="mt-2 flex flex-wrap gap-2 border-t border-gray-100 px-1 pt-2">
+              <div className="mt-3 flex flex-wrap gap-2">
                 {amenities.map(amenity => {
                   const active = filters.amenities.includes(amenity.id)
                   return (
@@ -800,7 +957,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                       key={amenity.id}
                       type="button"
                       onClick={() => toggleAmenity(amenity.id)}
-                      className={`rounded-full px-3 py-1.5 text-sm font-medium ${active ? 'bg-[#1b2642] text-white' : 'bg-white text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.1)]'}`}
+                      aria-pressed={active}
+                      className={`rounded-full px-4 py-2 text-base font-medium ${active ? 'bg-[#1b2642] text-white' : 'bg-white text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)]'}`}
                     >
                       {amenity.name[language] || amenity.name.en}
                     </button>
@@ -808,6 +966,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 })}
               </div>
             )}
+            </div>
           </div>
 
           {showRegionBanner && filters.region && (
@@ -1026,7 +1185,9 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
 
       {/* Floating view toggle pill (mobile only, Airbnb-style) */}
       <div
-        className={`fixed left-1/2 z-50 -translate-x-1/2 lg:hidden ${
+        className={`fixed left-1/2 z-50 -translate-x-1/2 transition-[opacity,visibility] duration-200 lg:hidden ${
+          pillOverFilters && (showMobileFilters || amenitiesOpen) && !mobileMapActive ? 'invisible opacity-0' : 'visible opacity-100'
+        } ${
           mobileMapActive
             ? 'bottom-6'
             : 'bottom-[calc(var(--contact-bar-height)+env(safe-area-inset-bottom,0px)+0.75rem)]'

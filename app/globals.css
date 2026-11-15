@@ -263,6 +263,35 @@
   border: none;
 }
 
+.property-pin svg {
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 2px 4px rgba(14, 21, 46, 0.28));
+  transform-origin: 50% 100%;
+  transition: transform 0.15s ease-out;
+}
+
+.property-pin path {
+  fill: #1b2642;
+  transition: fill 0.15s ease-out;
+}
+
+.property-pin text {
+  fill: #ffffff;
+}
+
+.property-pin.is-highlighted svg {
+  transform: scale(1.22);
+}
+
+.property-pin.is-highlighted path {
+  fill: #c48759;
+}
+
+.property-pin.is-highlighted text {
+  fill: #1b2642;
+}
+
 /* In-map property card popup: card provides its own chrome */
 .property-map-popup .leaflet-popup-content-wrapper {
   padding: 0;

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import PropertyImage from '@/components/PropertyImage';
+import { useSwipe, SWIPE_STYLE } from '@/hooks/use-swipe';
 
 const LABELS = {
   cs: { previous: 'Předchozí fotka', next: 'Další fotka' },
@@ -25,6 +26,7 @@ export default function PropertyPhotoSwitcher({
   onActivate,
   language = 'cs',
   reveal = 'hover',
+  swipe = true,
   children,
   imageTestId = 'property-image',
 }) {
@@ -44,18 +46,26 @@ export default function PropertyPhotoSwitcher({
     : 'pointer-events-auto opacity-100'
 
   const step = (direction, event) => {
-    event.preventDefault()
-    event.stopPropagation()
+    event?.preventDefault()
+    event?.stopPropagation()
     if (!multiple) return
     const nextIndex = (safeIndex + direction + list.length) % list.length
     setIndex(nextIndex)
     preload(list[(nextIndex + direction + list.length) % list.length])
   }
 
+  const swipeHandlers = useSwipe({
+    enabled: swipe && multiple,
+    onPrevious: () => step(-1),
+    onNext: () => step(1),
+  })
+
   return (
     <div
       className="relative aspect-[4/3] overflow-hidden"
       data-testid="property-image-container"
+      style={swipe && multiple ? SWIPE_STYLE : undefined}
+      {...swipeHandlers}
       onMouseEnter={() => {
         if (multiple) preload(list[(safeIndex + 1) % list.length])
       }}
@@ -102,17 +112,17 @@ export default function PropertyPhotoSwitcher({
             type="button"
             aria-label={labels.previous}
             onClick={(event) => step(-1, event)}
-            className={`absolute left-2 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#0e152e] shadow-[0_4px_14px_rgba(14,21,46,0.16)] transition-[opacity,background-color] duration-300 ease-out hover:bg-[#f6f1ea] ${arrowsHidden}`}
+            className={`absolute left-2 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#0e152e] shadow-[0_4px_14px_rgba(14,21,46,0.16)] transition-[opacity,background-color] duration-300 ease-out hover:bg-[#f6f1ea] md:h-8 md:w-8 ${arrowsHidden}`}
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-6 w-6 md:h-4 md:w-4" />
           </button>
           <button
             type="button"
             aria-label={labels.next}
             onClick={(event) => step(1, event)}
-            className={`absolute right-2 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#0e152e] shadow-[0_4px_14px_rgba(14,21,46,0.16)] transition-[opacity,background-color] duration-300 ease-out hover:bg-[#f6f1ea] ${arrowsHidden}`}
+            className={`absolute right-2 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#0e152e] shadow-[0_4px_14px_rgba(14,21,46,0.16)] transition-[opacity,background-color] duration-300 ease-out hover:bg-[#f6f1ea] md:h-8 md:w-8 ${arrowsHidden}`}
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-6 w-6 md:h-4 md:w-4" />
           </button>
         </>
       ) : null}

@@ -227,20 +227,20 @@ export default function PropertySlider({ language = 'en', initialProperties = []
               disabled={!canPrev}
               aria-label="Previous"
               className={home
-                ? 'flex h-10 w-10 items-center justify-center rounded-full bg-[#1b2642] text-white hover:bg-[#243056] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-[#1b2642]'
-                : 'flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed'}
+                ? 'flex h-12 w-12 items-center justify-center rounded-full bg-[#1b2642] text-white hover:bg-[#243056] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-[#1b2642] md:h-10 md:w-10'
+                : 'flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed md:h-9 md:w-9'}
             >
-              <ChevronLeft className={`h-4 w-4 ${home ? 'text-white' : 'text-slate-700'}`} />
+              <ChevronLeft className={`h-6 w-6 md:h-4 md:w-4 ${home ? 'text-white' : 'text-slate-700'}`} />
             </button>
             <button
               onClick={() => emblaApi?.scrollNext()}
               disabled={!canNext}
               aria-label="Next"
               className={home
-                ? 'flex h-10 w-10 items-center justify-center rounded-full bg-[#1b2642] text-white hover:bg-[#243056] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-[#1b2642]'
-                : 'flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed'}
+                ? 'flex h-12 w-12 items-center justify-center rounded-full bg-[#1b2642] text-white hover:bg-[#243056] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-[#1b2642] md:h-10 md:w-10'
+                : 'flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed md:h-9 md:w-9'}
             >
-              <ChevronRight className={`h-4 w-4 ${home ? 'text-white' : 'text-slate-700'}`} />
+              <ChevronRight className={`h-6 w-6 md:h-4 md:w-4 ${home ? 'text-white' : 'text-slate-700'}`} />
             </button>
           </div>
         </div>
@@ -260,7 +260,7 @@ export default function PropertySlider({ language = 'en', initialProperties = []
                   : 'min-w-0 flex-[0_0_280px] sm:flex-[0_0_300px] lg:flex-[0_0_320px]'}
               >
                 {home
-                  ? <PropertyPreviewCard property={property} language={language} currency={currency} />
+                  ? <PropertyPreviewCard property={property} language={language} currency={currency} swipe={false} />
                   : <SlideCard property={property} language={language} labels={labels} />}
               </div>
             ))}

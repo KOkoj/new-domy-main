@@ -89,6 +89,7 @@ export const REGION_LABELS = Object.fromEntries(
 
 const REGION_SLUG_ALIASES = {
   lombardia: 'lombardy',
+  apulia: 'puglia',
   piedmont: 'piemonte',
   sicily: 'sicilia',
   sardinia: 'sardegna',
@@ -153,6 +154,42 @@ export const amenities = [
   { id: 'fireplace', name: { cs: 'Krb', it: 'Camino', en: 'Fireplace' } },
   { id: 'aircon', name: { cs: 'Klimatizace', it: 'Aria condizionata', en: 'Air conditioning' } }
 ];
+
+// Lowercase without diacritics, so "Toskansko" finds "Toskánsko".
+export const normalizeSearchText = (value) =>
+  String(value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+// Listings carry free-text amenities ("Soggiorno con camino", "Private
+// garden"), not the filter ids above. These patterns map that text, in any of
+// the three languages, to a filter id.
+const AMENITY_PATTERNS = {
+  pool: /\b(pool|piscin|bazen)/,
+  garden: /\b(garden|giardin|zahrad)/,
+  parking: /\b(parking|garage|car ?port|posto auto|posti auto|box auto|autorimessa|parkov|garaz|stani)/,
+  sea_view: /\b(sea view|sea views|vista mare|vyhled(em)? na more)/,
+  balcony: /\b(balcon|balkon)/,
+  terrace: /\b(terrace|terrazz|teras)/,
+  fireplace: /\b(fireplace|camin|krb)/,
+  aircon: /(air[- ]condition|aria condizionata|climatizz|klimatiz)/,
+};
+
+export const detectAmenityIds = (amenityList, { hasParking = false } = {}) => {
+  const texts = (Array.isArray(amenityList) ? amenityList : []).map((amenity) => {
+    const name = amenity?.name ?? amenity;
+    const parts = name && typeof name === 'object' ? Object.values(name) : [name];
+    return normalizeSearchText(parts.filter((part) => typeof part === 'string').join(' | ')).replace(/_/g, ' ');
+  });
+
+  return amenities
+    .map((amenity) => amenity.id)
+    .filter((id) => {
+      if (id === 'parking' && hasParking) return true;
+      return texts.some((text) => text === id.replace(/_/g, ' ') || AMENITY_PATTERNS[id].test(text));
+    });
+};
 
 export const PAGE_LABELS = {
   cs: {
