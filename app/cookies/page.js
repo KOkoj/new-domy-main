@@ -10,7 +10,7 @@ const CONTENT = {
   it: {
     title: 'Cookie policy',
     subtitle: 'Uso di cookie e tecnologie simili',
-    updatedAt: 'Ultimo aggiornamento: 7 aprile 2026',
+    updatedAt: 'Ultimo aggiornamento: 15 novembre 2026',
     sections: [
       {
         title: '1. Cosa sono i cookie',
@@ -33,7 +33,7 @@ const CONTENT = {
       {
         title: '4. Analytics e marketing',
         paragraphs: [
-          'Alla data di questo aggiornamento non abbiamo rilevato nel sito un banner cookie dedicato a strumenti analytics o advertising di terze parti. Se in futuro verranno introdotti cookie analytics o marketing non necessari, il sito dovrà essere aggiornato con idonea raccolta del consenso ove richiesta.'
+          "Con il tuo consenso utilizziamo cookie e strumenti di Google e Seznam per misurare le visite e l'efficacia della pubblicità. Senza consenso questi strumenti non vengono caricati."
         ]
       },
       {
@@ -47,7 +47,7 @@ const CONTENT = {
   en: {
     title: 'Cookie policy',
     subtitle: 'Use of cookies and similar technologies',
-    updatedAt: 'Last updated: April 7, 2026',
+    updatedAt: 'Last updated: November 15, 2026',
     sections: [
       {
         title: '1. What cookies are',
@@ -70,7 +70,7 @@ const CONTENT = {
       {
         title: '4. Analytics and marketing',
         paragraphs: [
-          'As of this update, we did not identify a dedicated cookie banner for third-party analytics or advertising tools on the website. If non-essential analytics or marketing cookies are introduced later, the site should be updated with proper consent handling where required.'
+          'With your consent we use cookies and tools from Google and Seznam to measure visits and advertising performance. These tools are not loaded without your consent.'
         ]
       },
       {
@@ -84,7 +84,7 @@ const CONTENT = {
   cs: {
     title: 'Cookie policy',
     subtitle: 'Použití cookies a podobných technologií',
-    updatedAt: 'Poslední aktualizace: 7. dubna 2026',
+    updatedAt: 'Poslední aktualizace: 15. listopadu 2026',
     sections: [
       {
         title: '1. Co jsou cookies',
@@ -107,7 +107,7 @@ const CONTENT = {
       {
         title: '4. Analytika a marketing',
         paragraphs: [
-          'K datu této aktualizace jsme na webu nezjistili samostatný cookie banner pro analytické nebo reklamní nástroje třetích stran. Pokud budou později přidány ne nezbytné analytické nebo marketingové cookies, musí být web doplněn o odpovídající řešení souhlasu, pokud to právo vyžaduje.'
+          'Se souhlasem používáme cookies a nástroje společností Google a Seznam k měření návštěvnosti a reklam. Bez souhlasu se tyto nástroje nenačítají.'
         ]
       },
       {

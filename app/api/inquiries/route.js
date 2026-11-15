@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { createRouteSupabaseClient, getAuthenticatedUser } from '@/lib/serverAuth'
 import { trackServerEvent } from '@/lib/trackServerEvent'
+import { attributionColumns } from '@/lib/attribution'
+import { insertInquiryWithFallback } from '@/lib/insertInquiry'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -76,7 +78,8 @@ export async function POST(request) {
     inquiryType,
     preferredDate,
     preferredTime,
-    timezone
+    timezone,
+    attribution
   } = body
 
   if (!String(name || '').trim() || !isValidEmail(email) || !String(message || '').trim()) {
@@ -102,33 +105,11 @@ export async function POST(request) {
     type,
     inquiryType: inquiryType || null,
     propertyTitle: propertyTitle || null,
+    // UTM + gclid first/last touch (db/add-inquiry-attribution-columns.sql).
+    ...attributionColumns(attribution)
   }
 
-  let { data, error } = await supabase.from('inquiries').insert([insertPayload]).select().single()
-
-  if (error) {
-    const isMissingMetadataColumn =
-      error.code === '42703' ||
-      error.code === 'PGRST204' ||
-      /column .*(inquiryType|propertyTitle).* does not exist/i.test(error.message || '')
-
-    if (isMissingMetadataColumn) {
-      // db/add-inquiry-metadata-columns.sql hasn't been run yet. Never lose the
-      // lead over a missing column: retry without the new fields.
-      console.warn(
-        '[INQUIRIES] inquiryType/propertyTitle columns missing (run db/add-inquiry-metadata-columns.sql). Retrying insert without them:',
-        error.message
-      )
-
-      const fallbackPayload = { ...insertPayload }
-      delete fallbackPayload.inquiryType
-      delete fallbackPayload.propertyTitle
-
-      const retry = await supabase.from('inquiries').insert([fallbackPayload]).select().single()
-      data = retry.data
-      error = retry.error
-    }
-  }
+  let { data, error } = await insertInquiryWithFallback(supabase, insertPayload)
 
   if (error) {
     return applyCookies(NextResponse.json({ error: error.message }, { status: 500 }))

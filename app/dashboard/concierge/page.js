@@ -27,6 +27,7 @@ import { t } from '../../../lib/translations'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164 } from '../../../lib/contactDetails'
 import Link from 'next/link'
+import { readAttributionForSubmit, trackLead } from '@/lib/adsTracking'
 
 const TICKET_CATEGORIES = [
   'General Inquiry',
@@ -174,7 +175,8 @@ export default function ConciergePage() {
           propertyTitle: 'Concierge Request',
           type: 'concierge',
           message: fullMessage,
-          phone: null
+          phone: null,
+          attribution: readAttributionForSubmit()
         })
       })
 
@@ -183,6 +185,7 @@ export default function ConciergePage() {
       if (!response.ok || !result.success) {
         throw new Error(result.error || 'Failed to submit concierge request')
       }
+      trackLead({ type: 'concierge', email: user.email, inquiryId: result.inquiryId })
 
       setMessage({ 
         type: 'success', 

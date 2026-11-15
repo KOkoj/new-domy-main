@@ -29,6 +29,7 @@ import MobileContactBar from '@/components/MobileContactBar'
 import { SITE_ORIGIN } from '@/lib/contactDetails'
 import { trackClientEvent } from '@/lib/trackClientEvent'
 import { useSwipe, SWIPE_STYLE } from '@/hooks/use-swipe'
+import { readAttributionForSubmit, trackLead } from '@/lib/adsTracking'
 
 const INQUIRY_FORM_ID = 'inquiry-form'
 
@@ -517,7 +518,8 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
           listingId: propertyId,
           propertyTitle,
           ...formData,
-          phone: formData.phone.trim()
+          phone: formData.phone.trim(),
+          attribution: readAttributionForSubmit()
         })
       })
       const result = await response.json().catch(() => null)
@@ -525,6 +527,7 @@ function InquiryForm({ propertyId, propertyTitle, language = 'en' }) {
       // A stored inquiry is a success for the visitor even if the API reports
       // a problem with the notification e-mails.
       if ((response.ok && result?.success) || result?.inquirySaved === true) {
+        trackLead({ type: 'property', email: formData.email, inquiryId: result?.inquiryId })
         setSubmitted(true)
       } else {
         throw new Error(result?.error || 'Failed to submit inquiry')

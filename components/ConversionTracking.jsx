@@ -5,6 +5,7 @@ import {
   resolveClickEvent
 } from '@/lib/conversionTracking'
 import { captureLandingCampaign, trackClientEvent } from '@/lib/trackClientEvent'
+import { captureAttribution, trackContactClick } from '@/lib/adsTracking'
 
 function isIgnoredClickTarget(target) {
   return Boolean(
@@ -15,6 +16,7 @@ function isIgnoredClickTarget(target) {
 export default function ConversionTracking() {
   useEffect(() => {
     captureLandingCampaign()
+    captureAttribution()
 
     const handleClick = (event) => {
       try {
@@ -35,6 +37,9 @@ export default function ConversionTracking() {
         if (!resolved) return
 
         trackClientEvent(resolved.name, { location: resolved.location })
+        // GA4 / Google Ads / Sklik copy of phone, e-mail and WhatsApp clicks
+        // (no-op without consent or IDs).
+        trackContactClick(resolved.name, { location: resolved.location })
       } catch {
         // Analytics must never interrupt the original click.
       }

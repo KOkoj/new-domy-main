@@ -10,6 +10,7 @@ import { Analytics } from '@vercel/analytics/next'
 import ConversionTracking from '@/components/ConversionTracking'
 import AffiliateClickAnalytics from '@/components/AffiliateClickAnalytics'
 import MetaTracking from '@/components/MetaTracking'
+import AdsTracking from '@/components/AdsTracking'
 import { SOCIAL_PROFILES } from '@/lib/socialProfiles'
 
 const manrope = Manrope({
@@ -98,6 +99,7 @@ export default async function RootLayout({ children }) {
         <ScrollToTop />
         <ConversionTracking />
         <AffiliateClickAnalytics />
+        <AdsTracking />
         <MetaTracking />
         {/* Vercel Analytics */}
         <Analytics />
