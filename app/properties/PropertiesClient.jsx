@@ -32,6 +32,8 @@ import {
   PAGE_LABELS,
   matchesRoomLayout,
   amenities,
+  detectAmenityIds,
+  normalizeSearchText,
 } from './filterConfig';
 import PropertyCard from './PropertyCard';
 
@@ -50,6 +52,13 @@ const isInsideMapBounds = (property, bounds) => {
   if (Math.abs(lat) > 90 || Math.abs(lng) > 180) return false;
   return lat >= bounds.south && lat <= bounds.north && lng >= bounds.west && lng <= bounds.east;
 };
+
+const SORT_OPTIONS = ['newest', 'cheapest', 'expensive'];
+
+// The query string this page last wrote itself. Coming back to it (browser
+// back from a detail page) restores the filters without replaying the region
+// banner that greets a visitor arriving from a region link.
+let ownListingQuery = null;
 
 // Dynamically import map components to avoid SSR issues
 const MapComponent = dynamic(() => import('../../components/PropertyMap'), {
@@ -75,6 +84,14 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     amenities: []
   });
   
+  // Price bounds as used for filtering. They trail the inputs by a moment so
+  // typing "150000" does not flash an empty list at "1", "15", "150"...
+  const [appliedPrice, setAppliedPrice] = useState({ from: '', to: '' });
+  // False until the filters have been read from the URL, so the first render
+  // cannot overwrite the query string it is about to read.
+  const [urlReady, setUrlReady] = useState(false);
+  const filtersTouchedRef = useRef(false);
+
   const [showRegionBanner, setShowRegionBanner] = useState(false);
   const [sortBy, setSortBy] = useState('newest');
   const [selectedPropertyId, setSelectedPropertyId] = useState(null);
@@ -114,10 +131,27 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   const [currency, setCurrency] = useState('EUR');
 
   // Properties state
-  const properties = useMemo(() => initialProperties.map(property => ({
-    ...property,
-    region: getLocalizedValue(property.regionI18n || property.region, language, ''),
-  })), [initialProperties, language]);
+  const properties = useMemo(() => initialProperties.map(property => {
+    const amenityIds = property.amenityIds || detectAmenityIds(property.amenities);
+    const allLanguages = (value) => (value && typeof value === 'object' ? Object.values(value) : [value]);
+    return {
+      ...property,
+      region: getLocalizedValue(property.regionI18n || property.region, language, ''),
+      amenityIds,
+      // Everything the search box looks through, in all three languages and
+      // without diacritics.
+      searchText: normalizeSearchText([
+        ...allLanguages(property.titleI18n || property.title),
+        ...allLanguages(property.regionI18n || property.region),
+        property.regionSlug,
+        ...allLanguages(REGION_LABELS[toRegionSlug(property.regionSlug)]),
+        property.city,
+        property.description,
+        ...allLanguages(propertyTypes.find(type => type.id === property.type)?.name),
+        ...amenities.filter(amenity => amenityIds.includes(amenity.id)).flatMap(amenity => allLanguages(amenity.name)),
+      ].filter(value => typeof value === 'string').join(' ')),
+    };
+  }), [initialProperties, language]);
   const [userFavorites, setUserFavorites] = useState(new Set());
   
   // Pagination state
@@ -232,19 +266,59 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, []);
 
-  // Reset displayed count when filters change
+  useEffect(() => {
+    const delay = filters.priceFrom || filters.priceTo ? 350 : 0;
+    const timeout = setTimeout(() => {
+      setAppliedPrice((prev) => (
+        prev.from === filters.priceFrom && prev.to === filters.priceTo
+          ? prev
+          : { from: filters.priceFrom, to: filters.priceTo }
+      ));
+    }, delay);
+    return () => clearTimeout(timeout);
+  }, [filters.priceFrom, filters.priceTo]);
+
+  // Reset displayed count when filters change. The page stays where it is, so
+  // the cards under the filters are seen changing; it only moves when the
+  // filters themselves have scrolled out of view (and never on first load or
+  // when the filters come back from the URL).
   useEffect(() => {
     setDisplayedCount(12);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [filters, sortBy]);
+    if (!filtersTouchedRef.current) return;
+    const bar = filterPanelRef.current?.closest('[data-testid="horizontal-filter-bar"]');
+    if (!bar) return;
+    const rect = bar.getBoundingClientRect();
+    if (rect.bottom < 0) {
+      window.scrollTo({ top: Math.max(0, window.scrollY + rect.top - 120), behavior: 'smooth' });
+    }
+  }, [filters, appliedPrice, sortBy]);
 
-  // Check URL parameters from homepage quick filters/search
+  // Any real interaction with the page counts as "the visitor is filtering";
+  // before that, filter changes come from the URL and must not move the page.
+  useEffect(() => {
+    const markTouched = () => { filtersTouchedRef.current = true; };
+    window.addEventListener('pointerdown', markTouched, true);
+    window.addEventListener('keydown', markTouched, true);
+    return () => {
+      window.removeEventListener('pointerdown', markTouched, true);
+      window.removeEventListener('keydown', markTouched, true);
+    };
+  }, []);
+
+  // Read the filters from the URL: homepage quick filters/search, a shared or
+  // reloaded link, or coming back from a property detail.
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
+    const restored = ownListingQuery !== null && window.location.search === ownListingQuery;
     const regionParam = urlParams.get('region');
     const searchParam = urlParams.get('search');
-    const amenityParam = (urlParams.get('amenity') || '').toLowerCase();
+    const amenityParams = (urlParams.get('amenity') || '').toLowerCase().split(',').filter(Boolean);
     const viewParam = (urlParams.get('view') || '').toLowerCase();
+    const typeParam = (urlParams.get('type') || '').toLowerCase();
+    const roomsParam = urlParams.get('rooms') || '';
+    const priceFromParam = urlParams.get('priceFrom') || '';
+    const priceToParam = urlParams.get('priceTo') || '';
+    const sortParam = (urlParams.get('sort') || '').toLowerCase();
 
     if (viewParam === 'split' || viewParam === 'map') {
       setViewMode('split');
@@ -256,21 +330,41 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       nextFilters.search = searchParam.trim();
     }
 
-    if (amenityParam && validAmenityIds.has(amenityParam)) {
-      nextFilters.amenities = [amenityParam];
+    const urlAmenities = [...new Set(amenityParams.filter((id) => validAmenityIds.has(id)))];
+    if (urlAmenities.length > 0) {
+      nextFilters.amenities = urlAmenities;
+    }
+
+    if (propertyTypes.some((type) => type.id === typeParam)) {
+      nextFilters.propertyType = typeParam;
+    }
+
+    if (ROOM_LAYOUT_OPTIONS.some((option) => option.id === roomsParam)) {
+      nextFilters.rooms = roomsParam;
+    }
+
+    if (/^\d+$/.test(priceFromParam)) nextFilters.priceFrom = priceFromParam;
+    if (/^\d+$/.test(priceToParam)) nextFilters.priceTo = priceToParam;
+    if (nextFilters.priceFrom || nextFilters.priceTo) {
+      setAppliedPrice({ from: nextFilters.priceFrom || '', to: nextFilters.priceTo || '' });
+    }
+
+    if (SORT_OPTIONS.includes(sortParam)) {
+      setSortBy(sortParam);
     }
 
     if (regionParam) {
       const normalizedRegion = toRegionSlug(regionParam);
       if (normalizedRegion) {
         nextFilters.region = normalizedRegion;
-        setShowRegionBanner(true);
+        if (!restored) setShowRegionBanner(true);
       }
     }
 
     if (Object.keys(nextFilters).length > 0) {
       setFilters((prev) => ({ ...prev, ...nextFilters }));
     }
+    setUrlReady(true);
   }, []);
 
   // Track the lg breakpoint so only one map instance mounts at a time
@@ -293,16 +387,35 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     };
   }, [mobileMapActive]);
 
-  // Persist view mode in the URL (?view=split) without triggering navigation
+  // Keep filters, sorting and view mode in the URL without triggering
+  // navigation, so reload, sharing and browser back keep the same list.
   useEffect(() => {
+    if (!urlReady) return;
     const url = new URL(window.location.href);
-    if (viewMode === 'split') {
-      url.searchParams.set('view', 'split');
-    } else {
-      url.searchParams.delete('view');
+    const setParam = (key, value) => {
+      if (value) {
+        url.searchParams.set(key, value);
+      } else {
+        url.searchParams.delete(key);
+      }
+    };
+    setParam('search', filters.search.trim());
+    setParam('type', filters.propertyType);
+    setParam('region', filters.region);
+    setParam('rooms', filters.rooms);
+    setParam('priceFrom', filters.priceFrom);
+    setParam('priceTo', filters.priceTo);
+    setParam('amenity', filters.amenities.join(','));
+    setParam('sort', sortBy === 'newest' ? '' : sortBy);
+    setParam('view', viewMode === 'split' ? 'split' : '');
+    ownListingQuery = url.search;
+    if (url.search === window.location.search) return;
+    try {
+      window.history.replaceState(window.history.state, '', url);
+    } catch (error) {
+      // Safari caps replaceState calls; the next change writes the URL again.
     }
-    window.history.replaceState(window.history.state, '', url);
-  }, [viewMode]);
+  }, [urlReady, filters, sortBy, viewMode]);
 
   // Scroll to top when region banner appears
   useEffect(() => {
@@ -341,26 +454,15 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
 
   // Filter properties
   const filteredProperties = useMemo(() => {
+    const searchTerms = normalizeSearchText(filters.search).split(/[\s,;]+/).filter(Boolean);
+    const activeRegionSlug = toRegionSlug(filters.region);
+    const priceFrom = parseInt(appliedPrice.from, 10);
+    const priceTo = parseInt(appliedPrice.to, 10);
     return properties.filter(property => {
-      const activeRegionSlug = toRegionSlug(filters.region);
-      const localizedTitle = getLocalizedValue(property.titleI18n || property.title, language, '');
 
-      if (filters.search) {
-        const searchQuery = filters.search.toLowerCase();
-        const searchableContent = [
-          localizedTitle,
-          property.description || '',
-          property.region || '',
-          propertyTypes.find(type => type.id === property.type)?.name?.[language] || '',
-          ...amenities.filter(amenity => property.amenities?.includes(amenity.id)).map(amenity => amenity.name[language]),
-          ...(property.amenities || [])
-        ]
-          .join(' ')
-          .toLowerCase();
-
-        if (!searchableContent.includes(searchQuery)) {
-          return false;
-        }
+      // Every word typed has to be found ("Toskánsko vila bazén").
+      if (searchTerms.length > 0 && !searchTerms.every(term => property.searchText.includes(term))) {
+        return false;
       }
       if (filters.propertyType && resolvePropertyType(property.type, property.type) !== filters.propertyType) {
         return false;
@@ -371,21 +473,21 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       if (filters.rooms && !matchesRoomLayout(property.rooms, filters.rooms)) {
         return false;
       }
-      if (filters.priceFrom && property.price < parseInt(filters.priceFrom)) {
+      if (Number.isFinite(priceFrom) && property.price < priceFrom) {
         return false;
       }
-      if (filters.priceTo && property.price > parseInt(filters.priceTo)) {
+      if (Number.isFinite(priceTo) && property.price > priceTo) {
         return false;
       }
       if (filters.amenities.length > 0) {
-        const hasAllAmenities = filters.amenities.every(amenity => 
-          property.amenities.includes(amenity)
+        const hasAllAmenities = filters.amenities.every(amenity =>
+          property.amenityIds.includes(amenity)
         );
         if (!hasAllAmenities) return false;
       }
       return true;
     });
-  }, [filters, properties, language]);
+  }, [filters, appliedPrice, properties]);
 
   // Sort properties
   const sortedProperties = useMemo(() => {
