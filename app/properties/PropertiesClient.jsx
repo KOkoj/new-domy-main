@@ -88,6 +88,22 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   // on mobile, 'split' renders as a full-screen map instead
   const [viewMode, setViewMode] = useState('list');
   const [amenitiesOpen, setAmenitiesOpen] = useState(false);
+  const filterPanelRef = useRef(null);
+  const [pillOverFilters, setPillOverFilters] = useState(false);
+
+  // The floating list/map pill sits in the bottom fifth of the screen. While
+  // the open filter rows or amenity chips are in that band it steps aside, so
+  // it never covers a control.
+  useEffect(() => {
+    const panel = filterPanelRef.current;
+    if (!panel || typeof IntersectionObserver === 'undefined') return undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => setPillOverFilters(entry.isIntersecting),
+      { rootMargin: '-80% 0px 0px 0px' }
+    );
+    observer.observe(panel);
+    return () => observer.disconnect();
+  }, []);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const mobileMapActive = viewMode === 'split' && isMobileViewport;
   
@@ -677,8 +693,29 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 )}
               </button>
 
+              {(activeFilterCount > 0 || filters.search) && (
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="hidden h-12 flex-none whitespace-nowrap rounded-xl px-3 text-base font-semibold text-[#8e5636] hover:bg-white lg:block"
+                >
+                  {pageLabels.clearFilters}
+                </button>
+              )}
+
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                aria-label={pageLabels.sortNewest}
+                className="hidden h-12 flex-none rounded-xl bg-white pl-4 text-base font-medium text-[#0e152e] shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)] lg:block"
+              >
+                <option value="newest">{pageLabels.sortNewest}</option>
+                <option value="cheapest">{pageLabels.sortCheapest}</option>
+                <option value="expensive">{pageLabels.sortExpensive}</option>
+              </select>
+
               <div
-                className="ml-auto hidden h-12 rounded-xl bg-white p-1 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)] lg:inline-flex"
+                className="hidden h-12 flex-none rounded-xl bg-white p-1 shadow-[inset_0_0_0_1px_rgba(14,21,46,0.12)] lg:inline-flex"
                 role="group"
                 data-testid="view-mode-toggle"
               >
@@ -705,6 +742,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
               </div>
             </div>
 
+            <div ref={filterPanelRef}>
             {/* One strip split by hairlines instead of a box per control: rows on
                 mobile, a single line on desktop. */}
             <div
@@ -715,7 +753,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 value={filters.propertyType}
                 onChange={(e) => setFilters(prev => ({ ...prev, propertyType: e.target.value }))}
                 aria-label={pageLabels.propertyType}
-                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:text-[15px] xl:text-base lg:flex-[1.5]"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:w-auto lg:flex-auto"
               >
                 <option value="">{pageLabels.propertyType}</option>
                 {propertyTypes.map(type => (
@@ -727,7 +765,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 value={filters.region}
                 onChange={(e) => setFilters(prev => ({ ...prev, region: toRegionSlug(e.target.value) }))}
                 aria-label={pageLabels.region}
-                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:text-[15px] xl:text-base lg:flex-[1.7]"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:w-auto lg:flex-auto"
               >
                 <option value="">{pageLabels.allRegions}</option>
                 {Object.entries(REGION_LABELS).map(([regionSlug, regionLabel]) => (
@@ -739,7 +777,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 value={filters.rooms}
                 onChange={(e) => setFilters(prev => ({ ...prev, rooms: e.target.value }))}
                 aria-label={pageLabels.layout}
-                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:text-[15px] xl:text-base lg:flex-1"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:w-auto lg:flex-auto"
               >
                 <option value="">{pageLabels.layout}</option>
                 {ROOM_LAYOUT_OPTIONS.map((layoutOption) => (
@@ -755,7 +793,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 aria-label={pageLabels.from}
                 value={filters.priceFrom}
                 onChange={(e) => setFilters(prev => ({ ...prev, priceFrom: e.target.value }))}
-                className="h-12 w-full min-w-0 rounded-none bg-transparent px-4 text-base font-medium text-[#0e152e] placeholder:font-normal placeholder:text-gray-400 lg:text-[15px] xl:text-base"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent px-4 text-base font-medium text-[#0e152e] placeholder:font-normal placeholder:text-gray-400"
               />
               <input
                 type="number"
@@ -764,7 +802,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 aria-label={pageLabels.to}
                 value={filters.priceTo}
                 onChange={(e) => setFilters(prev => ({ ...prev, priceTo: e.target.value }))}
-                className="h-12 w-full min-w-0 rounded-none bg-transparent px-4 text-base font-medium text-[#0e152e] placeholder:font-normal placeholder:text-gray-400 lg:text-[15px] xl:text-base"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent px-4 text-base font-medium text-[#0e152e] placeholder:font-normal placeholder:text-gray-400"
               />
               </div>
 
@@ -772,7 +810,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
                 aria-label={pageLabels.sortNewest}
-                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:text-[15px] xl:text-base lg:flex-[1.1]"
+                className="h-12 w-full min-w-0 rounded-none bg-transparent pl-4 text-base font-medium text-[#0e152e] lg:hidden"
               >
                 <option value="newest">{pageLabels.sortNewest}</option>
                 <option value="cheapest">{pageLabels.sortCheapest}</option>
@@ -783,7 +821,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 type="button"
                 onClick={() => setAmenitiesOpen(open => !open)}
                 aria-expanded={amenitiesOpen}
-                className={`h-12 whitespace-nowrap px-4 text-left text-base font-semibold lg:flex-none lg:text-[15px] xl:text-base ${amenitiesOpen || filters.amenities.length ? 'bg-[#1b2642] text-white' : 'text-[#0e152e] hover:bg-[#f7f4ed]'}`}
+                className={`h-12 whitespace-nowrap px-4 text-left text-base font-semibold lg:flex-none ${amenitiesOpen || filters.amenities.length ? 'bg-[#1b2642] text-white' : 'text-[#0e152e] hover:bg-[#f7f4ed]'}`}
               >
                 {pageLabels.amenities}{filters.amenities.length > 0 ? ` (${filters.amenities.length})` : ''}
               </button>
@@ -792,7 +830,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 <button
                   type="button"
                   onClick={clearFilters}
-                  className="h-12 whitespace-nowrap px-4 text-left text-base font-semibold text-[#8e5636] hover:bg-[#f7f4ed] lg:flex-none lg:text-[15px] xl:text-base"
+                  className="h-12 whitespace-nowrap px-4 text-left text-base font-semibold text-[#8e5636] hover:bg-[#f7f4ed] lg:hidden"
                 >
                   {pageLabels.clearFilters}
                 </button>
@@ -817,6 +855,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                 })}
               </div>
             )}
+            </div>
           </div>
 
           {showRegionBanner && filters.region && (
@@ -1035,7 +1074,9 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
 
       {/* Floating view toggle pill (mobile only, Airbnb-style) */}
       <div
-        className={`fixed left-1/2 z-50 -translate-x-1/2 lg:hidden ${
+        className={`fixed left-1/2 z-50 -translate-x-1/2 transition-[opacity,visibility] duration-200 lg:hidden ${
+          pillOverFilters && (showMobileFilters || amenitiesOpen) && !mobileMapActive ? 'invisible opacity-0' : 'visible opacity-100'
+        } ${
           mobileMapActive
             ? 'bottom-6'
             : 'bottom-[calc(var(--contact-bar-height)+env(safe-area-inset-bottom,0px)+0.75rem)]'
