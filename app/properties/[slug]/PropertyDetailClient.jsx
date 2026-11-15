@@ -1040,12 +1040,12 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                   ? [{ icon: Car, value: getLocalizedText(specifications.parking, ''), label: language === 'cs' ? 'Parkování' : language === 'it' ? 'Parcheggio' : 'Parking' }]
                   : []),
               ].map(({ icon: Icon, value, label }) => (
-                <div key={label} className="flex min-w-max flex-1 flex-col items-center px-1 text-center sm:px-3">
-                  <div className="flex items-center gap-1.5">
+                <div key={label} className="flex min-w-max flex-1 flex-col items-center px-0.5 text-center sm:px-3">
+                  <div className="flex items-center gap-1 sm:gap-1.5">
                     <Icon className="h-[18px] w-[18px] shrink-0 text-[#c78b5a]" aria-hidden="true" />
-                    <span className="text-xl font-bold leading-tight text-[#0e152e] md:text-2xl">{value}</span>
+                    <span className="text-lg font-bold leading-tight text-[#0e152e] sm:text-xl md:text-2xl">{value}</span>
                   </div>
-                  <div className="mt-0.5 whitespace-nowrap text-sm text-[#0e152e]/65">{label}</div>
+                  <div className="mt-0.5 whitespace-nowrap text-[15px] text-[#0e152e]/65 sm:text-sm">{label}</div>
                 </div>
               ))}
             </div>
