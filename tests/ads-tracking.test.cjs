@@ -20,7 +20,8 @@ const attr = load('lib/attribution.js', [
   'sanitizeAttribution', 'attributionColumns', 'ATTRIBUTION_COLUMN_NAMES'
 ])
 const consent = load('lib/consent.js', [
-  'readConsentFromCookieHeader', 'consentCookieString', 'consentModeState', 'semConsentState'
+  'readConsentFromCookieHeader', 'consentCookieString', 'consentModeState', 'semConsentState',
+  'parseConsentCategories', 'serializeConsentCategories', 'hasAnalyticsConsent', 'hasMarketingConsent'
 ])
 
 const NOW = 1_800_000_000_000
@@ -105,11 +106,14 @@ test('IDs only come from env vars and the prompt is behind a flag', () => {
   const component = read('components/AdsTracking.jsx')
   assert.match(component, /if \(!enabled \|\| !ADS_CONFIG\.consentPromptEnabled/)
   const tracking = read('lib/adsTracking.js')
-  // Scripts are injected only inside the consent === 'granted' branches.
-  assert.match(tracking, /if \(consent !== 'granted'\) \{[\s\S]*?return\s*\}\s*ensureGtagStub\(\)/)
+  // gtag.js / sul.js are injected only after the matching category is granted.
+  assert.match(tracking, /hasAnalyticsConsent/)
+  assert.match(tracking, /hasMarketingConsent/)
   assert.match(tracking, /wait_for_update: 500/)
   assert.match(tracking, /l\.seznam\.cz\/sul\.js/)
   assert.match(tracking, /googletagmanager\.com\/gtag\/js/)
+  assert.match(tracking, /if \(analytics && config\.ga4Id && !loaded\.ga4Configured\)/)
+  assert.match(tracking, /if \(marketing && config\.gadsId && !loaded\.gadsConfigured\)/)
 })
 
 test('every inquiry form sends attribution and fires the Lead conversion after success', () => {
@@ -132,7 +136,7 @@ test('every inquiry form sends attribution and fires the Lead conversion after s
 test('Meta stays consent-gated and has the Lead event prepared', () => {
   assert.match(read('lib/metaConversions.js'), /'Lead'/)
   const meta = read('components/MetaTracking.jsx')
-  assert.match(meta, /if \(!pixelId \|\| consent !== 'granted'\) return null/)
+  assert.match(meta, /if \(!pixelId \|\| !hasMarketingConsent\(consent\)\) return null/)
   assert.match(read('app/api/meta/events/route.js'), /readConsentFromCookieHeader/)
 })
 
@@ -140,9 +144,20 @@ test('Meta stays consent-gated and has the Lead event prepared', () => {
 test('Czech consent prompt uses the approved sentence and cookies §4 names Google and Seznam', () => {
   const copy = load('lib/consentCopy.js', ['CONSENT_COPY', 'consentCopy'])
   assert.equal(copy.consentCopy('cs').text, 'Používáme cookies k měření návštěvnosti a reklam.')
-  assert.equal(copy.consentCopy('cs').accept, 'Povolit')
-  assert.equal(copy.consentCopy('cs').decline, 'Odmítnout')
+  assert.equal(copy.consentCopy('cs').title, 'Cookies na tomto webu')
+  assert.equal(copy.consentCopy('cs').accept, 'Přijmout vše')
+  assert.equal(copy.consentCopy('cs').decline, 'Odmítnout vše')
+  assert.equal(copy.consentCopy('cs').customize, 'Přizpůsobit')
+  assert.equal(copy.consentCopy('cs').save, 'Uložit výběr')
   assert.equal(copy.consentCopy('cs').more, 'Více informací')
+  assert.equal(copy.consentCopy('cs').necessary, 'Nezbytné')
+  assert.equal(copy.consentCopy('cs').necessaryDesc, 'Potřebné pro fungování webu.')
+  assert.equal(copy.consentCopy('cs').analytics, 'Analytické')
+  assert.equal(copy.consentCopy('cs').analyticsDesc, 'Pomáhají nám pochopit, jak web používáte.')
+  assert.equal(copy.consentCopy('cs').marketing, 'Marketingové')
+  assert.equal(copy.consentCopy('cs').marketingDesc, 'Slouží k měření a zobrazování reklam.')
+  assert.equal(copy.consentCopy('en').title, 'Cookies on this site')
+  assert.equal(copy.consentCopy('it').title, 'Cookie su questo sito')
   const cookies = read('app/cookies/page.js')
   const csSection = cookies.slice(cookies.indexOf("cs: {"), cookies.indexOf('export default'))
   const analytics = csSection.slice(csSection.indexOf("4. Analytika a marketing"))
@@ -232,4 +247,50 @@ test('inquiry insert succeeds on the first try when attribution columns exist', 
   assert.equal(error, null)
   assert.equal(data.id, 'inq_2')
   assert.equal(inserts, 1)
+})
+
+
+test('consent categories stay backward compatible and drive Consent Mode v2', () => {
+  same(consent.parseConsentCategories('granted'), { analytics: true, marketing: true })
+  same(consent.parseConsentCategories('denied'), { analytics: false, marketing: false })
+  same(consent.parseConsentCategories('analytics'), { analytics: true, marketing: false })
+  same(consent.parseConsentCategories('marketing'), { analytics: false, marketing: true })
+  assert.equal(consent.parseConsentCategories('maybe'), null)
+  assert.equal(consent.serializeConsentCategories({ analytics: true, marketing: true }), 'granted')
+  assert.equal(consent.serializeConsentCategories({ analytics: false, marketing: false }), 'denied')
+  assert.equal(consent.serializeConsentCategories({ analytics: true, marketing: false }), 'analytics')
+  assert.equal(consent.serializeConsentCategories({ analytics: false, marketing: true }), 'marketing')
+  assert.equal(consent.readConsentFromCookieHeader('dvi_consent=analytics'), 'analytics')
+  assert.equal(consent.readConsentFromCookieHeader('dvi_consent=marketing'), 'marketing')
+  assert.match(consent.consentCookieString({ analytics: true, marketing: false }), /^dvi_consent=analytics;/)
+  assert.equal(consent.hasAnalyticsConsent('analytics'), true)
+  assert.equal(consent.hasMarketingConsent('analytics'), false)
+  assert.equal(consent.hasAnalyticsConsent('marketing'), false)
+  assert.equal(consent.hasMarketingConsent('marketing'), true)
+  assert.equal(consent.hasMarketingConsent('granted'), true)
+  assert.equal(consent.hasAnalyticsConsent('denied'), false)
+  same(consent.consentModeState('analytics'), {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted'
+  })
+  same(consent.consentModeState('marketing'), {
+    ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'denied'
+  })
+  same(consent.consentModeState({ analytics: true, marketing: false }), {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'granted'
+  })
+})
+
+test('consent UI has customize/settings and the footer reopens them', () => {
+  const component = read('components/AdsTracking.jsx')
+  assert.match(component, /data-testid="consent-customize"/)
+  assert.match(component, /data-testid="consent-settings"/)
+  assert.match(component, /data-testid="consent-save"/)
+  assert.match(component, /testId="consent-toggle-necessary"/)
+  assert.match(component, /testId="consent-toggle-analytics"/)
+  assert.match(component, /testId="consent-toggle-marketing"/)
+  assert.match(component, /setSettingsOpen\(true\)/)
+  const footer = read('components/Footer.jsx')
+  assert.match(footer, /testId: 'footer-cookie-settings'/)
+  assert.match(footer, /data-consent-open/)
+  assert.match(footer, /consentCopy\(language\)\.footerSettings/)
 })

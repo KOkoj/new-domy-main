@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Phone, Mail, MapPin, ArrowUpRight } from 'lucide-react'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
 import SocialLinks from '@/components/SocialLinks'
+import { consentCopy } from '@/lib/consentCopy'
 
 export default function Footer({ language = 'en' }) {
   const footerLabels = {
@@ -47,6 +48,7 @@ export default function Footer({ language = 'en' }) {
     { href: '/terms', label: language === 'cs' ? 'Obchodní podmínky' : language === 'it' ? 'Termini di vendita' : 'Terms of Sale' },
     { href: '/gdpr', label: language === 'cs' ? 'Osobní údaje (GDPR)' : language === 'it' ? 'Dati personali (GDPR)' : 'Personal Data (GDPR)' },
     { href: '/cookies', label: footerLabels.cookies },
+    { href: '/cookies#nastaveni', label: consentCopy(language).footerSettings, testId: 'footer-cookie-settings', consentOpen: true },
   ]
 
   const companyInfoByLanguage = {
@@ -171,7 +173,7 @@ export default function Footer({ language = 'en' }) {
               {footerLabels.support}
             </h5>
             <ul className="space-y-2.5 text-gray-400 text-sm" data-testid="footer-support-links">
-              {supportLinks.map(({ href, label, testId, protected: isProtected }) => (
+              {supportLinks.map(({ href, label, testId, protected: isProtected, consentOpen }) => (
                 <li key={href}>
                   {isProtected ? (
                     <ProtectedContentLink href={href} language={language} className="group flex items-center gap-1 hover:text-white transition-colors duration-200" data-testid={testId}>
@@ -179,7 +181,7 @@ export default function Footer({ language = 'en' }) {
                       <ArrowUpRight className="h-3 w-3 opacity-0 -translate-y-0.5 translate-x-0 group-hover:opacity-60 group-hover:translate-y-0 transition-all duration-200" />
                     </ProtectedContentLink>
                   ) : (
-                    <Link href={href} className="group flex items-center gap-1 hover:text-white transition-colors duration-200" data-testid={testId}>
+                    <Link href={href} className="group flex items-center gap-1 hover:text-white transition-colors duration-200" data-testid={testId} {...(consentOpen ? { 'data-consent-open': '' } : {})}>
                       {label}
                       <ArrowUpRight className="h-3 w-3 opacity-0 -translate-y-0.5 translate-x-0 group-hover:opacity-60 group-hover:translate-y-0 transition-all duration-200" />
                     </Link>
