@@ -4,6 +4,7 @@ import Script from 'next/script'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
 import { CONSENT_EVENT, getConsent } from '@/lib/adsTracking'
+import { hasMarketingConsent } from '@/lib/consent'
 
 function cookieValue(name) {
   return document.cookie.split('; ').find((item) => item.startsWith(`${name}=`))?.split('=')[1]
@@ -54,7 +55,7 @@ export default function MetaTracking() {
     return () => window.removeEventListener(CONSENT_EVENT, onConsent)
   }, [pixelId])
 
-  if (!pixelId || consent !== 'granted') return null
+  if (!pixelId || !hasMarketingConsent(consent)) return null
 
   return (
     <>
