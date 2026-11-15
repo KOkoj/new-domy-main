@@ -28,6 +28,7 @@ import { t } from '@/lib/translations'
 import MobileContactBar from '@/components/MobileContactBar'
 import { SITE_ORIGIN } from '@/lib/contactDetails'
 import { trackClientEvent } from '@/lib/trackClientEvent'
+import { useSwipe, SWIPE_STYLE } from '@/hooks/use-swipe'
 
 const INQUIRY_FORM_ID = 'inquiry-form'
 
@@ -67,6 +68,7 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
   const allMedia = useMemo(() => buildGalleryMedia(images, videoUrl), [images, videoUrl])
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
+  const [heroOffset, setHeroOffset] = useState(0)
   const [mounted, setMounted] = useState(false)
   const [failedSrcs, setFailedSrcs] = useState(() => new Set())
   const media = useMemo(
@@ -139,6 +141,19 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [lightboxOpen, prevItem, nextItem])
+
+  const heroSwipe = useSwipe({
+    enabled: media.length > 1,
+    onPrevious: () => setHeroOffset((i) => (i - 1 + media.length) % media.length),
+    onNext: () => setHeroOffset((i) => (i + 1) % media.length),
+  })
+
+  const lightboxSwipe = useSwipe({
+    enabled: media.length > 1,
+    onPrevious: prevItem,
+    onNext: nextItem,
+    ignore: (target) => target?.tagName === 'VIDEO',
+  })
 
   useEffect(() => {
     if (lightboxOpen) {
@@ -250,7 +265,7 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
     </button>
   ) : null
 
-  const heroIndex = 0
+  const heroIndex = media.length ? heroOffset % media.length : 0
   const videoIndex = media.findIndex((item) => item.type === 'video')
   const mosaicSlots = [1, 2, 3, 4]
 
@@ -279,7 +294,11 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
             {badgeOverlay}
           </div>
         ) : (
-          <div className="grid grid-cols-[3fr_2fr] gap-2 rounded-xl overflow-hidden h-[260px] sm:h-[480px]">
+          <div
+            className="grid grid-cols-[3fr_2fr] gap-2 rounded-xl overflow-hidden h-[260px] sm:h-[480px]"
+            style={SWIPE_STYLE}
+            {...heroSwipe}
+          >
             <div
               className="relative overflow-hidden cursor-zoom-in group h-full"
               onClick={() => openLightbox(heroIndex)}
@@ -306,7 +325,9 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
             <div className="grid grid-cols-1 grid-rows-2 sm:grid-cols-2 sm:grid-rows-2 gap-2 h-full">
               {mosaicSlots.map((slot) => {
                 const mobileHide = slot >= 3 ? 'hidden sm:block' : ''
-                const item = media[slot]
+                // Tiles follow the hero when it is swiped, so no photo shows twice.
+                const mediaIndex = slot < media.length ? (heroIndex + slot) % media.length : -1
+                const item = media[mediaIndex]
 
                 if (!item) {
                   if (slot === 4 && hasVideo && videoIndex >= 0) {
@@ -323,9 +344,9 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
                 return (
                   <div key={slot} className={`h-full ${mobileHide}`}>
                     {item.type === 'video'
-                      ? renderVideoTile(slot, 'h-full')
-                      : renderMediaTile(slot, {
-                          alt: `${title} - ${slot + 1}`,
+                      ? renderVideoTile(mediaIndex, 'h-full')
+                      : renderMediaTile(mediaIndex, {
+                          alt: `${title} - ${mediaIndex + 1}`,
                           sizes: '(min-width: 640px) 20vw, 33vw',
                           overlay: showOverlay ? (
                             <div className="absolute inset-0 bg-black/50 flex items-center justify-center pointer-events-none">
@@ -373,6 +394,8 @@ function MediaGallery({ images, videoUrl, title, status, language, isNew, noAgen
           <div
             className="relative max-h-[80vh] max-w-[90vw] w-full h-full flex items-center justify-center pb-20"
             onClick={(e) => e.stopPropagation()}
+            style={media.length > 1 ? SWIPE_STYLE : undefined}
+            {...lightboxSwipe}
           >
             {media[lightboxIndex]?.type === 'video' ? (
               <video

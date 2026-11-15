@@ -260,7 +260,7 @@ export default function PropertySlider({ language = 'en', initialProperties = []
                   : 'min-w-0 flex-[0_0_280px] sm:flex-[0_0_300px] lg:flex-[0_0_320px]'}
               >
                 {home
-                  ? <PropertyPreviewCard property={property} language={language} currency={currency} />
+                  ? <PropertyPreviewCard property={property} language={language} currency={currency} swipe={false} />
                   : <SlideCard property={property} language={language} labels={labels} />}
               </div>
             ))}

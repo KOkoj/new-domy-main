@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import PropertyImage from '@/components/PropertyImage';
+import { useSwipe, SWIPE_STYLE } from '@/hooks/use-swipe';
 
 const LABELS = {
   cs: { previous: 'Předchozí fotka', next: 'Další fotka' },
@@ -25,6 +26,7 @@ export default function PropertyPhotoSwitcher({
   onActivate,
   language = 'cs',
   reveal = 'hover',
+  swipe = true,
   children,
   imageTestId = 'property-image',
 }) {
@@ -44,18 +46,26 @@ export default function PropertyPhotoSwitcher({
     : 'pointer-events-auto opacity-100'
 
   const step = (direction, event) => {
-    event.preventDefault()
-    event.stopPropagation()
+    event?.preventDefault()
+    event?.stopPropagation()
     if (!multiple) return
     const nextIndex = (safeIndex + direction + list.length) % list.length
     setIndex(nextIndex)
     preload(list[(nextIndex + direction + list.length) % list.length])
   }
 
+  const swipeHandlers = useSwipe({
+    enabled: swipe && multiple,
+    onPrevious: () => step(-1),
+    onNext: () => step(1),
+  })
+
   return (
     <div
       className="relative aspect-[4/3] overflow-hidden"
       data-testid="property-image-container"
+      style={swipe && multiple ? SWIPE_STYLE : undefined}
+      {...swipeHandlers}
       onMouseEnter={() => {
         if (multiple) preload(list[(safeIndex + 1) % list.length])
       }}

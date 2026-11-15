@@ -15,7 +15,7 @@ export function getPropertyHref(property) {
   return '/properties'
 }
 
-export default function PropertyPreviewCard({ property, language, currency }) {
+export default function PropertyPreviewCard({ property, language, currency, swipe = true }) {
   const title = getLocalizedValue(property.titleI18n, language, 'Property')
   const href = getPropertyHref(property)
   const photos = Array.isArray(property.images) && property.images.length > 0
@@ -37,7 +37,7 @@ export default function PropertyPreviewCard({ property, language, currency }) {
         if (event.target.closest('button')) event.stopPropagation()
       }}
     >
-      <PropertyPhotoSwitcher photos={photos} alt={title} href={href} language={language}>
+      <PropertyPhotoSwitcher photos={photos} alt={title} href={href} language={language} swipe={swipe}>
         {(statusLabel || property.isNew || property.noAgency) && (
           <div className="pointer-events-none absolute left-3 top-3 z-10 flex max-w-[calc(100%-1.5rem)] flex-wrap gap-1.5">
             {statusLabel && (
