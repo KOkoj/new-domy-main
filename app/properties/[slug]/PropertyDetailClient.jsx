@@ -1030,7 +1030,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
             />
 
             {/* Property Details */}
-            <div className="flex divide-x divide-[#0e152e]/10 border-y border-[#0e152e]/10 py-3 md:py-4">
+            <div className="flex flex-wrap gap-y-2 divide-x divide-[#0e152e]/10 border-y border-[#0e152e]/10 py-3 md:py-4">
               {[
                 { icon: Home, value: getLocalizedText(specifications.rooms || specifications.bedrooms, '0'), label: language === 'cs' ? 'Mistnosti' : language === 'it' ? 'Locali' : 'Rooms' },
                 { icon: Bed, value: getLocalizedText(specifications.bedrooms, '0'), label: language === 'cs' ? 'Ložnice' : language === 'it' ? 'Camere' : 'Bedrooms' },
@@ -1040,12 +1040,12 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                   ? [{ icon: Car, value: getLocalizedText(specifications.parking, ''), label: language === 'cs' ? 'Parkování' : language === 'it' ? 'Parcheggio' : 'Parking' }]
                   : []),
               ].map(({ icon: Icon, value, label }) => (
-                <div key={label} className="flex min-w-0 flex-1 flex-col items-center px-1 text-center">
+                <div key={label} className="flex min-w-max flex-1 flex-col items-center px-1 text-center sm:px-3">
                   <div className="flex items-center gap-1.5">
                     <Icon className="h-[18px] w-[18px] shrink-0 text-[#c78b5a]" aria-hidden="true" />
                     <span className="text-xl font-bold leading-tight text-[#0e152e] md:text-2xl">{value}</span>
                   </div>
-                  <div className="mt-0.5 truncate text-sm text-[#0e152e]/65 max-w-full">{label}</div>
+                  <div className="mt-0.5 whitespace-nowrap text-sm text-[#0e152e]/65">{label}</div>
                 </div>
               ))}
             </div>
