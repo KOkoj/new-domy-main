@@ -121,12 +121,6 @@ function MapPropertyCard({ property, currency = 'EUR', language = 'cs', onClose,
   const localizedTypeLabel = getPropertyTypeLabel(property.type, language)
   const statusLabel = getStatusLabel(property.status, language)
   const propertySlug = property.slug?.current || property.slug
-  const isLaDanePreview = propertySlug === 'friuli-venezia-giulia-appartamento-zoncolan-la-dane'
-  const laDaneBookingLabel = language === 'cs'
-    ? 'Vytvoř si to podle sebe'
-    : language === 'it'
-    ? 'Prenota e personalizza'
-    : 'Book and customize'
   const typeIcons = {
     apartment: Building2,
     house: Home,
@@ -149,7 +143,7 @@ function MapPropertyCard({ property, currency = 'EUR', language = 'cs', onClose,
         reveal="always"
         imageTestId="map-card-image"
       >
-          {(statusLabel || property.isNew || property.noAgency || isLaDanePreview) && (
+          {(statusLabel || property.isNew || property.noAgency) && (
             <div className="pointer-events-none absolute left-2.5 top-2.5 z-10 flex max-w-[calc(100%-2.75rem)] flex-wrap gap-1.5">
               {statusLabel && (
                 <span className="rounded-full bg-[#1b2642] px-2.5 py-1 text-xs font-medium text-white">
@@ -164,11 +158,6 @@ function MapPropertyCard({ property, currency = 'EUR', language = 'cs', onClose,
               {property.noAgency && (
                 <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-[#0e152e]">
                   {getNoAgencyLabel(language)}
-                </span>
-              )}
-              {isLaDanePreview && (
-                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-[#0e152e]">
-                  {laDaneBookingLabel}
                 </span>
               )}
             </div>
