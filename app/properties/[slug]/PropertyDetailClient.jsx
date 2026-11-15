@@ -904,14 +904,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
     <div className="site-page min-h-screen bg-[#f7f4ed]">
       <Navigation />
 
-      <div className="container mx-auto px-6 pb-2 pt-40 sm:pt-44">
-        <Link href="/properties" className="inline-flex items-center gap-2 text-base font-semibold text-[#0e152e] hover:text-[#c78b5a]">
-          <ArrowLeft className="h-4 w-4" />
-          {language === 'cs' ? 'Zpět na nemovitosti' : language === 'it' ? 'Torna alle proprietà' : 'Back to Properties'}
-        </Link>
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 py-8 md:py-16 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 pt-[6.25rem] pb-8 sm:pt-28 md:pb-16 lg:pt-32 lg:pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
@@ -919,7 +912,12 @@ export default function PropertyDetailClient({ initialProperty = null }) {
             <div>
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-4">
                 <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 mb-3">
+                    <Link href="/properties" className="mr-1 inline-flex items-center gap-1.5 py-1 text-sm font-semibold text-[#0e152e] hover:text-[#c78b5a]">
+                      <ArrowLeft className="h-4 w-4" />
+                      {language === 'cs' ? 'Zpět na nemovitosti' : language === 'it' ? 'Torna alle proprietà' : 'Back to Properties'}
+                    </Link>
+                    <span aria-hidden="true" className="mr-1 h-4 w-px bg-[#0e152e]/15" />
                     <Badge variant="secondary" className="capitalize">
                       {getPropertyTypeLabel(property.propertyType, language)}
                     </Badge>
@@ -1032,42 +1030,24 @@ export default function PropertyDetailClient({ initialProperty = null }) {
             />
 
             {/* Property Details */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-              <div className="text-center p-4 bg-white rounded-lg border">
-                <Home className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                <div className="text-2xl font-bold">{getLocalizedText(specifications.rooms || specifications.bedrooms, '0')}</div>
-                <div className="text-sm text-gray-600">
-                  {language === 'cs' ? 'Mistnosti' : language === 'it' ? 'Locali' : 'Rooms'}
-                </div>
-              </div>
-              <div className="text-center p-4 bg-white rounded-lg border">
-                <Bed className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                <div className="text-2xl font-bold">{getLocalizedText(specifications.bedrooms, '0')}</div>
-                <div className="text-sm text-gray-600">
-                  {language === 'cs' ? 'Ložnice' : language === 'it' ? 'Camere' : 'Bedrooms'}
-                </div>
-              </div>
-              <div className="text-center p-4 bg-white rounded-lg border">
-                <Bath className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                <div className="text-2xl font-bold">{getLocalizedText(specifications.bathrooms, '0')}</div>
-                <div className="text-sm text-gray-600">
-                  {language === 'cs' ? 'Koupelny' : language === 'it' ? 'Bagni' : 'Bathrooms'}
-                </div>
-              </div>
-              <div className="text-center p-4 bg-white rounded-lg border">
-                <Square className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                <div className="text-2xl font-bold">{getLocalizedText(specifications.squareFootage, '0')}</div>
-                <div className="text-sm text-gray-600">m²</div>
-              </div>
-              {specifications.parking && (
-                <div className="text-center p-4 bg-white rounded-lg border">
-                  <Car className="h-6 w-6 mx-auto mb-2 text-blue-600" />
-                  <div className="text-2xl font-bold">{getLocalizedText(specifications.parking, '')}</div>
-                  <div className="text-sm text-gray-600">
-                    {language === 'cs' ? 'Parkování' : language === 'it' ? 'Parcheggio' : 'Parking'}
+            <div className="flex divide-x divide-[#0e152e]/10 border-y border-[#0e152e]/10 py-3 md:py-4">
+              {[
+                { icon: Home, value: getLocalizedText(specifications.rooms || specifications.bedrooms, '0'), label: language === 'cs' ? 'Mistnosti' : language === 'it' ? 'Locali' : 'Rooms' },
+                { icon: Bed, value: getLocalizedText(specifications.bedrooms, '0'), label: language === 'cs' ? 'Ložnice' : language === 'it' ? 'Camere' : 'Bedrooms' },
+                { icon: Bath, value: getLocalizedText(specifications.bathrooms, '0'), label: language === 'cs' ? 'Koupelny' : language === 'it' ? 'Bagni' : 'Bathrooms' },
+                { icon: Square, value: getLocalizedText(specifications.squareFootage, '0'), label: 'm²' },
+                ...(specifications.parking
+                  ? [{ icon: Car, value: getLocalizedText(specifications.parking, ''), label: language === 'cs' ? 'Parkování' : language === 'it' ? 'Parcheggio' : 'Parking' }]
+                  : []),
+              ].map(({ icon: Icon, value, label }) => (
+                <div key={label} className="flex min-w-0 flex-1 flex-col items-center px-1 text-center">
+                  <div className="flex items-center gap-1.5">
+                    <Icon className="h-[18px] w-[18px] shrink-0 text-[#c78b5a]" aria-hidden="true" />
+                    <span className="text-xl font-bold leading-tight text-[#0e152e] md:text-2xl">{value}</span>
                   </div>
+                  <div className="mt-0.5 truncate text-sm text-[#0e152e]/65 max-w-full">{label}</div>
                 </div>
-              )}
+              ))}
             </div>
 
             {/* Description */}
@@ -1093,14 +1073,14 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <ul className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2 md:grid-cols-3">
                     {property.amenities.map((amenity, index) => (
-                      <div key={index} className="flex items-center space-x-2 p-2 bg-gray-50 rounded">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                        <span className="text-sm">{getLocalizedText(amenity.name)}</span>
-                      </div>
+                      <li key={index} className="flex items-baseline gap-2.5 text-[15px] leading-snug text-[#0e152e]/85">
+                        <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 -translate-y-0.5 rounded-full bg-[#c78b5a]" />
+                        <span>{getLocalizedText(amenity.name)}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </CardContent>
               </Card>
             )}
