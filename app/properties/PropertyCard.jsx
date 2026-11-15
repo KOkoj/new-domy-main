@@ -8,11 +8,6 @@ import { getLocalizedValue, getPropertyTypeLabel, getStatusLabel } from '@/lib/p
 import { getNewPropertyLabel } from '@/components/NewPropertyRibbon';
 import { getNoAgencyLabel } from '@/components/NoAgencyBadge';
 
-const LA_DANE_BOOKING_LABELS = {
-  cs: 'Vytvo\u0159 si to podle sebe',
-  en: 'Book and customize',
-  it: 'Prenota e personalizza',
-}
 
 export default function PropertyCard({
   property,
@@ -31,8 +26,6 @@ export default function PropertyCard({
   const localizedTypeLabel = getPropertyTypeLabel(property.type, language)
   const statusLabel = getStatusLabel(property.status, language)
   const propertySlug = property.slug?.current || property.slug
-  const isLaDanePreview = propertySlug === 'friuli-venezia-giulia-appartamento-zoncolan-la-dane'
-  const laDaneBookingLabel = LA_DANE_BOOKING_LABELS[language] || LA_DANE_BOOKING_LABELS.en
   const notes = [
     statusLabel,
     property.isNew ? getNewPropertyLabel(language) : null,
@@ -84,7 +77,7 @@ export default function PropertyCard({
         href={propertyHref}
         language={language}
       >
-          {(notes.length > 0 || isLaDanePreview) && (
+          {(notes.length > 0) && (
             <div className="pointer-events-none absolute left-3 top-3 z-10 flex max-w-[calc(100%-3.25rem)] flex-wrap gap-1.5">
               {statusLabel && (
                 <span className="rounded-full bg-[#1b2642] px-2.5 py-1 text-xs font-medium text-white">
@@ -99,11 +92,6 @@ export default function PropertyCard({
               {property.noAgency && (
                 <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-[#0e152e]">
                   {getNoAgencyLabel(language)}
-                </span>
-              )}
-              {isLaDanePreview && (
-                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-[#0e152e]" data-testid="la-dane-booking-bubble">
-                  {laDaneBookingLabel}
                 </span>
               )}
             </div>
