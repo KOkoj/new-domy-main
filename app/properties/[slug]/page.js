@@ -99,7 +99,7 @@ function PropertySeoContent({ property }) {
         <ul>
           {specs.bedrooms ? <li>Loznice: {getLocalized(specs.bedrooms, 'cs', '')}</li> : null}
           {specs.bathrooms ? <li>Koupelny: {getLocalized(specs.bathrooms, 'cs', '')}</li> : null}
-          {specs.rooms ? <li>Mistnosti: {getLocalized(specs.rooms, 'cs', '')}</li> : null}
+          {specs.rooms ? <li>Místnosti: {getLocalized(specs.rooms, 'cs', '')}</li> : null}
           {specs.squareFootage ? <li>Plocha: {getLocalized(specs.squareFootage, 'cs', '')} m2</li> : null}
           {specs.parking ? <li>Parkovani: {getLocalized(specs.parking, 'cs', '')}</li> : null}
         </ul>

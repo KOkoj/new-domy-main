@@ -1032,7 +1032,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
             {/* Property Details */}
             <div className="flex flex-wrap gap-y-2 divide-x divide-[#0e152e]/10 border-y border-[#0e152e]/10 py-3 md:py-4">
               {[
-                { icon: Home, value: getLocalizedText(specifications.rooms || specifications.bedrooms, '0'), label: language === 'cs' ? 'Mistnosti' : language === 'it' ? 'Locali' : 'Rooms' },
+                { icon: Home, value: getLocalizedText(specifications.rooms || specifications.bedrooms, '0'), label: language === 'cs' ? 'Místnosti' : language === 'it' ? 'Locali' : 'Rooms' },
                 { icon: Bed, value: getLocalizedText(specifications.bedrooms, '0'), label: language === 'cs' ? 'Ložnice' : language === 'it' ? 'Camere' : 'Bedrooms' },
                 { icon: Bath, value: getLocalizedText(specifications.bathrooms, '0'), label: language === 'cs' ? 'Koupelny' : language === 'it' ? 'Bagni' : 'Bathrooms' },
                 { icon: Square, value: getLocalizedText(specifications.squareFootage, '0'), label: 'm²' },
