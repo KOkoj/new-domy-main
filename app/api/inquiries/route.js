@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import { createRouteSupabaseClient, getAuthenticatedUser } from '@/lib/serverAuth'
 import { trackServerEvent } from '@/lib/trackServerEvent'
-import { ATTRIBUTION_COLUMN_NAMES, attributionColumns } from '@/lib/attribution'
+import { attributionColumns } from '@/lib/attribution'
+import { insertInquiryWithFallback } from '@/lib/insertInquiry'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -108,49 +109,7 @@ export async function POST(request) {
     ...attributionColumns(attribution)
   }
 
-  let { data, error } = await supabase.from('inquiries').insert([insertPayload]).select().single()
-
-  const isMissingColumnError = (err, names) =>
-    err?.code === '42703' ||
-    err?.code === 'PGRST204' ||
-    new RegExp(`(${names.join('|')})`, 'i').test(err?.message || '')
-
-  if (error && ATTRIBUTION_COLUMN_NAMES.some((column) => column in insertPayload) &&
-      isMissingColumnError(error, ATTRIBUTION_COLUMN_NAMES)) {
-    // Attribution migration not run yet: never lose the lead over it.
-    console.warn(
-      '[INQUIRIES] attribution columns missing (run db/add-inquiry-attribution-columns.sql). Retrying without them:',
-      error.message
-    )
-    ATTRIBUTION_COLUMN_NAMES.forEach((column) => delete insertPayload[column])
-    const retry = await supabase.from('inquiries').insert([insertPayload]).select().single()
-    data = retry.data
-    error = retry.error
-  }
-
-  if (error) {
-    const isMissingMetadataColumn =
-      error.code === '42703' ||
-      error.code === 'PGRST204' ||
-      /column .*(inquiryType|propertyTitle).* does not exist/i.test(error.message || '')
-
-    if (isMissingMetadataColumn) {
-      // db/add-inquiry-metadata-columns.sql hasn't been run yet. Never lose the
-      // lead over a missing column: retry without the new fields.
-      console.warn(
-        '[INQUIRIES] inquiryType/propertyTitle columns missing (run db/add-inquiry-metadata-columns.sql). Retrying insert without them:',
-        error.message
-      )
-
-      const fallbackPayload = { ...insertPayload }
-      delete fallbackPayload.inquiryType
-      delete fallbackPayload.propertyTitle
-
-      const retry = await supabase.from('inquiries').insert([fallbackPayload]).select().single()
-      data = retry.data
-      error = retry.error
-    }
-  }
+  let { data, error } = await insertInquiryWithFallback(supabase, insertPayload)
 
   if (error) {
     return applyCookies(NextResponse.json({ error: error.message }, { status: 500 }))

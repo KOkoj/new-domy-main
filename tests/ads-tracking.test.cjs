@@ -125,7 +125,7 @@ test('every inquiry form sends attribution and fires the Lead conversion after s
   }
   const api = read('app/api/inquiries/route.js')
   assert.match(api, /\.\.\.attributionColumns\(attribution\)/)
-  assert.match(api, /add-inquiry-attribution-columns\.sql/)
+  assert.match(api, /insertInquiryWithFallback\(supabase, insertPayload\)/)
   assert.ok(fs.existsSync(path.join(root, 'db/add-inquiry-attribution-columns.sql')))
 })
 
@@ -134,4 +134,102 @@ test('Meta stays consent-gated and has the Lead event prepared', () => {
   const meta = read('components/MetaTracking.jsx')
   assert.match(meta, /if \(!pixelId \|\| consent !== 'granted'\) return null/)
   assert.match(read('app/api/meta/events/route.js'), /readConsentFromCookieHeader/)
+})
+
+
+test('Czech consent prompt uses the approved sentence and cookies §4 names Google and Seznam', () => {
+  const copy = load('lib/consentCopy.js', ['CONSENT_COPY', 'consentCopy'])
+  assert.equal(copy.consentCopy('cs').text, 'Používáme cookies k měření návštěvnosti a reklam.')
+  assert.equal(copy.consentCopy('cs').accept, 'Povolit')
+  assert.equal(copy.consentCopy('cs').decline, 'Odmítnout')
+  assert.equal(copy.consentCopy('cs').more, 'Více informací')
+  const cookies = read('app/cookies/page.js')
+  const csSection = cookies.slice(cookies.indexOf("cs: {"), cookies.indexOf('export default'))
+  const analytics = csSection.slice(csSection.indexOf("4. Analytika a marketing"))
+  assert.match(analytics, /Google/)
+  assert.match(analytics, /Seznam/)
+  assert.equal(copy.CONSENT_COPY.cs.text.includes('Google'), false)
+  assert.equal(copy.CONSENT_COPY.cs.text.includes('Seznam'), false)
+})
+
+test('inquiry insert retries without attribution columns when they are missing', async () => {
+  const { insertInquiryWithFallback } = await import('../lib/insertInquiry.js')
+  const calls = []
+  const supabase = {
+    from(table) {
+      assert.equal(table, 'inquiries')
+      return {
+        insert(rows) {
+          calls.push({ ...rows[0] })
+          return {
+            select() {
+              return {
+                async single() {
+                  if (calls.length === 1) {
+                    return {
+                      data: null,
+                      error: {
+                        code: 'PGRST204',
+                        message: "Could not find the 'attribution' column of 'inquiries' in the schema cache"
+                      }
+                    }
+                  }
+                  return { data: { id: 'inq_1', name: rows[0].name }, error: null }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  const payload = {
+    name: 'Test',
+    email: 'test@example.com',
+    message: 'Hello',
+    attribution: { first: { utm_source: 'google' } },
+    gclid: 'g1',
+    utmSource: 'google',
+    utmMedium: 'cpc',
+    utmCampaign: 'toskansko'
+  }
+  const { data, error } = await insertInquiryWithFallback(supabase, payload)
+  assert.equal(error, null)
+  assert.equal(data.id, 'inq_1')
+  assert.equal(calls.length, 2)
+  assert.equal(calls[0].gclid, 'g1')
+  assert.equal('attribution' in calls[1], false)
+  assert.equal('gclid' in calls[1], false)
+  assert.equal('utmSource' in calls[1], false)
+  assert.equal(calls[1].name, 'Test')
+  assert.equal(calls[1].email, 'test@example.com')
+  // Original payload must not be mutated if the caller retries something else.
+  assert.equal(payload.gclid, 'g1')
+})
+
+test('inquiry insert succeeds on the first try when attribution columns exist', async () => {
+  const { insertInquiryWithFallback } = await import('../lib/insertInquiry.js')
+  let inserts = 0
+  const supabase = {
+    from() {
+      return {
+        insert(rows) {
+          inserts += 1
+          return {
+            select() {
+              return {
+                async single() {
+                  return { data: { id: 'inq_2', gclid: rows[0].gclid }, error: null }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  const { data, error } = await insertInquiryWithFallback(supabase, { name: 'A', gclid: 'abc' })
+  assert.equal(error, null)
+  assert.equal(data.id, 'inq_2')
+  assert.equal(inserts, 1)
 })
