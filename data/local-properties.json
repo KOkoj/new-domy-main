@@ -71,9 +71,6 @@
     },
     "images": [
       "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/01-gallery-1.jpg",
-      "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/02-gallery-10.jpg",
-      "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/03-gallery-11.jpg",
-      "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/04-gallery-12.jpg",
       "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/05-gallery-2.jpg",
       "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/06-gallery-3.jpg",
       "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/07-gallery-4.jpg",
@@ -82,7 +79,9 @@
       "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/10-gallery-7.jpg",
       "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/11-gallery-8.jpg",
       "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/12-gallery-9.jpg",
-      "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/13-main.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/02-gallery-10.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/03-gallery-11.jpg",
+      "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/04-gallery-12.jpg",
       "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -248,8 +247,8 @@
       "cs": "Zrekonstruovaný dům o ploše 170 m² v Quiese u Massarosy má několik podlaží. V přízemí je obývací pokoj, kuchyně, jídelna a pokoj vhodný jako ložnice nebo pracovna. Výše jsou tři ložnice, celkem dvě koupelny a dva velké pokoje v posledním patře. Za domem je zahrada a dvůr, před domem prostor k parkování. Zdroj uvádí celkem pět ložnic. Energetická třída G."
     },
     "images": [
-      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/01.jpg",
       "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/02.jpg",
+      "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/01.jpg",
       "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/03.jpg",
       "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/04.jpg",
       "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/05.jpg",
@@ -350,9 +349,9 @@
       "cs": "Zrekonstruovaný dům o ploše 80 m² s výhledem na moře v Solaiu, asi pět minut autem od Pietrasanty. Ve třech podlažích je obytná a jídelní část, tři ložnice, koupelna a komora. Pozemek má přibližně 400 m², vedlejší stavba slouží jako prádelna, sklad a parkovací prostor. Možnost druhé koupelny uvedenou ve zdroji je třeba ověřit."
     },
     "images": [
+      "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/03.jpg",
       "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/01.jpg",
       "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/02.jpg",
-      "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/03.jpg",
       "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/04.jpg",
       "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/05.jpg",
       "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/06.jpg",
@@ -2277,8 +2276,7 @@
       "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/08-08-gallery-7.jpg",
       "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/09-09-gallery-8.jpg",
       "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/10-10-gallery-9.jpg",
-      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/11-11-gallery-10.jpg",
-      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/12-12-gallery-11.jpg"
+      "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/11-11-gallery-10.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -2414,7 +2412,6 @@
     },
     "images": [
       "/uploads/properties/toscana-terratetto-pontassieve-santa-brigida/01-01-main.jpg",
-      "/uploads/properties/toscana-terratetto-pontassieve-santa-brigida/02-02-gallery-1.jpg",
       "/uploads/properties/toscana-terratetto-pontassieve-santa-brigida/03-03-gallery-2.jpg",
       "/uploads/properties/toscana-terratetto-pontassieve-santa-brigida/04-04-gallery-3.jpg",
       "/uploads/properties/toscana-terratetto-pontassieve-santa-brigida/05-05-gallery-4.jpg",
@@ -2545,7 +2542,6 @@
     },
     "images": [
       "/uploads/properties/toscana-appartamento-massa-marittima-albizzeschi/01-01-main.jpg",
-      "/uploads/properties/toscana-appartamento-massa-marittima-albizzeschi/02-02-gallery-1.jpg",
       "/uploads/properties/toscana-appartamento-massa-marittima-albizzeschi/03-03-gallery-2.jpg",
       "/uploads/properties/toscana-appartamento-massa-marittima-albizzeschi/04-04-gallery-3.jpg",
       "/uploads/properties/toscana-appartamento-massa-marittima-albizzeschi/05-05-gallery-4.jpg",
@@ -2676,7 +2672,6 @@
     },
     "images": [
       "/uploads/properties/toscana-bilocale-tatti-massa-marittima-posta-vecchia/01-01-main.jpg",
-      "/uploads/properties/toscana-bilocale-tatti-massa-marittima-posta-vecchia/02-02-gallery-1.jpg",
       "/uploads/properties/toscana-bilocale-tatti-massa-marittima-posta-vecchia/03-03-gallery-2.jpg",
       "/uploads/properties/toscana-bilocale-tatti-massa-marittima-posta-vecchia/04-04-gallery-3.jpg",
       "/uploads/properties/toscana-bilocale-tatti-massa-marittima-posta-vecchia/05-05-gallery-4.jpg",
@@ -2807,7 +2802,6 @@
     },
     "images": [
       "/uploads/properties/toscana-appartamento-chianciano-terme-cavine-valli/01-01-main.jpg",
-      "/uploads/properties/toscana-appartamento-chianciano-terme-cavine-valli/02-02-gallery-1.jpg",
       "/uploads/properties/toscana-appartamento-chianciano-terme-cavine-valli/03-03-gallery-2.jpg",
       "/uploads/properties/toscana-appartamento-chianciano-terme-cavine-valli/04-04-gallery-3.jpg",
       "/uploads/properties/toscana-appartamento-chianciano-terme-cavine-valli/05-05-gallery-4.jpg",
@@ -2938,7 +2932,6 @@
     },
     "images": [
       "/uploads/properties/calabria-villino-panoramico-badolato/01-01-main.jpg",
-      "/uploads/properties/calabria-villino-panoramico-badolato/02-02-gallery-1.jpg",
       "/uploads/properties/calabria-villino-panoramico-badolato/03-03-gallery-2.jpg",
       "/uploads/properties/calabria-villino-panoramico-badolato/04-04-gallery-3.jpg",
       "/uploads/properties/calabria-villino-panoramico-badolato/05-05-gallery-4.jpg",
@@ -3070,7 +3063,6 @@
     },
     "images": [
       "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/01-01-main.jpg",
-      "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/02-02-gallery-1.jpg",
       "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/03-03-gallery-2.jpg",
       "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/04-04-gallery-3.jpg",
       "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/05-05-gallery-4.jpg",
@@ -3079,7 +3071,6 @@
       "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/08-08-gallery-7.jpg",
       "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/09-09-gallery-8.jpg",
       "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/10-10-gallery-9.jpg",
-      "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/11-11-gallery-10.jpg",
       "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/12-12-plan.jpg"
     ],
     "mainImage": 0,
@@ -3200,7 +3191,6 @@
     },
     "images": [
       "/uploads/properties/calabria-casa-panoramica-sellia-verdi/01-01-main.jpg",
-      "/uploads/properties/calabria-casa-panoramica-sellia-verdi/02-02-gallery-1.jpg",
       "/uploads/properties/calabria-casa-panoramica-sellia-verdi/03-03-gallery-2.jpg",
       "/uploads/properties/calabria-casa-panoramica-sellia-verdi/04-04-gallery-3.jpg",
       "/uploads/properties/calabria-casa-panoramica-sellia-verdi/05-05-gallery-4.jpg",
@@ -3333,7 +3323,6 @@
     },
     "images": [
       "/uploads/properties/calabria-villa-san-lucido-ss18/01-01-main.jpg",
-      "/uploads/properties/calabria-villa-san-lucido-ss18/02-02-gallery-1.jpg",
       "/uploads/properties/calabria-villa-san-lucido-ss18/03-03-gallery-2.jpg",
       "/uploads/properties/calabria-villa-san-lucido-ss18/04-04-gallery-3.jpg",
       "/uploads/properties/calabria-villa-san-lucido-ss18/05-05-gallery-4.jpg",
@@ -3466,7 +3455,6 @@
     },
     "images": [
       "/uploads/properties/calabria-casa-fiumefreddo-bruzio-piano-san-salvatore/01-01-main.jpg",
-      "/uploads/properties/calabria-casa-fiumefreddo-bruzio-piano-san-salvatore/02-02-gallery-1.jpg",
       "/uploads/properties/calabria-casa-fiumefreddo-bruzio-piano-san-salvatore/03-03-gallery-2.jpg",
       "/uploads/properties/calabria-casa-fiumefreddo-bruzio-piano-san-salvatore/04-04-gallery-3.jpg",
       "/uploads/properties/calabria-casa-fiumefreddo-bruzio-piano-san-salvatore/05-05-gallery-4.jpg",
@@ -3598,7 +3586,6 @@
     },
     "images": [
       "/uploads/properties/calabria-casa-ristrutturata-rovito-san-nicola/01-01-main.jpg",
-      "/uploads/properties/calabria-casa-ristrutturata-rovito-san-nicola/02-02-gallery-1.jpg",
       "/uploads/properties/calabria-casa-ristrutturata-rovito-san-nicola/03-03-gallery-2.jpg",
       "/uploads/properties/calabria-casa-ristrutturata-rovito-san-nicola/04-04-gallery-3.jpg",
       "/uploads/properties/calabria-casa-ristrutturata-rovito-san-nicola/05-05-gallery-4.jpg",
@@ -3730,7 +3717,6 @@
     },
     "images": [
       "/uploads/properties/calabria-casa-belvedere-marittimo-laise/01-01-main.jpg",
-      "/uploads/properties/calabria-casa-belvedere-marittimo-laise/02-02-gallery-1.jpg",
       "/uploads/properties/calabria-casa-belvedere-marittimo-laise/03-03-gallery-2.jpg",
       "/uploads/properties/calabria-casa-belvedere-marittimo-laise/04-04-gallery-3.jpg",
       "/uploads/properties/calabria-casa-belvedere-marittimo-laise/05-05-gallery-4.jpg",
@@ -3862,7 +3848,6 @@
     },
     "images": [
       "/uploads/properties/toscana-trilocale-montevarchi-moncioni/01-01-main.jpg",
-      "/uploads/properties/toscana-trilocale-montevarchi-moncioni/02-02-gallery-1.jpg",
       "/uploads/properties/toscana-trilocale-montevarchi-moncioni/03-03-gallery-2.jpg",
       "/uploads/properties/toscana-trilocale-montevarchi-moncioni/04-04-gallery-3.jpg",
       "/uploads/properties/toscana-trilocale-montevarchi-moncioni/05-05-gallery-4.jpg",
@@ -3994,7 +3979,6 @@
     },
     "images": [
       "/uploads/properties/toscana-trilocale-montevarchi-marconi/01-01-main.jpg",
-      "/uploads/properties/toscana-trilocale-montevarchi-marconi/02-02-gallery-1.jpg",
       "/uploads/properties/toscana-trilocale-montevarchi-marconi/03-03-gallery-2.jpg",
       "/uploads/properties/toscana-trilocale-montevarchi-marconi/04-04-gallery-3.jpg",
       "/uploads/properties/toscana-trilocale-montevarchi-marconi/05-05-gallery-4.jpg",
@@ -4124,7 +4108,6 @@
     },
     "images": [
       "/uploads/properties/toscana-terratetto-cascina-san-casciano-filicaia/01-01-main.jpg",
-      "/uploads/properties/toscana-terratetto-cascina-san-casciano-filicaia/02-02-gallery-1.jpg",
       "/uploads/properties/toscana-terratetto-cascina-san-casciano-filicaia/03-03-gallery-2.jpg",
       "/uploads/properties/toscana-terratetto-cascina-san-casciano-filicaia/04-04-gallery-3.jpg",
       "/uploads/properties/toscana-terratetto-cascina-san-casciano-filicaia/05-05-gallery-4.jpg",
@@ -4256,13 +4239,11 @@
     },
     "images": [
       "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/01-01-main.jpg",
-      "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/02-02-gallery-1.jpg",
       "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/03-03-gallery-2.jpg",
       "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/04-04-gallery-3.jpg",
       "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/05-05-gallery-4.jpg",
       "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/06-06-gallery-5.jpg",
       "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/07-07-gallery-6.jpg",
-      "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/08-08-gallery-7.jpg",
       "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/09-09-gallery-8.jpg",
       "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/10-10-gallery-9.jpg",
       "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/11-11-gallery-10.jpg",
@@ -4388,9 +4369,6 @@
     },
     "images": [
       "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/01-gallery-1.jpg",
-      "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/02-gallery-10.jpg",
-      "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/03-gallery-11.jpg",
-      "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/04-gallery-12.jpg",
       "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/05-gallery-2.jpg",
       "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/06-gallery-3.jpg",
       "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/07-gallery-4.jpg",
@@ -4399,7 +4377,9 @@
       "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/10-gallery-7.jpg",
       "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/11-gallery-8.jpg",
       "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/12-gallery-9.jpg",
-      "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/13-main.jpg",
+      "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/02-gallery-10.jpg",
+      "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/03-gallery-11.jpg",
+      "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/04-gallery-12.jpg",
       "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -4528,9 +4508,6 @@
     },
     "images": [
       "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/01-gallery-1.jpg",
-      "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/02-gallery-10.jpg",
-      "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/03-gallery-11.jpg",
-      "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/04-gallery-12.jpg",
       "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/05-gallery-2.jpg",
       "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/06-gallery-3.jpg",
       "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/07-gallery-4.jpg",
@@ -4539,7 +4516,9 @@
       "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/10-gallery-7.jpg",
       "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/11-gallery-8.jpg",
       "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/12-gallery-9.jpg",
-      "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/13-main.jpg",
+      "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/02-gallery-10.jpg",
+      "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/03-gallery-11.jpg",
+      "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/04-gallery-12.jpg",
       "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -4668,9 +4647,6 @@
     },
     "images": [
       "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/01-gallery-1.jpg",
-      "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/02-gallery-10.jpg",
-      "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/03-gallery-11.jpg",
-      "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/04-gallery-12.jpg",
       "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/05-gallery-2.jpg",
       "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/06-gallery-3.jpg",
       "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/07-gallery-4.jpg",
@@ -4679,7 +4655,9 @@
       "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/10-gallery-7.jpg",
       "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/11-gallery-8.jpg",
       "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/12-gallery-9.jpg",
-      "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/13-main.jpg"
+      "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/02-gallery-10.jpg",
+      "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/03-gallery-11.jpg",
+      "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -4807,9 +4785,6 @@
     },
     "images": [
       "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/01-gallery-1.jpg",
-      "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/02-gallery-10.jpg",
-      "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/03-gallery-11.jpg",
-      "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/04-gallery-12.jpg",
       "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/05-gallery-2.jpg",
       "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/06-gallery-3.jpg",
       "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/07-gallery-4.jpg",
@@ -4818,7 +4793,9 @@
       "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/10-gallery-7.jpg",
       "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/11-gallery-8.jpg",
       "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/12-gallery-9.jpg",
-      "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/13-main.jpg"
+      "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/02-gallery-10.jpg",
+      "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/03-gallery-11.jpg",
+      "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -4946,9 +4923,6 @@
     },
     "images": [
       "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/01-gallery-1.jpg",
-      "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/02-gallery-10.jpg",
-      "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/03-gallery-11.jpg",
-      "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/04-gallery-12.jpg",
       "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/05-gallery-2.jpg",
       "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/06-gallery-3.jpg",
       "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/07-gallery-4.jpg",
@@ -4957,7 +4931,9 @@
       "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/10-gallery-7.jpg",
       "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/11-gallery-8.jpg",
       "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/12-gallery-9.jpg",
-      "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/13-main.jpg",
+      "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/02-gallery-10.jpg",
+      "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/03-gallery-11.jpg",
+      "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/04-gallery-12.jpg",
       "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -5086,9 +5062,6 @@
     },
     "images": [
       "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/01-gallery-1.jpg",
-      "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/02-gallery-10.jpg",
-      "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/03-gallery-11.jpg",
-      "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/04-gallery-12.jpg",
       "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/05-gallery-2.jpg",
       "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/06-gallery-3.jpg",
       "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/07-gallery-4.jpg",
@@ -5097,7 +5070,9 @@
       "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/10-gallery-7.jpg",
       "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/11-gallery-8.jpg",
       "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/12-gallery-9.jpg",
-      "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/13-main.jpg",
+      "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/02-gallery-10.jpg",
+      "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/03-gallery-11.jpg",
+      "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/04-gallery-12.jpg",
       "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -5226,9 +5201,6 @@
     },
     "images": [
       "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/01-gallery-1.jpg",
-      "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/02-gallery-10.jpg",
-      "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/03-gallery-11.jpg",
-      "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/04-gallery-12.jpg",
       "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/05-gallery-2.jpg",
       "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/06-gallery-3.jpg",
       "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/07-gallery-4.jpg",
@@ -5237,7 +5209,9 @@
       "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/10-gallery-7.jpg",
       "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/11-gallery-8.jpg",
       "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/12-gallery-9.jpg",
-      "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/13-main.jpg",
+      "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/02-gallery-10.jpg",
+      "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/03-gallery-11.jpg",
+      "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/04-gallery-12.jpg",
       "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -5366,8 +5340,6 @@
     },
     "images": [
       "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/01-gallery-1.jpg",
-      "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/02-gallery-10.jpg",
-      "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/03-gallery-11.jpg",
       "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/04-gallery-2.jpg",
       "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/05-gallery-3.jpg",
       "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/06-gallery-4.jpg",
@@ -5376,7 +5348,8 @@
       "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/09-gallery-7.jpg",
       "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/10-gallery-8.jpg",
       "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/11-gallery-9.jpg",
-      "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/12-main.jpg"
+      "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/02-gallery-10.jpg",
+      "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/03-gallery-11.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -5504,9 +5477,6 @@
     },
     "images": [
       "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/01-gallery-1.jpg",
-      "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/02-gallery-10.jpg",
-      "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/03-gallery-11.jpg",
-      "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/04-gallery-12.jpg",
       "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/05-gallery-2.jpg",
       "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/06-gallery-3.jpg",
       "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/07-gallery-4.jpg",
@@ -5515,7 +5485,9 @@
       "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/10-gallery-7.jpg",
       "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/11-gallery-8.jpg",
       "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/12-gallery-9.jpg",
-      "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/13-main.jpg",
+      "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/02-gallery-10.jpg",
+      "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/03-gallery-11.jpg",
+      "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/04-gallery-12.jpg",
       "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -5644,9 +5616,6 @@
     },
     "images": [
       "/uploads/properties/campania-villa-torchiara-parco-elena/01-gallery-1.jpg",
-      "/uploads/properties/campania-villa-torchiara-parco-elena/02-gallery-10.jpg",
-      "/uploads/properties/campania-villa-torchiara-parco-elena/03-gallery-11.jpg",
-      "/uploads/properties/campania-villa-torchiara-parco-elena/04-gallery-12.jpg",
       "/uploads/properties/campania-villa-torchiara-parco-elena/05-gallery-2.jpg",
       "/uploads/properties/campania-villa-torchiara-parco-elena/06-gallery-3.jpg",
       "/uploads/properties/campania-villa-torchiara-parco-elena/07-gallery-4.jpg",
@@ -5655,7 +5624,9 @@
       "/uploads/properties/campania-villa-torchiara-parco-elena/10-gallery-7.jpg",
       "/uploads/properties/campania-villa-torchiara-parco-elena/11-gallery-8.jpg",
       "/uploads/properties/campania-villa-torchiara-parco-elena/12-gallery-9.jpg",
-      "/uploads/properties/campania-villa-torchiara-parco-elena/13-main.jpg",
+      "/uploads/properties/campania-villa-torchiara-parco-elena/02-gallery-10.jpg",
+      "/uploads/properties/campania-villa-torchiara-parco-elena/03-gallery-11.jpg",
+      "/uploads/properties/campania-villa-torchiara-parco-elena/04-gallery-12.jpg",
       "/uploads/properties/campania-villa-torchiara-parco-elena/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -5784,9 +5755,6 @@
     },
     "images": [
       "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/01-gallery-1.jpg",
-      "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/02-gallery-10.jpg",
-      "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/03-gallery-11.jpg",
-      "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/04-gallery-12.jpg",
       "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/05-gallery-2.jpg",
       "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/06-gallery-3.jpg",
       "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/07-gallery-4.jpg",
@@ -5795,7 +5763,9 @@
       "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/10-gallery-7.jpg",
       "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/11-gallery-8.jpg",
       "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/12-gallery-9.jpg",
-      "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/13-main.jpg",
+      "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/02-gallery-10.jpg",
+      "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/03-gallery-11.jpg",
+      "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/04-gallery-12.jpg",
       "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -5924,8 +5894,6 @@
     },
     "images": [
       "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/01-gallery-1.jpg",
-      "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/02-gallery-10.jpg",
-      "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/03-gallery-11.jpg",
       "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/04-gallery-2.jpg",
       "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/05-gallery-3.jpg",
       "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/06-gallery-4.jpg",
@@ -5934,7 +5902,8 @@
       "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/09-gallery-7.jpg",
       "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/10-gallery-8.jpg",
       "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/11-gallery-9.jpg",
-      "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/12-main.jpg",
+      "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/02-gallery-10.jpg",
+      "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/03-gallery-11.jpg",
       "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/13-plan.jpg"
     ],
     "mainImage": 0,
@@ -6063,9 +6032,6 @@
     },
     "images": [
       "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/01-gallery-1.jpg",
-      "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/02-gallery-10.jpg",
-      "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/03-gallery-11.jpg",
-      "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/04-gallery-12.jpg",
       "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/05-gallery-2.jpg",
       "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/06-gallery-3.jpg",
       "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/07-gallery-4.jpg",
@@ -6074,7 +6040,9 @@
       "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/10-gallery-7.jpg",
       "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/11-gallery-8.jpg",
       "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/12-gallery-9.jpg",
-      "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/13-main.jpg",
+      "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/02-gallery-10.jpg",
+      "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/03-gallery-11.jpg",
+      "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/04-gallery-12.jpg",
       "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -6203,9 +6171,6 @@
     },
     "images": [
       "/uploads/properties/campania-appartamento-rutino-via-dei-mille/01-gallery-1.jpg",
-      "/uploads/properties/campania-appartamento-rutino-via-dei-mille/02-gallery-10.jpg",
-      "/uploads/properties/campania-appartamento-rutino-via-dei-mille/03-gallery-11.jpg",
-      "/uploads/properties/campania-appartamento-rutino-via-dei-mille/04-gallery-12.jpg",
       "/uploads/properties/campania-appartamento-rutino-via-dei-mille/05-gallery-2.jpg",
       "/uploads/properties/campania-appartamento-rutino-via-dei-mille/06-gallery-3.jpg",
       "/uploads/properties/campania-appartamento-rutino-via-dei-mille/07-gallery-4.jpg",
@@ -6214,7 +6179,9 @@
       "/uploads/properties/campania-appartamento-rutino-via-dei-mille/10-gallery-7.jpg",
       "/uploads/properties/campania-appartamento-rutino-via-dei-mille/11-gallery-8.jpg",
       "/uploads/properties/campania-appartamento-rutino-via-dei-mille/12-gallery-9.jpg",
-      "/uploads/properties/campania-appartamento-rutino-via-dei-mille/13-main.jpg",
+      "/uploads/properties/campania-appartamento-rutino-via-dei-mille/02-gallery-10.jpg",
+      "/uploads/properties/campania-appartamento-rutino-via-dei-mille/03-gallery-11.jpg",
+      "/uploads/properties/campania-appartamento-rutino-via-dei-mille/04-gallery-12.jpg",
       "/uploads/properties/campania-appartamento-rutino-via-dei-mille/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -6345,7 +6312,6 @@
       "/uploads/properties/campania-villa-centola-via-velardino/01-gallery-1.jpg",
       "/uploads/properties/campania-villa-centola-via-velardino/02-gallery-2.jpg",
       "/uploads/properties/campania-villa-centola-via-velardino/03-gallery-3.jpg",
-      "/uploads/properties/campania-villa-centola-via-velardino/04-main.jpg",
       "/uploads/properties/campania-villa-centola-via-velardino/05-plan.jpg"
     ],
     "mainImage": 0,
@@ -7037,9 +7003,6 @@
     },
     "images": [
       "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/01-gallery-1.jpg",
-      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/02-gallery-10.jpg",
-      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/03-gallery-11.jpg",
-      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/04-gallery-12.jpg",
       "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/05-gallery-2.jpg",
       "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/06-gallery-3.jpg",
       "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/07-gallery-4.jpg",
@@ -7048,7 +7011,9 @@
       "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/10-gallery-7.jpg",
       "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/11-gallery-8.jpg",
       "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/12-gallery-9.jpg",
-      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/13-main.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/02-gallery-10.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/03-gallery-11.jpg",
+      "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/04-gallery-12.jpg",
       "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -7184,9 +7149,6 @@
     },
     "images": [
       "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/01-gallery-1.jpg",
-      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/02-gallery-10.jpg",
-      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/03-gallery-11.jpg",
-      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/04-gallery-12.jpg",
       "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/05-gallery-2.jpg",
       "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/06-gallery-3.jpg",
       "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/07-gallery-4.jpg",
@@ -7195,7 +7157,9 @@
       "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/10-gallery-7.jpg",
       "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/11-gallery-8.jpg",
       "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/12-gallery-9.jpg",
-      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/13-main.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/02-gallery-10.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/03-gallery-11.jpg",
+      "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/04-gallery-12.jpg",
       "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -7462,9 +7426,6 @@
     },
     "images": [
       "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/01-gallery-1.jpg",
-      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/02-gallery-10.jpg",
-      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/03-gallery-11.jpg",
-      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/04-gallery-12.jpg",
       "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/05-gallery-2.jpg",
       "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/06-gallery-3.jpg",
       "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/07-gallery-4.jpg",
@@ -7473,7 +7434,9 @@
       "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/10-gallery-7.jpg",
       "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/11-gallery-8.jpg",
       "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/12-gallery-9.jpg",
-      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/13-main.jpg"
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/02-gallery-10.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/03-gallery-11.jpg",
+      "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -7608,9 +7571,6 @@
     },
     "images": [
       "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/01-gallery-1.jpg",
-      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/02-gallery-10.jpg",
-      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/03-gallery-11.jpg",
-      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/04-gallery-12.jpg",
       "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/05-gallery-2.jpg",
       "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/06-gallery-3.jpg",
       "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/07-gallery-4.jpg",
@@ -7619,7 +7579,9 @@
       "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/10-gallery-7.jpg",
       "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/11-gallery-8.jpg",
       "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/12-gallery-9.jpg",
-      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/13-main.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/02-gallery-10.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/03-gallery-11.jpg",
+      "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/04-gallery-12.jpg",
       "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -7897,18 +7859,16 @@
     },
     "images": [
       "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/01-gallery-1.jpg",
-      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/02-gallery-10.jpg",
-      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/03-gallery-11.jpg",
-      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/04-gallery-12.jpg",
       "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/05-gallery-2.jpg",
       "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/06-gallery-3.jpg",
       "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/07-gallery-4.jpg",
-      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/08-gallery-5.jpg",
       "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/09-gallery-6.jpg",
       "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/10-gallery-7.jpg",
       "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/11-gallery-8.jpg",
       "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/12-gallery-9.jpg",
-      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/13-main.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/02-gallery-10.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/03-gallery-11.jpg",
+      "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/04-gallery-12.jpg",
       "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -8042,9 +8002,6 @@
     },
     "images": [
       "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/01-gallery-1.jpg",
-      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/02-gallery-10.jpg",
-      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/03-gallery-11.jpg",
-      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/04-gallery-12.jpg",
       "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/05-gallery-2.jpg",
       "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/06-gallery-3.jpg",
       "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/07-gallery-4.jpg",
@@ -8053,7 +8010,9 @@
       "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/10-gallery-7.jpg",
       "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/11-gallery-8.jpg",
       "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/12-gallery-9.jpg",
-      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/13-main.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/02-gallery-10.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/03-gallery-11.jpg",
+      "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/04-gallery-12.jpg",
       "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -8892,9 +8851,6 @@
     },
     "images": [
       "/uploads/properties/lazio-trilocale-latina-lido-via-elba/01-gallery-1.jpg",
-      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/02-gallery-10.jpg",
-      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/03-gallery-11.jpg",
-      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/04-gallery-12.jpg",
       "/uploads/properties/lazio-trilocale-latina-lido-via-elba/05-gallery-2.jpg",
       "/uploads/properties/lazio-trilocale-latina-lido-via-elba/06-gallery-3.jpg",
       "/uploads/properties/lazio-trilocale-latina-lido-via-elba/07-gallery-4.jpg",
@@ -8903,7 +8859,9 @@
       "/uploads/properties/lazio-trilocale-latina-lido-via-elba/10-gallery-7.jpg",
       "/uploads/properties/lazio-trilocale-latina-lido-via-elba/11-gallery-8.jpg",
       "/uploads/properties/lazio-trilocale-latina-lido-via-elba/12-gallery-9.jpg",
-      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/13-main.jpg"
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/02-gallery-10.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/03-gallery-11.jpg",
+      "/uploads/properties/lazio-trilocale-latina-lido-via-elba/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -9036,9 +8994,6 @@
     },
     "images": [
       "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/01-gallery-1.jpg",
-      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/02-gallery-10.jpg",
-      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/03-gallery-11.jpg",
-      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/04-gallery-12.jpg",
       "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/05-gallery-2.jpg",
       "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/06-gallery-3.jpg",
       "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/07-gallery-4.jpg",
@@ -9047,7 +9002,9 @@
       "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/10-gallery-7.jpg",
       "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/11-gallery-8.jpg",
       "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/12-gallery-9.jpg",
-      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/13-main.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/02-gallery-10.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/03-gallery-11.jpg",
+      "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/04-gallery-12.jpg",
       "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -9181,9 +9138,6 @@
     },
     "images": [
       "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/01-gallery-1.jpg",
-      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/02-gallery-10.jpg",
-      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/03-gallery-11.jpg",
-      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/04-gallery-12.jpg",
       "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/05-gallery-2.jpg",
       "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/06-gallery-3.jpg",
       "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/07-gallery-4.jpg",
@@ -9192,7 +9146,9 @@
       "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/10-gallery-7.jpg",
       "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/11-gallery-8.jpg",
       "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/12-gallery-9.jpg",
-      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/13-main.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/02-gallery-10.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/03-gallery-11.jpg",
+      "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/04-gallery-12.jpg",
       "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -9750,9 +9706,6 @@
     },
     "images": [
       "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/01-gallery-1.jpg",
-      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/02-gallery-10.jpg",
-      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/03-gallery-11.jpg",
-      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/04-gallery-12.jpg",
       "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/05-gallery-2.jpg",
       "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/06-gallery-3.jpg",
       "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/07-gallery-4.jpg",
@@ -9761,7 +9714,9 @@
       "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/10-gallery-7.jpg",
       "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/11-gallery-8.jpg",
       "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/12-gallery-9.jpg",
-      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/13-main.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/02-gallery-10.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/03-gallery-11.jpg",
+      "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/04-gallery-12.jpg",
       "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -9887,9 +9842,6 @@
     },
     "images": [
       "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/01-gallery-1.jpg",
-      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/02-gallery-10.jpg",
-      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/03-gallery-11.jpg",
-      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/04-gallery-12.jpg",
       "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/05-gallery-2.jpg",
       "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/06-gallery-3.jpg",
       "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/07-gallery-4.jpg",
@@ -9898,7 +9850,9 @@
       "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/10-gallery-7.jpg",
       "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/11-gallery-8.jpg",
       "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/12-gallery-9.jpg",
-      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/13-main.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/02-gallery-10.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/03-gallery-11.jpg",
+      "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/04-gallery-12.jpg",
       "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -10032,9 +9986,6 @@
     },
     "images": [
       "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/01-gallery-1.jpg",
-      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/02-gallery-10.jpg",
-      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/03-gallery-11.jpg",
-      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/04-gallery-12.jpg",
       "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/05-gallery-2.jpg",
       "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/06-gallery-3.jpg",
       "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/07-gallery-4.jpg",
@@ -10043,7 +9994,9 @@
       "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/10-gallery-7.jpg",
       "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/11-gallery-8.jpg",
       "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/12-gallery-9.jpg",
-      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/13-main.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/02-gallery-10.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/03-gallery-11.jpg",
+      "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/04-gallery-12.jpg",
       "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -10177,9 +10130,6 @@
     },
     "images": [
       "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/01-gallery-1.jpg",
-      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/02-gallery-10.jpg",
-      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/03-gallery-11.jpg",
-      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/04-gallery-12.jpg",
       "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/05-gallery-2.jpg",
       "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/06-gallery-3.jpg",
       "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/07-gallery-4.jpg",
@@ -10188,7 +10138,9 @@
       "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/10-gallery-7.jpg",
       "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/11-gallery-8.jpg",
       "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/12-gallery-9.jpg",
-      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/13-main.jpg"
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/02-gallery-10.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/03-gallery-11.jpg",
+      "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -10321,9 +10273,6 @@
     },
     "images": [
       "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/01-gallery-1.jpg",
-      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/02-gallery-10.jpg",
-      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/03-gallery-11.jpg",
-      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/04-gallery-12.jpg",
       "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/05-gallery-2.jpg",
       "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/06-gallery-3.jpg",
       "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/07-gallery-4.jpg",
@@ -10332,7 +10281,9 @@
       "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/10-gallery-7.jpg",
       "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/11-gallery-8.jpg",
       "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/12-gallery-9.jpg",
-      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/13-main.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/02-gallery-10.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/03-gallery-11.jpg",
+      "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/04-gallery-12.jpg",
       "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -10466,9 +10417,6 @@
     },
     "images": [
       "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/01-gallery-1.jpg",
-      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/02-gallery-10.jpg",
-      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/03-gallery-11.jpg",
-      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/04-gallery-12.jpg",
       "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/05-gallery-2.jpg",
       "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/06-gallery-3.jpg",
       "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/07-gallery-4.jpg",
@@ -10477,7 +10425,9 @@
       "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/10-gallery-7.jpg",
       "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/11-gallery-8.jpg",
       "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/12-gallery-9.jpg",
-      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/13-main.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/02-gallery-10.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/03-gallery-11.jpg",
+      "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/04-gallery-12.jpg",
       "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -10756,9 +10706,6 @@
     },
     "images": [
       "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/01-gallery-1.jpg",
-      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/02-gallery-10.jpg",
-      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/03-gallery-11.jpg",
-      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/04-gallery-12.jpg",
       "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/05-gallery-2.jpg",
       "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/06-gallery-3.jpg",
       "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/07-gallery-4.jpg",
@@ -10767,7 +10714,9 @@
       "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/10-gallery-7.jpg",
       "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/11-gallery-8.jpg",
       "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/12-gallery-9.jpg",
-      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/13-main.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/02-gallery-10.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/03-gallery-11.jpg",
+      "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/04-gallery-12.jpg",
       "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -10901,9 +10850,6 @@
     },
     "images": [
       "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/01-gallery-1.jpg",
-      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/02-gallery-10.jpg",
-      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/03-gallery-11.jpg",
-      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/04-gallery-12.jpg",
       "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/05-gallery-2.jpg",
       "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/06-gallery-3.jpg",
       "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/07-gallery-4.jpg",
@@ -10912,7 +10858,9 @@
       "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/10-gallery-7.jpg",
       "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/11-gallery-8.jpg",
       "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/12-gallery-9.jpg",
-      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/13-main.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/02-gallery-10.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/03-gallery-11.jpg",
+      "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/04-gallery-12.jpg",
       "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -11046,9 +10994,6 @@
     },
     "images": [
       "/uploads/properties/lazio-villa-lanuvio-laviniense/01-gallery-1.jpg",
-      "/uploads/properties/lazio-villa-lanuvio-laviniense/02-gallery-10.jpg",
-      "/uploads/properties/lazio-villa-lanuvio-laviniense/03-gallery-11.jpg",
-      "/uploads/properties/lazio-villa-lanuvio-laviniense/04-gallery-12.jpg",
       "/uploads/properties/lazio-villa-lanuvio-laviniense/05-gallery-2.jpg",
       "/uploads/properties/lazio-villa-lanuvio-laviniense/06-gallery-3.jpg",
       "/uploads/properties/lazio-villa-lanuvio-laviniense/07-gallery-4.jpg",
@@ -11057,7 +11002,9 @@
       "/uploads/properties/lazio-villa-lanuvio-laviniense/10-gallery-7.jpg",
       "/uploads/properties/lazio-villa-lanuvio-laviniense/11-gallery-8.jpg",
       "/uploads/properties/lazio-villa-lanuvio-laviniense/12-gallery-9.jpg",
-      "/uploads/properties/lazio-villa-lanuvio-laviniense/13-main.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/02-gallery-10.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/03-gallery-11.jpg",
+      "/uploads/properties/lazio-villa-lanuvio-laviniense/04-gallery-12.jpg",
       "/uploads/properties/lazio-villa-lanuvio-laviniense/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -11481,9 +11428,6 @@
     },
     "images": [
       "/uploads/properties/lazio-villa-marta-via-laertina/01-gallery-1.jpg",
-      "/uploads/properties/lazio-villa-marta-via-laertina/02-gallery-10.jpg",
-      "/uploads/properties/lazio-villa-marta-via-laertina/03-gallery-11.jpg",
-      "/uploads/properties/lazio-villa-marta-via-laertina/04-gallery-12.jpg",
       "/uploads/properties/lazio-villa-marta-via-laertina/05-gallery-2.jpg",
       "/uploads/properties/lazio-villa-marta-via-laertina/06-gallery-3.jpg",
       "/uploads/properties/lazio-villa-marta-via-laertina/07-gallery-4.jpg",
@@ -11492,7 +11436,9 @@
       "/uploads/properties/lazio-villa-marta-via-laertina/10-gallery-7.jpg",
       "/uploads/properties/lazio-villa-marta-via-laertina/11-gallery-8.jpg",
       "/uploads/properties/lazio-villa-marta-via-laertina/12-gallery-9.jpg",
-      "/uploads/properties/lazio-villa-marta-via-laertina/13-main.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/02-gallery-10.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/03-gallery-11.jpg",
+      "/uploads/properties/lazio-villa-marta-via-laertina/04-gallery-12.jpg",
       "/uploads/properties/lazio-villa-marta-via-laertina/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -12481,9 +12427,6 @@
     },
     "images": [
       "/uploads/properties/umbria-villa-cannara-sant-angelo/01-gallery-1.jpg",
-      "/uploads/properties/umbria-villa-cannara-sant-angelo/02-gallery-10.jpg",
-      "/uploads/properties/umbria-villa-cannara-sant-angelo/03-gallery-11.jpg",
-      "/uploads/properties/umbria-villa-cannara-sant-angelo/04-gallery-12.jpg",
       "/uploads/properties/umbria-villa-cannara-sant-angelo/05-gallery-2.jpg",
       "/uploads/properties/umbria-villa-cannara-sant-angelo/06-gallery-3.jpg",
       "/uploads/properties/umbria-villa-cannara-sant-angelo/07-gallery-4.jpg",
@@ -12492,7 +12435,9 @@
       "/uploads/properties/umbria-villa-cannara-sant-angelo/10-gallery-7.jpg",
       "/uploads/properties/umbria-villa-cannara-sant-angelo/11-gallery-8.jpg",
       "/uploads/properties/umbria-villa-cannara-sant-angelo/12-gallery-9.jpg",
-      "/uploads/properties/umbria-villa-cannara-sant-angelo/13-main.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/02-gallery-10.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/03-gallery-11.jpg",
+      "/uploads/properties/umbria-villa-cannara-sant-angelo/04-gallery-12.jpg",
       "/uploads/properties/umbria-villa-cannara-sant-angelo/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -12626,9 +12571,6 @@
     },
     "images": [
       "/uploads/properties/umbria-villa-perugia-montevile/01-gallery-1.jpg",
-      "/uploads/properties/umbria-villa-perugia-montevile/02-gallery-10.jpg",
-      "/uploads/properties/umbria-villa-perugia-montevile/03-gallery-11.jpg",
-      "/uploads/properties/umbria-villa-perugia-montevile/04-gallery-12.jpg",
       "/uploads/properties/umbria-villa-perugia-montevile/05-gallery-2.jpg",
       "/uploads/properties/umbria-villa-perugia-montevile/06-gallery-3.jpg",
       "/uploads/properties/umbria-villa-perugia-montevile/07-gallery-4.jpg",
@@ -12637,7 +12579,9 @@
       "/uploads/properties/umbria-villa-perugia-montevile/10-gallery-7.jpg",
       "/uploads/properties/umbria-villa-perugia-montevile/11-gallery-8.jpg",
       "/uploads/properties/umbria-villa-perugia-montevile/12-gallery-9.jpg",
-      "/uploads/properties/umbria-villa-perugia-montevile/13-main.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/02-gallery-10.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/03-gallery-11.jpg",
+      "/uploads/properties/umbria-villa-perugia-montevile/04-gallery-12.jpg",
       "/uploads/properties/umbria-villa-perugia-montevile/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -12771,9 +12715,6 @@
     },
     "images": [
       "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/01-gallery-1.jpg",
-      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/02-gallery-10.jpg",
-      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/03-gallery-11.jpg",
-      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/04-gallery-12.jpg",
       "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/05-gallery-2.jpg",
       "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/06-gallery-3.jpg",
       "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/07-gallery-4.jpg",
@@ -12782,7 +12723,9 @@
       "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/10-gallery-7.jpg",
       "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/11-gallery-8.jpg",
       "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/12-gallery-9.jpg",
-      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/13-main.jpg"
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/02-gallery-10.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/03-gallery-11.jpg",
+      "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -12915,9 +12858,6 @@
     },
     "images": [
       "/uploads/properties/marche-villa-cantiano-martiri-resistenza/01-gallery-1.jpg",
-      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/02-gallery-10.jpg",
-      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/03-gallery-11.jpg",
-      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/04-gallery-12.jpg",
       "/uploads/properties/marche-villa-cantiano-martiri-resistenza/05-gallery-2.jpg",
       "/uploads/properties/marche-villa-cantiano-martiri-resistenza/06-gallery-3.jpg",
       "/uploads/properties/marche-villa-cantiano-martiri-resistenza/07-gallery-4.jpg",
@@ -12926,7 +12866,9 @@
       "/uploads/properties/marche-villa-cantiano-martiri-resistenza/10-gallery-7.jpg",
       "/uploads/properties/marche-villa-cantiano-martiri-resistenza/11-gallery-8.jpg",
       "/uploads/properties/marche-villa-cantiano-martiri-resistenza/12-gallery-9.jpg",
-      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/13-main.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/02-gallery-10.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/03-gallery-11.jpg",
+      "/uploads/properties/marche-villa-cantiano-martiri-resistenza/04-gallery-12.jpg",
       "/uploads/properties/marche-villa-cantiano-martiri-resistenza/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -13060,9 +13002,6 @@
     },
     "images": [
       "/uploads/properties/marche-terratetto-treia-contrada-berta/01-gallery-1.jpg",
-      "/uploads/properties/marche-terratetto-treia-contrada-berta/02-gallery-10.jpg",
-      "/uploads/properties/marche-terratetto-treia-contrada-berta/03-gallery-11.jpg",
-      "/uploads/properties/marche-terratetto-treia-contrada-berta/04-gallery-12.jpg",
       "/uploads/properties/marche-terratetto-treia-contrada-berta/05-gallery-2.jpg",
       "/uploads/properties/marche-terratetto-treia-contrada-berta/06-gallery-3.jpg",
       "/uploads/properties/marche-terratetto-treia-contrada-berta/07-gallery-4.jpg",
@@ -13071,7 +13010,9 @@
       "/uploads/properties/marche-terratetto-treia-contrada-berta/10-gallery-7.jpg",
       "/uploads/properties/marche-terratetto-treia-contrada-berta/11-gallery-8.jpg",
       "/uploads/properties/marche-terratetto-treia-contrada-berta/12-gallery-9.jpg",
-      "/uploads/properties/marche-terratetto-treia-contrada-berta/13-main.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/02-gallery-10.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/03-gallery-11.jpg",
+      "/uploads/properties/marche-terratetto-treia-contrada-berta/04-gallery-12.jpg",
       "/uploads/properties/marche-terratetto-treia-contrada-berta/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -13205,9 +13146,6 @@
     },
     "images": [
       "/uploads/properties/marche-terratetto-fabriano-collamato/01-gallery-1.jpg",
-      "/uploads/properties/marche-terratetto-fabriano-collamato/02-gallery-10.jpg",
-      "/uploads/properties/marche-terratetto-fabriano-collamato/03-gallery-11.jpg",
-      "/uploads/properties/marche-terratetto-fabriano-collamato/04-gallery-12.jpg",
       "/uploads/properties/marche-terratetto-fabriano-collamato/05-gallery-2.jpg",
       "/uploads/properties/marche-terratetto-fabriano-collamato/06-gallery-3.jpg",
       "/uploads/properties/marche-terratetto-fabriano-collamato/07-gallery-4.jpg",
@@ -13216,7 +13154,9 @@
       "/uploads/properties/marche-terratetto-fabriano-collamato/10-gallery-7.jpg",
       "/uploads/properties/marche-terratetto-fabriano-collamato/11-gallery-8.jpg",
       "/uploads/properties/marche-terratetto-fabriano-collamato/12-gallery-9.jpg",
-      "/uploads/properties/marche-terratetto-fabriano-collamato/13-main.jpg"
+      "/uploads/properties/marche-terratetto-fabriano-collamato/02-gallery-10.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/03-gallery-11.jpg",
+      "/uploads/properties/marche-terratetto-fabriano-collamato/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -13349,9 +13289,6 @@
     },
     "images": [
       "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/01-gallery-1.jpg",
-      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/02-gallery-10.jpg",
-      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/03-gallery-11.jpg",
-      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/04-gallery-12.jpg",
       "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/05-gallery-2.jpg",
       "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/06-gallery-3.jpg",
       "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/07-gallery-4.jpg",
@@ -13360,7 +13297,9 @@
       "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/10-gallery-7.jpg",
       "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/11-gallery-8.jpg",
       "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/12-gallery-9.jpg",
-      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/13-main.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/02-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/03-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/04-gallery-12.jpg",
       "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -13494,9 +13433,6 @@
     },
     "images": [
       "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/01-gallery-1.jpg",
-      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/02-gallery-10.jpg",
-      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/03-gallery-11.jpg",
-      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/04-gallery-12.jpg",
       "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/05-gallery-2.jpg",
       "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/06-gallery-3.jpg",
       "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/07-gallery-4.jpg",
@@ -13505,7 +13441,9 @@
       "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/10-gallery-7.jpg",
       "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/11-gallery-8.jpg",
       "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/12-gallery-9.jpg",
-      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/13-main.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/02-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/03-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/04-gallery-12.jpg",
       "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -13639,9 +13577,6 @@
     },
     "images": [
       "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/01-gallery-1.jpg",
-      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/02-gallery-10.jpg",
-      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/03-gallery-11.jpg",
-      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/04-gallery-12.jpg",
       "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/05-gallery-2.jpg",
       "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/06-gallery-3.jpg",
       "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/07-gallery-4.jpg",
@@ -13650,7 +13585,9 @@
       "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/10-gallery-7.jpg",
       "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/11-gallery-8.jpg",
       "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/12-gallery-9.jpg",
-      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/13-main.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/02-gallery-10.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/03-gallery-11.jpg",
+      "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/04-gallery-12.jpg",
       "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -13784,9 +13721,6 @@
     },
     "images": [
       "/uploads/properties/marche-terratetto-offagna-centro/01-gallery-1.jpg",
-      "/uploads/properties/marche-terratetto-offagna-centro/02-gallery-10.jpg",
-      "/uploads/properties/marche-terratetto-offagna-centro/03-gallery-11.jpg",
-      "/uploads/properties/marche-terratetto-offagna-centro/04-gallery-12.jpg",
       "/uploads/properties/marche-terratetto-offagna-centro/05-gallery-2.jpg",
       "/uploads/properties/marche-terratetto-offagna-centro/06-gallery-3.jpg",
       "/uploads/properties/marche-terratetto-offagna-centro/07-gallery-4.jpg",
@@ -13795,7 +13729,9 @@
       "/uploads/properties/marche-terratetto-offagna-centro/10-gallery-7.jpg",
       "/uploads/properties/marche-terratetto-offagna-centro/11-gallery-8.jpg",
       "/uploads/properties/marche-terratetto-offagna-centro/12-gallery-9.jpg",
-      "/uploads/properties/marche-terratetto-offagna-centro/13-main.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/02-gallery-10.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/03-gallery-11.jpg",
+      "/uploads/properties/marche-terratetto-offagna-centro/04-gallery-12.jpg",
       "/uploads/properties/marche-terratetto-offagna-centro/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -13921,8 +13857,6 @@
     },
     "images": [
       "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/01-gallery-1.jpg",
-      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/02-gallery-10.jpg",
-      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/03-gallery-11.jpg",
       "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/04-gallery-2.jpg",
       "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/05-gallery-3.jpg",
       "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/06-gallery-4.jpg",
@@ -13931,7 +13865,8 @@
       "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/09-gallery-7.jpg",
       "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/10-gallery-8.jpg",
       "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/11-gallery-9.jpg",
-      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/12-main.jpg"
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/02-gallery-10.jpg",
+      "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/03-gallery-11.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -14072,7 +14007,6 @@
       "/uploads/properties/veneto-terratetto-venezia-castello-biennale/07-gallery-7.jpg",
       "/uploads/properties/veneto-terratetto-venezia-castello-biennale/08-gallery-8.jpg",
       "/uploads/properties/veneto-terratetto-venezia-castello-biennale/09-gallery-9.jpg",
-      "/uploads/properties/veneto-terratetto-venezia-castello-biennale/10-main.jpg",
       "/uploads/properties/veneto-terratetto-venezia-castello-biennale/11-plan.jpg"
     ],
     "mainImage": 0,
@@ -14198,9 +14132,6 @@
     },
     "images": [
       "/uploads/properties/veneto-villa-massanzago-viale-roma/01-gallery-1.jpg",
-      "/uploads/properties/veneto-villa-massanzago-viale-roma/02-gallery-10.jpg",
-      "/uploads/properties/veneto-villa-massanzago-viale-roma/03-gallery-11.jpg",
-      "/uploads/properties/veneto-villa-massanzago-viale-roma/04-gallery-12.jpg",
       "/uploads/properties/veneto-villa-massanzago-viale-roma/05-gallery-2.jpg",
       "/uploads/properties/veneto-villa-massanzago-viale-roma/06-gallery-3.jpg",
       "/uploads/properties/veneto-villa-massanzago-viale-roma/07-gallery-4.jpg",
@@ -14209,7 +14140,9 @@
       "/uploads/properties/veneto-villa-massanzago-viale-roma/10-gallery-7.jpg",
       "/uploads/properties/veneto-villa-massanzago-viale-roma/11-gallery-8.jpg",
       "/uploads/properties/veneto-villa-massanzago-viale-roma/12-gallery-9.jpg",
-      "/uploads/properties/veneto-villa-massanzago-viale-roma/13-main.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/02-gallery-10.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/03-gallery-11.jpg",
+      "/uploads/properties/veneto-villa-massanzago-viale-roma/04-gallery-12.jpg",
       "/uploads/properties/veneto-villa-massanzago-viale-roma/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -14629,7 +14562,6 @@
     },
     "images": [
       "/uploads/properties/veneto-trilocale-legnago-porto-carducci/01-gallery-1.jpg",
-      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/02-gallery-10.jpg",
       "/uploads/properties/veneto-trilocale-legnago-porto-carducci/03-gallery-2.jpg",
       "/uploads/properties/veneto-trilocale-legnago-porto-carducci/04-gallery-3.jpg",
       "/uploads/properties/veneto-trilocale-legnago-porto-carducci/05-gallery-4.jpg",
@@ -14638,7 +14570,7 @@
       "/uploads/properties/veneto-trilocale-legnago-porto-carducci/08-gallery-7.jpg",
       "/uploads/properties/veneto-trilocale-legnago-porto-carducci/09-gallery-8.jpg",
       "/uploads/properties/veneto-trilocale-legnago-porto-carducci/10-gallery-9.jpg",
-      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/11-main.jpg"
+      "/uploads/properties/veneto-trilocale-legnago-porto-carducci/02-gallery-10.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -14771,9 +14703,6 @@
     },
     "images": [
       "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/01-gallery-1.jpg",
-      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/02-gallery-10.jpg",
-      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/03-gallery-11.jpg",
-      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/04-gallery-12.jpg",
       "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/05-gallery-2.jpg",
       "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/06-gallery-3.jpg",
       "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/07-gallery-4.jpg",
@@ -14782,7 +14711,9 @@
       "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/10-gallery-7.jpg",
       "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/11-gallery-8.jpg",
       "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/12-gallery-9.jpg",
-      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/13-main.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/02-gallery-10.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/03-gallery-11.jpg",
+      "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/04-gallery-12.jpg",
       "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -14916,9 +14847,6 @@
     },
     "images": [
       "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/01-gallery-1.jpg",
-      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/02-gallery-10.jpg",
-      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/03-gallery-11.jpg",
-      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/04-gallery-12.jpg",
       "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/05-gallery-2.jpg",
       "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/06-gallery-3.jpg",
       "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/07-gallery-4.jpg",
@@ -14927,7 +14855,9 @@
       "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/10-gallery-7.jpg",
       "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/11-gallery-8.jpg",
       "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/12-gallery-9.jpg",
-      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/13-main.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/02-gallery-10.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/03-gallery-11.jpg",
+      "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/04-gallery-12.jpg",
       "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -15061,9 +14991,6 @@
     },
     "images": [
       "/uploads/properties/toscana-villetta-pietrasanta-osterietta/01-gallery-1.jpg",
-      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/02-gallery-10.jpg",
-      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/03-gallery-11.jpg",
-      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/04-gallery-12.jpg",
       "/uploads/properties/toscana-villetta-pietrasanta-osterietta/05-gallery-2.jpg",
       "/uploads/properties/toscana-villetta-pietrasanta-osterietta/06-gallery-3.jpg",
       "/uploads/properties/toscana-villetta-pietrasanta-osterietta/07-gallery-4.jpg",
@@ -15072,7 +14999,9 @@
       "/uploads/properties/toscana-villetta-pietrasanta-osterietta/10-gallery-7.jpg",
       "/uploads/properties/toscana-villetta-pietrasanta-osterietta/11-gallery-8.jpg",
       "/uploads/properties/toscana-villetta-pietrasanta-osterietta/12-gallery-9.jpg",
-      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/13-main.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/02-gallery-10.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/03-gallery-11.jpg",
+      "/uploads/properties/toscana-villetta-pietrasanta-osterietta/04-gallery-12.jpg",
       "/uploads/properties/toscana-villetta-pietrasanta-osterietta/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -15206,9 +15135,6 @@
     },
     "images": [
       "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/01-gallery-1.jpg",
-      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/02-gallery-10.jpg",
-      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/03-gallery-11.jpg",
-      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/04-gallery-12.jpg",
       "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/05-gallery-2.jpg",
       "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/06-gallery-3.jpg",
       "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/07-gallery-4.jpg",
@@ -15217,7 +15143,9 @@
       "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/10-gallery-7.jpg",
       "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/11-gallery-8.jpg",
       "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/12-gallery-9.jpg",
-      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/13-main.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/02-gallery-10.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/03-gallery-11.jpg",
+      "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/04-gallery-12.jpg",
       "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -15351,8 +15279,6 @@
     },
     "images": [
       "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/01-gallery-1.jpg",
-      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/02-gallery-10.jpg",
-      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/03-gallery-11.jpg",
       "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/04-gallery-2.jpg",
       "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/05-gallery-3.jpg",
       "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/06-gallery-4.jpg",
@@ -15361,7 +15287,8 @@
       "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/09-gallery-7.jpg",
       "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/10-gallery-8.jpg",
       "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/11-gallery-9.jpg",
-      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/12-main.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/02-gallery-10.jpg",
+      "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/03-gallery-11.jpg",
       "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/13-plan.jpg"
     ],
     "mainImage": 0,
@@ -15495,9 +15422,6 @@
     },
     "images": [
       "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/01-gallery-1.jpg",
-      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/02-gallery-10.jpg",
-      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/03-gallery-11.jpg",
-      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/04-gallery-12.jpg",
       "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/05-gallery-2.jpg",
       "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/06-gallery-3.jpg",
       "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/07-gallery-4.jpg",
@@ -15506,7 +15430,9 @@
       "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/10-gallery-7.jpg",
       "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/11-gallery-8.jpg",
       "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/12-gallery-9.jpg",
-      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/13-main.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/02-gallery-10.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/03-gallery-11.jpg",
+      "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/04-gallery-12.jpg",
       "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -15640,9 +15566,6 @@
     },
     "images": [
       "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/01-gallery-1.jpg",
-      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/02-gallery-10.jpg",
-      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/03-gallery-11.jpg",
-      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/04-gallery-12.jpg",
       "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/05-gallery-2.jpg",
       "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/06-gallery-3.jpg",
       "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/07-gallery-4.jpg",
@@ -15651,7 +15574,9 @@
       "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/10-gallery-7.jpg",
       "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/11-gallery-8.jpg",
       "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/12-gallery-9.jpg",
-      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/13-main.jpg"
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/02-gallery-10.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/03-gallery-11.jpg",
+      "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -15784,9 +15709,6 @@
     },
     "images": [
       "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/01-gallery-1.jpg",
-      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/02-gallery-10.jpg",
-      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/03-gallery-11.jpg",
-      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/04-gallery-12.jpg",
       "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/05-gallery-2.jpg",
       "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/06-gallery-3.jpg",
       "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/07-gallery-4.jpg",
@@ -15795,7 +15717,9 @@
       "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/10-gallery-7.jpg",
       "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/11-gallery-8.jpg",
       "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/12-gallery-9.jpg",
-      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/13-main.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/02-gallery-10.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/03-gallery-11.jpg",
+      "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/04-gallery-12.jpg",
       "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/14-plan.jpg"
     ],
     "mainImage": 0,
@@ -15929,9 +15853,6 @@
     },
     "images": [
       "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/01-gallery-1.jpg",
-      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/02-gallery-10.jpg",
-      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/03-gallery-11.jpg",
-      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/04-gallery-12.jpg",
       "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/05-gallery-2.jpg",
       "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/06-gallery-3.jpg",
       "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/07-gallery-4.jpg",
@@ -15940,7 +15861,9 @@
       "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/10-gallery-7.jpg",
       "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/11-gallery-8.jpg",
       "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/12-gallery-9.jpg",
-      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/13-main.jpg"
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/02-gallery-10.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/03-gallery-11.jpg",
+      "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -18971,7 +18894,6 @@
       "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/03-03-gallery-3.jpg",
       "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/04-04-gallery-4.jpg",
       "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/05-05-gallery-5.jpg",
-      "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/06-06-gallery-6.jpg",
       "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/07-07-gallery-7.jpg",
       "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/08-08-gallery-8.jpg",
       "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/09-09-gallery-9.jpg",
@@ -21727,7 +21649,6 @@
       "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/03-03-gallery-3.jpg",
       "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/04-04-gallery-4.jpg",
       "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/05-05-gallery-5.jpg",
-      "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/06-06-gallery-6.jpg",
       "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/07-07-gallery-7.jpg",
       "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/08-08-gallery-8.jpg",
       "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/09-09-gallery-9.jpg",
@@ -23073,14 +22994,14 @@
       "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/02-gallery-2.jpg",
       "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/03-gallery-3.jpg",
       "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-01-gallery-1.jpg",
-      "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-02-gallery-10.jpg",
-      "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-03-gallery-11.jpg",
-      "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-04-gallery-12.jpg",
       "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-06-gallery-3.jpg",
       "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-07-gallery-4.jpg",
       "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-10-gallery-7.jpg",
       "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-11-gallery-8.jpg",
       "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-12-gallery-9.jpg",
+      "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-02-gallery-10.jpg",
+      "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-03-gallery-11.jpg",
+      "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-04-gallery-12.jpg",
       "/uploads/properties/abruzzo-appartamento-pescara-via-teramo/legacy-14-plan.jpg"
     ],
     "mainImage": 0,
@@ -23490,9 +23411,6 @@
     },
     "images": [
       "/uploads/properties/puglia-appartamento-lecce-centro-storico/01-gallery-1.jpg",
-      "/uploads/properties/puglia-appartamento-lecce-centro-storico/02-gallery-10.jpg",
-      "/uploads/properties/puglia-appartamento-lecce-centro-storico/03-gallery-11.jpg",
-      "/uploads/properties/puglia-appartamento-lecce-centro-storico/04-gallery-12.jpg",
       "/uploads/properties/puglia-appartamento-lecce-centro-storico/05-gallery-2.jpg",
       "/uploads/properties/puglia-appartamento-lecce-centro-storico/06-gallery-3.jpg",
       "/uploads/properties/puglia-appartamento-lecce-centro-storico/07-gallery-4.jpg",
@@ -23500,7 +23418,10 @@
       "/uploads/properties/puglia-appartamento-lecce-centro-storico/09-gallery-6.jpg",
       "/uploads/properties/puglia-appartamento-lecce-centro-storico/10-gallery-7.jpg",
       "/uploads/properties/puglia-appartamento-lecce-centro-storico/11-gallery-8.jpg",
-      "/uploads/properties/puglia-appartamento-lecce-centro-storico/12-gallery-9.jpg"
+      "/uploads/properties/puglia-appartamento-lecce-centro-storico/12-gallery-9.jpg",
+      "/uploads/properties/puglia-appartamento-lecce-centro-storico/02-gallery-10.jpg",
+      "/uploads/properties/puglia-appartamento-lecce-centro-storico/03-gallery-11.jpg",
+      "/uploads/properties/puglia-appartamento-lecce-centro-storico/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -23635,9 +23556,6 @@
     },
     "images": [
       "/uploads/properties/puglia-appartamento-san-severo-carmicelli/01-gallery-1.jpg",
-      "/uploads/properties/puglia-appartamento-san-severo-carmicelli/02-gallery-10.jpg",
-      "/uploads/properties/puglia-appartamento-san-severo-carmicelli/03-gallery-11.jpg",
-      "/uploads/properties/puglia-appartamento-san-severo-carmicelli/04-gallery-12.jpg",
       "/uploads/properties/puglia-appartamento-san-severo-carmicelli/05-gallery-2.jpg",
       "/uploads/properties/puglia-appartamento-san-severo-carmicelli/06-gallery-3.jpg",
       "/uploads/properties/puglia-appartamento-san-severo-carmicelli/07-gallery-4.jpg",
@@ -23645,7 +23563,10 @@
       "/uploads/properties/puglia-appartamento-san-severo-carmicelli/09-gallery-6.jpg",
       "/uploads/properties/puglia-appartamento-san-severo-carmicelli/10-gallery-7.jpg",
       "/uploads/properties/puglia-appartamento-san-severo-carmicelli/11-gallery-8.jpg",
-      "/uploads/properties/puglia-appartamento-san-severo-carmicelli/12-gallery-9.jpg"
+      "/uploads/properties/puglia-appartamento-san-severo-carmicelli/12-gallery-9.jpg",
+      "/uploads/properties/puglia-appartamento-san-severo-carmicelli/02-gallery-10.jpg",
+      "/uploads/properties/puglia-appartamento-san-severo-carmicelli/03-gallery-11.jpg",
+      "/uploads/properties/puglia-appartamento-san-severo-carmicelli/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -23779,9 +23700,6 @@
     },
     "images": [
       "/uploads/properties/campania-appartamento-scafati-centro/01-gallery-1.jpg",
-      "/uploads/properties/campania-appartamento-scafati-centro/02-gallery-10.jpg",
-      "/uploads/properties/campania-appartamento-scafati-centro/03-gallery-11.jpg",
-      "/uploads/properties/campania-appartamento-scafati-centro/04-gallery-12.jpg",
       "/uploads/properties/campania-appartamento-scafati-centro/05-gallery-2.jpg",
       "/uploads/properties/campania-appartamento-scafati-centro/06-gallery-3.jpg",
       "/uploads/properties/campania-appartamento-scafati-centro/07-gallery-4.jpg",
@@ -23789,7 +23707,10 @@
       "/uploads/properties/campania-appartamento-scafati-centro/09-gallery-6.jpg",
       "/uploads/properties/campania-appartamento-scafati-centro/10-gallery-7.jpg",
       "/uploads/properties/campania-appartamento-scafati-centro/11-gallery-8.jpg",
-      "/uploads/properties/campania-appartamento-scafati-centro/12-gallery-9.jpg"
+      "/uploads/properties/campania-appartamento-scafati-centro/12-gallery-9.jpg",
+      "/uploads/properties/campania-appartamento-scafati-centro/02-gallery-10.jpg",
+      "/uploads/properties/campania-appartamento-scafati-centro/03-gallery-11.jpg",
+      "/uploads/properties/campania-appartamento-scafati-centro/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -23923,9 +23844,6 @@
     },
     "images": [
       "/uploads/properties/calabria-casa-indipendente-cerisano/01-gallery-1.jpg",
-      "/uploads/properties/calabria-casa-indipendente-cerisano/02-gallery-10.jpg",
-      "/uploads/properties/calabria-casa-indipendente-cerisano/03-gallery-11.jpg",
-      "/uploads/properties/calabria-casa-indipendente-cerisano/04-gallery-12.jpg",
       "/uploads/properties/calabria-casa-indipendente-cerisano/05-gallery-2.jpg",
       "/uploads/properties/calabria-casa-indipendente-cerisano/06-gallery-3.jpg",
       "/uploads/properties/calabria-casa-indipendente-cerisano/07-gallery-4.jpg",
@@ -23933,7 +23851,10 @@
       "/uploads/properties/calabria-casa-indipendente-cerisano/09-gallery-6.jpg",
       "/uploads/properties/calabria-casa-indipendente-cerisano/10-gallery-7.jpg",
       "/uploads/properties/calabria-casa-indipendente-cerisano/11-gallery-8.jpg",
-      "/uploads/properties/calabria-casa-indipendente-cerisano/12-gallery-9.jpg"
+      "/uploads/properties/calabria-casa-indipendente-cerisano/12-gallery-9.jpg",
+      "/uploads/properties/calabria-casa-indipendente-cerisano/02-gallery-10.jpg",
+      "/uploads/properties/calabria-casa-indipendente-cerisano/03-gallery-11.jpg",
+      "/uploads/properties/calabria-casa-indipendente-cerisano/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -24066,9 +23987,6 @@
     },
     "images": [
       "/uploads/properties/sardegna-appartamento-siniscola-gramsci/01-gallery-1.jpg",
-      "/uploads/properties/sardegna-appartamento-siniscola-gramsci/02-gallery-10.jpg",
-      "/uploads/properties/sardegna-appartamento-siniscola-gramsci/03-gallery-11.jpg",
-      "/uploads/properties/sardegna-appartamento-siniscola-gramsci/04-gallery-12.jpg",
       "/uploads/properties/sardegna-appartamento-siniscola-gramsci/05-gallery-2.jpg",
       "/uploads/properties/sardegna-appartamento-siniscola-gramsci/06-gallery-3.jpg",
       "/uploads/properties/sardegna-appartamento-siniscola-gramsci/07-gallery-4.jpg",
@@ -24076,7 +23994,10 @@
       "/uploads/properties/sardegna-appartamento-siniscola-gramsci/09-gallery-6.jpg",
       "/uploads/properties/sardegna-appartamento-siniscola-gramsci/10-gallery-7.jpg",
       "/uploads/properties/sardegna-appartamento-siniscola-gramsci/11-gallery-8.jpg",
-      "/uploads/properties/sardegna-appartamento-siniscola-gramsci/12-gallery-9.jpg"
+      "/uploads/properties/sardegna-appartamento-siniscola-gramsci/12-gallery-9.jpg",
+      "/uploads/properties/sardegna-appartamento-siniscola-gramsci/02-gallery-10.jpg",
+      "/uploads/properties/sardegna-appartamento-siniscola-gramsci/03-gallery-11.jpg",
+      "/uploads/properties/sardegna-appartamento-siniscola-gramsci/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -24217,9 +24138,6 @@
     },
     "images": [
       "/uploads/properties/lombardia-appartamento-sirmione/01-gallery-1.jpg",
-      "/uploads/properties/lombardia-appartamento-sirmione/02-gallery-10.jpg",
-      "/uploads/properties/lombardia-appartamento-sirmione/03-gallery-11.jpg",
-      "/uploads/properties/lombardia-appartamento-sirmione/04-gallery-12.jpg",
       "/uploads/properties/lombardia-appartamento-sirmione/05-gallery-2.jpg",
       "/uploads/properties/lombardia-appartamento-sirmione/06-gallery-3.jpg",
       "/uploads/properties/lombardia-appartamento-sirmione/07-gallery-4.jpg",
@@ -24227,7 +24145,10 @@
       "/uploads/properties/lombardia-appartamento-sirmione/09-gallery-6.jpg",
       "/uploads/properties/lombardia-appartamento-sirmione/10-gallery-7.jpg",
       "/uploads/properties/lombardia-appartamento-sirmione/11-gallery-8.jpg",
-      "/uploads/properties/lombardia-appartamento-sirmione/12-gallery-9.jpg"
+      "/uploads/properties/lombardia-appartamento-sirmione/12-gallery-9.jpg",
+      "/uploads/properties/lombardia-appartamento-sirmione/02-gallery-10.jpg",
+      "/uploads/properties/lombardia-appartamento-sirmione/03-gallery-11.jpg",
+      "/uploads/properties/lombardia-appartamento-sirmione/04-gallery-12.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -25994,7 +25915,6 @@
       "/uploads/properties/puglia-appartamento/10-gallery-10.jpg",
       "/uploads/properties/puglia-appartamento/11-gallery-11.jpg",
       "/uploads/properties/puglia-appartamento/12-gallery-12.jpg",
-      "/uploads/properties/puglia-appartamento/13-gallery-13.jpg",
       "/uploads/properties/puglia-appartamento/14-gallery-14.jpg",
       "/uploads/properties/puglia-appartamento/15-gallery-15.jpg",
       "/uploads/properties/puglia-appartamento/16-gallery-16.jpg",
@@ -29096,7 +29016,6 @@
       "/uploads/properties/calabria-casa-singola/06-gallery-6.jpg",
       "/uploads/properties/calabria-casa-singola/07-gallery-7.jpg",
       "/uploads/properties/calabria-casa-singola/08-gallery-8.jpg",
-      "/uploads/properties/calabria-casa-singola/09-gallery-9.jpg",
       "/uploads/properties/calabria-casa-singola/10-gallery-10.jpg",
       "/uploads/properties/calabria-casa-singola/11-gallery-11.jpg",
       "/uploads/properties/calabria-casa-singola/12-gallery-12.jpg",
@@ -30538,8 +30457,7 @@
       "/uploads/properties/lazio-rustico/16-gallery-16.jpg",
       "/uploads/properties/lazio-rustico/17-gallery-17.jpg",
       "/uploads/properties/lazio-rustico/18-gallery-18.jpg",
-      "/uploads/properties/lazio-rustico/19-gallery-19.jpg",
-      "/uploads/properties/lazio-rustico/20-gallery-20.jpg"
+      "/uploads/properties/lazio-rustico/19-gallery-19.jpg"
     ],
     "mainImage": 0,
     "amenities": [
@@ -34953,7 +34871,6 @@
       "/uploads/properties/renovated-four-room-duplex-apartment-in-via-cavour-27-altopascio-lu/03-gallery-3.jpg",
       "/uploads/properties/renovated-four-room-duplex-apartment-in-via-cavour-27-altopascio-lu/04-gallery-4.jpg",
       "/uploads/properties/renovated-four-room-duplex-apartment-in-via-cavour-27-altopascio-lu/05-gallery-5.jpg",
-      "/uploads/properties/renovated-four-room-duplex-apartment-in-via-cavour-27-altopascio-lu/06-gallery-6.jpg",
       "/uploads/properties/renovated-four-room-duplex-apartment-in-via-cavour-27-altopascio-lu/07-gallery-7.jpg",
       "/uploads/properties/renovated-four-room-duplex-apartment-in-via-cavour-27-altopascio-lu/08-gallery-8.jpg",
       "/uploads/properties/renovated-four-room-duplex-apartment-in-via-cavour-27-altopascio-lu/09-gallery-9.jpg",
@@ -35282,6 +35199,7 @@
       "it": "PORZIONE DI BIFAMILIARE CON GIARDINO A CALOLZIO LORENTINO\n\nIn zona verde e panoramica, a pochi minuti da Calolziocorte, proponiamo una recente porzione di villa bifamiliare libera su tre lati e indipendente da cielo a terra, disposta su due livelli abitativi oltre a mansarda e taverna. Ogni piano è servito da ascensore interno.\n\nAl piano seminterrato troviamo box doppio in larghezza, ampia taverna, locale lavanderia e cantina. Il piano terra ospita un soggiorno luminoso con camino, doppio affaccio su porticato e giardino privato pianeggiante di circa 100 mq, cucina abitabile e bagno di servizio finestrato con doccia.\n\nAl primo piano sono presenti tre camere da letto con balcone e un bagno finestrato con vasca idromassaggio. Al secondo piano, mansardato alto, troviamo un unico locale sottotetto con bagno.\n\nLa soluzione si presenta in ottimo stato di manutenzione, con finiture curate e impianto di aspirazione in tutti i locali. Riscaldamento autonomo e nessuna spesa condominiale."
     },
     "images": [
+      "/uploads/properties/lombardia-villa/08-ext.png",
       "/uploads/properties/lombardia-villa/01-bagno.png",
       "/uploads/properties/lombardia-villa/02-bagno2.png",
       "/uploads/properties/lombardia-villa/03-balcon.png",
@@ -35289,7 +35207,6 @@
       "/uploads/properties/lombardia-villa/05-corridoio.png",
       "/uploads/properties/lombardia-villa/06-cucina.png",
       "/uploads/properties/lombardia-villa/07-cucnina2.png",
-      "/uploads/properties/lombardia-villa/08-ext.png",
       "/uploads/properties/lombardia-villa/09-ext2.png",
       "/uploads/properties/lombardia-villa/10-giard.png",
       "/uploads/properties/lombardia-villa/11-lavanderia.png",
@@ -35299,7 +35216,7 @@
       "/uploads/properties/lombardia-villa/15-salone.png",
       "/uploads/properties/lombardia-villa/16-studio.png"
     ],
-    "mainImage": 7,
+    "mainImage": 0,
     "amenities": [
       {
         "name": {
@@ -35447,10 +35364,10 @@
       "it": "Nel suggestivo contesto della campagna di Redona (Trescore Balneario), proponiamo una porzione di fabbricato storico del XVIII secolo con caratteristica torretta merlata e circa 300 mq distribuiti su tre livelli. L'immobile è completamente da ristrutturare e consente una personalizzazione totale degli spazi.\n\nLa proprietà dispone di circa 1700 mq di giardino tra fronte e retro, con vista sui vigneti e sullo storico Palazzo Medolago Albani, oltre a una grande cantina sotterranea. L'accesso è garantito da più ingressi pedonali, incluso un vialetto alberato da via Nazionale; è inoltre presente servitù di passaggio dal cortile comune con possibilità di sosta auto (accesso da via Redona 17). Nella parte alta del giardino è disponibile un ulteriore accesso pedonale trasformabile in carrabile.\n\nLa posizione, tra Trescore Balneario ed Entratico, è comoda ai servizi e valorizzata dalla vicinanza alla pista ciclabile. Per caratteristiche e dimensioni, l'immobile si presta a residenza privata, attività ricettiva o progetti multifunzionali."
     },
     "images": [
+      "/uploads/properties/lombardia-rustico/04-esterno.png",
       "/uploads/properties/lombardia-rustico/01-camer.png",
       "/uploads/properties/lombardia-rustico/02-cuci.png",
       "/uploads/properties/lombardia-rustico/03-entrat.png",
-      "/uploads/properties/lombardia-rustico/04-esterno.png",
       "/uploads/properties/lombardia-rustico/05-ex2.png",
       "/uploads/properties/lombardia-rustico/06-ex3.png",
       "/uploads/properties/lombardia-rustico/07-facciata.png",
@@ -35458,7 +35375,7 @@
       "/uploads/properties/lombardia-rustico/09-giard.png",
       "/uploads/properties/lombardia-rustico/10-sal.png"
     ],
-    "mainImage": 3,
+    "mainImage": 0,
     "amenities": [
       {
         "name": {
@@ -35604,17 +35521,17 @@
       "it": "TRILOCALE FINEMENTE RISTRUTTURATO CON BALCONE\n\nCerchi un'ampia soluzione completamente ristrutturata in un contesto signorile e ben abitato? ICONACASA MILANO CIMIANO propone in vendita una soluzione di 105 mq sita al piano terra, dotata di balcone con esposizione interna su giardino condominiale ben curato.\n\nINTERNO: ingresso su disimpegno con spaziosa zona giorno. A seguire cucina abitabile con affaccio sul balcone; ampio bagno finestrato con vasca e box doccia; due camere da letto entrambe finestrate, di cui una con comoda cabina armadio.\n\nESTERNO: stabile anni '60 ben abitato, cantina al piano S1 di pertinenza, servizio di portineria mezza giornata, spese condominiali di 300 euro mensili, nessun lavoro previsto/deliberato, possibilità di acquisto posto auto/box al piano seminterrato.\n\nPOSIZIONE: zona ben servita, a pochi passi da Coop e dalla metropolitana M2 Cimiano (Via Palmanova) e M2 Udine. Autobus 44, 51, 53, 56 con collegamenti rapidi verso la città e i principali nodi ferroviari. In zona presenti servizi commerciali e sanitari. Tangenziale Est facilmente raggiungibile da Via Palmanova. Area ricca di verde, con Parco Lambro e Parco della Martesana a pochi minuti. Piazzale Loreto raggiungibile in circa 10 minuti con autobus 56.\n\nQuattro buoni motivi per scegliere questo immobile:\n1) Ristrutturato\n2) Luminoso\n3) Metratura generosa\n4) Balcone"
     },
     "images": [
+      "/uploads/properties/lombardia-appartamento/04-ext.png",
       "/uploads/properties/lombardia-appartamento/01-bagno.png",
       "/uploads/properties/lombardia-appartamento/02-cuci2.png",
       "/uploads/properties/lombardia-appartamento/03-cucina.png",
-      "/uploads/properties/lombardia-appartamento/04-ext.png",
       "/uploads/properties/lombardia-appartamento/05-letto.png",
       "/uploads/properties/lombardia-appartamento/06-letto2.png",
       "/uploads/properties/lombardia-appartamento/07-sogg.png",
       "/uploads/properties/lombardia-appartamento/08-stanza.png",
       "/uploads/properties/lombardia-appartamento/09-vera.png"
     ],
-    "mainImage": 3,
+    "mainImage": 0,
     "amenities": [
       {
         "name": {
