@@ -35,6 +35,7 @@ import {
   detectAmenityIds,
   normalizeSearchText,
 } from './filterConfig';
+import { isListingQueryActive, moveNewListingsLast } from './listingQuery';
 import PropertyCard from './PropertyCard';
 
 const AuthModal = dynamic(() => import('../../components/AuthModal'), { ssr: false });
@@ -504,14 +505,22 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     };
     switch (sortBy) {
       case 'cheapest':
-        return sorted.sort(sortPinnedFirst((a, b) => a.price - b.price));
+        sorted.sort(sortPinnedFirst((a, b) => a.price - b.price));
+        break;
       case 'expensive':
-        return sorted.sort(sortPinnedFirst((a, b) => b.price - a.price));
+        sorted.sort(sortPinnedFirst((a, b) => b.price - a.price));
+        break;
       case 'newest':
       default:
-        return sorted.sort(sortPinnedFirst((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a)));
+        sorted.sort(sortPinnedFirst((a, b) => getPropertyTimestamp(b) - getPropertyTimestamp(a)));
     }
-  }, [filteredProperties, sortBy]);
+    // When a filter, search or non-default sort is on, "Novinka" cards
+    // must not sit above the matching results — they go underneath.
+    if (isListingQueryActive({ ...filters, sortBy })) {
+      return moveNewListingsLast(sorted);
+    }
+    return sorted;
+  }, [filteredProperties, sortBy, filters]);
 
   // Get displayed properties (for pagination)
   const displayedProperties = useMemo(() => {
