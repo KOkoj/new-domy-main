@@ -1073,7 +1073,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <ul className="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2 md:grid-cols-3">
+                  <ul className="grid grid-cols-1 gap-x-10 gap-y-2.5 sm:grid-cols-2">
                     {property.amenities.map((amenity, index) => (
                       <li key={index} className="flex items-baseline gap-2.5 text-base leading-snug text-[#0e152e]/85">
                         <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 -translate-y-0.5 rounded-full bg-[#c78b5a]" />
