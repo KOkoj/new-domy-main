@@ -389,7 +389,12 @@ async function importImages({ folderPath, slug, dryRun }) {
       .filter((entry) => entry.isFile())
       .map((entry) => entry.name)
       .filter((fileName) => IMAGE_EXTENSIONS.has(path.extname(fileName).toLowerCase()))
-      .sort((a, b) => a.localeCompare(b))
+      // Natural order (gallery-2 before gallery-10); floor plans last.
+      .sort((a, b) => {
+        const planA = /(^|[-_])(plan|planimetria|pianta)/i.test(a) ? 1 : 0
+        const planB = /(^|[-_])(plan|planimetria|pianta)/i.test(b) ? 1 : 0
+        return planA - planB || a.localeCompare(b, undefined, { numeric: true })
+      })
 
     if (imageFiles.length === 0) return importedImagePaths
 

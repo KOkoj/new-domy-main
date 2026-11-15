@@ -1,0 +1,415 @@
+{
+  "version": 1,
+  "generated": "scripts/photo-curation/curate.py",
+  "listings": {
+    "friuli-venezia-giulia-villa-avasinis-trasaghis": {
+      "hide": [
+        "/uploads/properties/friuli-venezia-giulia-villa-avasinis-trasaghis/13-main.jpg"
+      ]
+    },
+    "toscana-rustico-quiesa-massarosa-132061064": {
+      "cover": "/uploads/properties/toscana-rustico-quiesa-massarosa-132061064/02.jpg"
+    },
+    "toscana-terratetto-solaio-pietrasanta-127378181": {
+      "cover": "/uploads/properties/toscana-terratetto-solaio-pietrasanta-127378181/03.jpg"
+    },
+    "calabria-villa-piscina-vista-mare-zambrone": {
+      "hide": [
+        "/uploads/properties/calabria-villa-piscina-vista-mare-zambrone/12-12-gallery-11.jpg"
+      ]
+    },
+    "toscana-terratetto-pontassieve-santa-brigida": {
+      "hide": [
+        "/uploads/properties/toscana-terratetto-pontassieve-santa-brigida/02-02-gallery-1.jpg"
+      ]
+    },
+    "toscana-appartamento-massa-marittima-albizzeschi": {
+      "hide": [
+        "/uploads/properties/toscana-appartamento-massa-marittima-albizzeschi/02-02-gallery-1.jpg"
+      ]
+    },
+    "toscana-bilocale-tatti-massa-marittima-posta-vecchia": {
+      "hide": [
+        "/uploads/properties/toscana-bilocale-tatti-massa-marittima-posta-vecchia/02-02-gallery-1.jpg"
+      ]
+    },
+    "toscana-appartamento-chianciano-terme-cavine-valli": {
+      "hide": [
+        "/uploads/properties/toscana-appartamento-chianciano-terme-cavine-valli/02-02-gallery-1.jpg"
+      ]
+    },
+    "calabria-villino-panoramico-badolato": {
+      "hide": [
+        "/uploads/properties/calabria-villino-panoramico-badolato/02-02-gallery-1.jpg"
+      ]
+    },
+    "calabria-casa-lamezia-terme-vico-vetriera": {
+      "hide": [
+        "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/02-02-gallery-1.jpg",
+        "/uploads/properties/calabria-casa-lamezia-terme-vico-vetriera/11-11-gallery-10.jpg"
+      ]
+    },
+    "calabria-casa-panoramica-sellia-verdi": {
+      "hide": [
+        "/uploads/properties/calabria-casa-panoramica-sellia-verdi/02-02-gallery-1.jpg"
+      ]
+    },
+    "calabria-villa-san-lucido-ss18": {
+      "hide": [
+        "/uploads/properties/calabria-villa-san-lucido-ss18/02-02-gallery-1.jpg"
+      ]
+    },
+    "calabria-casa-fiumefreddo-bruzio-piano-san-salvatore": {
+      "hide": [
+        "/uploads/properties/calabria-casa-fiumefreddo-bruzio-piano-san-salvatore/02-02-gallery-1.jpg"
+      ]
+    },
+    "calabria-casa-ristrutturata-rovito-san-nicola": {
+      "hide": [
+        "/uploads/properties/calabria-casa-ristrutturata-rovito-san-nicola/02-02-gallery-1.jpg"
+      ]
+    },
+    "calabria-casa-belvedere-marittimo-laise": {
+      "hide": [
+        "/uploads/properties/calabria-casa-belvedere-marittimo-laise/02-02-gallery-1.jpg"
+      ]
+    },
+    "toscana-trilocale-montevarchi-moncioni": {
+      "hide": [
+        "/uploads/properties/toscana-trilocale-montevarchi-moncioni/02-02-gallery-1.jpg"
+      ]
+    },
+    "toscana-trilocale-montevarchi-marconi": {
+      "hide": [
+        "/uploads/properties/toscana-trilocale-montevarchi-marconi/02-02-gallery-1.jpg"
+      ]
+    },
+    "toscana-terratetto-cascina-san-casciano-filicaia": {
+      "hide": [
+        "/uploads/properties/toscana-terratetto-cascina-san-casciano-filicaia/02-02-gallery-1.jpg"
+      ]
+    },
+    "toscana-quadrilocale-san-giuliano-terme-20-settembre": {
+      "hide": [
+        "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/02-02-gallery-1.jpg",
+        "/uploads/properties/toscana-quadrilocale-san-giuliano-terme-20-settembre/08-08-gallery-7.jpg"
+      ]
+    },
+    "puglia-casa-indipendente-triggiano-via-tito-fanfulla": {
+      "hide": [
+        "/uploads/properties/puglia-casa-indipendente-triggiano-via-tito-fanfulla/13-main.jpg"
+      ]
+    },
+    "puglia-appartamento-monopoli-viale-aldo-moro": {
+      "hide": [
+        "/uploads/properties/puglia-appartamento-monopoli-viale-aldo-moro/13-main.jpg"
+      ]
+    },
+    "puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe": {
+      "hide": [
+        "/uploads/properties/puglia-villa-mola-di-bari-strada-provinciale-mola-conversano-per-villa-pepe/13-main.jpg"
+      ]
+    },
+    "puglia-villa-conversano-viale-discesa-del-monte": {
+      "hide": [
+        "/uploads/properties/puglia-villa-conversano-viale-discesa-del-monte/13-main.jpg"
+      ]
+    },
+    "puglia-casa-indipendente-bari-via-de-marinis": {
+      "hide": [
+        "/uploads/properties/puglia-casa-indipendente-bari-via-de-marinis/13-main.jpg"
+      ]
+    },
+    "calabria-villa-francavilla-marittima-via-sant-emiddio-21": {
+      "hide": [
+        "/uploads/properties/calabria-villa-francavilla-marittima-via-sant-emiddio-21/13-main.jpg"
+      ]
+    },
+    "calabria-villa-praia-a-mare-localita-laccata": {
+      "hide": [
+        "/uploads/properties/calabria-villa-praia-a-mare-localita-laccata/13-main.jpg"
+      ]
+    },
+    "campania-casa-indipendente-ascea-via-grisi-s-n-c": {
+      "hide": [
+        "/uploads/properties/campania-casa-indipendente-ascea-via-grisi-s-n-c/12-main.jpg"
+      ]
+    },
+    "calabria-villa-san-nicola-arcella-villaggio-del-bridge": {
+      "hide": [
+        "/uploads/properties/calabria-villa-san-nicola-arcella-villaggio-del-bridge/13-main.jpg"
+      ]
+    },
+    "campania-villa-torchiara-parco-elena": {
+      "hide": [
+        "/uploads/properties/campania-villa-torchiara-parco-elena/13-main.jpg"
+      ]
+    },
+    "campania-villa-casal-velino-via-ardisani-s-n-c": {
+      "hide": [
+        "/uploads/properties/campania-villa-casal-velino-via-ardisani-s-n-c/13-main.jpg"
+      ]
+    },
+    "campania-villa-camerota-contrada-conca-dei-vascelli": {
+      "hide": [
+        "/uploads/properties/campania-villa-camerota-contrada-conca-dei-vascelli/12-main.jpg"
+      ]
+    },
+    "calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136": {
+      "hide": [
+        "/uploads/properties/calabria-appartamento-cassano-all-ionio-via-giovanni-amendola-136/13-main.jpg"
+      ]
+    },
+    "campania-appartamento-rutino-via-dei-mille": {
+      "hide": [
+        "/uploads/properties/campania-appartamento-rutino-via-dei-mille/13-main.jpg"
+      ]
+    },
+    "campania-villa-centola-via-velardino": {
+      "hide": [
+        "/uploads/properties/campania-villa-centola-via-velardino/04-main.jpg"
+      ]
+    },
+    "toscana-attico-massa-marittima-centro-liberta": {
+      "hide": [
+        "/uploads/properties/toscana-attico-massa-marittima-centro-liberta/13-main.jpg"
+      ]
+    },
+    "puglia-bilocale-vieste-zaffarano-terrazza-mare": {
+      "hide": [
+        "/uploads/properties/puglia-bilocale-vieste-zaffarano-terrazza-mare/13-main.jpg"
+      ]
+    },
+    "friuli-venezia-giulia-trilocale-sella-nevea-terrazza": {
+      "hide": [
+        "/uploads/properties/friuli-venezia-giulia-trilocale-sella-nevea-terrazza/13-main.jpg"
+      ]
+    },
+    "lombardia-villetta-schiera-predore-via-plazza-iseo": {
+      "hide": [
+        "/uploads/properties/lombardia-villetta-schiera-predore-via-plazza-iseo/13-main.jpg"
+      ]
+    },
+    "puglia-villa-bifamiliare-vico-del-gargano-mannarelle": {
+      "hide": [
+        "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/08-gallery-5.jpg",
+        "/uploads/properties/puglia-villa-bifamiliare-vico-del-gargano-mannarelle/13-main.jpg"
+      ]
+    },
+    "puglia-terratetto-san-giovanni-rotondo-cavour": {
+      "hide": [
+        "/uploads/properties/puglia-terratetto-san-giovanni-rotondo-cavour/13-main.jpg"
+      ]
+    },
+    "lazio-trilocale-latina-lido-via-elba": {
+      "hide": [
+        "/uploads/properties/lazio-trilocale-latina-lido-via-elba/13-main.jpg"
+      ]
+    },
+    "lazio-quadrilocale-cassino-san-bartolomeo-pertini": {
+      "hide": [
+        "/uploads/properties/lazio-quadrilocale-cassino-san-bartolomeo-pertini/13-main.jpg"
+      ]
+    },
+    "lazio-trilocale-latina-scalo-biancospino": {
+      "hide": [
+        "/uploads/properties/lazio-trilocale-latina-scalo-biancospino/13-main.jpg"
+      ]
+    },
+    "abruzzo-villa-bifamiliare-montesilvano-colle": {
+      "hide": [
+        "/uploads/properties/abruzzo-villa-bifamiliare-montesilvano-colle/13-main.jpg"
+      ]
+    },
+    "abruzzo-quadrilocale-pescara-via-teramo": {
+      "hide": [
+        "/uploads/properties/abruzzo-quadrilocale-pescara-via-teramo/13-main.jpg"
+      ]
+    },
+    "abruzzo-trilocale-vasto-pennaluce": {
+      "hide": [
+        "/uploads/properties/abruzzo-trilocale-vasto-pennaluce/13-main.jpg"
+      ]
+    },
+    "abruzzo-trilocale-villetta-barrea-marsicana": {
+      "hide": [
+        "/uploads/properties/abruzzo-trilocale-villetta-barrea-marsicana/13-main.jpg"
+      ]
+    },
+    "lazio-quadrilocale-roma-fleming-citta-di-castello": {
+      "hide": [
+        "/uploads/properties/lazio-quadrilocale-roma-fleming-citta-di-castello/13-main.jpg"
+      ]
+    },
+    "lazio-trilocale-roma-balduina-cecilio-stazio": {
+      "hide": [
+        "/uploads/properties/lazio-trilocale-roma-balduina-cecilio-stazio/13-main.jpg"
+      ]
+    },
+    "lazio-bilocale-anzio-spadellata-susino": {
+      "hide": [
+        "/uploads/properties/lazio-bilocale-anzio-spadellata-susino/13-main.jpg"
+      ]
+    },
+    "lazio-bilocale-roma-monteverde-trasfigurazione": {
+      "hide": [
+        "/uploads/properties/lazio-bilocale-roma-monteverde-trasfigurazione/13-main.jpg"
+      ]
+    },
+    "lazio-villa-lanuvio-laviniense": {
+      "hide": [
+        "/uploads/properties/lazio-villa-lanuvio-laviniense/13-main.jpg"
+      ]
+    },
+    "lazio-villa-marta-via-laertina": {
+      "hide": [
+        "/uploads/properties/lazio-villa-marta-via-laertina/13-main.jpg"
+      ]
+    },
+    "umbria-villa-cannara-sant-angelo": {
+      "hide": [
+        "/uploads/properties/umbria-villa-cannara-sant-angelo/13-main.jpg"
+      ]
+    },
+    "umbria-villa-perugia-montevile": {
+      "hide": [
+        "/uploads/properties/umbria-villa-perugia-montevile/13-main.jpg"
+      ]
+    },
+    "umbria-terratetto-gualdo-tadino-fratelli-tromba": {
+      "hide": [
+        "/uploads/properties/umbria-terratetto-gualdo-tadino-fratelli-tromba/13-main.jpg"
+      ]
+    },
+    "marche-villa-cantiano-martiri-resistenza": {
+      "hide": [
+        "/uploads/properties/marche-villa-cantiano-martiri-resistenza/13-main.jpg"
+      ]
+    },
+    "marche-terratetto-treia-contrada-berta": {
+      "hide": [
+        "/uploads/properties/marche-terratetto-treia-contrada-berta/13-main.jpg"
+      ]
+    },
+    "marche-terratetto-fabriano-collamato": {
+      "hide": [
+        "/uploads/properties/marche-terratetto-fabriano-collamato/13-main.jpg"
+      ]
+    },
+    "emilia-romagna-trilocale-riccione-parco-monterosa": {
+      "hide": [
+        "/uploads/properties/emilia-romagna-trilocale-riccione-parco-monterosa/13-main.jpg"
+      ]
+    },
+    "emilia-romagna-appartamento-rimini-bellariva-armellini": {
+      "hide": [
+        "/uploads/properties/emilia-romagna-appartamento-rimini-bellariva-armellini/13-main.jpg"
+      ]
+    },
+    "marche-quadrilocale-fano-sant-orso-de-curtis": {
+      "hide": [
+        "/uploads/properties/marche-quadrilocale-fano-sant-orso-de-curtis/13-main.jpg"
+      ]
+    },
+    "marche-terratetto-offagna-centro": {
+      "hide": [
+        "/uploads/properties/marche-terratetto-offagna-centro/13-main.jpg"
+      ]
+    },
+    "veneto-terratetto-venezia-zattere-spirito-santo": {
+      "hide": [
+        "/uploads/properties/veneto-terratetto-venezia-zattere-spirito-santo/12-main.jpg"
+      ]
+    },
+    "veneto-terratetto-venezia-castello-biennale": {
+      "hide": [
+        "/uploads/properties/veneto-terratetto-venezia-castello-biennale/10-main.jpg"
+      ]
+    },
+    "veneto-villa-massanzago-viale-roma": {
+      "hide": [
+        "/uploads/properties/veneto-villa-massanzago-viale-roma/13-main.jpg"
+      ]
+    },
+    "veneto-trilocale-legnago-porto-carducci": {
+      "hide": [
+        "/uploads/properties/veneto-trilocale-legnago-porto-carducci/11-main.jpg"
+      ]
+    },
+    "emilia-romagna-casa-vigarano-mainarda-via-mantova": {
+      "hide": [
+        "/uploads/properties/emilia-romagna-casa-vigarano-mainarda-via-mantova/13-main.jpg"
+      ]
+    },
+    "toscana-villetta-massa-ronchi-poveromo": {
+      "hide": [
+        "/uploads/properties/toscana-villetta-massa-ronchi-poveromo/13-main.jpg"
+      ]
+    },
+    "toscana-villetta-pietrasanta-osterietta": {
+      "hide": [
+        "/uploads/properties/toscana-villetta-pietrasanta-osterietta/13-main.jpg"
+      ]
+    },
+    "toscana-terratetto-firenze-via-mannelli-garage": {
+      "hide": [
+        "/uploads/properties/toscana-terratetto-firenze-via-mannelli-garage/13-main.jpg"
+      ]
+    },
+    "toscana-trilocale-firenze-le-cure-cavalcanti": {
+      "hide": [
+        "/uploads/properties/toscana-trilocale-firenze-le-cure-cavalcanti/12-main.jpg"
+      ]
+    },
+    "toscana-terratetto-san-marcello-piteglio-calamecca": {
+      "hide": [
+        "/uploads/properties/toscana-terratetto-san-marcello-piteglio-calamecca/13-main.jpg"
+      ]
+    },
+    "toscana-trilocale-santa-croce-sull-arno-mazzini": {
+      "hide": [
+        "/uploads/properties/toscana-trilocale-santa-croce-sull-arno-mazzini/13-main.jpg"
+      ]
+    },
+    "toscana-appartamento-pistoia-cireglio-collina": {
+      "hide": [
+        "/uploads/properties/toscana-appartamento-pistoia-cireglio-collina/13-main.jpg"
+      ]
+    },
+    "toscana-bilocale-santa-maria-a-monte-taccione": {
+      "hide": [
+        "/uploads/properties/toscana-bilocale-santa-maria-a-monte-taccione/13-main.jpg"
+      ]
+    },
+    "piemonte-villetta-schiera-none-san-lorenzo": {
+      "hide": [
+        "/uploads/properties/piemonte-villetta-schiera-none-san-lorenzo/06-06-gallery-6.jpg"
+      ]
+    },
+    "veneto-villa-torri-del-benaco-pozzol": {
+      "hide": [
+        "/uploads/properties/veneto-villa-torri-del-benaco-pozzol/06-06-gallery-6.jpg"
+      ]
+    },
+    "puglia-appartamento": {
+      "hide": [
+        "/uploads/properties/puglia-appartamento/13-gallery-13.jpg"
+      ]
+    },
+    "calabria-casa-singola": {
+      "hide": [
+        "/uploads/properties/calabria-casa-singola/09-gallery-9.jpg"
+      ]
+    },
+    "lazio-rustico": {
+      "hide": [
+        "/uploads/properties/lazio-rustico/20-gallery-20.jpg"
+      ]
+    },
+    "renovated-four-room-duplex-apartment-in-via-cavour-27-altopascio-lu": {
+      "hide": [
+        "/uploads/properties/renovated-four-room-duplex-apartment-in-via-cavour-27-altopascio-lu/06-gallery-6.jpg"
+      ]
+    }
+  }
+}
