@@ -18,6 +18,7 @@ import { supabase } from '../../../lib/supabase'
 import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import AuthModal from '../../../components/AuthModal'
+import { flushPendingFavorites, rememberPendingFavorite } from '../../../lib/pendingFavorites'
 import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
 import { getNewPropertyLabel } from '@/components/NewPropertyRibbon'
@@ -752,7 +753,8 @@ export default function PropertyDetailClient({ initialProperty = null }) {
       const response = await fetch('/api/favorites')
       if (response.ok) {
         const favorites = await response.json()
-        setIsFavorited(favorites.some(f => f.listingId === propertyId))
+        const ids = await flushPendingFavorites(favorites.map(f => f.listingId))
+        setIsFavorited(ids.has(propertyId))
       }
     } catch (error) {
       console.error('Error checking favorite status:', error)
@@ -761,6 +763,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
 
   const handleFavorite = async () => {
     if (!user) {
+      if (property?._id) rememberPendingFavorite(property._id)
       setIsAuthModalOpen(true)
       return
     }

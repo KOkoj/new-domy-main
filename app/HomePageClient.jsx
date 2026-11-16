@@ -5,18 +5,18 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Image from 'next/image'
 import Lenis from 'lenis'
-import { MapPin, ChevronRight, Check, Globe, Lock, Banknote, AlertTriangle, HelpCircle, Search, User, Menu, X } from 'lucide-react'
+import { MapPin, ChevronRight, Check, Globe, Banknote, AlertTriangle, HelpCircle, Search, User, Menu, X } from 'lucide-react'
 import BackgroundImageTransition from '@/components/BackgroundImageTransition'
 import ConciergeContact from '@/components/ConciergeContact'
 import LucieBenesovaCard from '@/components/stories/LucieBenesovaCard'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
 
 const AuthModal = dynamic(() => import('@/components/AuthModal'), { ssr: false })
-const KlubInfoModal = dynamic(() => import('@/components/KlubInfoModal'), { ssr: false })
 import Footer from '@/components/Footer'
 import SocialLinks from '@/components/SocialLinks'
 import PropertySlider from '@/components/PropertySlider'
 import { trackClientEvent } from '@/lib/trackClientEvent'
+import { flushPendingFavorites, rememberPendingFavorite } from '@/lib/pendingFavorites'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import Navigation from '../components/Navigation'
 import { LanguageMenu, SiteNavMenu } from '../components/SiteNavControls'
@@ -80,7 +80,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
   const [startAnimations, setStartAnimations] = useState(false)
   
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
-  const [isKlubModalOpen, setIsKlubModalOpen] = useState(false)
+  const [authModalIsFavorite, setAuthModalIsFavorite] = useState(false)
   const [authModalTab, setAuthModalTab] = useState('signup')
   const [postAuthRedirect, setPostAuthRedirect] = useState('')
 
@@ -646,16 +646,25 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
       const response = await fetch('/api/favorites')
       if (response.ok) {
         const userFavorites = await response.json()
-        setFavorites(new Set(userFavorites.map(f => f.listingId)))
+        const ids = await flushPendingFavorites(userFavorites.map(f => f.listingId))
+        setFavorites(ids)
       }
     } catch (error) {
       console.error('Error loading favorites:', error)
     }
   }
 
+  // Single entry point for every logged-out CTA: the one-field e-mail modal.
+  const openSignup = ({ favorite = false } = {}) => {
+    setAuthModalIsFavorite(favorite)
+    setAuthModalTab('signup')
+    setIsAuthModalOpen(true)
+  }
+
   const handleFavorite = async (propertyId) => {
     if (!user) {
-      setIsKlubModalOpen(true)
+      rememberPendingFavorite(propertyId)
+      openSignup({ favorite: true })
       return
     }
 
@@ -735,7 +744,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
       return
     }
     setPostAuthRedirect(targetPath)
-    setIsKlubModalOpen(true)
+    openSignup()
   }
 
   const handleBookCall = () => {
@@ -815,7 +824,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
               ) : (
                 <button
                   type="button"
-                  onClick={() => { setAuthModalTab('login'); setIsAuthModalOpen(true) }}
+                  onClick={() => { setAuthModalIsFavorite(false); setAuthModalTab('login'); setIsAuthModalOpen(true) }}
                   className="inline-flex items-center gap-2 rounded-full border-0 bg-[#1b2642] px-6 py-3 text-base font-medium leading-none text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)] transition-colors duration-200 hover:bg-[#243056]"
                   data-testid="hero-login-button"
                 >
@@ -1936,7 +1945,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
           </p>
           <button
             type="button"
-            onClick={() => setIsKlubModalOpen(true)}
+            onClick={() => openSignup()}
             className="mt-6 inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]"
           >
             {language === 'cs' ? 'Připojit se zdarma' :
@@ -2030,15 +2039,11 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
                   link: '/blog',
                 },
               ].map((article, index) => (
-                <button
+                <Link
                   key={article.link}
-                  type="button"
+                  href={article.link}
                   data-reveal="card"
                   style={{ '--d': `${index * 90}ms` }}
-                  onClick={() => {
-                    if (user) window.location.href = article.link
-                    else setIsKlubModalOpen(true)
-                  }}
                   className="group flex flex-col bg-transparent text-left"
                 >
                   <span className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl">
@@ -2046,15 +2051,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
                   </span>
                   <span className="mt-4 text-pretty text-lg font-semibold leading-snug text-white transition-colors duration-300 group-hover:text-copper-200">{article.title[language]}</span>
                   <span className="text-pretty mt-1 text-base leading-snug text-white/75 line-clamp-2">{article.excerpt[language]}</span>
-                  {!user && (
-                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-copper-200">
-                      <Lock className="h-3.5 w-3.5" />
-                      {language === 'cs' ? 'Zaregistrujte se pro čtení' :
-                       language === 'it' ? 'Registrati per leggere' :
-                       'Register to read'}
-                    </span>
-                  )}
-                </button>
+                </Link>
               ))}
               </div>
         </div>
@@ -2067,32 +2064,16 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
       {/* Footer */}
       <Footer language={language} />
       
-      {/* Klub pro klienty info modal (middle step before auth) */}
-      <KlubInfoModal
-        isOpen={isKlubModalOpen}
-        language={language}
-        onClose={() => setIsKlubModalOpen(false)}
-        onRegister={() => {
-          setIsKlubModalOpen(false)
-          setAuthModalTab('signup')
-          setIsAuthModalOpen(true)
-        }}
-        onLogin={() => {
-          setIsKlubModalOpen(false)
-          setAuthModalTab('login')
-          setIsAuthModalOpen(true)
-        }}
-      />
-
       {/* Auth Modal */}
       <AuthModal 
         isOpen={isAuthModalOpen}
         onClose={handleAuthModalClose}
         onAuthSuccess={handleAuthSuccess}
         defaultTab={authModalTab}
+        redirectTo={postAuthRedirect || undefined}
         language={language}
-        title={t('auth.loginRequired', language)}
-        message={t('auth.favoriteLoginMessage', language)}
+        title={authModalIsFavorite ? t('auth.loginRequired', language) : ''}
+        message={authModalIsFavorite ? t('auth.favoriteLoginMessage', language) : ''}
       />
     </div>
   )

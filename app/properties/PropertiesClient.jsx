@@ -39,6 +39,7 @@ import { isListingQueryActive, moveNewListingsLast } from './listingQuery';
 import PropertyCard from './PropertyCard';
 
 const AuthModal = dynamic(() => import('../../components/AuthModal'), { ssr: false });
+import { flushPendingFavorites, rememberPendingFavorite } from '../../lib/pendingFavorites';
 
 const getPropertyTimestamp = (property) => {
   const value = property?.createdAt || property?.updatedAt || property?._createdAt || property?._updatedAt;
@@ -198,7 +199,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       const response = await fetch('/api/favorites');
       if (response.ok) {
         const favorites = await response.json();
-        setUserFavorites(new Set(favorites.map(fav => fav.listingId)));
+        const ids = await flushPendingFavorites(favorites.map(fav => fav.listingId));
+        setUserFavorites(ids);
       }
     } catch (error) {
       console.error('Error loading favorites:', error);
@@ -207,6 +209,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
 
   const handleToggleFavorite = async (propertyId) => {
     if (!user) {
+      rememberPendingFavorite(propertyId);
       setIsAuthModalOpen(true);
       return;
     }
@@ -1229,6 +1232,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
+        defaultTab="signup"
         language={language}
         title={t('auth.loginRequired', language)}
         message={t('auth.favoriteLoginMessage', language)}

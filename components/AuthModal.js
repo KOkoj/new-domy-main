@@ -6,17 +6,21 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react'
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
 import Image from 'next/image'
 import { t } from '@/lib/translations'
 import { resolveAuthClientMessage } from '@/lib/authMessages'
 
+// Single-field auth: new visitors only enter an e-mail and receive a magic
+// link that both creates the account and signs them in. Password login stays
+// available as an option for existing accounts.
 export default function AuthModal({
   isOpen,
   onClose,
   onAuthSuccess,
+  onEmailSubmitted,
+  redirectTo = '',
   title = '',
   message = '',
   defaultTab = 'login',
@@ -24,33 +28,35 @@ export default function AuthModal({
 }) {
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const [usePassword, setUsePassword] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [activeTab, setActiveTab] = useState(defaultTab)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   useEffect(() => {
     if (isOpen) setActiveTab(defaultTab)
   }, [isOpen, defaultTab])
 
-  const [loginForm, setLoginForm] = useState({
-    email: '',
-    password: ''
-  })
-
-  const [signupForm, setSignupForm] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  })
-
   const tr = (key) => t(`auth.${key}`, language)
 
-  const loginViaServer = async (email, password) => {
+  const resolveNextPath = () => {
+    if (typeof redirectTo === 'string' && redirectTo.startsWith('/') && !redirectTo.startsWith('//')) {
+      return redirectTo
+    }
+    if (typeof window !== 'undefined') {
+      const { pathname, search } = window.location
+      if (pathname && pathname !== '/login') return `${pathname}${search || ''}`
+    }
+    return '/dashboard'
+  }
+
+  const loginViaServer = async (loginEmail, loginPassword) => {
     const response = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email: loginEmail, password: loginPassword })
     })
 
     const payload = await response.json().catch(() => ({}))
@@ -67,41 +73,15 @@ export default function AuthModal({
     }
   }
 
-  const signupViaServer = async (name, email, password) => {
-    const response = await fetch('/api/auth/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password, language })
-    })
-
-    const payload = await response.json().catch(() => ({}))
-    if (!response.ok) {
-      return {
-        ok: false,
-        error: resolveAuthClientMessage(payload, tr, 'serverSignupFailed')
-      }
-    }
-
-    return {
-      ok: true,
-      hasSession: Boolean(payload?.hasSession),
-      user: payload?.user || null
-    }
-  }
-
-  const handleLogin = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setError('')
-
-    if (!loginForm.email || !loginForm.password) {
+  const handlePasswordLogin = async () => {
+    if (!email || !password) {
       setError(tr('fillAllFields'))
-      setIsLoading(false)
       return
     }
 
+    setIsLoading(true)
     try {
-      const result = await loginViaServer(loginForm.email, loginForm.password)
+      const result = await loginViaServer(email, password)
       if (!result.ok) {
         setError(result.error || tr('serverLoginFailed'))
         return
@@ -126,84 +106,18 @@ export default function AuthModal({
     }
   }
 
-  const handleSignup = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setError('')
-
-    if (!signupForm.name || !signupForm.email || !signupForm.password) {
-      setError(tr('fillAllFields'))
-      setIsLoading(false)
-      return
-    }
-
-    if (signupForm.password !== signupForm.confirmPassword) {
-      setError(tr('passwordsDoNotMatch'))
-      setIsLoading(false)
-      return
-    }
-
-    if (signupForm.password.length < 6) {
-      setError(tr('passwordTooShort'))
-      setIsLoading(false)
-      return
-    }
-
-    try {
-      const result = await signupViaServer(
-        signupForm.name,
-        signupForm.email,
-        signupForm.password
-      )
-
-      if (!result.ok) {
-        setError(result.error || tr('serverSignupFailed'))
-        return
-      }
-
-      const hasSession = Boolean(result.hasSession)
-      setSuccess(hasSession ? tr('accountCreatedSession') : tr('accountCreatedEmail'))
-
-      try {
-        await fetch('/api/profile', { method: 'POST' })
-      } catch (profileError) {
-        console.warn('Manual profile creation failed:', profileError)
-      }
-
-      if (hasSession) {
-        setTimeout(() => {
-          onAuthSuccess?.(result.user)
-          onClose()
-        }, 1000)
-      } else {
-        setTimeout(() => {
-          setActiveTab('login')
-          setSuccess('')
-        }, 3000)
-      }
-    } catch (err) {
-      setError(tr('connectionError'))
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
   const handleMagicLink = async () => {
-    setIsLoading(true)
-    setError('')
-    setSuccess('')
-
-    if (!loginForm.email) {
-      setError(tr('fillAllFields'))
-      setIsLoading(false)
+    if (!email) {
+      setError(tr('emailRequired'))
       return
     }
 
+    setIsLoading(true)
     try {
       const response = await fetch('/api/auth/magic-link', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: loginForm.email })
+        body: JSON.stringify({ email, next: resolveNextPath(), language })
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) {
@@ -211,6 +125,7 @@ export default function AuthModal({
         return
       }
       setSuccess(tr('magicLinkSent'))
+      onEmailSubmitted?.(email.trim().toLowerCase())
     } catch {
       setError(tr('connectionError'))
     } finally {
@@ -218,9 +133,21 @@ export default function AuthModal({
     }
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError('')
+    setSuccess('')
+    if (usePassword) {
+      await handlePasswordLogin()
+    } else {
+      await handleMagicLink()
+    }
+  }
+
   const resetForm = () => {
-    setLoginForm({ email: '', password: '' })
-    setSignupForm({ name: '', email: '', password: '', confirmPassword: '' })
+    setEmail('')
+    setPassword('')
+    setUsePassword(false)
     setError('')
     setSuccess('')
     setShowPassword(false)
@@ -261,190 +188,114 @@ export default function AuthModal({
           </div>
         </DialogHeader>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full" data-testid="auth-tabs">
-          <TabsList className="grid w-full grid-cols-2" data-testid="auth-tabs-list">
-            <TabsTrigger value="login" data-testid="login-tab">{tr('login')}</TabsTrigger>
-            <TabsTrigger value="signup" data-testid="signup-tab">{tr('signup')}</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="login" className="space-y-2 mt-2" data-testid="login-tab-content">
-            <form onSubmit={handleLogin} className="space-y-2" data-testid="login-form">
-              <div className="space-y-1" data-testid="login-email-field">
-                <Label htmlFor="login-email" className="text-sm" data-testid="login-email-label">{tr('email')}</Label>
-                <div className="relative" data-testid="login-email-input-container">
-                  <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-                  <Input
-                    id="login-email"
-                    type="email"
-                    placeholder={tr('emailPlaceholder')}
-                    className="pl-10 h-9 text-sm"
-                    value={loginForm.email}
-                    onChange={(e) => setLoginForm(prev => ({ ...prev, email: e.target.value }))}
-                    disabled={isLoading}
-                    data-testid="login-email-input"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1" data-testid="login-password-field">
-                <Label htmlFor="login-password" className="text-sm" data-testid="login-password-label">{tr('password')}</Label>
-                <div className="relative" data-testid="login-password-input-container">
-                  <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-                  <Input
-                    id="login-password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder={tr('passwordPlaceholder')}
-                    className="pl-10 pr-10 h-9 text-sm"
-                    value={loginForm.password}
-                    onChange={(e) => setLoginForm(prev => ({ ...prev, password: e.target.value }))}
-                    disabled={isLoading}
-                    data-testid="login-password-input"
-                  />
-                  <button
-                    type="button"
-                    className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
-                    onClick={() => setShowPassword(!showPassword)}
-                    data-testid="login-password-toggle"
-                  >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </button>
-                </div>
-                <div className="text-right">
-                  <Link href="/forgot-password" className="text-xs underline text-slate-600 hover:text-slate-900">
-                    {tr('forgotPassword')}
-                  </Link>
-                </div>
-              </div>
-
-              {error && (
-                <Alert variant="destructive" className="py-2">
-                  <AlertDescription className="text-xs">{error}</AlertDescription>
-                </Alert>
-              )}
-
-              {success && (
-                <Alert className="py-2">
-                  <AlertDescription className="text-xs text-slate-800">{success}</AlertDescription>
-                </Alert>
-              )}
-
-              <Button type="submit" className="w-full h-9 text-sm" disabled={isLoading}>
-                {isLoading ? tr('signingIn') : tr('signIn')}
-              </Button>
-
-              <div className="relative py-1">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-background px-2 text-muted-foreground">{tr('or')}</span>
-                </div>
-              </div>
-
-              <Button
-                type="button"
-                variant="outline"
-                className="w-full h-9 text-sm"
-                onClick={handleMagicLink}
+        <form onSubmit={handleSubmit} className="space-y-2 mt-2" data-testid="auth-email-form">
+          <div className="space-y-1" data-testid="auth-email-field">
+            <Label htmlFor="auth-email" className="text-sm">{tr('email')}</Label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+              <Input
+                id="auth-email"
+                type="email"
+                autoComplete="email"
+                placeholder={tr('emailPlaceholder')}
+                className="pl-10 h-9 text-sm"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 disabled={isLoading}
-              >
+                data-testid="auth-email-input"
+              />
+            </div>
+          </div>
+
+          {usePassword && (
+            <div className="space-y-1" data-testid="auth-password-field">
+              <Label htmlFor="auth-password" className="text-sm">{tr('password')}</Label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
+                <Input
+                  id="auth-password"
+                  type={showPassword ? 'text' : 'password'}
+                  autoComplete="current-password"
+                  placeholder={tr('passwordPlaceholder')}
+                  className="pl-10 pr-10 h-9 text-sm"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={isLoading}
+                  data-testid="auth-password-input"
+                />
+                <button
+                  type="button"
+                  className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
+              <div className="text-right">
+                <Link href="/forgot-password" className="text-xs underline text-slate-600 hover:text-slate-900">
+                  {tr('forgotPassword')}
+                </Link>
+              </div>
+            </div>
+          )}
+
+          {error && (
+            <Alert variant="destructive" className="py-2">
+              <AlertDescription className="text-xs">{error}</AlertDescription>
+            </Alert>
+          )}
+
+          {success && (
+            <Alert className="py-2">
+              <AlertDescription className="text-xs text-slate-800">{success}</AlertDescription>
+            </Alert>
+          )}
+
+          <Button type="submit" className="w-full h-9 text-sm" disabled={isLoading} data-testid="auth-submit">
+            {usePassword ? (
+              isLoading ? tr('signingIn') : tr('signIn')
+            ) : (
+              <>
                 <Mail className="w-4 h-4 mr-2" />
                 {tr('sendMagicLink')}
-              </Button>
-            </form>
-          </TabsContent>
+              </>
+            )}
+          </Button>
 
-          <TabsContent value="signup" className="space-y-2 mt-2">
-            <form onSubmit={handleSignup} className="space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="signup-name" className="text-sm">{tr('fullName')}</Label>
-                <div className="relative">
-                  <User className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-                  <Input
-                    id="signup-name"
-                    type="text"
-                    placeholder={tr('fullNamePlaceholder')}
-                    className="pl-10 h-9 text-sm"
-                    value={signupForm.name}
-                    onChange={(e) => setSignupForm(prev => ({ ...prev, name: e.target.value }))}
-                    disabled={isLoading}
-                  />
-                </div>
-              </div>
+          <div className="relative py-1">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-background px-2 text-muted-foreground">{tr('or')}</span>
+            </div>
+          </div>
 
-              <div className="space-y-1">
-                <Label htmlFor="signup-email" className="text-sm">{tr('email')}</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-                  <Input
-                    id="signup-email"
-                    type="email"
-                    placeholder={tr('emailPlaceholder')}
-                    className="pl-10 h-9 text-sm"
-                    value={signupForm.email}
-                    onChange={(e) => setSignupForm(prev => ({ ...prev, email: e.target.value }))}
-                    disabled={isLoading}
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="signup-password" className="text-sm">{tr('password')}</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-                  <Input
-                    id="signup-password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder={tr('passwordMinLength')}
-                    className="pl-10 pr-10 h-9 text-sm"
-                    value={signupForm.password}
-                    onChange={(e) => setSignupForm(prev => ({ ...prev, password: e.target.value }))}
-                    disabled={isLoading}
-                  />
-                  <button
-                    type="button"
-                    className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </button>
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <Label htmlFor="signup-confirm" className="text-sm">{tr('confirmPassword')}</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-                  <Input
-                    id="signup-confirm"
-                    type="password"
-                    placeholder={tr('confirmPasswordPlaceholder')}
-                    className="pl-10 h-9 text-sm"
-                    value={signupForm.confirmPassword}
-                    onChange={(e) => setSignupForm(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                    disabled={isLoading}
-                  />
-                </div>
-              </div>
-
-              {error && (
-                <Alert variant="destructive" className="py-2">
-                  <AlertDescription className="text-xs">{error}</AlertDescription>
-                </Alert>
-              )}
-
-              {success && (
-                <Alert className="py-2">
-                  <AlertDescription className="text-xs text-slate-800">{success}</AlertDescription>
-                </Alert>
-              )}
-
-              <Button type="submit" className="w-full h-9 text-sm" disabled={isLoading}>
-                {isLoading ? tr('creatingAccount') : tr('createAccount')}
-              </Button>
-            </form>
-          </TabsContent>
-        </Tabs>
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full h-9 text-sm"
+            onClick={() => {
+              setUsePassword((value) => !value)
+              setError('')
+              setSuccess('')
+            }}
+            disabled={isLoading}
+            data-testid="auth-password-toggle"
+          >
+            {usePassword ? (
+              <>
+                <Mail className="w-4 h-4 mr-2" />
+                {tr('sendMagicLink')}
+              </>
+            ) : (
+              <>
+                <Lock className="w-4 h-4 mr-2" />
+                {tr('password')}
+              </>
+            )}
+          </Button>
+        </form>
 
         <div className="text-center text-sm text-gray-600 leading-snug mt-2">
           {tr('termsText')}{' '}

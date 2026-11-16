@@ -9,12 +9,12 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Mail, Lock, User, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
+import { Mail, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import { t } from '@/lib/translations'
 import { resolveAuthClientMessage } from '@/lib/authMessages'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '@/lib/userPreferences'
+import { getSafeRedirectPath } from '@/lib/safeRedirect'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -22,32 +22,24 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [activeTab, setActiveTab] = useState('login')
+  const [usePassword, setUsePassword] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
   const router = useRouter()
   const searchParams = useSearchParams()
   const tabParam = searchParams.get('tab')
   const redirectParam = searchParams.get('redirect')
   const errorParam = searchParams.get('error')
-  const redirectPath = redirectParam && redirectParam.startsWith('/') ? redirectParam : '/dashboard'
+  const redirectPath = getSafeRedirectPath(redirectParam, '/dashboard')
   const tr = (key) => t(`auth.${key}`, language)
 
-  const [loginForm, setLoginForm] = useState({
-    email: '',
-    password: ''
-  })
 
-  const [signupForm, setSignupForm] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  })
-
-  const loginViaServer = async (email, password) => {
+  const loginViaServer = async (loginEmail, loginPassword) => {
     const response = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email: loginEmail, password: loginPassword })
     })
 
     const payload = await response.json().catch(() => ({}))
@@ -61,26 +53,6 @@ export default function LoginPage() {
     return { ok: true }
   }
 
-  const signupViaServer = async (name, email, password) => {
-    const response = await fetch('/api/auth/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password, language })
-    })
-
-    const payload = await response.json().catch(() => ({}))
-    if (!response.ok) {
-      return {
-        ok: false,
-        error: resolveAuthClientMessage(payload, tr, 'serverSignupFailed')
-      }
-    }
-
-    return {
-      ok: true,
-      hasSession: Boolean(payload?.hasSession)
-    }
-  }
 
   useEffect(() => {
     setLanguage(readLanguageFromBrowser())
@@ -124,20 +96,21 @@ export default function LoginPage() {
     checkUser()
   }, [router, redirectPath])
 
+
+  // One e-mail field for everyone. The magic link signs existing users in and
+  // creates the account for new e-mails; password login is optional for
+  // existing accounts.
   const handleMagicLink = async () => {
-    setIsLoading(true)
-    setError('')
-    setSuccess('')
-    if (!loginForm.email) {
-      setError(tr('fillAllFields'))
-      setIsLoading(false)
+    if (!email) {
+      setError(tr('emailRequired'))
       return
     }
+    setIsLoading(true)
     try {
       const response = await fetch('/api/auth/magic-link', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: loginForm.email })
+        body: JSON.stringify({ email, next: redirectPath, language })
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) {
@@ -152,20 +125,15 @@ export default function LoginPage() {
     }
   }
 
-  const handleLogin = async (e) => {
-    e.preventDefault()
-
-    setIsLoading(true)
-    setError('')
-
-    if (!loginForm.email || !loginForm.password) {
+  const handlePasswordLogin = async () => {
+    if (!email || !password) {
       setError(tr('fillAllFields'))
-      setIsLoading(false)
       return
     }
 
+    setIsLoading(true)
     try {
-      const result = await loginViaServer(loginForm.email, loginForm.password)
+      const result = await loginViaServer(email, password)
       if (!result.ok) {
         setError(result.error || tr('serverLoginFailed'))
         return
@@ -187,70 +155,14 @@ export default function LoginPage() {
     }
   }
 
-  const handleSignup = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-
-    setIsLoading(true)
     setError('')
-
-    if (!signupForm.name || !signupForm.email || !signupForm.password) {
-      setError(tr('fillAllFields'))
-      setIsLoading(false)
-      return
-    }
-
-    if (signupForm.password !== signupForm.confirmPassword) {
-      setError(tr('passwordsDoNotMatch'))
-      setIsLoading(false)
-      return
-    }
-
-    if (signupForm.password.length < 6) {
-      setError(tr('passwordTooShort'))
-      setIsLoading(false)
-      return
-    }
-
-    try {
-      const result = await signupViaServer(
-        signupForm.name,
-        signupForm.email,
-        signupForm.password
-      )
-
-      if (!result.ok) {
-        setError(result.error || tr('serverSignupFailed'))
-        return
-      }
-
-      const hasSession = Boolean(result?.hasSession)
-      setSuccess(
-        hasSession
-          ? tr('accountCreatedSession')
-          : tr('accountCreatedEmail')
-      )
-      
-      // Try to create profile manually as fallback
-      try {
-        await fetch('/api/profile', { method: 'POST' })
-      } catch (profileError) {
-        console.warn('Manual profile creation failed:', profileError)
-      }
-
-      if (hasSession) {
-        setTimeout(() => {
-          window.location.assign(redirectPath)
-        }, 1500)
-      } else {
-        setTimeout(() => {
-          setActiveTab('login')
-          setSuccess(tr('readyToLogin'))
-        }, 3000)
-      }
-    } catch (err) {
-      setError(tr('connectionError'))
-    } finally {
-      setIsLoading(false)
+    setSuccess('')
+    if (usePassword) {
+      await handlePasswordLogin()
+    } else {
+      await handleMagicLink()
     }
   }
 
@@ -273,207 +185,122 @@ export default function LoginPage() {
 
         <Card className="bg-slate-800 border-amber-400/20">
           <CardContent className="p-6">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 bg-slate-700">
-                <TabsTrigger value="login" className="data-[state=active]:bg-amber-600">
-                  {tr('login')}
-                </TabsTrigger>
-                <TabsTrigger value="signup" className="data-[state=active]:bg-amber-600">
-                  {tr('signup')}
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="login" className="space-y-4 mt-6">
-                <form onSubmit={handleLogin} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="login-email" className="text-gray-300">{tr('email')}</Label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input
-                        id="login-email"
-                        type="email"
-                        placeholder={tr('emailPlaceholder')}
-                        className="pl-10 bg-slate-900 border-amber-400/20 text-white"
-                        value={loginForm.email}
-                        onChange={(e) => setLoginForm(prev => ({ ...prev, email: e.target.value }))}
-                        disabled={isLoading}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="login-password" className="text-gray-300">{tr('password')}</Label>
-                    <div className="relative">
-                      <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input
-                        id="login-password"
-                        type={showPassword ? "text" : "password"}
-                        placeholder={tr('passwordPlaceholder')}
-                        className="pl-10 pr-10 bg-slate-900 border-amber-400/20 text-white"
-                        value={loginForm.password}
-                        onChange={(e) => setLoginForm(prev => ({ ...prev, password: e.target.value }))}
-                        disabled={isLoading}
-                      />
-                      <button
-                        type="button"
-                        className="absolute right-3 top-3 text-gray-400 hover:text-white cursor-pointer leading-none"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                      </button>
-                    </div>
-                    <div className="text-right">
-                      <Link href="/forgot-password" className="text-sm text-amber-400 underline">
-                        {tr('forgotPassword')}
-                      </Link>
-                    </div>
-                  </div>
-
-                  {error && (
-                    <Alert variant="destructive" className="bg-red-900/20 border-red-600 text-red-400">
-                      <AlertCircle className="h-4 w-4" />
-                      <AlertDescription>{error}</AlertDescription>
-                    </Alert>
-                  )}
-
-                  {success && (
-                    <Alert className="bg-green-900/20 border-green-600 text-green-400">
-                      <CheckCircle className="h-4 w-4" />
-                      <AlertDescription>{success}</AlertDescription>
-                    </Alert>
-                  )}
-
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-white" 
+            <h2 className="text-lg font-semibold text-white text-center">
+              {activeTab === 'signup' ? tr('signup') : tr('login')}
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-4 mt-6" data-testid="login-email-form">
+              <div className="space-y-2">
+                <Label htmlFor="login-email" className="text-gray-300">{tr('email')}</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Input
+                    id="login-email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder={tr('emailPlaceholder')}
+                    className="pl-10 bg-slate-900 border-amber-400/20 text-white"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     disabled={isLoading}
-                  >
-                    {isLoading ? tr('signingIn') : tr('signIn')}
-                  </Button>
+                  />
+                </div>
+              </div>
 
-                  <FormPrivacyNotice language={language} purpose="account" className="bg-slate-900/60 border-amber-400/20" />
-
-                  <div className="relative py-1">
-                    <div className="absolute inset-0 flex items-center">
-                      <span className="w-full border-t border-amber-400/20" />
-                    </div>
-                    <div className="relative flex justify-center text-xs uppercase">
-                      <span className="bg-slate-800 px-2 text-gray-400">{tr('or')}</span>
-                    </div>
+              {usePassword && (
+                <div className="space-y-2">
+                  <Label htmlFor="login-password" className="text-gray-300">{tr('password')}</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Input
+                      id="login-password"
+                      type={showPassword ? "text" : "password"}
+                      autoComplete="current-password"
+                      placeholder={tr('passwordPlaceholder')}
+                      className="pl-10 pr-10 bg-slate-900 border-amber-400/20 text-white"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      disabled={isLoading}
+                    />
+                    <button
+                      type="button"
+                      className="absolute right-3 top-3 text-gray-400 hover:text-white cursor-pointer leading-none"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    </button>
                   </div>
+                  <div className="text-right">
+                    <Link href="/forgot-password" className="text-sm text-amber-400 underline">
+                      {tr('forgotPassword')}
+                    </Link>
+                  </div>
+                </div>
+              )}
 
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="w-full border-amber-400/20 text-amber-400 hover:bg-amber-400/10"
-                    disabled={isLoading}
-                    onClick={handleMagicLink}
-                  >
+              {error && (
+                <Alert variant="destructive" className="bg-red-900/20 border-red-600 text-red-400">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+
+              {success && (
+                <Alert className="bg-green-900/20 border-green-600 text-green-400">
+                  <CheckCircle className="h-4 w-4" />
+                  <AlertDescription>{success}</AlertDescription>
+                </Alert>
+              )}
+
+              <Button
+                type="submit"
+                className="w-full bg-amber-600 hover:bg-amber-700 text-white"
+                disabled={isLoading}
+              >
+                {usePassword ? (
+                  isLoading ? tr('signingIn') : tr('signIn')
+                ) : (
+                  <>
                     <Mail className="w-4 h-4 mr-2" />
                     {tr('sendMagicLink')}
-                  </Button>
-                </form>
-              </TabsContent>
+                  </>
+                )}
+              </Button>
 
-              <TabsContent value="signup" className="space-y-4 mt-6">
-                <form onSubmit={handleSignup} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="signup-name" className="text-gray-300">{tr('fullName')}</Label>
-                    <div className="relative">
-                      <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input
-                        id="signup-name"
-                        type="text"
-                        placeholder={tr('fullNamePlaceholder')}
-                        className="pl-10 bg-slate-900 border-amber-400/20 text-white"
-                        value={signupForm.name}
-                        onChange={(e) => setSignupForm(prev => ({ ...prev, name: e.target.value }))}
-                        disabled={isLoading}
-                      />
-                    </div>
-                  </div>
+              <FormPrivacyNotice language={language} purpose="account" className="bg-slate-900/60 border-amber-400/20" />
 
-                  <div className="space-y-2">
-                    <Label htmlFor="signup-email" className="text-gray-300">{tr('email')}</Label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input
-                        id="signup-email"
-                        type="email"
-                        placeholder={tr('emailPlaceholder')}
-                        className="pl-10 bg-slate-900 border-amber-400/20 text-white"
-                        value={signupForm.email}
-                        onChange={(e) => setSignupForm(prev => ({ ...prev, email: e.target.value }))}
-                        disabled={isLoading}
-                      />
-                    </div>
-                  </div>
+              <div className="relative py-1">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t border-amber-400/20" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-slate-800 px-2 text-gray-400">{tr('or')}</span>
+                </div>
+              </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="signup-password" className="text-gray-300">{tr('password')}</Label>
-                    <div className="relative">
-                      <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input
-                        id="signup-password"
-                        type={showPassword ? "text" : "password"}
-                        placeholder={tr('passwordMinLength')}
-                        className="pl-10 pr-10 bg-slate-900 border-amber-400/20 text-white"
-                        value={signupForm.password}
-                        onChange={(e) => setSignupForm(prev => ({ ...prev, password: e.target.value }))}
-                        disabled={isLoading}
-                      />
-                      <button
-                        type="button"
-                        className="absolute right-3 top-3 text-gray-400 hover:text-white cursor-pointer leading-none"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="signup-confirm" className="text-gray-300">{tr('confirmPassword')}</Label>
-                    <div className="relative">
-                      <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                      <Input
-                        id="signup-confirm"
-                        type="password"
-                        placeholder={tr('confirmPasswordPlaceholder')}
-                        className="pl-10 bg-slate-900 border-amber-400/20 text-white"
-                        value={signupForm.confirmPassword}
-                        onChange={(e) => setSignupForm(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                        disabled={isLoading}
-                      />
-                    </div>
-                  </div>
-
-                  {error && (
-                    <Alert variant="destructive" className="bg-red-900/20 border-red-600 text-red-400">
-                      <AlertCircle className="h-4 w-4" />
-                      <AlertDescription>{error}</AlertDescription>
-                    </Alert>
-                  )}
-
-                  {success && (
-                    <Alert className="bg-green-900/20 border-green-600 text-green-400">
-                      <CheckCircle className="h-4 w-4" />
-                      <AlertDescription>{success}</AlertDescription>
-                    </Alert>
-                  )}
-
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-white" 
-                    disabled={isLoading}
-                  >
-                    {isLoading ? tr('creatingAccount') : tr('createAccount')}
-                  </Button>
-
-                  <FormPrivacyNotice language={language} purpose="account" className="bg-slate-900/60 border-amber-400/20" />
-                </form>
-              </TabsContent>
-            </Tabs>
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full border-amber-400/20 text-amber-400 hover:bg-amber-400/10"
+                disabled={isLoading}
+                onClick={() => {
+                  setUsePassword((value) => !value)
+                  setError('')
+                  setSuccess('')
+                }}
+              >
+                {usePassword ? (
+                  <>
+                    <Mail className="w-4 h-4 mr-2" />
+                    {tr('sendMagicLink')}
+                  </>
+                ) : (
+                  <>
+                    <Lock className="w-4 h-4 mr-2" />
+                    {tr('password')}
+                  </>
+                )}
+              </Button>
+            </form>
 
             <div className="text-center text-sm text-gray-400 mt-6 space-y-1">
               <p>

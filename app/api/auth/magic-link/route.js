@@ -2,13 +2,19 @@ import { NextResponse } from 'next/server'
 import { createRouteSupabaseClient } from '@/lib/serverAuth'
 import { getPublicSiteUrl } from '@/lib/siteUrl'
 import { authErrorPayload, mapSupabaseAuthError } from '@/lib/authMessages'
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@/lib/userPreferences'
+import { getSafeRedirectPath } from '@/lib/safeRedirect'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
+// One e-mail field for everyone: the magic link signs existing users in and
+// creates the account for new e-mails (shouldCreateUser: true). Post-signup
+// work (profile, lead linking, welcome e-mail) runs in /auth/callback only
+// after the address is confirmed.
 export async function POST(request) {
   try {
-    const { email } = await request.json()
+    const { email, next, language } = await request.json()
     const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : ''
 
     if (!normalizedEmail) {
@@ -20,12 +26,15 @@ export async function POST(request) {
       return NextResponse.json(authErrorPayload('authNotConfigured'), { status: 503 })
     }
 
-    const emailRedirectTo = `${getPublicSiteUrl(request)}/auth/callback?next=${encodeURIComponent('/dashboard')}`
+    const nextPath = getSafeRedirectPath(next)
+    const emailLanguage = SUPPORTED_LANGUAGES.includes(language) ? language : DEFAULT_LANGUAGE
+    const callbackParams = new URLSearchParams({ next: nextPath, lang: emailLanguage })
+    const emailRedirectTo = `${getPublicSiteUrl(request)}/auth/callback?${callbackParams.toString()}`
     const { error } = await supabase.auth.signInWithOtp({
       email: normalizedEmail,
       options: {
         emailRedirectTo,
-        shouldCreateUser: false
+        shouldCreateUser: true
       }
     })
 
