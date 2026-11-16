@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import PropertyImage from '@/components/PropertyImage'
 import { useParams } from 'next/navigation'
-import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, X, ChevronLeft, ChevronRight, ZoomIn, Play } from 'lucide-react'
+import { Heart, MapPin, Home, Bed, Bath, Square, Car, Wifi, Utensils, Tv, ArrowLeft, Share2, Calendar, Phone, Mail, X, ChevronLeft, ChevronRight, ZoomIn, Play, Lock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -18,7 +18,10 @@ import { supabase } from '../../../lib/supabase'
 import { formatPrice as formatPriceUtil } from '../../../lib/currency'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import AuthModal from '../../../components/AuthModal'
-import { flushPendingFavorites, rememberPendingFavorite } from '../../../lib/pendingFavorites'
+import { flushPendingFavorites, isListingUnlocked, rememberPendingFavorite, rememberUnlockedListing } from '../../../lib/pendingFavorites'
+import { EXCLUSIVE_GALLERY_LOCK_ENABLED } from '@/lib/featureFlags'
+import { getPublicGallery, shouldLockExclusive } from '@/lib/exclusiveLock'
+import { getExclusiveLockCopy } from '@/lib/exclusiveLockCopy'
 import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
 import { getNewPropertyLabel } from '@/components/NewPropertyRibbon'
@@ -655,7 +658,15 @@ export default function PropertyDetailClient({ initialProperty = null }) {
   }, [initialProperty])
   const [isFavorited, setIsFavorited] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const [authModalPurpose, setAuthModalPurpose] = useState('favorite')
   const [user, setUser] = useState(null)
+  const [isUnlocked, setIsUnlocked] = useState(false)
+
+  // Soft lock for exclusive listings, only when the flag is ON (default OFF).
+  useEffect(() => {
+    if (!EXCLUSIVE_GALLERY_LOCK_ENABLED) return
+    setIsUnlocked(isListingUnlocked(slugParam))
+  }, [slugParam])
   const [language, setLanguage] = useState('cs')
   const [currency, setCurrency] = useState('EUR')
 
@@ -764,6 +775,7 @@ export default function PropertyDetailClient({ initialProperty = null }) {
   const handleFavorite = async () => {
     if (!user) {
       if (property?._id) rememberPendingFavorite(property._id)
+      setAuthModalPurpose('favorite')
       setIsAuthModalOpen(true)
       return
     }
@@ -882,6 +894,20 @@ export default function PropertyDetailClient({ initialProperty = null }) {
         </div>
       </div>
     )
+  }
+
+  // Flag OFF (default): galleryLocked is always false and the gallery is unchanged.
+  const galleryLocked = shouldLockExclusive({
+    enabled: EXCLUSIVE_GALLERY_LOCK_ENABLED,
+    property,
+    user,
+    unlocked: isUnlocked
+  })
+  const publicGallery = getPublicGallery(property.images || [], property.videoUrl, galleryLocked)
+  const lockCopy = getExclusiveLockCopy(language)
+  const handleUnlockEmail = () => {
+    rememberUnlockedListing(slugParam)
+    setIsUnlocked(true)
   }
 
   const specifications = property.specifications || {}
@@ -1023,14 +1049,33 @@ export default function PropertyDetailClient({ initialProperty = null }) {
 
             {/* Image Gallery */}
             <MediaGallery 
-              images={property.images || []}
-              videoUrl={property.videoUrl}
+              images={publicGallery.images}
+              videoUrl={publicGallery.videoUrl}
               title={getLocalizedText(property.title, 'Property')} 
               status={property.status}
               language={language}
               isNew={property.isNew}
               noAgency={property.noAgency}
             />
+            {galleryLocked && (publicGallery.hiddenPhotoCount > 0 || publicGallery.hiddenVideo) && (
+              <div className="mt-3 flex flex-col items-start gap-2 rounded-xl border border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between" data-testid="exclusive-gallery-lock">
+                <div>
+                  <p className="text-sm font-semibold text-slate-900">{lockCopy.unlockTitle}</p>
+                  <p className="text-sm text-slate-600">{lockCopy.unlockHint}</p>
+                </div>
+                <Button
+                  type="button"
+                  onClick={() => {
+                    setAuthModalPurpose('unlock')
+                    setIsAuthModalOpen(true)
+                  }}
+                >
+                  <Lock className="h-4 w-4 mr-2" />
+                  {lockCopy.unlockButton}
+                  {publicGallery.hiddenPhotoCount > 0 ? ` (${publicGallery.hiddenPhotoCount})` : ''}
+                </Button>
+              </div>
+            )}
 
             {/* Property Details */}
             <div className="flex flex-wrap gap-y-2 divide-x divide-[#0e152e]/10 border-y border-[#0e152e]/10 py-3 md:py-4">
@@ -1213,9 +1258,11 @@ export default function PropertyDetailClient({ initialProperty = null }) {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
+        onEmailSubmitted={authModalPurpose === 'unlock' ? handleUnlockEmail : undefined}
+        defaultTab="signup"
         language={language}
-        title={t('auth.loginRequired', language)}
-        message={t('auth.favoriteLoginMessage', language)}
+        title={authModalPurpose === 'unlock' ? lockCopy.unlockTitle : t('auth.loginRequired', language)}
+        message={authModalPurpose === 'unlock' ? lockCopy.unlockHint : t('auth.favoriteLoginMessage', language)}
       />
     </div>
   )
