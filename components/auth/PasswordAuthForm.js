@@ -65,7 +65,7 @@ const SENT_MODES = new Set(['registerSent', 'forgotSent'])
  */
 export default function PasswordAuthForm({
   language = 'cs',
-  nextPath = '/dashboard',
+  nextPath = '/properties',
   variant = 'light',
   idPrefix = 'auth',
   initialMode = 'register',
@@ -77,7 +77,7 @@ export default function PasswordAuthForm({
 }) {
   const styles = VARIANTS[variant] || VARIANTS.light
   const tr = (key) => t(`auth.${key}`, language)
-  const safeNext = getSafeRedirectPath(nextPath, '/dashboard')
+  const safeNext = getSafeRedirectPath(nextPath, '/properties')
   const Heading = headingLevel
 
   const [mode, setModeState] = useState(initialMode)

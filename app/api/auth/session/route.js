@@ -67,7 +67,8 @@ export async function GET() {
           id: data.user.id,
           email: data.user.email,
           user_metadata: {
-            name: data.user.user_metadata?.name || data.user.user_metadata?.full_name || null
+            name: data.user.user_metadata?.name || data.user.user_metadata?.full_name || null,
+            full_name: data.user.user_metadata?.full_name || null
           }
         }
       })

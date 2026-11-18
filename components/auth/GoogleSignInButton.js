@@ -35,7 +35,7 @@ async function isGoogleEnabled() {
  * "Pokračovat přes Google": Supabase OAuth, back to /auth/callback which
  * exchanges the code and redirects to the safe `next` path only.
  */
-export default function GoogleSignInButton({ label, nextPath = '/dashboard', className = '', onError }) {
+export default function GoogleSignInButton({ label, nextPath = '/properties', className = '', onError }) {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleClick = async () => {
@@ -48,7 +48,7 @@ export default function GoogleSignInButton({ label, nextPath = '/dashboard', cla
         setIsLoading(false)
         return
       }
-      const next = getSafeRedirectPath(nextPath, '/dashboard')
+      const next = getSafeRedirectPath(nextPath, '/properties')
       const redirectTo = `${window.location.origin}/auth/callback?${new URLSearchParams({ next }).toString()}`
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',

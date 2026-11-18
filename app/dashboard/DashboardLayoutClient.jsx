@@ -27,6 +27,7 @@ import {
   MessageCircle
 } from 'lucide-react'
 import Navigation from '../../components/Navigation'
+import { getUserDisplayName } from '../../lib/siteAuthUser'
 import { t } from '../../lib/translations'
 import { DEFAULT_LANGUAGE, persistLanguage, readLanguageFromBrowser } from '../../lib/userPreferences'
 
@@ -283,7 +284,7 @@ export default function DashboardLayout({ children }) {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-900 truncate">
-                    {userProfile?.name || user?.user_metadata?.name || user?.email}
+                    {getUserDisplayName(user, userProfile)}
                   </p>
                   <p className="text-xs text-gray-500 truncate">{user?.email}</p>
                 </div>
@@ -357,7 +358,7 @@ export default function DashboardLayout({ children }) {
               
               <div className="hidden sm:flex items-center">
                 <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-sm">
-                  {userProfile?.name?.charAt(0) || user?.email?.charAt(0) || 'U'}
+                  {getUserDisplayName(user, userProfile).charAt(0) || 'U'}
                 </div>
               </div>
             </div>

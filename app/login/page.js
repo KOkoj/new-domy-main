@@ -23,7 +23,7 @@ export default function LoginPage() {
   const tabParam = searchParams.get('tab')
   const redirectParam = searchParams.get('redirect')
   const errorParam = searchParams.get('error')
-  const redirectPath = getSafeRedirectPath(redirectParam, '/dashboard')
+  const redirectPath = getSafeRedirectPath(redirectParam, '/properties')
   const registrationHref = `/registrace?redirect=${encodeURIComponent(redirectPath)}`
   const tr = (key) => t(`auth.${key}`, language)
 

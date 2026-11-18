@@ -31,10 +31,10 @@ export default function AuthModal({
     if (typeof window !== 'undefined') {
       const { pathname, search } = window.location
       if (pathname && pathname !== '/login' && pathname !== '/registrace') {
-        return getSafeRedirectPath(`${pathname}${search || ''}`, '/dashboard')
+        return getSafeRedirectPath(`${pathname}${search || ''}`, '/properties')
       }
     }
-    return '/dashboard'
+    return '/properties'
   }
 
   const handleClose = () => {
@@ -44,7 +44,7 @@ export default function AuthModal({
     onClose()
   }
 
-  const nextPath = isOpen ? resolveNextPath() : '/dashboard'
+  const nextPath = isOpen ? resolveNextPath() : '/properties'
   const registrationHref = `/registrace?redirect=${encodeURIComponent(nextPath)}`
   const initialMode = defaultTab === 'signup' ? 'register' : 'login'
   const srTitle = mode === 'register' || mode === 'registerSent' ? tr('registerTitle') : tr('loginTitle')
