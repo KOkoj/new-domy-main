@@ -62,7 +62,7 @@ function CallBlock() {
           Zavolat Lucii
         </a>
         <p className="mt-3 text-[15px] font-medium text-[#1b2333]">{CONTACT_PHONE_DISPLAY}</p>
-        <p className="mt-1 text-[13px] text-gray-500">Po–Pá 9:00–18:00</p>
+        <p className="mt-1 text-[13px] text-gray-500">Po–Pá 9:00–20:00</p>
       </div>
     )
   }
@@ -89,7 +89,7 @@ function CallBlock() {
         ))}
       </div>
       <p className="mt-3 text-[12.5px] leading-snug text-gray-500">
-        Víkendové termíny si Lucie nastavuje sama. Teď je mimo Po–Pá 9:00–18:00.
+        Víkendové termíny si Lucie nastavuje sama. Teď je mimo Po–Pá 9:00–20:00.
       </p>
     </div>
   )
