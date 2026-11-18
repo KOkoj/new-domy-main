@@ -69,6 +69,10 @@ export async function GET() {
           user_metadata: {
             name: data.user.user_metadata?.name || data.user.user_metadata?.full_name || null,
             full_name: data.user.user_metadata?.full_name || null
+          },
+          app_metadata: {
+            provider: data.user.app_metadata?.provider || null,
+            providers: Array.isArray(data.user.app_metadata?.providers) ? data.user.app_metadata.providers : []
           }
         }
       })

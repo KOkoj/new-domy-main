@@ -29,6 +29,7 @@ import {
 import Navigation from '../../components/Navigation'
 import Footer from '../../components/Footer'
 import { loadSiteAuthUser } from '../../lib/siteAuthUser'
+import ZoneBackLink from '../../components/zone/ZoneBackLink'
 import { t } from '../../lib/translations'
 import { DEFAULT_LANGUAGE, persistLanguage, readLanguageFromBrowser } from '../../lib/userPreferences'
 
@@ -216,7 +217,11 @@ export default function DashboardLayout({ children }) {
         {isZonePage ? (
           children
         ) : (
-          <div className="mx-auto w-full max-w-[1344px] px-4 pb-16 pt-8 sm:px-6">{children}</div>
+          <div className="mx-auto w-full max-w-[1344px] px-4 pb-16 pt-8 sm:px-6">
+            {/* Settings renders its own back link inside its centered column. */}
+            {pathname !== '/dashboard/settings' ? <ZoneBackLink language={language} className="-mt-2 mb-4" /> : null}
+            {children}
+          </div>
         )}
       </main>
       <Footer language={language} />

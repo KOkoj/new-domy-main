@@ -12,6 +12,7 @@ import { t } from '@/lib/translations'
 import { resolveAuthClientMessage } from '@/lib/authMessages'
 import { isValidNewPassword } from '@/lib/authInput'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '@/lib/userPreferences'
+import ZoneBackLink from '@/components/zone/ZoneBackLink'
 
 function getProviders(user) {
   const list = user?.app_metadata?.providers
@@ -123,7 +124,7 @@ export default function AccountSettingsPage() {
 
   if (loading) {
     return (
-      <div className="animate-pulse space-y-4">
+      <div className="mx-auto max-w-2xl animate-pulse space-y-4">
         <div className="h-8 w-64 rounded bg-gray-200" />
         <div className="h-64 rounded-lg bg-gray-200" />
       </div>
@@ -131,8 +132,9 @@ export default function AccountSettingsPage() {
   }
 
   return (
-    <div className="max-w-2xl space-y-6" data-testid="account-settings">
+    <div className="mx-auto max-w-2xl space-y-6" data-testid="account-settings">
       <div>
+        <ZoneBackLink language={language} className="-mt-2 mb-2" />
         <nav className="text-sm text-gray-500" aria-label="breadcrumb">
           <Link href="/dashboard" className="hover:text-gray-800 hover:underline">{tr('breadcrumbDashboard')}</Link>
           <span aria-hidden="true"> / </span>
