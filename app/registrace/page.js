@@ -22,13 +22,13 @@ const BENEFIT_ICONS = [Heart, Search, MessageSquare, ClipboardList]
 // Figma 1b (mobile): eyebrow, title, form, benefits, steps, FAQ.
 export default function RegistrationPage() {
   const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
-  const [nextPath, setNextPath] = useState('/dashboard')
+  const [nextPath, setNextPath] = useState('/properties')
   const [openFaq, setOpenFaq] = useState(0)
 
   useEffect(() => {
     setLanguage(readLanguageFromBrowser())
     const params = new URLSearchParams(window.location.search)
-    setNextPath(getSafeRedirectPath(params.get('redirect'), '/dashboard'))
+    setNextPath(getSafeRedirectPath(params.get('redirect'), '/properties'))
 
     const handleLanguageChange = (event) => setLanguage(event.detail)
     window.addEventListener('languageChange', handleLanguageChange)

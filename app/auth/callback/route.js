@@ -47,7 +47,7 @@ const ALLOWED_OTP_TYPES = new Set(['email', 'signup', 'magiclink', 'invite', 're
 
 export async function GET(request) {
   const url = new URL(request.url)
-  const nextPath = getSafeRedirectPath(url.searchParams.get('next'), '/dashboard')
+  const nextPath = getSafeRedirectPath(url.searchParams.get('next'), '/properties')
   const redirectUrl = new URL(nextPath, url.origin)
 
   try {
