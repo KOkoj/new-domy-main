@@ -83,7 +83,10 @@ export async function POST(request) {
         emailRedirectTo,
         data: {
           name: trimmedName,
-          full_name: trimmedName
+          full_name: trimmedName,
+          // This route sends the welcome e-mail itself; the e-mail sign-in
+          // callback must not send it again.
+          welcome_email_sent: true
         }
       }
     })

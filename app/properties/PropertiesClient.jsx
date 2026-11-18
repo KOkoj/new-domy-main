@@ -39,6 +39,9 @@ import { isListingQueryActive, moveNewListingsLast } from './listingQuery';
 import PropertyCard from './PropertyCard';
 
 const AuthModal = dynamic(() => import('../../components/AuthModal'), { ssr: false });
+import { flushPendingFavorites, isListingUnlocked, rememberPendingFavorite } from '../../lib/pendingFavorites';
+import { EXCLUSIVE_GALLERY_LOCK_ENABLED } from '../../lib/featureFlags';
+import { approximateLatLng, shouldLockExclusive } from '../../lib/exclusiveLock';
 
 const getPropertyTimestamp = (property) => {
   const value = property?.createdAt || property?.updatedAt || property?._createdAt || property?._updatedAt;
@@ -198,7 +201,8 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       const response = await fetch('/api/favorites');
       if (response.ok) {
         const favorites = await response.json();
-        setUserFavorites(new Set(favorites.map(fav => fav.listingId)));
+        const ids = await flushPendingFavorites(favorites.map(fav => fav.listingId));
+        setUserFavorites(ids);
       }
     } catch (error) {
       console.error('Error loading favorites:', error);
@@ -207,6 +211,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
 
   const handleToggleFavorite = async (propertyId) => {
     if (!user) {
+      rememberPendingFavorite(propertyId);
       setIsAuthModalOpen(true);
       return;
     }
@@ -521,6 +526,22 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
     }
     return sorted;
   }, [filteredProperties, sortBy, filters]);
+
+  // Flag ON only (default OFF): exclusive listings show the area, not the
+  // exact point, until the visitor has signed in or unlocked the listing.
+  const mapProperties = useMemo(() => {
+    if (!EXCLUSIVE_GALLERY_LOCK_ENABLED || user) return sortedProperties;
+    return sortedProperties.map((property) => (
+      shouldLockExclusive({
+        enabled: true,
+        property,
+        user,
+        unlocked: isListingUnlocked(property.slug)
+      })
+        ? { ...property, location: approximateLatLng(property.location) }
+        : property
+    ));
+  }, [sortedProperties, user]);
 
   // Get displayed properties (for pagination)
   const displayedProperties = useMemo(() => {
@@ -1151,7 +1172,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
                   <div className="hidden lg:block lg:w-1/2 lg:h-full">
                     <div className="h-full overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
                       <MapComponent
-                        properties={sortedProperties}
+                        properties={mapProperties}
                         selectedId={selectedPropertyId}
                         hoveredId={hoveredPropertyId}
                         onSelect={setSelectedPropertyId}
@@ -1171,7 +1192,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
       {mobileMapActive && (
         <div className="fixed inset-x-0 bottom-0 top-20 z-40 lg:hidden" data-testid="mobile-map-overlay">
           <MapComponent
-            properties={sortedProperties}
+            properties={mapProperties}
             selectedId={selectedPropertyId}
             hoveredId={hoveredPropertyId}
             onSelect={setSelectedPropertyId}
@@ -1229,6 +1250,7 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
+        defaultTab="signup"
         language={language}
         title={t('auth.loginRequired', language)}
         message={t('auth.favoriteLoginMessage', language)}

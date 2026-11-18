@@ -1,59 +1,22 @@
-# Supabase Auth emails (Domy v Itálii)
+# Auth e-maily – Domy v Itálii
 
-Supabase currently sends reset-password, magic-link, and confirm-signup emails
-from `noreply@mail.app.supabase.io` using the default English templates. That
-sender is rate-limited. Templates live in the Supabase dashboard, not in the
-app runtime, so this folder is the copy-paste source of truth.
+Přihlášení a registrace už **nepoužívají e-maily Supabase** (přihlašovací odkaz, ověřovací kód, odkaz na reset hesla).
+Všechny auth e-maily posílá aplikace sama přes Resend:
 
-The HTML files match the welcome email style used by Resend (Arial, slate
-text, uppercase eyebrow, dark CTA button). Czech is the primary language, with
-a short English fallback under the main copy.
+| E-mail | Kdy | Kód |
+|---|---|---|
+| 5a „Vaše heslo do Klubu Domy v Itálii“ | registrace e-mailem (`/api/auth/register`) | `lib/passwordEmail.js` (`kind: 'registration'`) |
+| 5b „Nové heslo do Klubu Domy v Itálii“ | „Zapomenuté heslo?“ (`/api/auth/forgot-password`) | `lib/passwordEmail.js` (`kind: 'newPassword'`) |
+| Uvítací e-mail | první přihlášení přes Google | `lib/welcomeEmail.js` |
 
-## 1. Point Auth custom SMTP at the existing Resend account
+Odesílatel: `Domy v Itálii <info@domyvitalii.cz>` (env `AUTH_EMAIL_FROM`, výchozí hodnota v kódu).
+E-mail obsahuje heslo a jediné tlačítko na `https://domyvitalii.cz/login` – žádný přihlašovací odkaz s tokenem.
 
-Do this in the **canonical** Supabase project used by production. Do not create
-a new Resend account.
+## Co nastavit
 
-1. In Resend, confirm the domain `domyvitalii.cz` is verified and that
-   `info@domyvitalii.cz` is an allowed sender.
-2. Create a **new** Resend API key (or reuse an existing server key). Store it
-   in the password manager. Do not put the key in this repo.
-3. Open **Supabase Dashboard → Authentication → Emails → SMTP Settings**.
-4. Enable custom SMTP and fill in:
-
-   | Field | Value |
-   | --- | --- |
-   | Host | `smtp.resend.com` |
-   | Port | `465` |
-   | Username | `resend` |
-   | Password | the Resend API key from step 2 |
-   | Sender email | `info@domyvitalii.cz` |
-   | Sender name | `Domy v Itálii` |
-
-5. Save and send a test email from the same screen.
-6. Confirm the message arrives from `info@domyvitalii.cz`, not
-   `noreply@mail.app.supabase.io`.
-
-Resend SMTP uses the same API-key password as the existing transactional
-integration. Do not invent or commit any secret values.
-
-## 2. Paste the branded templates
-
-In **Supabase Dashboard → Authentication → Email Templates**, replace the
-default HTML for each type with the matching file in this folder.
-
-Suggested subjects (set in the same dashboard screen):
-
-| Template | File | Subject |
-| --- | --- | --- |
-| Confirm signup | `confirm-signup.html` | `Potvrďte účet \| Domy v Itálii` |
-| Magic link | `magic-link.html` | `Přihlašovací odkaz \| Domy v Itálii` |
-| Reset password | `reset-password.html` | `Obnovení hesla \| Domy v Itálii` |
-
-Keep the GoTrue variables as-is (`{{ .ConfirmationURL }}`, `{{ .Email }}`,
-`{{ .SiteURL }}`). Do not rewrite them to app URLs; Supabase fills them when
-the email is sent.
-
-After saving, request a reset link, a magic link, and a new signup from
-https://www.domyvitalii.cz and check that each email is Czech, branded, and
-sent through Resend.
+- Vercel env: `RESEND_API_KEY` (doména `domyvitalii.cz` je v Resendu ověřená). Bez klíče se e-mail s heslem
+  v produkci **neodešle** a registrace vrátí chybu (heslo se nikdy nezapisuje do logu).
+- Supabase dashboard → Authentication → Email Templates: šablony se už nepoužívají, není potřeba je měnit.
+  Supabase je pošle jen při ruční akci v dashboardu (pozvánka, změna e-mailu).
+- Supabase → Authentication → Providers → Email: musí zůstat zapnutý (přihlášení heslem).
+  „Confirm email“ může zůstat zapnuté – účty z registrace se zakládají rovnou jako potvrzené.

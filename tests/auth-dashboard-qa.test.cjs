@@ -66,21 +66,21 @@ test('language helpers default to Czech without reading client storage on first 
   assert.match(read('app/layout.js'), /readLanguageFromCookies/)
 })
 
-test('password reset and magic link routes exist', () => {
-  assert.match(read('app/api/auth/forgot-password/route.js'), /resetPasswordForEmail/)
-  assert.match(read('app/api/auth/magic-link/route.js'), /signInWithOtp/)
-  assert.match(read('app/api/auth/reset-password/route.js'), /updateUser\(\{ password/)
+test('password, forgotten password and registration routes exist', () => {
+  assert.match(read('app/api/auth/forgot-password/route.js'), /savePendingPassword/)
+  assert.match(read('app/api/auth/register/route.js'), /createUser/)
+  assert.match(read('app/api/auth/login/route.js'), /signInWithPassword/)
   assert.match(read('app/api/auth/change-password/route.js'), /signInWithPassword/)
-  assert.match(read('app/forgot-password/page.js'), /forgotPasswordTitle/)
-  assert.match(read('app/reset-password/page.js'), /saveNewPassword/)
-  assert.match(read('components/AuthModal.js'), /forgot-password/)
-  assert.match(read('app/login/page.js'), /forgot-password/)
-  assert.match(read('components/AuthModal.js'), /\/api\/auth\/magic-link/)
+  assert.match(read('app/forgot-password/page.js'), /redirect\('\/login\?tab=forgot'\)/)
+  assert.match(read('app/reset-password/page.js'), /redirect\('\/login\?tab=forgot'\)/)
+  assert.match(read('components/auth/PasswordAuthForm.js'), /forgot-password/)
+  assert.match(read('components/AuthModal.js'), /PasswordAuthForm/)
+  assert.match(read('app/login/page.js'), /PasswordAuthForm/)
 })
 
 test('auth modal title follows the active tab', () => {
   const source = read('components/AuthModal.js')
-  assert.match(source, /activeTab === 'signup' \? tr\('signup'\) : tr\('login'\)/)
+  assert.match(source, /mode === 'register' \|\| mode === 'registerSent' \? tr\('registerTitle'\) : tr\('loginTitle'\)/)
   assert.doesNotMatch(source, /const displayTitle = title \|\|/)
 })
 

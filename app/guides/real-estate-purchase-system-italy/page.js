@@ -407,7 +407,7 @@ const CLEAN_CONTENT = {
 }
 
 const INTAKE_FORM_PATH = '/dashboard/intake-form'
-const INTAKE_SIGNUP_PATH = `/login?tab=signup&redirect=${encodeURIComponent(INTAKE_FORM_PATH)}`
+const INTAKE_SIGNUP_PATH = `/registrace?redirect=${encodeURIComponent(INTAKE_FORM_PATH)}`
 
 function formatDate(language, value) {
   const locale = language === 'cs' ? 'cs-CZ' : language === 'it' ? 'it-IT' : 'en-US'
