@@ -34,6 +34,7 @@ import { SITE_ORIGIN } from '@/lib/contactDetails'
 import { trackClientEvent } from '@/lib/trackClientEvent'
 import { useSwipe, SWIPE_STYLE } from '@/hooks/use-swipe'
 import { readAttributionForSubmit, trackLead } from '@/lib/adsTracking'
+import { useSiteAuthUser, loadSiteAuthUser } from '@/lib/siteAuthUser'
 
 const INQUIRY_FORM_ID = 'inquiry-form'
 
@@ -660,6 +661,11 @@ export default function PropertyDetailClient({ initialProperty = null }) {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [authModalPurpose, setAuthModalPurpose] = useState('favorite')
   const [user, setUser] = useState(null)
+  // Server session is the source of truth (browser Supabase auth can hang).
+  const { user: siteUser } = useSiteAuthUser()
+  useEffect(() => {
+    if (siteUser) setUser(siteUser)
+  }, [siteUser])
   const [isUnlocked, setIsUnlocked] = useState(false)
 
   // Soft lock for exclusive listings, only when the flag is ON (default OFF).
@@ -688,13 +694,6 @@ export default function PropertyDetailClient({ initialProperty = null }) {
       setCurrency(savedCurrency)
     }
 
-    // Check if user is authenticated
-    const checkUser = async () => {
-      if (!supabase) return
-      const { data: { user } } = await supabase.auth.getUser()
-      setUser(user)
-    }
-    checkUser()
 
     // Listen for language and currency changes from Navigation component
     const handleLanguageChange = (e) => {
@@ -773,7 +772,12 @@ export default function PropertyDetailClient({ initialProperty = null }) {
   }
 
   const handleFavorite = async () => {
-    if (!user) {
+    let currentUser = user
+    if (!currentUser) {
+      currentUser = await loadSiteAuthUser({ force: true }).catch(() => null)
+      if (currentUser) setUser(currentUser)
+    }
+    if (!currentUser) {
       if (property?._id) rememberPendingFavorite(property._id)
       setAuthModalPurpose('favorite')
       setIsAuthModalOpen(true)

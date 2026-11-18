@@ -42,6 +42,7 @@ const AuthModal = dynamic(() => import('../../components/AuthModal'), { ssr: fal
 import { flushPendingFavorites, isListingUnlocked, rememberPendingFavorite } from '../../lib/pendingFavorites';
 import { EXCLUSIVE_GALLERY_LOCK_ENABLED } from '../../lib/featureFlags';
 import { approximateLatLng, shouldLockExclusive } from '../../lib/exclusiveLock';
+import { useSiteAuthUser, loadSiteAuthUser } from '../../lib/siteAuthUser';
 
 const getPropertyTimestamp = (property) => {
   const value = property?.createdAt || property?.updatedAt || property?._createdAt || property?._updatedAt;
@@ -173,28 +174,16 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   const searchRef = useRef(null);
   const inputRef = useRef(null);
 
+  // Logged-in state comes from the server session (/api/auth/session);
+  // the browser Supabase client can hang on its auth lock and report
+  // "logged out", which made the heart ask a logged-in user to log in.
+  const { user: siteUser } = useSiteAuthUser();
   useEffect(() => {
-    if (!supabase) return;
-    const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-      if (user) {
-        loadFavorites(user.id);
-      }
-    };
-    checkUser();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user || null);
-      if (session?.user) {
-        loadFavorites(session.user.id);
-      } else {
-        setUserFavorites(new Set());
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
+    if (siteUser) {
+      setUser(siteUser);
+      loadFavorites(siteUser.id);
+    }
+  }, [siteUser]);
 
   const loadFavorites = async (userId) => {
     try {
@@ -210,7 +199,12 @@ export default function PropertiesClient({ initialProperties = [], intro = null 
   };
 
   const handleToggleFavorite = async (propertyId) => {
-    if (!user) {
+    let currentUser = user;
+    if (!currentUser) {
+      currentUser = await loadSiteAuthUser({ force: true }).catch(() => null);
+      if (currentUser) setUser(currentUser);
+    }
+    if (!currentUser) {
       rememberPendingFavorite(propertyId);
       setIsAuthModalOpen(true);
       return;
