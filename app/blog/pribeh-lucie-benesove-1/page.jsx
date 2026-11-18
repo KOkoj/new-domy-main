@@ -60,7 +60,7 @@ export default function LucieBenesovaStoryPage() {
               <p key={block.id} className="text-pretty text-lg leading-[1.85] text-slate-700">{block.text}</p>
             ))}
             <section aria-label="Chcete taky pomoct s koupí?" data-testid="benesova-story-cta" className="!mt-14 rounded-[1.75rem] bg-[#1b2642] px-6 py-8 text-white sm:px-10 sm:py-10">
-              <h2 className="text-pretty text-[1.65rem] font-bold leading-tight sm:text-[2rem]">Chcete taky pomoct s koupí?</h2>
+              <h2 className="text-pretty text-[1.65rem] font-bold leading-tight !text-white sm:text-[2rem]">Chcete taky pomoct s koupí?</h2>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a href={buildWhatsappUrl('Dobrý den, mám dotaz ke koupi nemovitosti v Itálii.')} rel="noopener noreferrer" data-testid="benesova-cta-whatsapp" className="inline-flex items-center justify-center rounded-full bg-[#25D366] px-6 py-3 font-semibold text-[#0b2a17] transition hover:brightness-95">WhatsApp</a>
                 <a href={`tel:${CONTACT_PHONE_E164}`} data-testid="benesova-cta-phone" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 font-semibold text-[#1b2642] transition hover:bg-slate-100">Zavolat</a>
