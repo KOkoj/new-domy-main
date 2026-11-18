@@ -32,6 +32,8 @@ export function formatSearchSummary(filters) {
 // Saved houses come pre-joined from the server (only the favorited listings),
 // instead of downloading the whole property inventory in the browser.
 async function loadSavedHouses() {
+  // Logged-out visitors are redirected to /login; don't fire a 401 meanwhile.
+  if (typeof document !== 'undefined' && !/(?:^|;\s*)sb-[^=;]+-auth-token(?:\.\d+)?=/.test(document.cookie || '')) return []
   const response = await fetch('/api/favorites/houses', { cache: 'no-store', credentials: 'same-origin' })
   if (!response.ok) return []
   const houses = await response.json()
