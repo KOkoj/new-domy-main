@@ -294,7 +294,7 @@ export default function PasswordAuthForm({
             setPassword(event.target.value)
             if (wrongPassword) setWrongPassword(false)
           }}
-          className={`${styles.input} pr-12 ${isSentMode ? 'font-mono tracking-wider' : ''}`}
+          className={`${styles.input} pr-12 ${isSentMode ? 'font-mono tracking-wider placeholder:font-sans placeholder:tracking-normal' : ''}`}
           aria-invalid={wrongPassword || undefined}
           required
           data-testid="auth-password-input"

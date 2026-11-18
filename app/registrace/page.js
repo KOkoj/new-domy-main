@@ -46,7 +46,7 @@ export default function RegistrationPage() {
 
       <main className="pb-16 pt-32 sm:pt-40">
         <div className="container mx-auto max-w-6xl px-5 sm:px-6">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-14">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-8">
             <header className="lg:col-start-2 lg:row-start-1" data-testid="registrace-header">
               <p className="mb-2 text-sm font-semibold uppercase tracking-[0.12em] text-[#c78b5a]">{tr('eyebrow')}</p>
               <h1 className="text-pretty">{tr('title')}</h1>
