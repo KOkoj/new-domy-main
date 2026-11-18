@@ -118,11 +118,12 @@ test('Supabase auth errors map to translation keys', () => {
   )
 })
 
-test('dashboard sidebar can scroll at short viewport heights', () => {
+test('client zone has no left menu: site header, centered thread layout', () => {
   const source = read('app/dashboard/DashboardLayoutClient.jsx')
-  assert.match(source, /flex flex-col h-full min-h-0/)
-  assert.match(source, /flex-1 min-h-0 overflow-y-auto/)
-  assert.match(source, /p-4 border-t flex-shrink-0/)
+  assert.match(source, /<Navigation \/>/)
+  assert.doesNotMatch(source, /lg:pl-64/)
+  assert.match(read('components/zone/ZoneShell.jsx'), /max-w-\[1344px\]/)
+  assert.match(read('components/zone/ZoneShell.jsx'), /lg:w-\[340px\]/)
 })
 
 test('welcome email Czech subject uses club wording', () => {
