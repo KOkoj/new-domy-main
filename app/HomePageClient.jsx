@@ -21,7 +21,7 @@ import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import Navigation from '../components/Navigation'
 import { LanguageMenu, SiteNavMenu } from '../components/SiteNavControls'
 import { supabase } from '../lib/supabase'
-import { useSiteAuthUser, notifySiteAuthChanged } from '../lib/siteAuthUser'
+import { useSiteAuthUser, notifySiteAuthChanged, getUserDisplayName } from '../lib/siteAuthUser'
 import { t } from '../lib/translations'
 import { readLanguageFromBrowser, readCurrencyFromBrowser, persistLanguage, persistCurrency, DEFAULT_LANGUAGE, DEFAULT_CURRENCY, getInitialLanguage, getInitialCurrency } from '../lib/userPreferences'
 
@@ -825,7 +825,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
                   href="/dashboard"
                   className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/25 px-4 py-2 text-base font-medium text-white backdrop-blur-sm"
                 >
-                  {language === 'cs' ? 'Nástěnka' : language === 'it' ? 'Cruscotto' : 'Dashboard'}
+                  {user.user_metadata?.name || getUserDisplayName(user, null) || user.email}
                 </Link>
               ) : (
                 <button
