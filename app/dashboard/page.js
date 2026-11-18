@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import ZoneShell, { HouseRow, StatusBadge, houseHref } from '@/components/zone/ZoneShell'
+import ZoneShell, { ZoneSkeleton, HouseRow, StatusBadge, houseHref } from '@/components/zone/ZoneShell'
 import { TeamAvatars } from '@/components/zone/ZoneSidebar'
 import { useZoneData } from '@/components/zone/useZoneData'
 
@@ -89,9 +89,9 @@ export default function DashboardThread() {
 
   if (data.loading) {
     return (
-      <div className="flex min-h-[50vh] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-[#2d5a27]" />
-      </div>
+      <ZoneShell data={data}>
+        <ZoneSkeleton variant="thread" />
+      </ZoneShell>
     )
   }
 

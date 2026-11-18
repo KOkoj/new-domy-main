@@ -46,3 +46,24 @@ test('sidebar contacts Lucie via shared contact details', () => {
   assert.match(sidebar, /TEAM_CONTACTS\[0\]/)
   assert.match(sidebar, /\/dashboard\/settings/)
 })
+
+test('zone loads fast: no full inventory download, no session waterfall', () => {
+  const hook = read('components/zone/useZoneData.js')
+  assert.doesNotMatch(hook, /\/api\/properties/)
+  assert.doesNotMatch(hook, /getDashboardUser|auth\.getUser\(/)
+  assert.match(hook, /\/api\/favorites\/houses/)
+  assert.match(hook, /loadSiteAuthUser/)
+
+  const route = read('app/api/favorites/houses/route.js')
+  assert.match(route, /getAuthenticatedUser/)
+  assert.match(route, /_id in \$ids/)
+  assert.doesNotMatch(route, /getListableProperties|getAllProperties/)
+
+  const layout = read('app/dashboard/DashboardLayoutClient.jsx')
+  assert.doesNotMatch(layout, /\/api\/profile/)
+  assert.match(layout, /loading && !isZonePage/)
+
+  for (const file of ['app/dashboard/page.js', 'app/dashboard/ulozene/page.js']) {
+    assert.match(read(file), /<ZoneSkeleton/, file)
+  }
+})

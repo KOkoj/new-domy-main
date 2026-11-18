@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { getDashboardUser } from '@/lib/dashboardAuth'
+import { getUserDisplayName } from '@/lib/siteAuthUser'
 import { t } from '@/lib/translations'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '@/lib/userPreferences'
 import Link from 'next/link'
@@ -215,7 +216,7 @@ export default function DashboardOverview() {
       {/* Header */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
-          {t('club.welcomeBack', language)}, {user?.user_metadata?.name || user?.email || ''}!
+          {t('club.welcomeBack', language)}, {getUserDisplayName(user)}!
         </h1>
         <p className="text-gray-600 mt-1">{t('club.dashboardSubtitle', language)}</p>
       </div>

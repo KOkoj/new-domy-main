@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import ZoneShell, { StatusBadge, houseHref } from '@/components/zone/ZoneShell'
+import ZoneShell, { ZoneSkeleton, StatusBadge, houseHref } from '@/components/zone/ZoneShell'
 import { formatListedAt, formatPrice, useZoneData } from '@/components/zone/useZoneData'
 
 export default function SavedHousesPage() {
@@ -9,9 +9,9 @@ export default function SavedHousesPage() {
 
   if (data.loading) {
     return (
-      <div className="flex min-h-[50vh] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-[#2d5a27]" />
-      </div>
+      <ZoneShell data={data}>
+        <ZoneSkeleton variant="grid" />
+      </ZoneShell>
     )
   }
 

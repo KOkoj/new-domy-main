@@ -28,6 +28,7 @@ import {
 } from 'lucide-react'
 import Navigation from '../../components/Navigation'
 import Footer from '../../components/Footer'
+import { loadSiteAuthUser } from '../../lib/siteAuthUser'
 import { t } from '../../lib/translations'
 import { DEFAULT_LANGUAGE, persistLanguage, readLanguageFromBrowser } from '../../lib/userPreferences'
 
@@ -115,7 +116,6 @@ const getDashboardMenuItems = (language) => [
 export default function DashboardLayout({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [userProfile, setUserProfile] = useState(null)
   const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
   const router = useRouter()
   const pathname = usePathname()
@@ -142,35 +142,17 @@ export default function DashboardLayout({ children }) {
     window.dispatchEvent(new CustomEvent('languageChange', { detail: newLanguage }))
   }
 
+  // One shared server session request (same one the header uses), no
+  // profile request here: the zone layout no longer shows the profile, and the
+  // old session -> profile chain kept every dashboard page blank meanwhile.
   const checkUserAccess = async () => {
     try {
-      const sessionResponse = await fetch('/api/auth/session', { cache: 'no-store' })
-      if (!sessionResponse.ok) {
+      const sessionUser = await loadSiteAuthUser()
+      if (!sessionUser) {
         router.push('/login?redirect=/dashboard')
         return
       }
-
-      const sessionPayload = await sessionResponse.json()
-      if (!sessionPayload?.authenticated || !sessionPayload?.user) {
-        router.push('/login?redirect=/dashboard')
-        return
-      }
-
-      setUser(sessionPayload.user)
-
-      // Load user profile
-      try {
-        const profileResponse = await fetch('/api/profile', { cache: 'no-store' })
-        if (profileResponse.ok) {
-          const profilePayload = await profileResponse.json()
-          setUserProfile(profilePayload?.profile || null)
-        } else {
-          setUserProfile(null)
-        }
-      } catch (profileError) {
-        console.error('Profile load failed:', profileError)
-        setUserProfile(null)
-      }
+      setUser(sessionUser)
     } catch (error) {
       console.error('User access check failed:', error)
       router.push('/login?redirect=/dashboard')
@@ -189,7 +171,12 @@ export default function DashboardLayout({ children }) {
     }
   }
 
-  if (loading) {
+  // Client zone ("vlákno"): site header + centered content, no left menu.
+  // The old menu items (getDashboardMenuItems) and their routes stay in code,
+  // just not linked from the zone.
+  const isZonePage = pathname === '/dashboard' || pathname === '/dashboard/ulozene'
+
+  if (loading && !isZonePage) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
@@ -200,7 +187,7 @@ export default function DashboardLayout({ children }) {
     )
   }
 
-  if (!user) {
+  if (!loading && !user) {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navigation />
@@ -221,11 +208,6 @@ export default function DashboardLayout({ children }) {
       </div>
     )
   }
-
-  // Client zone ("vlákno"): site header + centered content, no left menu.
-  // The old menu items (getDashboardMenuItems) and their routes stay in code,
-  // just not linked from the zone.
-  const isZonePage = pathname === '/dashboard' || pathname === '/dashboard/ulozene'
 
   return (
     <div className="site-page min-h-screen bg-[#f7f4ed] overflow-x-hidden" data-testid="zone-layout">

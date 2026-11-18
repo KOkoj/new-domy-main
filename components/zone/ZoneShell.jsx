@@ -50,3 +50,39 @@ export function HouseRow({ house }) {
     </Link>
   )
 }
+
+// Shown immediately while the zone data loads: real layout + sidebar, grey
+// placeholders in the main column (no spinner-only screen).
+export function ZoneSkeleton({ variant = 'thread' }) {
+  return (
+    <div className="animate-pulse" data-testid="zone-skeleton" aria-busy="true">
+      <div className="h-9 w-64 rounded-lg bg-[#ebe5da] sm:h-10" />
+      {variant === 'grid' ? (
+        <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="overflow-hidden rounded-xl border border-[#ebe5da] bg-white">
+              <div className="h-[180px] bg-[#f1ece3]" />
+              <div className="space-y-2 p-4">
+                <div className="h-4 w-3/4 rounded bg-[#f1ece3]" />
+                <div className="h-4 w-1/3 rounded bg-[#f1ece3]" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-8 space-y-3">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="flex gap-4 rounded-xl border border-[#ebe5da] bg-white p-2.5">
+              <div className="h-[84px] w-[116px] flex-shrink-0 rounded-lg bg-[#f1ece3]" />
+              <div className="flex-1 space-y-2 py-1">
+                <div className="h-4 w-2/3 rounded bg-[#f1ece3]" />
+                <div className="h-3 w-1/3 rounded bg-[#f1ece3]" />
+                <div className="h-4 w-1/4 rounded bg-[#f1ece3]" />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}

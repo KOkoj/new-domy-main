@@ -2,10 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
-import { getDashboardUser } from '@/lib/dashboardAuth'
-import { mapApiPropertyForDashboard, localizedField } from '@/lib/dashboardListings'
-import { resolvePropertyId } from '@/lib/propertyAliases'
-import { getUserDisplayName } from '@/lib/siteAuthUser'
+import { getUserDisplayName, loadSiteAuthUser } from '@/lib/siteAuthUser'
 
 const EMPTY = {
   loading: true,
@@ -32,37 +29,20 @@ export function formatSearchSummary(filters) {
   return parts.join(' · ')
 }
 
+// Saved houses come pre-joined from the server (only the favorited listings),
+// instead of downloading the whole property inventory in the browser.
 async function loadSavedHouses() {
-  const [favoritesResponse, propertiesResponse] = await Promise.all([
-    fetch('/api/favorites', { cache: 'no-store' }),
-    fetch('/api/properties')
-  ])
-  if (!favoritesResponse.ok) return []
-  const favorites = await favoritesResponse.json()
-  if (!Array.isArray(favorites) || favorites.length === 0) return []
+  const response = await fetch('/api/favorites/houses', { cache: 'no-store', credentials: 'same-origin' })
+  if (!response.ok) return []
+  const houses = await response.json()
+  return Array.isArray(houses) ? houses : []
+}
 
-  const rawProperties = propertiesResponse.ok ? await propertiesResponse.json() : []
-  const properties = (Array.isArray(rawProperties) ? rawProperties : []).map(mapApiPropertyForDashboard)
-
-  return favorites
-    .map((favorite) => {
-      const listingId = resolvePropertyId(favorite.listingId)
-      const property = properties.find((p) => p._id === listingId || p.slug === listingId)
-      if (!property) return null
-      return {
-        id: property._id,
-        slug: property.slug,
-        title: localizedField(property.titleI18n, 'cs'),
-        region: localizedField(property.regionI18n, 'cs'),
-        price: property.price,
-        currency: property.currency || 'EUR',
-        image: property.image,
-        status: property.status || 'available',
-        listedAt: property.createdAt,
-        savedAt: favorite.createdAt
-      }
-    })
-    .filter(Boolean)
+async function loadProfile() {
+  const response = await fetch('/api/profile', { cache: 'no-store', credentials: 'same-origin' })
+  if (!response.ok) return null
+  const payload = await response.json()
+  return payload?.profile || null
 }
 
 async function loadSavedSearch(userId) {
@@ -86,36 +66,48 @@ async function loadHasPurchases(userId) {
   return (count || 0) > 0
 }
 
+// Last result, so switching between /dashboard and /dashboard/ulozene renders
+// instantly and refreshes in the background.
+let lastZoneData = null
+
 export function useZoneData() {
-  const [state, setState] = useState(EMPTY)
+  const [state, setState] = useState(() => lastZoneData || EMPTY)
 
   useEffect(() => {
     let cancelled = false
-    async function load() {
-      const user = await getDashboardUser(supabase)
-      if (!user) {
-        if (!cancelled) setState({ ...EMPTY, loading: false })
-        return
-      }
-      const settle = (promise, fallback) => promise.catch((error) => {
+    const settle = (promise, fallback) =>
+      Promise.resolve(promise).catch((error) => {
         console.error('Zone data load failed:', error)
         return fallback
       })
-      const [profile, savedHouses, savedSearch, hasPurchases] = await Promise.all([
-        settle(fetch('/api/profile', { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).then((p) => p?.profile || null), null),
-        settle(loadSavedHouses(), []),
-        settle(loadSavedSearch(user.id), null),
-        settle(loadHasPurchases(user.id), false)
+
+    async function load() {
+      // Everything starts at once (no waterfall). The session comes from the
+      // same shared server request the header uses (lib/siteAuthUser), not
+      // from the browser auth client, whose lock can stall the page.
+      const userPromise = settle(loadSiteAuthUser(), null)
+      const housesPromise = settle(loadSavedHouses(), [])
+      const userScoped = userPromise.then((user) => {
+        if (!user) return [null, null, false]
+        const needsProfile = !getUserDisplayName(user) || getUserDisplayName(user).includes('@')
+        return Promise.all([
+          needsProfile ? settle(loadProfile(), null) : null,
+          settle(loadSavedSearch(user.id), null),
+          settle(loadHasPurchases(user.id), false)
+        ])
+      })
+
+      const [user, savedHouses, [profile, savedSearch, hasPurchases]] = await Promise.all([
+        userPromise,
+        housesPromise,
+        userScoped
       ])
       if (cancelled) return
-      setState({
-        loading: false,
-        user,
-        firstName: pickFirstName(profile, user),
-        savedHouses,
-        savedSearch,
-        hasPurchases
-      })
+      const next = user
+        ? { loading: false, user, firstName: pickFirstName(profile, user), savedHouses, savedSearch, hasPurchases }
+        : { ...EMPTY, loading: false }
+      lastZoneData = user ? next : null
+      setState(next)
     }
     load()
     return () => {
