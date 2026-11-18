@@ -21,11 +21,29 @@ import {
   CheckCircle,
   Settings
 } from 'lucide-react'
-import { supabase } from '../../../lib/supabase'
-import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
 import Link from 'next/link'
+
+async function api(method, body, query = '') {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 12000)
+  try {
+    const res = await fetch('/api/saved-searches' + query, {
+      method,
+      cache: 'no-store',
+      credentials: 'same-origin',
+      headers: body ? { 'Content-Type': 'application/json' } : undefined,
+      body: body ? JSON.stringify(body) : undefined,
+      signal: controller.signal
+    })
+    const payload = await res.json().catch(() => ({}))
+    if (!res.ok) throw Object.assign(new Error(payload.error || `HTTP ${res.status}`), { status: res.status })
+    return payload
+  } finally {
+    clearTimeout(timer)
+  }
+}
 
 export default function SavedSearchesManagement() {
   const [savedSearches, setSavedSearches] = useState([])
@@ -52,22 +70,8 @@ export default function SavedSearchesManagement() {
 
   const loadSavedSearches = async () => {
     try {
-      const user = await getDashboardUser(supabase)
-      if (!user || !supabase) {
-        setLoading(false)
-        return
-      }
-      
-      setUser(user)
-
-      const { data: searches, error } = await supabase
-        .from('saved_searches')
-        .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-
-      if (error) throw error
-
+      const { searches } = await api('GET')
+      setUser(true)
       setSavedSearches((searches || []).map(s => ({
         ...s,
         userId: s.user_id,
@@ -106,7 +110,6 @@ export default function SavedSearchesManagement() {
   }
 
   const saveSearch = async () => {
-    if (!supabase) return
     if (!editingSearch.name.trim()) {
       alert(t('club.searchesPage.nameRequired', language))
       return
@@ -115,34 +118,21 @@ export default function SavedSearchesManagement() {
     try {
       if (editingSearch.id === 'new') {
         // Create new search
-        const { data, error } = await supabase
-          .from('saved_searches')
-          .insert([{
-            user_id: user.id,
-            name: editingSearch.name,
-            filters: editingSearch.filters,
-            notifications: editingSearch.notifications
-          }])
-          .select()
-          .single()
-
-        if (error) throw error
+        const { search: data } = await api('POST', {
+          name: editingSearch.name,
+          filters: editingSearch.filters,
+          notifications: editingSearch.notifications
+        })
 
         setSavedSearches(prev => [{...data, userId: data.user_id, createdAt: data.created_at}, ...prev])
       } else {
         // Update existing search
-        const { data, error } = await supabase
-          .from('saved_searches')
-          .update({
-            name: editingSearch.name,
-            filters: editingSearch.filters,
-            notifications: editingSearch.notifications
-          })
-          .eq('id', editingSearch.id)
-          .select()
-          .single()
-
-        if (error) throw error
+        const { search: data } = await api('PATCH', {
+          id: editingSearch.id,
+          name: editingSearch.name,
+          filters: editingSearch.filters,
+          notifications: editingSearch.notifications
+        })
 
         setSavedSearches(prev => prev.map(s => s.id === editingSearch.id ? {...data, userId: data.user_id, createdAt: data.created_at} : s))
       }
@@ -156,17 +146,10 @@ export default function SavedSearchesManagement() {
   }
 
   const deleteSearch = async (searchId) => {
-    if (!supabase) return
     if (!confirm(t('club.searchesPage.deleteConfirm', language))) return
 
     try {
-      const { error } = await supabase
-        .from('saved_searches')
-        .delete()
-        .eq('id', searchId)
-        .eq('user_id', user.id)
-
-      if (error) throw error
+      await api('DELETE', null, `?id=${encodeURIComponent(searchId)}`)
 
       setSavedSearches(prev => prev.filter(s => s.id !== searchId))
     } catch (error) {
@@ -176,15 +159,8 @@ export default function SavedSearchesManagement() {
   }
 
   const toggleNotifications = async (searchId, currentStatus) => {
-    if (!supabase) return
     try {
-      const { error } = await supabase
-        .from('saved_searches')
-        .update({ notifications: !currentStatus })
-        .eq('id', searchId)
-        .eq('user_id', user.id)
-
-      if (error) throw error
+      await api('PATCH', { id: searchId, notifications: !currentStatus })
 
       setSavedSearches(prev => prev.map(s => 
         s.id === searchId ? { ...s, notifications: !currentStatus } : s
