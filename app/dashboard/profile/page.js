@@ -23,6 +23,16 @@ import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
 
+async function fetchWithTimeout(url, options = {}, ms = 10000) {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), ms)
+  try {
+    return await fetch(url, { ...options, signal: controller.signal })
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
 export default function ProfileManagement() {
   const [user, setUser] = useState(null)
   const [profile, setProfile] = useState({
@@ -62,19 +72,17 @@ export default function ProfileManagement() {
   const loadProfile = async () => {
     try {
       const user = await getDashboardUser(supabase)
-      if (!user || !supabase) {
+      if (!user) {
         setLoading(false)
         return
       }
 
       setUser(user)
 
-      // Load user profile
-      const { data: profileData } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', user.id)
-        .maybeSingle()
+      // Load user profile through the server (no browser auth lock).
+      const response = await fetchWithTimeout('/api/profile', { cache: 'no-store', credentials: 'same-origin' })
+      const payload = response.ok ? await response.json().catch(() => ({})) : {}
+      const profileData = payload?.profile || null
 
       if (profileData) {
         setProfile({
@@ -100,25 +108,25 @@ export default function ProfileManagement() {
   }
 
   const handleProfileSave = async () => {
-    if (!supabase) return
     setSaving(true)
     setMessage({ type: '', text: '' })
 
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .update({
-          first_name: profile.firstName,
-          last_name: profile.lastName,
+      const response = await fetchWithTimeout('/api/profile', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({
+          firstName: profile.firstName,
+          lastName: profile.lastName,
           phone: profile.phone,
           location: profile.location,
           bio: profile.bio,
-          preferences: profile.preferences,
-          updated_at: new Date().toISOString()
+          preferences: profile.preferences
         })
-        .eq('id', user.id)
+      })
 
-      if (error) throw error
+      if (!response.ok) throw new Error(`profile ${response.status}`)
 
       setMessage({ type: 'success', text: t('club.profile.successMessage', language) })
     } catch (error) {

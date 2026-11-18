@@ -47,15 +47,12 @@ async function loadProfile() {
   return payload?.profile || null
 }
 
-async function loadSavedSearch(userId) {
-  if (!supabase) return null
-  const { data } = await supabase
-    .from('saved_searches')
-    .select('id, name, filters, created_at')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: false })
-    .limit(1)
-  return data?.[0] || null
+// Through the server route (no browser auth lock), newest first.
+async function loadSavedSearch() {
+  const response = await fetch('/api/saved-searches', { cache: 'no-store', credentials: 'same-origin' })
+  if (!response.ok) return null
+  const payload = await response.json()
+  return Array.isArray(payload?.searches) ? payload.searches[0] || null : null
 }
 
 async function loadHasPurchases(userId) {
@@ -100,7 +97,7 @@ export function useZoneData() {
         const needsProfile = !getUserDisplayName(user) || getUserDisplayName(user).includes('@')
         return Promise.all([
           needsProfile ? settle(loadProfile(), null) : null,
-          withTimeout(settle(loadSavedSearch(user.id), null), 3000, null),
+          withTimeout(settle(loadSavedSearch(), null), 5000, null),
           withTimeout(settle(loadHasPurchases(user.id), false), 3000, false)
         ])
       })

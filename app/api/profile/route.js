@@ -239,3 +239,49 @@ export async function GET() {
     )
   }
 }
+
+// Profile edits from /dashboard/profile go through the server, so saving never
+// waits on the browser Supabase auth lock. Only whitelisted columns.
+export async function PATCH(request) {
+  try {
+    const { supabase, applyCookies } = await createRouteClient()
+    if (!supabase) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 })
+    }
+
+    const user = await ensureAuthenticatedUser(supabase)
+    if (!user) {
+      return applyCookies(NextResponse.json({ error: 'Unauthorized' }, { status: 401 }))
+    }
+
+    const body = await request.json().catch(() => ({}))
+    const text = (value, max) => (typeof value === 'string' ? value.trim().slice(0, max) : undefined)
+    const fields = {
+      first_name: text(body?.firstName, 100),
+      last_name: text(body?.lastName, 100),
+      phone: text(body?.phone, 50),
+      // profiles has no location/bio columns (the old browser update failed
+      // on them), so those form fields are not stored.
+      preferences: body?.preferences && typeof body.preferences === 'object' ? body.preferences : undefined
+    }
+    const update = Object.fromEntries(Object.entries(fields).filter(([, value]) => value !== undefined))
+    update.updated_at = new Date().toISOString()
+
+    const { data: profile, error } = await supabase
+      .from('profiles')
+      .update(update)
+      .eq('id', user.id)
+      .select()
+      .maybeSingle()
+
+    if (error) {
+      return applyCookies(
+        NextResponse.json({ error: 'Failed to update profile', details: error.message }, { status: 500 })
+      )
+    }
+
+    return applyCookies(NextResponse.json({ success: true, profile: withDisplayName(profile, user) }))
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal server error', message: error.message }, { status: 500 })
+  }
+}

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import ZoneBackLink from '@/components/zone/ZoneBackLink'
 import ZoneShell, { ZoneSkeleton, StatusBadge, houseHref } from '@/components/zone/ZoneShell'
 import { formatListedAt, formatPrice, useZoneData } from '@/components/zone/useZoneData'
 
@@ -17,6 +18,7 @@ export default function SavedHousesPage() {
 
   return (
     <ZoneShell data={data}>
+      <ZoneBackLink className="-mt-2 mb-3" />
       <h1 className="text-[32px] font-bold leading-tight text-[#1b2333] sm:text-[38px]">Uložené domy</h1>
 
       {data.savedHouses.length === 0 ? (

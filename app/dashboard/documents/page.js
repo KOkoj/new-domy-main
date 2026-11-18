@@ -18,6 +18,7 @@ import {
   Clock
 } from 'lucide-react'
 import { supabase } from '../../../lib/supabase'
+import { getDashboardUser } from '../../../lib/dashboardAuth'
 import { t } from '../../../lib/translations'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
 
@@ -28,6 +29,16 @@ const cardClass = "bg-white border-gray-200"
 const textPrimary = "text-gray-900"
 const textSecondary = "text-gray-500"
 const inputClass = "bg-white border-gray-200 text-gray-900"
+
+function logDocumentAccess(doc, action) {
+  if (!supabase) return
+  getDashboardUser()
+    .then((user) => {
+      if (!user) return null
+      return supabase.from('document_access_logs').insert({ document_id: doc.id, user_id: user.id, action })
+    })
+    .catch((err) => console.error('Error logging access:', err))
+}
 
 export default function DocumentsPage() {
   const [documents, setDocuments] = useState([])
@@ -116,20 +127,8 @@ export default function DocumentsPage() {
 
   const handleDownload = async (doc) => {
     // Log access
-    try {
-      if (supabase) {
-        const { data: { user } } = await supabase.auth.getUser()
-        if (user) {
-          await supabase.from('document_access_logs').insert({
-            document_id: doc.id,
-            user_id: user.id,
-            action: 'download'
-          })
-        }
-      }
-    } catch (err) {
-      console.error('Error logging access:', err)
-    }
+    // Fire-and-forget: never let logging block opening the document.
+    logDocumentAccess(doc, 'download')
 
     // Open URL
     await openDocument(doc)
@@ -137,20 +136,8 @@ export default function DocumentsPage() {
 
   const handlePreview = async (doc) => {
     // Log access
-    try {
-      if (supabase) {
-        const { data: { user } } = await supabase.auth.getUser()
-        if (user) {
-          await supabase.from('document_access_logs').insert({
-            document_id: doc.id,
-            user_id: user.id,
-            action: 'preview'
-          })
-        }
-      }
-    } catch (err) {
-      console.error('Error logging access:', err)
-    }
+    // Fire-and-forget: never let logging block opening the document.
+    logDocumentAccess(doc, 'preview')
     
     // For now, preview is same as download/open
     await openDocument(doc)

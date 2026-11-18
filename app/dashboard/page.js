@@ -12,6 +12,13 @@ function SavedStrip({ houses }) {
         <Link href="/dashboard/ulozene" className="text-[17px] font-semibold text-[#1b2333] hover:underline">
           Vaše uložené domy ({houses.length})
         </Link>
+        <Link
+          href="/dashboard/searches"
+          className="flex-shrink-0 text-[15px] font-medium text-[#a8642f] underline-offset-4 hover:underline"
+          data-testid="zone-saved-search-link"
+        >
+          Nastavit hledání
+        </Link>
       </div>
       <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
         {houses.map((house) => (
