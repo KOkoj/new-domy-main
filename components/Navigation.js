@@ -220,7 +220,7 @@ export default function Navigation({ appearAfterHero = false }) {
               className="absolute left-1/2 top-0 hidden h-12 -translate-x-[calc(50%+4.5rem)] items-center min-[1400px]:flex"
             />
           
-          <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3" data-testid="nav-user-controls">
+          <div className="ml-auto flex min-w-0 items-center gap-1.5 sm:gap-3" data-testid="nav-user-controls">
             <LanguageMenu
               language={language}
               onChange={handleLanguageChange}
@@ -232,7 +232,7 @@ export default function Navigation({ appearAfterHero = false }) {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="flex items-center gap-1 sm:gap-2 bg-transparent hover:bg-white/10 text-gray-200 hover:text-white rounded-full px-2 sm:px-3 py-1.5 sm:py-2 transition-all">
+                  <Button variant="ghost" className="hidden sm:flex items-center gap-1 sm:gap-2 bg-transparent hover:bg-white/10 text-gray-200 hover:text-white rounded-full px-2 sm:px-3 py-1.5 sm:py-2 transition-all">
                     <span className="h-7 w-7 sm:h-8 sm:w-8 border border-white/20 rounded-full bg-white/10 text-white text-sm inline-flex items-center justify-center">
                       {(getUserDisplayName(user) || 'U').charAt(0).toUpperCase()}
                     </span>
@@ -285,11 +285,11 @@ export default function Navigation({ appearAfterHero = false }) {
             {user && (
               <Link
                 href="/dashboard"
-                className="min-[1400px]:hidden flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/20 border border-white/15 transition-all duration-200"
+                className="min-[1400px]:hidden flex min-w-0 items-center gap-1.5 bg-white/10 rounded-full px-2.5 sm:px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/20 border border-white/15 transition-all duration-200"
                 data-testid="mobile-dashboard-button"
               >
                 <LayoutDashboard className="h-3.5 w-3.5 shrink-0" />
-                <span className="max-w-[110px] truncate">{getUserDisplayName(user) || navLabels.dashboard}</span>
+                <span className="max-w-[88px] sm:max-w-[110px] truncate">{(getUserDisplayName(user) || '').split(' ')[0] || navLabels.dashboard}</span>
               </Link>
             )}
 
@@ -302,7 +302,7 @@ export default function Navigation({ appearAfterHero = false }) {
 
             {/* Mobile menu button */}
             <button
-              className="min-[1400px]:hidden p-2 rounded-lg cursor-pointer text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200"
+              className="min-[1400px]:hidden shrink-0 p-1.5 sm:p-2 rounded-lg cursor-pointer text-gray-200 hover:text-white hover:bg-white/10 transition-colors duration-200"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               data-testid="mobile-menu-button"
             >
