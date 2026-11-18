@@ -18,12 +18,14 @@ import AuthModal from './AuthModal'
 import PremiumPdfComingSoonTrigger from '@/components/PremiumPdfComingSoonTrigger'
 import { PREMIUM_PDFS_ENABLED } from '@/lib/featureFlags'
 import { supabase } from '@/lib/supabase'
+import { useSiteAuthUser, notifySiteAuthChanged } from '@/lib/siteAuthUser'
 import { readLanguageFromBrowser, persistLanguage, DEFAULT_LANGUAGE, getInitialLanguage } from '@/lib/userPreferences'
 import { LanguageMenu, SiteNavMenu } from '@/components/SiteNavControls'
 import SocialLinks from '@/components/SocialLinks'
 
 export default function Navigation({ appearAfterHero = false }) {
   const pathname = usePathname()
+  const { user: siteUser } = useSiteAuthUser()
   const [user, setUser] = useState(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
@@ -93,49 +95,33 @@ export default function Navigation({ appearAfterHero = false }) {
     setIsMenuOpen(false)
   }, [pathname])
 
+  // Same session source as the dashboard (see lib/siteAuthUser.js).
   useEffect(() => {
-    if (!supabase) return
+    setUser(siteUser)
+  }, [siteUser])
 
-    // Check if user is authenticated
-    const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      setUser(user)
-      
-      // Check if user is admin
-      if (user) {
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('role')
-          .eq('id', user.id)
-          .maybeSingle()
-        
-        setIsAdmin(profile?.role === 'admin')
-      } else {
-        setIsAdmin(false)
-      }
+  // Admin flag: looked up outside any auth callback (awaiting Supabase calls
+  // inside onAuthStateChange deadlocks the auth client).
+  useEffect(() => {
+    if (!supabase || !user?.id) {
+      setIsAdmin(false)
+      return
     }
-    checkUser()
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      setUser(session?.user || null)
-      
-      // Check admin status on auth change
-      if (session?.user) {
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('role')
-          .eq('id', session.user.id)
-          .maybeSingle()
-        
-        setIsAdmin(profile?.role === 'admin')
-      } else {
-        setIsAdmin(false)
-      }
-    })
-
-    return () => subscription.unsubscribe()
-  }, [])
+    let active = true
+    supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .maybeSingle()
+      .then(({ data: profile }) => {
+        if (active) setIsAdmin(profile?.role === 'admin')
+      }, () => {
+        if (active) setIsAdmin(false)
+      })
+    return () => {
+      active = false
+    }
+  }, [user?.id])
 
   const handleLogout = async () => {
     try {
@@ -144,8 +130,13 @@ export default function Navigation({ appearAfterHero = false }) {
       // Continue with client sign-out even if the cookie route fails.
     }
     if (supabase) {
-      await supabase.auth.signOut()
+      // Local cleanup only; never let a stuck client block the redirect.
+      await Promise.race([
+        supabase.auth.signOut({ scope: 'local' }).catch(() => {}),
+        new Promise((resolve) => setTimeout(resolve, 2000))
+      ])
     }
+    notifySiteAuthChanged(null)
     setUser(null)
     setIsMenuOpen(false)
     window.location.assign('/')
@@ -153,6 +144,8 @@ export default function Navigation({ appearAfterHero = false }) {
 
   const handleAuthSuccess = (user) => {
     setUser(user)
+    // Re-read the full session (name etc.) for every component on the page.
+    notifySiteAuthChanged()
     setIsAuthModalOpen(false)
   }
 

@@ -21,6 +21,7 @@ import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import Navigation from '../components/Navigation'
 import { LanguageMenu, SiteNavMenu } from '../components/SiteNavControls'
 import { supabase } from '../lib/supabase'
+import { useSiteAuthUser, notifySiteAuthChanged } from '../lib/siteAuthUser'
 import { t } from '../lib/translations'
 import { readLanguageFromBrowser, readCurrencyFromBrowser, persistLanguage, persistCurrency, DEFAULT_LANGUAGE, DEFAULT_CURRENCY, getInitialLanguage, getInitialCurrency } from '../lib/userPreferences'
 
@@ -59,6 +60,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
   ]
   const [favorites, setFavorites] = useState(new Set())
   const [filters, setFilters] = useState({})
+  const { user: siteUser } = useSiteAuthUser()
   const [user, setUser] = useState(null)
   const [isHeroMenuOpen, setIsHeroMenuOpen] = useState(false)
   const [language, setLanguage] = useState(getInitialLanguage)
@@ -235,20 +237,14 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
     }
   }, [startAnimations])
 
+  // Same session source as the header and the dashboard (lib/siteAuthUser.js).
   useEffect(() => {
-    if (!supabase) return
-    // Check if user is authenticated
-    const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      setUser(user)
-      
-      if (user) {
-        // Load user's favorites
-        loadFavorites()
-      }
+    setUser(siteUser)
+    if (siteUser) {
+      // Load user's favorites
+      loadFavorites()
     }
-    checkUser()
-  }, [])
+  }, [siteUser])
 
   // Dynamic content data
   const regionData = [
@@ -712,16 +708,26 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
   }
 
   const handleLogout = async () => {
-    if (!supabase) return
-    const { error } = await supabase.auth.signOut()
-    if (!error) {
-      setUser(null)
-      setFavorites(new Set())
+    try {
+      // Server route clears the session cookies (same as header/dashboard).
+      await fetch('/api/auth/logout', { method: 'POST' })
+    } catch {
+      // Continue with client sign-out even if the cookie route fails.
     }
+    if (supabase) {
+      await Promise.race([
+        supabase.auth.signOut({ scope: 'local' }).catch(() => {}),
+        new Promise((resolve) => setTimeout(resolve, 2000))
+      ])
+    }
+    setUser(null)
+    setFavorites(new Set())
+    notifySiteAuthChanged(null)
   }
 
   const handleAuthSuccess = (authUser) => {
     setUser(authUser)
+    notifySiteAuthChanged()
     setIsAuthModalOpen(false)
     loadFavorites()
 
