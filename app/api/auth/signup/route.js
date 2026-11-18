@@ -84,7 +84,7 @@ export async function POST(request) {
         data: {
           name: trimmedName,
           full_name: trimmedName,
-          // This route sends the welcome e-mail itself; the magic-link
+          // This route sends the welcome e-mail itself; the e-mail sign-in
           // callback must not send it again.
           welcome_email_sent: true
         }

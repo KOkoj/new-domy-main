@@ -4,27 +4,20 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Mail, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
+import { AlertCircle } from 'lucide-react'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
+import EmailCodeSignIn from '@/components/auth/EmailCodeSignIn'
 import { t } from '@/lib/translations'
-import { resolveAuthClientMessage } from '@/lib/authMessages'
+import { isAuthErrorKey } from '@/lib/authMessages'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '@/lib/userPreferences'
 import { getSafeRedirectPath } from '@/lib/safeRedirect'
 
 export default function LoginPage() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
-  const [success, setSuccess] = useState('')
   const [activeTab, setActiveTab] = useState('login')
-  const [usePassword, setUsePassword] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -32,27 +25,8 @@ export default function LoginPage() {
   const redirectParam = searchParams.get('redirect')
   const errorParam = searchParams.get('error')
   const redirectPath = getSafeRedirectPath(redirectParam, '/dashboard')
+  const registrationHref = `/registrace?redirect=${encodeURIComponent(redirectPath)}`
   const tr = (key) => t(`auth.${key}`, language)
-
-
-  const loginViaServer = async (loginEmail, loginPassword) => {
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: loginEmail, password: loginPassword })
-    })
-
-    const payload = await response.json().catch(() => ({}))
-    if (!response.ok) {
-      return {
-        ok: false,
-        error: resolveAuthClientMessage(payload, tr, 'serverLoginFailed')
-      }
-    }
-
-    return { ok: true }
-  }
-
 
   useEffect(() => {
     setLanguage(readLanguageFromBrowser())
@@ -76,7 +50,12 @@ export default function LoginPage() {
       'auth-callback-failed': tr('authCallbackFailed')
     }
 
-    setError(callbackErrors[errorParam] || decodeURIComponent(errorParam))
+    // /auth/callback sends a translation key; anything else falls back to the
+    // generic callback message instead of echoing raw text from the URL.
+    setError(
+      callbackErrors[errorParam] ||
+      (isAuthErrorKey(errorParam) ? tr(errorParam) : tr('authCallbackFailed'))
+    )
   }, [errorParam, language])
 
   // Check if user is already logged in
@@ -95,76 +74,6 @@ export default function LoginPage() {
     }
     checkUser()
   }, [router, redirectPath])
-
-
-  // One e-mail field for everyone. The magic link signs existing users in and
-  // creates the account for new e-mails; password login is optional for
-  // existing accounts.
-  const handleMagicLink = async () => {
-    if (!email) {
-      setError(tr('emailRequired'))
-      return
-    }
-    setIsLoading(true)
-    try {
-      const response = await fetch('/api/auth/magic-link', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, next: redirectPath, language })
-      })
-      const payload = await response.json().catch(() => ({}))
-      if (!response.ok) {
-        setError(resolveAuthClientMessage(payload, tr, 'magicLinkFailed'))
-        return
-      }
-      setSuccess(tr('magicLinkSent'))
-    } catch {
-      setError(tr('connectionError'))
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const handlePasswordLogin = async () => {
-    if (!email || !password) {
-      setError(tr('fillAllFields'))
-      return
-    }
-
-    setIsLoading(true)
-    try {
-      const result = await loginViaServer(email, password)
-      if (!result.ok) {
-        setError(result.error || tr('serverLoginFailed'))
-        return
-      }
-
-      setSuccess(tr('loginSuccessRedirect'))
-      try {
-        await fetch('/api/profile', { method: 'POST' })
-      } catch (profileError) {
-        console.warn('Profile check/creation failed:', profileError)
-      }
-      setTimeout(() => {
-        window.location.assign(redirectPath)
-      }, 1000)
-    } catch (err) {
-      setError(tr('connectionError'))
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
-    setSuccess('')
-    if (usePassword) {
-      await handlePasswordLogin()
-    } else {
-      await handleMagicLink()
-    }
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4 home-page-custom-border">
@@ -188,119 +97,30 @@ export default function LoginPage() {
             <h2 className="text-lg font-semibold text-white text-center">
               {activeTab === 'signup' ? tr('signup') : tr('login')}
             </h2>
-            <form onSubmit={handleSubmit} className="space-y-4 mt-6" data-testid="login-email-form">
-              <div className="space-y-2">
-                <Label htmlFor="login-email" className="text-gray-300">{tr('email')}</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <Input
-                    id="login-email"
-                    type="email"
-                    autoComplete="email"
-                    placeholder={tr('emailPlaceholder')}
-                    className="pl-10 bg-slate-900 border-amber-400/20 text-white"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    disabled={isLoading}
-                  />
-                </div>
-              </div>
-
-              {usePassword && (
-                <div className="space-y-2">
-                  <Label htmlFor="login-password" className="text-gray-300">{tr('password')}</Label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                    <Input
-                      id="login-password"
-                      type={showPassword ? "text" : "password"}
-                      autoComplete="current-password"
-                      placeholder={tr('passwordPlaceholder')}
-                      className="pl-10 pr-10 bg-slate-900 border-amber-400/20 text-white"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      disabled={isLoading}
-                    />
-                    <button
-                      type="button"
-                      className="absolute right-3 top-3 text-gray-400 hover:text-white cursor-pointer leading-none"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                    </button>
-                  </div>
-                  <div className="text-right">
-                    <Link href="/forgot-password" className="text-sm text-amber-400 underline">
-                      {tr('forgotPassword')}
-                    </Link>
-                  </div>
-                </div>
-              )}
-
-              {error && (
-                <Alert variant="destructive" className="bg-red-900/20 border-red-600 text-red-400">
-                  <AlertCircle className="h-4 w-4" />
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
-
-              {success && (
-                <Alert className="bg-green-900/20 border-green-600 text-green-400">
-                  <CheckCircle className="h-4 w-4" />
-                  <AlertDescription>{success}</AlertDescription>
-                </Alert>
-              )}
-
-              <Button
-                type="submit"
-                className="w-full bg-amber-600 hover:bg-amber-700 text-white"
-                disabled={isLoading}
-              >
-                {usePassword ? (
-                  isLoading ? tr('signingIn') : tr('signIn')
-                ) : (
-                  <>
-                    <Mail className="w-4 h-4 mr-2" />
-                    {tr('sendMagicLink')}
-                  </>
-                )}
-              </Button>
-
-              <FormPrivacyNotice language={language} purpose="account" className="bg-slate-900/60 border-amber-400/20" />
-
-              <div className="relative py-1">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t border-amber-400/20" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-slate-800 px-2 text-gray-400">{tr('or')}</span>
-                </div>
-              </div>
-
-              <Button
-                type="button"
-                variant="outline"
-                className="w-full border-amber-400/20 text-amber-400 hover:bg-amber-400/10"
-                disabled={isLoading}
-                onClick={() => {
-                  setUsePassword((value) => !value)
-                  setError('')
-                  setSuccess('')
-                }}
-              >
-                {usePassword ? (
-                  <>
-                    <Mail className="w-4 h-4 mr-2" />
-                    {tr('sendMagicLink')}
-                  </>
-                ) : (
-                  <>
-                    <Lock className="w-4 h-4 mr-2" />
-                    {tr('password')}
-                  </>
-                )}
-              </Button>
-            </form>
+            {error && (
+              <Alert variant="destructive" className="mt-4 bg-red-900/20 border-red-600 text-red-400">
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
+            {/* One e-mail field for everyone: a 6-digit code signs existing
+                users in and creates the account for new e-mails. Password
+                login stays as a secondary option for older accounts. */}
+            <div className="mt-6" data-testid="login-email-form">
+              <EmailCodeSignIn
+                language={language}
+                nextPath={redirectPath}
+                variant="dark"
+                idPrefix="login"
+                allowPassword
+                footer={<FormPrivacyNotice language={language} purpose="account" className="bg-slate-900/60 border-amber-400/20" />}
+              />
+            </div>
+            <p className="mt-4 text-center text-sm">
+              <Link href={registrationHref} className="text-amber-400 underline hover:text-amber-300" data-testid="login-registration-link">
+                {tr('whatYouGet')}
+              </Link>
+            </p>
 
             <div className="text-center text-sm text-gray-400 mt-6 space-y-1">
               <p>

@@ -16,7 +16,10 @@ export async function POST(request) {
     return applyCookies(NextResponse.json({ error: 'Unauthorized' }, { status: 401 }))
   }
 
-  const { listingId } = await request.json()
+  const { listingId, action } = await request.json()
+  // action 'add' never removes: used when saving favorites picked before
+  // sign-in, so a repeated or concurrent flush cannot toggle one off.
+  const addOnly = action === 'add'
   if (!listingId) {
     return applyCookies(NextResponse.json({ error: 'listingId is required' }, { status: 400 }))
   }
@@ -31,6 +34,10 @@ export async function POST(request) {
   if (checkError) {
     console.error('Error checking favorite:', checkError)
     return applyCookies(NextResponse.json({ error: checkError.message }, { status: 500 }))
+  }
+
+  if (existing && addOnly) {
+    return applyCookies(NextResponse.json({ favorited: true }))
   }
 
   if (existing) {
@@ -51,6 +58,11 @@ export async function POST(request) {
   const { error } = await supabase
     .from('favorites')
     .insert([{ user_id: user.id, listing_id: listingId }])
+
+  if (error && addOnly && error.code === '23505') {
+    // Unique violation: a concurrent add already saved it.
+    return applyCookies(NextResponse.json({ favorited: true }))
+  }
 
   if (error) {
     console.error('Error adding favorite:', error)

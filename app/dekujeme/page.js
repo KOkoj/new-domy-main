@@ -56,7 +56,7 @@ function ThankYouContent() {
                     V bezplatném Klubu najdete další články, návody a přehledy ke koupi nemovitosti v Itálii.
                   </p>
                   <Link
-                    href="/login?tab=signup"
+                    href="/registrace"
                     className="mt-3 inline-block text-sm font-semibold text-amber-700 underline underline-offset-4"
                   >
                     Registrovat se do Klubu zdarma

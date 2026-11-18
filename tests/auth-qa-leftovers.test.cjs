@@ -73,7 +73,8 @@ test('auth APIs return errorKey instead of English sentences', () => {
   const files = [
     'app/api/auth/reset-password/route.js',
     'app/api/auth/forgot-password/route.js',
-    'app/api/auth/magic-link/route.js',
+    'app/api/auth/send-code/route.js',
+    'app/api/auth/verify-otp/route.js',
     'app/api/auth/login/route.js',
     'app/api/auth/signup/route.js',
     'app/api/auth/change-password/route.js'
@@ -88,8 +89,7 @@ test('auth APIs return errorKey instead of English sentences', () => {
   }
   assert.match(read('app/reset-password/page.js'), /resolveAuthClientMessage/)
   assert.match(read('app/forgot-password/page.js'), /resolveAuthClientMessage/)
-  assert.match(read('app/login/page.js'), /resolveAuthClientMessage/)
-  assert.match(read('components/AuthModal.js'), /resolveAuthClientMessage/)
+  assert.match(read('components/auth/EmailCodeSignIn.js'), /resolveAuthClientMessage/)
 })
 
 test('Supabase auth errors map to translation keys', () => {
@@ -177,8 +177,8 @@ test('Supabase auth email templates and SMTP notes are in the repo', () => {
 
   for (const file of ['confirm-signup.html', 'magic-link.html', 'reset-password.html']) {
     const html = read(`docs/supabase-email-templates/${file}`)
-    assert.match(html, /\{\{ \.ConfirmationURL \}\}/)
     assert.match(html, /Domy v Itálii/)
     assert.match(html, /klubu Domy v Itálii/)
   }
+  assert.match(read('docs/supabase-email-templates/reset-password.html'), /\{\{ \.ConfirmationURL \}\}/)
 })

@@ -39,21 +39,70 @@ integration. Do not invent or commit any secret values.
 
 ## 2. Paste the branded templates
 
-In **Supabase Dashboard → Authentication → Email Templates**, replace the
-default HTML for each type with the matching file in this folder.
+Sign-in and registration use a **6-digit e-mail code** (`{{ .Token }}`), not a
+clickable "magic link". New e-mails get the **Confirm signup** template,
+existing accounts get the **Magic Link** template, so both must show the code.
+**Until both templates contain `{{ .Token }}`, the code step on the site
+cannot work** (users would get an e-mail without a code).
 
-Suggested subjects (set in the same dashboard screen):
+In **Supabase Dashboard → Authentication → Emails → Templates**, replace the
+default HTML for each type with the matching file in this folder and set the
+subject:
 
 | Template | File | Subject |
 | --- | --- | --- |
-| Confirm signup | `confirm-signup.html` | `Potvrďte účet \| Domy v Itálii` |
-| Magic link | `magic-link.html` | `Přihlašovací odkaz \| Domy v Itálii` |
+| Confirm signup | `confirm-signup.html` | `Váš ověřovací kód pro Domy v Itálii` |
+| Magic link | `magic-link.html` | `Váš ověřovací kód pro Domy v Itálii` |
 | Reset password | `reset-password.html` | `Obnovení hesla \| Domy v Itálii` |
 
-Keep the GoTrue variables as-is (`{{ .ConfirmationURL }}`, `{{ .Email }}`,
-`{{ .SiteURL }}`). Do not rewrite them to app URLs; Supabase fills them when
-the email is sent.
+Plain subject list (copy-paste):
 
-After saving, request a reset link, a magic link, and a new signup from
-https://www.domyvitalii.cz and check that each email is Czech, branded, and
-sent through Resend.
+- Confirm signup: Váš ověřovací kód pro Domy v Itálii
+- Magic link: Váš ověřovací kód pro Domy v Itálii
+- Reset password: Obnovení hesla | Domy v Itálii
+
+Variables used: `{{ .Token }}` (the code), `{{ .Email }}`, `{{ .SiteURL }}`,
+`{{ .TokenHash }}`. The small fallback link in the code templates is
+`{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=email`. It works
+in any browser (no PKCE cookie needed); `/auth/callback` verifies it with
+`verifyOtp({ token_hash, type: 'email' })` for new and existing accounts and
+redirects to `/dashboard`. Because it uses `{{ .SiteURL }}`, the link always
+points to production (Site URL), also for e-mails requested on a preview.
+The reset-password template keeps `{{ .ConfirmationURL }}` - do not change it
+without testing password recovery.
+
+The templates are light HTML (no images, one small link) for better
+deliverability.
+
+## 3. Other dashboard settings (before merging the code sign-in)
+
+1. **Authentication → Providers → Email**
+   - "Allow new users to sign up": on (required for `shouldCreateUser: true`).
+   - **Email OTP Length: `6`** (the site also accepts 7-8 digits, but the
+     copy says "6místný kód").
+   - **Email OTP Expiration: `3600`** seconds (1 hour; anything between 600
+     and 3600 is fine - shorter is safer, longer is friendlier).
+2. **Authentication → URL Configuration**
+   - Site URL: `https://www.domyvitalii.cz`
+   - Redirect URLs (allow-list, with `**` because the callback carries
+     `?next=…&lang=…`):
+     - `https://www.domyvitalii.cz/auth/callback**`
+     - `https://domyvitalii.cz/auth/callback**`
+     - `https://*-kokojs-projects.vercel.app/auth/callback**` (previews)
+3. **SMTP** (section 1): custom SMTP through Resend, sender
+   `info@domyvitalii.cz` (or `noreply@domyvitalii.cz` - decision for the
+   owner; `info@` lets people reply, `noreply@` must still be a verified
+   Resend sender). The site's registration page tells users to add
+   `info@domyvitalii.cz` to their contacts - change it in
+   `app/registrace/page.js` if the sender changes.
+4. **Authentication → Rate Limits**: raise "emails per hour" to match ad
+   traffic (custom SMTP is required for that). The site also limits
+   `/api/auth/send-code` to 6 requests per IP per 10 minutes and has a
+   honeypot field.
+5. In Resend, check SPF/DKIM/DMARC for `domyvitalii.cz` are green
+   (deliverability, spam folder).
+
+After saving, on https://www.domyvitalii.cz request a code with a new e-mail,
+with an existing account, and a password reset. Check that each e-mail is
+Czech, shows the code, arrives from the Resend sender, and that the code and
+the fallback link both sign in.

@@ -66,16 +66,18 @@ test('language helpers default to Czech without reading client storage on first 
   assert.match(read('app/layout.js'), /readLanguageFromCookies/)
 })
 
-test('password reset and magic link routes exist', () => {
+test('password reset and e-mail code routes exist', () => {
   assert.match(read('app/api/auth/forgot-password/route.js'), /resetPasswordForEmail/)
-  assert.match(read('app/api/auth/magic-link/route.js'), /signInWithOtp/)
+  assert.match(read('app/api/auth/send-code/route.js'), /signInWithOtp/)
+  assert.match(read('app/api/auth/verify-otp/route.js'), /verifyOtp/)
   assert.match(read('app/api/auth/reset-password/route.js'), /updateUser\(\{ password/)
   assert.match(read('app/api/auth/change-password/route.js'), /signInWithPassword/)
   assert.match(read('app/forgot-password/page.js'), /forgotPasswordTitle/)
   assert.match(read('app/reset-password/page.js'), /saveNewPassword/)
-  assert.match(read('components/AuthModal.js'), /forgot-password/)
-  assert.match(read('app/login/page.js'), /forgot-password/)
-  assert.match(read('components/AuthModal.js'), /\/api\/auth\/magic-link/)
+  assert.match(read('components/auth/EmailCodeSignIn.js'), /forgot-password/)
+  assert.match(read('components/AuthModal.js'), /EmailCodeSignIn/)
+  assert.match(read('app/login/page.js'), /EmailCodeSignIn/)
+  assert.match(read('components/auth/EmailCodeSignIn.js'), /\/api\/auth\/send-code/)
 })
 
 test('auth modal title follows the active tab', () => {

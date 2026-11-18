@@ -50,5 +50,5 @@ test('premium indexability and sitemap follow the existing activation flag toget
     assert.equal(policy.getStandaloneSitemapPaths().includes('/premium'), enabled)
   }
   const routes = Array.from(loadPolicy(false).getStandaloneSitemapPaths())
-  assert.deepEqual(routes, ['/reference', '/book-call', '/guides/mistakes/free-pdf'])
+  assert.deepEqual(routes, ['/reference', '/book-call', '/guides/mistakes/free-pdf', '/registrace'])
 })

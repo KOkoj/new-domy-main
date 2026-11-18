@@ -1943,16 +1943,15 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
              language === 'it' ? 'Allora ti serve di più che delle info generiche.' :
              'Then you need more than generic information.'}
           </p>
-          <button
-            type="button"
-            onClick={() => openSignup()}
+          <Link
+            href={user ? '/dashboard' : '/registrace'}
             className="mt-6 inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white transition duration-200 hover:from-[#e8bc8a] hover:to-[#c48759]"
           >
             {language === 'cs' ? 'Připojit se zdarma' :
              language === 'it' ? 'Unisciti gratuitamente' :
              'Join for free'}
             <ChevronRight className="h-4 w-4" />
-          </button>
+          </Link>
 
           <ul className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-3">
               {[
