@@ -14,13 +14,14 @@ function loadSchedule() {
   return context.api
 }
 
-test('office hours follow Mon-Fri 9:00-20:00 Europe/Prague', () => {
+test('office hours follow Mon-Fri 9:00-21:00 Europe/Prague', () => {
   const { isOfficeHours } = loadSchedule()
   // 2026-11-18 is a Wednesday; Prague is UTC+1 in November.
   assert.equal(isOfficeHours(new Date('2026-11-18T09:00:00Z')), true) // 10:00 Prague
   assert.equal(isOfficeHours(new Date('2026-11-18T07:59:00Z')), false) // 8:59 Prague
   assert.equal(isOfficeHours(new Date('2026-11-18T17:00:00Z')), true) // 18:00 Prague
-  assert.equal(isOfficeHours(new Date('2026-11-18T19:00:00Z')), false) // 20:00 Prague
+  assert.equal(isOfficeHours(new Date('2026-11-18T19:00:00Z')), true) // 20:00 Prague
+  assert.equal(isOfficeHours(new Date('2026-11-18T20:00:00Z')), false) // 21:00 Prague
   assert.equal(isOfficeHours(new Date('2026-11-21T10:00:00Z')), false) // Saturday
 })
 
