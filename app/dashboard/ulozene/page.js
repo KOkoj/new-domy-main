@@ -19,6 +19,18 @@ export default function SavedHousesPage() {
     <ZoneShell data={data}>
       <h1 className="text-[32px] font-bold leading-tight text-[#1b2333] sm:text-[38px]">Uložené domy</h1>
 
+      {data.savedHouses.length === 0 ? (
+        <section className="mt-7 rounded-2xl border border-[#ebe5da] bg-white p-6 sm:p-8" data-testid="zone-saved-empty">
+          <p className="text-[16px] text-gray-600">Zatím nemáte uložené žádné domy.</p>
+          <Link
+            href="/properties"
+            className="mt-5 inline-flex items-center rounded-lg bg-[#2d5a27] px-6 py-3 text-[15px] font-medium text-white transition hover:bg-[#234a1f]"
+          >
+            Prohlédnout nemovitosti
+          </Link>
+        </section>
+      ) : null}
+
       <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2" data-testid="zone-saved-grid">
         {data.savedHouses.map((house) => (
           <Link

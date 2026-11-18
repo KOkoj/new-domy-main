@@ -69,17 +69,24 @@ function WelcomeCard() {
     <section className="rounded-2xl border border-[#ebe5da] bg-white p-6 sm:p-8" data-testid="zone-welcome">
       <h2 className="text-[28px] font-bold leading-tight text-[#1b2333] sm:text-[34px]">Nastavte, co hledáte</h2>
       <p className="mt-4 text-[16px] text-gray-600">
-        Zatím tu nic není. Až si nastavíte hledání, budeme sem ukládat týdenní výběr a osobní poznámky od Lucie a Lucy.
+        Zatím tu nic není. Prohlédněte si nabídku a domy, které se vám líbí, si uložte srdíčkem. Uvidíte je tady a Lucie s Lucou vám k nim rádi poradí.
       </p>
-      <div className="mt-6">
+      <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <Link
+          href="/properties"
+          className="inline-flex items-center rounded-lg bg-[#2d5a27] px-6 py-3 text-[15px] font-medium text-white transition hover:bg-[#234a1f]"
+          data-testid="zone-welcome-properties"
+        >
+          Prohlédnout nemovitosti
+        </Link>
         <Link
           href="/dashboard/searches"
-          className="inline-flex items-center rounded-lg bg-[#2d5a27] px-6 py-3 text-[15px] font-medium text-white transition hover:bg-[#234a1f]"
+          className="text-[15px] font-medium text-[#1b2333] underline-offset-4 hover:underline"
+          data-testid="zone-welcome-search"
         >
-          Upravit
+          Nastavit hledání
         </Link>
       </div>
-      <p className="mt-6 text-[13.5px] text-gray-600">Souhrn vám přijde e-mailem jednou týdně.</p>
     </section>
   )
 }
@@ -106,9 +113,6 @@ export default function DashboardThread() {
         <h1 className="text-[32px] font-bold leading-tight text-[#1b2333] sm:text-[38px]">
           {data.firstName ? `Dobrý den, ${data.firstName}` : 'Dobrý den'}
         </h1>
-        {isNewUser ? (
-          <p className="mt-2 text-[16px] text-gray-600">Začněte tím, že nám řeknete, co hledáte.</p>
-        ) : null}
       </header>
 
       {isNewUser ? (

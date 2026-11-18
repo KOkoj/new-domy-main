@@ -5,12 +5,12 @@ import ZoneSidebar from './ZoneSidebar'
 import { formatListedAt, formatPrice } from './useZoneData'
 
 // Centered 1344px layout: main column (thread) + sticky ~340px sidebar.
-// On mobile the contact sidebar stacks above the thread.
+// On mobile the thread comes first and the contact sidebar stacks below it.
 export default function ZoneShell({ data, children }) {
   return (
     <div className="mx-auto w-full max-w-[1344px] px-4 pb-16 pt-8 sm:px-6 lg:pt-12" data-testid="zone-shell">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-12">
-        <aside className="order-first lg:order-last lg:sticky lg:top-28 lg:w-[340px] lg:flex-shrink-0">
+        <aside className="order-last lg:sticky lg:top-28 lg:w-[340px] lg:flex-shrink-0">
           <ZoneSidebar savedCount={data.savedHouses.length} savedSearch={data.savedSearch} />
         </aside>
         <div className="min-w-0 flex-1">{children}</div>
