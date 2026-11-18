@@ -260,8 +260,8 @@ export async function PATCH(request) {
       first_name: text(body?.firstName, 100),
       last_name: text(body?.lastName, 100),
       phone: text(body?.phone, 50),
-      location: text(body?.location, 200),
-      bio: text(body?.bio, 2000),
+      // profiles has no location/bio columns (the old browser update failed
+      // on them), so those form fields are not stored.
       preferences: body?.preferences && typeof body.preferences === 'object' ? body.preferences : undefined
     }
     const update = Object.fromEntries(Object.entries(fields).filter(([, value]) => value !== undefined))
