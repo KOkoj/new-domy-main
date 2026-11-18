@@ -1,92 +1,92 @@
 import { NextResponse } from 'next/server'
-import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
+import { createRouteSupabaseClient } from '@/lib/serverAuth'
 import { authErrorPayload, mapSupabaseAuthError } from '@/lib/authMessages'
+import { normalizeEmailAddress } from '@/lib/authInput'
+import { getSafeRedirectPath } from '@/lib/safeRedirect'
+import { getSupabaseAdminClient } from '@/lib/supabaseAdmin'
+import { completeEmailSignIn } from '@/lib/authOnboarding'
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from '@/lib/userPreferences'
+import { applyPendingPassword } from '@/lib/passwordAuth'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-async function createAuthClient() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-  if (!supabaseUrl || !supabaseAnonKey) {
-    return { supabase: null, applyCookies: (response) => response }
+function getAdminOrNull() {
+  try {
+    return getSupabaseAdminClient()
+  } catch {
+    return null
   }
+}
 
-  const cookieStore = await cookies()
-  const pendingCookies = []
+// Sign-in with e-mail + password. When the password is not the account's
+// current one, it may be a pending password from "Zapomenuté heslo" (or a
+// repeated registration): if it matches, it becomes the real password and the
+// user is signed in. Until then the old password keeps working.
+export async function POST(request) {
+  try {
+    const body = await request.json().catch(() => ({}))
+    const { email, password, next, language } = body || {}
+    const normalizedEmail = normalizeEmailAddress(email)
 
-  const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
-    cookies: {
-      getAll() {
-        return cookieStore.getAll()
-      },
-      setAll(cookiesToSet) {
-        for (const cookie of cookiesToSet) {
-          pendingCookies.push(cookie)
+    if (!normalizedEmail || typeof password !== 'string' || !password) {
+      return NextResponse.json(authErrorPayload('emailPasswordRequired'), { status: 400 })
+    }
+
+    const { supabase, applyCookies } = await createRouteSupabaseClient()
+    if (!supabase) {
+      return NextResponse.json(authErrorPayload('authNotConfigured'), { status: 503 })
+    }
+
+    let { data, error } = await supabase.auth.signInWithPassword({ email: normalizedEmail, password })
+
+    if (error && mapSupabaseAuthError(error, 'invalidCredentials') === 'invalidCredentials') {
+      const admin = getAdminOrNull()
+      if (admin) {
+        try {
+          const pending = await applyPendingPassword({ admin, request, email: normalizedEmail, password })
+          if (pending.status === 'limited') {
+            return applyCookies(NextResponse.json(
+              authErrorPayload('overRequestRateLimit', { retryAfterSeconds: pending.retryAfterSeconds }),
+              { status: 429, headers: { 'Retry-After': String(pending.retryAfterSeconds) } }
+            ))
+          }
+          if (pending.status === 'applied') {
+            ;({ data, error } = await supabase.auth.signInWithPassword({ email: normalizedEmail, password }))
+          }
+        } catch (pendingError) {
+          console.error('[AUTH LOGIN] Pending password check failed:', pendingError?.message || pendingError)
         }
       }
     }
-  })
-
-  const applyCookies = (response) => {
-    for (const cookie of pendingCookies) {
-      response.cookies.set(cookie.name, cookie.value, cookie.options)
-    }
-    return response
-  }
-
-  return { supabase, applyCookies }
-}
-
-export async function POST(request) {
-  try {
-    const { email, password } = await request.json()
-    const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : ''
-
-    if (!normalizedEmail || !password) {
-      return NextResponse.json(
-        authErrorPayload('emailPasswordRequired'),
-        { status: 400 }
-      )
-    }
-
-    const { supabase, applyCookies } = await createAuthClient()
-
-    if (!supabase) {
-      return NextResponse.json(
-        authErrorPayload('authNotConfigured'),
-        { status: 503 }
-      )
-    }
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: normalizedEmail,
-      password
-    })
 
     if (error) {
-      const status = error.status || 401
-      return applyCookies(
-        NextResponse.json(
-          authErrorPayload(mapSupabaseAuthError(error, 'invalidCredentials')),
-          { status }
-        )
-      )
+      const errorKey = mapSupabaseAuthError(error, 'invalidCredentials')
+      const status = errorKey === 'overRequestRateLimit' || errorKey === 'emailRateLimited'
+        ? 429
+        : (errorKey === 'invalidCredentials' ? 401 : (error.status || 401))
+      return applyCookies(NextResponse.json(authErrorPayload(errorKey), { status }))
     }
 
-    return applyCookies(
-      NextResponse.json({
-        success: true,
-        user: data?.user
-          ? {
-              id: data.user.id,
-              email: data.user.email
-            }
-          : null
+    const user = data?.user || data?.session?.user || null
+    try {
+      // Profile row + linking of earlier enquiries (idempotent).
+      await completeEmailSignIn({
+        supabase,
+        user,
+        request,
+        language: SUPPORTED_LANGUAGES.includes(language) ? language : DEFAULT_LANGUAGE,
+        location: 'password'
       })
-    )
+    } catch (onboardingError) {
+      console.error('[AUTH LOGIN] Sign-in step failed:', onboardingError?.message || onboardingError)
+    }
+
+    return applyCookies(NextResponse.json({
+      success: true,
+      next: getSafeRedirectPath(next),
+      user: user ? { id: user.id, email: user.email } : null
+    }))
   } catch (error) {
     return NextResponse.json(
       authErrorPayload(mapSupabaseAuthError(error, 'unexpectedError')),

@@ -8,8 +8,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { AlertCircle } from 'lucide-react'
-import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
-import EmailCodeSignIn from '@/components/auth/EmailCodeSignIn'
+import PasswordAuthForm from '@/components/auth/PasswordAuthForm'
 import { t } from '@/lib/translations'
 import { isAuthErrorKey } from '@/lib/authMessages'
 import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '@/lib/userPreferences'
@@ -37,7 +36,7 @@ export default function LoginPage() {
   }, [])
 
   useEffect(() => {
-    if (tabParam === 'signup' || tabParam === 'login') {
+    if (tabParam === 'signup' || tabParam === 'login' || tabParam === 'forgot') {
       setActiveTab(tabParam)
     }
   }, [tabParam])
@@ -94,33 +93,25 @@ export default function LoginPage() {
 
         <Card className="bg-slate-800 border-amber-400/20">
           <CardContent className="p-6">
-            <h2 className="text-lg font-semibold text-white text-center">
-              {activeTab === 'signup' ? tr('signup') : tr('login')}
-            </h2>
             {error && (
-              <Alert variant="destructive" className="mt-4 bg-red-900/20 border-red-600 text-red-400">
+              <Alert variant="destructive" className="mb-4 bg-red-900/20 border-red-600 text-red-400">
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
-            {/* One e-mail field for everyone: a 6-digit code signs existing
-                users in and creates the account for new e-mails. Password
-                login stays as a secondary option for older accounts. */}
-            <div className="mt-6" data-testid="login-email-form">
-              <EmailCodeSignIn
+            {/* Figma frame 3: Google, e-mail + password, forgotten password.
+                Registration switches the same form; /registrace explains it. */}
+            <div data-testid="login-email-form">
+              <PasswordAuthForm
+                key={activeTab}
                 language={language}
                 nextPath={redirectPath}
                 variant="dark"
                 idPrefix="login"
-                allowPassword
-                footer={<FormPrivacyNotice language={language} purpose="account" className="bg-slate-900/60 border-amber-400/20" />}
+                initialMode={activeTab === 'signup' ? 'register' : (activeTab === 'forgot' ? 'forgot' : 'login')}
+                registrationHref={registrationHref}
               />
             </div>
-            <p className="mt-4 text-center text-sm">
-              <Link href={registrationHref} className="text-amber-400 underline hover:text-amber-300" data-testid="login-registration-link">
-                {tr('whatYouGet')}
-              </Link>
-            </p>
 
             <div className="text-center text-sm text-gray-400 mt-6 space-y-1">
               <p>

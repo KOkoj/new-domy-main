@@ -71,10 +71,8 @@ test('auth error keys exist in cs, en and it and Czech reset copy is localized',
 
 test('auth APIs return errorKey instead of English sentences', () => {
   const files = [
-    'app/api/auth/reset-password/route.js',
     'app/api/auth/forgot-password/route.js',
-    'app/api/auth/send-code/route.js',
-    'app/api/auth/verify-otp/route.js',
+    'app/api/auth/register/route.js',
     'app/api/auth/login/route.js',
     'app/api/auth/signup/route.js',
     'app/api/auth/change-password/route.js'
@@ -87,9 +85,8 @@ test('auth APIs return errorKey instead of English sentences', () => {
     assert.doesNotMatch(source, /NextResponse\.json\(\{\s*error:\s*error\.message/, relativePath)
     assert.doesNotMatch(source, /error: error\.message/, relativePath)
   }
-  assert.match(read('app/reset-password/page.js'), /resolveAuthClientMessage/)
-  assert.match(read('app/forgot-password/page.js'), /resolveAuthClientMessage/)
-  assert.match(read('components/auth/EmailCodeSignIn.js'), /resolveAuthClientMessage/)
+  assert.match(read('components/auth/PasswordAuthForm.js'), /resolveAuthClientMessage/)
+  assert.match(read('app/dashboard/settings/page.js'), /resolveAuthClientMessage/)
 })
 
 test('Supabase auth errors map to translation keys', () => {
@@ -167,18 +164,12 @@ test('site-page h1 on photo overlays can stay white', () => {
   assert.match(read('components/RegionBanner.js'), /<h1 className="font-bold text-white mb-2 tracking-tight">/)
 })
 
-test('Supabase auth email templates and SMTP notes are in the repo', () => {
+test('auth e-mails go through Resend from the app, not Supabase templates', () => {
   const readme = read('docs/supabase-email-templates/README.md')
-  assert.match(readme, /smtp\.resend\.com/)
-  assert.match(readme, /465/)
-  assert.match(readme, /Username \| `resend`/)
   assert.match(readme, /info@domyvitalii\.cz/)
+  assert.match(readme, /RESEND_API_KEY/)
   assert.doesNotMatch(readme, /re_[A-Za-z0-9]/)
-
   for (const file of ['confirm-signup.html', 'magic-link.html', 'reset-password.html']) {
-    const html = read(`docs/supabase-email-templates/${file}`)
-    assert.match(html, /Domy v Itálii/)
-    assert.match(html, /klubu Domy v Itálii/)
+    assert.equal(fs.existsSync(path.join(root, 'docs/supabase-email-templates', file)), false, file)
   }
-  assert.match(read('docs/supabase-email-templates/reset-password.html'), /\{\{ \.ConfirmationURL \}\}/)
 })

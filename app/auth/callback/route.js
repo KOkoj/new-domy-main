@@ -101,7 +101,7 @@ export async function GET(request) {
           user: signedInUser,
           request,
           language,
-          location: 'email-link'
+          location: code ? 'oauth' : 'email-link'
         })
       } catch (onboardingError) {
         console.error('[AUTH CALLBACK] First sign-in step failed:', onboardingError?.message || onboardingError)

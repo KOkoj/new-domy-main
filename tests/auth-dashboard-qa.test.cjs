@@ -66,23 +66,21 @@ test('language helpers default to Czech without reading client storage on first 
   assert.match(read('app/layout.js'), /readLanguageFromCookies/)
 })
 
-test('password reset and e-mail code routes exist', () => {
-  assert.match(read('app/api/auth/forgot-password/route.js'), /resetPasswordForEmail/)
-  assert.match(read('app/api/auth/send-code/route.js'), /signInWithOtp/)
-  assert.match(read('app/api/auth/verify-otp/route.js'), /verifyOtp/)
-  assert.match(read('app/api/auth/reset-password/route.js'), /updateUser\(\{ password/)
+test('password, forgotten password and registration routes exist', () => {
+  assert.match(read('app/api/auth/forgot-password/route.js'), /savePendingPassword/)
+  assert.match(read('app/api/auth/register/route.js'), /createUser/)
+  assert.match(read('app/api/auth/login/route.js'), /signInWithPassword/)
   assert.match(read('app/api/auth/change-password/route.js'), /signInWithPassword/)
-  assert.match(read('app/forgot-password/page.js'), /forgotPasswordTitle/)
-  assert.match(read('app/reset-password/page.js'), /saveNewPassword/)
-  assert.match(read('components/auth/EmailCodeSignIn.js'), /forgot-password/)
-  assert.match(read('components/AuthModal.js'), /EmailCodeSignIn/)
-  assert.match(read('app/login/page.js'), /EmailCodeSignIn/)
-  assert.match(read('components/auth/EmailCodeSignIn.js'), /\/api\/auth\/send-code/)
+  assert.match(read('app/forgot-password/page.js'), /redirect\('\/login\?tab=forgot'\)/)
+  assert.match(read('app/reset-password/page.js'), /redirect\('\/login\?tab=forgot'\)/)
+  assert.match(read('components/auth/PasswordAuthForm.js'), /forgot-password/)
+  assert.match(read('components/AuthModal.js'), /PasswordAuthForm/)
+  assert.match(read('app/login/page.js'), /PasswordAuthForm/)
 })
 
 test('auth modal title follows the active tab', () => {
   const source = read('components/AuthModal.js')
-  assert.match(source, /activeTab === 'signup' \? tr\('signup'\) : tr\('login'\)/)
+  assert.match(source, /mode === 'register' \|\| mode === 'registerSent' \? tr\('registerTitle'\) : tr\('loginTitle'\)/)
   assert.doesNotMatch(source, /const displayTitle = title \|\|/)
 })
 

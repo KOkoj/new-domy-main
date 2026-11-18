@@ -44,6 +44,12 @@ const getDashboardMenuItems = (language) => [
     description: language === 'cs' ? 'Spravovat profil' : (language === 'it' ? 'Gestisci profilo' : 'Manage your profile')
   },
   {
+    title: language === 'cs' ? 'Nastavení účtu' : (language === 'it' ? 'Impostazioni account' : 'Account settings'),
+    href: '/dashboard/settings',
+    icon: Settings,
+    description: language === 'cs' ? 'Přihlašovací údaje a heslo' : (language === 'it' ? 'Credenziali e password' : 'Sign-in details and password')
+  },
+  {
     title: language === 'cs' ? 'Oblíbené' : (language === 'it' ? 'Preferiti' : 'My Favorites'),
     href: '/dashboard/favorites',
     icon: Heart,

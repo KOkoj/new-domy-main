@@ -14,9 +14,6 @@ import {
   Phone, 
   MapPin, 
   Save, 
-  Lock,
-  Eye,
-  EyeOff,
   CheckCircle,
   AlertCircle,
   Settings
@@ -41,16 +38,6 @@ export default function ProfileManagement() {
       emailNotifications: true,
       propertyAlerts: true
     }
-  })
-  const [passwordForm, setPasswordForm] = useState({
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: ''
-  })
-  const [showPasswords, setShowPasswords] = useState({
-    current: false,
-    new: false,
-    confirm: false
   })
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -142,61 +129,6 @@ export default function ProfileManagement() {
     }
   }
 
-  const handlePasswordChange = async () => {
-    if (!supabase) return
-    setSaving(true)
-    setMessage({ type: '', text: '' })
-
-    if (!passwordForm.currentPassword) {
-      setMessage({ type: 'error', text: t('club.profile.currentPasswordRequired', language) })
-      setSaving(false)
-      return
-    }
-
-    if (passwordForm.newPassword !== passwordForm.confirmPassword) {
-      setMessage({ type: 'error', text: t('club.profile.passwordMismatch', language) })
-      setSaving(false)
-      return
-    }
-
-    if (passwordForm.newPassword.length < 6) {
-      setMessage({ type: 'error', text: t('club.profile.passwordLength', language) })
-      setSaving(false)
-      return
-    }
-
-    try {
-      const response = await fetch('/api/auth/change-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          currentPassword: passwordForm.currentPassword,
-          newPassword: passwordForm.newPassword
-        })
-      })
-      const payload = await response.json().catch(() => ({}))
-      if (!response.ok) {
-        const fallbackKey = response.status === 401 ? 'currentPasswordInvalid' : 'unexpectedError'
-        const translated = payload?.errorKey
-          ? t(`auth.${payload.errorKey}`, language)
-          : t(`auth.${fallbackKey}`, language)
-        throw new Error(
-          translated && translated !== `auth.${payload?.errorKey || fallbackKey}`
-            ? translated
-            : t('club.profile.passwordError', language)
-        )
-      }
-
-      setMessage({ type: 'success', text: t('club.profile.passwordSuccess', language) })
-      setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' })
-    } catch (error) {
-      console.error('Error changing password:', error)
-      setMessage({ type: 'error', text: error.message || t('club.profile.passwordError', language) })
-    } finally {
-      setSaving(false)
-    }
-  }
-
   const handlePreferenceChange = (key, value) => {
     setProfile(prev => ({
       ...prev,
@@ -255,15 +187,12 @@ export default function ProfileManagement() {
 
       {/* Profile Tabs */}
       <Tabs defaultValue="personal" className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="personal" className="min-h-[44px] text-xs sm:text-sm px-1 sm:px-3">
             <span className="truncate">{t('club.profile.personalInfo', language)}</span>
           </TabsTrigger>
           <TabsTrigger value="preferences" className="min-h-[44px] text-xs sm:text-sm px-1 sm:px-3">
             <span className="truncate">{t('club.profile.preferences', language)}</span>
-          </TabsTrigger>
-          <TabsTrigger value="security" className="min-h-[44px] text-xs sm:text-sm px-1 sm:px-3">
-            <span className="truncate">{t('club.profile.security', language)}</span>
           </TabsTrigger>
         </TabsList>
 
@@ -452,86 +381,6 @@ export default function ProfileManagement() {
           </Card>
         </TabsContent>
 
-        {/* Security */}
-        <TabsContent value="security" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Lock className="h-5 w-5" />
-                <span>{t('club.profile.changePassword', language)}</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <Label htmlFor="currentPassword">{t('club.profile.currentPassword', language)}</Label>
-                <div className="relative">
-                  <Input
-                    id="currentPassword"
-                    type={showPasswords.current ? "text" : "password"}
-                    value={passwordForm.currentPassword}
-                    onChange={(e) => setPasswordForm(prev => ({ ...prev, currentPassword: e.target.value }))}
-                    placeholder={t('club.profile.currentPasswordPlaceholder', language)}
-                  />
-                  <button
-                    type="button"
-                    className="absolute right-0 top-0 h-full px-3 flex items-center justify-center min-w-[44px] text-gray-400 hover:text-gray-600"
-                    onClick={() => setShowPasswords(prev => ({ ...prev, current: !prev.current }))}
-                  >
-                    {showPasswords.current ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </button>
-                </div>
-              </div>
-              
-              <div>
-                <Label htmlFor="newPassword">{t('club.profile.newPassword', language)}</Label>
-                <div className="relative">
-                  <Input
-                    id="newPassword"
-                    type={showPasswords.new ? "text" : "password"}
-                    value={passwordForm.newPassword}
-                    onChange={(e) => setPasswordForm(prev => ({ ...prev, newPassword: e.target.value }))}
-                    placeholder={t('club.profile.newPasswordPlaceholder', language)}
-                  />
-                  <button
-                    type="button"
-                    className="absolute right-0 top-0 h-full px-3 flex items-center justify-center min-w-[44px] text-gray-400 hover:text-gray-600"
-                    onClick={() => setShowPasswords(prev => ({ ...prev, new: !prev.new }))}
-                  >
-                    {showPasswords.new ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </button>
-                </div>
-              </div>
-              
-              <div>
-                <Label htmlFor="confirmPassword">{t('club.profile.confirmPassword', language)}</Label>
-                <div className="relative">
-                  <Input
-                    id="confirmPassword"
-                    type={showPasswords.confirm ? "text" : "password"}
-                    value={passwordForm.confirmPassword}
-                    onChange={(e) => setPasswordForm(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                    placeholder={t('club.profile.confirmPasswordPlaceholder', language)}
-                  />
-                  <button
-                    type="button"
-                    className="absolute right-0 top-0 h-full px-3 flex items-center justify-center min-w-[44px] text-gray-400 hover:text-gray-600"
-                    onClick={() => setShowPasswords(prev => ({ ...prev, confirm: !prev.confirm }))}
-                  >
-                    {showPasswords.confirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </button>
-                </div>
-              </div>
-              
-              <Button 
-                onClick={handlePasswordChange} 
-                disabled={saving || !passwordForm.currentPassword || !passwordForm.newPassword || !passwordForm.confirmPassword}
-              >
-                <Lock className="h-4 w-4 mr-2" />
-                {saving ? t('club.profile.updating', language) : t('club.profile.updatePassword', language)}
-              </Button>
-            </CardContent>
-          </Card>
-        </TabsContent>
       </Tabs>
     </div>
   )
