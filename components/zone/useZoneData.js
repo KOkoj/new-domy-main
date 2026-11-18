@@ -66,6 +66,12 @@ async function loadHasPurchases(userId) {
   return (count || 0) > 0
 }
 
+// The browser Supabase client takes an auth lock per query; if another tab
+// holds it, sidebar extras must not keep the whole zone on the skeleton.
+function withTimeout(promise, ms, fallback) {
+  return Promise.race([promise, new Promise((resolve) => setTimeout(() => resolve(fallback), ms))])
+}
+
 // Last result, so switching between /dashboard and /dashboard/ulozene renders
 // instantly and refreshes in the background.
 let lastZoneData = null
@@ -92,8 +98,8 @@ export function useZoneData() {
         const needsProfile = !getUserDisplayName(user) || getUserDisplayName(user).includes('@')
         return Promise.all([
           needsProfile ? settle(loadProfile(), null) : null,
-          settle(loadSavedSearch(user.id), null),
-          settle(loadHasPurchases(user.id), false)
+          withTimeout(settle(loadSavedSearch(user.id), null), 3000, null),
+          withTimeout(settle(loadHasPurchases(user.id), false), 3000, false)
         ])
       })
 
