@@ -18,7 +18,7 @@ import AuthModal from './AuthModal'
 import PremiumPdfComingSoonTrigger from '@/components/PremiumPdfComingSoonTrigger'
 import { PREMIUM_PDFS_ENABLED } from '@/lib/featureFlags'
 import { supabase } from '@/lib/supabase'
-import { useSiteAuthUser, notifySiteAuthChanged } from '@/lib/siteAuthUser'
+import { useSiteAuthUser, notifySiteAuthChanged, getUserDisplayName } from '@/lib/siteAuthUser'
 import { readLanguageFromBrowser, persistLanguage, DEFAULT_LANGUAGE, getInitialLanguage } from '@/lib/userPreferences'
 import { LanguageMenu, SiteNavMenu } from '@/components/SiteNavControls'
 import SocialLinks from '@/components/SocialLinks'
@@ -234,10 +234,10 @@ export default function Navigation({ appearAfterHero = false }) {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="flex items-center gap-1 sm:gap-2 bg-transparent hover:bg-white/10 text-gray-200 hover:text-white rounded-full px-2 sm:px-3 py-1.5 sm:py-2 transition-all">
                     <span className="h-7 w-7 sm:h-8 sm:w-8 border border-white/20 rounded-full bg-white/10 text-white text-sm inline-flex items-center justify-center">
-                      {(user.user_metadata?.name || user.email || 'U').charAt(0).toUpperCase()}
+                      {(getUserDisplayName(user) || 'U').charAt(0).toUpperCase()}
                     </span>
                     <span className="text-base font-medium hidden min-[1400px]:inline-block max-w-[100px] truncate">
-                      {user.user_metadata?.name || user.email}
+                      {getUserDisplayName(user)}
                     </span>
                   </Button>
                 </DropdownMenuTrigger>
@@ -288,8 +288,8 @@ export default function Navigation({ appearAfterHero = false }) {
                 className="min-[1400px]:hidden flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/20 border border-white/15 transition-all duration-200"
                 data-testid="mobile-dashboard-button"
               >
-                <LayoutDashboard className="h-3.5 w-3.5" />
-                <span>{navLabels.dashboard}</span>
+                <LayoutDashboard className="h-3.5 w-3.5 shrink-0" />
+                <span className="max-w-[110px] truncate">{getUserDisplayName(user) || navLabels.dashboard}</span>
               </Link>
             )}
 
