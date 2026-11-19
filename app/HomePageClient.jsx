@@ -23,6 +23,7 @@ import { LanguageMenu, SiteNavMenu } from '../components/SiteNavControls'
 import { supabase } from '../lib/supabase'
 import { useSiteAuthUser, notifySiteAuthChanged, getUserDisplayName } from '../lib/siteAuthUser'
 import { t } from '../lib/translations'
+import { getCallHoursLabel } from '../lib/zoneSchedule'
 import { readLanguageFromBrowser, readCurrencyFromBrowser, persistLanguage, persistCurrency, DEFAULT_LANGUAGE, DEFAULT_CURRENCY, getInitialLanguage, getInitialCurrency } from '../lib/userPreferences'
 
 const WEBINAR_REGION_VALUES = [
@@ -932,7 +933,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
                 </span>
               </Link>
               <Link
-                href="/contact"
+                href="/book-call"
                 data-testid="hero-consultation-link"
                 className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-[#c7895b] to-[#996945] px-6 py-3 text-lg font-semibold text-white shadow-[0_8px_18px_rgba(0,0,0,0.18)] transition duration-200 hover:-translate-y-1 hover:from-[#e8bc8a] hover:to-[#c48759] hover:shadow-[0_16px_30px_rgba(0,0,0,0.35)]"
               >
@@ -1879,9 +1880,7 @@ export default function HomePageClient({ initialProperties = EMPTY_PROPERTIES, s
                   <ChevronRight className="h-4 w-4" />
                 </Link>
                 <p className="mt-3 text-sm text-gray-500">
-                  {language === 'cs' ? 'Pondělí–pátek, 9:00–18:00' :
-                   language === 'it' ? 'Lunedì–venerdì, 9:00–18:00' :
-                   'Monday–Friday, 9:00–18:00'}
+                  {getCallHoursLabel(language, 'long')}
                 </p>
               </div>
             </div>

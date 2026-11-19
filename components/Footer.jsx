@@ -5,6 +5,8 @@ import { Phone, Mail, MapPin, ArrowUpRight } from 'lucide-react'
 import ProtectedContentLink from '@/components/ProtectedContentLink'
 import SocialLinks from '@/components/SocialLinks'
 import { consentCopy } from '@/lib/consentCopy'
+import { CONTACT_EMAIL } from '@/lib/contactDetails'
+import { getCallHoursLabel } from '@/lib/zoneSchedule'
 
 export default function Footer({ language = 'en' }) {
   const footerLabels = {
@@ -128,8 +130,8 @@ export default function Footer({ language = 'en' }) {
                 <a href="tel:+420731450001" className="hover:text-copper-300 flex items-center gap-2 transition-colors duration-200">
                   <Phone className="h-3.5 w-3.5 text-copper-400/60" />+420 731 450 001
                 </a>
-                <a href="mailto:lucie@domyvitalii.cz" className="hover:text-copper-300 flex items-center gap-2 mt-1 transition-colors duration-200">
-                  <Mail className="h-3.5 w-3.5 text-copper-400/60" />lucie@domyvitalii.cz
+                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-copper-300 flex items-center gap-2 mt-1 transition-colors duration-200">
+                  <Mail className="h-3.5 w-3.5 text-copper-400/60" />{CONTACT_EMAIL}
                 </a>
               </li>
               <li>
@@ -137,12 +139,12 @@ export default function Footer({ language = 'en' }) {
                 <a href="tel:+420720363136" className="hover:text-copper-300 flex items-center gap-2 transition-colors duration-200">
                   <Phone className="h-3.5 w-3.5 text-copper-400/60" />+420 720 363 136
                 </a>
-                <a href="mailto:luca.croce@domyvitalii.cz" className="hover:text-copper-300 flex items-center gap-2 mt-1 transition-colors duration-200">
-                  <Mail className="h-3.5 w-3.5 text-copper-400/60" />luca.croce@domyvitalii.cz
+                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-copper-300 flex items-center gap-2 mt-1 transition-colors duration-200">
+                  <Mail className="h-3.5 w-3.5 text-copper-400/60" />{CONTACT_EMAIL}
                 </a>
               </li>
               <li className="text-xs text-gray-500">
-                {language === 'cs' ? 'Po-Pá 9:00-18:00' : language === 'it' ? 'Lun-Ven 9:00-18:00' : 'Mon-Fri 9:00-18:00'}
+                {getCallHoursLabel(language)}
               </li>
             </ul>
           </div>

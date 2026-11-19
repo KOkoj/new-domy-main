@@ -13,6 +13,7 @@ import { supabase } from '@/lib/supabase'
 import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import { t } from '@/lib/translations'
 import { readAttributionForSubmit, trackLead } from '@/lib/adsTracking'
+import { readBookCallPrefill } from '@/lib/zoneSchedule'
 
 const TIMEZONE_OPTIONS = [
   'Europe/Prague',
@@ -59,6 +60,16 @@ export default function BookCallPage() {
     return () => window.removeEventListener('languageChange', handleLanguageChange)
   }, [])
 
+  // Prefill from the query string (e.g. a time slot picked in the client zone).
+  // Read after mount instead of useSearchParams, which would need a Suspense
+  // boundary and drop the form from the server-rendered HTML.
+  useEffect(() => {
+    const prefill = readBookCallPrefill(new URLSearchParams(window.location.search))
+    if (Object.keys(prefill).length > 0) {
+      setFormData((prev) => ({ ...prev, ...prefill }))
+    }
+  }, [])
+
   useEffect(() => {
     const preloadUser = async () => {
       if (!supabase) return
@@ -67,7 +78,7 @@ export default function BookCallPage() {
 
       setFormData((prev) => ({
         ...prev,
-        email: user.email || prev.email
+        email: prev.email || user.email || ''
       }))
     }
 

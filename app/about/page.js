@@ -298,7 +298,7 @@ export default function AboutPage() {
                   </Link>
                 </Button>
                 <Button asChild size="sm" className="bg-amber-400 hover:bg-amber-500 text-slate-900 font-semibold">
-                  <Link href="/contact">
+                  <Link href="/book-call">
                     {language === 'cs' ? 'Konzultace zdarma' : language === 'it' ? 'Consulenza gratuita' : 'Free Consultation'}
                   </Link>
                 </Button>

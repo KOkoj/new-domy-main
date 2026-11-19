@@ -128,7 +128,7 @@ const CONTENT = {
       title: 'Pomáháme Čechům koupit dům v Itálii',
       text: 'Od první analýzy až po podpis u notáře.',
       button: 'Domluvte si konzultaci zdarma',
-      href: '/contact'
+      href: '/book-call'
     },
     breadcrumb: {
       home: 'Domů',
@@ -249,7 +249,7 @@ const CONTENT = {
       title: 'We help Czech buyers purchase houses in Italy',
       text: 'From first analysis to the final notary signature.',
       button: 'Book a free consultation',
-      href: '/contact'
+      href: '/book-call'
     },
     breadcrumb: {
       home: 'Home',
@@ -370,7 +370,7 @@ const CONTENT = {
       title: 'Aiutiamo i cechi ad acquistare casa in Italia',
       text: 'Dalla prima analisi fino alla firma dal notaio.',
       button: 'Prenota una consulenza gratuita',
-      href: '/contact'
+      href: '/book-call'
     },
     breadcrumb: {
       home: 'Home',

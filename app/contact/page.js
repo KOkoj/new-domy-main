@@ -14,6 +14,8 @@ import FormPrivacyNotice from '@/components/legal/FormPrivacyNotice'
 import SocialLinks from '@/components/SocialLinks'
 import { t } from '@/lib/translations'
 import { readAttributionForSubmit, trackLead } from '@/lib/adsTracking'
+import { CONTACT_EMAIL, TEAM_CONTACTS } from '@/lib/contactDetails'
+import { getCallHoursLabel } from '@/lib/zoneSchedule'
 
 const CONTACT_INFO = [
   {
@@ -23,8 +25,8 @@ const CONTACT_INFO = [
       cs: 'Email',
       it: 'Email'
     },
-    value: 'info@domyvitalii.cz',
-    link: 'mailto:info@domyvitalii.cz'
+    value: CONTACT_EMAIL,
+    link: `mailto:${CONTACT_EMAIL}`
   },
   {
     icon: <Phone className="h-6 w-6" />,
@@ -62,24 +64,11 @@ const CONTACT_INFO = [
       it: 'Orario di lavoro'
     },
     value: {
-      en: 'Monday – Friday, 9:00 – 18:00',
-      cs: 'Pondělí – pátek, 9:00 – 18:00',
-      it: 'Lunedì – venerdì, 9:00 – 18:00'
+      en: getCallHoursLabel('en', 'long'),
+      cs: getCallHoursLabel('cs', 'long'),
+      it: getCallHoursLabel('it', 'long')
     },
     link: null
-  }
-]
-
-const TEAM_CONTACTS = [
-  {
-    name: 'Lucie Kučerová',
-    phone: '+420 731 450 001',
-    email: 'lucie@domyvitalii.cz'
-  },
-  {
-    name: 'Luca Croce',
-    phone: '+420 720 363 136',
-    email: 'luca.croce@domyvitalii.cz'
   }
 ]
 

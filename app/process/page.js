@@ -816,7 +816,7 @@ export default function ProcessPage() {
                    'Based on your current situation, we recommend continuing with one of these paths:'}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <Link href="/contact">
+                  <Link href="/book-call">
                     <Button
                       size="lg"
                       className="bg-white hover:bg-gray-100 text-slate-800 font-semibold px-6 py-6 text-sm transition-all duration-300 shadow-lg w-full"
