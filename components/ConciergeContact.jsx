@@ -10,6 +10,7 @@ import {
   CONTACT_PHONE_E164,
   buildWhatsappUrl
 } from '@/lib/contactDetails'
+import { getCallHoursLabel } from '@/lib/zoneSchedule'
 import Image from 'next/image'
 import styles from './ConciergeContact.module.css'
 
@@ -20,7 +21,7 @@ const PHONE_HREF = `tel:${CONTACT_PHONE_E164}`
 const LABELS = {
   cs: {
     greeting: 'Dobrý den 👋', invitation: 'Potřebujete poradit?',
-    hoursLabel: 'Volat můžete:', hours: 'Po–Pá: 9–16 a 18–20 hod.',
+    hoursLabel: 'Volat můžete:', hours: getCallHoursLabel('cs'),
     close: 'Zavřít kontakt', open: 'Otevřít kontakt na Lucii Kučerovou',
     contact: 'Kontakt na Lucii Kučerovou', call: 'Zavolat Lucii Kučerové',
     role: 'konzultantka',
@@ -29,7 +30,7 @@ const LABELS = {
   },
   it: {
     greeting: 'Buongiorno 👋', invitation: 'Avete bisogno di un consiglio?',
-    hoursLabel: 'Potete chiamare:', hours: 'Lun–Ven: 9–16 e 18–20',
+    hoursLabel: 'Potete chiamare:', hours: getCallHoursLabel('it'),
     close: 'Chiudi il contatto', open: 'Apri il contatto di Lucie Kučerová',
     contact: 'Contatto di Lucie Kučerová', call: 'Chiama Lucie Kučerová',
     role: 'consulente',
@@ -38,7 +39,7 @@ const LABELS = {
   },
   en: {
     greeting: 'Hello 👋', invitation: 'Need some advice?',
-    hoursLabel: 'You can call:', hours: 'Mon–Fri: 9–16 and 18–20',
+    hoursLabel: 'You can call:', hours: getCallHoursLabel('en'),
     close: 'Close contact', open: 'Open contact for Lucie Kučerová',
     contact: 'Contact Lucie Kučerová', call: 'Call Lucie Kučerová',
     role: 'consultant',

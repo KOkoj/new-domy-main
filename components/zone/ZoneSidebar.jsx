@@ -3,11 +3,12 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Mail, Phone } from 'lucide-react'
-import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164, buildWhatsappUrl, TEAM_CONTACTS } from '@/lib/contactDetails'
-import { getCallbackSlots, isOfficeHours } from '@/lib/zoneSchedule'
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164, buildWhatsappUrl } from '@/lib/contactDetails'
+import { buildZoneCallBooking, getCallbackSlots, getCallHoursLabel, isOfficeHours } from '@/lib/zoneSchedule'
+import { getUserDisplayName, loadSiteAuthUser } from '@/lib/siteAuthUser'
+import { readAttributionForSubmit, trackLead } from '@/lib/adsTracking'
+import { t } from '@/lib/translations'
 import { formatSearchSummary } from './useZoneData'
-
-const LUCIE = TEAM_CONTACTS[0]
 
 export function TeamAvatars({ who = 'both', size = 36 }) {
   const people = [
@@ -40,9 +41,27 @@ function WhatsAppIcon() {
   )
 }
 
+// Who the zone call booking is for: name/e-mail from the session, phone from
+// the profiles row (same source as /dashboard/profile).
+async function loadBookingContact() {
+  const user = await loadSiteAuthUser().catch(() => null)
+  if (!user) return {}
+  const response = await fetch('/api/profile', { cache: 'no-store', credentials: 'same-origin' }).catch(() => null)
+  const payload = response?.ok ? await response.json().catch(() => null) : null
+  const profile = payload?.profile || null
+  const displayName = getUserDisplayName(user, profile)
+  const profileName = [profile?.first_name, profile?.last_name].filter(Boolean).join(' ')
+  return {
+    name: displayName && !displayName.includes('@') ? displayName : profileName,
+    email: user.email || profile?.email || '',
+    phone: profile?.phone || user.phone || user.user_metadata?.phone || ''
+  }
+}
+
 function CallBlock() {
   const [state, setState] = useState(null)
   const [picked, setPicked] = useState(null)
+  const [status, setStatus] = useState(null)
 
   useEffect(() => {
     const now = new Date()
@@ -62,9 +81,34 @@ function CallBlock() {
           Zavolat Lucii
         </a>
         <p className="mt-3 text-[15px] font-medium text-[#1b2333]">{CONTACT_PHONE_DISPLAY}</p>
-        <p className="mt-1 text-[13px] text-gray-500">Po–Pá 9:00–21:00</p>
+        <p className="mt-1 text-[13px] text-gray-500">{getCallHoursLabel('cs')}</p>
       </div>
     )
+  }
+
+  const bookSlot = async (slot) => {
+    if (status === 'sending') return
+    setPicked(slot.id)
+    setStatus('sending')
+    try {
+      const booking = buildZoneCallBooking({ slot, ...(await loadBookingContact()) })
+      if (booking.action === 'redirect') {
+        window.location.assign(booking.href)
+        return
+      }
+      const response = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...booking.body, attribution: readAttributionForSubmit() })
+      })
+      if (!response.ok) throw new Error('Failed to submit booking')
+      const result = await response.json().catch(() => null)
+      trackLead({ type: 'call_booking', email: booking.body.email, inquiryId: result?.inquiryId })
+      setStatus('success')
+    } catch (error) {
+      console.error('Zone call booking error:', error)
+      setStatus('error')
+    }
   }
 
   return (
@@ -72,24 +116,34 @@ function CallBlock() {
       <p className="text-[14px] font-medium leading-snug text-[#1b2333]">Vyberte čas, kdy vám Lucie zavolá</p>
       <div className="mt-3 flex flex-wrap gap-2">
         {state.slots.map((slot) => (
-          <a
+          <button
             key={slot.id}
-            href={buildWhatsappUrl(`Dobrý den, Lucie, prosím o zavolání: ${slot.dateLabel}.`)}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setPicked(slot.id)}
-            className={`rounded-full border px-3.5 py-2 text-[14px] transition ${
+            type="button"
+            onClick={() => bookSlot(slot)}
+            disabled={status === 'sending' || status === 'success'}
+            aria-pressed={picked === slot.id}
+            className={`rounded-full border px-3.5 py-2 text-[14px] transition disabled:cursor-default ${
               picked === slot.id
                 ? 'border-[#2d5a27] bg-[#2d5a27] text-white'
                 : 'border-[#e6d8c8] text-[#a8642f] hover:border-[#c78b5a]'
             }`}
           >
             {slot.label}
-          </a>
+          </button>
         ))}
       </div>
+      {status === 'success' ? (
+        <p className="mt-3 text-[13px] font-medium text-[#2d5a27]" role="status" data-testid="zone-call-success">
+          {t('forms.bookCall.success', 'cs')}
+        </p>
+      ) : null}
+      {status === 'error' ? (
+        <p className="mt-3 text-[13px] text-red-700" role="alert" data-testid="zone-call-error">
+          {t('forms.bookCall.error', 'cs')}
+        </p>
+      ) : null}
       <p className="mt-3 text-[12.5px] leading-snug text-gray-500">
-        Víkendové termíny si Lucie nastavuje sama. Teď je mimo Po–Pá 9:00–21:00.
+        Víkendové termíny si Lucie nastavuje sama. Teď je mimo {getCallHoursLabel('cs')}.
       </p>
     </div>
   )
@@ -121,7 +175,7 @@ export default function ZoneSidebar({ savedCount = 0, savedSearch = null }) {
           Napsat na WhatsApp
         </a>
         <a
-          href={`mailto:${LUCIE.email}`}
+          href={`mailto:${CONTACT_EMAIL}`}
           className="flex w-full items-center justify-center gap-2.5 rounded-lg border border-[#e3ddd2] bg-white px-4 py-3 text-[15px] font-medium text-[#1b2333] transition hover:bg-[#faf8f4]"
         >
           <Mail className="h-4 w-4" />

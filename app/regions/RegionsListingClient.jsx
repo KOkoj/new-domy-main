@@ -185,7 +185,7 @@ export default function RegionsListingClient({ initialRegions, initialProperties
               ))}
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/contact" className="inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white">
+              <Link href="/book-call" className="inline-flex w-fit items-center gap-1.5 rounded-full bg-gradient-to-r from-[#c7895b] to-[#996945] px-5 py-2.5 text-base font-semibold text-white">
                 {copy.consult}
                 <ChevronRight className="h-4 w-4" />
               </Link>

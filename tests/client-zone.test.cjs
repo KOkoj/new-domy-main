@@ -45,7 +45,7 @@ test('sidebar contacts Lucie via shared contact details', () => {
   const sidebar = read('components/zone/ZoneSidebar.jsx')
   assert.match(sidebar, /CONTACT_PHONE_E164/)
   assert.match(sidebar, /buildWhatsappUrl/)
-  assert.match(sidebar, /TEAM_CONTACTS\[0\]/)
+  assert.match(sidebar, /mailto:\$\{CONTACT_EMAIL\}/)
   assert.match(sidebar, /\/dashboard\/settings/)
 })
 

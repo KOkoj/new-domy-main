@@ -121,7 +121,7 @@ test('every inquiry form sends attribution and fires the Lead conversion after s
     'app/contact/page.js',
     'app/book-call/page.js',
     'app/properties/[slug]/PropertyDetailClient.jsx',
-    'app/dashboard/concierge/page.js'
+    'components/zone/ZoneSidebar.jsx'
   ]) {
     const source = read(file)
     assert.match(source, /attribution: readAttributionForSubmit\(\)/, file)

@@ -61,7 +61,7 @@ const CONTENT = {
     "servicePrimaryCta": "See Our Process",
     "servicePrimaryCtaHref": "/process",
     "serviceSecondaryCta": "Free Consultation",
-    "serviceSecondaryCtaHref": "/contact",
+    "serviceSecondaryCtaHref": "/book-call",
     "risksTitle": "What can go wrong if you manage it alone",
     "risks": [
       "Too-early commitments: signing documents or paying deposits before all checks are complete.",
@@ -147,7 +147,7 @@ const CONTENT = {
     "servicePrimaryCta": "Podívejte se na náš proces",
     "servicePrimaryCtaHref": "/process",
     "serviceSecondaryCta": "Konzultace zdarma",
-    "serviceSecondaryCtaHref": "/contact",
+    "serviceSecondaryCtaHref": "/book-call",
     "risksTitle": "Co se může pokazit, když to zvládnete sami",
     "risks": [
       "Příliš brzy: podepisování nebo placení záloh před dokončením šeků.",
@@ -233,7 +233,7 @@ const CONTENT = {
     "servicePrimaryCta": "Vedi il nostro processo",
     "servicePrimaryCtaHref": "/process",
     "serviceSecondaryCta": "Consulenza gratuita",
-    "serviceSecondaryCtaHref": "/contact",
+    "serviceSecondaryCtaHref": "/book-call",
     "risksTitle": "Cosa può andare storto se gestisci tutto da solo",
     "risks": [
       "Impegni troppo anticipati: firma di documenti o versamento di caparre prima del completamento di tutte le verifiche.",
