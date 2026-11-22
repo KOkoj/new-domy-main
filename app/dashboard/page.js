@@ -4,6 +4,7 @@ import Link from 'next/link'
 import ZoneShell, { ZoneSkeleton, HouseRow, StatusBadge, houseHref } from '@/components/zone/ZoneShell'
 import { TeamAvatars } from '@/components/zone/ZoneSidebar'
 import { useZoneData } from '@/components/zone/useZoneData'
+import MessageThread, { MessageThreadSkeleton, useZoneMessages } from '@/components/zone/MessageThread'
 
 function SavedStrip({ houses }) {
   return (
@@ -102,6 +103,8 @@ function WelcomeCard() {
 
 export default function DashboardThread() {
   const data = useZoneData()
+  // Loaded in parallel with the zone data; never holds the zone skeleton.
+  const thread = useZoneMessages()
 
   if (data.loading) {
     return (
@@ -112,6 +115,20 @@ export default function DashboardThread() {
   }
 
   const isNewUser = !data.savedSearch && data.savedHouses.length === 0
+  const savedIds = new Set(data.savedHouses.map((house) => house.id))
+  const toggleSaved = (house, saved) => {
+    const others = data.savedHouses.filter((item) => item.id !== house.id)
+    data.update({ savedHouses: saved ? [{ ...house, savedAt: new Date().toISOString() }, ...others] : others })
+  }
+  const messagesBlock = thread.loading ? (
+    <div className="mt-8">
+      <MessageThreadSkeleton />
+    </div>
+  ) : thread.messages.length > 0 ? (
+    <div className="mt-8">
+      <MessageThread messages={thread.messages} savedIds={savedIds} onToggleSaved={toggleSaved} />
+    </div>
+  ) : null
   const unavailable = data.savedHouses
     .filter((house) => house.status === 'reserved' || house.status === 'sold')
     .sort((a, b) => String(b.savedAt || '').localeCompare(String(a.savedAt || '')))
@@ -125,12 +142,16 @@ export default function DashboardThread() {
       </header>
 
       {isNewUser ? (
-        <div className="mt-8">
-          <WelcomeCard />
-        </div>
+        <>
+          {messagesBlock}
+          <div className="mt-8">
+            <WelcomeCard />
+          </div>
+        </>
       ) : (
         <>
           {data.savedHouses.length > 0 ? <SavedStrip houses={data.savedHouses} /> : null}
+          {messagesBlock}
           {unavailable.length > 0 ? (
             <div className="mt-8 space-y-5" data-testid="zone-thread">
               {unavailable.map((house) => (
