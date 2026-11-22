@@ -16,7 +16,8 @@ import {
   X,
   Shield,
   Video,
-  Mail
+  Mail,
+  Send
 } from 'lucide-react'
 import { t } from '@/lib/translations'
 import { getProfileDisplayName } from '@/lib/profileName'
@@ -61,6 +62,13 @@ export default function AdminShell({ children, user, profile }) {
       descKey: 'admin.menu.inquiriesDesc',
       href: '/admin/inquiries',
       icon: MessageSquare
+    },
+    {
+      // Internal page for Lucie and Luca; Czech only.
+      title: 'Zprávy klientům',
+      desc: 'Vlákno v klientské zóně',
+      href: '/admin/zpravy',
+      icon: Send
     },
     {
       titleKey: 'admin.menu.leads',
@@ -177,8 +185,8 @@ export default function AdminShell({ children, user, profile }) {
                 >
                   <Icon className="h-5 w-5" />
                   <div>
-                    <div className="font-medium">{t(item.titleKey, language)}</div>
-                    <div className="text-xs text-gray-500">{t(item.descKey, language)}</div>
+                    <div className="font-medium">{item.title || t(item.titleKey, language)}</div>
+                    <div className="text-xs text-gray-500">{item.desc || t(item.descKey, language)}</div>
                   </div>
                 </Link>
               )

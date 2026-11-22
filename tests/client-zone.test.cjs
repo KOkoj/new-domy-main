@@ -58,8 +58,11 @@ test('zone loads fast: no full inventory download, no session waterfall', () => 
 
   const route = read('app/api/favorites/houses/route.js')
   assert.match(route, /getAuthenticatedUser/)
-  assert.match(route, /_id in \$ids/)
+  assert.match(route, /resolveZoneHouses/)
   assert.doesNotMatch(route, /getListableProperties|getAllProperties/)
+  const houses = read('lib/zoneHouses.js')
+  assert.match(houses, /_id in \$ids/)
+  assert.doesNotMatch(houses, /getListableProperties|getAllProperties/)
 
   const layout = read('app/dashboard/DashboardLayoutClient.jsx')
   assert.doesNotMatch(layout, /\/api\/profile/)

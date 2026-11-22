@@ -33,7 +33,8 @@ export function houseHref(house) {
 }
 
 // Row card used inside thread items.
-export function HouseRow({ house }) {
+// `reserveRight` leaves room for an overlaid button (e.g. the heart).
+export function HouseRow({ house, reserveRight = false }) {
   return (
     <Link
       href={houseHref(house)}
@@ -41,7 +42,7 @@ export function HouseRow({ house }) {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={house.image} alt="" loading="lazy" className="h-[84px] w-[116px] flex-shrink-0 rounded-lg object-cover sm:h-[84px]" />
-      <div className="min-w-0 py-0.5">
+      <div className={`min-w-0 py-0.5 ${reserveRight ? 'pr-9' : ''}`}>
         <p className="text-[15px] font-medium leading-snug text-[#1b2333]">{house.title}</p>
         {house.region ? <p className="mt-1 text-[12.5px] text-gray-500">{house.region}</p> : null}
         {house.price ? <p className="mt-1 text-[14px] font-semibold text-[#1b2333]">{formatPrice(house.price, house.currency)}</p> : null}
