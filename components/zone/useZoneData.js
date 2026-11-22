@@ -98,7 +98,8 @@ export function useZoneData() {
         if (!user) return [null, null, false]
         const needsProfile = !pickFullName(user)
         return Promise.all([
-          needsProfile ? settle(loadProfile(), null) : null,
+          // Name only; a slow/cold profile route must not hold the zone skeleton.
+          needsProfile ? withTimeout(settle(loadProfile(), null), 3000, null) : null,
           withTimeout(settle(loadSavedSearch(), null), 5000, null),
           withTimeout(settle(loadHasPurchases(user.id), false), 3000, false)
         ])

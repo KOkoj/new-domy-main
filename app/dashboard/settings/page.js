@@ -297,7 +297,7 @@ export default function AccountSettingsPage() {
                       toggleLabel={visible.confirm ? trAuth('hidePassword') : trAuth('showPassword')}
                     />
                   </div>
-                  <Button type="submit" className="h-11 w-full bg-slate-800 font-semibold text-white hover:bg-slate-900 sm:w-auto sm:px-8" disabled={saving}>
+                  <Button type="submit" className="h-11 w-full bg-[#2d5a27] font-semibold text-white hover:bg-[#234a1f] sm:w-auto sm:px-8" disabled={saving}>
                     {saving ? tr('saving') : tr('save')}
                   </Button>
                 </form>
