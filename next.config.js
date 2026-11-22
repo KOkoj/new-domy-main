@@ -68,6 +68,19 @@ const nextConfig = {
       { source: '/nas-proces/', destination: '/process', statusCode: 301 },
       { source: '/regiony', destination: '/regions', statusCode: 301 },
       { source: '/regiony/', destination: '/regions', statusCode: 301 },
+      // Old client-zone pages the zone no longer links to (code stays in the
+      // repo). Temporary (307) on purpose. Kept live: intake-form (homepage +
+      // guide CTA), recommendations (property alert e-mails), concierge.
+      ...[
+        ['prehled', '/dashboard'],
+        ['inquiries', '/dashboard'],
+        ['favorites', '/dashboard/ulozene'],
+        ['documents', '/dashboard'],
+        ['notifications', '/dashboard'],
+        ['content', '/dashboard'],
+        ['webinars', '/dashboard'],
+        ['profile', '/dashboard/settings'],
+      ].map(([page, destination]) => ({ source: `/dashboard/${page}`, destination, permanent: false })),
       // Preserve Next's existing no-trailing-slash 308 for all other URLs.
       { source: '/:path+/', destination: '/:path+', permanent: true },
       {

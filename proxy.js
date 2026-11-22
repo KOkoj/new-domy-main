@@ -26,6 +26,27 @@ function isMaintenanceBypassPath(pathname) {
   )
 }
 
+const AUTH_COOKIE_PATTERN = /^sb-.+-auth-token(?:\.\d+)?$/
+
+function isZonePath(pathname) {
+  return pathname === '/dashboard' || pathname.startsWith('/dashboard/')
+}
+
+// Signed-out visitors go straight to login from the server (no client-side
+// auth wait), back to the zone page they asked for afterwards.
+function redirectToLogin(request, fromResponse = null) {
+  const loginUrl = request.nextUrl.clone()
+  loginUrl.pathname = '/login'
+  loginUrl.search = ''
+  loginUrl.searchParams.set('redirect', request.nextUrl.pathname)
+  const response = NextResponse.redirect(loginUrl, 307)
+  response.headers.set('Cache-Control', 'private, no-store')
+  for (const cookie of fromResponse?.cookies.getAll() || []) {
+    response.cookies.set(cookie)
+  }
+  return response
+}
+
 function isVercelPreviewHost(hostname) {
   return typeof hostname === 'string' && hostname.includes('vercel.app')
 }
@@ -123,6 +144,11 @@ export async function proxy(request) {
     })
   }
 
+  const zonePath = isZonePath(pathname)
+  if (zonePath && !request.cookies.getAll().some((cookie) => AUTH_COOKIE_PATTERN.test(cookie.name))) {
+    return redirectToLogin(request)
+  }
+
   let supabaseResponse = NextResponse.next({ request })
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -158,7 +184,14 @@ export async function proxy(request) {
   // A simple mistake could cause hard-to-debug random logouts.
   // We only call getUser() to refresh auth cookies if needed. Public pages,
   // including all articles and buying guides, are never gated here.
-  await supabase.auth.getUser()
+  const { data: authData, error: authError } = await supabase.auth.getUser()
+
+  // Only a definite "no valid session" answer redirects; a network/5xx error
+  // (status 0 or >= 500) lets the page's own session check decide.
+  const definitelySignedOut = !authData?.user && (!authError || (authError.status >= 400 && authError.status < 500))
+  if (zonePath && definitelySignedOut) {
+    return redirectToLogin(request, supabaseResponse)
+  }
 
   return supabaseResponse
 }

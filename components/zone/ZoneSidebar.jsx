@@ -95,11 +95,20 @@ function CallBlock() {
   )
 }
 
+// Mobile (< lg): compact panel. Phone / WhatsApp / e-mail sit side by side as
+// icon buttons; the callback slots stay folded behind the phone button. The
+// desktop sticky column keeps the full layout unchanged.
 export default function ZoneSidebar({ savedCount = 0, savedSearch = null }) {
   const searchSummary = formatSearchSummary(savedSearch?.filters) || savedSearch?.name || ''
+  const [officeHours, setOfficeHours] = useState(null)
+  const [slotsOpen, setSlotsOpen] = useState(false)
+
+  useEffect(() => {
+    setOfficeHours(isOfficeHours(new Date()))
+  }, [])
 
   return (
-    <div className="rounded-2xl border border-[#ebe5da] bg-white p-5 sm:p-6" data-testid="zone-sidebar">
+    <div className="flex flex-col rounded-2xl border border-[#ebe5da] bg-white p-4 sm:p-6 lg:block" data-testid="zone-sidebar">
       <div className="flex items-center gap-3">
         <TeamAvatars size={38} />
         <div className="min-w-0">
@@ -108,9 +117,17 @@ export default function ZoneSidebar({ savedCount = 0, savedSearch = null }) {
         </div>
       </div>
 
-      <CallBlock />
+      <div
+        className={`order-2 lg:order-none lg:block ${slotsOpen && officeHours === false ? '' : 'hidden'}`}
+        data-testid="zone-call-wrapper"
+      >
+        <CallBlock />
+      </div>
 
-      <div className="mt-4 space-y-2.5">
+      <div
+        className="order-1 mt-4 grid grid-cols-3 gap-2 lg:order-none lg:block lg:space-y-2.5 [&>a]:gap-0 [&>a]:px-2 [&>a]:text-[0px] lg:[&>a]:gap-2.5 lg:[&>a]:px-4 lg:[&>a]:text-[15px]"
+        data-testid="zone-contact-buttons"
+      >
         <a
           href={buildWhatsappUrl('')}
           target="_blank"
@@ -127,9 +144,32 @@ export default function ZoneSidebar({ savedCount = 0, savedSearch = null }) {
           <Mail className="h-4 w-4" />
           Napsat e-mail
         </a>
+        {officeHours ? (
+          <a
+            href={`tel:${CONTACT_PHONE_E164}`}
+            aria-label="Zavolat Lucii"
+            className="order-first flex items-center justify-center rounded-lg bg-[#2d5a27] py-3 text-white lg:hidden"
+            data-testid="zone-mobile-call"
+          >
+            <Phone className="h-4 w-4" aria-hidden="true" />
+          </a>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setSlotsOpen((open) => !open)}
+            aria-expanded={slotsOpen}
+            aria-label="Vyberte čas, kdy vám Lucie zavolá"
+            className={`order-first flex items-center justify-center rounded-lg border py-3 lg:hidden ${
+              slotsOpen ? 'border-[#2d5a27] bg-[#2d5a27] text-white' : 'border-[#e6d8c8] bg-white text-[#2d5a27]'
+            }`}
+            data-testid="zone-mobile-call"
+          >
+            <Phone className="h-4 w-4" aria-hidden="true" />
+          </button>
+        )}
       </div>
 
-      <div className="mt-7 space-y-5 text-[14px]">
+      <div className="order-3 mt-5 space-y-3 text-[14px] lg:mt-7 lg:space-y-5">
         {savedSearch ? (
           <div>
             <p className="font-medium text-[#1b2333]">Vaše hledání</p>

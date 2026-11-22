@@ -1,471 +1,220 @@
 ﻿'use client'
 
-import { useState, useEffect } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
-import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { 
-  Search, 
-  Edit, 
-  Trash2,
-  Plus,
-  Bell,
-  BellOff,
-  Calendar,
-  Filter,
-  Save,
-  X,
-  CheckCircle,
-  Settings
-} from 'lucide-react'
-import { t } from '../../../lib/translations'
-import { DEFAULT_LANGUAGE, readLanguageFromBrowser } from '../../../lib/userPreferences'
-import Link from 'next/link'
+import { useState } from 'react'
+import { CheckCircle } from 'lucide-react'
+import ZoneBackLink from '@/components/zone/ZoneBackLink'
+import ZoneShell, { ZoneSkeleton } from '@/components/zone/ZoneShell'
+import { formatSearchSummary, useZoneData } from '@/components/zone/useZoneData'
+import { REGION_LABELS, toRegionSlug } from '@/app/properties/filterConfig'
+import { PROPERTY_TYPE_LABELS } from '@/lib/propertyDisplay'
 
-async function api(method, body, query = '') {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), 12000)
-  try {
-    const res = await fetch('/api/saved-searches' + query, {
-      method,
-      cache: 'no-store',
-      credentials: 'same-origin',
-      headers: body ? { 'Content-Type': 'application/json' } : undefined,
-      body: body ? JSON.stringify(body) : undefined,
-      signal: controller.signal
-    })
-    const payload = await res.json().catch(() => ({}))
-    if (!res.ok) throw Object.assign(new Error(payload.error || `HTTP ${res.status}`), { status: res.status })
-    return payload
-  } finally {
-    clearTimeout(timer)
-  }
+// Figma C "Nastavte, co hledáte": one search per client. Saving updates the
+// newest saved search (or creates the first one) through /api/saved-searches;
+// the summary then shows in the sidebar under "Vaše hledání".
+
+const REGION_OPTIONS = Object.entries(REGION_LABELS)
+  .map(([slug, labels]) => ({ slug, label: labels.cs }))
+  .sort((a, b) => a.label.localeCompare(b.label, 'cs'))
+
+const TYPE_OPTIONS = ['house', 'villa', 'apartment'].map((value) => ({
+  value,
+  label: PROPERTY_TYPE_LABELS[value].cs
+}))
+
+function regionSlugFromFilters(filters) {
+  if (!filters) return ''
+  const fromSlug = toRegionSlug(filters.region || '')
+  if (fromSlug && REGION_LABELS[fromSlug]) return fromSlug
+  const location = String(filters.location || '').trim().toLowerCase()
+  if (!location) return ''
+  const match = Object.entries(REGION_LABELS).find(([, labels]) =>
+    [labels.cs, labels.en, labels.it].some((label) => String(label).toLowerCase() === location)
+  )
+  return match ? match[0] : ''
 }
 
-export default function SavedSearchesManagement() {
-  const [savedSearches, setSavedSearches] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [editingSearch, setEditingSearch] = useState(null)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [user, setUser] = useState(null)
-  const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
+const digitsOnly = (value) => String(value ?? '').replace(/\D/g, '').slice(0, 10)
+const formatAmount = (digits) => (digits ? Number(digits).toLocaleString('cs-CZ') : '')
 
-  useEffect(() => {
-    loadSavedSearches()
-    
-    // Load language preference
-    setLanguage(readLanguageFromBrowser())
-    
-    // Listen for language changes
-    const handleLanguageChange = (e) => {
-      setLanguage(e.detail)
-    }
-    
-    window.addEventListener('languageChange', handleLanguageChange)
-    return () => window.removeEventListener('languageChange', handleLanguageChange)
-  }, [])
+async function saveSearchRequest(existing, payload) {
+  const response = await fetch('/api/saved-searches', {
+    method: existing ? 'PATCH' : 'POST',
+    cache: 'no-store',
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(existing ? { id: existing.id, ...payload } : payload)
+  })
+  const body = await response.json().catch(() => ({}))
+  if (!response.ok || !body?.search) throw new Error(body?.error || `HTTP ${response.status}`)
+  return body.search
+}
 
-  const loadSavedSearches = async () => {
+function Chip({ selected, onClick, children, testId }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={selected}
+      data-testid={testId}
+      className={`rounded-full border px-3.5 py-1.5 text-[14px] transition ${
+        selected
+          ? 'border-[#c78b5a] bg-[#fdf6ef] text-[#a8642f]'
+          : 'border-[#e3ddd2] bg-white text-[#1b2333] hover:border-[#c9bfae]'
+      }`}
+    >
+      {children}
+    </button>
+  )
+}
+
+function SearchForm({ savedSearch, onSaved }) {
+  const initial = savedSearch?.filters || {}
+  const [region, setRegion] = useState(() => regionSlugFromFilters(initial))
+  const [maxPrice, setMaxPrice] = useState(() => digitsOnly(initial.maxPrice))
+  const [type, setType] = useState(() => (PROPERTY_TYPE_LABELS[initial.type] ? initial.type : ''))
+  const [status, setStatus] = useState(null)
+
+  const filters = {
+    location: region ? REGION_LABELS[region].cs : '',
+    region,
+    maxPrice: maxPrice ? Number(maxPrice) : '',
+    type
+  }
+  const summary = formatSearchSummary(filters)
+  const changed = () => setStatus(null)
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    if (!summary || status === 'saving') return
+    setStatus('saving')
     try {
-      const { searches } = await api('GET')
-      setUser(true)
-      setSavedSearches((searches || []).map(s => ({
-        ...s,
-        userId: s.user_id,
-        createdAt: s.created_at
-      })))
+      // Criteria the old form stored (bedrooms, minPrice…) are kept as they were.
+      const saved = await saveSearchRequest(savedSearch, {
+        name: summary,
+        filters: { ...(savedSearch?.filters || {}), ...filters }
+      })
+      setStatus('saved')
+      onSaved(saved)
     } catch (error) {
-      console.error('Error loading saved searches:', error)
-    } finally {
-      setLoading(false)
+      console.error('Saved search save failed:', error)
+      setStatus('error')
     }
   }
 
-  const createNewSearch = () => {
-    setEditingSearch({
-      id: 'new',
-      name: '',
-      filters: {
-        type: '',
-        minPrice: '',
-        maxPrice: '',
-        location: '',
-        bedrooms: '',
-        bathrooms: ''
-      },
-      notifications: true
-    })
-    setIsDialogOpen(true)
-  }
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="mt-7 space-y-6 rounded-2xl border border-[#ebe5da] bg-white p-6 sm:p-8"
+      data-testid="zone-search-form"
+    >
+      <fieldset>
+        <legend className="text-[15px] font-medium text-[#1b2333]">Region</legend>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {REGION_OPTIONS.map((option) => (
+            <Chip
+              key={option.slug}
+              selected={region === option.slug}
+              testId={`zone-search-region-${option.slug}`}
+              onClick={() => {
+                setRegion((current) => (current === option.slug ? '' : option.slug))
+                changed()
+              }}
+            >
+              {option.label}
+            </Chip>
+          ))}
+        </div>
+      </fieldset>
 
-  const editSearch = (search) => {
-    setEditingSearch({
-      ...search,
-      notifications: search.notifications ?? true
-    })
-    setIsDialogOpen(true)
-  }
-
-  const saveSearch = async () => {
-    if (!editingSearch.name.trim()) {
-      alert(t('club.searchesPage.nameRequired', language))
-      return
-    }
-
-    try {
-      if (editingSearch.id === 'new') {
-        // Create new search
-        const { search: data } = await api('POST', {
-          name: editingSearch.name,
-          filters: editingSearch.filters,
-          notifications: editingSearch.notifications
-        })
-
-        setSavedSearches(prev => [{...data, userId: data.user_id, createdAt: data.created_at}, ...prev])
-      } else {
-        // Update existing search
-        const { search: data } = await api('PATCH', {
-          id: editingSearch.id,
-          name: editingSearch.name,
-          filters: editingSearch.filters,
-          notifications: editingSearch.notifications
-        })
-
-        setSavedSearches(prev => prev.map(s => s.id === editingSearch.id ? {...data, userId: data.user_id, createdAt: data.created_at} : s))
-      }
-
-      setIsDialogOpen(false)
-      setEditingSearch(null)
-    } catch (error) {
-      console.error('Error saving search:', error)
-      alert(t('club.searchesPage.saveError', language))
-    }
-  }
-
-  const deleteSearch = async (searchId) => {
-    if (!confirm(t('club.searchesPage.deleteConfirm', language))) return
-
-    try {
-      await api('DELETE', null, `?id=${encodeURIComponent(searchId)}`)
-
-      setSavedSearches(prev => prev.filter(s => s.id !== searchId))
-    } catch (error) {
-      console.error('Error deleting search:', error)
-      alert(t('club.searchesPage.deleteError', language))
-    }
-  }
-
-  const toggleNotifications = async (searchId, currentStatus) => {
-    try {
-      await api('PATCH', { id: searchId, notifications: !currentStatus })
-
-      setSavedSearches(prev => prev.map(s => 
-        s.id === searchId ? { ...s, notifications: !currentStatus } : s
-      ))
-    } catch (error) {
-      console.error('Error toggling notifications:', error)
-      alert(t('club.searchesPage.notificationsError', language))
-    }
-  }
-
-  const runSearch = (filters) => {
-    const params = new URLSearchParams()
-    Object.entries(filters).forEach(([key, value]) => {
-      if (value) {
-        params.append(key, value)
-      }
-    })
-    window.open(`/properties?${params.toString()}`, '_blank')
-  }
-
-  const formatFilters = (filters) => {
-    const parts = []
-    if (filters.type) parts.push(filters.type.charAt(0).toUpperCase() + filters.type.slice(1))
-    if (filters.location) parts.push(filters.location)
-    if (filters.minPrice || filters.maxPrice) {
-      const min = filters.minPrice ? `€${parseInt(filters.minPrice).toLocaleString()}` : '0'
-      const max = filters.maxPrice ? `€${parseInt(filters.maxPrice).toLocaleString()}` : '€'
-      parts.push(`${min} - ${max}`)
-    }
-    if (filters.bedrooms) parts.push(`${filters.bedrooms}+ beds`)
-    if (filters.bathrooms) parts.push(`${filters.bathrooms}+ baths`)
-    return parts.join(' • ') || 'All properties'
-  }
-
-  if (loading) {
-    return (
-      <div className="space-y-6">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-64 mb-6"></div>
-          <div className="space-y-4">
-            {[1, 2, 3, 4].map(i => (
-              <div key={i} className="h-32 bg-gray-200 rounded-lg"></div>
-            ))}
-          </div>
+      <div>
+        <label htmlFor="zone-search-max-price" className="text-[15px] font-medium text-[#1b2333]">
+          Maximální cena
+        </label>
+        <div className="relative mt-2">
+          <input
+            id="zone-search-max-price"
+            type="text"
+            inputMode="numeric"
+            autoComplete="off"
+            value={formatAmount(maxPrice)}
+            onChange={(event) => {
+              setMaxPrice(digitsOnly(event.target.value))
+              changed()
+            }}
+            className="h-11 w-full rounded-lg border border-[#e3ddd2] bg-white px-3.5 pr-10 text-[15px] text-[#1b2333] outline-none focus:border-[#c78b5a] focus:ring-2 focus:ring-[#c78b5a]/20"
+          />
+          <span className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[15px] text-gray-500" aria-hidden="true">
+            €
+          </span>
         </div>
       </div>
+
+      <fieldset>
+        <legend className="text-[15px] font-medium text-[#1b2333]">Typ nemovitosti</legend>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {TYPE_OPTIONS.map((option) => (
+            <Chip
+              key={option.value}
+              selected={type === option.value}
+              testId={`zone-search-type-${option.value}`}
+              onClick={() => {
+                setType((current) => (current === option.value ? '' : option.value))
+                changed()
+              }}
+            >
+              {option.label}
+            </Chip>
+          ))}
+        </div>
+      </fieldset>
+
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+        <button
+          type="submit"
+          disabled={!summary || status === 'saving'}
+          className="h-11 w-full rounded-lg bg-[#2d5a27] px-8 text-[15px] font-medium text-white transition hover:bg-[#234a1f] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:min-w-[240px]"
+          data-testid="zone-search-save"
+        >
+          {status === 'saving' ? 'Ukládáme...' : 'Uložit hledání'}
+        </button>
+        {status === 'saved' ? (
+          <span role="status" className="flex items-center gap-1.5 text-[14px] font-medium text-[#2d5a27]" data-testid="zone-search-saved">
+            <CheckCircle className="h-4 w-4" aria-hidden="true" />
+            Uloženo
+          </span>
+        ) : null}
+        {status === 'error' ? (
+          <span role="alert" className="text-[14px] text-red-700" data-testid="zone-search-error">
+            Vyhledávání se nepodařilo uložit. Zkuste to prosím znovu.
+          </span>
+        ) : null}
+      </div>
+    </form>
+  )
+}
+
+export default function ZoneSearchPage() {
+  const data = useZoneData()
+
+  if (data.loading) {
+    return (
+      <ZoneShell data={data}>
+        <ZoneSkeleton variant="form" />
+      </ZoneShell>
     )
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{t('club.searchesPage.title', language)}</h1>
-          <p className="text-gray-600 mt-1">{savedSearches.length} {t('club.searchesPage.savedCriteria', language)}</p>
-        </div>
-        <Button onClick={createNewSearch} className="w-full sm:w-auto">
-          <Plus className="h-4 w-4 mr-2" />
-          {t('club.searchesPage.newSearch', language)}
-        </Button>
+    <ZoneShell data={data}>
+      <div className="max-w-3xl" data-testid="zone-search-page">
+        <ZoneBackLink className="-mt-2 mb-3" />
+        <h1 className="text-[32px] font-bold leading-tight text-[#1b2333] sm:text-[38px]">Nastavte, co hledáte</h1>
+        <SearchForm
+          key={data.user?.id || 'anon'}
+          savedSearch={data.savedSearch}
+          onSaved={(savedSearch) => data.update({ savedSearch })}
+        />
       </div>
-
-      {/* Search Management */}
-      {savedSearches.length > 0 ? (
-        <div className="space-y-4">
-          {savedSearches.map((search) => (
-            <Card key={search.id} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <h3 className="text-lg font-semibold text-gray-900">{search.name}</h3>
-                      <Badge variant={search.notifications ? 'default' : 'secondary'} className="text-xs">
-                        {search.notifications ? (
-                          <><Bell className="h-3 w-3 mr-1" /> Alerts On</>
-                        ) : (
-                          <><BellOff className="h-3 w-3 mr-1" /> Alerts Off</>
-                        )}
-                      </Badge>
-                    </div>
-                    
-                    <p className="text-gray-600 text-sm mb-3">{formatFilters(search.filters)}</p>
-                    
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">
-                      <span className="flex items-center">
-                        <Calendar className="h-3 w-3 mr-1" />
-                        Created: {new Date(search.createdAt).toLocaleDateString()}
-                      </span>
-                      <span className="flex items-center">
-                        <Search className="h-3 w-3 mr-1" />
-                        Last used: {new Date(search.createdAt).toLocaleDateString()}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-wrap items-center gap-2 sm:flex-shrink-0">
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => runSearch(search.filters)}
-                    >
-                      <Search className="h-4 w-4 mr-1" />
-                      Run Search
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => toggleNotifications(search.id, search.notifications)}
-                    >
-                      {search.notifications ? (
-                        <BellOff className="h-4 w-4" />
-                      ) : (
-                        <Bell className="h-4 w-4" />
-                      )}
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => editSearch(search)}
-                    >
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => deleteSearch(search.id)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      ) : (
-        <Card>
-          <CardContent className="p-12 text-center">
-            <Search className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('club.searchesPage.noSearches', language)}</h3>
-            <p className="text-gray-600 mb-6">
-              {t('club.searchesPage.noSearchesDescription', language)}
-            </p>
-            <Button onClick={createNewSearch}>
-              <Plus className="h-4 w-4 mr-2" />
-              {t('club.searchesPage.createFirst', language)}
-            </Button>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Edit/Create Search Dialog */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>
-              {editingSearch?.id === 'new'
-                ? t('club.searchesPage.createTitle', language)
-                : t('club.searchesPage.editTitle', language)}
-            </DialogTitle>
-          </DialogHeader>
-          {editingSearch && (
-            <div className="space-y-4">
-              <div>
-                <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.nameLabel', language)}</label>
-                <Input
-                  placeholder={t('club.searchesPage.namePlaceholder', language)}
-                  value={editingSearch.name}
-                  onChange={(e) => setEditingSearch(prev => ({ ...prev, name: e.target.value }))}
-                />
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.propertyType', language)}</label>
-                  <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                    value={editingSearch.filters.type || ''}
-                    onChange={(e) => setEditingSearch(prev => ({
-                      ...prev,
-                      filters: { ...prev.filters, type: e.target.value }
-                    }))}
-                  >
-                    <option value="">{t('club.searchesPage.anyType', language)}</option>
-                    <option value="villa">{t('club.searchesPage.villa', language)}</option>
-                    <option value="house">{t('club.searchesPage.house', language)}</option>
-                    <option value="apartment">{t('club.searchesPage.apartment', language)}</option>
-                    <option value="commercial">{t('club.searchesPage.commercial', language)}</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.location', language)}</label>
-                  <Input
-                    placeholder={t('club.searchesPage.locationPlaceholder', language)}
-                    value={editingSearch.filters.location || ''}
-                    onChange={(e) => setEditingSearch(prev => ({
-                      ...prev,
-                      filters: { ...prev.filters, location: e.target.value }
-                    }))}
-                  />
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.minPrice', language)}</label>
-                  <Input
-                    type="number"
-                    placeholder="0"
-                    value={editingSearch.filters.minPrice || ''}
-                    onChange={(e) => setEditingSearch(prev => ({
-                      ...prev,
-                      filters: { ...prev.filters, minPrice: e.target.value }
-                    }))}
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.maxPrice', language)}</label>
-                  <Input
-                    type="number"
-                    placeholder={t('club.searchesPage.noLimit', language)}
-                    value={editingSearch.filters.maxPrice || ''}
-                    onChange={(e) => setEditingSearch(prev => ({
-                      ...prev,
-                      filters: { ...prev.filters, maxPrice: e.target.value }
-                    }))}
-                  />
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.minBedrooms', language)}</label>
-                  <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                    value={editingSearch.filters.bedrooms || ''}
-                    onChange={(e) => setEditingSearch(prev => ({
-                      ...prev,
-                      filters: { ...prev.filters, bedrooms: e.target.value }
-                    }))}
-                  >
-                    <option value="">{t('club.searchesPage.any', language)}</option>
-                    <option value="1">1+</option>
-                    <option value="2">2+</option>
-                    <option value="3">3+</option>
-                    <option value="4">4+</option>
-                    <option value="5">5+</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">{t('club.searchesPage.minBathrooms', language)}</label>
-                  <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                    value={editingSearch.filters.bathrooms || ''}
-                    onChange={(e) => setEditingSearch(prev => ({
-                      ...prev,
-                      filters: { ...prev.filters, bathrooms: e.target.value }
-                    }))}
-                  >
-                    <option value="">{t('club.searchesPage.any', language)}</option>
-                    <option value="1">1+</option>
-                    <option value="2">2+</option>
-                    <option value="3">3+</option>
-                    <option value="4">4+</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id="notifications"
-                  checked={editingSearch.notifications}
-                  onChange={(e) => setEditingSearch(prev => ({ ...prev, notifications: e.target.checked }))}
-                />
-                <label htmlFor="notifications" className="text-sm font-medium">
-                  {t('club.searchesPage.alertsLabel', language)}
-                </label>
-              </div>
-              
-              <div className="flex justify-end space-x-2 pt-4">
-                <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                  {t('club.searchesPage.cancel', language)}
-                </Button>
-                <Button onClick={saveSearch}>
-                  <Save className="h-4 w-4 mr-2" />
-                  {editingSearch.id === 'new'
-                    ? t('club.searchesPage.create', language)
-                    : t('club.searchesPage.update', language)}
-                </Button>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
-
-      {/* Tips */}
-      <Alert>
-        <CheckCircle className="h-4 w-4" />
-        <AlertDescription>
-          <strong>Pro Tip:</strong> Enable notifications on your saved searches to get email alerts 
-          when new properties match your criteria. You can manage notifications individually for each search.
-        </AlertDescription>
-      </Alert>
-    </div>
+    </ZoneShell>
   )
 }

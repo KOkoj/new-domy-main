@@ -1,23 +1,25 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
-import { getUserDisplayName, loadSiteAuthUser } from '@/lib/siteAuthUser'
+import { getUserRealName, loadSiteAuthUser } from '@/lib/siteAuthUser'
+import { PROPERTY_TYPE_LABELS } from '@/lib/propertyDisplay'
 
 const EMPTY = {
   loading: true,
   user: null,
   firstName: '',
+  fullName: '',
   savedHouses: [],
   savedSearch: null,
   hasPurchases: false
 }
 
-function pickFirstName(profile, user) {
-  // Same name source as the site header (#57); never greet by e-mail.
-  const raw = getUserDisplayName(user, profile)
-  if (!raw || raw.includes('@')) return ''
-  return String(raw).trim().split(/\s+/)[0] || ''
+// Same name source as the site header (#57); never greet by e-mail.
+export const pickFullName = getUserRealName
+
+function pickFirstName(fullName) {
+  return String(fullName || '').trim().split(/\s+/)[0] || ''
 }
 
 export function formatSearchSummary(filters) {
@@ -25,7 +27,7 @@ export function formatSearchSummary(filters) {
   const parts = []
   if (filters.location) parts.push(filters.location)
   if (filters.maxPrice) parts.push(`do ${Number(filters.maxPrice).toLocaleString('cs-CZ')} €`)
-  if (filters.type) parts.push(filters.type)
+  if (filters.type) parts.push(PROPERTY_TYPE_LABELS[filters.type]?.cs || filters.type)
   return parts.join(' · ')
 }
 
@@ -94,7 +96,7 @@ export function useZoneData() {
       const housesPromise = settle(loadSavedHouses(), [])
       const userScoped = userPromise.then((user) => {
         if (!user) return [null, null, false]
-        const needsProfile = !getUserDisplayName(user) || getUserDisplayName(user).includes('@')
+        const needsProfile = !pickFullName(user)
         return Promise.all([
           needsProfile ? settle(loadProfile(), null) : null,
           withTimeout(settle(loadSavedSearch(), null), 5000, null),
@@ -108,8 +110,9 @@ export function useZoneData() {
         userScoped
       ])
       if (cancelled) return
+      const fullName = user ? pickFullName(user, profile) : ''
       const next = user
-        ? { loading: false, user, firstName: pickFirstName(profile, user), savedHouses, savedSearch, hasPurchases }
+        ? { loading: false, user, firstName: pickFirstName(fullName), fullName, savedHouses, savedSearch, hasPurchases }
         : { ...EMPTY, loading: false }
       lastZoneData = user ? next : null
       setState(next)
@@ -120,7 +123,17 @@ export function useZoneData() {
     }
   }, [])
 
-  return state
+  // Local update after a save on a zone page (Nastavit hledání, jméno), so the
+  // sidebar and greeting change at once without another round trip.
+  const update = useCallback((patch) => {
+    setState((previous) => {
+      const next = { ...previous, ...patch }
+      if (next.user) lastZoneData = next
+      return next
+    })
+  }, [])
+
+  return { ...state, update }
 }
 
 export function formatPrice(amount, currency = 'EUR') {

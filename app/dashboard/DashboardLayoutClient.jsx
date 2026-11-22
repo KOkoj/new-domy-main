@@ -33,6 +33,8 @@ import ZoneBackLink from '../../components/zone/ZoneBackLink'
 import { t } from '../../lib/translations'
 import { DEFAULT_LANGUAGE, persistLanguage, readLanguageFromBrowser } from '../../lib/userPreferences'
 
+const ZONE_PAGES = new Set(['/dashboard', '/dashboard/ulozene', '/dashboard/searches', '/dashboard/settings'])
+
 const getDashboardMenuItems = (language) => [
   {
     title: language === 'cs' ? 'Přehled' : (language === 'it' ? 'Panoramica' : 'Overview'),
@@ -146,17 +148,23 @@ export default function DashboardLayout({ children }) {
   // One shared server session request (same one the header uses), no
   // profile request here: the zone layout no longer shows the profile, and the
   // old session -> profile chain kept every dashboard page blank meanwhile.
+  // Back to the page the visitor asked for (login validates it with
+  // getSafeRedirectPath); only zone paths are passed on.
+  const loginHref = `/login?redirect=${encodeURIComponent(
+    pathname && pathname.startsWith('/dashboard') ? pathname : '/dashboard'
+  )}`
+
   const checkUserAccess = async () => {
     try {
       const sessionUser = await loadSiteAuthUser()
       if (!sessionUser) {
-        router.push('/login?redirect=/dashboard')
+        router.push(loginHref)
         return
       }
       setUser(sessionUser)
     } catch (error) {
       console.error('User access check failed:', error)
-      router.push('/login?redirect=/dashboard')
+      router.push(loginHref)
     } finally {
       setLoading(false)
     }
@@ -175,7 +183,8 @@ export default function DashboardLayout({ children }) {
   // Client zone ("vlákno"): site header + centered content, no left menu.
   // The old menu items (getDashboardMenuItems) and their routes stay in code,
   // just not linked from the zone.
-  const isZonePage = pathname === '/dashboard' || pathname === '/dashboard/ulozene'
+  // Zone pages render their own ZoneShell (content + Lucie/Luca sidebar).
+  const isZonePage = ZONE_PAGES.has(pathname)
 
   if (loading && !isZonePage) {
     return (
@@ -218,8 +227,7 @@ export default function DashboardLayout({ children }) {
           children
         ) : (
           <div className="mx-auto w-full max-w-[1344px] px-4 pb-16 pt-8 sm:px-6">
-            {/* Settings renders its own back link inside its centered column. */}
-            {pathname !== '/dashboard/settings' ? <ZoneBackLink language={language} className="-mt-2 mb-4" /> : null}
+            <ZoneBackLink language={language} className="-mt-2 mb-4" />
             {children}
           </div>
         )}

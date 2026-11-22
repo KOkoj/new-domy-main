@@ -69,3 +69,90 @@ test('zone loads fast: no full inventory download, no session waterfall', () => 
     assert.match(read(file), /<ZoneSkeleton/, file)
   }
 })
+
+test('saved strip shows full house titles in equal-height cards', () => {
+  const page = read('app/dashboard/page.js')
+  const strip = page.slice(page.indexOf('function SavedStrip'), page.indexOf('function UnavailableCard'))
+  assert.doesNotMatch(strip, /line-clamp|truncate|text-ellipsis/)
+  assert.match(strip, /items-stretch/)
+  assert.match(strip, /flex w-\[160px\] flex-shrink-0 flex-col/)
+})
+
+test('mobile sidebar is compact, desktop column and CallBlock unchanged', () => {
+  const sidebar = read('components/zone/ZoneSidebar.jsx')
+  assert.match(sidebar, /data-testid="zone-contact-buttons"/)
+  assert.match(sidebar, /grid grid-cols-3/)
+  assert.match(sidebar, /aria-label="Vyberte čas, kdy vám Lucie zavolá"/)
+  assert.match(sidebar, /<CallBlock \/>/)
+  const shell = read('components/zone/ZoneShell.jsx')
+  assert.match(shell, /lg:sticky lg:top-28 lg:w-\[340px\]/)
+})
+
+test('header and greeting never show the e-mail as a name', () => {
+  const source = read('lib/siteAuthUser.js')
+  const body = source.slice(source.indexOf('export function getUserDisplayName')).replace(/export function/g, 'function')
+  const context = { String }
+  vm.runInNewContext(`${body}\nthis.api = { getUserRealName, getUserFirstName }`, context)
+  const { getUserRealName, getUserFirstName } = context.api
+  assert.equal(getUserRealName({ email: 'jarvis-mat@example.com', user_metadata: {} }), '')
+  assert.equal(getUserRealName({ email: 'jarvis-mat@example.com' }, { name: 'jarvis-mat' }), '')
+  assert.equal(getUserRealName({ email: 'a@b.cz' }, { name: 'User' }), '')
+  assert.equal(getUserFirstName({ email: 'a@b.cz', user_metadata: { full_name: 'Jana Nováková' } }), 'Jana')
+
+  const nav = read('components/Navigation.js')
+  assert.match(nav, /getUserFirstName\(user\)/)
+  assert.doesNotMatch(nav, /\{getUserDisplayName\(user\)\}/)
+  assert.doesNotMatch(nav, /split\(' '\)\[0\] \|\| navLabels\.dashboard/)
+})
+
+test('searches and settings use the zone shell with the sidebar, no breadcrumbs', () => {
+  const layout = read('app/dashboard/DashboardLayoutClient.jsx')
+  assert.match(layout, /'\/dashboard\/searches', '\/dashboard\/settings'/)
+  assert.match(layout, /redirect=\$\{encodeURIComponent\(/)
+
+  const settings = read('app/dashboard/settings/page.js')
+  assert.match(settings, /<ZoneShell data=\{data\}>/)
+  assert.doesNotMatch(settings, /breadcrumb/i)
+  assert.match(settings, /method: 'PATCH'/)
+  assert.match(settings, /notifySiteAuthChanged/)
+
+  const searches = read('app/dashboard/searches/page.js')
+  assert.match(searches, /<ZoneShell data=\{data\}>/)
+  assert.match(searches, /Nastavte, co hledáte/)
+  assert.match(searches, /Uložit hledání/)
+  assert.match(searches, /\/api\/saved-searches/)
+  assert.match(searches, /existing \? 'PATCH' : 'POST'/)
+  assert.doesNotMatch(searches, /Pro Tip|individually|jednou týdně|Souhrn vám přijde/)
+
+  const profileRoute = read('app/api/profile/route.js')
+  assert.match(profileRoute, /auth\.updateUser\(\{\s*data: \{ name: fullName, full_name: fullName \}/)
+})
+
+test('search summary shows Czech property type labels', () => {
+  const hook = read('components/zone/useZoneData.js')
+  assert.match(hook, /PROPERTY_TYPE_LABELS\[filters\.type\]\?\.cs/)
+})
+
+test('old zone pages redirect temporarily, active entry points stay', () => {
+  const config = read('next.config.js')
+  for (const [page, destination] of [
+    ['prehled', '/dashboard'],
+    ['inquiries', '/dashboard'],
+    ['favorites', '/dashboard/ulozene'],
+    ['documents', '/dashboard'],
+    ['notifications', '/dashboard'],
+    ['content', '/dashboard'],
+    ['webinars', '/dashboard'],
+    ['profile', '/dashboard/settings']
+  ]) {
+    assert.ok(config.includes(`['${page}', '${destination}']`), page)
+  }
+  assert.match(config, /source: `\/dashboard\/\$\{page\}`, destination, permanent: false/)
+  for (const kept of ['intake-form', 'recommendations', 'concierge']) {
+    assert.ok(!config.includes(`['${kept}',`), kept)
+  }
+
+  const proxy = read('proxy.js')
+  assert.match(proxy, /searchParams\.set\('redirect', request\.nextUrl\.pathname\)/)
+  assert.match(proxy, /if \(zonePath && definitelySignedOut\)/)
+})
