@@ -20,17 +20,19 @@ function SavedStrip({ houses }) {
           Nastavit hledání
         </Link>
       </div>
-      <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
+      {/* Cards in a row stretch to the tallest one; titles wrap in full. */}
+      <div className="-mx-4 flex items-stretch gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
         {houses.map((house) => (
           <Link
             key={house.id}
             href={houseHref(house)}
-            className="w-[150px] flex-shrink-0 overflow-hidden rounded-lg border border-[#ebe5da] bg-white transition hover:border-[#d9cfbf]"
+            className="flex w-[160px] flex-shrink-0 flex-col overflow-hidden rounded-lg border border-[#ebe5da] bg-white transition hover:border-[#d9cfbf]"
+            data-testid="zone-saved-strip-card"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={house.image} alt="" loading="lazy" className="h-[96px] w-full object-cover" />
-            <div className="p-2.5">
-              <p className="line-clamp-2 text-[12.5px] leading-snug text-[#1b2333]">{house.title}</p>
+            <img src={house.image} alt="" loading="lazy" className="h-[96px] w-full flex-shrink-0 object-cover" />
+            <div className="flex-1 p-2.5">
+              <p className="break-words text-[12.5px] leading-snug text-[#1b2333] [hyphens:auto]" lang="cs">{house.title}</p>
               {house.price ? (
                 <p className="mt-1 text-[12px] text-gray-600">{Number(house.price).toLocaleString('cs-CZ')} €</p>
               ) : null}

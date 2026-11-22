@@ -280,6 +280,16 @@ export async function PATCH(request) {
       )
     }
 
+    // The header and the zone greeting read the name from the auth session
+    // (user_metadata), so a name saved in Nastavení účtu is mirrored there.
+    if (update.first_name) {
+      const fullName = [update.first_name, update.last_name].filter(Boolean).join(' ')
+      const { error: metadataError } = await supabase.auth.updateUser({
+        data: { name: fullName, full_name: fullName }
+      })
+      if (metadataError) console.error('Profile name metadata sync failed:', metadataError.message)
+    }
+
     return applyCookies(NextResponse.json({ success: true, profile: withDisplayName(profile, user) }))
   } catch (error) {
     return NextResponse.json({ error: 'Internal server error', message: error.message }, { status: 500 })

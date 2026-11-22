@@ -57,7 +57,17 @@ export function ZoneSkeleton({ variant = 'thread' }) {
   return (
     <div className="animate-pulse" data-testid="zone-skeleton" aria-busy="true">
       <div className="h-9 w-64 rounded-lg bg-[#ebe5da] sm:h-10" />
-      {variant === 'grid' ? (
+      {variant === 'form' ? (
+        <div className="mt-7 space-y-5 rounded-2xl border border-[#ebe5da] bg-white p-6 sm:p-8">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="space-y-2">
+              <div className="h-4 w-28 rounded bg-[#f1ece3]" />
+              <div className="h-11 w-full rounded-lg bg-[#f1ece3]" />
+            </div>
+          ))}
+          <div className="h-11 w-48 rounded-lg bg-[#f1ece3]" />
+        </div>
+      ) : variant === 'grid' ? (
         <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2">
           {[0, 1, 2, 3].map((i) => (
             <div key={i} className="overflow-hidden rounded-xl border border-[#ebe5da] bg-white">
